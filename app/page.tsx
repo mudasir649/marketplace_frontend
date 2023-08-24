@@ -2,14 +2,16 @@ import Image from 'next/image'
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Banner from "../components/Banner";
-import Search from "../components/Search";
+import SearchPage from "../components/Search";
+import ProductList from '@/components/ProductList';
 export default function Home() {
   return (
-    <div className="max-w-[1440px] mx-auto ">
+    <div className="">
       <Header />
       <Banner />
-      <Search />
-      {/* <Footer /> */}
+      <SearchPage />
+      <ProductList/>
+      <Footer />
     </div>
   )
 }
