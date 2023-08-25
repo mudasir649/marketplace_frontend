@@ -1,8 +1,13 @@
 .bg{
-    background-image: url('../public/assets/banner_logo.jpeg');
+    background-image: url('../public/assets/eidcarosse_banner_3.JPG');
     background-size: cover;
     background-repeat: no-repeat;
     min-height: 50vh;
     background-position: center;
     padding-top: 4rem;
+        
+    @media (max-width: 688px) {
+        min-height: 100px;
+        background-size: cover;
+    }
 }
