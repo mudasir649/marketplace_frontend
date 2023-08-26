@@ -18,7 +18,7 @@ export default function Login() {
             <div className='container mx-10 w-[800px] h-[600px] bg-white shadow-3xl border rounded-lg'>
                 <div className='flex justify-end'>
                     <Link href="/">
-                        <button className='text-white text-xl mr-[-5px] md:mr-[-10px] lg:mr-2'>
+                        <button className='text-white text-xl lg:mr-[-30px]'>
                             <Cancel className='text-[#e52320]' />
                         </button>
                     </Link>
