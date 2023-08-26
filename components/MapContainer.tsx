@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { GoogleMap, LoadScript, Marker, useJsApiLoader } from "@react-google-maps/api"
 import { Box, CircularProgress } from '@mui/material';
+import useWindowDimensions from '@/utils/useWindowDimensions';
 
 
 const MapContainer = ({ apikey, address }: any) => {
@@ -9,6 +10,14 @@ const MapContainer = ({ apikey, address }: any) => {
   const [long, setLong] = useState<any>();
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string>('');
+
+  const { width, height } = useWindowDimensions();
+
+  console.log(width);
+  console.log(height);
+
+  const newWidth = width || 0;
+  const newHeight = height || 0;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,16 +39,6 @@ const MapContainer = ({ apikey, address }: any) => {
 
   const center = { lat: lat, lng: long };
 
-  // const { isLoaded } = useJsApiLoader({
-  //   googleMapsApiKey: apikey,
-  // });
-
-  // if (isLoaded) {
-  //   console.log("map is loaded");
-
-  // }
-
-
   if (loading) {
     return <div>
       <Box>
@@ -50,7 +49,9 @@ const MapContainer = ({ apikey, address }: any) => {
     return <div>{errorMessage}</div>;
   } else {
     return (
-      <div className='h-72 w-auto md:h-64 md:w-64 lg:h-96 lg:w-96 border rounded-lg'>
+      <div className={`h-72 w-auto md:h-64 md:w-64 border rounded-lg 
+              ${newWidth <= 1024 && newHeight <= 800 ? 'lg:w-56 lg:h-56' : 'lg:h-96 lg:w-96'} 
+              ${newWidth <= 1024 && newHeight <= 885 ? 'lg:w-56 lg:h-56' : 'lg:h-96 lg:w-96'}`}>
         <LoadScript googleMapsApiKey={apikey}>
           <GoogleMap
             center={center}

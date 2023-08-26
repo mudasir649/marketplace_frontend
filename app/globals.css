@@ -10,7 +10,7 @@
 
 @layer base {
   body {
-    @apply font-primary bg-gray-200;
+    @apply font-primary;
   }
   .dropdown {
     @apply w-full lg:max-w-[296px] cursor-pointer;

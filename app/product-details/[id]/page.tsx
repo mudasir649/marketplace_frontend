@@ -14,6 +14,7 @@ import Link from 'next/link';
 import MapContainer from '@/components/MapContainer';
 import Home from '@/components/Home';
 import AOS from 'aos'
+import useWindowDimensions from '@/utils/useWindowDimensions';
 
 export default function ProductDetails() {
 
@@ -40,21 +41,28 @@ export default function ProductDetails() {
   const listStyle = 'border-t border-gray-400 py-3 w-52';
   const listStyle2 = 'text-sm text-gray-500';
 
+  const { width, height } = useWindowDimensions();
+
+  console.log(width);
+  console.log(height);
+
+  const newWidth = width || 0;
+  const newHeight = height || 0;
+
 
   return (
     <>
       <Home>
         <section className='flex lg:mx-20 md:mx-0 md:my-20 mx-4 md:flex-row flex-col'>
           {/* Products details div start */}
-          <div className='md:mx-10 lg:w-[890px] min-h-[800px] mb-5 border rounded-lg bg-white p-5' data-aos="fade-up">
+          <div className={`${newWidth <= 1024 && newHeight <= 885 ? 'md:mx-5' : 'md:mx-10'}  lg:w-[890px] min-h-[800px] mb-5 border rounded-lg bg-white p-5`} data-aos="fade-up">
             <div className='flex flex-col lg:flex-row lg:items-center lg:justify-between'>
               <div>
                 <h1 className='text-2xl font-semibold'>{product?.name}</h1>
                 <h1 className='text-lg mb-4'>{product?.address}</h1>
               </div>
               <div className='mb-4 lg:mb-0 flex gap-x-2 text-sm'>
-                <h1 className='text-xl font-semibold text-white bg-green-500 px-3 rounded-full'>{product?.type}</h1>
-                <div className='text-xl font-semibold text-white bg-red-500 px-3 rounded-full'>{product?.country}</div>
+                <h1 className={`${newWidth === 1024 && newHeight === 885 ? 'text-sm' : 'text-xl'} font-semibold text-white bg-green-500 px-3 rounded-full`}>{product?.type}</h1>
               </div>
             </div>
             <div className='flex flex-col items-start gap-8 lg:flex-row'>

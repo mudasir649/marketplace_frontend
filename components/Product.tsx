@@ -4,23 +4,34 @@ import Link from 'next/link';
 import React, { useEffect } from 'react'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import useWindowDimensions from '@/utils/useWindowDimensions';
 
 
 export default function Product({ product, url }: any) {
 
-  const { image, type, country, address, price, name, id } = product;
+  const { image, type, address, price, name, id } = product;
+
+  const { width, height } = useWindowDimensions();
+
+  console.log(width);
+  console.log(height);
+
+  const newWidth = width || 0;
+  const newHeight = height || 0;
 
   useEffect(() => {
     AOS.init();
   }, [product])
 
   return (
-    <div className='bg-white shadow-lg border-[#795453] rounded-lg my-5 w-full max-w-[352px] mx-auto cursor-pointer hover:shadow-2xl transition' data-aos={url !== "login" && url !== "signup" && "fade-up"}>
-      <div className='border border-gray-300 mb-2'>
+    <div className={`${newWidth < 688 ? 'max-w-[500px]' : 'max-w-[352px]'} bg-white shadow-lg border-[#795453] rounded-lg my-5 w-full h-auto mx-auto cursor-pointer hover:shadow-2xl`} data-aos={url !== "login" && url !== "signup" && "fade-up"}>
+      <div className='border border-gray-300 mb-2 w-auto'>
         <Link href={`product-details/${id}`}>
           <Image
             src={image}
             alt={name}
+            width={500}
+            height={500}
           />
         </Link>
       </div>
@@ -29,9 +40,6 @@ export default function Product({ product, url }: any) {
           <div className='bg-[#e52320] text-white rounded-full px-3'>
             {type}
           </div>
-          {/* <div className='bg-green-500 rounded-full text-white px-3'>
-          {country}
-        </div> */}
         </div>
         <div className='text-lg font-semibold max-w-[260px] cursor-pointer hover:text-[#e52320]'>
           <Link href={`product-details/${id}`}>
@@ -65,16 +73,6 @@ export default function Product({ product, url }: any) {
             <Share />
             <Chat />
             <Phone />
-            {/* <div className=' p-3 border border-gray-400'>
-          <div className='bg-green-600 rounded-full h-8 w-8 p-1 text-white'>
-            <Share className='text-xl'/>
-          </div>
-        </div>
-        <div className=' p-3 border border-gray-400'>
-          <div className='bg-red-500 rounded-full h-8 w-8 p-1 text-white'>
-            <PhoneIphone/>
-          </div>
-        </div> */}
           </div>
           <div className='invisible'>
             flflf
