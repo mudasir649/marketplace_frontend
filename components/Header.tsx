@@ -7,21 +7,11 @@ import Aos from "aos";
 import "./Header.css"
 import MenuIcon from '@mui/icons-material/Menu';
 import ListDownComponent from "./ListDownComponent";
-import useWindowDimensions from "@/utils/useWindowDimensions";
 
 export default function Header() {
 
   const [navbar, setNavbar] = useState<Boolean>(false);
   const navbarLiStyle = navbar ? 'cursor-pointer hover:text-[#e52320]' : 'cursor-pointer hover:text-red-300';
-
-  const { width, height } = useWindowDimensions();
-
-  console.log(width);
-  console.log(height);
-
-  const newWidth = width || 0;
-  const newHeight = height || 0;
-
 
 
   useEffect(() => {
