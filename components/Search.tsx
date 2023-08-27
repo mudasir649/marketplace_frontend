@@ -1,39 +1,26 @@
 import React from "react";
-import CountryDropdown from "./CountryDropdown";
-import ListingDropdown from "./ListingDropdown";
 import KeywordInputField from "./KeywordInputField";
 import { Search } from "@mui/icons-material"
-import useWindowDimensions from "@/utils/useWindowDimensions";
 
 export default function SearchPage() {
-
-  const { width, height } = useWindowDimensions();
-
-  console.log(width);
-  console.log(height);
-
-  const newWidth = width || 0;
-  const newHeight = height || 0;
-
 
   return (
     <div className={`px-[30px] py-6  
       max-w-[1170px] mx-10 lg:mx-auto grid grid-cols-1 md:grid-cols-2 lg:flex 
-      lg:flex-row justify-between gap-4 
+      lg:flex-row  lg:justify-between gap-4 
       lg:gap-x-3 lg:mt-10
       lg:shadow-1 bg-white 
       mb-10
       lg:bg-white 
       rounded-lg
   `}>
-      <CountryDropdown />
-      <ListingDropdown />
-      <KeywordInputField />
+      <KeywordInputField logo='component1' text1='Location (any)' text2="Enter your location" />
+      <KeywordInputField logo='component2' text1='Auto Parts' text2="Select auto type" />
+      <KeywordInputField logo='component3' text2="Enter keyboard here" />
       <button className="bg-[#e52320] hover:bg-red-700 
-        transition w-60 px-2 py-5  lg:max-w-[162px] h-16 rounded-lg">
+        transition w-56 h-10 lg:w-60 lg:h-16 lg:px-2 lg:py-5  lg:max-w-[162px] rounded-lg">
         <Search className="text-white text-3xl" />
       </button>
-
     </div>
   );
 }

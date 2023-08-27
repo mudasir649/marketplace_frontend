@@ -28,7 +28,7 @@ export default function Banner() {
           </div>
         </div>
       </div>
-      <div className='pt-10 md:visible invisible'>
+      <div className='pt-10'>
         <SearchPage />
         {/* <h1 className='text-4xl lg:text-[58px] font-semibold leading-none'>
             <span className='text-[#e52320]'>Buy</span> <span className='text-black'>What ever you want.</span>

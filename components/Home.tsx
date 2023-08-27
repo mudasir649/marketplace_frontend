@@ -7,9 +7,6 @@ import useWindowDimensions from '@/utils/useWindowDimensions';
 export default function Home({ children }: any) {
   const { width, height } = useWindowDimensions();
 
-  console.log(width);
-  console.log(height);
-
   const newWidth = width || 0;
   const newHeight = height || 0;
   return (

@@ -13,9 +13,6 @@ export default function MainPage() {
 
   const { width, height } = useWindowDimensions();
 
-  console.log(width);
-  console.log(height);
-
   const newWidth = width || 0;
   const newHeight = height || 0;
 
