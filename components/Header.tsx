@@ -56,9 +56,21 @@ export default function Header() {
           </Link>
           <div className={`menu`}>
             <ul className="flex flex-row space-x-6 uppercase text-sm font-semibold text-white">
-              <li className={navbarLiStyle}>home</li>
-              <li className={navbarLiStyle}>advance search</li>
-              <li className={navbarLiStyle}>contact us</li>
+              <li className={navbarLiStyle}>
+                <Link href="/">
+                  home
+                </Link>
+              </li>
+              <li className={navbarLiStyle}>
+                <Link href="advance-search">
+                  advance search
+                </Link>
+              </li>
+              <li className={navbarLiStyle}>
+                <Link href="contact-us">
+                  contact us
+                </Link>
+              </li>
               <li>
                 <ListDownComponent />
               </li>
