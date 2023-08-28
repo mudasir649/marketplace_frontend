@@ -37,10 +37,18 @@ export default function KeywordInputField({ logo, text1, text2 }: any) {
     )
   }
 
+  const handleClick = (e: any) => {
+    if (logo === "component2") {
+      setExpand(!expand);
+    } else {
+      setExpand(false)
+    }
+  }
+
   return (
     <div>
       <div className='border ring-gray-200 rounded-lg hover:border-red-500 focus:outline-red-600  
-      cursor-pointer transition w-56 h-16 lg:w-72 lg:h-16'>
+      cursor-pointer transition w-56 h-16 lg:w-72 lg:h-16' onClick={(e) => handleClick(e)}>
         <div className='container mx-auto flex flex-row w-full space-x-3 lg:space-x-6 p-2'>
           <div><Logo /></div>
           <div className='flex flex-col w-32 space-y-[0.5px]'>
