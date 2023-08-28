@@ -1,4 +1,4 @@
-import { ExpandLess, ExpandMore, FmdGood, LocalShipping } from '@mui/icons-material';
+import { Category, ExpandLess, ExpandMore, FmdGood } from '@mui/icons-material';
 import React, { useEffect, useState } from 'react';
 import Autocomplete, { usePlacesWidget } from "react-google-autocomplete";
 import CategoryList from './CategoryList';
@@ -28,7 +28,7 @@ export default function KeywordInputField({ logo, text1, text2 }: any) {
   }, [])
 
   const Logo = () => {
-    return logo === "component1" ? <FmdGood className={logoStyle} /> : logo === "component2" ? <LocalShipping className={logoStyle} /> : ""
+    return logo === "component1" ? <FmdGood className={logoStyle} /> : logo === "component2" ? <Category className={logoStyle} /> : ""
   };
 
   const DropDownDiv = () => {
