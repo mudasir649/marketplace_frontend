@@ -1,6 +1,6 @@
 import { ExpandLess, ExpandMore, FmdGood, LocalShipping } from '@mui/icons-material';
 import React, { useEffect, useState } from 'react';
-import { usePlacesWidget } from "react-google-autocomplete";
+import Autocomplete, { usePlacesWidget } from "react-google-autocomplete";
 import CategoryList from './CategoryList';
 import Aos from 'aos';
 
@@ -45,6 +45,9 @@ export default function KeywordInputField({ logo, text1, text2 }: any) {
     }
   }
 
+  console.log(address);
+
+
   return (
     <div>
       <div className='border ring-gray-200 rounded-lg hover:border-red-500 focus:outline-red-600  
@@ -56,7 +59,17 @@ export default function KeywordInputField({ logo, text1, text2 }: any) {
             {logo === "component2" ?
               <div>{category === "" ? componentText : category}</div>
               : logo === "component1" ?
-                <div><input type='text' ref={ref || null} className='border-none w-40 lg:w-52 bg-transparent focus:outline-none' placeholder={text2} /></div>
+                <div>
+                  <Autocomplete
+                    apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAP_API}
+                    onPlaceSelected={(place) => {
+                      let { formatted_address } = place;
+                      setAddress(formatted_address || "");
+                    }}
+                    className='border-none w-40 lg:w-52 bg-transparent focus:outline-none'
+                    placeholder={text2}
+                  />
+                </div>
                 :
                 <div><input type='text' value={keyword}
                   className='border-none w-40 lg:w-52 mt-2 bg-transparent focus:outline-none'
