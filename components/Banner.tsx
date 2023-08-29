@@ -2,13 +2,19 @@ import React, { useEffect } from 'react'
 import { Agriculture, CarRepair, DirectionsBike, DirectionsCar, KeyboardArrowDown, LocalShipping, TwoWheeler } from '@mui/icons-material';
 import Aos from 'aos';
 import SearchPage from './Search';
+import useWindowDimensions from '@/utils/useWindowDimensions';
 
 
 export default function Banner() {
 
   useEffect(() => {
     Aos.init();
-  }, [])
+  }, []);
+
+  const { width, height } = useWindowDimensions();
+
+  const newWidth = width || 0;
+  const newHeight = height || 0;
 
   return (
     <div className='mb-5  border-green-400 mt-1 h-[300px]'>

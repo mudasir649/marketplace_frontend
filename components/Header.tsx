@@ -7,10 +7,12 @@ import Aos from "aos";
 import "./Header.css"
 import MenuIcon from '@mui/icons-material/Menu';
 import ListDownComponent from "./ListDownComponent";
+import ContactUs from "./ContactUs";
 
 export default function Header() {
 
   const [navbar, setNavbar] = useState<Boolean>(false);
+  const [showContact, setShowContact] = useState(false);
   const navbarLiStyle = navbar ? 'cursor-pointer hover:text-[#e52320]' : 'cursor-pointer hover:text-red-300';
 
 
@@ -18,14 +20,28 @@ export default function Header() {
     Aos.init();
   }, []);
 
+  const handleContact = () => {
+    setShowContact(true);
+    setNavbar(false);
+  }
+
+
   return (
     <>
       {navbar &&
         <div className="h-[800px] w-96 absolute z-10 bg-white" data-aos="fade-right">
           <ul className="flex flex-col space-y-5 uppercase m-7">
-            <li className={navbarLiStyle}>home</li>
-            <li className={navbarLiStyle}>advance search</li>
-            <li className={navbarLiStyle}>contact us</li>
+            <li className={navbarLiStyle}>
+              <Link href="/" onClick={() => setNavbar(false)}>
+                home
+              </Link>
+            </li>
+            <li className={navbarLiStyle} >
+              <Link href="/advance-search" onClick={() => setNavbar(false)}>
+                advance search
+              </Link>
+            </li>
+            <li className={navbarLiStyle} onClick={handleContact}>contact us</li>
             <li>
               <ListDownComponent />
             </li>
@@ -66,10 +82,11 @@ export default function Header() {
                   advance search
                 </Link>
               </li>
-              <li className={navbarLiStyle}>
-                <Link href="contact-us">
+              <li className={navbarLiStyle} onClick={() => (setShowContact(!showContact))}>
+                contact us
+                {/* <Link href="contact-us">
                   contact us
-                </Link>
+                </Link> */}
               </li>
               <li>
                 <ListDownComponent />
@@ -105,8 +122,7 @@ export default function Header() {
                 <span>Login</span>
               </button>
             </Link>
-            {/* <h1>{newWidth}</h1>
-            <h1>{newHeight}</h1> */}
+            {!showContact ? "" : <ContactUs setShowContact={setShowContact} />}
           </div>
         </div>
       </header ></>

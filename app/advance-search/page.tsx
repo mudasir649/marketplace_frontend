@@ -1,12 +1,14 @@
 'use client'
 import Home from '@/components/Home';
-import { AirportShuttle, BuildCircle, DataSaverOn, DirectionsBike, DirectionsBoat, DirectionsBus, DirectionsCar, ExpandLess, ExpandMore, FireTruck, Flight, KeyboardArrowLeft, KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight, PrecisionManufacturing, RvHookup } from '@mui/icons-material';
+import { AirportShuttle, BuildCircle, Chat, DataSaverOn, DirectionsBike, DirectionsBoat, DirectionsBus, DirectionsCar, ExpandLess, ExpandMore, FireTruck, Flight, KeyboardArrowLeft, KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight, PhoneEnabled, PrecisionManufacturing, RemoveRedEye, RvHookup, Share } from '@mui/icons-material';
 import Aos from 'aos';
 import React, { useEffect, useState } from 'react';
 import "./advanceSearch.css";
 import ReactStars from "react-stars";
-import { expandStyle, ratingList } from "../../utils/localVariables";
+import { btnStyle, expandStyle, inputStyle, logoStyle, logoStyle1, ratingList, spanStyle } from "../../utils/localVariables";
 import productData from '@/utils/data';
+import Image from 'next/image';
+import useWindowDimensions from '@/utils/useWindowDimensions';
 
 interface IList {
     logo: any,
@@ -98,11 +100,6 @@ export default function Page() {
         )
     }
 
-    const inputStyle = 'border border-gray-300 hover:border-red-600 focus:outline-red-600 rounded-md w-32 h-10 p-2 cursor-pointer';
-    const logoStyle = 'text-red-600 cursor-pointer';
-    const btnStyle = 'text-md font-semibold hover:text-red-600 text-gray-500';
-    const spanStyle = 'pt-[0.5px] text-sm cursor-pointer font-bold';
-
     const paginationList = [1, 2, 3, 4, 5, 6];
     const [page, setPage] = useState<number>(1);
 
@@ -121,16 +118,36 @@ export default function Page() {
         } else {
             return;
         }
-    }
+    };
 
-    console.log(page);
+    const logo = [
+        {
+            name: <PhoneEnabled className={logoStyle1} />
+        },
+        {
+            name: <Chat className={logoStyle1} />
+        },
+        {
+            name: <Share className={logoStyle1} />
+        },
+        {
+            name: <RemoveRedEye className={logoStyle1} />
+        },
+        {
+            name: 123
+        }
+    ];
 
+    const { width, height } = useWindowDimensions();
+
+    const newWidth = width || 0;
+    const newHeight = height || 0;
 
     return (
         <div>
             <Home>
                 <div className='container mx-auto flex flex-col lg:flex-row mt-56 lg:mt-0 space-y-3 lg:space-y-0 lg:space-x-3 w-full mb-[500px]'>
-                    <div className='bg-white shadow-lg border rounded-md w-full lg:w-[400px] h-full p-2'>
+                    <div className='bg-white shadow-lg border rounded-md w-full lg:w-[400px] h-full p-2' data-aos="fade-right">
                         <div className='border-b flex flex-row justify-between p-2'>
                             <h1 className='text-lg font-bold'>Category</h1>
                         </div>
@@ -166,21 +183,49 @@ export default function Page() {
                             text-white border-none rounded-lg font-bold text-lg mb-5'>Apply filters</button>
                     </div>
                     <div className='flex flex-col w-full h-full'>
-                        <div>
+                        <div className='flex flex-row justify-between  bg-white border border-[#e52320] mb-3 p-2 pl-5' data-aos="fade-left">
+                            <h1 className='text-xl font-bold'>{productData.length} Results</h1>
+                            <span className='text-md font-semibold'>showing results from 1 to 10 of {productData?.length}</span>
+                        </div>
+                        <div className='' data-aos="fade-up">
                             {productData?.map((product: any, i: number) => (
-                                <div className={`bg-red-600 h-52 ${i !== 0 ? 'my-5' : 'my-0'}`} key={i}>
-                                    {i + 1}
+                                <div className={`flex flex-row justify-between hover:shadow-lg bg-white border border-gray-300 rounded-md  hover:border-[#e52320] ${i !== 0 ? 'my-5' : 'my-0'}`} key={i}>
+                                    <div className='flex flex-row space-x-1 md:space-x-5'>
+                                        <div className='w-44 md:w-auto'>
+                                            <Image
+                                                className='p-1 md:p-0 mt-1 md:mt-0 border-none rounded-tl-md rounded-bl-md'
+                                                src={product?.image}
+                                                alt="main picture"
+                                                width={250}
+                                                height={300}
+                                            />
+                                        </div>
+                                        <div className='mt-1 md:mt-0'>
+                                            <h1 className={`text-[13px] ${height === 800 ? 'text-[20px]' : 'md:text-2xl'} cursor-pointer hover:text-[#e52320] font-bold`}>{product?.name}</h1>
+                                            <p className={`text-[10px] ${height === 800 ? 'text-[15px]' : 'md:text-lg'}`}>{product?.type}</p>
+                                            <p className={`text-[10px] ${height === 800 ? 'text-[15px]' : 'md:text-lg'} cursor-pointer hover:text-[#e52320]`}>{product?.address}</p>
+                                            <p className={`mt-1 text-md ${height === 800 ? 'text-[15px]' : 'md:text-lg'} font-bold text-[#e52320]`}>CHF {product?.price}</p>
+                                            <p className={`text-sm ${height === 800 ? 'text-[13px]' : 'md:text-md'} font-bold text-gray-400`}>CHF {product?.price}</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <ul className='flex flex-col space-y-2 text-[10px] md:text-[13px] p-1 md:p-2'>
+                                            {logo?.map((li: any, i: any) => (
+                                                <li className='cursor-pointer hover:text-[#e52320]' key={i}>{li.name}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
                                 </div>
                             ))}
                         </div>
-                        <div className='flex flex-row justify-between bg-white h-12 border border-red-600 rounded-sm px-5 py-2'>
+                        <div className='flex flex-row justify-between bg-white h-12 border border-[#e52320] rounded-sm px-5 py-2' data-aos="fade-up">
                             <button className={btnStyle} onClick={previousHandle}>
                                 <KeyboardDoubleArrowLeft className={logoStyle} />
                                 <span className={spanStyle}>Previous</span>
                             </button>
                             <div className='flex flex-row space-x-4'>
                                 {paginationList?.map((li: any, i: number) => (
-                                    <button className={`${page === li && 'bg-red-600 w-8 text-white border-none rounded-sm'}`} key={i} onClick={() => setPage(li)}>{li}</button>
+                                    <button className={`${page === li && 'bg-[#e52320] w-8 text-white border-none rounded-sm'}`} key={i} onClick={() => setPage(li)}>{li}</button>
                                 ))}
                             </div>
                             <button className={btnStyle} onClick={nextHandle}>
