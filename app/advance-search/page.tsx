@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
 import Home from '@/components/Home';
 import { AirportShuttle, BuildCircle, Chat, DataSaverOn, DirectionsBike, DirectionsBoat, DirectionsBus, DirectionsCar, ExpandLess, ExpandMore, FireTruck, Flight, KeyboardArrowLeft, KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight, PhoneEnabled, PrecisionManufacturing, RemoveRedEye, RvHookup, Share } from '@mui/icons-material';
@@ -175,11 +176,11 @@ export default function Page() {
                         <div className='border-b flex flex-row justify-between p-2'>
                             <h1 className='text-lg font-bold'>Price Range</h1>
                         </div>
-                        <div className='mx-5 flex flex-row space-x-3 pt-5'>
+                        <div className='mx-5 flex flex-col md:flex-row space-x-0 space-y-2 md:space-x-3 pt-5'>
                             <input type='text' className={inputStyle} placeholder='Max' />
                             <input type='text' className={inputStyle} placeholder='Min' />
                         </div>
-                        <button className='mx-7 border bg-red-600 mt-4 w-64 h-10 
+                        <button className='mx-0 md:mx-7 border bg-red-600 mt-4 w-full md:w-64 h-10 
                             text-white border-none rounded-lg font-bold text-lg mb-5'>Apply filters</button>
                     </div>
                     <div className='flex flex-col w-full h-full'>
@@ -192,18 +193,12 @@ export default function Page() {
                                 <div className={`flex flex-row justify-between hover:shadow-lg bg-white border border-gray-300 rounded-md  hover:border-[#e52320] ${i !== 0 ? 'my-5' : 'my-0'}`} key={i}>
                                     <div className='flex flex-row space-x-1 md:space-x-5'>
                                         <div className='w-44 md:w-auto'>
-                                            <Image
-                                                className='p-1 md:p-0 mt-1 md:mt-0 border-none rounded-tl-md rounded-bl-md'
-                                                src={product?.image}
-                                                alt="main picture"
-                                                width={250}
-                                                height={300}
-                                            />
+                                            <img className='border-none rounded-tl-md rounded-bl-md' src="/assets/picSix.jpg" alt={product?.image} />
                                         </div>
-                                        <div className='mt-1 md:mt-0'>
+                                        <div className='mt-1 md:mt-0 ml-5'>
                                             <h1 className={`text-[13px] ${height === 800 ? 'text-[20px]' : 'md:text-2xl'} cursor-pointer hover:text-[#e52320] font-bold`}>{product?.name}</h1>
                                             <p className={`text-[10px] ${height === 800 ? 'text-[15px]' : 'md:text-lg'}`}>{product?.type}</p>
-                                            <p className={`text-[10px] ${height === 800 ? 'text-[15px]' : 'md:text-lg'} cursor-pointer hover:text-[#e52320]`}>{product?.address}</p>
+                                            <p className={`text-[10px] ${height === 800 ? 'text-[15px]' : 'md:text-lg'} w-[100px] md:w-auto truncate cursor-pointer hover:text-[#e52320]`}>{product?.address}</p>
                                             <p className={`mt-1 text-md ${height === 800 ? 'text-[15px]' : 'md:text-lg'} font-bold text-[#e52320]`}>CHF {product?.price}</p>
                                             <p className={`text-sm ${height === 800 ? 'text-[13px]' : 'md:text-md'} font-bold text-gray-400`}>CHF {product?.price}</p>
                                         </div>
