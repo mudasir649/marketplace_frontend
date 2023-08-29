@@ -1,8 +1,14 @@
 import React from "react";
 import KeywordInputField from "./KeywordInputField";
 import { Search } from "@mui/icons-material"
+import useWindowDimensions from "@/utils/useWindowDimensions";
 
 export default function SearchPage() {
+
+  const { width, height } = useWindowDimensions();
+
+  const newWidth = width || 0;
+  const newHeight = height || 0;
 
   return (
     <div className={`px-[30px] py-6  

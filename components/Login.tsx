@@ -6,7 +6,7 @@ import googleLogo from "../public/assets/google_logo.png";
 import signLogo from "../public/assets/signLogo.png";
 import useWindowDimensions from '@/utils/useWindowDimensions';
 
-export default function Login() {
+export default function LoginPage() {
 
     const { width, height } = useWindowDimensions();
 

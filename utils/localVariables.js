@@ -21,3 +21,11 @@ export const ratingList = [
         value: 3.0
     }
 ];
+
+// advance-search localvariables
+export const inputStyle = 'border border-gray-300 hover:border-red-600 focus:outline-red-600 rounded-md w-32 h-10 p-2 cursor-pointer';
+export const logoStyle = 'text-red-600 cursor-pointer';
+export const btnStyle = 'text-md font-semibold hover:text-red-600 text-gray-500';
+export const spanStyle = 'pt-[0.5px] text-sm cursor-pointer font-bold';
+export const logoStyle1 = 'text-[15px] md:text-2xl'
+
