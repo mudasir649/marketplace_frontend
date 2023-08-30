@@ -1,9 +1,11 @@
+'use client';
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Agriculture, CarRepair, DirectionsBike, DirectionsCar, KeyboardArrowDown, LocalShipping, TwoWheeler } from '@mui/icons-material';
 import Aos from 'aos';
 import SearchPage from './Search';
 import useWindowDimensions from '@/utils/useWindowDimensions';
 import CategoryList from './CategoryList';
+import { usePathname } from 'next/navigation';
 
 
 export default function Banner() {
@@ -12,6 +14,7 @@ export default function Banner() {
   const [allCategory, setAllCategory] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const pathname = usePathname();
 
 
   useEffect(() => {
@@ -50,7 +53,7 @@ export default function Banner() {
 
 
   return (
-    <div className='mb-5  border-green-400 mt-1 h-[300px]'>
+    <div className={`${pathname == '/my-ads' && 'mb-44 md:mb-10'} mb-8 border-green-400 mt-1 h-[300px]`}>
       <div className='container mx-auto'>
         <div className='flex flex-col md:flex-row lg:space-x-10'>
           <div className='flex flex-col' ref={dropdownRef}>
