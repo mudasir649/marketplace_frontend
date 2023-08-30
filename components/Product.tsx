@@ -6,6 +6,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import useWindowDimensions from '@/utils/useWindowDimensions';
 import { usePathname } from 'next/navigation';
+import picOne from "../public/assets/picSix.jpg";
 
 
 export default function Product({ product, url }: any) {
@@ -32,13 +33,16 @@ export default function Product({ product, url }: any) {
     console.log(id);
   }
 
+  console.log(pathname);
+
+
   return (
     <div className={`${newWidth < 688 ? 'max-w-[500px]' : 'max-w-[352px]'} bg-white shadow-lg border-[#795453] 
       rounded-lg my-2 w-full h-auto mx-auto cursor-pointer hover:shadow-md hover:opacity-25 hover:shadow-[#e52320]`} data-aos={url !== "login" && url !== "signup" && "fade-up"}>
       <div className='border border-gray-300 mb-2 w-auto'>
         <Link href={`product-details/${id}`}>
           <Image
-            src={image}
+            src={pathname == '/' ? picOne : image}
             alt={name}
             width={500}
             height={500}
