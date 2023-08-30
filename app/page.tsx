@@ -8,6 +8,7 @@ import TopProducts from "@/components/TopProducts";
 import useWindowDimensions from "@/utils/useWindowDimensions";
 import { East } from "@mui/icons-material";
 import SellRepairComponent from "@/components/SellRepairComponent";
+import ProductList from "@/components/ProductList";
 
 export default function MainPage() {
 
@@ -16,36 +17,36 @@ export default function MainPage() {
   const newWidth = width || 0;
   const newHeight = height || 0;
 
-  const ProductsList = ({ productList }: any) => {
-    return (
-      <>
-        <div className='container mx-auto'>
-          <div className={`grid ${newWidth < 688 ? 'grid-cols-1' : 'grid-cols-2'} md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-14`}>
-            {productList?.map((product: any, i: any) => {
-              return (
-                <Product product={product} key={i} />
-              )
-            })}
-          </div>
-        </div>
-      </>
-    )
-  }
+  // const ProductsList = ({ productList }: any) => {
+  //   return (
+  //     <>
+  //       <div className='container mx-auto'>
+  //         <div className={`grid ${newWidth < 688 ? 'grid-cols-1' : 'grid-cols-2'} md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-14`}>
+  //           {productList?.map((product: any, i: any) => {
+  //             return (
+  //               <Product product={product} key={i} />
+  //             )
+  //           })}
+  //         </div>
+  //       </div>
+  //     </>
+  //   )
+  // }
 
   return (
     <div className="">
       <Home>
         <SellRepairComponent />
         <TopProducts>
-          <ProductsList productList={topProductData} />
+          <ProductList productList={topProductData} />
         </TopProducts>
         <FooterBanner />
-        <section className='mb-20 bg-gray-200 py-10'>
+        <section className='mb-20'>
           <div className='container mx-auto flex justify-between mb-5'>
             <h1 className='text-3xl font-bold'>Top Inserts</h1>
             <span className='capitalize text-lg font-bold mt-[5px]'>see all Ads <East className='text-[#e52320]' data-aos="fade-right" /> </span>
           </div>
-          <ProductsList productList={productData} />
+          <ProductList productList={productData} />
         </section>
       </Home>
     </div>

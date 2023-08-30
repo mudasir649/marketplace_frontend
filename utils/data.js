@@ -14,7 +14,7 @@ const productData = [
     description:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, illoat. Repudiandae ratione impedit delectus consectetur. Aspernaturvero obcaecati placeat ab distinctio unde ipsam molestias atqueratione delectus blanditiis nemo eius dignissimos doloremque quaealiquid maiores id tempore consequatur, quod pariatur saepe.',
     image: picOne,    country: 'United States',
-    address: '7240C Argyle St. Lawndale, CA 90260',
+    address: '7240C Argyle St. Lawndale, CA 90260 ',
     bedrooms: '6',
     bathrooms: '3',
     surface: '4200 sq ft',
