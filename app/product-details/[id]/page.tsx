@@ -65,13 +65,13 @@ export default function ProductDetails() {
             <div className='flex flex-col items-start gap-8 lg:flex-row'>
               <div className='max-x-[768px]'>
                 <div className='mb-8'>
-                  <Image
+                  {/* <Image
                     className='border rounded-lg'
                     src={image}
                     alt={name}
                     width={800}
                     height={800}
-                  />
+                  /> */}
                 </div>
               </div>
             </div>

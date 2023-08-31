@@ -110,7 +110,7 @@ export default function Header() {
           <div className="flex items-center gap-6">
 
             {/* button to show navbar on small screen start */}
-            <button className={`md:invisible visible`} onClick={() => setNavbar(!navbar)}>
+            <button className={`visible lg:invisible`} onClick={() => setNavbar(!navbar)}>
               <MenuIcon className="text-white" />
             </button>
             {/* button to show navbar on small screen end */}
