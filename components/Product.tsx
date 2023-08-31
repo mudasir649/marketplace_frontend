@@ -33,8 +33,6 @@ export default function Product({ product, url }: any) {
     console.log(id);
   }
 
-  console.log(pathname);
-
 
   return (
     <div className={`${newWidth < 688 ? 'max-w-[500px]' : 'max-w-[352px]'} bg-white shadow-lg border-[#795453] 
@@ -42,7 +40,7 @@ export default function Product({ product, url }: any) {
       <div className='border border-gray-300 mb-2 w-auto'>
         <Link href={`product-details/${id}`}>
           <Image
-            src={pathname == '/' ? picOne : image}
+            src={pathname == '/' || pathname == '/my-ads' || pathname ? picOne : image}
             alt={name}
             width={500}
             height={500}

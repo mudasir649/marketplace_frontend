@@ -26,8 +26,8 @@ export default function Banner() {
   const newWidth = width || 0;
   const newHeight = height || 0;
 
-  console.log(category);
-  console.log(allCategory);
+  // console.log(category);
+  // console.log(allCategory);
 
   const closeDropdown = () => {
     setIsExpand(false);
@@ -53,7 +53,7 @@ export default function Banner() {
 
 
   return (
-    <div className={`${pathname == '/my-ads' && 'mb-44 md:mb-10'} mb-8 border-green-400 mt-1 h-[300px]`}>
+    <div className={`${pathname == '/my-ads' && 'mb-44 md:mb-10'} mb-40 md:mb-10 border-green-400 mt-1 h-[300px]`}>
       <div className='container mx-auto'>
         <div className='flex flex-col md:flex-row lg:space-x-10'>
           <div className='flex flex-col' ref={dropdownRef}>

@@ -1,12 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
 import Home from '@/components/Home';
-import { AirportShuttle, BuildCircle, Chat, DataSaverOn, DirectionsBike, DirectionsBoat, DirectionsBus, DirectionsCar, ExpandLess, ExpandMore, FireTruck, Flight, KeyboardArrowLeft, KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight, PhoneEnabled, PrecisionManufacturing, RemoveRedEye, RvHookup, Share } from '@mui/icons-material';
+import { AirportShuttle, BuildCircle, Chat, DataSaverOn, DirectionsBike, DirectionsBoat, DirectionsBus, DirectionsCar, ExpandLess, ExpandMore, FireTruck, Flight, KeyboardArrowLeft, KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight, PhoneEnabled, PrecisionManufacturing, RemoveRedEye, RvHookup, Search, Share } from '@mui/icons-material';
 import Aos from 'aos';
 import React, { useEffect, useState } from 'react';
-import "./advanceSearch.css";
+// import "./advanceSearch.css";
 import ReactStars from "react-stars";
-import { btnStyle, expandStyle, inputStyle, logoStyle, logoStyle1, ratingList, spanStyle } from "../../utils/localVariables";
+import { btnStyle, expandStyle, logoStyle, logoStyle1, ratingList, spanStyle } from "../../utils/localVariables";
 import productData from '@/utils/data';
 import Image from 'next/image';
 import useWindowDimensions from '@/utils/useWindowDimensions';
@@ -144,6 +144,9 @@ export default function Page() {
     const newWidth = width || 0;
     const newHeight = height || 0;
 
+    const inputStyle = 'border border-gray-300 hover:border-red-600 focus:outline-red-600 rounded-md w-auto lg:w-32 h-10 p-2 cursor-pointer';
+
+
     return (
         <div>
             <Home>
@@ -176,12 +179,18 @@ export default function Page() {
                         <div className='border-b flex flex-row justify-between p-2'>
                             <h1 className='text-lg font-bold'>Price Range</h1>
                         </div>
-                        <div className='mx-5 flex flex-col md:flex-row space-x-0 space-y-2 md:space-x-3 pt-5'>
-                            <input type='text' className={inputStyle} placeholder='Max' />
-                            <input type='text' className={inputStyle} placeholder='Min' />
+                        <div className='flex flex-col md:flex-row md:space-x-0 mx-1 lg:flex-col'>
+                            <div className='mx-5 flex flex-col md:flex-row space-x-0 space-y-2 md:space-y-0 md:space-x-3 pt-5'>
+                                <input type='text' className={inputStyle} placeholder='Max' />
+                                <input type='text' className={inputStyle} placeholder='Min' />
+                            </div>
+                            <div className='flex justify-center'>
+                                <button className='mx-0 md:mx-2 border bg-red-600 mt-[19px] w-full lg:w-64 h-10 
+                                text-white border-none rounded-lg font-bold text-md p-1 mb-5'>
+                                    {width == 768 ? <Search /> : 'Apply filters'}
+                                </button>
+                            </div>
                         </div>
-                        <button className='mx-0 md:mx-7 border bg-red-600 mt-4 w-full md:w-64 h-10 
-                            text-white border-none rounded-lg font-bold text-lg mb-5'>Apply filters</button>
                     </div>
                     <div className='flex flex-col w-full h-full'>
                         <div className='flex flex-row justify-between  bg-white border border-[#e52320] mb-3 p-2 pl-5' data-aos="fade-left">
