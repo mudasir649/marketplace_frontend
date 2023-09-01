@@ -88,9 +88,11 @@ export default function MyProfile() {
         }
     }
 
-    const inputStyle = 'border border-gray-200 hover:border-red-500 focus:outline-red-500 w-full rounded-sm h-10 pl-3 mb-10';
-    const divStyle = 'flex flex-col md:flex-row space-x-0 md:space-x-20 space-y-1 md:space-y-0 mb-5 mt-5';
-    const h1Style = 'text-md font-bold w-48';
+    const style = {
+        inputStyle: 'border border-gray-200 hover:border-red-500 focus:outline-red-500 w-full rounded-sm h-10 pl-3 mb-10',
+        divStyle: 'flex flex-col md:flex-row space-x-0 md:space-x-20 space-y-1 md:space-y-0 mb-5 mt-5',
+        h1Style: 'text-md font-bold w-48',
+    }
 
 
     return (
@@ -107,125 +109,126 @@ export default function MyProfile() {
                                 <h1 className='text-md mt-[0.5px] pl-0 md:pl-[15px]'>mudasir649</h1>
                             </div>
                         </div>
-                        <div className={divStyle}>
-                            <h1 className={h1Style}>First Name</h1>
-                            <input type="text" className={inputStyle}
+                        <div className={style.divStyle}>
+                            <h1 className={style.h1Style}>First Name</h1>
+                            <input type="text" className={style.inputStyle}
                                 name='firstName'
                                 value={firstName}
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
-                        <div className={divStyle}>
-                            <h1 className={h1Style}>Last Name</h1>
-                            <input type="text" className={inputStyle}
+                        <div className={style.divStyle}>
+                            <h1 className={style.h1Style}>Last Name</h1>
+                            <input type="text" className={style.inputStyle}
                                 name='LastName'
                                 value={lastName}
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
-                        <div className={divStyle}>
-                            <h1 className={h1Style}>Email</h1>
-                            <input type="text" className={inputStyle}
+                        <div className={style.divStyle}>
+                            <h1 className={style.h1Style}>Email</h1>
+                            <input type="text" className={style.inputStyle}
                                 name='email'
                                 value={email}
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
-                        <div className={divStyle}>
-                            <h1 className={h1Style}>Password</h1>
-                            <input type="text" className={inputStyle}
+                        <div className={style.divStyle}>
+                            <h1 className={style.h1Style}>Password</h1>
+                            <input type="text" className={style.inputStyle}
                                 name='password'
                                 value={password}
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
-                        <div className={divStyle}>
-                            <h1 className={h1Style}>Confirm Password</h1>
-                            <input type="text" className={inputStyle}
+                        <div className={style.divStyle}>
+                            <h1 className={style.h1Style}>Confirm Password</h1>
+                            <input type="text" className={style.inputStyle}
                                 name='confirmPassword'
                                 value={confirmPassword}
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
-                        <div className={divStyle}>
-                            <h1 className={h1Style}>Whats App</h1>
-                            <input type="text" className={inputStyle}
+                        <div className={style.divStyle}>
+                            <h1 className={style.h1Style}>Whats App</h1>
+                            <input type="text" className={style.inputStyle}
                                 name='whatsApp'
                                 value={whatsApp}
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
-                        <div className={divStyle}>
-                            <h1 className={h1Style}>Viber</h1>
-                            <input type="text" className={inputStyle}
+                        <div className={style.divStyle}>
+                            <h1 className={style.h1Style}>Viber</h1>
+                            <input type="text" className={style.inputStyle}
                                 name='viber'
                                 value={viber}
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
-                        <div className={divStyle}>
-                            <h1 className={h1Style}>Website</h1>
-                            <input type="text" className={inputStyle}
+                        <div className={style.divStyle}>
+                            <h1 className={style.h1Style}>Website</h1>
+                            <input type="text" className={style.inputStyle}
                                 name='website'
                                 value={website}
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
-                        <div className={`${divStyle} mt-5`}>
-                            <h1 className={h1Style}>Location</h1>
-                            <div className={`${inputStyle} flex flex-row justify-between`}>
+                        <div className={`${style.divStyle} mt-5`}>
+                            <h1 className={style.h1Style}>Location</h1>
+                            <div className={`${style.inputStyle} flex flex-row justify-between`}>
                                 <input type="text" className={`${newWidth == 1024 && newHeight == 800 ? 'w-[320px]' :
                                     newWidth == 688 && newHeight == 1031 ? 'w-[450px]' : 'w-[160px] md:w-auto lg:w-[500px]'}
                                             my-2 border-none focus:outline-none`}
                                     name='location'
                                     value={location}
+                                    onChange={(e) => handleInput(e)}
                                 />
                                 <button className={`${newWidth == 1024 && newHeight == 800 ? 'w-32' : 'w-20 lg:w-40'} bg-red-500 text-white font-semibold`}>location</button>
                             </div>
                         </div>
-                        <div className={divStyle}>
-                            <h1 className={h1Style}>Social Profile</h1>
-                            <input type="text" className={inputStyle}
+                        <div className={style.divStyle}>
+                            <h1 className={style.h1Style}>Social Profile</h1>
+                            <input type="text" className={style.inputStyle}
                                 name='facebook'
                                 value={facebook}
                                 placeholder='Facebook'
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
-                        <div className={divStyle}>
-                            <h1 className={`${h1Style} invisible`}>Social Profile</h1>
-                            <input type="text" className={inputStyle}
+                        <div className={style.divStyle}>
+                            <h1 className={`${style.h1Style} invisible`}>Social Profile</h1>
+                            <input type="text" className={style.inputStyle}
                                 name='twitter'
                                 value={twitter}
                                 placeholder='Twitter'
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
-                        <div className={divStyle}>
-                            <h1 className={`${h1Style} invisible`}>Social Profile</h1>
-                            <input type="text" className={inputStyle}
+                        <div className={style.divStyle}>
+                            <h1 className={`${style.h1Style} invisible`}>Social Profile</h1>
+                            <input type="text" className={style.inputStyle}
                                 name='youtube'
                                 value={youtube}
                                 placeholder='Youtube'
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
-                        <div className={divStyle}>
-                            <h1 className={`${h1Style} invisible`}>Social Profile</h1>
-                            <input type="text" className={inputStyle}
+                        <div className={style.divStyle}>
+                            <h1 className={`${style.h1Style} invisible`}>Social Profile</h1>
+                            <input type="text" className={style.inputStyle}
                                 name='instagram'
                                 value={instagram}
                                 placeholder='Instagram'
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
-                        <div className={divStyle}>
-                            <h1 className={`${h1Style} invisible`}>Social Profile</h1>
-                            <input type="text" className={inputStyle}
+                        <div className={style.divStyle}>
+                            <h1 className={`${style.h1Style} invisible`}>Social Profile</h1>
+                            <input type="text" className={style.inputStyle}
                                 name='linked'
                                 value={linked}
                                 placeholder='Linked'
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
-                        <div className={divStyle}>
-                            <h1 className={`${h1Style} invisible`}>Social Profile</h1>
-                            <input type="text" className={inputStyle}
+                        <div className={style.divStyle}>
+                            <h1 className={`${style.h1Style} invisible`}>Social Profile</h1>
+                            <input type="text" className={style.inputStyle}
                                 name='Pinterest'
                                 value={pinterest}
                                 placeholder='Pinterest'
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
-                        <div className={divStyle}>
-                            <h1 className={`${h1Style} invisible`}>Social Profile</h1>
-                            <input type="text" className={inputStyle}
+                        <div className={style.divStyle}>
+                            <h1 className={`${style.h1Style} invisible`}>Social Profile</h1>
+                            <input type="text" className={style.inputStyle}
                                 name='Reddit'
                                 value={reddit}
                                 placeholder='Reddit'

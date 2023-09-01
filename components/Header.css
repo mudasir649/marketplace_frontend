@@ -21,16 +21,6 @@
   transition: var(--speed) ease;
 }
 
-.logo.active{
-  transform: rotate(180deg);
-  transition: var(--speed) ease;
-}
-
-.logo.inactive{
-  transform: rotate(0deg);
-  transition: var(--speed) ease;
-}
-
 
 @media only screen and (max-width: 768px) {
     .menu{

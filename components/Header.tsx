@@ -12,7 +12,7 @@ export default function Header() {
 
   const [navbar, setNavbar] = useState<Boolean>(false);
   const [showContact, setShowContact] = useState(false);
-  const navbarLiStyle = navbar ? 'cursor-pointer hover:text-[#e52320]' : 'cursor-pointer hover:text-red-300';
+  const navbarLiStyle = navbar ? 'cursor-pointer hover:text-[#e52320]' : 'cursor-pointer hover:p-2 hover:border hover:rounded-md hover:bg-white hover:text-red-600 font-[600] ease-in duration-150';
   const [open, isOpen] = useState<Boolean>(false);
   const [userLogged, setUserLogged] = useState<Boolean>(true);
 
@@ -98,8 +98,8 @@ export default function Header() {
               <li className={navbarLiStyle}><Chat className="text-3xl -mt-1" /></li>
               <li className={navbarLiStyle}><AdminPanelSettings className="text-3xl -mt-1" /></li>
               <li className="cursor-pointer">
-                <Link href="/login">
-                  <button className="flex flex-row justify-center space-x-4 mt-[-9px] p-2 w-52 bg-white hover:bg-[#e52320] hover:text-white text-black  rounded-lg">
+                <Link href="/post-ad">
+                  <button className="flex flex-row justify-center space-x-4 mt-[-1px] p-2 w-52 bg-white hover:text-[#e52320] text-black  rounded-lg">
                     <Add className="text-md border border-[#e52320] rounded-full bg-[#e52320] text-white" />
                     <span className="capitalize text-md mt-[2px]">Post your ad</span>
                   </button>

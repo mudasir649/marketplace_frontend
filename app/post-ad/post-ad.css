@@ -1,0 +1,21 @@
+:root{
+    --speed:500ms
+}
+
+.box-container {
+    box-shadow: 2px 2px 2px 2px #ccc, -2px -2px 2px 2px #ccc;  
+}
+
+.menu-item.active{
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: var(--speed) ease;
+}
+
+.menu-item.inactive{
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: var(--speed) ease;
+}
