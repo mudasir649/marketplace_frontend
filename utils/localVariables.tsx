@@ -23,9 +23,5 @@ export const ratingList = [
 ];
 
 // advance-search localvariables
-export const logoStyle = 'text-red-600 cursor-pointer';
-export const btnStyle = 'text-md font-semibold hover:text-red-600 text-gray-500';
-export const spanStyle = 'pt-[0.5px] text-sm cursor-pointer font-bold';
-export const logoStyle1 = 'text-sm md:text-2xl';
 
 

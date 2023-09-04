@@ -6,9 +6,8 @@ import Aos from 'aos';
 import React, { useEffect, useState } from 'react';
 // import "./advanceSearch.css";
 import ReactStars from "react-stars";
-import { btnStyle, expandStyle, logoStyle, ratingList, spanStyle } from "../../utils/localVariables";
+import { ratingList } from "../../utils/localVariables";
 import productData from '@/utils/data';
-import Image from 'next/image';
 import useWindowDimensions from '@/utils/useWindowDimensions';
 
 interface IList {
@@ -24,6 +23,11 @@ interface IRating {
 
 
 export default function Page() {
+
+    const { width, height } = useWindowDimensions();
+
+    const newWidth = width || 0;
+    const newHeight = height || 0;
 
     const categoryList = [
         {
@@ -121,7 +125,7 @@ export default function Page() {
         }
     };
 
-    const logoStyle1 = 'text-sm lg:text-lg';
+    const logoStyle1 = newWidth < 370 ? 'text-[8px]' : 'text-[10px] md:text-base lg:text-xl';
 
     const logo = [
         {
@@ -137,17 +141,15 @@ export default function Page() {
             name: <RemoveRedEye className={logoStyle1} />
         },
         {
-            name: 123
+            name: <span className='text-[8px] md:text-sm'>123</span>
         }
     ];
 
-    const { width, height } = useWindowDimensions();
-
-    const newWidth = width || 0;
-    const newHeight = height || 0;
 
     const inputStyle = 'border border-gray-300 hover:border-red-600 focus:outline-red-600 rounded-md w-auto lg:w-32 h-10 p-2 cursor-pointer';
-
+    const logoStyle = newWidth < 370 ? 'text-red-600 text-[10px] cursor-pointer' : 'text-red-600 text-[15px] md:text-xl cursor-pointer';
+    const btnStyle = `font-semibold hover:text-red-600 text-gray-500`;
+    const spanStyle = newWidth < 370 ? 'text-[10px] cursor-pointer font-bold' : 'text-[12px] cursor-pointer font-bold';
 
     return (
         <div>
@@ -197,41 +199,36 @@ export default function Page() {
                     <div className='flex flex-col w-full h-full'>
                         <div className='flex flex-row justify-between  bg-white border border-[#e52320] mb-3 p-2 pl-5' data-aos="fade-left">
                             <h1 className='text-xl font-bold'>{productData.length} Results</h1>
-                            <span className='text-md font-semibold'>showing results from 1 to 10 of {productData?.length}</span>
                         </div>
-                        <div className='' data-aos="fade-up">
-                            {productData?.map((product: any, i: number) => (
-                                <div className={`flex flex-row justify-between hover:shadow-lg bg-white border border-gray-300 rounded-md  hover:border-[#e52320] ${i !== 0 ? 'my-5' : 'my-0'}`} key={i}>
-                                    <div className='flex flex-row space-x-1 md:space-x-5'>
-                                        <div className='w-44 md:w-auto'>
-                                            <img className='border-none rounded-tl-md rounded-bl-md' src="/assets/picSix.jpg" alt={product?.image} />
-                                        </div>
-                                        <div className='mt-1 md:mt-0 ml-5'>
-                                            <h1 className={`text-[13px] ${height === 800 ? 'text-[20px]' : 'md:text-2xl'} cursor-pointer hover:text-[#e52320] font-bold`}>{product?.name}</h1>
-                                            <p className={`text-[10px] ${height === 800 ? 'text-[15px]' : 'md:text-lg'}`}>{product?.type}</p>
-                                            <p className={`text-[10px] ${height === 800 ? 'text-[15px]' : 'md:text-lg'} w-[100px] md:w-auto truncate cursor-pointer hover:text-[#e52320]`}>{product?.address}</p>
-                                            <p className={`mt-1 text-md ${height === 800 ? 'text-[15px]' : 'md:text-lg'} font-bold text-[#e52320]`}>CHF {product?.price}</p>
-                                            <p className={`text-sm ${height === 800 ? 'text-[13px]' : 'md:text-md'} font-bold text-gray-400`}>CHF {product?.price}</p>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <ul className='flex flex-col space-y-2 text-[10px] md:text-[13px] p-1 md:p-2'>
-                                            {logo?.map((li: any, i: any) => (
-                                                <li className='cursor-pointer hover:text-[#e52320]' key={i}>{li.name}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
+                        {productData?.map((product: any, i: number) => (
+                            <div className='flex flex-row justify-between bg-white border border-gray-300 rounded-sm mb-5' key={i}>
+                                <div className='bg-blue-500 md:bg-green-500 lg:bg-red-500 w-36 md:w-auto md:h-auto'>
+                                    <img src="/assets/picSix.jpg" alt="" />
                                 </div>
-                            ))}
-                        </div>
-                        <div className='flex flex-row justify-between bg-white h-12 border border-[#e52320] rounded-sm px-5 py-2' data-aos="fade-up">
+                                <div className='space-y-1 p-0 pl-1 md:p-3 w-40 md:w-[500px]'>
+                                    <h1 className={`${newWidth < 370 ? 'text-[11px]' : 'text-[12px] md:text-lg lg:text-2xl'} font-bold`}>{product?.name}</h1>
+                                    <h2 className={`${newWidth < 370 ? 'text-[9px]' : 'text-[10px] md:text-base'}`}>{product?.type}</h2>
+                                    <h3 className='text-[10px] md:text-base w-[100px] md:w-auto truncate'>{product?.address}</h3>
+                                    <h1 className={`${newWidth < 370 ? 'text-[9px]' : 'md:text-lg text-[12px]'} text-red-600 font-semibold`}>CHF {product?.price}</h1>
+                                    <h2 className={`${newWidth < 370 ? 'text-[7px]' : 'text-[10px] md:text-sm'} text-gray-500  font-semibold`}>EURO {product?.price * 2.1}</h2>
+                                </div >
+                                <div className='pr-1'>
+                                    <ul className={`${newWidth < 370 ? 'space-y-[-8.5px]' : 'space-y-[-7.5px] md:space-y-0 lg:space-y-3'}`}>
+                                        {logo?.map((log: any, i: number) => (
+                                            <li key={i}>{log.name}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+                        ))}
+                        <div className={`flex flex-row justify-between bg-white h-12 border border-[#e52320] rounded-sm px-5 py-2`} data-aos="fade-up">
                             <button className={btnStyle} onClick={previousHandle}>
                                 <KeyboardDoubleArrowLeft className={logoStyle} />
                                 <span className={spanStyle}>Previous</span>
                             </button>
                             <div className='flex flex-row space-x-4'>
                                 {paginationList?.map((li: any, i: number) => (
-                                    <button className={`${page === li && 'bg-[#e52320] w-8 text-white border-none rounded-sm'}`} key={i} onClick={() => setPage(li)}>{li}</button>
+                                    <button className={`${page === li && 'bg-[#e52320] w-6 md:w-8 text-white text-[12px] border-none rounded-sm'} pt-[2px] text-[12px] md:text-lg`} key={i} onClick={() => setPage(li)}>{li}</button>
                                 ))}
                             </div>
                             <button className={btnStyle} onClick={nextHandle}>
