@@ -120,7 +120,7 @@ export default function Addtype() {
                         </div>
                         <div className={style.divStyle}>
                             <div className='flex flex-col w-full'>
-                                <input type="text" className={style.inputStyle}
+                                <input type="file" className={`${style.inputStyle} p-1`}
                                     name='firstName'
                                     value=''
                                     onChange={(e: any) => handleInput(e)} />
