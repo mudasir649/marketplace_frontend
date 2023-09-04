@@ -8,13 +8,14 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation';
 import productData from '@/utils/data';
 import Image from 'next/image';
-import { AccessTime, Facebook, FavoriteBorder, Mail, Phone, PhoneInTalk, Place, Share, Twitter, Visibility, WarningAmber, WhatsApp } from '@mui/icons-material';
+import { AccessTime, Cancel, Facebook, FavoriteBorder, Mail, Phone, PhoneInTalk, Place, Share, Twitter, Visibility, WarningAmber, WhatsApp } from '@mui/icons-material';
 import profilePic from "../../../public/assets/profile_pic.jpeg";
 import Link from 'next/link';
 import MapContainer from '@/components/MapContainer';
 import Home from '@/components/Home';
 import AOS from 'aos'
 import useWindowDimensions from '@/utils/useWindowDimensions';
+import image1 from "../../../public/assets/picSix.jpg"
 
 export default function ProductDetails() {
 
@@ -50,7 +51,7 @@ export default function ProductDetails() {
   return (
     <>
       <Home>
-        <section className='flex lg:mx-20 md:mx-0 md:my-20 mx-4 md:flex-row flex-col'>
+        <section className='flex lg:flex-row flex-col lg:mx-20 md:mx-0 md:my-20 mx-4'>
           {/* Products details div start */}
           <div className={`${newWidth <= 1024 && newHeight <= 885 ? 'md:mx-5' : 'md:mx-10'}  lg:w-[890px] min-h-[800px] mb-5 border rounded-lg bg-white p-5`} data-aos="fade-up">
             <div className='flex flex-col lg:flex-row lg:items-center lg:justify-between'>
@@ -59,19 +60,19 @@ export default function ProductDetails() {
                 <h1 className='text-lg mb-4'>{product?.address}</h1>
               </div>
               <div className='mb-4 lg:mb-0 flex gap-x-2 text-sm'>
-                <h1 className={`${newWidth === 1024 && newHeight === 885 ? 'text-sm' : 'text-xl'} font-semibold text-white bg-green-500 px-3 rounded-full`}>{product?.type}</h1>
+                <h1 className={`${newWidth === 1024 && newHeight === 885 ? 'text-sm' : 'text-xl'} font-semibold text-white bg-red-600 px-3 rounded-full`}>{product?.type}</h1>
               </div>
             </div>
             <div className='flex flex-col items-start gap-8 lg:flex-row'>
               <div className='max-x-[768px]'>
                 <div className='mb-8'>
-                  {/* <Image
+                  <Image
                     className='border rounded-lg'
-                    src={image}
+                    src={image1}
                     alt={name}
                     width={800}
                     height={800}
-                  /> */}
+                  />
                 </div>
               </div>
             </div>
@@ -93,6 +94,7 @@ export default function ProductDetails() {
                 <h1>{product?.address}</h1>
               </div>
             </div>
+            <div className='mt-5 bg-red-600 text-white w-32 p-1 text-center text-md border-none rounded-full'>Description</div>
             <div className='mt-5'>{product?.description}</div>
             <div className='flex flex-col md:flex-row justify-between'>
               <div className='mt-5'>
@@ -140,14 +142,14 @@ export default function ProductDetails() {
           {/* Products details div end */}
 
           {/* Seller details div start */}
-          <div className='max-h-[440px] lg:w-[450px] w-auto' data-aos="fade-up">
-            <div className='container mb-14 bg-white p-5 border rounded-lg'>
+          <div className='container mx-auto w-full lg:w-auto mb-14 max-h-[440px]'>
+            <div className=' bg-white p-5 border rounded-lg'>
               <div className='border-b border-gray-300'>
                 <h1 className='text-xl text-center font-bold uppercase mb-3'>Seller Information</h1>
               </div>
-              <div className='flex flex-row mt-4 space-x-2'>
+              <div className='flex flex-row mt-4 space-x-4'>
                 <Image
-                  className='h-20 w-20 border bg-green-500 rounded-full'
+                  className='h-16 w-16 border bg-green-500 rounded-full'
                   src={profilePic}
                   alt="logo"
                   width={100}
@@ -169,7 +171,10 @@ export default function ProductDetails() {
                   </div>
                 </div>}
                 {contact &&
-                  <div className='bg-gray-300 text-black border border-gray-300 flex justify-center transition ease-out duration-200'>
+                  <div className='bg-gray-100 text-black border border-gray-100 flex justify-center transition ease-out duration-200'>
+                    <span className='absolute end-36'>
+                      <Cancel className='text-red-500' onClick={() => setContact(false)} />
+                    </span>
                     <ul className='space-y-3 py-3'>
                       <li className='space-x-3'><PhoneInTalk className='text-white border bg-purple-500 border-purple-500 rounded-lg mr-3' /> 8749834389</li>
                       <li><WhatsApp className='text-green-500 mr-3' /> 8938943382434</li>

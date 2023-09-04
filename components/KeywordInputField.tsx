@@ -75,7 +75,7 @@ export default function KeywordInputField({ logo, text1, text2 }: any) {
           <div className='flex flex-col w-auto space-y-[0.5px]'>
             <div>{text1}</div>
             {logo === "component2" ?
-              <div>{category === "" ? componentText : category}</div>
+              <div className='w-32'>{category === "" ? componentText : category}</div>
               : logo === "component1" ?
                 <div>
                   <Autocomplete

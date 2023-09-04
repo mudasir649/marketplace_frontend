@@ -7,6 +7,7 @@ import "./Header.css"
 import MenuIcon from '@mui/icons-material/Menu';
 import ListDownComponent from "./ListDownComponent";
 import ContactUs from "./ContactUs";
+import useWindowDimensions from "@/utils/useWindowDimensions";
 
 export default function Header() {
 
@@ -31,6 +32,10 @@ export default function Header() {
       </li>
     )
   }
+
+  const { width, height } = useWindowDimensions();
+  const newWidth = width || 0;
+  const newHeight = height || 0;
 
 
   return (
@@ -97,24 +102,25 @@ export default function Header() {
               </li>
               <li className={navbarLiStyle}><Chat className="text-3xl -mt-1" /></li>
               <li className={navbarLiStyle}><AdminPanelSettings className="text-3xl -mt-1" /></li>
-              <li className="cursor-pointer">
+            </ul>
+          </div>
+          <div className="flex items-center gap-6">
+
+
+            {newWidth <= 1024 ?
+              <button onClick={() => setNavbar(!navbar)}>
+                <MenuIcon className="text-white" />
+              </button>
+              :
+              <div>
                 <Link href="/post-ad">
                   <button className="flex flex-row justify-center space-x-4 mt-[-1px] p-2 w-52 bg-white hover:text-[#e52320] text-black  rounded-lg">
                     <Add className="text-md border border-[#e52320] rounded-full bg-[#e52320] text-white" />
                     <span className="capitalize text-md mt-[2px]">Post your ad</span>
                   </button>
                 </Link>
-              </li>
-            </ul>
-          </div>
-          <div className="flex items-center gap-6">
-
-            {/* button to show navbar on small screen start */}
-            <button className={`visible lg:invisible`} onClick={() => setNavbar(!navbar)}>
-              <MenuIcon className="text-white" />
-            </button>
-            {/* button to show navbar on small screen end */}
-
+              </div>
+            }
             {userLogged ?
               <><div className="menu-container" onClick={() => isOpen(!open)}>
                 <button className="menu-trigger flex flex-row">
@@ -123,7 +129,7 @@ export default function Header() {
                   <ExpandMore className={`mt-2 text-gray-50 logo ${open ? 'active' : 'inactive'}`} />
                 </button>
               </div>
-                <div className={`dropdown-menu border rounded-sm w-60 absolute ml-[-120px] z-10 top-20 ${open ? 'active' : 'inactive'}`}>
+                <div className={`dropdown-menu border rounded-sm w-60 absolute ml-[-120px] z-10 ${newWidth == 1024 ? 'end-10' : 'end-4 lg:end-52'} top-20 ${open ? 'active' : 'inactive'}`}>
                   <div>
                     <h3>Hello,</h3><h1 className="text-lg font-bold mb-[-10px] hover:text-red-600 cursor-pointer">Mudassar Riaz</h1>
                   </div>

@@ -1,7 +1,7 @@
-import { AccessTime, Chat, Delete, EditNote, LocationOn, Phone, PhoneIphone, RemoveRedEye, Share } from '@mui/icons-material';
+import { AccessTime, Chat, Delete, EditNote, Favorite, LocationOn, Phone, PhoneIphone, RemoveRedEye, Share } from '@mui/icons-material';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import useWindowDimensions from '@/utils/useWindowDimensions';
@@ -12,6 +12,7 @@ import picOne from "../public/assets/picSix.jpg";
 export default function Product({ product, url }: any) {
 
   const { image, type, address, price, name, id } = product;
+  const [fav, setFav] = useState(false);
 
   const { width, height } = useWindowDimensions();
 
@@ -36,16 +37,18 @@ export default function Product({ product, url }: any) {
 
   return (
     <div className={`${newWidth < 688 ? 'max-w-[500px]' : 'max-w-[352px]'} bg-white shadow-lg border-[#795453] 
-      rounded-lg my-2 w-full h-auto mx-auto cursor-pointer hover:shadow-md hover:opacity-25 hover:shadow-[#e52320]`} data-aos={url !== "login" && url !== "signup" && "fade-up"}>
+      rounded-lg my-2 w-full h-auto mx-auto cursor-pointer hover:shadow-md hover:opacity-25 hover:shadow-[#e52320]`}
+      data-aos={url !== "login" && url !== "signup" && "fade-up"}
+      onClick={() => setFav(!fav)}
+    >
       <div className='border border-gray-300 mb-2 w-auto'>
-        <Link href={`product-details/${id}`}>
-          <Image
-            src={pathname == '/' || pathname == '/my-ads' || pathname ? picOne : image}
-            alt={name}
-            width={500}
-            height={500}
-          />
-        </Link>
+        <span className={`${fav ? 'text-red-600' : 'text-white'} absolute end-2 mt-1`}><Favorite /></span>
+        <Image
+          src={pathname == '/' || pathname == '/my-ads' || pathname ? picOne : image}
+          alt={name}
+          width={500}
+          height={500}
+        />
       </div>
       <div className='p-5'>
         <div className='mb-4 flex gap-x-2 text-sm'>
