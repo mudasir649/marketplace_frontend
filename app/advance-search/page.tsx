@@ -6,7 +6,7 @@ import Aos from 'aos';
 import React, { useEffect, useState } from 'react';
 // import "./advanceSearch.css";
 import ReactStars from "react-stars";
-import { btnStyle, expandStyle, logoStyle, logoStyle1, ratingList, spanStyle } from "../../utils/localVariables";
+import { btnStyle, expandStyle, logoStyle, ratingList, spanStyle } from "../../utils/localVariables";
 import productData from '@/utils/data';
 import Image from 'next/image';
 import useWindowDimensions from '@/utils/useWindowDimensions';
@@ -120,6 +120,8 @@ export default function Page() {
             return;
         }
     };
+
+    const logoStyle1 = 'text-sm lg:text-lg';
 
     const logo = [
         {

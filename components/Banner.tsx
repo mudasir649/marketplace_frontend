@@ -66,7 +66,7 @@ export default function Banner() {
               <CategoryList setCategory={setAllCategory} setExpand={setIsExpand} />
             </div>}
           </div>
-          <div className='felx flex-row mt-4 lg:mt-0'>
+          <div className={`felx flex-row ${newWidth <= 834 && newWidth >= 768 ? 'mt-[-1.5px] ml-5' : ' mt-4 lg:mt-0'}`}>
             <h1 className='text-white text-lg font-semibold flex space-x-5'>
               Top Categories:
               <span className='ml-4 cursor-pointer' onClick={() => setCategory("Autos")}>Autos</span>

@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function SellRepairComponent() {
 
-    const bothDivsStyle = 'border border-gray-400 rounded-md lg:w-[450px] w-auto h-64 text-center p-5 space-y-3 hover:border-[#e52320]';
+    const bothDivsStyle = 'bg-white rounded-md lg:w-[450px] hover:shadow-md hover:shadow-[#e52320] w-auto h-64 text-center p-5 space-y-3';
     const h1Style = 'cursor-pointer text-2xl font-semibold hover:text-[#e52320]';
     const logoStyle = 'text-7xl border rounded-full p-1 hover:bg-[#e52320] hover:text-white hover:border-[#e52320]';
     const btnStyle = 'h-10 w-40 bg-[#e52320] text-white p-2'

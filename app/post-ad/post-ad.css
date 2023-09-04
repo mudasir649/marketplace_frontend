@@ -3,7 +3,7 @@
 }
 
 .box-container {
-    box-shadow: 2px 2px 2px 2px #ccc, -2px -2px 2px 2px #ccc;  
+    box-shadow: 2px 2px 2px 2px whitesmoke, -2px -2px 2px 2px whitesmoke;  
 }
 
 .menu-item.active{
