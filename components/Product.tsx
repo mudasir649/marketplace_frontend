@@ -39,10 +39,12 @@ export default function Product({ product, url }: any) {
     <div className={`${newWidth < 688 ? 'max-w-[500px]' : 'max-w-[352px]'} bg-white shadow-lg border-[#795453] 
       rounded-lg my-2 w-full h-auto mx-auto cursor-pointer hover:shadow-md hover:opacity-25 hover:shadow-[#e52320]`}
       data-aos={url !== "login" && url !== "signup" && "fade-up"}
-      onClick={() => setFav(!fav)}
     >
       <div className='border border-gray-300 mb-2 w-auto'>
-        <span className={`${fav ? 'text-red-600' : 'text-white'} absolute end-2 mt-1`}><Favorite /></span>
+        <span className={`${fav ? 'text-red-600' : 'text-white'} absolute end-2 mt-1`}
+          onDoubleClick={() => setFav(!fav)}>
+          <Favorite />
+        </span>
         <Image
           src={pathname == '/' || pathname == '/my-ads' || pathname ? picOne : image}
           alt={name}
