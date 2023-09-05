@@ -9,6 +9,7 @@ import useWindowDimensions from "@/utils/useWindowDimensions";
 import { East } from "@mui/icons-material";
 import SellRepairComponent from "@/components/SellRepairComponent";
 import ProductList from "@/components/ProductList";
+import { ToastContainer } from "react-toastify";
 
 export default function MainPage() {
 
