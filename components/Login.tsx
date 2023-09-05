@@ -1,12 +1,58 @@
 import { Cancel, Google, Https, LoginSharp, Mail } from '@mui/icons-material'
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import googleLogo from "../public/assets/google_logo.png";
 import signLogo from "../public/assets/signLogo.png";
 import useWindowDimensions from '@/utils/useWindowDimensions';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { Theme, createStyles, makeStyles } from '@material-ui/core';
+import { CircularProgress } from "@material-ui/core"
+
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            display: 'flex',
+            '& > * + *': {
+                marginLeft: theme.spacing(2),
+            },
+        },
+    }),
+);
+
 
 export default function LoginPage() {
+
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const [loading, setLoading] = useState<Boolean>(false);
+    const classes = useStyles();
+
+    const submitHandler = async (e: any) => {
+        e.preventDefault();
+        try {
+            setLoading(true);
+            const data: any = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_API}`, {
+                email,
+                password
+            });
+            if (data?.status == 200) {
+                toast(data?.data?.message);
+                setLoading(false)
+            }
+        } catch (error: any) {
+            if (error?.response?.status == 400) {
+                console.log(error?.response?.data?.message);
+                toast(error?.response?.data?.message);
+                setLoading(false);
+            }
+            if (error?.status == 500) {
+                console.log(error);
+            }
+        }
+        setLoading(false)
+    }
 
     const { width, height } = useWindowDimensions();
 
@@ -47,17 +93,38 @@ export default function LoginPage() {
                         <div className='flex justify-center font-bold'>or</div>
                         <div className='flex flex-row border border-gray-200 hover:border-[#e52320] cursor-pointer rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>
                             <Mail className='text-[#e52320] ml-5' />
-                            <input className='border-none bg-transparent focus:outline-none' type="text" placeholder='Your email address' />
+                            <input className='border-none bg-transparent focus:outline-none'
+                                type="email"
+                                placeholder='Your email address'
+                                name='email'
+                                value={email}
+                                onChange={(e: any) => setEmail(e.target.value)}
+                            />
                         </div>
                         <div className='flex flex-row border border-gray-200 hover:border-[#e52320] rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>
                             <Https className='text-[#e52320] ml-5' />
-                            <input className='border-none bg-transparent focus:outline-none' type="text" placeholder='Your password' />
+                            <input className='border-none bg-transparent focus:outline-none'
+                                type="password"
+                                placeholder='Your password'
+                                name='password'
+                                value={password}
+                                onChange={(e: any) => setPassword(e.target.value)}
+                            />
                         </div>
                         <div className='flex justify-center font-bold'>
-                            <button className='border border-red-400 bg-gradient-to-r from-red-300 to-[#e52320] hover:border-[#e52320] hover:from-red-600 hover:to-red-600 rounded-lg w-40 p-1 space-x-2 text-white'>
-                                <LoginSharp />
-                                <span>Login</span>
-                            </button>
+                            {!loading ?
+                                <button className='border border-red-400 bg-gradient-to-r 
+                                from-red-300 to-[#e52320] hover:border-[#e52320] hover:from-red-600
+                                hover:to-red-600 rounded-lg w-40 p-1 space-x-2 text-white'
+                                    onClick={(e: any) => submitHandler(e)}
+                                >
+                                    <LoginSharp />
+                                    <span>Login</span>
+                                </button>
+                                :
+                                <div className={classes.root}>
+                                    <CircularProgress color="secondary" />
+                                </div>}
                         </div>
                         <div className='flex justify-center'>
                             <h1>Not a member?
@@ -68,6 +135,6 @@ export default function LoginPage() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
