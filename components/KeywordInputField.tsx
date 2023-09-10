@@ -82,6 +82,8 @@ export default function KeywordInputField({ logo, text1, text2 }: any) {
                     apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAP_API}
                     onPlaceSelected={(place) => {
                       let { formatted_address } = place;
+                      console.log(place);
+
                       setAddress(formatted_address || "");
                     }}
                     className='border-none w-auto lg:w-52 bg-transparent focus:outline-none'

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { GoogleMap, LoadScript, Marker, useJsApiLoader } from "@react-google-maps/api"
 import { Box, CircularProgress } from '@mui/material';
 import useWindowDimensions from '@/utils/useWindowDimensions';
+import locateAddress from '@/utils/GoogleLocation';
 
 
 const MapContainer = ({ apikey, address }: any) => {
@@ -17,21 +18,17 @@ const MapContainer = ({ apikey, address }: any) => {
   const newHeight = height || 0;
 
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apikey}`);
-      const data = await res.json();
-      console.log(data);
-
-      if (data.status === "OK") {
-        setLoading(false);
-        const location = data.results[0].geometry.location;
-        setLat(location.lat);
-        setLong(location.lng);
-      } else {
-        setErrorMessage("Sorry! unable to locate address");
+    locateAddress(address, apikey).then((data: any) => {
+      if (data?.lat && data.long) {
+        setLoading(false)
+        setLat(data?.lat);
+        setLong(data?.long);
       }
-    };
-    fetchData();
+      if (data?.message) {
+        setLoading(false)
+        setErrorMessage(data?.message)
+      }
+    });
   }, [apikey, address]);
 
   const center = { lat: lat, lng: long };

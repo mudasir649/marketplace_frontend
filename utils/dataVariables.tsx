@@ -60,7 +60,7 @@ export const list = [
         name: 'Busses'
     },
     {
-        name: 'Contruction Machines'
+        name: 'Construction Machines'
     },
     {
         name: 'Drones'
@@ -94,6 +94,57 @@ export const subList = [
     },
     {
         name: "Motorcycle"
+    },
+]
+
+export const priceList = [
+    {
+        id: '1',
+        name: 'Price',
+        value: 'price'
+    },
+    {
+        id: '2',
+        name: 'Price Range',
+        value: 'priceRange'
+    },
+    {
+        id: '3',
+        name: 'Disabled',
+        value: 'disabled'
+    },
+];
+
+export const conditionList = [
+    {
+        id: 1,
+        name: 'New',
+        value: 'new'
+    },
+    {
+        id: 2,
+        name: 'Used',
+        value: 'used'
+    },
+    {
+        id: 3,
+        name: 'Recondition',
+        value: 'recondition'
+    }
+];
+
+export const howContactList = [
+    {
+        name: 'Whatsapp'
+    },
+    {
+        name: 'Viber'
+    },
+    {
+        name: 'Phone'
+    },
+    {
+        name: 'Email'
     },
 ]
 

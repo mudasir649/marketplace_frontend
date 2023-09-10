@@ -8,7 +8,9 @@ import useWindowDimensions from '@/utils/useWindowDimensions';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { Theme, createStyles, makeStyles } from '@material-ui/core';
-import { CircularProgress } from "@material-ui/core"
+import { CircularProgress } from "@material-ui/core";
+import { useDispatch } from 'react-redux';
+import { setCredentials } from "../store/authSlice"
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({

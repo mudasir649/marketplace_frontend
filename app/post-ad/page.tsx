@@ -94,7 +94,6 @@ export default function PostAd() {
                                     </div>
                                 </div>
                             </div>
-
                         }
                     </div>
                 </div>
