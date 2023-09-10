@@ -16,14 +16,28 @@ import Home from '@/components/Home';
 import AOS from 'aos'
 import useWindowDimensions from '@/utils/useWindowDimensions';
 import image1 from "../../../public/assets/picSix.jpg"
+import axios from 'axios';
 
 export default function ProductDetails() {
 
   const { id } = useParams();
+  const [product, setProduct] = useState<any>()
 
-  const product = productData.find((product) => {
-    return product.id === Number(id)
-  });
+  // const product = productData.find((product) => {
+  //   return product.id === Number(id)
+  // });
+
+  useEffect(() => {
+    const addView = async () => {
+      await axios.patch(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/addView?id=${id}`)
+    }
+    const fetchData = async () => {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/getSpecific/${id}`);
+      setProduct(res.data?.data);
+    }
+    addView()
+    fetchData();
+  }, [id])
 
   let image: any = product?.image || '';
   let name: string = product?.name || '';
@@ -56,11 +70,11 @@ export default function ProductDetails() {
           <div className={`${newWidth <= 1024 && newHeight <= 885 ? 'md:mx-5' : 'md:mx-10'}  lg:w-[890px] min-h-[800px] mb-5 border rounded-lg bg-white p-5`} data-aos="fade-up">
             <div className='flex flex-col lg:flex-row lg:items-center lg:justify-between'>
               <div>
-                <h1 className='text-2xl font-semibold'>{product?.name}</h1>
+                <h1 className='text-2xl font-semibold'>{product?.title}</h1>
                 <h1 className='text-lg mb-4'>{product?.address}</h1>
               </div>
               <div className='mb-4 lg:mb-0 flex gap-x-2 text-sm'>
-                <h1 className={`${newWidth === 1024 && newHeight === 885 ? 'text-sm' : 'text-xl'} font-semibold text-white bg-red-600 px-3 rounded-full`}>{product?.type}</h1>
+                <h1 className={`${newWidth === 1024 && newHeight === 885 ? 'text-sm' : 'text-xl'} font-semibold text-white bg-red-600 px-3 rounded-full`}>{product?.category}</h1>
               </div>
             </div>
             <div className='flex flex-col items-start gap-8 lg:flex-row'>
@@ -68,7 +82,7 @@ export default function ProductDetails() {
                 <div className='mb-8'>
                   <Image
                     className='border rounded-lg'
-                    src={image1}
+                    src={product?.image[0]}
                     alt={name}
                     width={800}
                     height={800}
@@ -107,19 +121,19 @@ export default function ProductDetails() {
                   <span>rview</span>
                 </h1>
                 <ul className='space-y-2 mb-5 mt-5'>
-                  <li><span className={overviewStyle}>Condition: </span> New</li>
-                  <li><span className={overviewStyle}>Brand: </span> BMW</li>
+                  <li><span className={overviewStyle}>Condition: </span> {product?.condition}</li>
+                  <li><span className={overviewStyle}>Brand: </span> {product?.brand}</li>
                   <li><span className={overviewStyle}>Year: </span> 2013</li>
-                  <li><span className={overviewStyle}>Body Shape: </span> Others</li>
-                  <li><span className={overviewStyle}>Gearbox: </span> Automatic</li>
-                  <li><span className={overviewStyle}>fuel type: </span> Electric</li>
-                  <li><span className={overviewStyle}>Kilometers: </span> 1000</li>
-                  <li><span className={overviewStyle}>Engine capacity: </span> 2500</li>
-                  <li><span className={overviewStyle}>Cylinders: </span> Good</li>
-                  <li><span className={overviewStyle}>Exterior: </span> White</li>
+                  <li><span className={overviewStyle}>Body Shape: </span> {product?.bodyShape}</li>
+                  <li><span className={overviewStyle}>Gearbox: </span> {product?.gearBox}</li>
+                  <li><span className={overviewStyle}>fuel type: </span> {product?.fuelType}</li>
+                  <li><span className={overviewStyle}>Kilometers: </span> {product?.kiloMeters}</li>
+                  <li><span className={overviewStyle}>Engine capacity: </span> {product?.engineCapacity}</li>
+                  <li><span className={overviewStyle}>Cylinders: </span> {product?.cylinders}</li>
+                  <li><span className={overviewStyle}>Exterior: </span> {product?.exteriorColor}</li>
                 </ul>
                 <div className={listStyle}>
-                  <Visibility className='text-gray-500' /> <span className={listStyle2}>16 views</span>
+                  <Visibility className='text-gray-500' /> <span className={listStyle2}>{product?.views} views</span>
                 </div>
                 <div className={listStyle}>
                   <FavoriteBorder className='text-gray-500' /> <span className={listStyle2}>Add to Favourites</span>
@@ -161,7 +175,7 @@ export default function ProductDetails() {
                 <div className='flex flex-row mt-5'>
                   <div className='flex flex-row gap-2 text-gray-600'>
                     <Place className='text-[#e52320]' />
-                    <h1>Escher Straße 129-131, 50739 Cologne , Westphalia Germany</h1>
+                    <h1>{product?.address}</h1>
                   </div>
                 </div>
                 {!contact && <div className='border bg-gray-800 text-md font-semibold text-white p-2 rounded-md cursor-pointer' onClick={handleChange}>
@@ -176,12 +190,12 @@ export default function ProductDetails() {
                       <Cancel className='text-red-500' onClick={() => setContact(false)} />
                     </span>
                     <ul className='space-y-3 py-3'>
-                      <li className='space-x-3'><PhoneInTalk className='text-white border bg-purple-500 border-purple-500 rounded-lg mr-3' /> 8749834389</li>
-                      <li><WhatsApp className='text-green-500 mr-3' /> 8938943382434</li>
+                      <li className='space-x-3'><PhoneInTalk className='text-white border bg-purple-500 border-purple-500 rounded-lg mr-3' /> {product?.viber}</li>
+                      <li><WhatsApp className='text-green-500 mr-3' /> {product?.whatsApp}</li>
                     </ul>
                   </div>}
                 <div className='border bg-[#e52320] text-md font-semibold text-white p-2 rounded-md'>
-                  <Link className='flex flex-row justify-center gap-2' href={`mailto:mudasirriaz649@gmail.com`}>
+                  <Link className='flex flex-row justify-center gap-2' href={`mailto:${product?.email}`}>
                     <Mail />
                     <span>Send Email</span>
                   </Link>

@@ -7,8 +7,9 @@ import React, { useEffect, useState } from 'react';
 // import "./advanceSearch.css";
 import ReactStars from "react-stars";
 import { ratingList } from "../../utils/localVariables";
-import productData from '@/utils/data';
+// import productData from '@/utils/data';
 import useWindowDimensions from '@/utils/useWindowDimensions';
+import axios from 'axios';
 
 interface IList {
     logo: any,
@@ -28,6 +29,52 @@ export default function Page() {
 
     const newWidth = width || 0;
     const newHeight = height || 0;
+
+    const [productData, setProductData] = useState<any>(null);
+    const [productsCount, setProductsCount] = useState<any>(0)
+
+    const [page, setPage] = useState<number>(1);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}`);
+            setProductData(res.data?.data);
+            setProductsCount(res.data?.totalAds)
+        }
+        fetchData();
+    }, [page]);
+
+    console.log(productsCount);
+    console.log(productData?.length);
+
+
+
+    const pagination = () => {
+        let paginationList = [];
+        let totalPages = Math.ceil(productsCount / 10);
+        for (let i = 1; i <= totalPages; i++) {
+            paginationList.push(i);
+        }
+        return paginationList;
+    }
+
+    const previousHandle = () => {
+        if (page !== 1) {
+            setPage(page - 1);
+        } else {
+            return;
+        }
+    }
+
+
+    const nextHandle = () => {
+        if (page !== pagination().length) {
+            setPage(page + 1);
+        } else {
+            return;
+        }
+    };
+
 
     const categoryList = [
         {
@@ -105,26 +152,6 @@ export default function Page() {
         )
     }
 
-    const paginationList = [1, 2, 3, 4, 5, 6];
-    const [page, setPage] = useState<number>(1);
-
-    const previousHandle = () => {
-        if (page !== 1) {
-            setPage(page - 1);
-        } else {
-            return;
-        }
-    }
-
-
-    const nextHandle = () => {
-        if (paginationList.length !== page) {
-            setPage(page + 1);
-        } else {
-            return;
-        }
-    };
-
     const logoStyle1 = newWidth < 370 ? 'text-[8px]' : 'text-[10px] md:text-base lg:text-xl';
 
     const logo = [
@@ -151,6 +178,7 @@ export default function Page() {
     const btnStyle = `font-semibold hover:text-red-600 text-gray-500`;
     const spanStyle = newWidth < 370 ? 'text-[10px] cursor-pointer font-bold' : 'text-[12px] cursor-pointer font-bold';
 
+
     return (
         <div>
             <Home>
@@ -163,20 +191,7 @@ export default function Page() {
                             <h1 className='pl-1 pt-2  text-lg font-semibold'>All Categories</h1>
                             <ul className='space-y-3 mt-2 mx-1'>
                                 {categoryList?.map((list: IList, i: number) => (
-                                    <li className='hover:text-red-600 cursor-pointer' key={i}>{list.logo} {list.name} {`(${list.quantity})`}</li>
-                                ))}
-                            </ul>
-                        </div>
-                        <div className='border-b flex flex-row justify-between p-2'>
-                            <h1 className='text-lg font-bold'>Ratings</h1>
-                        </div>
-                        <div className='mb-5'>
-                            <ul className='space-y-3 mt-2 mx-1'>
-                                {ratingList?.map((list: IRating, i: number) => (
-                                    <li className='flex flex-row space-x-2' key={i}>
-                                        <ReactStar value={list?.value} />
-                                        <span className='pt-[6px]'> {list.name}</span>
-                                    </li>
+                                    <li className='hover:text-red-600 cursor-pointer' key={i}>{list.logo} {list.name}</li>
                                 ))}
                             </ul>
                         </div>
@@ -198,16 +213,16 @@ export default function Page() {
                     </div>
                     <div className='flex flex-col w-full h-full'>
                         <div className='flex flex-row justify-between  bg-white border border-[#e52320] mb-3 p-2 pl-5' data-aos="fade-left">
-                            <h1 className='text-xl font-bold'>{productData.length} Results</h1>
+                            <h1 className='text-xl font-bold'>{productsCount} Results</h1>
                         </div>
                         {productData?.map((product: any, i: number) => (
                             <div className='flex flex-row justify-between bg-white border border-gray-300 rounded-sm mb-5' key={i}>
-                                <div className='bg-blue-500 md:bg-green-500 lg:bg-red-500 w-36 md:w-auto md:h-auto'>
-                                    <img src="/assets/picSix.jpg" alt="" />
+                                <div className='bg-blue-500 md:bg-green-500 lg:bg-red-500 w-44 h-auto md:w-96 md:h-auto'>
+                                    <img src={product?.image[2]} alt="" />
                                 </div>
                                 <div className='space-y-1 p-0 pl-1 md:p-3 w-40 md:w-[500px]'>
-                                    <h1 className={`${newWidth < 370 ? 'text-[11px]' : 'text-[12px] md:text-lg lg:text-2xl'} font-bold`}>{product?.name}</h1>
-                                    <h2 className={`${newWidth < 370 ? 'text-[9px]' : 'text-[10px] md:text-base'}`}>{product?.type}</h2>
+                                    <h1 className={`${newWidth < 370 ? 'text-[11px]' : 'text-[12px] md:text-lg lg:text-2xl'} font-bold`}>{product?.title}</h1>
+                                    <h2 className={`${newWidth < 370 ? 'text-[9px]' : 'text-[10px] md:text-base'}`}>{product?.category}</h2>
                                     <h3 className='text-[10px] md:text-base w-[100px] md:w-auto truncate'>{product?.address}</h3>
                                     <h1 className={`${newWidth < 370 ? 'text-[9px]' : 'md:text-lg text-[12px]'} text-red-600 font-semibold`}>CHF {product?.price}</h1>
                                     <h2 className={`${newWidth < 370 ? 'text-[7px]' : 'text-[10px] md:text-sm'} text-gray-500  font-semibold`}>EURO {product?.price * 2.1}</h2>
@@ -220,6 +235,7 @@ export default function Page() {
                                     </ul>
                                 </div>
                             </div>
+
                         ))}
                         <div className={`flex flex-row justify-between bg-white h-12 border border-[#e52320] rounded-sm px-5 py-2`} data-aos="fade-up">
                             <button className={btnStyle} onClick={previousHandle}>
@@ -227,9 +243,12 @@ export default function Page() {
                                 <span className={spanStyle}>Previous</span>
                             </button>
                             <div className='flex flex-row space-x-4'>
-                                {paginationList?.map((li: any, i: number) => (
+                                {pagination().map((li: any, i: number) => (
                                     <button className={`${page === li && 'bg-[#e52320] w-6 md:w-8 text-white text-[12px] border-none rounded-sm'} pt-[2px] text-[12px] md:text-lg`} key={i} onClick={() => setPage(li)}>{li}</button>
                                 ))}
+                                {/* {paginationList?.map((li: any, i: number) => (
+                                    <button className={`${page === li && 'bg-[#e52320] w-6 md:w-8 text-white text-[12px] border-none rounded-sm'} pt-[2px] text-[12px] md:text-lg`} key={i} onClick={() => setPage(li)}>{li}</button>
+                                ))} */}
                             </div>
                             <button className={btnStyle} onClick={nextHandle}>
                                 <span className={spanStyle}>Next</span>
