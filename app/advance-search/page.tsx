@@ -40,8 +40,8 @@ export default function Page() {
     useEffect(() => {
         const fetchData = async () => {
             const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}`);
-            setProductData(res.data?.data);
-            setProductsCount(res.data?.totalAds)
+            setProductData(res.data?.data?.ad);
+            setProductsCount(res.data?.data?.totalAds)
         }
         fetchData();
     }, [page]);
@@ -175,6 +175,7 @@ export default function Page() {
     const logoStyle = newWidth < 370 ? 'text-red-600 text-[10px] cursor-pointer' : 'text-red-600 text-[15px] md:text-xl cursor-pointer';
     const btnStyle = `font-semibold hover:text-red-600 text-gray-500`;
     const spanStyle = newWidth < 370 ? 'text-[10px] cursor-pointer font-bold' : 'text-[12px] cursor-pointer font-bold';
+
 
     if (!productData) {
         return <div className="flex justify-center mt-5">

@@ -8,6 +8,10 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import { CircularProgress } from '@material-ui/core';
+import { useRegisterMutation } from '@/store/userApiSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCredentials } from '@/store/authSlice';
+import { useRouter } from 'next/navigation';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -26,8 +30,12 @@ export default function Signup() {
     const [userName, setUserName] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const [loading, setLoading] = useState<Boolean>(false);
     const classes = useStyles();
+    const router = useRouter();
+    const dispatch = useDispatch();
+    const { userInfo } = useSelector((state: any) => state.auth);
+    const [registerUser, { isLoading }] = useRegisterMutation()
+
 
     const checkEmail = (email: string) => {
         const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -44,9 +52,6 @@ export default function Signup() {
 
     const submitHandler = async (e: any) => {
         e.preventDefault();
-        if (!name) {
-            toast("Please! enter full name. full name cannot be empty.");
-        }
         if (!userName) {
             toast("Please! enter user name. username cannot be empty.");
         }
@@ -69,30 +74,14 @@ export default function Signup() {
             }
         }
         try {
-            setLoading(true)
-            const data: any = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/register`, {
-                name,
-                userName,
-                email,
-                password
-            });
-
-            if (data?.status == 200) {
-                toast(data?.data?.message)
-                setLoading(false);
-            }
+            const res = await registerUser({ userName, email, password }).unwrap();
+            dispatch(setCredentials({ ...res }));
+            router.push('/')
         } catch (error: any) {
-            if (error?.response?.status == 400) {
-                console.log(error?.response?.data?.message);
-                toast(error?.response?.data?.message);
-                setLoading(false);
-            }
-            if (error?.status == 500) {
-                console.log(error);
-            }
+            toast(error?.data?.message);
         }
-        setLoading(false)
     }
+
 
 
     return (
@@ -116,16 +105,6 @@ export default function Signup() {
                             />
                         </div>
                         <h1 className='flex justify-center text-2xl font-bold'>Create Account</h1>
-                        <div className='flex flex-row border border-gray-200 hover:border-[#e52320] cursor-pointer rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>
-                            <Badge className='text-[#e52320] ml-5' />
-                            <input required={true}
-                                className='border-none bg-transparent focus:outline-none'
-                                type="text" placeholder='Enter your full name'
-                                name="name"
-                                value={name}
-                                onChange={(e: any) => setName(e.target.value)}
-                            />
-                        </div>
                         <div className='flex flex-row border border-gray-200 hover:border-[#e52320] cursor-pointer rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>
                             <AccountCircle className='text-[#e52320] ml-5' />
                             <input required={true}
@@ -160,7 +139,7 @@ export default function Signup() {
                             />
                         </div>
                         <div className='flex justify-center font-bold'>
-                            {!loading ? <button className='border border-red-400 bg-gradient-to-r from-red-300 to-[#e52320] 
+                            {!isLoading ? <button className='border border-red-400 bg-gradient-to-r from-red-300 to-[#e52320] 
                                 hover:border-[#e52320] hover:from-red-600 hover:to-red-600 rounded-lg w-40 
                                 p-1 space-x-2 text-white' onClick={(e: any) => submitHandler(e)}>
                                 <PersonAdd />
