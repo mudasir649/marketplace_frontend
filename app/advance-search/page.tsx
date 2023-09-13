@@ -10,6 +10,8 @@ import { ratingList } from "../../utils/localVariables";
 // import productData from '@/utils/data';
 import useWindowDimensions from '@/utils/useWindowDimensions';
 import axios from 'axios';
+import Image from 'next/image';
+import Link from 'next/link';
 
 interface IList {
     logo: any,
@@ -43,10 +45,6 @@ export default function Page() {
         }
         fetchData();
     }, [page]);
-
-    console.log(productsCount);
-    console.log(productData?.length);
-
 
 
     const pagination = () => {
@@ -178,11 +176,20 @@ export default function Page() {
     const btnStyle = `font-semibold hover:text-red-600 text-gray-500`;
     const spanStyle = newWidth < 370 ? 'text-[10px] cursor-pointer font-bold' : 'text-[12px] cursor-pointer font-bold';
 
-
+    if (!productData) {
+        return <div className="flex justify-center mt-5">
+            <Image
+                src='/assets/eidcarosse.gif'
+                alt="eidcarosse_logo"
+                width={500}
+                height={500}
+            />
+        </div>
+    }
     return (
         <div>
             <Home>
-                <div className='container mx-auto flex flex-col lg:flex-row mt-56 lg:mt-0 space-y-3 lg:space-y-0 lg:space-x-3 w-full mb-[500px]'>
+                <div className='container mx-auto flex flex-col lg:flex-row lg:mt-0 space-y-3 lg:space-y-0 lg:space-x-3 w-full mb-[500px]'>
                     <div className='bg-white shadow-lg border rounded-md w-full lg:w-[400px] h-full p-2' data-aos="fade-right">
                         <div className='border-b flex flex-row justify-between p-2'>
                             <h1 className='text-lg font-bold'>Category</h1>
@@ -205,7 +212,7 @@ export default function Page() {
                             </div>
                             <div className='flex justify-center'>
                                 <button className='mx-0 md:mx-2 border bg-red-600 mt-[19px] w-full lg:w-64 h-10 
-                                text-white border-none rounded-lg font-bold text-md p-1 mb-5'>
+                                    text-white border-none rounded-lg font-bold text-md p-1 mb-5'>
                                     {width == 768 ? <Search /> : 'Apply filters'}
                                 </button>
                             </div>
@@ -217,11 +224,15 @@ export default function Page() {
                         </div>
                         {productData?.map((product: any, i: number) => (
                             <div className='flex flex-row justify-between bg-white border border-gray-300 rounded-sm mb-5' key={i}>
-                                <div className='bg-blue-500 md:bg-green-500 lg:bg-red-500 w-44 h-auto md:w-96 md:h-auto'>
-                                    <img src={product?.image[2]} alt="" />
+                                <div className='bg-blue-500 md:bg-green-500 lg:bg-red-500'>
+                                    <Link href={`/product-details/${product?._id}`}>
+                                        <img className='w-64 h-48' src={product?.image[1]} alt="" />
+                                    </Link>
                                 </div>
                                 <div className='space-y-1 p-0 pl-1 md:p-3 w-40 md:w-[500px]'>
-                                    <h1 className={`${newWidth < 370 ? 'text-[11px]' : 'text-[12px] md:text-lg lg:text-2xl'} font-bold`}>{product?.title}</h1>
+                                    <Link href={`/product-details/${product?._id}`}>
+                                        <h1 className={`${newWidth < 370 ? 'text-[11px]' : 'text-[12px] md:text-lg lg:text-2xl'} font-bold hover:text-red-600`}>{product?.title}</h1>
+                                    </Link>
                                     <h2 className={`${newWidth < 370 ? 'text-[9px]' : 'text-[10px] md:text-base'}`}>{product?.category}</h2>
                                     <h3 className='text-[10px] md:text-base w-[100px] md:w-auto truncate'>{product?.address}</h3>
                                     <h1 className={`${newWidth < 370 ? 'text-[9px]' : 'md:text-lg text-[12px]'} text-red-600 font-semibold`}>CHF {product?.price}</h1>
@@ -247,8 +258,8 @@ export default function Page() {
                                     <button className={`${page === li && 'bg-[#e52320] w-6 md:w-8 text-white text-[12px] border-none rounded-sm'} pt-[2px] text-[12px] md:text-lg`} key={i} onClick={() => setPage(li)}>{li}</button>
                                 ))}
                                 {/* {paginationList?.map((li: any, i: number) => (
-                                    <button className={`${page === li && 'bg-[#e52320] w-6 md:w-8 text-white text-[12px] border-none rounded-sm'} pt-[2px] text-[12px] md:text-lg`} key={i} onClick={() => setPage(li)}>{li}</button>
-                                ))} */}
+                                        <button className={`${page === li && 'bg-[#e52320] w-6 md:w-8 text-white text-[12px] border-none rounded-sm'} pt-[2px] text-[12px] md:text-lg`} key={i} onClick={() => setPage(li)}>{li}</button>
+                                    ))} */}
                             </div>
                             <button className={btnStyle} onClick={nextHandle}>
                                 <span className={spanStyle}>Next</span>

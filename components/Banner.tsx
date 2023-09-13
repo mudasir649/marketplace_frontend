@@ -26,9 +26,6 @@ export default function Banner() {
   const newWidth = width || 0;
   const newHeight = height || 0;
 
-  // console.log(category);
-  // console.log(allCategory);
-
   const closeDropdown = () => {
     setIsExpand(false);
   }

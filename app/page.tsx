@@ -12,8 +12,11 @@ import ProductList from "@/components/ProductList";
 import { ToastContainer } from "react-toastify";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Image from "next/image";
+import { useSelector } from "react-redux";
 
 export default function MainPage() {
+
 
   const [featuredAds, setFeaturedAds] = useState<any>()
   const [topAds, setTopAds] = useState<any>()
@@ -33,9 +36,20 @@ export default function MainPage() {
     }
     fetchTopData();
     fetchFeaturedData();
-  }, [])
+  }, []);
 
-
+  if (!featuredAds && !topAds) {
+    return (
+      <div className="flex justify-center mt-5">
+        <Image
+          src='/assets/eidcarosse.gif'
+          alt="eidcarosse_logo"
+          width={500}
+          height={500}
+        />
+      </div>
+    )
+  }
   return (
     <div className="">
       <Home suppressHydrationWarning={true}>

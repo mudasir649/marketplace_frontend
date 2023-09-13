@@ -23,10 +23,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <ToastContainer autoClose={5000} />
+    <html lang="en" suppressHydrationWarning={true}>
       <body className={`${inter.className}`}>
         <Provider store={store}>
+          <ToastContainer autoClose={5000} />
           {children}
         </Provider>
       </body>
