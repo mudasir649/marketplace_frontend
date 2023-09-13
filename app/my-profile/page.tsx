@@ -1,13 +1,29 @@
 'use client';
 import Home from '@/components/Home'
 import { Cancel, InsertPhoto, Person } from '@mui/icons-material';
-import React, { useEffect, useRef, useState } from 'react';
-import Geolocation from '@react-native-community/geolocation';
+import React, { useRef, useState } from 'react';
 import useWindowDimensions from '@/utils/useWindowDimensions';
 import Image from 'next/image';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { CircularProgress, createStyles, makeStyles } from '@material-ui/core';
+import { Theme } from '@mui/material';
+
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            display: 'flex',
+            '& > * + *': {
+                marginLeft: theme.spacing(2),
+            },
+        },
+    }),
+);
 
 
 interface IData {
+    userId: string,
     firstName: string,
     lastName: string,
     email: string,
@@ -22,7 +38,11 @@ interface IData {
 
 export default function MyProfile() {
 
+    const classes = useStyles();
+    const { userInfo } = useSelector((state: any) => state.auth);
+    const [loading, setLoading] = useState<Boolean>(false);
     const [data, setData] = useState<IData>({
+        userId: userInfo?.data?.userId,
         firstName: '',
         lastName: null || '',
         email: '',
@@ -69,6 +89,30 @@ export default function MyProfile() {
         fileInputRef.current?.click();
     }
 
+    const updateProfile = async (e: any) => {
+        e.preventDefault();
+        setLoading(false);
+        if (!image) {
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/userProfile`, data);
+            if (res.data?.status === 200) {
+                toast(res?.data?.message);
+            }
+        } else {
+            const formData = new FormData();
+            formData.append('file', image);
+            for (const key in data) {
+                if (data.hasOwnProperty(key)) {
+                    formData.append(key, data[key as keyof IData]);
+                }
+            }
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/userProfile`, data);
+            if (res.data?.status === 200) {
+                toast(res?.data?.message);
+            }
+        }
+        setLoading(false);
+    }
+
 
     return (
         <Home>
@@ -77,11 +121,6 @@ export default function MyProfile() {
                     <div className='flex justify-center border-b-2 pb-5'>
                         <h1 className='space-x-3'><Person className='text-red-600 mt-[-4px]' /><span className='text-lg font-bold'>Basic Information</span></h1>
                     </div>
-                    {/* {image &&
-                        <div className='flex justify-center mt-2'>
-                            <Cancel className='absolute text-red-600 ml-[275px]' onClick={() => cancelImage()} />
-                            <Image alt='image' src={imageUrl} width={300} height={300} />
-                        </div>} */}
                     <div className='flex justify-center mt-5'>
                         <div className='h-40 w-40 border rounded-full relative'>
                             {!image ?
@@ -164,6 +203,18 @@ export default function MyProfile() {
                                 value={data?.website}
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
+                        {!loading ?
+                            <div className={style.divStyle}>
+                                <h1 className={`${style.h1Style} invisible`}>submit</h1>
+                                <div className='flex flex-col w-full'>
+                                    <button className='bg-red-600 hover:bg-red-800 w-32 h-10 text-white font-bold' onClick={(e: any) => updateProfile(e)}>Submit</button>
+                                </div>
+                            </div>
+                            :
+                            <div className={classes.root}>
+                                <CircularProgress color="secondary" />
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

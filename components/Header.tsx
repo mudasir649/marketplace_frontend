@@ -1,5 +1,5 @@
 'use client';
-import { Add, AddAPhoto, AdminPanelSettings, ArrowDropDown, Cancel, Chat, Checklist, ExpandMore, Favorite, FormatListNumbered, Login, Logout, Person, PlusOne, Sms } from "@mui/icons-material";
+import { Add, AddAPhoto, AdminPanelSettings, ArrowDropDown, Cancel, Chat, Checklist, ExpandMore, Favorite, FormatListNumbered, Login, Logout, Person, Person2, PlusOne, Sms } from "@mui/icons-material";
 import Image from "next/image";
 import Link from "next/link";
 import React, { MouseEvent, useCallback, useEffect, useRef, useState } from "react";
@@ -147,9 +147,10 @@ export default function Header() {
             {userInfo ?
               <><div className="menu-container" onClick={() => isOpen(!open)}>
                 <button className="menu-trigger flex flex-row">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img className="h-10 w-10 md:h-11 md:w-11 border-none rounded-full" src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcQ9LJTKr932HHolR2rZsDfow3ijKn9WCRP6G3nQ_AjqBYK0jCC_Jlpjkxa-neKP5YF9AWtwvgf0EYSpdOM" alt="profile_image" />
-                  <ExpandMore className={`mt-2 text-gray-50 logo ${open ? 'active' : 'inactive'}`} />
+                  {!userInfo?.data?.image ? <Person2 className="text-3xl text-white" /> :
+                    <Image className="h-10 w-10 md:h-11 md:w-11 border-none rounded-full" src={userInfo?.data?.image} alt="profile_image" />
+                  }
+                  <ExpandMore className={`${!userInfo?.data?.image ? 'mt-1' : 'mt-2'}  text-gray-50 logo ${open ? 'active' : 'inactive'}`} />
                 </button>
               </div>
                 <div className={`dropdown-menu border rounded-sm w-60 absolute ml-[-120px] z-10 ${newWidth == 1024 ? 'end-10' : 'end-4 lg:end-52'} top-20 ${open ? 'active' : 'inactive'}`}>
