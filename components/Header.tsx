@@ -8,6 +8,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ListDownComponent from "./ListDownComponent";
 import ContactUs from "./ContactUs";
 import useWindowDimensions from "@/utils/useWindowDimensions";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "@/store/authSlice";
+import { useLogoutMutation } from "@/store/userApiSlice";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export default function Header() {
 
@@ -15,7 +20,14 @@ export default function Header() {
   const [showContact, setShowContact] = useState(false);
   const navbarLiStyle = navbar ? 'cursor-pointer hover:text-[#e52320]' : 'cursor-pointer hover:p-2 hover:border hover:rounded-md hover:bg-white hover:text-red-600 font-[600] ease-in duration-150';
   const [open, isOpen] = useState<Boolean>(false);
-  const [userLogged, setUserLogged] = useState<Boolean>(true);
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+
+  const { userInfo } = useSelector((state: any) => state.auth);
+
+  console.log(userInfo);
+
 
   const handleContact = () => {
     setShowContact(true);
@@ -33,9 +45,20 @@ export default function Header() {
     )
   }
 
+  const [logoutApiCall, { isLoading }] = useLogoutMutation();
+
+  const logoutHandler = async () => {
+    try {
+      await logoutApiCall({}).unwrap();
+      dispatch(logout(null));
+      router.push('/')
+    } catch (error: any) {
+      toast(error?.data?.message)
+    }
+  }
+
   const { width, height } = useWindowDimensions();
   const newWidth = width || 0;
-  const newHeight = height || 0;
 
 
   return (
@@ -90,7 +113,7 @@ export default function Header() {
                 </Link>
               </li>
               <li className={navbarLiStyle}>
-                <Link href="advance-search">
+                <Link href="/advance-search">
                   advance search
                 </Link>
               </li>
@@ -121,7 +144,7 @@ export default function Header() {
                 </Link>
               </div>
             }
-            {userLogged ?
+            {userInfo ?
               <><div className="menu-container" onClick={() => isOpen(!open)}>
                 <button className="menu-trigger flex flex-row">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -139,7 +162,7 @@ export default function Header() {
                     <DropdownItem logo={<Favorite />} text="Favourites" href="/my-favourites" />
                     <DropdownItem logo={<Sms />} text="Chat" href="/" />
                   </ul>
-                  <ul className="flex flex-col space-y-5 border-t-2 pt-3">
+                  <ul className="flex flex-col space-y-5 border-t-2 pt-3" onClick={() => logoutHandler()}>
                     <DropdownItem logo={<Logout />} text="Logout" href="/" />
                   </ul>
                 </div></>

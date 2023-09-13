@@ -54,12 +54,21 @@ export default function Product({ product, url }: any) {
           onDoubleClick={() => setFav(!fav)}>
           <Favorite />
         </span>
-        <Image
+        {/* <Image
           src={pathname == '/' || pathname == '/my-ads' || pathname ? picOne : image}
           alt={name}
           width={500}
           height={500}
-        />
+        /> */}
+        {/* <Image
+          src={product?.image[1]}
+          alt={name}
+          width={200}
+          height={200}
+          className='object-fill'
+        /> */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={product?.image[1]} alt="Image" className='w-96 h-48' />
       </div>
       <div className='p-5'>
         <div className='mb-4 flex gap-x-2 text-sm'>

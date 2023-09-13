@@ -1,7 +1,7 @@
 import { Cancel, Google, Https, LoginSharp, Mail } from '@mui/icons-material'
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import googleLogo from "../public/assets/google_logo.png";
 import signLogo from "../public/assets/signLogo.png";
 import useWindowDimensions from '@/utils/useWindowDimensions';
@@ -9,8 +9,10 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { Theme, createStyles, makeStyles } from '@material-ui/core';
 import { CircularProgress } from "@material-ui/core";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setCredentials } from "../store/authSlice"
+import { useLoginMutation } from '@/store/userApiSlice';
+import { useRouter } from 'next/navigation';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -28,38 +30,30 @@ export default function LoginPage() {
 
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const [loading, setLoading] = useState<Boolean>(false);
     const classes = useStyles();
+    const dispatch = useDispatch();
+    const router = useRouter();
+
+    const [login, { isLoading }] = useLoginMutation();
+
+    const { userInfo } = useSelector((state: any) => state.auth);
+
+    useEffect(() => {
+        if (userInfo !== null) {
+            router.push('/');
+        }
+    }, [userInfo, router])
 
     const submitHandler = async (e: any) => {
         e.preventDefault();
         try {
-            setLoading(true);
-            const data: any = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_API}`, {
-                email,
-                password
-            });
-            if (data?.status == 200) {
-                toast(data?.data?.message);
-                setLoading(false)
-            }
+            const res = await login({ email, password }).unwrap();
+            dispatch(setCredentials({ ...res }));
+            router.push('/')
         } catch (error: any) {
-            if (error?.response?.status == 400) {
-                console.log(error?.response?.data?.message);
-                toast(error?.response?.data?.message);
-                setLoading(false);
-            }
-            if (error?.status == 500) {
-                console.log(error);
-            }
+            toast(error?.data?.message);
         }
-        setLoading(false)
     }
-
-    const { width, height } = useWindowDimensions();
-
-    console.log(width);
-    console.log(height);
 
     return (
         <div className={`fixed inset-0 flex justify-center items-center bg-opacity-100 backdrop-blur-sm`}>
@@ -114,10 +108,10 @@ export default function LoginPage() {
                             />
                         </div>
                         <div className='flex justify-center font-bold'>
-                            {!loading ?
+                            {!isLoading ?
                                 <button className='border border-red-400 bg-gradient-to-r 
-                                from-red-300 to-[#e52320] hover:border-[#e52320] hover:from-red-600
-                                hover:to-red-600 rounded-lg w-40 p-1 space-x-2 text-white'
+                                    from-red-300 to-[#e52320] hover:border-[#e52320] hover:from-red-600
+                                    hover:to-red-600 rounded-lg w-40 p-1 space-x-2 text-white'
                                     onClick={(e: any) => submitHandler(e)}
                                 >
                                     <LoginSharp />
