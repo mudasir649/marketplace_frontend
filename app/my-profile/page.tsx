@@ -23,13 +23,9 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 interface IData {
-    userId: string,
     firstName: string,
     lastName: string,
-    email: string,
-    password: string,
-    confirmPassword: string,
-    phoneNo: Number,
+    phoneNo: any,
     website: string,
     viber: any,
     whatsapp: any
@@ -42,16 +38,12 @@ export default function MyProfile() {
     const { userInfo } = useSelector((state: any) => state.auth);
     const [loading, setLoading] = useState<Boolean>(false);
     const [data, setData] = useState<IData>({
-        userId: userInfo?.data?.userId,
         firstName: '',
-        lastName: null || '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-        phoneNo: null || 0,
+        lastName: '',
+        phoneNo: '',
         website: '',
-        viber: null,
-        whatsapp: null
+        viber: '',
+        whatsapp: ''
     });
     const [image, setImage] = useState<string>('');
     const [imageUrl, setImageUrl] = useState<string>('');
@@ -91,9 +83,9 @@ export default function MyProfile() {
 
     const updateProfile = async (e: any) => {
         e.preventDefault();
-        setLoading(false);
+        setLoading(true);
         if (!image) {
-            const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/userProfile`, data);
+            const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/userProfile/${userInfo?.userInfo?.data?.id}`, data);
             if (res.data?.status === 200) {
                 toast(res?.data?.message);
             }
@@ -105,14 +97,19 @@ export default function MyProfile() {
                     formData.append(key, data[key as keyof IData]);
                 }
             }
-            const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/userProfile`, data);
-            if (res.data?.status === 200) {
-                toast(res?.data?.message);
+            try {
+                const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/userProfile/${userInfo?.userInfo?.data?.id}`, formData);
+                if (res.data?.status === 200) {
+                    toast(res?.data?.message);
+                    setLoading(false)
+                }
+            } catch (error: any) {
+                console.log(error);
+                setLoading(false)
             }
         }
         setLoading(false);
     }
-
 
     return (
         <Home>
@@ -157,35 +154,21 @@ export default function MyProfile() {
                         <div className={style.divStyle}>
                             <h1 className={style.h1Style}>Last Name</h1>
                             <input type="text" className={style.inputStyle}
-                                name='LastName'
+                                name='lastName'
                                 value={data?.lastName}
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
                         <div className={style.divStyle}>
-                            <h1 className={style.h1Style}>Email</h1>
+                            <h1 className={style.h1Style}>Phone</h1>
                             <input type="text" className={style.inputStyle}
-                                name='email'
-                                value={data?.email}
-                                onChange={(e: any) => handleInput(e)} />
-                        </div>
-                        <div className={style.divStyle}>
-                            <h1 className={style.h1Style}>Password</h1>
-                            <input type="text" className={style.inputStyle}
-                                name='password'
-                                value={data?.password}
-                                onChange={(e: any) => handleInput(e)} />
-                        </div>
-                        <div className={style.divStyle}>
-                            <h1 className={style.h1Style}>Confirm Password</h1>
-                            <input type="text" className={style.inputStyle}
-                                name='confirmPassword'
-                                value={data?.confirmPassword}
+                                name='phoneNo'
+                                value={data?.phoneNo}
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
                         <div className={style.divStyle}>
                             <h1 className={style.h1Style}>Whats App</h1>
                             <input type="text" className={style.inputStyle}
-                                name='whatsApp'
+                                name='whatsapp'
                                 value={data?.whatsapp}
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
@@ -203,16 +186,15 @@ export default function MyProfile() {
                                 value={data?.website}
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
-                        {!loading ?
+                        {loading ?
+                            <div className={classes.root}>
+                                <CircularProgress color="secondary" />
+                            </div> :
                             <div className={style.divStyle}>
                                 <h1 className={`${style.h1Style} invisible`}>submit</h1>
                                 <div className='flex flex-col w-full'>
                                     <button className='bg-red-600 hover:bg-red-800 w-32 h-10 text-white font-bold' onClick={(e: any) => updateProfile(e)}>Submit</button>
                                 </div>
-                            </div>
-                            :
-                            <div className={classes.root}>
-                                <CircularProgress color="secondary" />
                             </div>
                         }
                     </div>
