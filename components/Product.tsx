@@ -37,7 +37,7 @@ export default function Product({ product, url }: any) {
   const showDate = () => {
     let date = new Date(`${product?.createdAt}`).getTime();
     let now = new Date().getTime();
-    const difference = now - date
+    const difference = now - date;
     const daysAgo = Math.floor(difference / (1000 * 60 * 60 * 24));
     return daysAgo;
   }
@@ -82,7 +82,7 @@ export default function Product({ product, url }: any) {
                 <AccessTime className="text-gray-500" />
               </div>
               <h1 className='text-sm'>{showDate() <= 2 ?
-                <div className='bg-green-600 text-white rounded-full px-3'>{'new'}</div> : `${showDate()} days agos`}</h1>
+                <div className='bg-green-600 text-white rounded-full px-3'>{'new'}</div> : Number.isNaN(showDate()) ? '0 days ago' : `${showDate()} days ago`}</h1>
             </div>
             {pathname == '/my-ads' ? '' :
               <div className='flex items-center text-gray-600 gap-2 mt-2'>

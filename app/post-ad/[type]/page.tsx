@@ -37,6 +37,7 @@ const style = {
 interface IData {
     category: any,
     subCategory: any,
+    userId: any
     title: any,
     price: any,
     minPrice: any,
@@ -66,6 +67,7 @@ interface ILocation {
 
 export default function Addtype() {
 
+    const { userInfo } = useSelector((state: any) => state.auth);
     const { type } = useParams();
     const classes = useStyles()
     const [open, isOpen] = useState<Boolean>(false);
@@ -87,6 +89,7 @@ export default function Addtype() {
     const [data, setData] = useState<IData>({
         category: type == 'E-scooter' ? 'Bikes' : type == 'Contruction%20Machines' ? 'Construction Machines' : type,
         subCategory: type === 'Bicycles' ? type : type === 'E-scooter' ? type : type === 'E-bikes' ? type : type === 'Motorcycle' ? type : '',
+        userId: userInfo?.userInfo?.data?.userDetails.id,
         title: null || '',
         price: null || '',
         minPrice: null || '',
@@ -105,18 +108,9 @@ export default function Addtype() {
         email: null || '',
     });
 
-    // userId: null || '',
+    console.log(data?.userId);
 
-    const handleLocation = (address: any) => {
-        locateAddress(process.env.NEXT_PUBLIC_GOOGLE_MAP_API, address).then((locate: any) => {
-            if (locate?.long && locate?.lat) {
-                setLocation({ lat: locate?.lat, long: locate?.long })
-            }
-            if (locate?.message) {
-                console.log(locate?.message);
-            }
-        })
-    }
+
 
     const handleInput = (e: any) => {
         setData({ ...data, [e.target.name]: e.target.value });
@@ -161,9 +155,10 @@ export default function Addtype() {
             try {
                 const newData = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/adPost`, formData);
                 if (newData.status == 201) {
+                    toast("Add posted successfully.")
                     toast(newData?.data)
                     setLoading(false);
-                    router.push('/advance-search');
+                    router.push('/my-ads');
                 }
             } catch (error) {
                 console.log(error);
@@ -180,8 +175,6 @@ export default function Addtype() {
         let predictions = res.data?.data.predictions;
         setGoogleLocation(predictions);
     }
-
-    const { userInfo } = useSelector((state: any) => state.auth);
 
     useEffect(() => {
         if (userInfo === null) {

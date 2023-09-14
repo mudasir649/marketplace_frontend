@@ -26,7 +26,7 @@ export default function Header() {
 
   const { userInfo } = useSelector((state: any) => state.auth);
 
-  console.log(userInfo);
+  // console.log(userInfo);
 
 
   const handleContact = () => {
