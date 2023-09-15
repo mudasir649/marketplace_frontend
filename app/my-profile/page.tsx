@@ -4,11 +4,12 @@ import { Cancel, InsertPhoto, Person } from '@mui/icons-material';
 import React, { useRef, useState } from 'react';
 import useWindowDimensions from '@/utils/useWindowDimensions';
 import Image from 'next/image';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import { CircularProgress, createStyles, makeStyles } from '@material-ui/core';
 import { Theme } from '@mui/material';
+import { setCredentials } from '@/store/authSlice';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -36,7 +37,9 @@ export default function MyProfile() {
 
     const classes = useStyles();
     const { userInfo } = useSelector((state: any) => state.auth);
-    const userData = userInfo?.data?.userDetails?.id;
+    console.log(userInfo);
+
+    const userData = userInfo?.data?.userDetails;
     const [loading, setLoading] = useState<Boolean>(false);
     const [data, setData] = useState<IData>({
         firstName: '',
@@ -49,6 +52,7 @@ export default function MyProfile() {
     const [image, setImage] = useState<string>('');
     const [imageUrl, setImageUrl] = useState<string>('');
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const dispatch = useDispatch();
 
     const { width, height } = useWindowDimensions();
 
@@ -86,7 +90,7 @@ export default function MyProfile() {
         e.preventDefault();
         setLoading(true);
         if (!image) {
-            const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/userProfile/${userData}`, data);
+            const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/userProfile/${userData?.id}`, data);
             if (res.data?.status === 200) {
                 toast(res?.data?.message);
             }
@@ -99,9 +103,12 @@ export default function MyProfile() {
                 }
             }
             try {
-                const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/userProfile/${userInfo?.userInfo?.data?.id}`, formData);
-                if (res.data?.status === 200) {
-                    toast(res?.data?.message);
+                const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/userProfile/${userData?.id}`, formData);
+                console.log(res);
+
+                if (res.status === 200) {
+                    toast('user profile updated successfully');
+                    dispatch(setCredentials(res?.data));
                     setLoading(false)
                 }
             } catch (error: any) {
@@ -112,9 +119,11 @@ export default function MyProfile() {
         setLoading(false);
     }
 
+
     return (
         <Home>
             <div className='container mx-auto mb-20'>
+                <ToastContainer />
                 <div className='border-none rounded-sm bg-white h-full p-3'>
                     <div className='flex justify-center border-b-2 pb-5'>
                         <h1 className='space-x-3'><Person className='text-red-600 mt-[-4px]' /><span className='text-lg font-bold'>Basic Information</span></h1>
@@ -142,13 +151,14 @@ export default function MyProfile() {
                         <div className='flex flex-col md:flex-row space-x-0 md:space-x-32 space-y-1 md:space-y-0 mb-6'>
                             <h1 className='text-md font-bold'>Username</h1>
                             <div>
-                                <h1 className='text-md mt-[0.5px] pl-0 md:pl-[15px]'>mudasir649</h1>
+                                <h1 className='text-md mt-[0.5px] pl-0 md:pl-[15px]'>{userData?.username}</h1>
                             </div>
                         </div>
                         <div className={style.divStyle}>
                             <h1 className={style.h1Style}>First Name</h1>
                             <input type="text" className={style.inputStyle}
                                 name='firstName'
+                                placeholder={userData?.firstName}
                                 value={data?.firstName}
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
@@ -156,6 +166,7 @@ export default function MyProfile() {
                             <h1 className={style.h1Style}>Last Name</h1>
                             <input type="text" className={style.inputStyle}
                                 name='lastName'
+                                placeholder={userData?.lastName}
                                 value={data?.lastName}
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
@@ -187,17 +198,18 @@ export default function MyProfile() {
                                 value={data?.website}
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
-                        {loading ?
-                            <div className={classes.root}>
-                                <CircularProgress color="secondary" />
-                            </div> :
-                            <div className={style.divStyle}>
-                                <h1 className={`${style.h1Style} invisible`}>submit</h1>
+                        <div className={style.divStyle}>
+                            <h1 className={`${style.h1Style} invisible`}>submit</h1>
+                            {loading ?
+                                <div className={classes.root}>
+                                    <CircularProgress color="secondary" />
+                                </div>
+                                :
                                 <div className='flex flex-col w-full'>
                                     <button className='bg-red-600 hover:bg-red-800 w-32 h-10 text-white font-bold' onClick={(e: any) => updateProfile(e)}>Submit</button>
                                 </div>
-                            </div>
-                        }
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

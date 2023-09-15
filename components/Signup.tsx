@@ -26,7 +26,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function Signup() {
 
-    const [name, setName] = useState<string>("");
+    const [firstName, setFirstName] = useState<string>("");
+    const [lastName, setLastName] = useState<string>("");
     const [userName, setUserName] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
@@ -74,7 +75,7 @@ export default function Signup() {
             }
         }
         try {
-            const res = await registerUser({ userName, email, password }).unwrap();
+            const res = await registerUser({ firstName, lastName, userName, email, password }).unwrap();
             dispatch(setCredentials({ ...res }));
             router.push('/')
         } catch (error: any) {
@@ -111,6 +112,28 @@ export default function Signup() {
                                 className='border-none bg-transparent focus:outline-none'
                                 type="text"
                                 placeholder='Enter your username'
+                                name='firstName'
+                                value={firstName}
+                                onChange={(e: any) => setFirstName(e.target.value)}
+                            />
+                        </div>
+                        <div className='flex flex-row border border-gray-200 hover:border-[#e52320] cursor-pointer rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>
+                            <AccountCircle className='text-[#e52320] ml-5' />
+                            <input required={true}
+                                className='border-none bg-transparent focus:outline-none'
+                                type="text"
+                                placeholder='Enter your firstname'
+                                name='lastName'
+                                value={lastName}
+                                onChange={(e: any) => setLastName(e.target.value)}
+                            />
+                        </div>
+                        <div className='flex flex-row border border-gray-200 hover:border-[#e52320] cursor-pointer rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>
+                            <AccountCircle className='text-[#e52320] ml-5' />
+                            <input required={true}
+                                className='border-none bg-transparent focus:outline-none'
+                                type="text"
+                                placeholder='Enter your lastname'
                                 name='username'
                                 value={userName}
                                 onChange={(e: any) => setUserName(e.target.value)}

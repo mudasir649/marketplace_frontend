@@ -26,7 +26,7 @@ export default function Header() {
 
   const { userInfo } = useSelector((state: any) => state.auth);
 
-  // console.log(userInfo);
+  const userData = userInfo?.data?.userDetails;
 
   const handleContact = () => {
     setShowContact(true);
@@ -82,7 +82,7 @@ export default function Header() {
             <li className={navbarLiStyle}><Chat className="text-3xl -mt-1" /></li>
             <li className={navbarLiStyle}><AdminPanelSettings className="text-3xl -mt-1" /></li>
             <li className="cursor-pointer">
-              <Link href="/login">
+              <Link href="/post-ad">
                 <button className="flex flex-row space-x-1 p-2 bg-[#e52320] hover:bg-red-500 text-white hover:border border-gray-100 transition hover:w-52 hover:justify-center rounded-lg">
                   <Add className="text-md border border-[#e52320] rounded-full bg-[#e52320] text-white" />
                   <span className="capitalize text-md mt-[2px]">Post your ad</span>
@@ -146,15 +146,15 @@ export default function Header() {
             {userInfo !== null ?
               <><div className="menu-container" onClick={() => isOpen(!open)}>
                 <button className="menu-trigger flex flex-row">
-                  {!userInfo?.data?.image ? <Person2 className="text-3xl text-white" /> :
-                    <Image className="h-10 w-10 md:h-11 md:w-11 border-none rounded-full" src={userInfo?.image} alt="profile_image" />
+                  {!userData?.image ? <Person2 className="text-3xl text-white" /> :
+                    <Image className="h-10 w-10 md:h-11 md:w-11 border-none rounded-full" width={100} height={100} src={userData?.image} alt="profile_image" />
                   }
-                  <ExpandMore className={`${!userInfo?.image ? 'mt-1' : 'mt-2'}  text-gray-50 logo ${open ? 'active' : 'inactive'}`} />
+                  <ExpandMore className={`${!userData?.image ? 'mt-1' : 'mt-2'}  text-gray-50 logo ${open ? 'active' : 'inactive'}`} />
                 </button>
               </div>
                 <div className={`dropdown-menu border rounded-sm w-60 absolute ml-[-120px] z-10 ${newWidth == 1024 ? 'end-10' : 'end-4 lg:end-52'} top-20 ${open ? 'active' : 'inactive'}`}>
                   <div>
-                    <h3>Hello,</h3><h1 className="text-lg font-bold mb-[-10px] hover:text-red-600 cursor-pointer">Mudassar Riaz</h1>
+                    <h3>Hello,</h3><h1 className="text-lg font-bold mb-[-10px] hover:text-red-600 cursor-pointer">{userData?.firstName}  {userData?.lastName}</h1>
                   </div>
                   <ul className="flex flex-col space-y-5 border-t-2 pt-3">
                     <DropdownItem logo={<Person />} text="My Profile" href="/my-profile" />
