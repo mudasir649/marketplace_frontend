@@ -68,6 +68,7 @@ interface ILocation {
 export default function Addtype() {
 
     const { userInfo } = useSelector((state: any) => state.auth);
+    const userData = userInfo === null ? userInfo : userInfo?.userInfo?.data?.userDetails?.id;
     const { type } = useParams();
     const classes = useStyles()
     const [open, isOpen] = useState<Boolean>(false);
@@ -89,7 +90,7 @@ export default function Addtype() {
     const [data, setData] = useState<IData>({
         category: type == 'E-scooter' ? 'Bikes' : type == 'Contruction%20Machines' ? 'Construction Machines' : type,
         subCategory: type === 'Bicycles' ? type : type === 'E-scooter' ? type : type === 'E-bikes' ? type : type === 'Motorcycle' ? type : '',
-        userId: userInfo?.userInfo?.data?.userDetails.id,
+        userId: userData,
         title: null || '',
         price: null || '',
         minPrice: null || '',
@@ -177,12 +178,12 @@ export default function Addtype() {
     }
 
     useEffect(() => {
-        if (userInfo === null) {
+        if (userData === null) {
             router.push('/')
         }
-    }, [router, userInfo])
+    }, [router, userData])
 
-    if (userInfo !== null) {
+    if (userData !== null) {
         return (
             <Home>
                 <div className='container mx-auto'>

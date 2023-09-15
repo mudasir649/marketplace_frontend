@@ -36,6 +36,7 @@ export default function MyProfile() {
 
     const classes = useStyles();
     const { userInfo } = useSelector((state: any) => state.auth);
+    const userData = userInfo?.data?.userDetails?.id;
     const [loading, setLoading] = useState<Boolean>(false);
     const [data, setData] = useState<IData>({
         firstName: '',
@@ -85,7 +86,7 @@ export default function MyProfile() {
         e.preventDefault();
         setLoading(true);
         if (!image) {
-            const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/userProfile/${userInfo?.userInfo?.data?.id}`, data);
+            const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/userProfile/${userData}`, data);
             if (res.data?.status === 200) {
                 toast(res?.data?.message);
             }
