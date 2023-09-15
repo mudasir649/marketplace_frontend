@@ -172,7 +172,7 @@ export default function Addtype() {
 
 
     const checkPlace = async (e: any) => {
-        const res = await axios.get(`http://localhost:4000/googleRoutes?address=${e.target.value}`);
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/googleRoutes?address=${e.target.value}`);
         let predictions = res.data?.data.predictions;
         setGoogleLocation(predictions);
     }

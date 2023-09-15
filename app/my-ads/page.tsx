@@ -15,7 +15,7 @@ export default function MyAds() {
     useEffect(() => {
         const fetchData = async () => {
             // const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/getUserAds/${userId}`);
-            const res = await axios.get('http://localhost:4000/auth/getUserAds/6502dfff6eac8c07ee077054')
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/getUserAds/${userData}`)
             setUserAds(res?.data.data?.adIds);
         }
         fetchData();
