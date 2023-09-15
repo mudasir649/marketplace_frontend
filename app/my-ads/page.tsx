@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 
 export default function MyAds() {
     const { userInfo } = useSelector((state: any) => state.auth);
-    const userId = userInfo?.userInfo?.data?.userDetails.id;
+    const userData = userInfo === null ? userInfo : userInfo?.userInfo?.data?.userDetails?.id;
 
     const [userAds, setUserAds] = useState<any>()
 
@@ -19,7 +19,7 @@ export default function MyAds() {
             setUserAds(res?.data.data?.adIds);
         }
         fetchData();
-    }, [userId]);
+    }, [userData]);
 
 
     return (

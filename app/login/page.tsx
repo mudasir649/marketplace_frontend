@@ -14,33 +14,23 @@ export default function LoginPage() {
 
     const { userInfo } = useSelector((state: any) => state.auth);
 
-    useEffect(() => {
-        if (userInfo !== null) {
-            router.push('/');
-        }
-    }, [userInfo, router]);
-
-    if (userInfo === null) {
-        return (
-            <Home>
-                {/* <div className='fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm'> */}
-                <div className=''>
-                    <section className='mb-20'>
-                        <div className='container mx-auto'>
-                            <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-14'>
-                                {productList?.map((product: any, i: any) => {
-                                    return (
-                                        <Product product={product} key={i} url="login" />
-                                    )
-                                })}
-                            </div>
+    return (
+        <Home>
+            {/* <div className='fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm'> */}
+            <div className=''>
+                <section className='mb-20'>
+                    <div className='container mx-auto'>
+                        <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-14'>
+                            {productList?.map((product: any, i: any) => {
+                                return (
+                                    <Product product={product} key={i} url="login" />
+                                )
+                            })}
                         </div>
-                    </section>
-                    <Login />
-                </div>
-            </Home>
-        )
-    }
-
-    return null;
+                    </div>
+                </section>
+                <Login />
+            </div>
+        </Home>
+    )
 }

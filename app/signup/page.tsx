@@ -14,32 +14,23 @@ export default function SignupPage() {
 
     const { userInfo } = useSelector((state: any) => state.auth);
 
-    useEffect(() => {
-        if (userInfo !== null) {
-            router.push('/')
-        }
-    }, [userInfo, router]);
 
-    if (userInfo === null) {
-        return (
-            <Home>
-                <div>
-                    <section className='mb-20'>
-                        <div className='container mx-auto'>
-                            <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-14'>
-                                {productList?.map((product: any, i: any) => {
-                                    return (
-                                        <Product product={product} key={i} url="signup" />
-                                    )
-                                })}
-                            </div>
+    return (
+        <Home>
+            <div>
+                <section className='mb-20'>
+                    <div className='container mx-auto'>
+                        <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-14'>
+                            {productList?.map((product: any, i: any) => {
+                                return (
+                                    <Product product={product} key={i} url="signup" />
+                                )
+                            })}
                         </div>
-                    </section>
-                    <Signup />
-                </div>
-            </Home>
-        )
-    }
-
-    return null;
+                    </div>
+                </section>
+                <Signup />
+            </div>
+        </Home>
+    )
 }

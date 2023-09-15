@@ -28,7 +28,6 @@ export default function Header() {
 
   // console.log(userInfo);
 
-
   const handleContact = () => {
     setShowContact(true);
     setNavbar(false);
@@ -144,13 +143,13 @@ export default function Header() {
                 </Link>
               </div>
             }
-            {userInfo ?
+            {userInfo !== null ?
               <><div className="menu-container" onClick={() => isOpen(!open)}>
                 <button className="menu-trigger flex flex-row">
                   {!userInfo?.data?.image ? <Person2 className="text-3xl text-white" /> :
-                    <Image className="h-10 w-10 md:h-11 md:w-11 border-none rounded-full" src={userInfo?.data?.image} alt="profile_image" />
+                    <Image className="h-10 w-10 md:h-11 md:w-11 border-none rounded-full" src={userInfo?.image} alt="profile_image" />
                   }
-                  <ExpandMore className={`${!userInfo?.data?.image ? 'mt-1' : 'mt-2'}  text-gray-50 logo ${open ? 'active' : 'inactive'}`} />
+                  <ExpandMore className={`${!userInfo?.image ? 'mt-1' : 'mt-2'}  text-gray-50 logo ${open ? 'active' : 'inactive'}`} />
                 </button>
               </div>
                 <div className={`dropdown-menu border rounded-sm w-60 absolute ml-[-120px] z-10 ${newWidth == 1024 ? 'end-10' : 'end-4 lg:end-52'} top-20 ${open ? 'active' : 'inactive'}`}>

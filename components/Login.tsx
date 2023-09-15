@@ -38,11 +38,7 @@ export default function LoginPage() {
 
     const { userInfo } = useSelector((state: any) => state.auth);
 
-    useEffect(() => {
-        if (userInfo !== null) {
-            router.push('/');
-        }
-    }, [userInfo, router])
+    const data = userInfo === null ? null : userInfo?.userInfo?.data;
 
     const submitHandler = async (e: any) => {
         e.preventDefault();
