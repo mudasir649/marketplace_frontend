@@ -10,7 +10,7 @@ import store from '@/store/store';
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'Eidcarosse',
   description: 'Welcome to Eidcarosse - No.1 Autos Buy and Sell Marketplace. Explore a diverse range of autos, connect with Swiss buyers and sellers',
 }
