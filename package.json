@@ -45,6 +45,7 @@
   "devDependencies": {
     "@types/aos": "^3.0.4",
     "@types/node-geocoder": "^4.2.1",
+    "@types/parse-json": "^4.0.0",
     "eslint": "^8.47.0",
     "prettier": "^3.0.2"
   }
