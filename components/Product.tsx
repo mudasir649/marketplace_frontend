@@ -73,11 +73,11 @@ export default function Product({ product, url }: any) {
               {product?.category}
             </div>
           </div>
-          <div className='text-md line-clamp-2 font-semibold max-w-[260px] cursor-pointer hover:text-[#e52320]'>
+          <div className='text-md line-clamp-2 h-5 font-semibold max-w-[260px] cursor-pointer hover:text-[#e52320]'>
             {product?.title}
           </div>
           <div className='space-y-4'>
-            <div className='flex items-center text-gray-600 gap-2 mt-2'>
+            <div className='flex items-center text-gray-600 gap-2 mt-2 h-10'>
               <div className='text-[10px]'>
                 <AccessTime className="text-gray-500" />
               </div>
@@ -85,7 +85,7 @@ export default function Product({ product, url }: any) {
                 <div className='bg-green-600 text-white rounded-full px-3'>{'new'}</div> : Number.isNaN(showDate()) ? '0 days ago' : `${showDate()} days ago`}</h1>
             </div>
             {pathname == '/my-ads' ? '' :
-              <div className='flex items-center text-gray-600 gap-2 mt-2'>
+              <div className='flex items-center text-gray-600 gap-2 mt-2 h-10'>
                 <div className='text-[10px]'>
                   <LocationOn className="text-gray-500" />
                 </div>
