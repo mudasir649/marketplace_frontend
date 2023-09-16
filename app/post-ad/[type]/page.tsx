@@ -1,6 +1,6 @@
 'use client';
 import Home from '@/components/Home';
-import { ArrowForwardIos, Description, ExpandMore, FormatListBulleted, Image, InsertLink, LinkOff, LinkOffOutlined, Person, PlaylistAdd } from '@mui/icons-material';
+import { ArrowForwardIos, Cancel, Description, ExpandMore, FormatListBulleted, Image, InsertLink, LinkOff, LinkOffOutlined, Person, PlaylistAdd } from '@mui/icons-material';
 import axios from 'axios';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
@@ -68,7 +68,8 @@ interface ILocation {
 export default function Addtype() {
 
     const { userInfo } = useSelector((state: any) => state.auth);
-    const userData = userInfo === null ? userInfo : userInfo?.userInfo?.data?.userDetails?.id;
+    const [imageSrc, setImageSrc] = useState<string>('')
+    const userData = userInfo === null ? userInfo : userInfo?.data?.userDetails?.id;
     const { type } = useParams();
     const classes = useStyles()
     const [open, isOpen] = useState<Boolean>(false);
@@ -77,20 +78,16 @@ export default function Addtype() {
     const [openSubBrand, isOpenSubBrand] = useState<Boolean>(false);
     const [images, setImages] = useState<any>([]);
     const [loading, setLoading] = useState<Boolean>(false);
-    const [address, setAddress] = useState<string>('');
     const [priceListValue, setPriceListValue] = useState<string>('price')
-    const [location, setLocation] = useState<ILocation>({
-        lat: 0,
-        long: 0
-    });
     const [googleLocation, setGoogleLocation] = useState<any>(null);
     let router = useRouter();
+    const id = userData;
 
 
     const [data, setData] = useState<IData>({
         category: type == 'E-scooter' ? 'Bikes' : type == 'Contruction%20Machines' ? 'Construction Machines' : type,
         subCategory: type === 'Bicycles' ? type : type === 'E-scooter' ? type : type === 'E-bikes' ? type : type === 'Motorcycle' ? type : '',
-        userId: userData,
+        userId: id,
         title: null || '',
         price: null || '',
         minPrice: null || '',
@@ -108,10 +105,7 @@ export default function Addtype() {
         viber: null || '',
         email: null || '',
     });
-
-    console.log(data?.userId);
-
-
+    const [howContact, setHowContact] = useState<string>('Whatsapp');
 
     const handleInput = (e: any) => {
         setData({ ...data, [e.target.name]: e.target.value });
@@ -123,56 +117,58 @@ export default function Addtype() {
     }
 
     const handleHowContact = (value: any) => {
-        setData({ ...data, ['howToContact']: value });
+        setHowContact(value)
     }
 
     const handleImage = (e: any) => {
-        if (e.target.files) {
-            setImages([...images, ...e.target.files]);
-        } else {
-            setImages(e.target.files[0])
-        }
+        const files = e.target.files;
+        const newImages = Array.from(files);
+        setImages([...images, ...newImages]);
     }
 
+    const handleImageRemove = (index: any) => {
+        const fileInput = document.getElementById('fileInput') as HTMLInputElement;
+        if (fileInput) {
+            fileInput.value = '';
+        }
+        const updatedImages = [...images];
+        updatedImages.splice(index, 1);
+        setImages(updatedImages);
+    };
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
-        if (images.length <= 1) {
-            toast('Please! Select more than 1 images.');
-            return;
-        } else {
-            setLoading(true)
-            const formData = new FormData()
+        setLoading(true)
+        const formData = new FormData()
 
-            for (let i = 0; i < images.length; i++) {
-                formData.append('file', images[i])
-            }
-
-            for (const key in data) {
-                if (data.hasOwnProperty(key)) {
-                    formData.append(key, data[key as keyof IData]);
-                }
-            }
-            try {
-                const newData = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/adPost`, formData);
-                if (newData.status == 201) {
-                    toast("Add posted successfully.")
-                    toast(newData?.data)
-                    setLoading(false);
-                    router.push('/my-ads');
-                }
-            } catch (error) {
-                console.log(error);
-            }
-            setLoading(false)
+        for (let i = 0; i < images.length; i++) {
+            formData.append('file', images[i])
         }
+
+        for (const key in data) {
+            if (data.hasOwnProperty(key)) {
+                formData.append(key, data[key as keyof IData]);
+            }
+        }
+        try {
+            const newData = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/adPost`, formData);
+            if (newData.status == 201) {
+                toast("Add posted successfully.")
+                toast(newData?.data)
+                setLoading(false);
+                router.push('/my-ads');
+            }
+        } catch (error) {
+            console.log(error);
+        }
+        setLoading(false);
     }
 
     const brandList = type === 'Autos' ? carsList : bikesList;
 
 
     const checkPlace = async (e: any) => {
-        const res = await axios.get(`http://localhost:4000/googleRoutes?address=${e.target.value}`);
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/googleRoutes?address=${e.target.value}`);
         let predictions = res.data?.data.predictions;
         setGoogleLocation(predictions);
     }
@@ -181,7 +177,10 @@ export default function Addtype() {
         if (userData === null) {
             router.push('/')
         }
-    }, [router, userData])
+    }, [router, userData]);
+
+    console.log(images);
+
 
     if (userData !== null) {
         return (
@@ -338,6 +337,7 @@ export default function Addtype() {
                                 <div className='flex flex-col w-full'>
                                     <input type="file" className={`${style.inputStyle} p-1`}
                                         name='image'
+                                        id='fileInput'
                                         accept='images/*'
                                         multiple
                                         onChange={(e: any) => handleImage(e)} />
@@ -351,6 +351,16 @@ export default function Addtype() {
                                     </div>
                                 </div>
                             </div>
+                            {!images ? '' :
+                                <div className='flex flex-row space-x-4'>
+                                    {images?.map((image: any, i: any) => (
+                                        <div key={i} className="image-item">
+                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                            <img className='h-32 w-32' src={URL.createObjectURL(image)} alt={`Image ${i}`} />
+                                            <Cancel className='absolute mt-[-128px] ml-24 text-red-600' onClick={() => handleImageRemove(i)} />
+                                        </div>))}
+                                </div>
+                            }
                             <div className='mt-5 w-full mb-5'>
                                 <h1 className='space-x-3 border-b-2 pb-3'>
                                     <InsertLink className='text-red-600 mt-[-4px]' /><span className='text-lg font-bold'>Video URL</span></h1>
@@ -377,76 +387,22 @@ export default function Addtype() {
                                 <h1 className={style.h1Style}>Location</h1>
                                 <div className='flex flex-col w-full'>
                                     <input className={style.inputStyle} type="text" placeholder='enter your address here' name='name' value={data?.address} onChange={(e) => setData({ ...data, ['address']: e.target.value })} onKeyUp={(e: any) => checkPlace(e)} />
-                                    {googleLocation && <ul className='border border-gray-100 mt-1 space-y-2'>
-                                        {googleLocation?.map((predict: any, i: any) => (
-                                            <li key={i} onClick={() => setData({ ...data, ['address']: predict?.description })}>{predict?.description}</li>
-                                        ))}
-                                    </ul>
+                                    {googleLocation &&
+                                        <ul className='border border-gray-100 mt-1 space-y-2'>
+                                            {googleLocation?.map((predict: any, i: any) => (
+                                                <li key={i} onClick={() => setData({ ...data, ['address']: predict?.description })}>{predict?.description}</li>
+                                            ))}
+                                        </ul>
                                     }
                                 </div>
                             </div>
                             <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Phone</h1>
-                                <div className='flex flex-col w-full'>
-                                    <input type="text" className={style.inputStyle}
-                                        name='phoneNumber'
-                                        value={data.phoneNumber}
-                                        onChange={(e: any) => handleInput(e)}
-                                    />
-                                </div>
-                            </div>
-                            <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>WhatsApp No</h1>
-                                <div className='flex flex-col w-full'>
-                                    <input type="text" className={style.inputStyle}
-                                        name='whatsApp'
-                                        value={data.whatsApp}
-                                        onChange={(e: any) => handleInput(e)}
-                                    />
-                                    <p className='text-gray-400 text-sm mt-1'>
-                                        Whatsapp number with your country code. e.g.+41xxxxxxxxxx
-                                    </p>
-                                </div>
-                            </div>
-                            <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Viber Number</h1>
-                                <div className='flex flex-col w-full'>
-                                    <input type="text" className={style.inputStyle}
-                                        name='viber'
-                                        value={data.viber}
-                                        onChange={(e: any) => handleInput(e)}
-                                    />
-                                    <p className='text-gray-400 text-sm mt-1'>Viber number with your country code. e.g.+41xxxxxxxxxx</p>
-                                </div>
-                            </div>
-                            <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Email</h1>
-                                <div className='flex flex-col w-full'>
-                                    <input type="text" className={style.inputStyle}
-                                        name='email'
-                                        value={data.email}
-                                        onChange={(e: any) => handleInput(e)}
-                                    />
-                                </div>
-                            </div>
-                            <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Website</h1>
-                                <div className='flex flex-col w-full'>
-                                    <input type="text" className={style.inputStyle}
-                                        name='webSite'
-                                        value={data.webSite}
-                                        onChange={(e: any) => handleInput(e)}
-                                    />
-                                    <p className='text-gray-400 text-sm'>e.g. https://example.com</p>
-                                </div>
-                            </div>
-                            <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Brand <span className='text-red-600'>*</span></h1>
+                                <h1 className={style.h1Style}>How to contact <span className='text-red-600'>*</span></h1>
                                 <div className='flex flex-col hover:border-red-500 w-full rounded-sm h-10'
                                     onClick={() => isOpenSub(!openSub)}
                                 >
                                     <div className='flex flex-row border border-gray-300' >
-                                        <h1 className='w-full p-2'>{data?.howToContact !== '' ? data?.howToContact : `Whatsapp`} </h1>
+                                        <h1 className='w-full p-2'>{howContact} </h1>
                                         <div className={`p-1 pl-2 text-gray-600 w-10`}>
                                             <ExpandMore className={`logo ${open ? 'hidden' : 'visible'} ${openSub ? 'active' : 'inactive'}`} />
                                         </div>
@@ -464,6 +420,67 @@ export default function Addtype() {
                                             ))}
                                         </ul>
                                     </div>
+                                </div>
+                            </div>
+                            {howContact == 'Whatsapp' ?
+                                <div className={style.divStyle}>
+                                    <h1 className={style.h1Style}>WhatsApp No</h1>
+                                    <div className='flex flex-col w-full'>
+                                        <input type="text" className={style.inputStyle}
+                                            name='whatsApp'
+                                            value={data.whatsApp}
+                                            onChange={(e: any) => handleInput(e)}
+                                        />
+                                        <p className='text-gray-400 text-sm mt-1'>
+                                            Whatsapp number with your country code. e.g.+41xxxxxxxxxx
+                                        </p>
+                                    </div>
+                                </div> : howContact == 'Viber' ?
+                                    <div className={style.divStyle}>
+                                        <h1 className={style.h1Style}>Viber Number</h1>
+                                        <div className='flex flex-col w-full'>
+                                            <input type="text" className={style.inputStyle}
+                                                name='viber'
+                                                value={data.viber}
+                                                onChange={(e: any) => handleInput(e)}
+                                            />
+                                            <p className='text-gray-400 text-sm mt-1'>Viber number with your country code. e.g.+41xxxxxxxxxx</p>
+                                        </div>
+                                    </div>
+                                    : howContact == 'Phone' ?
+                                        <div className={style.divStyle}>
+                                            <h1 className={style.h1Style}>Phone</h1>
+                                            <div className='flex flex-col w-full'>
+                                                <input type="text" className={style.inputStyle}
+                                                    name='phoneNumber'
+                                                    value={data.phoneNumber}
+                                                    onChange={(e: any) => handleInput(e)}
+                                                />
+                                            </div>
+                                        </div>
+                                        : howContact == 'Email' ?
+                                            <div className={style.divStyle}>
+                                                <h1 className={style.h1Style}>Email</h1>
+                                                <div className='flex flex-col w-full'>
+                                                    <input type="text" className={style.inputStyle}
+                                                        name='email'
+                                                        value={data.email}
+                                                        onChange={(e: any) => handleInput(e)}
+                                                    />
+                                                </div>
+                                            </div>
+                                            :
+                                            ''
+                            }
+                            <div className={style.divStyle}>
+                                <h1 className={style.h1Style}>Website</h1>
+                                <div className='flex flex-col w-full'>
+                                    <input type="text" className={style.inputStyle}
+                                        name='webSite'
+                                        value={data.webSite}
+                                        onChange={(e: any) => handleInput(e)}
+                                    />
+                                    <p className='text-gray-400 text-sm'>e.g. https://example.com</p>
                                 </div>
                             </div>
                             <div className={style.divStyle}>
