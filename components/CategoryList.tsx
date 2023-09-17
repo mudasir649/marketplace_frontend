@@ -14,7 +14,7 @@ export default function CategoryList({ setCategory, setExpand }: any) {
                 <li>
                     <h1 onClick={() => handleClick("Bikes")} className={liStyle}>Bikes</h1>
                     <ul className='mx-2'>
-                        <li onClick={() => handleClick("Bicycle")} className={liStyle}>Bicycle</li>
+                        <li onClick={() => handleClick("Bicycles")} className={liStyle}>Bicycle</li>
                         <li onClick={() => handleClick("E-cycle")} className={liStyle}>E-cycle</li>
                         <li onClick={() => handleClick("E-scooter")} className={liStyle}>E-scooter</li>
                         <li onClick={() => handleClick("Motorcycle")} className={liStyle}>Motorcycle</li>

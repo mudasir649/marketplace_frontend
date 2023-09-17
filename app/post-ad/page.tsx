@@ -9,7 +9,16 @@ import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
 export default function PostAd() {
 
+
     const router = useRouter();
+
+    const { userInfo } = useSelector((state: any) => state.auth);
+
+    useEffect(() => {
+        if (userInfo === null) {
+            router.push('/login')
+        }
+    }, [userInfo, router]);
 
     const [open, isOpen] = useState<Boolean>(false);
     const [openSub, isOpenSub] = useState<Boolean>(false);
@@ -32,14 +41,6 @@ export default function PostAd() {
         router.push(`/post-ad/${value}`)
     }
 
-    const { userInfo } = useSelector((state: any) => state.auth);
-
-    useEffect(() => {
-        if (userInfo === null) {
-            router.push('/')
-        }
-    }, [userInfo, router]);
-
     if (userInfo !== null) {
         return (
             <Home>
@@ -57,17 +58,17 @@ export default function PostAd() {
                                     <div className='flex flex-row border border-gray-300' >
                                         <h1 className='w-full p-2'>{category == '' ? `Select Category` : <>{category}</>}</h1>
                                         <div className={`p-1 pl-2 text-gray-600
-                                            bg-gray-300 w-10`}>
+                                                bg-gray-300 w-10`}>
                                             <ExpandMore className={`logo ${open ? 'active' : 'inactive'}`} />
                                         </div>
                                     </div>
                                     <div className={`menu-item flex flex-row border bg-white h-auto border-gray-300 
-                                        w-full rounded-sm p-1 ${open ? 'active' : 'inactive'}`}
+                                            w-full rounded-sm p-1 ${open ? 'active' : 'inactive'}`}
                                     >
                                         <ul className='w-full'>
                                             {list?.map((lst: any, i: number) => (
                                                 <li className={`hover:bg-red-500 hover:text-white 
-                                                    ml-1 mb-1 ${list.length - 1 == i ? '' : ' border-b-2'}`}
+                                                        ml-1 mb-1 ${list.length - 1 == i ? '' : ' border-b-2'}`}
                                                     key={i} onClick={() => handleCategory(lst.name)}>{lst?.name}</li>
                                             ))}
                                         </ul>
@@ -83,17 +84,17 @@ export default function PostAd() {
                                         <div className='flex flex-row border border-gray-300' >
                                             <h1 className='w-full p-2'>Select Category</h1>
                                             <div className={`p-1 pl-2 text-gray-600
-                                        bg-gray-300 w-10`}>
+                                            bg-gray-300 w-10`}>
                                                 <ExpandMore className={`logo ${open ? 'hidden' : 'visible'} ${openSub ? 'active' : 'inactive'}`} />
                                             </div>
                                         </div>
                                         <div className={`menu-item flex flex-row border bg-white h-auto border-gray-300 
-                                    w-full rounded-sm p-1 ${openSub ? 'active' : 'inactive'}`}
+                                        w-full rounded-sm p-1 ${openSub ? 'active' : 'inactive'}`}
                                         >
                                             <ul className='w-full'>
                                                 {subList?.map((lst: any, i: number) => (
                                                     <li className={`hover:bg-red-500 hover:text-white 
-                                                ml-1 mb-1 ${list.length - 1 == i ? '' : ' border-b-2'}`}
+                                                    ml-1 mb-1 ${list.length - 1 == i ? '' : ' border-b-2'}`}
                                                         key={i} onClick={() => handleSubCategory(lst.name)}>{lst?.name}</li>
                                                 ))}
                                             </ul>
@@ -107,6 +108,4 @@ export default function PostAd() {
             </Home>
         )
     }
-
-    return null;
 }

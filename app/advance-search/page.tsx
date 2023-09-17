@@ -12,6 +12,7 @@ import useWindowDimensions from '@/utils/useWindowDimensions';
 import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
 
 interface IList {
     logo: any,
@@ -37,14 +38,29 @@ export default function Page() {
 
     const [page, setPage] = useState<number>(1);
 
+    const { filterData } = useSelector((state: any) => state.app);
+
+    console.log(filterData);
+
+
+    if (filterData?.length === 0) {
+        console.log('no data exists.');
+    } else {
+        console.log('data exists.');
+    }
+
     useEffect(() => {
-        const fetchData = async () => {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}`);
-            setProductData(res.data?.data?.ad);
-            setProductsCount(res.data?.data?.totalAds)
+        if (filterData?.length === 0) {
+            const fetchData = async () => {
+                const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}`);
+                setProductData(res.data?.data?.ad);
+                setProductsCount(res.data?.data?.totalAds)
+            }
+            fetchData();
+        } else {
+            setProductData(filterData)
         }
-        fetchData();
-    }, [page]);
+    }, [page, filterData]);
 
 
     const pagination = () => {
@@ -221,7 +237,7 @@ export default function Page() {
                     </div>
                     <div className='flex flex-col w-full h-full'>
                         <div className='flex flex-row justify-between  bg-white border border-[#e52320] mb-3 p-2 pl-5' data-aos="fade-left">
-                            <h1 className='text-xl font-bold'>{productsCount} Results</h1>
+                            <h1 className='text-xl font-bold'>{filterData?.length > 0 ? filterData?.length : productsCount} Results</h1>
                         </div>
                         {productData?.map((product: any, i: number) => (
                             <div className='flex flex-row justify-between bg-white border border-gray-300 rounded-sm mb-5' key={i}>
@@ -249,24 +265,23 @@ export default function Page() {
                             </div>
 
                         ))}
-                        <div className={`flex flex-row justify-between bg-white h-12 border border-[#e52320] rounded-sm px-5 py-2`} data-aos="fade-up">
-                            <button className={btnStyle} onClick={previousHandle}>
-                                <KeyboardDoubleArrowLeft className={logoStyle} />
-                                <span className={spanStyle}>Previous</span>
-                            </button>
-                            <div className='flex flex-row space-x-4'>
-                                {pagination().map((li: any, i: number) => (
-                                    <button className={`${page === li && 'bg-[#e52320] w-6 md:w-8 text-white text-[12px] border-none rounded-sm'} pt-[2px] text-[12px] md:text-lg`} key={i} onClick={() => setPage(li)}>{li}</button>
-                                ))}
-                                {/* {paginationList?.map((li: any, i: number) => (
+                        {filterData?.length == 0 &&
+                            <div className={`flex flex-row justify-between bg-white h-12 border border-[#e52320] rounded-sm px-5 py-2`} data-aos="fade-up">
+                                <button className={btnStyle} onClick={previousHandle}>
+                                    <KeyboardDoubleArrowLeft className={logoStyle} />
+                                    <span className={spanStyle}>Previous</span>
+                                </button>
+                                <div className='flex flex-row space-x-4'>
+                                    {pagination().map((li: any, i: number) => (
                                         <button className={`${page === li && 'bg-[#e52320] w-6 md:w-8 text-white text-[12px] border-none rounded-sm'} pt-[2px] text-[12px] md:text-lg`} key={i} onClick={() => setPage(li)}>{li}</button>
-                                    ))} */}
+                                    ))}
+                                </div>
+                                <button className={btnStyle} onClick={nextHandle}>
+                                    <span className={spanStyle}>Next</span>
+                                    <KeyboardDoubleArrowRight className={logoStyle} />
+                                </button>
                             </div>
-                            <button className={btnStyle} onClick={nextHandle}>
-                                <span className={spanStyle}>Next</span>
-                                <KeyboardDoubleArrowRight className={logoStyle} />
-                            </button>
-                        </div>
+                        }
                     </div>
                 </div>
             </Home>
