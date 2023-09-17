@@ -1,0 +1,4 @@
+.imageSlide{
+  transform: rotateX('90deg');
+  transition: 0.9s ease-in; 
+  }

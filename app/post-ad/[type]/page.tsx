@@ -80,9 +80,9 @@ export default function Addtype() {
     const [loading, setLoading] = useState<Boolean>(false);
     const [priceListValue, setPriceListValue] = useState<string>('price')
     const [googleLocation, setGoogleLocation] = useState<any>(null);
+    const [showLocation, setShowLocation] = useState<Boolean>(false);
     let router = useRouter();
     const id = userData;
-
 
     const [data, setData] = useState<IData>({
         category: type == 'E-scooter' ? 'Bikes' : type == 'Contruction%20Machines' ? 'Construction Machines' : type,
@@ -168,9 +168,15 @@ export default function Addtype() {
 
 
     const checkPlace = async (e: any) => {
+        setShowLocation(true)
         const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/googleRoutes?address=${e.target.value}`);
         let predictions = res.data?.data.predictions;
         setGoogleLocation(predictions);
+    }
+
+    const saveLocation = (value: any) => {
+        setData({ ...data, ['address']: value });
+        setShowLocation(false);
     }
 
     useEffect(() => {
@@ -178,9 +184,6 @@ export default function Addtype() {
             router.push('/')
         }
     }, [router, userData]);
-
-    console.log(images);
-
 
     if (userData !== null) {
         return (
@@ -387,12 +390,14 @@ export default function Addtype() {
                                 <h1 className={style.h1Style}>Location</h1>
                                 <div className='flex flex-col w-full'>
                                     <input className={style.inputStyle} type="text" placeholder='enter your address here' name='name' value={data?.address} onChange={(e) => setData({ ...data, ['address']: e.target.value })} onKeyUp={(e: any) => checkPlace(e)} />
-                                    {googleLocation &&
+                                    {showLocation ?
                                         <ul className='border border-gray-100 mt-1 space-y-2'>
                                             {googleLocation?.map((predict: any, i: any) => (
-                                                <li key={i} onClick={() => setData({ ...data, ['address']: predict?.description })}>{predict?.description}</li>
+                                                <li key={i} onClick={() => saveLocation(predict?.description)}>{predict?.description}</li>
                                             ))}
                                         </ul>
+                                        :
+                                        ''
                                     }
                                 </div>
                             </div>
@@ -447,31 +452,30 @@ export default function Addtype() {
                                             <p className='text-gray-400 text-sm mt-1'>Viber number with your country code. e.g.+41xxxxxxxxxx</p>
                                         </div>
                                     </div>
-                                    : howContact == 'Phone' ?
+                                    : howContact == 'Email' ?
                                         <div className={style.divStyle}>
-                                            <h1 className={style.h1Style}>Phone</h1>
+                                            <h1 className={style.h1Style}>Email</h1>
                                             <div className='flex flex-col w-full'>
                                                 <input type="text" className={style.inputStyle}
-                                                    name='phoneNumber'
-                                                    value={data.phoneNumber}
+                                                    name='email'
+                                                    value={data.email}
                                                     onChange={(e: any) => handleInput(e)}
                                                 />
                                             </div>
                                         </div>
-                                        : howContact == 'Email' ?
-                                            <div className={style.divStyle}>
-                                                <h1 className={style.h1Style}>Email</h1>
-                                                <div className='flex flex-col w-full'>
-                                                    <input type="text" className={style.inputStyle}
-                                                        name='email'
-                                                        value={data.email}
-                                                        onChange={(e: any) => handleInput(e)}
-                                                    />
-                                                </div>
-                                            </div>
-                                            :
-                                            ''
+                                        :
+                                        ''
                             }
+                            <div className={style.divStyle}>
+                                <h1 className={style.h1Style}>Phone</h1>
+                                <div className='flex flex-col w-full'>
+                                    <input type="text" className={style.inputStyle}
+                                        name='phoneNumber'
+                                        value={data.phoneNumber}
+                                        onChange={(e: any) => handleInput(e)}
+                                    />
+                                </div>
+                            </div>
                             <div className={style.divStyle}>
                                 <h1 className={style.h1Style}>Website</h1>
                                 <div className='flex flex-col w-full'>

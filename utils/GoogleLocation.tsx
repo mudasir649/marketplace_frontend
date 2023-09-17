@@ -1,5 +1,7 @@
 const locateAddress: any = async (apikey: any, address: any) => {
-    console.log(apikey);
+    console.log("api key from function", apikey);
+    console.log("address from function", address);
+
 
     let long = 0;
     let lat = 0;
