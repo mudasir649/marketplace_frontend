@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Provider } from "react-redux";
 import store from '@/store/store';
 import { Inter } from 'next/font/google'
+import Head from 'next/head';
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -24,6 +25,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning={true}>
+      <Head>
+        <link rel="icon" href="/eidcarosseIcon.png" />
+      </Head>
       <body className={`${inter.className}`}>
         <Provider store={store}>
           <ToastContainer autoClose={5000} />

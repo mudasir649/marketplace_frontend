@@ -111,7 +111,7 @@ export default function Signup() {
                             <input required={true}
                                 className='border-none bg-transparent focus:outline-none'
                                 type="text"
-                                placeholder='Enter your username'
+                                placeholder='Enter your firstname'
                                 name='firstName'
                                 value={firstName}
                                 onChange={(e: any) => setFirstName(e.target.value)}
@@ -122,7 +122,7 @@ export default function Signup() {
                             <input required={true}
                                 className='border-none bg-transparent focus:outline-none'
                                 type="text"
-                                placeholder='Enter your firstname'
+                                placeholder='Enter your lastname'
                                 name='lastName'
                                 value={lastName}
                                 onChange={(e: any) => setLastName(e.target.value)}
@@ -133,7 +133,7 @@ export default function Signup() {
                             <input required={true}
                                 className='border-none bg-transparent focus:outline-none'
                                 type="text"
-                                placeholder='Enter your lastname'
+                                placeholder='Enter your username'
                                 name='username'
                                 value={userName}
                                 onChange={(e: any) => setUserName(e.target.value)}
