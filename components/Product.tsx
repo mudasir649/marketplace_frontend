@@ -98,8 +98,7 @@ export default function Product({ product, url }: any) {
       rounded-lg my-2 w-full h-auto mx-auto cursor-pointer hover:shadow-md hover:opacity-25 hover:shadow-[#e52320]`}
       data-aos={url !== "login" && url !== "signup" && "fade-up"}
     >
-      <Link href={`product-details/${product?._id}`}>
-        {/* <div className='border border-gray-300 mb-2 w-auto'>
+      {/* <div className='border border-gray-300 mb-2 w-auto'>
           <Image
           src={pathname == '/' || pathname == '/my-ads' || pathname ? picOne : image}
           alt={name}
@@ -107,23 +106,24 @@ export default function Product({ product, url }: any) {
           height={500}
         />
         </div> */}
-        <div className="image-slider group relative">
+      <div className="image-slider group relative">
+        <Link href={`product-details/${product?._id}`}>
           <div className="slide">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={product?.image[currentSlide]} alt="Image" className='w-96 h-48' />
           </div>
-          {product?.image.length > 1 &&
-            <>
-              <button className="prev-button hidden group-hover:block" onClick={prevSlide}>
-                <ArrowBackIos />
-              </button>
-              <button className="next-button hidden group-hover:block" onClick={nextSlide}>
-                <ArrowForwardIos />
-              </button>
-            </>
-          }
-        </div>
-      </Link>
+        </Link>
+        {product?.image.length > 1 &&
+          <>
+            <button className="prev-button hidden group-hover:block" onClick={prevSlide}>
+              <ArrowBackIos />
+            </button>
+            <button className="next-button hidden group-hover:block" onClick={nextSlide}>
+              <ArrowForwardIos />
+            </button>
+          </>
+        }
+      </div>
       <div className='p-5'>
         <Link href={`/product-details/${product?._id}`}>
           <div className='mb-4 flex gap-x-2 text-sm'>
