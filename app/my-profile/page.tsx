@@ -246,27 +246,6 @@ export default function MyProfile() {
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
                         <div className={style.divStyle}>
-                            <h1 className={style.h1Style}>Whats App</h1>
-                            <input type="text" className={style.inputStyle}
-                                name='whatsapp'
-                                value={data?.whatsapp}
-                                onChange={(e: any) => handleInput(e)} />
-                        </div>
-                        <div className={style.divStyle}>
-                            <h1 className={style.h1Style}>Viber</h1>
-                            <input type="text" className={style.inputStyle}
-                                name='viber'
-                                value={data?.viber}
-                                onChange={(e: any) => handleInput(e)} />
-                        </div>
-                        <div className={style.divStyle}>
-                            <h1 className={style.h1Style}>Website</h1>
-                            <input type="text" className={style.inputStyle}
-                                name='website'
-                                value={data?.website}
-                                onChange={(e: any) => handleInput(e)} />
-                        </div>
-                        <div className={style.divStyle}>
                             <h1 className={`${style.h1Style} invisible`}>submit</h1>
                             {loading ?
                                 <div className={classes.root}>
