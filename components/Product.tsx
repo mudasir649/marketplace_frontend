@@ -62,12 +62,12 @@ export default function Product({ product, url }: any) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const nextSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide + 1) % product?.image.length);
+    setCurrentSlide((prevSlide) => (prevSlide + 1) % product?.images.length);
   };
 
   const prevSlide = () => {
     setCurrentSlide((prevSlide) =>
-      prevSlide === 0 ? product?.image.length - 1 : prevSlide - 1
+      prevSlide === 0 ? product?.images.length - 1 : prevSlide - 1
     );
   };
 
@@ -110,10 +110,10 @@ export default function Product({ product, url }: any) {
         <Link href={`product-details/${product?._id}`}>
           <div className="slide">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={product?.image[currentSlide]} alt="Image" className='w-96 h-48' />
+            <img src={product?.images[currentSlide]} alt="Image" className='w-96 h-48' />
           </div>
         </Link>
-        {product?.image.length > 1 &&
+        {product?.images.length > 1 &&
           <>
             <button className="prev-button hidden group-hover:block" onClick={prevSlide}>
               <ArrowBackIos />
@@ -175,7 +175,7 @@ export default function Product({ product, url }: any) {
                 <Share />
                 <Chat />
                 <Phone />
-                <Favorite className={`${fav && 'text-red-600'}`} onDoubleClick={() => adFavorite()} />
+                <Favorite className={`${fav ? 'text-red-600' : 'text-gray-300'}`} onClick={() => adFavorite()} />
               </div>
             </>
           }
