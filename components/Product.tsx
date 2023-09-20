@@ -113,7 +113,7 @@ export default function Product({ product, url }: any) {
             <img src={product?.images[currentSlide]} alt="Image" className='w-96 h-48' />
           </div>
         </Link>
-        {product?.images.length > 1 &&
+        {product?.images?.length > 1 &&
           <>
             <button className="prev-button hidden group-hover:block" onClick={prevSlide}>
               <ArrowBackIos />
