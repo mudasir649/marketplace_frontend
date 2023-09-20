@@ -13,6 +13,7 @@ import { logout } from "@/store/authSlice";
 import { useLogoutMutation } from "@/store/userApiSlice";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import ShareLink from "./ShareLink";
 
 export default function Header() {
 
@@ -25,6 +26,7 @@ export default function Header() {
 
 
   const { userInfo } = useSelector((state: any) => state.auth);
+  const { showShare } = useSelector((state: any) => state.app);
 
   const userData = userInfo?.data?.userDetails;
 
@@ -175,6 +177,7 @@ export default function Header() {
               </Link>
             }
             {!showContact ? "" : <ContactUs setShowContact={setShowContact} />}
+            {showShare && <ShareLink />}
           </div>
         </div>
       </header ></>
