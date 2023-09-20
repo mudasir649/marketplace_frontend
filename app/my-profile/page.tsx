@@ -29,9 +29,6 @@ interface IData {
     firstName: string,
     lastName: string,
     phoneNumber: any,
-    website: string,
-    viber: any,
-    whatsapp: any
 }
 
 
@@ -54,16 +51,10 @@ export default function MyProfile() {
         firstName: '',
         lastName: '',
         phoneNumber: '',
-        website: '',
-        viber: '',
-        whatsapp: ''
     });
-    const [image, setImage] = useState<string>('');
     const [showImage, setShowImage] = useState<Boolean>(false)
-    const [imageUrl, setImageUrl] = useState<string>('');
     const [image1, setImage1] = useState<string>('');
     const [imageUrl1, setImageUrl1] = useState<string>('');
-    const fileInputRef = useRef<HTMLInputElement>(null);
     const fileInputRef1 = useRef<HTMLInputElement>(null);
     const dispatch = useDispatch();
 
@@ -73,25 +64,15 @@ export default function MyProfile() {
         }
     }, [refresh, router])
 
-    const { width, height } = useWindowDimensions();
-
-    const newWidth = width || null;
-    const newHeight = height || null;
-
-    const handleImage = (e: any) => {
-        const file = e.target.files[0];
-        setImage(file);
-        setImageUrl(URL.createObjectURL(file));
-    }
-
-
-
     const handleImage1 = (e: any) => {
         const file = e.target.files[0];
         setImage1(file);
         setImageUrl1(URL.createObjectURL(file));
         setShowImage(true)
     }
+
+    console.log(image1);
+
 
     const handleInput = (e: any) => {
         const name = e.target.name;
@@ -105,19 +86,10 @@ export default function MyProfile() {
         h1Style: 'text-md font-bold w-48',
     }
 
-    const cancelImage = () => {
-        setImage('');
-        setImageUrl('');
-    }
-
     const cancelImage1 = () => {
         setShowImage(false)
         setImage1('');
         setImageUrl1('');
-    }
-
-    const handleLogo = () => {
-        fileInputRef.current?.click();
     }
 
     const handleLogo1 = () => {
@@ -127,10 +99,10 @@ export default function MyProfile() {
     const updateProfile = async (e: any) => {
         e.preventDefault();
         setLoading(true);
-        if (!data?.firstName && !data.lastName && !data?.phoneNumber) {
-            toast('please! fill first name, last name and phone number')
+        if (!data?.firstName && !data.lastName && !data?.phoneNumber && !image1) {
+            toast('All field cannot be empty.')
         } else {
-            if (!image && !image1) {
+            if (!image1) {
                 const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/userProfile/${userData?.id}`, data);
                 if (res?.status === 200) {
                     toast('user profile updated successfully');
@@ -138,20 +110,10 @@ export default function MyProfile() {
                 }
             } else {
                 const formData = new FormData();
-                if (image) {
-                    formData.append('file', image);
-                    for (const key in data) {
-                        if (data.hasOwnProperty(key)) {
-                            formData.append(key, data[key as keyof IData]);
-                        }
-                    }
-                }
-                if (image1) {
-                    formData.append('file', image1);
-                    for (const key in data) {
-                        if (data.hasOwnProperty(key)) {
-                            formData.append(key, data[key as keyof IData]);
-                        }
+                formData.append('file', image1);
+                for (const key in data) {
+                    if (data.hasOwnProperty(key)) {
+                        formData.append(key, data[key as keyof IData]);
                     }
                 }
                 try {
@@ -192,25 +154,7 @@ export default function MyProfile() {
                                     <Cancel className='z-10 text-red-600 ml-[100px]' onClick={() => cancelImage1()} />
                                     <Image className='border rounded-full' alt='image' src={imageUrl1} layout='fill' />
                                 </div>
-                                : userData?.image ?
-                                    <Image className='border rounded-full' alt='image' src={userData?.image} layout='fill' />
-                                    :
-                                    <>
-                                        {!image ? <><input type="file" className='mt-20 mx-5'
-                                            accept='/*'
-                                            ref={fileInputRef}
-                                            value={image}
-                                            style={{ display: 'none' }}
-                                            onChange={(e: any) => handleImage(e)} /><div className='flex flex-row my-16 cursor-pointer text-red-600 space-x-1' onClick={() => handleLogo()}>
-                                                <InsertPhoto className='ml-3' />
-                                                <h1>Select Image</h1>
-                                            </div></> :
-                                            <div className='flex justify-center mt-2'>
-                                                <Cancel className='z-10 text-red-600 ml-[100px]' onClick={() => cancelImage()} />
-                                                <Image className='border rounded-full' alt='image' src={imageUrl} layout='fill' />
-                                            </div>
-                                        }
-                                    </>
+                                : <Image className='border rounded-full' alt='image' src={userData?.image} layout='fill' />
                             }
                         </div>
                     </div>
@@ -218,7 +162,6 @@ export default function MyProfile() {
                         <input type="file" className='mt-20 mx-5'
                             accept='/*'
                             ref={fileInputRef1}
-                            value={image}
                             style={{ display: 'none' }}
                             onChange={(e: any) => handleImage1(e)} />
                         <button className='h-10 w-auto bg-red-600 text-white font-semibold p-2' onClick={() => handleLogo1()}>Upload Picture</button>
