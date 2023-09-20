@@ -243,7 +243,7 @@ export default function Page() {
                             <div className='flex flex-row justify-between bg-white border border-gray-300 rounded-sm mb-5' key={i}>
                                 <div className='bg-blue-500 md:bg-green-500 lg:bg-red-500'>
                                     <Link href={`/product-details/${product?._id}`}>
-                                        <img className='w-64 h-48' src={product?.image[0]} alt="" />
+                                        <img className='w-64 h-48' src={product?.images[0]} alt="" />
                                     </Link>
                                 </div>
                                 <div className='space-y-1 p-0 pl-1 md:p-3 w-40 md:w-[500px]'>
