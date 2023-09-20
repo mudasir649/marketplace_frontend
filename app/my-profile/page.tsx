@@ -127,47 +127,54 @@ export default function MyProfile() {
     const updateProfile = async (e: any) => {
         e.preventDefault();
         setLoading(true);
-        if (!image && !image1) {
-            const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/userProfile/${userData?.id}`, data);
-            if (res?.status === 200) {
-                toast('user profile updated successfully');
-                toast(res?.data?.message);
-            }
+        if (!data?.firstName && !data.lastName && !data?.phoneNumber) {
+            toast('please! fill first name, last name and phone number')
         } else {
-            const formData = new FormData();
-            if (image) {
-                formData.append('file', image);
-                for (const key in data) {
-                    if (data.hasOwnProperty(key)) {
-                        formData.append(key, data[key as keyof IData]);
-                    }
-                }
-            }
-            if (image1) {
-                formData.append('file', image1);
-                for (const key in data) {
-                    if (data.hasOwnProperty(key)) {
-                        formData.append(key, data[key as keyof IData]);
-                    }
-                }
-            }
-            try {
-                const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/userProfile/${userData?.id}`, formData);
-
-                if (res.status === 200) {
+            if (!image && !image1) {
+                const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/userProfile/${userData?.id}`, data);
+                if (res?.status === 200) {
                     toast('user profile updated successfully');
-                    dispatch(setCredentials(res?.data));
-                    dispatch(refreshPage(true))
-                    setLoading(false);
-                    refreshMyProfile();
+                    toast(res?.data?.message);
                 }
-            } catch (error: any) {
-                console.log(error);
-                setLoading(false)
+            } else {
+                const formData = new FormData();
+                if (image) {
+                    formData.append('file', image);
+                    for (const key in data) {
+                        if (data.hasOwnProperty(key)) {
+                            formData.append(key, data[key as keyof IData]);
+                        }
+                    }
+                }
+                if (image1) {
+                    formData.append('file', image1);
+                    for (const key in data) {
+                        if (data.hasOwnProperty(key)) {
+                            formData.append(key, data[key as keyof IData]);
+                        }
+                    }
+                }
+                try {
+                    const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/userProfile/${userData?.id}`, formData);
+
+                    if (res.status === 200) {
+                        toast('user profile updated successfully');
+                        dispatch(setCredentials(res?.data));
+                        dispatch(refreshPage(true))
+                        setLoading(false);
+                        refreshMyProfile();
+                    }
+                } catch (error: any) {
+                    console.log(error);
+                    setLoading(false)
+                }
             }
         }
         setLoading(false);
     }
+
+    console.log(userData);
+
 
 
     return (
@@ -244,6 +251,7 @@ export default function MyProfile() {
                             <h1 className={style.h1Style}>Phone</h1>
                             <input type="text" className={style.inputStyle}
                                 name='phoneNumber'
+                                placeholder={userData?.phoneNumber}
                                 value={data?.phoneNumber}
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
