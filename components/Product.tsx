@@ -10,7 +10,8 @@ import './ImageSlider.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
-import { refreshPage } from '@/store/appSlice';
+import { refreshPage, setProductId } from '@/store/appSlice';
+import { setShowShare } from '@/store/appSlice';
 
 export default function Product({ product, url }: any) {
 
@@ -89,6 +90,11 @@ export default function Product({ product, url }: any) {
         console.log(error);
       }
     }
+  }
+
+  const handleShare = () => {
+    dispatch(setShowShare(true))
+    dispatch(setProductId(product?._id))
   }
 
 
@@ -172,9 +178,8 @@ export default function Product({ product, url }: any) {
                 <h1 className='text-gray-500 text-lg font-bold'>Euro {product?.price * 2}</h1>
               </div>
               <div className='flex flex-row space-x-4 text-gray-600 w-full h-10 mb-10 border-t-2 pt-4'>
-                <Share />
+                <Share onClick={() => handleShare()} />
                 <Chat />
-                <Phone />
                 <Favorite className={`${fav ? 'text-red-600' : 'text-gray-300'}`} onClick={() => adFavorite()} />
               </div>
             </>
