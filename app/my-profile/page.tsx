@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
 interface IData {
     firstName: string,
     lastName: string,
-    phoneNo: any,
+    phoneNumber: any,
     website: string,
     viber: any,
     whatsapp: any
@@ -53,7 +53,7 @@ export default function MyProfile() {
     const [data, setData] = useState<IData>({
         firstName: '',
         lastName: '',
-        phoneNo: '',
+        phoneNumber: '',
         website: '',
         viber: '',
         whatsapp: ''
@@ -129,7 +129,8 @@ export default function MyProfile() {
         setLoading(true);
         if (!image && !image1) {
             const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/userProfile/${userData?.id}`, data);
-            if (res.data?.status === 200) {
+            if (res?.status === 200) {
+                toast('user profile updated successfully');
                 toast(res?.data?.message);
             }
         } else {
@@ -152,6 +153,7 @@ export default function MyProfile() {
             }
             try {
                 const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/userProfile/${userData?.id}`, formData);
+
                 if (res.status === 200) {
                     toast('user profile updated successfully');
                     dispatch(setCredentials(res?.data));
@@ -241,8 +243,8 @@ export default function MyProfile() {
                         <div className={style.divStyle}>
                             <h1 className={style.h1Style}>Phone</h1>
                             <input type="text" className={style.inputStyle}
-                                name='phoneNo'
-                                value={data?.phoneNo}
+                                name='phoneNumber'
+                                value={data?.phoneNumber}
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
                         <div className={style.divStyle}>

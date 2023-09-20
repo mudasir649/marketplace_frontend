@@ -43,6 +43,7 @@ interface IData {
     minPrice: any,
     maxPrice: any,
     brand: any,
+    model: any,
     description: any,
     videoUrl: any,
     phoneNumber: any,
@@ -54,6 +55,15 @@ interface IData {
     whatsApp: any,
     viber: any,
     email: any,
+    year: any,
+    bodyShape: any,
+    gearBox: any,
+    fuelType: any,
+    exteriorColor: any,
+    interiorColor: any,
+    engineCapacity: any,
+    cylinder: any,
+    km: any
 }
 
 interface ILocation {
@@ -75,10 +85,14 @@ export default function Addtype() {
     const [open, isOpen] = useState<Boolean>(false);
     const [openSub, isOpenSub] = useState<Boolean>(false);
     const [openBrand, isOpenBrand] = useState<Boolean>(false);
+    const [openSubModel, isOpenSubModel] = useState<Boolean>(false);
+    const [openModel, isOpenModel] = useState<Boolean>(false);
     const [openSubBrand, isOpenSubBrand] = useState<Boolean>(false);
     const [images, setImages] = useState<any>([]);
     const [loading, setLoading] = useState<Boolean>(false);
-    const [priceListValue, setPriceListValue] = useState<string>('price')
+    const [priceListValue, setPriceListValue] = useState<string>('price');
+    const [models, setModels] = useState<any>([]);
+    const [brands, setBrands] = useState<any>([]);
     const [googleLocation, setGoogleLocation] = useState<any>(null);
     const [showLocation, setShowLocation] = useState<Boolean>(false);
     let router = useRouter();
@@ -93,6 +107,7 @@ export default function Addtype() {
         minPrice: null || '',
         maxPrice: null || '',
         brand: null || '',
+        model: null || '',
         description: null || '',
         videoUrl: null || '',
         phoneNumber: null || '',
@@ -104,8 +119,25 @@ export default function Addtype() {
         whatsApp: null || '',
         viber: null || '',
         email: null || '',
+        year: null || '',
+        bodyShape: null || '',
+        gearBox: null || '',
+        fuelType: null || '',
+        exteriorColor: null || '',
+        interiorColor: null || '',
+        engineCapacity: null || '',
+        cylinder: null || '',
+        km: null || ''
     });
     const [howContact, setHowContact] = useState<string>('Whatsapp');
+
+    useEffect(() => {
+        const fetchBrand = async () => {
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/allCars`);
+            setBrands(res.data?.data)
+        }
+        fetchBrand()
+    }, []);
 
     const handleInput = (e: any) => {
         setData({ ...data, [e.target.name]: e.target.value });
@@ -113,8 +145,26 @@ export default function Addtype() {
 
     const handleBrand = (value: any) => {
         isOpenSubBrand(false)
-        setData({ ...data, ['brand']: value })
+        setData({ ...data, ['brand']: value });
+        fetchBrand(value);
     }
+
+    const handleModel = (value: any) => {
+        isOpenSubModel(false)
+        setData({ ...data, ['model']: value });
+    }
+
+    const fetchBrand = async (model: any) => {
+        try {
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findModels/${model}`);
+            setModels(res.data?.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    console.log(models);
+
 
     const handleHowContact = (value: any) => {
         setHowContact(value)
@@ -287,21 +337,167 @@ export default function Addtype() {
                                             <ExpandMore className={`logo ${openBrand ? 'hidden' : 'visible'} ${openSubBrand ? 'active' : 'inactive'}`} />
                                         </div>
                                     </div>
-                                    <div className={`menu-item flex flex-row border bg-white border-gray-300 
+                                    <div className={`menu-item z-20 flex flex-row border bg-white border-gray-300 
                                     w-full rounded-sm p-1 ${openSubBrand ? 'active' : 'inactive'}`}
                                     >
                                         <ul className='w-full max-h-80 overflow-y-auto'>
-                                            {brandList?.map((list: any, i: number) => (
+                                            {brands?.map((list: any, i: number) => (
                                                 <li className={`hover:bg-red-500 hover:text-white 
                                             ml-1 mb-1 ${list.length - 1 == i ? '' : ' border-b-2'}`}
                                                     key={i}
-                                                    onClick={() => handleBrand(list?.name)}
-                                                >{list?.name}</li>
+                                                    onClick={() => handleBrand(list?.make)}
+                                                >{list?.make}</li>
                                             ))}
                                         </ul>
                                     </div>
                                 </div>
                             </div>
+                            {data?.brand &&
+                                <div className={style.divStyle}>
+                                    <h1 className={style.h1Style}>Model <span className='text-red-600'>*</span></h1>
+                                    <div className='flex flex-col hover:border-red-500 w-full rounded-sm h-10'
+                                        onClick={() => isOpenSubModel(!openSubModel)}
+                                    >
+                                        <div className='flex flex-row border border-gray-300' >
+                                            <h1 className='w-full p-2'>{data?.model !== '' ? data?.model : 'Select Category'}</h1>
+                                            <div className={`p-1 pl-2 text-gray-600 w-10`}>
+                                                <ExpandMore className={`logo ${openModel ? 'hidden' : 'visible'} ${openSubModel ? 'active' : 'inactive'}`} />
+                                            </div>
+                                        </div>
+                                        <div className={`menu-item flex flex-row border bg-white border-gray-300 
+                                    w-full rounded-sm p-1 ${openSubModel ? 'active' : 'inactive'}`}
+                                        >
+                                            <ul className='w-full max-h-80 overflow-y-auto'>
+                                                {models[0]?.model.map((modelName: string, i: number) => (
+                                                    <li
+                                                        className={`hover:bg-red-500 hover:text-white ml-1 mb-1 ${i === models[0]?.model.length - 1 ? '' : 'border-b-2'
+                                                            }`}
+                                                        key={i}
+                                                        onClick={() => handleModel(modelName)}
+                                                    >
+                                                        {modelName}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <div className={style.divStyle}>
+                                <h1 className={style.h1Style}>Year <span className='text-red-600'>*</span></h1>
+                                <div className='flex flex-col w-full'>
+                                    <input type="text" className={style.inputStyle}
+                                        name='year'
+                                        value={data.year}
+                                        onChange={(e: any) => handleInput(e)}
+                                        required
+                                    />
+                                </div>
+                            </div>
+                            {data?.brand &&
+                                <div className={style.divStyle}>
+                                    <h1 className={style.h1Style}>Body Shape <span className='text-red-600'>*</span></h1>
+                                    <div className='flex flex-col w-full'>
+                                        <input type="text" className={style.inputStyle}
+                                            name='bodyShape'
+                                            value={data.bodyShape}
+                                            onChange={(e: any) => handleInput(e)}
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                            }
+                            {data?.brand &&
+                                <div className={style.divStyle}>
+                                    <h1 className={style.h1Style}>Gear Box <span className='text-red-600'>*</span></h1>
+                                    <div className='flex flex-col w-full'>
+                                        <input type="text" className={style.inputStyle}
+                                            name='gearBox'
+                                            value={data.gearBox}
+                                            onChange={(e: any) => handleInput(e)}
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                            }
+                            {data?.brand &&
+                                <div className={style.divStyle}>
+                                    <h1 className={style.h1Style}>Fuel Type <span className='text-red-600'>*</span></h1>
+                                    <div className='flex flex-col w-full'>
+                                        <input type="text" className={style.inputStyle}
+                                            name='fuelType'
+                                            value={data.fuelType}
+                                            onChange={(e: any) => handleInput(e)}
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                            }
+                            {data?.brand &&
+                                <div className={style.divStyle}>
+                                    <h1 className={style.h1Style}>Kilometers <span className='text-red-600'>*</span></h1>
+                                    <div className='flex flex-col w-full'>
+                                        <input type="text" className={style.inputStyle}
+                                            name='km'
+                                            value={data.km}
+                                            onChange={(e: any) => handleInput(e)}
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                            }
+                            {data?.brand &&
+                                <div className={style.divStyle}>
+                                    <h1 className={style.h1Style}>Engine Capacity <span className='text-red-600'>*</span></h1>
+                                    <div className='flex flex-col w-full'>
+                                        <input type="text" className={style.inputStyle}
+                                            name='engineCapacity'
+                                            value={data.engineCapacity}
+                                            onChange={(e: any) => handleInput(e)}
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                            }
+                            {data?.brand &&
+                                <div className={style.divStyle}>
+                                    <h1 className={style.h1Style}>Cylinders <span className='text-red-600'>*</span></h1>
+                                    <div className='flex flex-col w-full'>
+                                        <input type="text" className={style.inputStyle}
+                                            name='cylinder'
+                                            value={data.cylinder}
+                                            onChange={(e: any) => handleInput(e)}
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                            }
+                            {data?.brand &&
+                                <div className={style.divStyle}>
+                                    <h1 className={style.h1Style}>Exterior Color <span className='text-red-600'>*</span></h1>
+                                    <div className='flex flex-col w-full'>
+                                        <input type="text" className={style.inputStyle}
+                                            name='exteriorColor'
+                                            value={data.exteriorColor}
+                                            onChange={(e: any) => handleInput(e)}
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                            }
+                            {data?.brand &&
+                                <div className={style.divStyle}>
+                                    <h1 className={style.h1Style}>Interior Color <span className='text-red-600'>*</span></h1>
+                                    <div className='flex flex-col w-full'>
+                                        <input type="text" className={style.inputStyle}
+                                            name='interiorColor'
+                                            value={data.interiorColor}
+                                            onChange={(e: any) => handleInput(e)}
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                            }
                             <div className={style.divStyle}>
                                 <h1 className={style.h1Style}>Description <span className='text-red-600'>*</span></h1>
                                 <div className='flex flex-col w-full'>
@@ -310,26 +506,6 @@ export default function Addtype() {
                                         name='description'
                                         value={data.description}
                                         onChange={(e: any) => handleInput(e)} />
-                                </div>
-                            </div>
-                            <div className='mt-5 w-full mb-5'>
-                                <h1 className='space-x-3 border-b-2 pb-3'><FormatListBulleted className='text-red-600 mt-[-4px]' /><span className='text-lg font-bold'>Features</span></h1>
-                            </div>
-                            <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Features List</h1>
-                                <div className='flex flex-col w-full'>
-                                    <textarea className={style.areaStyle}
-                                        name='feature_list'
-                                        value={data.feature_list}
-                                        onChange={(e: any) => handleInput(e)}
-                                    />
-                                    <div className='text-gray-300 italic'>
-                                        <ul className='text-gray-400 italic text-sm'>
-                                            <li>Write a feature in each line eg.</li>
-                                            <li>Feature 1</li>
-                                            <li>Feature 2</li>
-                                        </ul>
-                                    </div>
                                 </div>
                             </div>
                             <div className='mt-5 w-full mb-5'>
@@ -502,7 +678,7 @@ export default function Addtype() {
                         </div>
                     </div>
                 </div>
-            </Home>
+            </Home >
         )
     }
     return null;
