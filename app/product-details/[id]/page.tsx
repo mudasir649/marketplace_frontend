@@ -198,12 +198,12 @@ export default function ProductDetails() {
                 <div className='flex flex-row mt-4 space-x-4'>
                   <Image
                     className='h-16 w-16 border rounded-full'
-                    src={userData?.image}
+                    src={product?.userId?.image}
                     alt="logo"
                     width={100}
                     height={100}
                   />
-                  <h1 className='mt-5 text-lg font-semibold'>{userData?.firstName + " " + userData?.lastName} </h1>
+                  <h1 className='mt-5 text-lg font-semibold'>{product?.userId?.firstName + " " + product?.userId.lastName} </h1>
                 </div>
                 <div className='space-y-3'>
                   <div className='flex flex-row mt-5'>
@@ -212,7 +212,7 @@ export default function ProductDetails() {
                       <h1>{product?.address}</h1>
                     </div>
                   </div>
-                  {/* {!contact && <div className='border bg-gray-800 text-md font-semibold text-white p-2 rounded-md cursor-pointer' onClick={handleChange}>
+                  {!contact && <div className='border bg-gray-800 text-md font-semibold text-white p-2 rounded-md cursor-pointer' onClick={handleChange}>
                     <div className='flex flex-row justify-center gap-2'>
                       <Phone />
                       <span>Contact Seller</span>
@@ -226,10 +226,10 @@ export default function ProductDetails() {
                       <ul className='space-y-3 py-3'>
                         {product?.viber && <li className='space-x-3'><PhoneInTalk className='text-white border bg-purple-500 border-purple-500 rounded-lg mr-3' /> {product?.viber}</li>}
                         {product?.whatsApp && < li > <WhatsApp className='text-green-500 mr-3' /> {product?.whatsApp}</li>}
-                        {product?.userId?.phoneNo && < li > <Phone className='text-red-600 mt-[-1px]' /> {product?.userId.phoneNo}</li>}
+                        {product?.userId?.phoneNumber && < li > <Phone className='text-red-600 mt-[-1px] mr-3' /> {product?.userId?.phoneNumber}</li>}
                       </ul>
                     </div>
-                  } */}
+                  }
                   <div className='border bg-[#e52320] text-md font-semibold text-white p-2 rounded-md'>
                     <Link className='flex flex-row justify-center gap-2' href={`mailto:${product?.email}`}>
                       <Mail />
