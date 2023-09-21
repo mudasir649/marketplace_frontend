@@ -30,6 +30,9 @@ export default function Header() {
 
   const userData = userInfo?.data?.userDetails;
 
+  console.log(userData);
+
+
   const handleContact = () => {
     setShowContact(true);
     setNavbar(false);

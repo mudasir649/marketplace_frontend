@@ -225,7 +225,7 @@ export default function ProductDetails() {
                       </span>
                       <ul className='space-y-3 py-3'>
                         {product?.viber && <li className='space-x-3'><PhoneInTalk className='text-white border bg-purple-500 border-purple-500 rounded-lg mr-3' /> {product?.viber}</li>}
-                        {product?.whatsApp && < li > <WhatsApp className='text-green-500 mr-3' /> {product?.whatsApp}</li>}
+                        {product?.whatsApp && < li > <WhatsApp className='text-green-500 mr-3' /> {product?.whatsapp}</li>}
                         {product?.userId?.phoneNumber && < li > <Phone className='text-red-600 mt-[-1px] mr-3' /> {product?.userId?.phoneNumber}</li>}
                       </ul>
                     </div>
