@@ -52,7 +52,7 @@ interface IData {
     feature_list: any,
     howToContact: any,
     condition: any,
-    whatsApp: any,
+    whatsapp: any,
     viber: any,
     email: any,
     year: any,
@@ -116,7 +116,7 @@ export default function Addtype() {
         feature_list: null || '',
         howToContact: 'Whatsapp',
         condition: null || '',
-        whatsApp: null || '',
+        whatsapp: null || '',
         viber: null || '',
         email: null || '',
         year: null || '',
@@ -608,8 +608,8 @@ export default function Addtype() {
                                     <h1 className={style.h1Style}>WhatsApp No</h1>
                                     <div className='flex flex-col w-full'>
                                         <input type="text" className={style.inputStyle}
-                                            name='whatsApp'
-                                            value={data.whatsApp}
+                                            name='whatsapp'
+                                            value={data.whatsapp}
                                             onChange={(e: any) => handleInput(e)}
                                         />
                                         <p className='text-gray-400 text-sm mt-1'>
