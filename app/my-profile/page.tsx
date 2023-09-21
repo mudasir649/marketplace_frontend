@@ -99,37 +99,32 @@ export default function MyProfile() {
     const updateProfile = async (e: any) => {
         e.preventDefault();
         setLoading(true);
-        if (!data?.firstName && !data.lastName && !data?.phoneNumber && !image1) {
-            toast('All field cannot be empty.')
+        if (!image1) {
+            const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/userProfile/${userData?.id}`, data);
+            if (res?.status === 200) {
+                toast(res?.data?.message);
+            }
         } else {
-            if (!image1) {
-                const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/userProfile/${userData?.id}`, data);
-                if (res?.status === 200) {
-                    toast('user profile updated successfully');
-                    toast(res?.data?.message);
+            const formData = new FormData();
+            formData.append('file', image1);
+            for (const key in data) {
+                if (data.hasOwnProperty(key)) {
+                    formData.append(key, data[key as keyof IData]);
                 }
-            } else {
-                const formData = new FormData();
-                formData.append('file', image1);
-                for (const key in data) {
-                    if (data.hasOwnProperty(key)) {
-                        formData.append(key, data[key as keyof IData]);
-                    }
-                }
-                try {
-                    const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/userProfile/${userData?.id}`, formData);
+            }
+            try {
+                const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/userProfile/${userData?.id}`, formData);
 
-                    if (res.status === 200) {
-                        toast('user profile updated successfully');
-                        dispatch(setCredentials(res?.data));
-                        dispatch(refreshPage(true))
-                        setLoading(false);
-                        refreshMyProfile();
-                    }
-                } catch (error: any) {
-                    console.log(error);
-                    setLoading(false)
+                if (res.status === 200) {
+                    toast(res?.data?.message);
+                    dispatch(setCredentials(res?.data));
+                    dispatch(refreshPage(true))
+                    setLoading(false);
+                    refreshMyProfile();
                 }
+            } catch (error: any) {
+                console.log(error);
+                setLoading(false)
             }
         }
         setLoading(false);
