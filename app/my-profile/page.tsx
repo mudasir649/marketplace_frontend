@@ -100,9 +100,13 @@ export default function MyProfile() {
         e.preventDefault();
         setLoading(true);
         if (!image1) {
-            const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/userProfile/${userData?.id}`, data);
+            const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/userProfile/${userData?._id}`, data);
             if (res?.status === 200) {
                 toast(res?.data?.message);
+                dispatch(setCredentials(res.data));
+                dispatch(refreshPage(true))
+                setLoading(false);
+                refreshMyProfile();
             }
         } else {
             const formData = new FormData();
@@ -113,11 +117,10 @@ export default function MyProfile() {
                 }
             }
             try {
-                const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/userProfile/${userData?.id}`, formData);
-
+                const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/userProfile/${userData?._id}`, formData);
                 if (res.status === 200) {
                     toast(res?.data?.message);
-                    dispatch(setCredentials(res?.data));
+                    dispatch(setCredentials(res.data));
                     dispatch(refreshPage(true))
                     setLoading(false);
                     refreshMyProfile();
