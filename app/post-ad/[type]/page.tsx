@@ -79,7 +79,7 @@ export default function Addtype() {
 
     const { userInfo } = useSelector((state: any) => state.auth);
     const [imageSrc, setImageSrc] = useState<string>('')
-    const userData = userInfo === null ? userInfo : userInfo?.data?.userDetails?.id;
+    const userData = userInfo === null ? userInfo : userInfo?.data?.userDetails?._id;
     const { type } = useParams();
     const classes = useStyles()
     const [open, isOpen] = useState<Boolean>(false);
