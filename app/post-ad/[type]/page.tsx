@@ -161,9 +161,6 @@ export default function Addtype() {
         }
     }
 
-    console.log(models);
-
-
     const handleHowContact = (value: any) => {
         setHowContact(value)
     }

@@ -9,7 +9,7 @@ import { usePathname } from 'next/navigation';
 import './ImageSlider.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { refreshPage, setProductId, setShowDeleteAd } from '@/store/appSlice';
 import { setShowShare } from '@/store/appSlice';
 
@@ -98,7 +98,10 @@ export default function Product({ product, url }: any) {
           console.log(error);
         }
       } else {
-        const res = await axios.delete(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/removeFavorite/${product?.favAdId}`, data);
+        const config: AxiosRequestConfig = {
+          data: data
+        }
+        const res = await axios.delete(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/removeFavorite/${product?.favAdId}`, config);
         if (res?.status === 204) {
           setFav(false);
           dispatch(refreshPage(true));
