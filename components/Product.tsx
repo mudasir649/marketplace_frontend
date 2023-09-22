@@ -10,27 +10,40 @@ import './ImageSlider.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
-import { refreshPage, setProductId } from '@/store/appSlice';
+import { refreshPage, setProductId, setShowDeleteAd } from '@/store/appSlice';
 import { setShowShare } from '@/store/appSlice';
+
+interface AdFavoriteData {
+  userId: string;
+  adId: string;
+  favorite: boolean;
+}
 
 export default function Product({ product, url }: any) {
 
-  const { refresh } = useSelector((state: any) => state.app);
+  // const { refresh } = useSelector((state: any) => state.app);
+
+  console.log(product)
+
+  const pathname = usePathname();
   const dispatch = useDispatch();
 
-  const { image, type, address, price, name, id } = product;
-  const [fav, setFav] = useState(false);
+  const checkPathname = pathname == '/my-favourites' ? true : false;
+
+  const [fav, setFav] = useState<Boolean>(checkPathname);
+
   const router = useRouter();
 
   const { width, height } = useWindowDimensions();
 
   const { userInfo } = useSelector((state: any) => state.auth);
-  const userId = userInfo?.data?.userDetails?.id;
+  const { productId } = useSelector((state: any) => state.app);
+
+  const userId = userInfo?.data?.userDetails?._id;
 
   const newWidth = width || 0;
   const newHeight = height || 0;
 
-  const pathname = usePathname();
 
   useEffect(() => {
     AOS.init();
@@ -42,14 +55,8 @@ export default function Product({ product, url }: any) {
   }
 
   const deleteAd = async (id: any) => {
-    try {
-      const res = await axios.delete(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/deleteAd/${id}`);
-      if (res.status === 204) {
-        dispatch(refreshPage(true));
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(setProductId(id))
+    dispatch(setShowDeleteAd(true))
   }
 
   const showDate = () => {
@@ -73,21 +80,29 @@ export default function Product({ product, url }: any) {
   };
 
   const adFavorite = async () => {
+    let data: AdFavoriteData = {
+      userId: userId,
+      adId: product?._id,
+      favorite: true,
+    }
     if (userInfo === null) {
       router.push('/login')
     } else {
-      const data = {
-        userId: userId,
-        adId: product?._id,
-        favorite: true,
-      }
-      try {
-        const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/adFavorite`, data);
-        if (res?.status === 201) {
-          setFav(true)
+      if (fav === false) {
+        try {
+          const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/adFavorite`, data);
+          if (res?.status === 201) {
+            setFav(true)
+          }
+        } catch (error) {
+          console.log(error);
         }
-      } catch (error) {
-        console.log(error);
+      } else {
+        const res = await axios.delete(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/removeFavorite/${product?.favAdId}`, data);
+        if (res?.status === 204) {
+          setFav(false);
+          dispatch(refreshPage(true));
+        }
       }
     }
   }
@@ -155,7 +170,7 @@ export default function Product({ product, url }: any) {
                 <div className='text-[10px]'>
                   <LocationOn className="text-gray-500" />
                 </div>
-                <h1 className='text-sm'>{product?.address}</h1>
+                <h1 className='text-sm line-clamp-2'>{product?.address}</h1>
               </div>
             }
             <div className='flex items-center text-gray-600 gap-2 mt-2'>

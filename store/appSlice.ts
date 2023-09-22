@@ -4,7 +4,10 @@ const initialState = {
     refresh: false,
     filterData: [],
     showShare: false,
-    productId: ''
+    showSellNow: false,
+    productId: '',
+    showRepairNow: false,
+    showDeleteAd: false
 }
 
 
@@ -23,10 +26,19 @@ const appSlice = createSlice({
         },
         setProductId: (state, actions) => {
             state.productId = actions.payload
+        },
+        setShowSellNow: (state, actions) => {
+            state.showSellNow = actions.payload
+        },
+        setShowRepairNow: (state, actions) => {
+            state.showRepairNow = actions.payload
+        },
+        setShowDeleteAd: (state, actions) => {
+            state.showDeleteAd = actions.payload
         }
     }
 });
 
-export const { refreshPage, setFilterData, setShowShare, setProductId } = appSlice.actions;
+export const { refreshPage, setFilterData, setShowShare, setProductId, setShowSellNow, setShowRepairNow, setShowDeleteAd } = appSlice.actions;
 
 export default appSlice.reducer;

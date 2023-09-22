@@ -14,9 +14,6 @@ export default function ShareLink() {
         dispatch(setShowShare(false));
     }
 
-    console.log("hello");
-
-
     return (
         <div className={`fixed inset-0 flex justify-center items-center bg-opacity-100 backdrop-blur-sm z-10 overflow-y-scroll`}>
             <div className='container mx-10 w-[800px] h-auto mt-12 bg-white shadow-3xl border rounded-lg'>

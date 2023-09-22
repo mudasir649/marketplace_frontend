@@ -14,6 +14,9 @@ import { useLogoutMutation } from "@/store/userApiSlice";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import ShareLink from "./ShareLink";
+import SellNow from "./SellNow";
+import RepairNow from "./RepairNow";
+import DeleteAd from "./DeleteAd";
 
 export default function Header() {
 
@@ -26,11 +29,11 @@ export default function Header() {
 
 
   const { userInfo } = useSelector((state: any) => state.auth);
-  const { showShare } = useSelector((state: any) => state.app);
+  const { showShare, showSellNow, showRepairNow, showDeleteAd } = useSelector((state: any) => state.app);
 
   const userData = userInfo?.data?.userDetails;
 
-  console.log(userData);
+  // console.log(userData);
 
 
   const handleContact = () => {
@@ -181,6 +184,9 @@ export default function Header() {
             }
             {!showContact ? "" : <ContactUs setShowContact={setShowContact} />}
             {showShare && <ShareLink />}
+            {showSellNow && <SellNow />}
+            {showRepairNow && <RepairNow />}
+            {showDeleteAd && <DeleteAd />}
           </div>
         </div>
       </header ></>

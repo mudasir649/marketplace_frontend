@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 
 export default function MyAds() {
     const { userInfo } = useSelector((state: any) => state.auth);
-    const userData = userInfo?.data?.userDetails?.id;
+    const userData = userInfo?.data?.userDetails?._id;
     const router = useRouter();
 
     const [userAds, setUserAds] = useState<any>();

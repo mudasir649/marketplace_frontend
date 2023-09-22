@@ -10,12 +10,10 @@ import { useSelector } from 'react-redux';
 export default function Favorite() {
     const [favAds, setFavAds] = useState<any>();
     const { userInfo } = useSelector((state: any) => state.auth);
-    const userId = userInfo?.data?.userDetails?.id;
+    const userId = userInfo?.data?.userDetails?._id;
     const router = useRouter();
+
     useEffect(() => {
-        if (userInfo === null) {
-            router.push('/');
-        }
         const fetchAds = async () => {
             const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/getFavAds/${userId}`);
             if (res.status === 200) {
@@ -23,6 +21,15 @@ export default function Favorite() {
             }
         }
         fetchAds()
+    }, [userId])
+
+    console.log(favAds);
+
+
+    useEffect(() => {
+        if (userInfo === null) {
+            router.push('/');
+        }
     }, [userId, userInfo, favAds, router]);
 
     if (!favAds) {
