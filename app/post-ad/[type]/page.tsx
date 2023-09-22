@@ -46,7 +46,6 @@ interface IData {
     model: any,
     description: any,
     videoUrl: any,
-    phoneNumber: any,
     webSite: any,
     address: any,
     feature_list: any,
@@ -110,7 +109,6 @@ export default function Addtype() {
         model: null || '',
         description: null || '',
         videoUrl: null || '',
-        phoneNumber: null || '',
         webSite: null || '',
         address: null || '',
         feature_list: null || '',
@@ -642,16 +640,6 @@ export default function Addtype() {
                                         :
                                         ''
                             }
-                            <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Phone</h1>
-                                <div className='flex flex-col w-full'>
-                                    <input type="text" className={style.inputStyle}
-                                        name='phoneNumber'
-                                        value={data.phoneNumber}
-                                        onChange={(e: any) => handleInput(e)}
-                                    />
-                                </div>
-                            </div>
                             <div className={style.divStyle}>
                                 <h1 className={style.h1Style}>Website</h1>
                                 <div className='flex flex-col w-full'>
