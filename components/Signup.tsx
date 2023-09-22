@@ -76,7 +76,7 @@ export default function Signup() {
             }
         }
         try {
-            const res = await registerUser({ firstName, lastName, userName, email, password }).unwrap();
+            const res = await registerUser({ firstName, lastName, userName, email, password, phoneNumber }).unwrap();
             dispatch(setCredentials({ ...res }));
             router.push('/')
         } catch (error: any) {
