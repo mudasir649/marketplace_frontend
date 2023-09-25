@@ -1,4 +1,4 @@
-export const expandStyle = 'bg-red-600 text-white border rounded-full border-red-600';
+export const expandStyle = 'bg-[#FF0000] text-white border rounded-full border-red-600';
 export const ratingList = [
     {
         name: "5.0",

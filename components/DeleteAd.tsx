@@ -41,7 +41,7 @@ export default function DeleteAd() {
                     <p className="text-lg font-semibold">Are you sure you want to delete this ad?</p>
                     <div className="mt-4">
                         <button className="bg-gray-400 text-white px-4 py-2 rounded-md mr-2 hover:bg-gray-500 focus:outline-none focus:bg-gray-500" onClick={() => handleCancel()}>Cancel</button>
-                        <button className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:bg-red-600" onClick={() => handleDeleteAd()}>Delete</button>
+                        <button className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-[#FF0000] focus:outline-none focus:bg-[#FF0000]" onClick={() => handleDeleteAd()}>Delete</button>
                     </div>
                 </div>
             </div>

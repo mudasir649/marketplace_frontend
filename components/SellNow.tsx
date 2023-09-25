@@ -71,7 +71,7 @@ export default function SellNow() {
                         <textarea id="description" name="description" className="w-full border py-2 px-3 focus:outline-none focus:border-red-600" placeholder="Enter a description..." required></textarea>
                     </div>
                     <div className="mt-4 mb-10">
-                        <button type="submit" className="bg-red-600 text-white px-4 py-2 hover:bg-red-800 focus:outline-none focus:bg-red-700" onClick={(e: any) => handleSubmit(e)}>Submit</button>
+                        <button type="submit" className="bg-[#FF0000] text-white px-4 py-2 hover:bg-red-800 focus:outline-none focus:bg-red-700" onClick={(e: any) => handleSubmit(e)}>Submit</button>
                     </div>
                 </form>
             </div>

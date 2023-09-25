@@ -99,7 +99,7 @@ export default function SearchPage() {
         </div>
         <button className='flex flex-row justify-center 
             cursor-pointer w-full p-2 border-none 
-            border-gray-300 rounded-sm bg-red-600' onClick={() => searchFilter()}>
+            border-gray-300 rounded-sm bg-[#FF0000]' onClick={() => searchFilter()}>
           <Search className="text-white" />
         </button>
       </div >
