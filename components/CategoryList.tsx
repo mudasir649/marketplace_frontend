@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function CategoryList({ setCategory, setExpand }: any) {
 
-    const liStyle = 'hover:text-red-600 border-b border-gray-200';
+    const liStyle = 'hover:text-[#FF0000] border-b border-gray-200';
     const handleClick = (value: any) => {
         setCategory(value);
         setExpand(false);

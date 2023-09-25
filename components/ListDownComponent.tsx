@@ -5,7 +5,7 @@ export default function ListDownComponent() {
     const [language, setLanguage] = useState<string>('En');
     const [showList, setShowList] = useState<Boolean>(false);
 
-    const liStyle = 'cursor-pointer hover:text-[#e52320] hover:w-7';
+    const liStyle = 'cursor-pointer hover:text-[#FF0000] hover:w-7';
 
     const handleLanguage = (value: string) => {
         setLanguage(value);

@@ -188,8 +188,8 @@ export default function Page() {
 
 
     const inputStyle = 'border border-gray-300 hover:border-red-600 focus:outline-red-600 rounded-md w-auto lg:w-32 h-10 p-2 cursor-pointer';
-    const logoStyle = newWidth < 370 ? 'text-red-600 text-[10px] cursor-pointer' : 'text-red-600 text-[15px] md:text-xl cursor-pointer';
-    const btnStyle = `font-semibold hover:text-red-600 text-gray-500`;
+    const logoStyle = newWidth < 370 ? 'text-[#FF0000] text-[10px] cursor-pointer' : 'text-[#FF0000] text-[15px] md:text-xl cursor-pointer';
+    const btnStyle = `font-semibold hover:text-[#FF0000] text-gray-500`;
     const spanStyle = newWidth < 370 ? 'text-[10px] cursor-pointer font-bold' : 'text-[12px] cursor-pointer font-bold';
 
 
@@ -215,7 +215,7 @@ export default function Page() {
                             <h1 className='pl-1 pt-2  text-lg font-semibold'>All Categories</h1>
                             <ul className='space-y-3 mt-2 mx-1'>
                                 {categoryList?.map((list: IList, i: number) => (
-                                    <li className='hover:text-red-600 cursor-pointer' key={i}>{list.logo} {list.name}</li>
+                                    <li className='hover:text-[#FF0000] cursor-pointer' key={i}>{list.logo} {list.name}</li>
                                 ))}
                             </ul>
                         </div>
@@ -248,11 +248,11 @@ export default function Page() {
                                 </div>
                                 <div className='space-y-1 p-0 pl-1 md:p-3 w-40 md:w-[500px]'>
                                     <Link href={`/product-details/${product?._id}`}>
-                                        <h1 className={`${newWidth < 370 ? 'text-[11px]' : 'text-[12px] md:text-lg lg:text-2xl'} font-bold hover:text-red-600`}>{product?.title}</h1>
+                                        <h1 className={`${newWidth < 370 ? 'text-[11px]' : 'text-[12px] md:text-lg lg:text-2xl'} font-bold hover:text-[#FF0000]`}>{product?.title}</h1>
                                     </Link>
                                     <h2 className={`${newWidth < 370 ? 'text-[9px]' : 'text-[10px] md:text-base'}`}>{product?.category}</h2>
                                     <h3 className='text-[10px] md:text-base w-[100px] md:w-auto truncate'>{product?.address}</h3>
-                                    <h1 className={`${newWidth < 370 ? 'text-[9px]' : 'md:text-lg text-[12px]'} text-red-600 font-semibold`}>CHF {product?.price}</h1>
+                                    <h1 className={`${newWidth < 370 ? 'text-[9px]' : 'md:text-lg text-[12px]'} text-[#FF0000] font-semibold`}>CHF {product?.price}</h1>
                                     <h2 className={`${newWidth < 370 ? 'text-[7px]' : 'text-[10px] md:text-sm'} text-gray-500  font-semibold`}>EURO {product?.price * 2.1}</h2>
                                 </div >
                                 <div className='pr-1'>

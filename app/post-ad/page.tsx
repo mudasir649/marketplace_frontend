@@ -47,11 +47,11 @@ export default function PostAd() {
                 <div className='container mx-auto mb-20'>
                     <div className='border-none box-container bg-white rounded-sm h-full p-3'>
                         <div className='container mx-auto'>
-                            <h1 className='space-x-3 border-b-2 pb-3'><PlaylistAdd className='text-red-600 mt-[-4px]' /><span className='text-lg font-bold'>Select Category</span></h1>
+                            <h1 className='space-x-3 border-b-2 pb-3'><PlaylistAdd className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>Select Category</span></h1>
                         </div>
                         <div className='container mx-0 mt-6 lg:mx-20 w-auto'>
                             <div className='flex flex-col md:flex-row justify-end space-x-0 md:space-x-20 space-y-2 md:space-y-0 mb-5 mt-5'>
-                                <h1 className={`flex flex-row space-x-1 text-md font-bold ${showSub && 'w-40'}`}>Category <span className='text-red-600'>*</span></h1>
+                                <h1 className={`flex flex-row space-x-1 text-md font-bold ${showSub && 'w-40'}`}>Category <span className='text-[#FF0000]'>*</span></h1>
                                 <div className='flex flex-col hover:border-red-500 w-full rounded-sm h-10'
                                     onClick={() => isOpen(!open)}
                                 >
@@ -77,7 +77,7 @@ export default function PostAd() {
                             </div>
                             {showSub &&
                                 <div className='flex flex-col md:flex-row justify-end space-x-0 md:space-x-20 space-y-2 md:space-y-0 mb-5 mt-5'>
-                                    <h1 className='flex flex-row space-x-1 text-md font-bold w-40'>Sub Category <span className='text-red-600'>*</span></h1>
+                                    <h1 className='flex flex-row space-x-1 text-md font-bold w-40'>Sub Category <span className='text-[#FF0000]'>*</span></h1>
                                     <div className='flex flex-col hover:border-red-500 w-full rounded-sm h-10'
                                         onClick={() => isOpenSub(!openSub)}
                                     >

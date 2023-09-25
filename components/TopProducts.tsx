@@ -15,7 +15,7 @@ export default function TopProducts({ children }: any) {
             <div className='container mx-auto flex justify-between'>
                 <h1 className='text-xl lg:text-3xl font-bold ml-6 mt-1'>Top Inserts</h1>
                 <Link href='/advance-search'>
-                    <span className='capitalize text-lg font-bold mt-[5px] mr-[25px]'>see all Ads <East className='text-[#e52320]' data-aos="fade-right" /> </span>
+                    <span className='capitalize text-lg font-bold mt-[5px] mr-[25px]'>see all Ads <East className='text-[#FF0000]' data-aos="fade-right" /> </span>
                 </Link>
             </div>
             <div className='my-10'>

@@ -12,7 +12,7 @@ export default function FooterBanner() {
         <div className='mb-10 mt-1 h-auto p-5' data-aos="fade-down">
             <div className={`container mx-auto ${style.bg}`}>
                 {/* <h1 className='text-4xl lg:text-[58px] font-semibold leading-none lg:pl-52 pt-10'>
-          <span className='text-[#e52320]'>Buy</span> <span className='text-black'>What ever you want.</span>
+          <span className='text-[#FF0000]'>Buy</span> <span className='text-black'>What ever you want.</span>
         </h1> */}
             </div>
         </div >

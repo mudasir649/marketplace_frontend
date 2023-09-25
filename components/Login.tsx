@@ -57,7 +57,7 @@ export default function LoginPage() {
                 <div className='flex justify-end'>
                     <Link href="/">
                         <button className='text-white text-xl lg:mr-[-30px]'>
-                            <Cancel className='text-[#e52320]' />
+                            <Cancel className='text-[#FF0000]' />
                         </button>
                     </Link>
                 </div>
@@ -84,7 +84,7 @@ export default function LoginPage() {
                         </button>
                         <div className='flex justify-center font-bold'>or</div>
                         <div className='flex flex-row border border-gray-200 hover:border-[#e52320] cursor-pointer rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>
-                            <Mail className='text-[#e52320] ml-5' />
+                            <Mail className='text-[#FF0000] ml-5' />
                             <input className='border-none bg-transparent focus:outline-none'
                                 type="email"
                                 placeholder='Your email address'
@@ -94,7 +94,7 @@ export default function LoginPage() {
                             />
                         </div>
                         <div className='flex flex-row border border-gray-200 hover:border-[#e52320] rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>
-                            <Https className='text-[#e52320] ml-5' />
+                            <Https className='text-[#FF0000] ml-5' />
                             <input className='border-none bg-transparent focus:outline-none'
                                 type="password"
                                 placeholder='Your password'
@@ -121,7 +121,7 @@ export default function LoginPage() {
                         <div className='flex justify-center'>
                             <h1>Not a member?
                                 <Link href="/signup">
-                                    <span className='text-[#e52320] cursor-pointer hover:text-red-800'> Create Account</span>
+                                    <span className='text-[#FF0000] cursor-pointer hover:text-red-800'> Create Account</span>
                                 </Link></h1>
                         </div>
                     </div>

@@ -151,11 +151,11 @@ export default function Product({ product, url }: any) {
       <div className='p-5'>
         <Link href={`/product-details/${product?._id}`}>
           <div className='mb-4 flex gap-x-2 text-sm'>
-            <div className='bg-[#e52320] text-white rounded-full px-3'>
+            <div className='bg-[#FF0000] text-white rounded-full px-3'>
               {product?.category}
             </div>
           </div>
-          <div className='text-md line-clamp-2 h-5 font-semibold max-w-[260px] cursor-pointer hover:text-[#e52320]'>
+          <div className='text-md line-clamp-2 h-5 font-semibold max-w-[260px] cursor-pointer hover:text-[#FF0000]'>
             {product?.title}
           </div>
         </Link>
@@ -192,13 +192,13 @@ export default function Product({ product, url }: any) {
             </> :
             <>
               <div className='space-y-1'>
-                <h1 className='text-[#e52320] text-2xl font-bold'>CHF {product?.price}</h1>
+                <h1 className='text-[#FF0000] text-2xl font-bold'>CHF {product?.price}</h1>
                 <h1 className='text-gray-500 text-lg font-bold'>Euro {product?.price * 2}</h1>
               </div>
               <div className='flex flex-row space-x-4 text-gray-600 w-full h-10 mb-10 border-t-2 pt-4'>
                 <Share onClick={() => handleShare()} />
                 <Chat />
-                <Favorite className={`${fav ? 'text-red-600' : 'text-gray-300'}`} onClick={() => adFavorite()} />
+                <Favorite className={`${fav ? 'text-[#FF0000]' : 'text-gray-300'}`} onClick={() => adFavorite()} />
               </div>
             </>
           }

@@ -11,7 +11,7 @@ export default function ContactUs({ setShowContact }: any) {
             <div className='container mx-10 w-[800px] h-auto mt-12 bg-white shadow-3xl border rounded-lg'>
                 <div className='flex justify-end'>
                     <button className='text-white text-xl lg:mr-[-30px]' onClick={() => setShowContact(false)}>
-                        <Cancel className='text-[#e52320]' />
+                        <Cancel className='text-[#FF0000]' />
                     </button>
                 </div>
                 <div className='flex justify-center'>
@@ -27,17 +27,17 @@ export default function ContactUs({ setShowContact }: any) {
                         <h1 className='flex justify-center text-2xl font-bold'>Contact Us</h1>
                         <div className='flex flex-row border border-gray-200 hover:border-[#e52320] focus:border-[#e52320]
                                     cursor-pointer rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>
-                            <Person className='text-[#e52320]' />
+                            <Person className='text-[#FF0000]' />
                             <input className='border-none w-full bg-transparent focus:outline-none mt-[1px]' type="text" placeholder='Name*' />
                         </div>
                         <div className='flex flex-row border border-gray-200 hover:border-[#e52320] focus:outline-[#e52320]
                                 cursor-pointer rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>
-                            <Email className='text-[#e52320]' />
+                            <Email className='text-[#FF0000]' />
                             <input className='border-none w-full bg-transparent focus:outline-none mt-[1px]' type="email" placeholder='Email*' />
                         </div>
                         <div className='flex flex-row border border-gray-200 hover:border-[#e52320] focus:outline-[#e52320]
                                     cursor-pointer rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>
-                            <Title className='text-[#e52320]' />
+                            <Title className='text-[#FF0000]' />
                             <input className='border-none w-full bg-transparent focus:outline-none mt-[1px]' type="text" placeholder='Subject*' />
                         </div>
                         <textarea className='flex flex-row border border-gray-200 hover:border-[#e52320] 

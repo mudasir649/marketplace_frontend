@@ -143,13 +143,13 @@ export default function MyProfile() {
                 <ToastContainer />
                 <div className='border-none rounded-sm bg-white h-full p-3'>
                     <div className='flex justify-center border-b-2 pb-5'>
-                        <h1 className='space-x-3'><Person className='text-red-600 mt-[-4px]' /><span className='text-lg font-bold'>Basic Information</span></h1>
+                        <h1 className='space-x-3'><Person className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>Basic Information</span></h1>
                     </div>
                     <div className='flex justify-center mt-5'>
                         <div className='h-40 w-40 border rounded-full relative'>
                             {showImage ?
                                 <div className='flex justify-center mt-2'>
-                                    <Cancel className='z-10 text-red-600 ml-[100px]' onClick={() => cancelImage1()} />
+                                    <Cancel className='z-10 text-[#FF0000] ml-[100px]' onClick={() => cancelImage1()} />
                                     <Image className='border rounded-full' alt='image' src={imageUrl1} layout='fill' />
                                 </div>
                                 : <Image className='border rounded-full' alt='image' src={userData?.image} layout='fill' />
