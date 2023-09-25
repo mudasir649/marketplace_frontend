@@ -4,7 +4,7 @@ import { ExpandMore, PlaylistAdd } from '@mui/icons-material';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import './post-ad.css';
-import { list, subList } from '@/utils/dataVariables';
+import { list, partsSubList, subList } from '@/utils/dataVariables';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
 export default function PostAd() {
@@ -28,7 +28,7 @@ export default function PostAd() {
 
     const handleCategory = (value: any) => {
         setCategory(value);
-        if (value == 'Bikes') {
+        if (value == 'Bikes' || value == "Parts") {
             setShowSub(true);
         }
         else {
@@ -91,13 +91,24 @@ export default function PostAd() {
                                         <div className={`menu-item flex flex-row border bg-white h-auto border-gray-300 
                                         w-full rounded-sm p-1 ${openSub ? 'active' : 'inactive'}`}
                                         >
-                                            <ul className='w-full'>
-                                                {subList?.map((lst: any, i: number) => (
-                                                    <li className={`hover:bg-red-500 hover:text-white 
+                                            {category == 'Bikes' &&
+                                                <ul className='w-full'>
+                                                    {subList?.map((lst: any, i: number) => (
+                                                        <li className={`hover:bg-red-500 hover:text-white 
                                                     ml-1 mb-1 ${list.length - 1 == i ? '' : ' border-b-2'}`}
-                                                        key={i} onClick={() => handleSubCategory(lst.name)}>{lst?.name}</li>
-                                                ))}
-                                            </ul>
+                                                            key={i} onClick={() => handleSubCategory(lst.name)}>{lst?.name}</li>
+                                                    ))}
+                                                </ul>
+                                            }
+                                            {category == 'Parts' &&
+                                                <ul className='w-full'>
+                                                    {partsSubList?.map((lst: any, i: number) => (
+                                                        <li className={`hover:bg-red-500 hover:text-white 
+                                                    ml-1 mb-1 ${partsSubList.length - 1 == i ? '' : ' border-b-2'}`}
+                                                            key={i} onClick={() => handleSubCategory(lst.name)}>{lst?.name}</li>
+                                                    ))}
+                                                </ul>
+                                            }
                                         </div>
                                     </div>
                                 </div>

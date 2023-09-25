@@ -228,7 +228,7 @@ export default function Page() {
                                 <input type='text' className={inputStyle} placeholder='Min' />
                             </div>
                             <div className='flex justify-center'>
-                                <button className='mx-0 md:mx-2 border bg-red-600 mt-[19px] w-full lg:w-64 h-10 
+                                <button className='mx-0 md:mx-2 border bg-[#FF0000] mt-[19px] w-full lg:w-64 h-10 
                                     text-white border-none rounded-lg font-bold text-md p-1 mb-5'>
                                     {width == 768 ? <Search /> : 'Apply filters'}
                                 </button>

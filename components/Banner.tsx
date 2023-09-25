@@ -89,7 +89,7 @@ export default function Banner() {
               <CategoryList setCategory={setCategory} setExpand={setIsExpand} />
             </div>}
           </div>
-          {/* <div className={`felx flex-row  bg-red-600 ${newWidth <= 834 && newWidth >= 768 ? 'mt-[-1.5px] ml-5' : ' mt-4 lg:mt-0'}`}> */}
+          {/* <div className={`felx flex-row  bg-[#FF0000] ${newWidth <= 834 && newWidth >= 768 ? 'mt-[-1.5px] ml-5' : ' mt-4 lg:mt-0'}`}> */}
           <div className={`felx flex-row col-span-2 ml-[-0px] mt-2 md:mt-0 md:ml-[-5px] lg:ml-[-90px]`}>
             <h1 className='text-white text-lg font-semibold flex space-x-5'>
               Top Categories:

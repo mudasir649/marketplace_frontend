@@ -104,7 +104,7 @@ export default function ProductDetails() {
                   <h1 className='text-lg mb-4'>{product?.address}</h1>
                 </div>
                 <div className='mb-4 lg:mb-0 flex gap-x-2 text-sm'>
-                  <h1 className={`${newWidth === 1024 && newHeight === 885 ? 'text-sm' : 'text-xl'} font-semibold text-white bg-red-600 px-3 rounded-full`}>{product?.category}</h1>
+                  <h1 className={`${newWidth === 1024 && newHeight === 885 ? 'text-sm' : 'text-xl'} font-semibold text-white bg-[#FF0000] px-3 rounded-full`}>{product?.category}</h1>
                 </div>
               </div>
               <div className='flex flex-col max-w-[1400px] h-[780px] w-full m-auto py-16 px-4 relative items-start gap-8 lg:flex-row group'>
@@ -145,7 +145,7 @@ export default function ProductDetails() {
                   <h1>{product?.address}</h1>
                 </div>
               </div>
-              <div className='mt-5 bg-red-600 text-white w-32 p-1 text-center text-md border-none rounded-full'>Description</div>
+              <div className='mt-5 bg-[#FF0000] text-white w-32 p-1 text-center text-md border-none rounded-full'>Description</div>
               <div className='mt-5 w-full' style={{ wordWrap: 'break-word' }}>{product?.description}</div>
               <div className='flex flex-col md:flex-row justify-between'>
                 <div className='mt-5'>
@@ -162,12 +162,12 @@ export default function ProductDetails() {
                     <li><span className={overviewStyle}>Year: </span> {product?.year}</li>
                     <li><span className={overviewStyle}>Body Shape: </span> {product?.bodyShape}</li>
                     <li><span className={overviewStyle}>Gearbox: </span> {product?.gearBox}</li>
-                    {/* <li><span className={overviewStyle}>fuel type: </span> {product?.fuelType}</li> */}
+                    <li><span className={overviewStyle}>fuel type: </span> {product?.fuelType}</li>
                     <li><span className={overviewStyle}>Kilometers: </span> {product?.km}</li>
                     <li><span className={overviewStyle}>Engine capacity: </span> {product?.engineCapacity}</li>
-                    <li><span className={overviewStyle}>Cylinders: </span> {product?.cylinder}</li>
+                    {product?.category == 'Autos' && <li><span className={overviewStyle}>Cylinders: </span> {product?.cylinder}</li>}
                     <li><span className={overviewStyle}>Exterior: </span> {product?.exteriorColor}</li>
-                    <li><span className={overviewStyle}>Interior: </span> {product?.interiorColor}</li>
+                    {product?.category == 'Autos' && <li><span className={overviewStyle}>Interior: </span> {product?.interiorColor}</li>}
                   </ul>
                   <div className={listStyle}>
                     <Visibility className='text-gray-500' /> <span className={listStyle2}>{product?.views} views</span>

@@ -162,14 +162,14 @@ export default function MyProfile() {
                             ref={fileInputRef1}
                             style={{ display: 'none' }}
                             onChange={(e: any) => handleImage1(e)} />
-                        <button className='h-10 w-auto bg-red-600 text-white font-semibold p-2' onClick={() => handleLogo1()}>Upload Picture</button>
+                        <button className='h-10 w-auto bg-[#FF0000] text-white font-semibold p-2' onClick={() => handleLogo1()}>Upload Picture</button>
                     </div>
                     }
                     <div className='container mx-0 mt-6 lg:mx-20 w-auto'>
                         <div className='flex flex-col md:flex-row space-x-0 md:space-x-32 space-y-1 md:space-y-0 mb-6'>
                             <h1 className='text-md font-bold'>Username</h1>
                             <div>
-                                <h1 className='text-md mt-[0.5px] pl-0 md:pl-[15px]'>{userData?.username}</h1>
+                                <h1 className='text-md mt-[0.5px] pl-0 md:pl-[15px]'>{userData?.userName}</h1>
                             </div>
                         </div>
                         <div className={style.divStyle}>
@@ -204,7 +204,7 @@ export default function MyProfile() {
                                 </div>
                                 :
                                 <div className='flex flex-col w-full'>
-                                    <button className='bg-red-600 hover:bg-red-800 w-32 h-10 text-white font-bold' onClick={(e: any) => updateProfile(e)}>Submit</button>
+                                    <button className='bg-[#FF0000] hover:bg-red-800 w-32 h-10 text-white font-bold' onClick={(e: any) => updateProfile(e)}>Submit</button>
                                 </div>
                             }
                         </div>
