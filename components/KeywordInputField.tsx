@@ -23,7 +23,7 @@ export default function KeywordInputField({ logo, text1, text2 }: any) {
     }
   });
 
-  const logoStyle = 'text-red-600 ml-2';
+  const logoStyle = 'text-[#FF0000] ml-2';
 
   useEffect(() => {
     Aos.init();

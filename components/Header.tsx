@@ -22,7 +22,7 @@ export default function Header() {
 
   const [navbar, setNavbar] = useState<Boolean>(false);
   const [showContact, setShowContact] = useState(false);
-  const navbarLiStyle = navbar ? 'cursor-pointer hover:text-[#e52320]' : 'cursor-pointer hover:p-2 hover:border hover:rounded-md hover:bg-white hover:text-red-600 font-[600] ease-in duration-150';
+  const navbarLiStyle = navbar ? 'cursor-pointer hover:text-[#FF0000]' : 'cursor-pointer hover:p-2 hover:border hover:rounded-md hover:bg-white hover:text-[#FF0000] font-[600] ease-in duration-150';
   const [open, isOpen] = useState<Boolean>(false);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -43,7 +43,7 @@ export default function Header() {
 
   const DropdownItem = ({ logo, text, href }: any) => {
     return (
-      <li className="dropdownItem space-x-2 hover:text-red-600">
+      <li className="dropdownItem space-x-2 hover:text-[#FF0000]">
         <span>{logo}</span>
         <Link className='text-md font-semibold' href={href} onClick={() => isOpen(false)}>
           {text}
@@ -98,7 +98,7 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Cancel className="hover:text-[#e52320]" onClick={() => setNavbar(false)} />
+              <Cancel className="hover:text-[#FF0000]" onClick={() => setNavbar(false)} />
             </li>
           </ul>
         </div>
@@ -144,8 +144,8 @@ export default function Header() {
               :
               <div>
                 <Link href="/post-ad">
-                  <button className="flex flex-row justify-center space-x-4 mt-[-1px] p-2 w-52 bg-white hover:text-[#e52320] text-black  rounded-lg">
-                    <Add className="text-md border border-[#e52320] rounded-full bg-[#e52320] text-white" />
+                  <button className="flex flex-row justify-center space-x-4 mt-[-1px] p-2 w-52 bg-white hover:text-[#FF0000] text-black  rounded-lg">
+                    <Add className="text-md border border-[#FF0000] rounded-full bg-[#FF0000] text-white" />
                     <span className="capitalize text-md mt-[2px]">Post your ad</span>
                   </button>
                 </Link>
@@ -162,7 +162,7 @@ export default function Header() {
               </div>
                 <div className={`dropdown-menu border rounded-sm w-60 absolute ml-[-120px] z-10 ${newWidth == 1024 ? 'end-10' : 'end-4 lg:end-52'} top-20 ${open ? 'active' : 'inactive'}`}>
                   <div>
-                    <h3>Hello,</h3><h1 className="text-lg font-bold mb-[-10px] hover:text-red-600 cursor-pointer">{userData?.firstName}  {userData?.lastName}</h1>
+                    <h3>Hello,</h3><h1 className="text-lg font-bold mb-[-10px] hover:text-[#FF0000] cursor-pointer">{userData?.firstName}  {userData?.lastName}</h1>
                   </div>
                   <ul className="flex flex-col space-y-5 border-t-2 pt-3">
                     <DropdownItem logo={<Person />} text="My Profile" href="/my-profile" />

@@ -92,7 +92,7 @@ export default function Signup() {
                 <div className='flex justify-end'>
                     <Link href="/">
                         <button className='text-white text-xl lg:mr-[-30px]'>
-                            <Cancel className='text-[#e52320]' />
+                            <Cancel className='text-[#FF0000]' />
                         </button>
                     </Link>
                 </div>
@@ -108,7 +108,7 @@ export default function Signup() {
                         </div>
                         <h1 className='flex justify-center text-2xl font-bold'>Create Account</h1>
                         <div className='flex flex-row border border-gray-200 hover:border-[#e52320] cursor-pointer rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>
-                            <AccountCircle className='text-[#e52320] ml-5' />
+                            <AccountCircle className='text-[#FF0000] ml-5' />
                             <input required={true}
                                 className='border-none bg-transparent focus:outline-none'
                                 type="text"
@@ -119,7 +119,7 @@ export default function Signup() {
                             />
                         </div>
                         <div className='flex flex-row border border-gray-200 hover:border-[#e52320] cursor-pointer rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>
-                            <AccountCircle className='text-[#e52320] ml-5' />
+                            <AccountCircle className='text-[#FF0000] ml-5' />
                             <input required={true}
                                 className='border-none bg-transparent focus:outline-none'
                                 type="text"
@@ -130,7 +130,7 @@ export default function Signup() {
                             />
                         </div>
                         <div className='flex flex-row border border-gray-200 hover:border-[#e52320] cursor-pointer rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>
-                            <Phone className='text-[#e52320] ml-5' />
+                            <Phone className='text-[#FF0000] ml-5' />
                             <input required={true}
                                 className='border-none bg-transparent focus:outline-none'
                                 type="text"
@@ -141,7 +141,7 @@ export default function Signup() {
                             />
                         </div>
                         <div className='flex flex-row border border-gray-200 hover:border-[#e52320] cursor-pointer rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>
-                            <AccountCircle className='text-[#e52320] ml-5' />
+                            <AccountCircle className='text-[#FF0000] ml-5' />
                             <input required={true}
                                 className='border-none bg-transparent focus:outline-none'
                                 type="text"
@@ -152,7 +152,7 @@ export default function Signup() {
                             />
                         </div>
                         <div className='flex flex-row border border-gray-200 hover:border-[#e52320] cursor-pointer rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>
-                            <Mail className='text-[#e52320] ml-5' />
+                            <Mail className='text-[#FF0000] ml-5' />
                             <input required={true}
                                 className='border-none bg-transparent focus:outline-none'
                                 type="text"
@@ -163,7 +163,7 @@ export default function Signup() {
                             />
                         </div>
                         <div className='flex flex-row border border-gray-200 hover:border-[#e52320] rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>
-                            <Https className='text-[#e52320] ml-5' />
+                            <Https className='text-[#FF0000] ml-5' />
                             <input required={true}
                                 className='border-none bg-transparent focus:outline-none'
                                 type="password"
@@ -198,7 +198,7 @@ export default function Signup() {
                         <div className='flex justify-center mb-20'>
                             <h1>Already have account?
                                 <Link href="/login">
-                                    <span className='text-[#e52320] cursor-pointer hover:text-red-800'> Login</span>
+                                    <span className='text-[#FF0000] cursor-pointer hover:text-red-800'> Login</span>
                                 </Link></h1>
                         </div>
                         <div className='invisible'>flklf</div>

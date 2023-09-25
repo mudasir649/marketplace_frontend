@@ -34,7 +34,7 @@ export default function DeleteAd() {
             <div className='container mx-10 w-[800px] h-auto mt-12 bg-white shadow-3xl border rounded-lg'>
                 <div className='flex justify-end'>
                     <button className='text-white text-xl lg:mr-[-30px]' onClick={() => handleCancel()}>
-                        <Cancel className='text-[#e52320]' />
+                        <Cancel className='text-[#FF0000]' />
                     </button>
                 </div>
                 <div className="bg-white p-4 text-center">

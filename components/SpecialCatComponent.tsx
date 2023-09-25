@@ -197,25 +197,25 @@ export default function SpecialCatComponent({ type }: any) {
             <div className='container mx-auto'>
                 <div className='border-none rounded-sm bg-white mb-10 h-full p-3'>
                     <div className='container mx-auto'>
-                        <h1 className='space-x-3 border-b-2 pb-3'><PlaylistAdd className='text-red-600 mt-[-4px]' /><span className='text-lg font-bold'>Select Category</span></h1>
+                        <h1 className='space-x-3 border-b-2 pb-3'><PlaylistAdd className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>Select Category</span></h1>
                     </div>
                     <div className=' container mx-auto flex flex-col mb-7'>
                         <div className='flex flex-row space-x-2 mt-5'>
                             <h1>{type == 'Contruction%20Machines' ? 'Construction Machines' : type}</h1>
                             <ArrowForwardIos className='text-[12px] mt-[6.5px]' />
-                            <h1 className='text-red-600 underline'>
+                            <h1 className='text-[#FF0000] underline'>
                                 <Link href="/post-ad">
                                     {'Change categroy'}
                                 </Link>
                             </h1>
                         </div>
                         <div className='mt-5 w-full mb-5'>
-                            <h1 className='space-x-3 border-b-2 pb-3'><Description className='text-red-600 mt-[-4px]' /><span className='text-lg font-bold'>Product Information</span></h1>
+                            <h1 className='space-x-3 border-b-2 pb-3'><Description className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>Product Information</span></h1>
                         </div>
 
                         <form onSubmit={(e: any) => handleSubmit(e)}>
                             <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Title <span className='text-red-600'>*</span></h1>
+                                <h1 className={style.h1Style}>Title <span className='text-[#FF0000]'>*</span></h1>
                                 <div className='flex flex-col w-full'>
                                     <input type="text" className={style.inputStyle}
                                         name='title'
@@ -227,7 +227,7 @@ export default function SpecialCatComponent({ type }: any) {
                                 </div>
                             </div>
                             <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Pricing <span className='text-red-600'>*</span></h1>
+                                <h1 className={style.h1Style}>Pricing <span className='text-[#FF0000]'>*</span></h1>
                                 <div className='flex flex-col w-full'>
                                     <ul className='flex flex-row space-x-2'>
                                         {priceList?.map((list: any, i: any) => (
@@ -238,7 +238,7 @@ export default function SpecialCatComponent({ type }: any) {
                             </div>
                             {priceListValue === 'price' ?
                                 <div className={style.divStyle}>
-                                    <h1 className={style.h1Style}>Price{`[CHF]`} <span className='text-red-600'>*</span></h1>
+                                    <h1 className={style.h1Style}>Price{`[CHF]`} <span className='text-[#FF0000]'>*</span></h1>
                                     <div className='flex flex-col w-full'>
                                         <input type="text" className={style.inputStyle}
                                             name='price'
@@ -252,7 +252,7 @@ export default function SpecialCatComponent({ type }: any) {
                                 priceListValue === 'priceRange' ?
                                     <div className='flex flex-col md:flex-row my-5 space-y-2 md:space-y-0 md:space-x-2'>
                                         <div className='w-full flex flex-row'>
-                                            <h1 className='text-md font-bold  w-80 lg:w-64 mt-1'>Min Pirce {`[CHF]`}<span className='text-red-600'>*</span></h1>
+                                            <h1 className='text-md font-bold  w-80 lg:w-64 mt-1'>Min Pirce {`[CHF]`}<span className='text-[#FF0000]'>*</span></h1>
                                             <input type="text" className={style.inputStyle}
                                                 name='minPrice'
                                                 value={data?.minPrice}
@@ -261,7 +261,7 @@ export default function SpecialCatComponent({ type }: any) {
                                             />
                                         </div>
                                         <div className='w-full flex flex-row'>
-                                            <h1 className='text-md font-bold w-72 lg:w-64 mt-1'>Max Pirce {`[CHF]`}<span className='text-red-600'>*</span></h1>
+                                            <h1 className='text-md font-bold w-72 lg:w-64 mt-1'>Max Pirce {`[CHF]`}<span className='text-[#FF0000]'>*</span></h1>
                                             <input type="text"
                                                 className={style.inputStyle}
                                                 name='maxPrice'
@@ -275,7 +275,7 @@ export default function SpecialCatComponent({ type }: any) {
                                     ''
                             }
                             <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Condition <span className='text-red-600'>*</span></h1>
+                                <h1 className={style.h1Style}>Condition <span className='text-[#FF0000]'>*</span></h1>
                                 <div className='flex flex-col w-full'>
                                     <ul className='space-y-1'>
                                         {conditionList?.map((list: any, i: number) => (
@@ -289,7 +289,7 @@ export default function SpecialCatComponent({ type }: any) {
                                 </div>
                             </div>
                             {(type == 'Boats' || type == 'Drones') && <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Brand <span className='text-red-600'>*</span></h1>
+                                <h1 className={style.h1Style}>Brand <span className='text-[#FF0000]'>*</span></h1>
                                 <select
                                     className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
                                     name='brand'
@@ -303,7 +303,7 @@ export default function SpecialCatComponent({ type }: any) {
                             </div>}
                             {type == 'Others' &&
                                 <div className={style.divStyle}>
-                                    <h1 className={style.h1Style}>Brand <span className='text-red-600'>*</span></h1>
+                                    <h1 className={style.h1Style}>Brand <span className='text-[#FF0000]'>*</span></h1>
                                     <div className='flex flex-col w-full'>
                                         <input type="text" className={style.inputStyle}
                                             name='brand'
@@ -316,7 +316,7 @@ export default function SpecialCatComponent({ type }: any) {
                             }
                             {data?.brand &&
                                 <div className={style.divStyle}>
-                                    <h1 className={style.h1Style}>Model <span className='text-red-600'>*</span></h1>
+                                    <h1 className={style.h1Style}>Model <span className='text-[#FF0000]'>*</span></h1>
                                     <div className='flex flex-col w-full'>
                                         <input type="text" className={style.inputStyle}
                                             name='model'
@@ -329,7 +329,7 @@ export default function SpecialCatComponent({ type }: any) {
                             }
                             {type == 'Others' &&
                                 <div className={style.divStyle}>
-                                    <h1 className={style.h1Style}>Model <span className='text-red-600'>*</span></h1>
+                                    <h1 className={style.h1Style}>Model <span className='text-[#FF0000]'>*</span></h1>
                                     <div className='flex flex-col w-full'>
                                         <input type="text" className={style.inputStyle}
                                             name='model'
@@ -341,7 +341,7 @@ export default function SpecialCatComponent({ type }: any) {
                                 </div>
                             }
                             {data?.brand && <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Year <span className='text-red-600'>*</span></h1>
+                                <h1 className={style.h1Style}>Year <span className='text-[#FF0000]'>*</span></h1>
                                 <div className='flex flex-col w-full'>
                                     <input type="text" className={style.inputStyle}
                                         name='year'
@@ -353,7 +353,7 @@ export default function SpecialCatComponent({ type }: any) {
                             </div>
                             }
                             {type == 'Others' && <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Year <span className='text-red-600'>*</span></h1>
+                                <h1 className={style.h1Style}>Year <span className='text-[#FF0000]'>*</span></h1>
                                 <div className='flex flex-col w-full'>
                                     <input type="text" className={style.inputStyle}
                                         name='year'
@@ -365,7 +365,7 @@ export default function SpecialCatComponent({ type }: any) {
                             </div>
                             }
                             <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Description <span className='text-red-600'>*</span></h1>
+                                <h1 className={style.h1Style}>Description <span className='text-[#FF0000]'>*</span></h1>
                                 <div className='flex flex-col w-full'>
                                     <textarea
                                         className={style.areaStyle}
@@ -378,7 +378,7 @@ export default function SpecialCatComponent({ type }: any) {
                             </div>
                             <div className='mt-5 w-full mb-5'>
                                 {/* eslint-disable-next-line jsx-a11y/alt-text */}
-                                <h1 className='space-x-3 border-b-2 pb-3'><Image className='text-red-600 mt-[-4px]' /><span className='text-lg font-bold'>Images</span></h1>
+                                <h1 className='space-x-3 border-b-2 pb-3'><Image className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>Images</span></h1>
                             </div>
                             <div className={style.divStyle}>
                                 <div className='flex flex-col w-full'>
@@ -405,13 +405,13 @@ export default function SpecialCatComponent({ type }: any) {
                                         <div key={i} className="image-item">
                                             {/* eslint-disable-next-line @next/next/no-img-element */}
                                             <img className='h-32 w-32' src={URL.createObjectURL(image)} alt={`Image ${i}`} />
-                                            <Cancel className='absolute mt-[-128px] ml-24 text-red-600' onClick={() => handleImageRemove(i)} />
+                                            <Cancel className='absolute mt-[-128px] ml-24 text-[#FF0000]' onClick={() => handleImageRemove(i)} />
                                         </div>))}
                                 </div>
                             }
                             <div className='mt-5 w-full mb-5'>
                                 <h1 className='space-x-3 border-b-2 pb-3'>
-                                    <InsertLink className='text-red-600 mt-[-4px]' /><span className='text-lg font-bold'>Video URL</span></h1>
+                                    <InsertLink className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>Video URL</span></h1>
                             </div>
                             <div className={style.divStyle}>
                                 <div className='flex flex-col w-full'>
@@ -429,7 +429,7 @@ export default function SpecialCatComponent({ type }: any) {
                             </div>
                             <div className='mt-5 w-full mb-5'>
                                 <h1 className='space-x-3 border-b-2 pb-3'>
-                                    <Person className='text-red-600 mt-[-4px]' />
+                                    <Person className='text-[#FF0000] mt-[-4px]' />
                                     <span className='text-lg font-bold'>Contact details</span></h1>
                             </div>
                             <div className={style.divStyle}>
@@ -448,7 +448,7 @@ export default function SpecialCatComponent({ type }: any) {
                                 </div>
                             </div>
                             <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>How to contact <span className='text-red-600'>*</span></h1>
+                                <h1 className={style.h1Style}>How to contact <span className='text-[#FF0000]'>*</span></h1>
                                 <div className='flex flex-col hover:border-red-500 w-full rounded-sm h-10'
                                     onClick={() => isOpenSub(!openSub)}
                                 >
@@ -475,7 +475,7 @@ export default function SpecialCatComponent({ type }: any) {
                             </div>
                             {howContact == 'Whatsapp' ?
                                 <div className={style.divStyle}>
-                                    <h1 className={style.h1Style}>WhatsApp No  <span className='text-red-600'>*</span></h1>
+                                    <h1 className={style.h1Style}>WhatsApp No  <span className='text-[#FF0000]'>*</span></h1>
                                     <div className='flex flex-col w-full'>
                                         <input type="text" className={style.inputStyle}
                                             required
@@ -489,7 +489,7 @@ export default function SpecialCatComponent({ type }: any) {
                                     </div>
                                 </div> : howContact == 'Viber' ?
                                     <div className={style.divStyle}>
-                                        <h1 className={style.h1Style}>Viber Number  <span className='text-red-600'>*</span></h1>
+                                        <h1 className={style.h1Style}>Viber Number  <span className='text-[#FF0000]'>*</span></h1>
                                         <div className='flex flex-col w-full'>
                                             <input type="text" className={style.inputStyle}
                                                 required
@@ -502,7 +502,7 @@ export default function SpecialCatComponent({ type }: any) {
                                     </div>
                                     : howContact == 'Email' ?
                                         <div className={style.divStyle}>
-                                            <h1 className={style.h1Style}>Email  <span className='text-red-600'>*</span></h1>
+                                            <h1 className={style.h1Style}>Email  <span className='text-[#FF0000]'>*</span></h1>
                                             <div className='flex flex-col w-full'>
                                                 <input type="text" className={style.inputStyle}
                                                     name='email'

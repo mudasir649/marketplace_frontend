@@ -137,11 +137,11 @@ export default function ProductDetails() {
               </div>
               <div className='flex flex-col lg:flex-row lg:space-x-4 lg:space-y-0 space-y-2'>
                 <div className='flex flex-row gap-2 text-gray-600'>
-                  <AccessTime className='text-[#e52320]' />
+                  <AccessTime className='text-[#FF0000]' />
                   <h1>{formatDateTime(product?.createdAt)}</h1>
                 </div>
                 <div className='flex flex-row gap-2 text-gray-600'>
-                  <Place className='text-[#e52320]' />
+                  <Place className='text-[#FF0000]' />
                   <h1>{product?.address}</h1>
                 </div>
               </div>
@@ -208,7 +208,7 @@ export default function ProductDetails() {
                 <div className='space-y-3'>
                   <div className='flex flex-row mt-5'>
                     <div className='flex flex-row gap-2 text-gray-600'>
-                      <Place className='text-[#e52320]' />
+                      <Place className='text-[#FF0000]' />
                       <h1>{product?.address}</h1>
                     </div>
                   </div>
@@ -226,7 +226,7 @@ export default function ProductDetails() {
                       <ul className='space-y-3 py-3'>
                         {product?.viber && <li className='space-x-3'><PhoneInTalk className='text-white border bg-purple-500 border-purple-500 rounded-lg mr-3' /> {product?.viber}</li>}
                         {product?.whatsapp && < li > <WhatsApp className='text-green-500 mr-3' /> {product?.whatsapp}</li>}
-                        {product?.userId?.phoneNumber && < li > <Phone className='text-red-600 mt-[-1px] mr-3' /> {product?.userId?.phoneNumber}</li>}
+                        {product?.userId?.phoneNumber && < li > <Phone className='text-[#FF0000] mt-[-1px] mr-3' /> {product?.userId?.phoneNumber}</li>}
                       </ul>
                     </div>
                   }
@@ -242,7 +242,7 @@ export default function ProductDetails() {
             <div className='mt-5 bg-white p-3 space-y-3'>
               <h1 className='font-bold text-xl'>Location</h1>
               <div className='flex flex-row gap-2 text-gray-600'>
-                <Place className='text-[#e52320]' />
+                <Place className='text-[#FF0000]' />
                 <h1>{product?.address}</h1>
               </div>
               <MapContainer apikey={process.env.NEXT_PUBLIC_GOOGLE_MAP_API} address={product?.address} />
