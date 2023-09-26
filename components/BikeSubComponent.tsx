@@ -124,7 +124,7 @@ export default function BikeSubComponent({ type }: any) {
 
     useEffect(() => {
         const fetchBrand = async () => {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicle/${type}`);
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/${type}`);
             setBrands(res.data?.data)
         }
         fetchBrand()
@@ -144,7 +144,7 @@ export default function BikeSubComponent({ type }: any) {
 
     const fetchBrand = async (model: any) => {
         try {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/motorcycleModels/${model}`);
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findModels/Motorcycle/${model}`);
             setModels(res.data?.data);
         } catch (error) {
             console.log(error);
@@ -217,6 +217,11 @@ export default function BikeSubComponent({ type }: any) {
             router.push('/')
         }
     }, [router, userData]);
+
+    console.log(brands);
+    console.log(models);
+
+
 
     return (
         <Home>
@@ -323,8 +328,8 @@ export default function BikeSubComponent({ type }: any) {
                                         onChange={(e: any) => handleInput(e)}
                                     >
                                         <option value="option1">Select Brand</option>
-                                        {brands.map((brand: any, i: number) => (
-                                            <option value={brand?.make} key={i}>{brand?.make}</option>
+                                        {brands?.make?.map((brand: any, i: number) => (
+                                            <option value={brand} key={i}>{brand}</option>
                                         ))}
                                     </select>
                                     :

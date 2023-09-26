@@ -85,6 +85,7 @@ export default function VehicleSubComponent({ type }: any) {
     const [loading, setLoading] = useState<Boolean>(false);
     const [priceListValue, setPriceListValue] = useState<string>('price');
     const [brands, setBrands] = useState<any>([]);
+    const [subCategory, setSubCategory] = useState<any>([]);
     const [googleLocation, setGoogleLocation] = useState<any>(null);
     const [showLocation, setShowLocation] = useState<Boolean>(false);
     let router = useRouter();
@@ -124,15 +125,23 @@ export default function VehicleSubComponent({ type }: any) {
     const [howContact, setHowContact] = useState<string>('Whatsapp');
 
     useEffect(() => {
-        const fetchBrand = async () => {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicle/${type}`);
-            setBrands(res.data?.data)
+        const fetchCategory = async () => {
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleCategory/${type}`);
+            setSubCategory(res.data?.data)
         }
-        fetchBrand()
+        fetchCategory()
     }, [type]);
 
     const handleInput = (e: any) => {
         setData({ ...data, [e.target.name]: e.target.value });
+        if (e.target.name == 'subCategory') {
+            fetchBrand();
+        }
+    }
+
+    const fetchBrand = async () => {
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/${type}`);
+        setBrands(res.data?.data)
     }
 
     const handleBrand = (value: any) => {
@@ -318,7 +327,7 @@ export default function VehicleSubComponent({ type }: any) {
                                     onChange={(e: any) => handleInput(e)}
                                 >
                                     <option value="option1">Select Sub Category</option>
-                                    {brands?.map((list: any, i: number) => (
+                                    {subCategory?.map((list: any, i: number) => (
                                         list?.category?.map((cat: any, i: number) => (
                                             <option className={`hover:bg-red-500 hover:text-white 
                                         ml-1 mb-1 ${list.length - 1 == i ? '' : ' border-b-2'}`}
@@ -338,14 +347,19 @@ export default function VehicleSubComponent({ type }: any) {
                                         onChange={(e) => handleInput(e)}
                                     >
                                         <option value="option1">Select Brand Type</option>
-                                        {brands?.map((list: any, i: number) => (
-                                            list?.makes?.map((make: any, i: number) => (
-                                                <option className={`hover:bg-red-500 hover:text-white 
+                                        {/* {brands[0].make?.map((list: any, i: number) => (
+                                            <option className={`hover:bg-red-500 hover:text-white 
                                         ml-1 mb-1 ${list.length - 1 == i ? '' : ' border-b-2'}`}
-                                                    key={i}
-                                                    onClick={() => handleBrand(make)}
-                                                >{make}</option>
-                                            ))
+                                                key={i}
+                                                onClick={() => handleBrand(list)}
+                                            >{list}</option>
+                                        ))} */}
+                                        {brands[0]?.make?.map((list: any, i: any) => (
+                                            <option className={`hover:bg-red-500 hover:text-white 
+                                            ml-1 mb-1 ${list.length - 1 == i ? '' : ' border-b-2'}`}
+                                                key={i}
+                                                onClick={() => handleBrand(list)}
+                                            >{list}</option>
                                         ))}
                                     </select>
                                 </div>

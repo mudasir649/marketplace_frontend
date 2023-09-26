@@ -122,7 +122,7 @@ export default function AutosComponent() {
 
     useEffect(() => {
         const fetchBrand = async () => {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicle/Autos`);
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Autos`);
             setBrands(res.data?.data)
         }
         fetchBrand()
@@ -135,7 +135,7 @@ export default function AutosComponent() {
 
     const fetchBrand = async (model: any) => {
         try {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findModels/${model}`);
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findModels/Autos/${model}`);
             setModels(res.data?.data);
         } catch (error) {
             console.log(error);
@@ -208,6 +208,12 @@ export default function AutosComponent() {
             router.push('/')
         }
     }, [router, userData]);
+
+    console.log(brands);
+
+    console.log(models);
+
+
 
     return (
         <Home>
@@ -313,8 +319,8 @@ export default function AutosComponent() {
                                     onChange={(e: any) => handleInput(e)}
                                 >
                                     <option value="option1">Select Model</option>
-                                    {brands?.map((brand: any, i: number) => (
-                                        <option value={brand?.make} key={i}>{brand?.make}</option>
+                                    {brands?.make?.map((brand: any, i: number) => (
+                                        <option value={brand} key={i}>{brand}</option>
                                     ))}
                                 </select>
                             </div>

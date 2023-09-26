@@ -101,14 +101,13 @@ export default function ProductDetails() {
               <div className='flex flex-col lg:flex-row lg:items-center lg:justify-between'>
                 <div>
                   <h1 className='text-2xl font-semibold'>{product?.title}</h1>
-                  <h1 className='text-lg mb-4'>{product?.address}</h1>
                 </div>
                 <div className='mb-4 lg:mb-0 flex gap-x-2 text-sm'>
                   <h1 className={`${newWidth === 1024 && newHeight === 885 ? 'text-sm' : 'text-xl'} font-semibold text-white bg-[#FF0000] px-3 rounded-full`}>{product?.category}</h1>
                 </div>
               </div>
-              <div className='flex flex-col max-w-[1400px] h-[780px] w-full m-auto py-16 px-4 relative items-start gap-8 lg:flex-row group'>
-                <div style={{ backgroundImage: `url(${product?.images[currentImage]})` }} className='w-full h-full rounded-2xl bg-center bg-cover duration-500'>
+              <div className='flex flex-col max-w-[1400px] h-[780px] w-full m-auto py-5 px-4 relative items-start gap-8 lg:flex-row group'>
+                <div style={{ backgroundImage: `url(${product?.images[currentImage]})` }} className='w-full h-full rounded-lg bg-center bg-cover duration-500'>
                 </div>
                 <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl 
                     rounded-full p-2 bg-black/20 text-white cursor-pointer' onClick={prevSlide}>
@@ -131,7 +130,7 @@ export default function ProductDetails() {
                 </div>
               }
               <h1 className='mb-3'><CameraAlt /> {currentImage + 1} / {product?.images.length} </h1>
-              <div className='bg-[#e52320] space-y-2 rounded-lg rounded-tr-[700px] rounded-br-[700px] w-40 p-2 mb-5 h-16 md:w-64 md:h-auto'>
+              <div className='bg-[#FF0000] space-y-2 rounded-lg rounded-tr-[700px] rounded-br-[700px] w-40 p-2 mb-5 h-16 md:w-64 md:h-auto'>
                 <h1 className='text-white text-sm md:text-3xl font-bold'>CHF {product?.price}</h1>
                 <h1 className='text-gray-300 text-sm md:text-xl font-semibold'>Euro {Number(product?.price) * 2}</h1>
               </div>
@@ -140,10 +139,10 @@ export default function ProductDetails() {
                   <AccessTime className='text-[#FF0000]' />
                   <h1>{formatDateTime(product?.createdAt)}</h1>
                 </div>
-                <div className='flex flex-row gap-2 text-gray-600'>
+                {/* <div className='flex flex-row gap-2 text-gray-600'>
                   <Place className='text-[#FF0000]' />
                   <h1>{product?.address}</h1>
-                </div>
+                </div> */}
               </div>
               <div className='mt-5 bg-[#FF0000] text-white w-32 p-1 text-center text-md border-none rounded-full'>Description</div>
               <div className='mt-5 w-full' style={{ wordWrap: 'break-word' }}>{product?.description}</div>
@@ -152,21 +151,21 @@ export default function ProductDetails() {
                   <h1 className='text-xl font-bold'>
                     <span className="relative">
                       <span>Ove</span>
-                      <span className="absolute bottom-0 left-0 w-7 h-1 bg-red-500 top-7"></span>
+                      <span className="absolute bottom-0 left-0 w-7 h-1 bg-[#FF0000] top-7"></span>
                     </span>
                     <span>rview</span>
                   </h1>
                   <ul className='space-y-2 mb-5 mt-5'>
-                    <li><span className={overviewStyle}>Condition: </span> {product?.condition}</li>
-                    <li><span className={overviewStyle}>Brand: </span> {product?.brand}</li>
-                    <li><span className={overviewStyle}>Year: </span> {product?.year}</li>
-                    <li><span className={overviewStyle}>Body Shape: </span> {product?.bodyShape}</li>
-                    <li><span className={overviewStyle}>Gearbox: </span> {product?.gearBox}</li>
-                    <li><span className={overviewStyle}>fuel type: </span> {product?.fuelType}</li>
-                    <li><span className={overviewStyle}>Kilometers: </span> {product?.km}</li>
-                    <li><span className={overviewStyle}>Engine capacity: </span> {product?.engineCapacity}</li>
+                    {!product?.condition ? '' : <li><span className={overviewStyle}>Condition: </span> {product?.condition}</li>}
+                    {!product?.brand ? '' : <li><span className={overviewStyle}>Brand: </span> {product?.brand}</li>}
+                    {!product?.year ? '' : <li><span className={overviewStyle}>Year: </span> {product?.year}</li>}
+                    {!product?.bodyShape ? '' : <li><span className={overviewStyle}>Body Shape: </span> {product?.bodyShape}</li>}
+                    {!product?.gearBox ? '' : <li><span className={overviewStyle}>Gearbox: </span> {product?.gearBox}</li>}
+                    {!product?.fuelType ? '' : <li><span className={overviewStyle}>fuel type: </span> {product?.fuelType}</li>}
+                    {!product?.km ? '' : <li><span className={overviewStyle}>Kilometers: </span> {product?.km}</li>}
+                    {!product?.engineCapacity ? '' : <li><span className={overviewStyle}>Engine capacity: </span> {product?.engineCapacity}</li>}
                     {product?.category == 'Autos' && <li><span className={overviewStyle}>Cylinders: </span> {product?.cylinder}</li>}
-                    <li><span className={overviewStyle}>Exterior: </span> {product?.exteriorColor}</li>
+                    {!product?.extriorColor ? '' : <li><span className={overviewStyle}>Exterior: </span> {product?.exteriorColor}</li>}
                     {product?.category == 'Autos' && <li><span className={overviewStyle}>Interior: </span> {product?.interiorColor}</li>}
                   </ul>
                   <div className={listStyle}>
@@ -205,13 +204,13 @@ export default function ProductDetails() {
                   />
                   <h1 className='mt-5 text-lg font-semibold'>{product?.userId?.firstName + " " + product?.userId.lastName} </h1>
                 </div>
-                <div className='space-y-3'>
-                  <div className='flex flex-row mt-5'>
+                <div className='space-y-3 mt-7'>
+                  {/* <div className='flex flex-row mt-5'>
                     <div className='flex flex-row gap-2 text-gray-600'>
                       <Place className='text-[#FF0000]' />
                       <h1>{product?.address}</h1>
                     </div>
-                  </div>
+                  </div> */}
                   {!contact && <div className='border bg-gray-800 text-md font-semibold text-white p-2 rounded-md cursor-pointer' onClick={handleChange}>
                     <div className='flex flex-row justify-center gap-2'>
                       <Phone />
@@ -230,7 +229,7 @@ export default function ProductDetails() {
                       </ul>
                     </div>
                   }
-                  <div className='border bg-[#e52320] text-md font-semibold text-white p-2 rounded-md'>
+                  <div className='border bg-[#FF0000] text-md font-semibold text-white p-2 rounded-md'>
                     <Link className='flex flex-row justify-center gap-2' href={`mailto:${product?.email}`}>
                       <Mail />
                       <span>Send Email</span>
