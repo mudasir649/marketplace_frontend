@@ -339,7 +339,7 @@ export default function BikeSubComponent({ type }: any) {
                                         onChange={(e: any) => handleInput(e)}
                                     >
                                         <option value="option1">Select Brand</option>
-                                        {brands[0]?.make?.map((list: any, i: number) => (
+                                        {brands.make?.map((list: any, i: number) => (
                                             <option value={list} key={i}>{list}</option>
                                         ))}
                                     </select>

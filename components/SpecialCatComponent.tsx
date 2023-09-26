@@ -104,11 +104,14 @@ export default function SpecialCatComponent({ type }: any) {
 
     useEffect(() => {
         const fetchBrand = async () => {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicle/${type}`);
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/${type}`);
             setBrands(res.data?.data)
         }
         if (type == 'Boats' || type == 'Drones') fetchBrand()
     }, [type]);
+
+    console.log(brands.make);
+
 
     const handleInput = (e: any) => {
         setData({ ...data, [e.target.name]: e.target.value });
@@ -285,7 +288,7 @@ export default function SpecialCatComponent({ type }: any) {
                                     onChange={(e: any) => handleInput(e)}
                                 >
                                     <option value="option1">Select Brand</option>
-                                    {brands[0]?.makes?.map((brand: any, i: number) => (
+                                    {brands.make?.map((brand: any, i: number) => (
                                         <option value={brand} key={i}>{brand}</option>
                                     ))}
                                 </select>
