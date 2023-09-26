@@ -51,7 +51,7 @@ export default function Banner() {
     }
   }, [handleOutsideClick]);
 
-  console.log(category);
+  // console.log(category);
 
   const categoryHandle = () => {
     setIsExpand(!isExpand);

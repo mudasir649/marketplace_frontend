@@ -73,7 +73,6 @@ export default function SpecialCatComponent({ type }: any) {
     const [images, setImages] = useState<any>([]);
     const [loading, setLoading] = useState<Boolean>(false);
     const [priceListValue, setPriceListValue] = useState<string>('price');
-    const [models, setModels] = useState<any>([]);
     const [brands, setBrands] = useState<any>([]);
     const [googleLocation, setGoogleLocation] = useState<any>(null);
     const [showLocation, setShowLocation] = useState<Boolean>(false);
@@ -113,16 +112,6 @@ export default function SpecialCatComponent({ type }: any) {
 
     const handleInput = (e: any) => {
         setData({ ...data, [e.target.name]: e.target.value });
-        if (e.target.name == 'brand') fetchBrand(e.target.value)
-    }
-
-    const fetchBrand = async (model: any) => {
-        try {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findModels/${model}`);
-            setModels(res.data?.data);
-        } catch (error) {
-            console.log(error);
-        }
     }
 
     const handleHowContact = (value: any) => {

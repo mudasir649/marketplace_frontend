@@ -103,26 +103,8 @@ export default function BoatsComponent({ type }: any) {
     });
     const [howContact, setHowContact] = useState<string>('Whatsapp');
 
-    useEffect(() => {
-        const fetchBrand = async () => {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicle/Autos`);
-            setBrands(res.data?.data)
-        }
-        fetchBrand()
-    }, []);
-
     const handleInput = (e: any) => {
         setData({ ...data, [e.target.name]: e.target.value });
-        if (e.target.name == 'brand') fetchBrand(e.target.value)
-    }
-
-    const fetchBrand = async (model: any) => {
-        try {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findModels/${model}`);
-            setModels(res.data?.data);
-        } catch (error) {
-            console.log(error);
-        }
     }
 
     const handleHowContact = (value: any) => {
