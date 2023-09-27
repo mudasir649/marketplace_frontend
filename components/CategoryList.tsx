@@ -16,7 +16,7 @@ export default function CategoryList({ setCategory, setExpand }: any) {
             <ul className='text-gray-500 space-y-1 cursor-pointer dropdow-menu z-10'>
                 <li onClick={() => handleClick("Autos")} className={liStyle}>Autos</li>
                 <li className={`dropdow`}>
-                    <h1 className={liStyle}>Bikes</h1>
+                    <h1 onClick={() => handleClick("Bikes")} className={liStyle}>Bikes</h1>
                     <div className='absolute hidden ml-[190px] mt-[-30px] bg-white w-auto h-auto p-2 border-none rounded-sm dropdow-menu'>
                         <ul className='block'>
                             {subList?.map((list: any, i: number) => (
