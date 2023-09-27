@@ -1,15 +1,12 @@
 'use client';
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { Agriculture, CarRepair, DirectionsBike, DirectionsCar, KeyboardArrowDown, LocalShipping, TwoWheeler } from '@mui/icons-material';
+import { KeyboardArrowDown } from '@mui/icons-material';
 import Aos from 'aos';
 import SearchPage from './Search';
 import useWindowDimensions from '@/utils/useWindowDimensions';
 import CategoryList from './CategoryList';
 import { usePathname, useRouter } from 'next/navigation';
-import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { setFilterData } from '@/store/appSlice';
-
 
 export default function Banner() {
 
@@ -51,29 +48,13 @@ export default function Banner() {
     }
   }, [handleOutsideClick]);
 
-  // console.log(category);
-
   const categoryHandle = () => {
     setIsExpand(!isExpand);
   }
 
-  // const runFilter = async () => {
-  //   const data = {
-  //     category: category
-  //   }
-  //   try {
-  //     const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/searchRecord`, data);
-  //     console.log(res);
-  //     if (res.status === 200) {
-  //       dispatch(setFilterData(res.data?.data));
-  //       router.push('/advance-search')
-  //     }
-  //   }
-  //   catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-  // runFilter()
+  const handleCat = (value: any) => {
+    router.push(`/search-filter/${value}`)
+  }
 
   return (
     <div className={`${pathname == '/my-ads' && 'mb-44 md:mb-10'} mb-40 md:mb-10 border-green-400 mt-1 h-[300px]`}>
@@ -93,8 +74,8 @@ export default function Banner() {
           <div className={`felx flex-row col-span-2 ml-[-0px] mt-2 md:mt-0 md:ml-[-5px] lg:ml-[-90px]`}>
             <h1 className='text-white text-lg font-semibold flex space-x-5'>
               Top Categories:
-              <span className='ml-4 cursor-pointer' onClick={() => setCategory("Autos")}>Autos</span>
-              <span className='cursor-pointer' onClick={() => setCategory("Parts")}>Parts</span>
+              <span className='ml-4 cursor-pointer' onClick={() => handleCat('Autos')}>Autos</span>
+              <span className='cursor-pointer' onClick={() => handleCat('Parts')}>Parts</span>
             </h1>
           </div>
         </div>
