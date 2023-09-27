@@ -9,19 +9,33 @@ export default function Page() {
 
     const { type } = useParams();
 
+    const subCategory = type == 'Bicycles' ? 'Bicycles' :
+        type == 'E-scooter' ? 'E-scooter' :
+            type == 'E-bikes' ? 'E-bikes' :
+                type == 'Motorcycle' ? 'Motorcycle' : '';
+
     const [page, setPage] = useState<number>(1);
     const [productData, setProductData] = useState<any>(null);
     const [productsCount, setProductsCount] = useState<number>(0);
     useEffect(() => {
-        const fetchData = async () => {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/searchRecord?page=${page}&&category=${type}`);
-            setProductData(res.data?.data?.ad);
-            setProductsCount(res.data?.data?.totalAds)
+        if (!subCategory) {
+            const fetchData = async () => {
+                const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/searchRecord?page=${page}&&category=${type}`);
+                setProductData(res.data?.data?.ad);
+                setProductsCount(res.data?.data?.totalAds)
+            }
+            fetchData()
+        } else {
+            const fetchData = async () => {
+                const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/searchRecord?page=${page}&&subCategory=${subCategory}`);
+                setProductData(res.data?.data?.ad);
+                setProductsCount(res.data?.data?.totalAds)
+            }
+            fetchData()
         }
-        fetchData()
-    }, [page, type]);
+    }, [page, type, subCategory]);
 
     return (
-        <AdvanceSearch productData={productData} productsCount={productsCount} page={page} setPage={setPage} />
+        <AdvanceSearch productData={productData} category={type} productsCount={productsCount} page={page} setPage={setPage} subCategory={subCategory} />
     )
 }

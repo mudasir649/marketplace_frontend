@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
 import Home from '@/components/Home';
-import { AirportShuttle, BuildCircle, Chat, DataSaverOn, DirectionsBike, DirectionsBoat, DirectionsBus, DirectionsCar, ExpandLess, ExpandMore, FireTruck, Flight, KeyboardArrowLeft, KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight, PhoneEnabled, PrecisionManufacturing, RemoveRedEye, RvHookup, Search, Share } from '@mui/icons-material';
+import { AirportShuttle, ArrowForward, ArrowForwardIos, BuildCircle, Chat, Circle, DataSaverOn, DirectionsBike, DirectionsBoat, DirectionsBus, DirectionsCar, ExpandLess, ExpandMore, FireTruck, Flight, KeyboardArrowLeft, KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight, PhoneEnabled, PrecisionManufacturing, RemoveRedEye, RvHookup, Search, Share } from '@mui/icons-material';
 import Aos from 'aos';
 import React, { useEffect, useState } from 'react';
 import ReactStars from "react-stars";
@@ -10,6 +10,8 @@ import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
+import { useRouter } from 'next/navigation';
+import { subList } from '@/utils/dataVariables';
 
 interface IList {
     logo: any,
@@ -23,7 +25,7 @@ interface IRating {
 }
 
 
-export default function AdvanceSearch({ productData, productsCount, page, setPage }: any) {
+export default function AdvanceSearch({ productData, productsCount, page, setPage, category, subCategory }: any) {
 
     const { width, height } = useWindowDimensions();
 
@@ -31,6 +33,7 @@ export default function AdvanceSearch({ productData, productsCount, page, setPag
     const newHeight = height || 0;
 
     const { filterData } = useSelector((state: any) => state.app);
+    const router = useRouter();
 
     const pagination = () => {
         let paginationList = [];
@@ -143,6 +146,13 @@ export default function AdvanceSearch({ productData, productsCount, page, setPag
         }
     ];
 
+    console.log(subCategory);
+
+
+    const handleSearch = (value: any) => {
+        router.push(`/search-filter/${value}`)
+    }
+
 
     const inputStyle = 'border border-gray-300 hover:border-red-600 focus:outline-red-600 rounded-md w-auto lg:w-32 h-10 p-2 cursor-pointer';
     const logoStyle = newWidth < 370 ? 'text-[#FF0000] text-[10px] cursor-pointer' : 'text-[#FF0000] text-[15px] md:text-xl cursor-pointer';
@@ -172,7 +182,11 @@ export default function AdvanceSearch({ productData, productsCount, page, setPag
                             <h1 className='pl-1 pt-2  text-lg font-semibold'>All Categories</h1>
                             <ul className='space-y-3 mt-2 mx-1'>
                                 {categoryList?.map((list: IList, i: number) => (
-                                    <li className='hover:text-[#FF0000] cursor-pointer' key={i}>{list.logo} {list.name}</li>
+                                    <><li onClick={() => handleSearch(list?.name)} className={`${category == list?.name ? 'text-[#FF0000]' : list?.name == 'Bikes' && subCategory ? 'text-[#FF0000]' : 'hover:text-[#FF0000] cursor-pointer'}`} key={i}>{list.logo} {list.name} {category == list?.name ? `(${productsCount})` : ''}</li>
+                                        {(category == 'Bikes' || subCategory) && list?.name == "Bikes" && subList?.map((list: any, i: any) => (
+                                            <li className={`ml-5 cursor-pointer ${list?.name == subCategory ? 'text-[#FF0000]' : 'hover:text-[#FF0000]'}`} onClick={() => handleSearch(list?.name)} key={i}> <span className='text-[#FF0000]'>{`> `}</span>{list?.name} {subCategory == list?.name && `(${productsCount})`}</li>
+                                        ))}
+                                    </>
                                 ))}
                             </ul>
                         </div>
