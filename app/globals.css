@@ -9,6 +9,7 @@ body{
 }
 
 
+
 .logo.active{
   transform: rotate(180deg);
   transition: var(--speed) ease;
@@ -17,6 +18,10 @@ body{
 .logo.inactive{
   transform: rotate(0deg);
   transition: var(--speed) ease;
+}
+
+.dropdow:hover .dropdow-menu{
+  display: block
 }
 
 @layer base {

@@ -1,24 +1,29 @@
+import { partsSubList, subList } from '@/utils/dataVariables';
+import { useRouter } from 'next/navigation';
 import React from 'react'
 
 export default function CategoryList({ setCategory, setExpand }: any) {
 
     const liStyle = 'hover:text-[#FF0000] border-b border-gray-200';
+    const router = useRouter();
     const handleClick = (value: any) => {
         setCategory(value);
+        router.push(`/search-filter/${value}`)
         setExpand(false);
     }
     return (
         <div>
-            <ul className='text-gray-500 space-y-1 cursor-pointer'>
+            <ul className='text-gray-500 space-y-1 cursor-pointer dropdow-menu z-10'>
                 <li onClick={() => handleClick("Autos")} className={liStyle}>Autos</li>
-                <li>
-                    <h1 onClick={() => handleClick("Bikes")} className={liStyle}>Bikes</h1>
-                    <ul className='mx-2'>
-                        <li onClick={() => handleClick("Bicycles")} className={liStyle}>Bicycle</li>
-                        <li onClick={() => handleClick("E-cycle")} className={liStyle}>E-cycle</li>
-                        <li onClick={() => handleClick("E-scooter")} className={liStyle}>E-scooter</li>
-                        <li onClick={() => handleClick("Motorcycle")} className={liStyle}>Motorcycle</li>
-                    </ul>
+                <li className={`dropdow`}>
+                    <h1 className={liStyle}>Bikes</h1>
+                    <div className='absolute hidden ml-[190px] mt-[-30px] bg-white w-auto h-auto p-2 border-none rounded-sm dropdow-menu'>
+                        <ul className='block'>
+                            {subList?.map((list: any, i: number) => (
+                                <li className={liStyle} onClick={() => handleClick(list.name)} key={i}>{list.name}</li>
+                            ))}
+                        </ul>
+                    </div>
                 </li>
                 <li onClick={() => handleClick("Boats")} className={liStyle}>
                     Boats
@@ -32,9 +37,15 @@ export default function CategoryList({ setCategory, setExpand }: any) {
                 <li onClick={() => handleClick("Drones")} className={liStyle}>
                     Drones
                 </li>
-                <li onClick={() => handleClick("Others")} className={liStyle}>
-                    Others
-                </li>
+                <li className='dropdow'>
+                    <h1 className={liStyle}>Others</h1>
+                    <div className='absolute hidden ml-[190px] mt-[-30px] bg-white w-full h-auto p-2 border-none rounded-sm dropdow-menu'>
+                        <ul className='block mx-2'>
+                            {partsSubList?.map((list: any, i: number) => (
+                                <li className={liStyle} onClick={() => handleClick(list.name)} key={i}>{list.name}</li>
+                            ))}
+                        </ul>
+                    </div>                </li>
                 <li onClick={() => handleClick("Trailers")} className={liStyle}>
                     Trailers
                 </li>

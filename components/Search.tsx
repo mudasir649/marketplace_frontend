@@ -61,11 +61,11 @@ export default function SearchPage() {
 
   return (
     <>
-      <div className={`bg-white grid grid-cols-1 mt-[-20px] md:mt-10 md:grid-cols-2 lg:grid-cols-4 mx-5 md:mx-10 lg:mx-52 h-auto p-5 gap-2 border-none rounded-md screen-1`}>
+      <div className={`bg-white grid grid-cols-1 mt-[-20px] md:mt-10 md:grid-cols-3 lg:grid-cols-3 mx-5 md:mx-10 lg:mx-52 h-auto p-5 gap-2 border-none rounded-md screen-1`}>
         <div className='flex flex-col w-full border border-gray-300 rounded-sm'>
           <span className="flex flex-row p-2">
             <LocationOn className="text-[#FF0000]" />
-            <input type="text" placeholder='enter your address here' name='address' value={address} onChange={(e: any) => setAddress(e.target.value)} className="focus:outline-none pl-2 w-auto" onKeyUp={(e: any) => checkPlace(e)} />
+            <input type="text" placeholder='enter your address here' name='address' value={address} onChange={(e: any) => setAddress(e.target.value)} className="focus:outline-none pl-2 w-auto overflow-hidden" onKeyUp={(e: any) => checkPlace(e)} />
           </span>
           <div className="">
             {address && <div className='border border-gray-300 bg-white absolute z-20 p-2 mt-1 w-[275px]'>
@@ -83,7 +83,7 @@ export default function SearchPage() {
             }
           </div>
         </div>
-        <div className='flex flex-col w-full border border-gray-300 rounded-sm' onClick={() => setIsExpand(!isExpand)}>
+        {/* <div className='flex flex-col w-full border border-gray-300 rounded-sm' onClick={() => setIsExpand(!isExpand)}>
           <span className="flex flex-row p-2">
             <Category className="text-[#FF0000]" />
             <h1 className="ml-2">{category}</h1>
@@ -92,10 +92,10 @@ export default function SearchPage() {
             <CategoryList setCategory={setCategory} setExpand={setIsExpand} />
           </div>
           }
-        </div>
+        </div> */}
         <div className='flex flex-row w-full p-2 border border-gray-300 rounded-sm'>
           <DirectionsCar className="text-[#FF0000]" />
-          <input type="text" placeholder='enter keyword here...' name='name' className="focus:outline-none pl-2" />
+          <input type="text" placeholder='enter keyword here...' name='name' className="focus:outline-none pl-2 overflow-hidden" />
         </div>
         <button className='flex flex-row justify-center 
             cursor-pointer w-full p-2 border-none 
