@@ -228,7 +228,7 @@ export default function AutosComponent() {
                             <ArrowForwardIos className='text-[12px] mt-[6.5px]' />
                             <h1 className='text-[#FF0000] underline'>
                                 <Link href="/post-ad">
-                                    {'Change categroy'}
+                                    {'Change category'}
                                 </Link>
                             </h1>
                         </div>

@@ -1,12 +1,12 @@
 'use client';
 import Home from '@/components/Home';
-import { ArrowForwardIos, Cancel, Description, ExpandMore, Image, InsertLink, OpenInNewTwoTone, Person, PlaylistAdd } from '@mui/icons-material';
+import { ArrowForwardIos, Cancel, Description, ExpandMore, Image, InsertLink, Person, PlaylistAdd } from '@mui/icons-material';
 import axios from 'axios';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { axelType, conditionList, fuelType, howContactList, priceList } from '@/utils/dataVariables';
+import { bodyShape, conditionList, exteriorColor, fuelType, gearBox, howContactList, interiorColor, priceList } from '@/utils/dataVariables';
 import { carsList } from '@/utils/carsList';
 import "../app/post-ad/post-ad.css"
 import { bikesList } from '@/utils/bikesList';
@@ -54,15 +54,6 @@ interface IData {
     viber: any,
     email: any,
     year: any,
-    bodyShape: any,
-    gearBox: any,
-    fuelType: any,
-    exteriorColor: any,
-    interiorColor: any,
-    engineCapacity: any,
-    cylinder: any,
-    km: any,
-    axeltype: any
 }
 
 interface ILocation {
@@ -70,8 +61,7 @@ interface ILocation {
     long: Number,
 }
 
-
-export default function VehicleSubComponent({ type }: any) {
+export default function PartsComponent({ type }: any) {
     const { userInfo } = useSelector((state: any) => state.auth);
     const userData = userInfo === null ? userInfo : userInfo?.data?.userDetails?._id;
     const classes = useStyles()
@@ -84,16 +74,28 @@ export default function VehicleSubComponent({ type }: any) {
     const [images, setImages] = useState<any>([]);
     const [loading, setLoading] = useState<Boolean>(false);
     const [priceListValue, setPriceListValue] = useState<string>('price');
+    const [models, setModels] = useState<any>([]);
     const [brands, setBrands] = useState<any>([]);
-    const [subCategory, setSubCategory] = useState<any>([]);
     const [googleLocation, setGoogleLocation] = useState<any>(null);
     const [showLocation, setShowLocation] = useState<Boolean>(false);
     let router = useRouter();
     const id = userData;
 
+    console.log("parts component", type);
+
+
     const [data, setData] = useState<IData>({
-        category: type == 'Busses' ? 'Busses' : type == 'Vans' ? 'Vans' : type == 'Trailers' ? 'Trailers' : type == 'Construction Machine' ? 'Construction Machine' : type == 'Trucks' ? 'Trucks' : '',
-        subCategory: null || '',
+        category: 'Parts',
+        subCategory: type == 'Auto Parts' ? 'Auto Parts' :
+            type == 'Bike Parts' ? 'Bike Parts' :
+                type == 'Boat Parts' ? 'Boat Parts' :
+                    type == 'Bus Parts' ? 'Bus Parts' :
+                        type == 'Construction Machine Parts' ? 'Construction Machine Parts' :
+                            type == 'Drone Parts' ? 'Drone Parts' :
+                                type == 'Other Parts' ? 'Other Parts' :
+                                    type == 'Trailer Parts' ? 'Trailer Parts' :
+                                        type == 'Trucks Parts' ? 'Trucks Parts' :
+                                            type == 'Van Parts' ? 'Van Parts' : '',
         userId: id,
         title: null || '',
         price: null || '',
@@ -112,48 +114,12 @@ export default function VehicleSubComponent({ type }: any) {
         viber: null || '',
         email: null || '',
         year: null || '',
-        bodyShape: null || '',
-        gearBox: null || '',
-        fuelType: null || '',
-        exteriorColor: null || '',
-        interiorColor: null || '',
-        engineCapacity: null || '',
-        cylinder: null || '',
-        km: null || '',
-        axeltype: null || ''
     });
     const [howContact, setHowContact] = useState<string>('Whatsapp');
 
-    useEffect(() => {
-        const fetchCategory = async () => {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleCategory/${type}`);
-            setSubCategory(res.data?.data)
-        }
-        fetchCategory()
-    }, [type]);
-
     const handleInput = (e: any) => {
         setData({ ...data, [e.target.name]: e.target.value });
-        if (e.target.name == 'subCategory') {
-            fetchBrand();
-        }
     }
-
-    const fetchBrand = async () => {
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/${type}`);
-        setBrands(res.data?.data)
-    }
-
-    const handleBrand = (value: any) => {
-        isOpenSubBrand(false)
-        setData({ ...data, ['brand']: value });
-    }
-
-    const handleModel = (value: any) => {
-        isOpenSubModel(false)
-        setData({ ...data, ['model']: value });
-    }
-
 
     const handleHowContact = (value: any) => {
         setHowContact(value)
@@ -177,7 +143,7 @@ export default function VehicleSubComponent({ type }: any) {
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
-        setLoading(true);
+        setLoading(true)
         const formData = new FormData()
 
         for (let i = 0; i < images.length; i++) {
@@ -221,7 +187,6 @@ export default function VehicleSubComponent({ type }: any) {
             router.push('/')
         }
     }, [router, userData]);
-
 
     return (
         <Home>
@@ -319,118 +284,6 @@ export default function VehicleSubComponent({ type }: any) {
                                     </ul>
                                 </div>
                             </div>
-                            <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Sub Category <span className='text-[#FF0000]'>*</span></h1>
-                                <select
-                                    className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
-                                    name='subCategory'
-                                    onChange={(e: any) => handleInput(e)}
-                                >
-                                    <option value="option1">Select Sub Category</option>
-                                    {subCategory?.map((list: any, i: number) => (
-                                        list?.category?.map((cat: any, i: number) => (
-                                            <option className={`hover:bg-red-500 hover:text-white 
-                                        ml-1 mb-1 ${list.length - 1 == i ? '' : ' border-b-2'}`}
-                                                key={i}
-                                                value={cat}
-                                            >{cat}</option>
-                                        ))
-                                    ))}
-                                </select>
-                            </div>
-                            {data?.subCategory &&
-                                <div className={style.divStyle}>
-                                    <h1 className={style.h1Style}>Brand <span className='text-[#FF0000]'>*</span></h1>
-                                    <select
-                                        className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
-                                        name='brand'
-                                        onChange={(e) => handleInput(e)}
-                                    >
-                                        <option value="option1">Select Brand Type</option>
-                                        {/* {brands[0].make?.map((list: any, i: number) => (
-                                            <option className={`hover:bg-red-500 hover:text-white 
-                                        ml-1 mb-1 ${list.length - 1 == i ? '' : ' border-b-2'}`}
-                                                key={i}
-                                                onClick={() => handleBrand(list)}
-                                            >{list}</option>
-                                        ))} */}
-                                        {brands[0]?.make?.map((list: any, i: any) => (
-                                            <option className={`hover:bg-red-500 hover:text-white 
-                                            ml-1 mb-1 ${list.length - 1 == i ? '' : ' border-b-2'}`}
-                                                key={i}
-                                                onClick={() => handleBrand(list)}
-                                            >{list}</option>
-                                        ))}
-                                    </select>
-                                </div>
-                            }
-                            {data?.subCategory && <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Year <span className='text-[#FF0000]'>*</span></h1>
-                                <div className='flex flex-col w-full'>
-                                    <input type="text" className={style.inputStyle}
-                                        name='year'
-                                        value={data.year}
-                                        onChange={(e: any) => handleInput(e)}
-                                        required
-                                    />
-                                </div>
-                            </div>}
-                            {type == 'Busses' && data?.subCategory &&
-                                <div className={style.divStyle}>
-                                    <h1 className={style.h1Style}>Fuel Type <span className='text-[#FF0000]'>*</span></h1>
-                                    <select
-                                        className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
-                                        name='fuelType'
-                                        onChange={(e: any) => handleInput(e)}
-                                    >
-                                        <option value="option1">Select Fuel Type</option>
-                                        {fuelType?.map((fuel: any, i: number) => (
-                                            <option value={fuel.name} key={i}>{fuel.name}</option>
-                                        ))}
-                                    </select>
-                                </div>
-                            }
-                            {type == 'Construction Machine' && data?.subCategory &&
-                                <div className={style.divStyle}>
-                                    <h1 className={style.h1Style}>Model <span className='text-[#FF0000]'>*</span></h1>
-                                    <div className='flex flex-col w-full'>
-                                        <input type="text" className={style.inputStyle}
-                                            name='model'
-                                            value={data.model}
-                                            onChange={(e: any) => handleInput(e)}
-                                            required
-                                        />
-                                    </div>
-                                </div>
-                            }
-                            {type == 'Busses' && data?.subCategory &&
-                                <div className={style.divStyle}>
-                                    <h1 className={style.h1Style}>Kilometers <span className='text-[#FF0000]'>*</span></h1>
-                                    <div className='flex flex-col w-full'>
-                                        <input type="text" className={style.inputStyle}
-                                            name='km'
-                                            value={data.km}
-                                            onChange={(e: any) => handleInput(e)}
-                                            required
-                                        />
-                                    </div>
-                                </div>
-                            }
-                            {type == 'Busses' && data?.subCategory &&
-                                <div className={style.divStyle}>
-                                    <h1 className={style.h1Style}>Axle Count <span className='text-[#FF0000]'>*</span></h1>
-                                    <select
-                                        className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
-                                        name='axeltype'
-                                        onChange={(e: any) => handleInput(e)}
-                                    >
-                                        <option value="option1">Select Axel Count</option>
-                                        {axelType?.map((axel: any, i: number) => (
-                                            <option value={axel.name} key={i}>{axel.name}</option>
-                                        ))}
-                                    </select>
-                                </div>
-                            }
                             <div className={style.divStyle}>
                                 <h1 className={style.h1Style}>Description <span className='text-[#FF0000]'>*</span></h1>
                                 <div className='flex flex-col w-full'>

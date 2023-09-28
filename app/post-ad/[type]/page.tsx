@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import BikeSubComponent from '@/components/BikeSubComponent';
 import VehicleSubComponent from '@/components/VehicleSubComponent';
 import SpecialCatComponent from '@/components/SpecialCatComponent';
+import PartsComponent from '@/components/PartsComponent';
 import OthersComponent from '@/components/OthersComponent';
 
 
@@ -43,17 +44,18 @@ export default function Addtype() {
                                                     : pathname === '/post-ad/Vans' ? <VehicleSubComponent type={'Vans'} />
                                                         : pathname === '/post-ad/Boats' ? <SpecialCatComponent type={'Boats'} />
                                                             : pathname === '/post-ad/Drones' ? <SpecialCatComponent type={'Drones'} />
-                                                                : pathname === '/post-ad/Auto%20Parts' ? <OthersComponent type={'Auto%20Parts'} />
-                                                                    : pathname === '/post-ad/Bike%20Parts' ? <OthersComponent type={'Bike%20Parts'} />
-                                                                        : pathname === '/post-ad/Boat%20Parts' ? <OthersComponent type={'Boat%20Parts'} />
-                                                                            : pathname === '/post-ad/Bus%20Parts' ? <OthersComponent type={'Bus%20Parts'} />
-                                                                                : pathname === '/post-ad/Construction%20Machine%20Parts' ? <OthersComponent type={'Construction%20Machine%20Parts'} />
-                                                                                    : pathname === '/post-ad/Drone%20Parts' ? <OthersComponent type={'Drone%20Parts'} />
-                                                                                        : pathname === '/post-ad/Other%20Parts' ? <OthersComponent type={'Other%20Parts'} />
-                                                                                            : pathname === '/post-ad/Trailer%20Parts' ? <OthersComponent type={'Trailer%20Parts'} />
-                                                                                                : pathname === '/post-ad/Truck%20Parts' ? <OthersComponent type={'Truck%20Parts'} />
-                                                                                                    : pathname === '/post-ad/Van%20Parts' ? <OthersComponent type={'Van%20Parts'} />
-                                                                                                        : ''
+                                                                : pathname === '/post-ad/Others' ? <OthersComponent type={'Others'} />
+                                                                    : pathname === '/post-ad/Auto%20Parts' ? <PartsComponent type={'Auto Parts'} />
+                                                                        : pathname === '/post-ad/Bike%20Parts' ? <PartsComponent type={'Bike Parts'} />
+                                                                            : pathname === '/post-ad/Boat%20Parts' ? <PartsComponent type={'Boat Parts'} />
+                                                                                : pathname === '/post-ad/Bus%20Parts' ? <PartsComponent type={'Bus Parts'} />
+                                                                                    : pathname === '/post-ad/Construction%20Machine%20Parts' ? <PartsComponent type={'Construction Machine Parts'} />
+                                                                                        : pathname === '/post-ad/Drone%20Parts' ? <PartsComponent type={'Drone Parts'} />
+                                                                                            : pathname === '/post-ad/Other%20Parts' ? <PartsComponent type={'Other Parts'} />
+                                                                                                : pathname === '/post-ad/Trailer%20Parts' ? <PartsComponent type={'Trailer Parts'} />
+                                                                                                    : pathname === '/post-ad/Truck%20Parts' ? <PartsComponent type={'Truck Parts'} />
+                                                                                                        : pathname === '/post-ad/Van%20Parts' ? <PartsComponent type={'Van Parts'} />
+                                                                                                            : ''
                 }
             </>
         )

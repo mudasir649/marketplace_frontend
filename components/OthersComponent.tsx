@@ -60,21 +60,15 @@ interface ILocation {
     long: Number,
 }
 
-export default function BoatsComponent({ type }: any) {
+export default function OthersComponent({ type }: any) {
     const { userInfo } = useSelector((state: any) => state.auth);
     const userData = userInfo === null ? userInfo : userInfo?.data?.userDetails?._id;
     const classes = useStyles()
     const [open, isOpen] = useState<Boolean>(false);
     const [openSub, isOpenSub] = useState<Boolean>(false);
-    const [openBrand, isOpenBrand] = useState<Boolean>(false);
-    const [openSubModel, isOpenSubModel] = useState<Boolean>(false);
-    const [openModel, isOpenModel] = useState<Boolean>(false);
-    const [openSubBrand, isOpenSubBrand] = useState<Boolean>(false);
     const [images, setImages] = useState<any>([]);
     const [loading, setLoading] = useState<Boolean>(false);
     const [priceListValue, setPriceListValue] = useState<string>('price');
-    const [models, setModels] = useState<any>([]);
-    const [brands, setBrands] = useState<any>([]);
     const [googleLocation, setGoogleLocation] = useState<any>(null);
     const [showLocation, setShowLocation] = useState<Boolean>(false);
     let router = useRouter();
@@ -187,7 +181,7 @@ export default function BoatsComponent({ type }: any) {
                             <ArrowForwardIos className='text-[12px] mt-[6.5px]' />
                             <h1 className='text-[#FF0000] underline'>
                                 <Link href="/post-ad">
-                                    {'Change categroy'}
+                                    {'Change category'}
                                 </Link>
                             </h1>
                         </div>
@@ -268,6 +262,36 @@ export default function BoatsComponent({ type }: any) {
                                             />  {list?.name}</li>
                                         ))}
                                     </ul>
+                                </div>
+                            </div>
+                            <div className={style.divStyle}>
+                                <h1 className={style.h1Style}>Brand</h1>
+                                <div className='flex flex-col w-full'>
+                                    <input type="text" className={style.inputStyle}
+                                        name='brand'
+                                        value={data.brand}
+                                        onChange={(e: any) => handleInput(e)}
+                                    />
+                                </div>
+                            </div>
+                            <div className={style.divStyle}>
+                                <h1 className={style.h1Style}>Model</h1>
+                                <div className='flex flex-col w-full'>
+                                    <input type="text" className={style.inputStyle}
+                                        name='model'
+                                        value={data.model}
+                                        onChange={(e: any) => handleInput(e)}
+                                    />
+                                </div>
+                            </div>
+                            <div className={style.divStyle}>
+                                <h1 className={style.h1Style}>Year</h1>
+                                <div className='flex flex-col w-full'>
+                                    <input type="text" className={style.inputStyle}
+                                        name='year'
+                                        value={data.year}
+                                        onChange={(e: any) => handleInput(e)}
+                                    />
                                 </div>
                             </div>
                             <div className={style.divStyle}>

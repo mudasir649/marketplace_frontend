@@ -110,9 +110,6 @@ export default function SpecialCatComponent({ type }: any) {
         if (type == 'Boats' || type == 'Drones') fetchBrand()
     }, [type]);
 
-    console.log(brands.make);
-
-
     const handleInput = (e: any) => {
         setData({ ...data, [e.target.name]: e.target.value });
     }
@@ -139,6 +136,8 @@ export default function SpecialCatComponent({ type }: any) {
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
+        console.log(data);
+        return;
         setLoading(true)
         const formData = new FormData()
 
@@ -197,7 +196,7 @@ export default function SpecialCatComponent({ type }: any) {
                             <ArrowForwardIos className='text-[12px] mt-[6.5px]' />
                             <h1 className='text-[#FF0000] underline'>
                                 <Link href="/post-ad">
-                                    {'Change categroy'}
+                                    {'Change category'}
                                 </Link>
                             </h1>
                         </div>
