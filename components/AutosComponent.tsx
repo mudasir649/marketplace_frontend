@@ -209,11 +209,6 @@ export default function AutosComponent() {
         }
     }, [router, userData]);
 
-    console.log(brands);
-
-    console.log(models);
-
-
 
     return (
         <Home>

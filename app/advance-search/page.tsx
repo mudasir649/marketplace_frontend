@@ -1,29 +1,29 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
 import AdvanceSearch from "@/components/AdvanceSearch"
+import { setProductData, setProductsCount } from "@/store/appSlice";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Page() {
 
-
-    const [productData, setProductData] = useState<any>(null);
-    const [productsCount, setProductsCount] = useState<any>(0);
-    const [page, setPage] = useState<number>(1);
+    const { page } = useSelector((state: any) => state.app);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const fetchData = async () => {
             const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}`);
-            setProductData(res.data?.data?.ad);
-            setProductsCount(res.data?.data?.totalAds)
+            dispatch(setProductData(res.data?.data?.ad));
+            dispatch(setProductsCount(res.data?.data?.totalAds));
         }
         fetchData();
-    }, [page]);
+    }, [page, dispatch]);
 
 
     console.log(page);
 
     return (
-        <AdvanceSearch productData={productData} productsCount={productsCount} page={page} setPage={setPage} />
+        <AdvanceSearch />
     )
 }
