@@ -9,14 +9,36 @@ import useWindowDimensions from '@/utils/useWindowDimensions';
 import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
-import { subList } from '@/utils/dataVariables';
+import { conditionList, subList } from '@/utils/dataVariables';
+import { setPage, setProductData, setProductsCount } from '@/store/appSlice';
+import { CircularProgress, createStyles, makeStyles } from '@material-ui/core';
+import { Theme } from '@mui/material';
+
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            display: 'flex',
+            '& > * + *': {
+                marginLeft: theme.spacing(2),
+            },
+        },
+    }),
+);
+
 
 interface IList {
     logo: any,
     name: string,
     quantity: number
+}
+
+interface IFilterSearch {
+    condition: string,
+    brand: string,
+    minPrice: any,
+    maxPrice: any
 }
 
 interface IRating {
@@ -25,13 +47,24 @@ interface IRating {
 }
 
 
-export default function AdvanceSearch({ productData, productsCount, page, setPage, category, subCategory }: any) {
+export default function AdvanceSearch({ category, subCategory, brands }: any) {
+
+    // Redux hooks
+    const { page, productsCount, productData } = useSelector((state: any) => state.app);
+    const [loading, setLoading] = useState<Boolean>(false);
+    const dispatch = useDispatch();
+    const classes = useStyles();
 
     const { width, height } = useWindowDimensions();
-
     const newWidth = width || 0;
     const newHeight = height || 0;
 
+    const [filtersData, setFiltersData] = useState<IFilterSearch>({
+        condition: null || '',
+        brand: null || '',
+        minPrice: null || '',
+        maxPrice: null || ''
+    })
     const { filterData } = useSelector((state: any) => state.app);
     const router = useRouter();
 
@@ -46,7 +79,7 @@ export default function AdvanceSearch({ productData, productsCount, page, setPag
 
     const previousHandle = () => {
         if (page !== 1) {
-            setPage(page - 1);
+            dispatch(setPage(page - 1));
         } else {
             return;
         }
@@ -55,7 +88,7 @@ export default function AdvanceSearch({ productData, productsCount, page, setPag
 
     const nextHandle = () => {
         if (page !== pagination().length) {
-            setPage(page + 1);
+            dispatch(setPage(page + 1));
         } else {
             return;
         }
@@ -146,19 +179,34 @@ export default function AdvanceSearch({ productData, productsCount, page, setPag
         }
     ];
 
-    console.log(subCategory);
-
-
     const handleSearch = (value: any) => {
         router.push(`/search-filter/${value}`)
     }
 
+    const handleFilterData = (e: any) => {
+        setFiltersData({ ...filtersData, [e.target.name]: e.target.value });
+    }
 
-    const inputStyle = 'border border-gray-300 hover:border-red-600 focus:outline-red-600 rounded-md w-auto lg:w-32 h-10 p-2 cursor-pointer';
+    const inputStyle = 'border border-gray-300 hover:border-red-600 focus:outline-red-600 rounded-sm w-32 lg:w-32 h-10 p-2 cursor-pointer';
     const logoStyle = newWidth < 370 ? 'text-[#FF0000] text-[10px] cursor-pointer' : 'text-[#FF0000] text-[15px] md:text-xl cursor-pointer';
     const btnStyle = `font-semibold hover:text-[#FF0000] text-gray-500`;
+    const btnStyle1 = `font-semibold border border-red-400 bg-[#FF0000] text-white hover:bg-white hover:text-[#FF0000] p-2 h-10 w-full`;
     const spanStyle = newWidth < 370 ? 'text-[10px] cursor-pointer font-bold' : 'text-[12px] cursor-pointer font-bold';
 
+    async function applyFilter() {
+        const { brand, condition, minPrice, maxPrice } = filtersData;
+        setLoading(true)
+        try {
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/advance-search-filter?page=${page}&&condition=${condition}&&brand=${brand}&&minPrice=${minPrice}&&maxPrice=${maxPrice}`);
+            dispatch(setProductData(res.data?.data?.ad));
+            dispatch(setProductsCount(res.data?.data?.totalAds));
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+            console.log(error);
+        }
+        setLoading(false)
+    }
 
     if (!productData) {
         return <div className="flex justify-center mt-5">
@@ -173,7 +221,7 @@ export default function AdvanceSearch({ productData, productsCount, page, setPag
     return (
         <div>
             <Home>
-                <div className='container mx-auto flex flex-col lg:flex-row lg:mt-0 space-y-3 lg:space-y-0 lg:space-x-3 w-full mb-[500px]'>
+                <div className='container mx-auto flex flex-col lg:flex-row mt-5 lg:mt-10 space-y-3 lg:space-y-0 lg:space-x-3 w-full mb-[500px]'>
                     <div className='bg-white shadow-lg border rounded-md w-full lg:w-[400px] h-full p-2' data-aos="fade-right">
                         <div className='border-b flex flex-row justify-between p-2'>
                             <h1 className='text-lg font-bold'>Category</h1>
@@ -190,70 +238,128 @@ export default function AdvanceSearch({ productData, productsCount, page, setPag
                                 ))}
                             </ul>
                         </div>
+                        {category && <>
+                            <div className='border-b flex flex-row justify-between p-2 mb-4'>
+                                <h1 className='text-lg font-bold'>Condition</h1>
+                            </div>
+                            <ul className='space-y-2 mx-3 mb-3'>
+                                {conditionList?.map((list: any, i: number) => (
+                                    <li key={i}><input type="radio"
+                                        name='condition'
+                                        value={list?.value}
+                                        onChange={(e: any) => handleFilterData(e)}
+                                    />  {list?.name}</li>
+                                ))}
+                            </ul>
+                        </>}
+                        {brands &&
+                            <>
+                                <div className='border-b flex flex-row justify-between p-2 mb-4'>
+                                    <h1 className='text-lg font-bold'>Brand</h1>
+                                </div>
+                                <div>
+                                    <select
+                                        className="block mb-4 appearance-none w-full bg-white border rounded-sm border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+                                        name='brand'
+                                        onChange={(e: any) => handleFilterData(e)}
+                                    >
+                                        <option value="option1">Select Brand</option>
+                                        {brands?.make.map((brand: any, i: number) => (
+                                            <option value={brand} key={i}>{brand}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                            </>
+                        }
                         <div className='border-b flex flex-row justify-between p-2'>
                             <h1 className='text-lg font-bold'>Price Range</h1>
                         </div>
-                        <div className='flex flex-col md:flex-row md:space-x-0 mx-1 lg:flex-col'>
-                            <div className='mx-5 flex flex-col md:flex-row space-x-0 space-y-2 md:space-y-0 md:space-x-3 pt-5'>
-                                <input type='text' className={inputStyle} placeholder='Max' />
-                                <input type='text' className={inputStyle} placeholder='Min' />
+                        <div className='grid grid-col-3 mt-4 space-y-3'>
+                            <div className='h-auto w-auto space-x-4 mx-1'>
+                                <input type='text' name='maxPrice'
+                                    value={filtersData.maxPrice}
+                                    className={inputStyle} placeholder='Max Price'
+                                    onChange={(e: any) => handleFilterData(e)}
+                                />
+                                <input type='text'
+                                    className={inputStyle}
+                                    name='minPrice'
+                                    value={filtersData.minPrice}
+                                    placeholder='Min Price'
+                                    onChange={(e: any) => handleFilterData(e)}
+                                />
                             </div>
-                            <div className='flex justify-center'>
-                                <button className='mx-0 md:mx-2 border bg-[#FF0000] mt-[19px] w-full lg:w-64 h-10 
-                                    text-white border-none rounded-lg font-bold text-md p-1 mb-5'>
-                                    {width == 768 ? <Search /> : 'Apply filters'}
-                                </button>
+                            <div className='h-auto w-full space-x-4'>
+                                <button className={btnStyle1} onClick={applyFilter}>Apply Filter</button>
                             </div>
+                            {brands && <div className='h-auto w-full space-x-4'>
+                                <button className={btnStyle1} onClick={() => { router.push('/advance-search') }}>Clear Filter</button>
+                            </div>}
                         </div>
                     </div>
-                    <div className='flex flex-col w-full h-full'>
-                        <div className='flex flex-row justify-between  bg-white border border-[#e52320] mb-3 p-2 pl-5' data-aos="fade-left">
-                            <h1 className='text-xl font-bold'>{filterData?.length > 0 ? filterData?.length : productsCount} Results</h1>
-                        </div>
-                        {productData?.map((product: any, i: number) => (
-                            <div className='flex flex-row justify-between bg-white border border-gray-300 rounded-sm mb-5' key={i}>
-                                <div className='bg-blue-500 md:bg-green-500 lg:bg-red-500'>
-                                    <Link href={`/product-details/${product?._id}`}>
-                                        <img className='w-64 h-48' src={product?.images[0]} alt="" />
-                                    </Link>
-                                </div>
-                                <div className='space-y-1 p-0 pl-1 md:p-3 w-40 md:w-[500px]'>
-                                    <Link href={`/product-details/${product?._id}`}>
-                                        <h1 className={`${newWidth < 370 ? 'text-[11px]' : 'text-[12px] md:text-lg lg:text-2xl'} font-bold hover:text-[#FF0000]`}>{product?.title}</h1>
-                                    </Link>
-                                    <h2 className={`${newWidth < 370 ? 'text-[9px]' : 'text-[10px] md:text-base'}`}>{product?.category}</h2>
-                                    <h3 className='text-[10px] md:text-base w-[100px] md:w-auto truncate'>{product?.address}</h3>
-                                    <h1 className={`${newWidth < 370 ? 'text-[9px]' : 'md:text-lg text-[12px]'} text-[#FF0000] font-semibold`}>CHF {product?.price}</h1>
-                                    <h2 className={`${newWidth < 370 ? 'text-[7px]' : 'text-[10px] md:text-sm'} text-gray-500  font-semibold`}>EURO {product?.price * 2.1}</h2>
-                                </div >
-                                <div className='pr-1'>
-                                    <ul className={`${newWidth < 370 ? 'space-y-[-8.5px]' : 'space-y-[-7.5px] md:space-y-0 lg:space-y-3'}`}>
-                                        {logo?.map((log: any, i: number) => (
-                                            <li key={i}>{log.name}</li>
-                                        ))}
-                                    </ul>
-                                </div>
+                    {loading ?
+                        <>
+                            <div className={`${classes.root} flex justify-center`}>
+                                <CircularProgress color="secondary" />
                             </div>
-
-                        ))}
-                        {filterData?.length == 0 &&
-                            <div className={`flex flex-row justify-between bg-white h-12 border border-[#e52320] rounded-sm px-5 py-2`} data-aos="fade-up">
-                                <button className={btnStyle} onClick={previousHandle}>
-                                    <KeyboardDoubleArrowLeft className={logoStyle} />
-                                    <span className={spanStyle}>Previous</span>
-                                </button>
-                                <div className='flex flex-row space-x-4'>
-                                    {pagination().map((li: any, i: number) => (
-                                        <button className={`${page === li && 'bg-[#e52320] w-6 md:w-8 text-white text-[12px] border-none rounded-sm'} pt-[2px] text-[12px] md:text-lg`} key={i} onClick={() => setPage(li)}>{li}</button>
-                                    ))}
+                        </>
+                        :
+                        <>{productData?.length > 0 ?
+                            <div className='flex flex-col w-full h-full'>
+                                <div className='flex flex-row justify-between  bg-white border border-[#e52320] mb-3 p-2 pl-5' data-aos="fade-left">
+                                    <h1 className='text-xl font-bold'>{productsCount} Results</h1>
                                 </div>
-                                <button className={btnStyle} onClick={nextHandle}>
-                                    <span className={spanStyle}>Next</span>
-                                    <KeyboardDoubleArrowRight className={logoStyle} />
-                                </button>
+                                {productData?.map((product: any, i: number) => (
+                                    <div className='flex flex-row justify-between bg-white border border-gray-300 rounded-sm mb-5' key={i}>
+                                        <div className='bg-blue-500 md:bg-green-500 lg:bg-red-500'>
+                                            <Link href={`/product-details/${product?._id}`}>
+                                                <img className='w-64 h-48' src={product?.images[0]} alt="" />
+                                            </Link>
+                                        </div>
+                                        <div className='space-y-1 p-0 pl-1 md:p-3 w-40 md:w-[500px]'>
+                                            <Link href={`/product-details/${product?._id}`}>
+                                                <h1 className={`${newWidth < 370 ? 'text-[11px]' : 'text-[12px] md:text-lg lg:text-2xl'} font-bold hover:text-[#FF0000]`}>{product?.title}</h1>
+                                            </Link>
+                                            <h2 className={`${newWidth < 370 ? 'text-[9px]' : 'text-[10px] md:text-base'}`}>{product?.category}</h2>
+                                            <h3 className='text-[10px] md:text-base w-[100px] md:w-auto overflow-hidden'>{product?.address}</h3>
+                                            <h1 className={`${newWidth < 370 ? 'text-[9px]' : 'md:text-lg text-[12px]'} text-[#FF0000] font-semibold`}>CHF {product?.price}</h1>
+                                            <h2 className={`${newWidth < 370 ? 'text-[7px]' : 'text-[10px] md:text-sm'} text-gray-500  font-semibold`}>EURO {product?.price * 2.1}</h2>
+                                        </div >
+                                        <div className='pr-1'>
+                                            <ul className={`${newWidth < 370 ? 'space-y-[-8.5px]' : 'space-y-[-7.5px] md:space-y-0 lg:space-y-3'}`}>
+                                                {logo?.map((log: any, i: number) => (
+                                                    <li key={i}>{log.name}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                ))}
+                                {filterData?.length == 0 &&
+                                    <div className={`flex flex-row justify-between bg-white h-12 border border-[#e52320] rounded-sm px-5 py-2`} data-aos="fade-up">
+                                        <button className={btnStyle} onClick={previousHandle}>
+                                            <KeyboardDoubleArrowLeft className={logoStyle} />
+                                            <span className={spanStyle}>Previous</span>
+                                        </button>
+                                        <div className='flex flex-row space-x-4'>
+                                            {pagination().map((li: any, i: number) => (
+                                                <button className={`${page === li && 'bg-[#e52320] w-6 md:w-8 text-white text-[12px] border-none rounded-sm'} pt-[2px] text-[12px] md:text-lg`} key={i} onClick={() => dispatch(setPage(li))}>{li}</button>
+                                            ))}
+                                        </div>
+                                        <button className={btnStyle} onClick={nextHandle}>
+                                            <span className={spanStyle}>Next</span>
+                                            <KeyboardDoubleArrowRight className={logoStyle} />
+                                        </button>
+                                    </div>
+                                }
+                            </div>
+                            :
+                            <div className='flex w-full justify-center'>
+                                <h1 className='text-xl font-bold'>No Record found...</h1>
                             </div>
                         }
-                    </div>
+                        </>
+                    }
                 </div>
             </Home>
         </div>

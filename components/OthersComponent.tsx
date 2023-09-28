@@ -188,7 +188,6 @@ export default function OthersComponent({ type }: any) {
                         <div className='mt-5 w-full mb-5'>
                             <h1 className='space-x-3 border-b-2 pb-3'><Description className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>Product Information</span></h1>
                         </div>
-
                         <form onSubmit={(e: any) => handleSubmit(e)}>
                             <div className={style.divStyle}>
                                 <h1 className={style.h1Style}>Title <span className='text-[#FF0000]'>*</span></h1>

@@ -57,7 +57,7 @@ export default function Banner() {
   }
 
   return (
-    <div className={`${pathname == '/my-ads' && 'mb-44 md:mb-10'} mb-40 md:mb-10 border-green-400 mt-1 h-[300px]`}>
+    <div className={`${pathname == '/my-ads' && 'mb-44 md:mb-10'} border-green-400 mt-1 h-[300px]`}>
       <div className='container mx-auto'>
         <div className='grid  grid-cols-2 md:grid-cols-3'>
           <div className='flex flex-col w-52' ref={dropdownRef}>
