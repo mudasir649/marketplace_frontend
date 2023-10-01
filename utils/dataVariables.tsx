@@ -173,9 +173,6 @@ export const howContactList = [
     {
         name: 'Viber'
     },
-    {
-        name: 'Email'
-    },
 ]
 
 export const fuelType = [
@@ -471,4 +468,7 @@ export const interiorColor = [
     {
         name: 'Other'
     },
-]
+];
+
+
+export const sortByList = ['A to Z (title)', 'Z to A (title)', 'Price (low to high)', 'Price (high to low)'];

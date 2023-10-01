@@ -5,18 +5,25 @@ details. Both divs are named in comments
 */
 'use client';
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { AccessTime, ArrowBackIos, ArrowForwardIos, Camera, CameraAlt, Cancel, Facebook, FavoriteBorder, Mail, Phone, PhoneInTalk, Place, Share, Twitter, Visibility, WarningAmber, WhatsApp } from '@mui/icons-material';
+import { AccessTime, ArrowBackIos, ArrowForwardIos, Camera, CameraAlt, Cancel, Facebook, Favorite, FavoriteBorder, Mail, Phone, PhoneInTalk, Place, Share, Twitter, Visibility, WarningAmber, WhatsApp } from '@mui/icons-material';
 import Link from 'next/link';
 import MapContainer from '@/components/MapContainer';
 import Home from '@/components/Home';
 import AOS from 'aos'
 import useWindowDimensions from '@/utils/useWindowDimensions';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
+import axios, { AxiosRequestConfig } from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 import './productDetails.css';
 import formatDateTime from '@/utils/checkTime';
+import { refreshPage, setProductId, setShowShare } from '@/store/appSlice';
+
+interface AdFavoriteData {
+  userId: string,
+  adId: string,
+  favorite: Boolean
+}
 
 export default function ProductDetails() {
 
@@ -24,7 +31,12 @@ export default function ProductDetails() {
   const [product, setProduct] = useState<any>();
 
   const { userInfo } = useSelector((state: any) => state.auth);
+  const { refresh } = useSelector((state: any) => state.app);
+  const [fav, setFav] = useState<Boolean>(false);
+  const [clicked, setClicked] = useState(false);
   const userData = userInfo?.data?.userDetails;
+  const router = useRouter();
+  const dispatch = useDispatch();
 
   const [slide, setSlide] = useState(0)
 
@@ -38,10 +50,9 @@ export default function ProductDetails() {
     }
     addView()
     fetchData();
-  }, [id])
+  }, [id, refresh])
 
-  const [currentImage, setCurrentImage] = useState(0)
-  let name: string = product?.name || '';
+  const [currentImage, setCurrentImage] = useState(0);
 
   const [contact, setContact] = React.useState(false);
 
@@ -61,6 +72,13 @@ export default function ProductDetails() {
 
   const newWidth = width || 0;
   const newHeight = height || 0;
+
+  const handleEmail = (email: string) => {
+    if (!clicked) {
+      window.location.href = `mailto:${email}`;
+      setClicked(true);
+    }
+  }
 
   const nextSlide = () => {
     setCurrentImage((prevSlide) => (prevSlide + 1) % product?.images.length);
@@ -87,14 +105,49 @@ export default function ProductDetails() {
     )
   }
 
-  console.log(formatDateTime(product?.createdAt));
+
+  const adFavorite = async (productId: any) => {
+    let data: AdFavoriteData = {
+      userId: userData?._id,
+      adId: productId,
+      favorite: true,
+    }
+    if (userInfo === null) {
+      router.push('/login')
+    } else {
+      if (fav === false) {
+        try {
+          const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/adFavorite`, data);
+          if (res?.status === 201) {
+            setFav(true)
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        const config: AxiosRequestConfig = {
+          data: data
+        }
+        const res = await axios.delete(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/removeFavorite/${product?.favAdId}`, config);
+        if (res?.status === 204) {
+          setFav(false);
+          dispatch(refreshPage(true));
+        }
+      }
+    }
+  }
+
+  const handleShare = (productId: string) => {
+    dispatch(setShowShare(true))
+    dispatch(setProductId(productId))
+  }
 
 
 
   return (
     <>
       <Home>
-        <div className='grid grid-cols-1 lg:grid-cols-3 gap-0 lg:gap-4 grid-flow-rows mx-4 lg:mx-20'>
+        <div className='grid grid-cols-1 lg:grid-cols-3 gap-0 lg:gap-4 grid-flow-rows mx-4 lg:mx-20 mt-10'>
           <div className='col-span-2'>
             {/* <div className={`${newWidth <= 1024 && newHeight <= 885 ? 'md:mx-5' : 'md:mx-10'}  lg:w-[890px] min-h-[800px] mb-5 border rounded-lg bg-white p-5`} data-aos="fade-up"> */}
             <div className={`lg:w-auto min-h-[800px] mb-5 border rounded-lg bg-white p-5`} data-aos="fade-up">
@@ -172,13 +225,10 @@ export default function ProductDetails() {
                     <Visibility className='text-gray-500' /> <span className={listStyle2}>{product?.views} views</span>
                   </div>
                   <div className={listStyle}>
-                    <FavoriteBorder className='text-gray-500' /> <span className={listStyle2}>Add to Favourites</span>
+                    <Favorite className={`${fav ? 'text-[#FF0000]' : 'text-gray-500'}`} onClick={() => adFavorite(product?._id)} /> <span className={listStyle2}>Add to Favourites</span>
                   </div>
                   <div className={listStyle}>
-                    <WarningAmber className='text-gray-500' /> <span className={listStyle2}>Report abuse</span>
-                  </div>
-                  <div className={listStyle}>
-                    <Share className='text-gray-500' /> <span className={listStyle2}>Share this add</span>
+                    <Share className='text-gray-500' onClick={() => handleShare(product?._id)} /> <span className={listStyle2}>Share this add</span>
                     <div className='space-x-2 mt-4'>
                       <Facebook className='text-blue-600 text-3xl' /><Twitter className='text-blue-400 text-3xl' /><WhatsApp className='text-green-400 text-3xl' />
                     </div>
@@ -230,10 +280,10 @@ export default function ProductDetails() {
                     </div>
                   }
                   <div className='border bg-[#FF0000] text-md font-semibold text-white p-2 rounded-md'>
-                    <Link className='flex flex-row justify-center gap-2' href={`mailto:${product?.email}`}>
+                    <a className='flex flex-row justify-center gap-2' onClick={() => handleEmail(product?.email)}>
                       <Mail />
                       <span>Send Email</span>
-                    </Link>
+                    </a>
                   </div>
                 </div>
               </div>

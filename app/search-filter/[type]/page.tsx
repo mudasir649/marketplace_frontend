@@ -44,8 +44,6 @@ export default function Page() {
         fetchBrand()
     }, [page, type, subCategory, dispatch]);
 
-    console.log(brands);
-
 
     return (
         <AdvanceSearch

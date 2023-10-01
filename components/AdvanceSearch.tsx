@@ -11,7 +11,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
-import { conditionList, subList } from '@/utils/dataVariables';
+import { conditionList, sortByList, subList } from '@/utils/dataVariables';
 import { setPage, setProductData, setProductsCount } from '@/store/appSlice';
 import { CircularProgress, createStyles, makeStyles } from '@material-ui/core';
 import { Theme } from '@mui/material';
@@ -52,6 +52,7 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
     // Redux hooks
     const { page, productsCount, productData } = useSelector((state: any) => state.app);
     const [loading, setLoading] = useState<Boolean>(false);
+    const [sortByLoading, setSortByLoading] = useState<Boolean>(false);
     const dispatch = useDispatch();
     const classes = useStyles();
 
@@ -208,6 +209,21 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
         setLoading(false)
     }
 
+    const handleSortBy = async (e: any) => {
+        const { value } = e.target;
+        setSortByLoading(true);
+        try {
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/advance-search-filter?page=${page}&&sortBy=${value}`);
+            dispatch(setProductData(res.data?.data?.ad));
+            dispatch(setProductsCount(res.data?.data?.totalAds));
+            setSortByLoading(false);
+        } catch (error) {
+            setSortByLoading(false);
+            console.log(error);
+        }
+        setSortByLoading(false);
+    }
+
     if (!productData) {
         return <div className="flex justify-center mt-5">
             <Image
@@ -307,34 +323,56 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
                         <>{productData?.length > 0 ?
                             <div className='flex flex-col w-full h-full'>
                                 <div className='flex flex-row justify-between  bg-white border border-[#e52320] mb-3 p-2 pl-5' data-aos="fade-left">
-                                    <h1 className='text-xl font-bold'>{productsCount} Results</h1>
-                                </div>
-                                {productData?.map((product: any, i: number) => (
-                                    <div className='flex flex-row justify-between bg-white border border-gray-300 rounded-sm mb-5' key={i}>
-                                        <div className='bg-blue-500 md:bg-green-500 lg:bg-red-500'>
-                                            <Link href={`/product-details/${product?._id}`}>
-                                                <img className='w-64 h-48' src={product?.images[0]} alt="" />
-                                            </Link>
-                                        </div>
-                                        <div className='space-y-1 p-0 pl-1 md:p-3 w-40 md:w-[500px]'>
-                                            <Link href={`/product-details/${product?._id}`}>
-                                                <h1 className={`${newWidth < 370 ? 'text-[11px]' : 'text-[12px] md:text-lg lg:text-2xl'} font-bold hover:text-[#FF0000]`}>{product?.title}</h1>
-                                            </Link>
-                                            <h2 className={`${newWidth < 370 ? 'text-[9px]' : 'text-[10px] md:text-base'}`}>{product?.category}</h2>
-                                            <h3 className='text-[10px] md:text-base w-[100px] md:w-auto overflow-hidden'>{product?.address}</h3>
-                                            <h1 className={`${newWidth < 370 ? 'text-[9px]' : 'md:text-lg text-[12px]'} text-[#FF0000] font-semibold`}>CHF {product?.price}</h1>
-                                            <h2 className={`${newWidth < 370 ? 'text-[7px]' : 'text-[10px] md:text-sm'} text-gray-500  font-semibold`}>EURO {product?.price * 2.1}</h2>
-                                        </div >
-                                        <div className='pr-1'>
-                                            <ul className={`${newWidth < 370 ? 'space-y-[-8.5px]' : 'space-y-[-7.5px] md:space-y-0 lg:space-y-3'}`}>
-                                                {logo?.map((log: any, i: number) => (
-                                                    <li key={i}>{log.name}</li>
-                                                ))}
-                                            </ul>
-                                        </div>
+                                    <div className=''>
+                                        <h1 className='text-xl font-bold'>{productsCount} Results</h1>
                                     </div>
-
-                                ))}
+                                    <div className=''>
+                                        <select
+                                            className="block appearance-none w-72 bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+                                            name='sort'
+                                            onChange={(e: any) => handleSortBy(e)}
+                                        >
+                                            {sortByList.map((list: any, i: number) => (
+                                                <option className='my-1' value={list} key={i}>{list}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                </div>
+                                {sortByLoading ?
+                                    <>
+                                        <div className={`${classes.root} flex justify-center my-5`}>
+                                            <CircularProgress color="secondary" />
+                                        </div>
+                                    </>
+                                    :
+                                    <>
+                                        {productData?.map((product: any, i: number) => (
+                                            <div className='flex flex-row justify-between bg-white border border-gray-300 rounded-sm mb-5' key={i}>
+                                                <div className='bg-blue-500 md:bg-green-500 lg:bg-red-500'>
+                                                    <Link href={`/product-details/${product?._id}`}>
+                                                        <img className='w-64 h-48' src={product?.images[0]} alt="" />
+                                                    </Link>
+                                                </div>
+                                                <div className='space-y-1 p-0 pl-1 md:p-3 w-40 md:w-[500px]'>
+                                                    <Link href={`/product-details/${product?._id}`}>
+                                                        <h1 className={`${newWidth < 370 ? 'text-[11px]' : 'text-[12px] md:text-lg lg:text-2xl'} font-bold hover:text-[#FF0000]`}>{product?.title}</h1>
+                                                    </Link>
+                                                    <h2 className={`${newWidth < 370 ? 'text-[9px]' : 'text-[10px] md:text-base'}`}>{product?.category}</h2>
+                                                    <h3 className='text-[10px] md:text-base w-[100px] md:w-auto overflow-hidden'>{product?.address}</h3>
+                                                    <h1 className={`${newWidth < 370 ? 'text-[9px]' : 'md:text-lg text-[12px]'} text-[#FF0000] font-semibold`}>CHF {product?.price}</h1>
+                                                    <h2 className={`${newWidth < 370 ? 'text-[7px]' : 'text-[10px] md:text-sm'} text-gray-500  font-semibold`}>EURO {product?.price * 2.1}</h2>
+                                                </div >
+                                                <div className='pr-1'>
+                                                    <ul className={`${newWidth < 370 ? 'space-y-[-8.5px]' : 'space-y-[-7.5px] md:space-y-0 lg:space-y-3'}`}>
+                                                        {logo?.map((log: any, i: number) => (
+                                                            <li key={i}>{log.name}</li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </>
+                                }
                                 {filterData?.length == 0 &&
                                     <div className={`flex flex-row justify-between bg-white h-12 border border-[#e52320] rounded-sm px-5 py-2`} data-aos="fade-up">
                                         <button className={btnStyle} onClick={previousHandle}>

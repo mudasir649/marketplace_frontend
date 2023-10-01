@@ -24,6 +24,7 @@ export default function Header() {
   const [showContact, setShowContact] = useState(false);
   const navbarLiStyle = navbar ? 'cursor-pointer hover:text-[#FF0000]' : 'cursor-pointer hover:p-2 hover:border hover:rounded-md hover:bg-white hover:text-[#FF0000] font-[600] ease-in duration-150';
   const [open, isOpen] = useState<Boolean>(false);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -152,7 +153,7 @@ export default function Header() {
               </div>
             }
             {userInfo !== null ?
-              <><div className="menu-container" onClick={() => isOpen(!open)}>
+              <><div className="menu-container" onClick={() => isOpen(!open)} ref={dropdownRef}>
                 <button className="menu-trigger flex flex-row">
                   {!userData?.image ? <Person2 className="text-3xl text-white" /> :
                     <Image className="h-10 w-10 md:h-11 md:w-11 border-none rounded-full" width={100} height={100} src={userData?.image} alt="profile_image" />

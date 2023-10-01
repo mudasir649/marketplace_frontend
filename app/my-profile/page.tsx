@@ -172,6 +172,12 @@ export default function MyProfile() {
                                 <h1 className='text-md mt-[0.5px] pl-0 md:pl-[15px]'>{userData?.userName}</h1>
                             </div>
                         </div>
+                        <div className='flex flex-col md:flex-row space-x-0 md:space-x-32 space-y-1 md:space-y-0 mb-6'>
+                            <h1 className='text-md font-bold'>Email</h1>
+                            <div>
+                                <h1 className='text-md mt-[0.5px] pl-0 md:pl-[52px]'>{userData?.email}</h1>
+                            </div>
+                        </div>
                         <div className={style.divStyle}>
                             <h1 className={style.h1Style}>First Name</h1>
                             <input type="text" className={style.inputStyle}

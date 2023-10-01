@@ -185,7 +185,7 @@ export default function SpecialCatComponent({ type }: any) {
 
     return (
         <Home>
-            <div className='container mx-auto'>
+            <div className='container mx-auto mt-10'>
                 <div className='border-none rounded-sm bg-white mb-10 h-full p-3'>
                     <div className='container mx-auto'>
                         <h1 className='space-x-3 border-b-2 pb-3'><PlaylistAdd className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>Select Category</span></h1>
