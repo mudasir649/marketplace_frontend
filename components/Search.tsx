@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Category, DirectionsCar, LocationOn, Search, SearchOff } from "@mui/icons-material"
 import useWindowDimensions from "@/utils/useWindowDimensions";
 import "./Search.css";
@@ -18,10 +18,14 @@ export default function SearchPage() {
 
   const [googleLocation, setGoogleLocation] = useState<any>()
   const [showLocation, setShowLocation] = useState<Boolean>(false);
+  const [showMake, setShowMake] = useState<Boolean>(false);
   const [address, setAddress] = useState<string>('');
+  const [make, setMake] = useState<string>('');
+  const [makeData, setMakeData] = useState<any>();
   const [isExpand, setIsExpand] = useState<Boolean>(false);
   const [allCategory, setAllCategory] = useState<string>("");
   const [category, setCategory] = useState<string>("Select category");
+  const dropdownRef = useRef<HTMLDivElement | null>(null)
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -37,8 +41,16 @@ export default function SearchPage() {
     setShowLocation(false);
   }
 
-  // console.log(address + " " + category);
+  const handleMake = async (e: any) => {
+    setShowMake(true)
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/search-make?searchTerm=${e.target.value}`);
+    setMakeData(res.data?.data);
+  }
 
+  const saveMake = async (value: any) => {
+    setMake(value);
+    setShowMake(false)
+  }
 
   const searchFilter = async () => {
     const data = {
@@ -59,19 +71,38 @@ export default function SearchPage() {
     }
   }
 
+  const handleOutsideClick = useCallback(
+    (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setShowLocation(false);
+        setShowMake(false);
+      }
+    },
+    []
+  );
+
+  useEffect(() => {
+    document.addEventListener('click', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+    }
+
+  }, [handleOutsideClick]);
+
   return (
     <>
-      <div className={`bg-white grid grid-cols-1 mt-[-20px] md:mt-10 md:grid-cols-3 lg:grid-cols-3 mx-5 md:mx-10 lg:mx-52 h-auto p-5 gap-2 border-none rounded-md screen-1`}>
+      <div className={`bg-white grid grid-cols-1 mt-[-20px] md:mt-10 md:grid-cols-3 lg:grid-cols-3 mx-5 md:mx-10 lg:mx-52 h-auto p-5 gap-2 border-none rounded-md screen-1`} ref={dropdownRef}>
         <div className='flex flex-col w-full border border-gray-300 rounded-sm'>
           <span className="flex flex-row p-2">
             <LocationOn className="text-[#FF0000]" />
             <input type="text" placeholder='enter your address here' name='address' value={address} onChange={(e: any) => setAddress(e.target.value)} className="focus:outline-none pl-2 w-auto overflow-hidden" onKeyUp={(e: any) => checkPlace(e)} />
           </span>
           <div className="">
-            {address && <div className='border border-gray-300 bg-white absolute z-20 p-2 mt-1 w-[275px]'>
+            {showLocation && address && <div className='border border-gray-300 bg-white absolute z-20 p-2 mt-1 w-[370px]'>
               {
                 showLocation ?
-                  <ul>
+                  <ul className="h-52 overflow-y-scroll">
                     {googleLocation?.map((predict: any, i: any) => (
                       <li className="border-b" key={i} onClick={() => saveLocation(predict?.description)}>{predict?.description}</li>
                     ))}
@@ -93,9 +124,35 @@ export default function SearchPage() {
           </div>
           }
         </div> */}
-        <div className='flex flex-row w-full p-2 border border-gray-300 rounded-sm'>
-          <DirectionsCar className="text-[#FF0000]" />
-          <input type="text" placeholder='enter keyword here...' name='name' className="focus:outline-none pl-2 overflow-hidden" />
+        <div className='flex flex-col w-full p-2 border border-gray-300 rounded-sm'>
+          <span className="flex flex-row">
+            <DirectionsCar className="text-[#FF0000]" />
+            <input type="text" placeholder='enter keyword here...' name='name' className="focus:outline-none pl-2 overflow-hidden" value={make} onChange={(e: any) => setMake(e.target.value)} onKeyUp={(e: any) => handleMake(e)} />
+          </span>
+          <div className="ml-[-9px]">
+            {showMake && <div className='border border-gray-300 bg-white absolute z-20 p-2 mt-3 w-[370px]'>
+              {showMake ?
+                <ul className="h-72 overflow-y-scroll">
+                  {makeData?.map((make: any, i: number) => (
+                    <li className="border-b" key={i} onClick={() => saveMake(make?.make)}>{make?.make}</li>
+                  ))}
+                </ul>
+                :
+                ''
+              }
+              {/* {
+                showLocation ?
+                  <ul>
+                    {googleLocation?.map((predict: any, i: any) => (
+                      <li className="border-b" key={i} onClick={() => saveMake(predict?.description)}>{predict?.description}</li>
+                    ))}
+                  </ul>
+                  :
+                  ''
+              } */}
+            </div>
+            }
+          </div>
         </div>
         <button className='flex flex-row justify-center 
             cursor-pointer w-full p-2 border-none 

@@ -124,13 +124,19 @@ export default function VehicleSubComponent({ type }: any) {
     });
     const [howContact, setHowContact] = useState<string>('Whatsapp');
 
+    console.log(type);
+
+
     useEffect(() => {
         const fetchCategory = async () => {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleCategory/${type}`);
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleSubCategory/${type}`);
             setSubCategory(res.data?.data)
         }
         fetchCategory()
     }, [type]);
+
+    console.log(subCategory);
+
 
     const handleInput = (e: any) => {
         setData({ ...data, [e.target.name]: e.target.value });
@@ -143,6 +149,8 @@ export default function VehicleSubComponent({ type }: any) {
         const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/${type}`);
         setBrands(res.data?.data)
     }
+
+
 
     const handleBrand = (value: any) => {
         isOpenSubBrand(false)
@@ -225,7 +233,7 @@ export default function VehicleSubComponent({ type }: any) {
 
     return (
         <Home>
-            <div className='container mx-auto'>
+            <div className='container mx-auto mt-10'>
                 <div className='border-none rounded-sm bg-white mb-10 h-full p-3'>
                     <div className='container mx-auto'>
                         <h1 className='space-x-3 border-b-2 pb-3'><PlaylistAdd className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>Select Category</span></h1>
@@ -354,7 +362,7 @@ export default function VehicleSubComponent({ type }: any) {
                                                 onClick={() => handleBrand(list)}
                                             >{list}</option>
                                         ))} */}
-                                        {brands[0]?.make?.map((list: any, i: any) => (
+                                        {brands?.make?.map((list: any, i: any) => (
                                             <option className={`hover:bg-red-500 hover:text-white 
                                             ml-1 mb-1 ${list.length - 1 == i ? '' : ' border-b-2'}`}
                                                 key={i}

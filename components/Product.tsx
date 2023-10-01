@@ -23,8 +23,6 @@ export default function Product({ product, url }: any) {
 
   // const { refresh } = useSelector((state: any) => state.app);
 
-  console.log(product)
-
   const pathname = usePathname();
   const dispatch = useDispatch();
 

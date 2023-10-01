@@ -212,7 +212,7 @@ export default function AutosComponent() {
 
     return (
         <Home>
-            <div className='container mx-auto'>
+            <div className='container mx-auto mt-10'>
                 <div className='border-none rounded-sm bg-white mb-10 h-full p-3'>
                     <div className='container mx-auto'>
                         <h1 className='space-x-3 border-b-2 pb-3'><PlaylistAdd className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>Select Category</span></h1>
@@ -595,19 +595,7 @@ export default function AutosComponent() {
                                             <p className='text-gray-400 text-sm mt-1'>Viber number with your country code. e.g.+41xxxxxxxxxx</p>
                                         </div>
                                     </div>
-                                    : howContact == 'Email' ?
-                                        <div className={style.divStyle}>
-                                            <h1 className={style.h1Style}>Email  <span className='text-[#FF0000]'>*</span></h1>
-                                            <div className='flex flex-col w-full'>
-                                                <input type="text" className={style.inputStyle}
-                                                    name='email'
-                                                    value={data.email}
-                                                    onChange={(e: any) => handleInput(e)}
-                                                />
-                                            </div>
-                                        </div>
-                                        :
-                                        ''
+                                    : ''
                             }
                             <div className={style.divStyle}>
                                 <h1 className={style.h1Style}>Website</h1>
