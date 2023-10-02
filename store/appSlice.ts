@@ -1,5 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
+const getProductInitialState = () => {
+    const productData = typeof window !== 'undefined' ? localStorage.getItem('productsData') : null;
+    const productsData = productData ? JSON.parse(productData) : null
+    return productsData;
+}
+
+
+const getProductInitialCount = () => {
+    const productsCount = typeof window !== 'undefined' ? localStorage.getItem('productsCount') : null;
+    return productsCount;
+}
+
+
 const initialState = {
     refresh: false,
     filterData: [],
@@ -8,8 +22,8 @@ const initialState = {
     productId: '',
     showRepairNow: false,
     showDeleteAd: false,
-    productData: null,
-    productsCount: 0,
+    productData: getProductInitialState() !== null ? getProductInitialState() : null,
+    productsCount: getProductInitialCount() !== null ? getProductInitialCount() : 0,
     page: 1
 }
 
@@ -40,10 +54,12 @@ const appSlice = createSlice({
             state.showDeleteAd = actions.payload
         },
         setProductData: (state, actions) => {
-            state.productData = actions.payload
+            state.productData = actions.payload;
+            localStorage.setItem('productsData', JSON.stringify(actions.payload));
         },
         setProductsCount: (state, actions) => {
-            state.productsCount = actions.payload
+            state.productsCount = actions.payload;
+            localStorage.setItem('productsCount', actions.payload);
         },
         setPage: (state, actions) => {
             state.page = actions.payload

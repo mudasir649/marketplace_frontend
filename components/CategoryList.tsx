@@ -1,14 +1,28 @@
+import { setProductData, setProductsCount } from '@/store/appSlice';
 import { partsSubList, subList } from '@/utils/dataVariables';
+import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function CategoryList({ setCategory, setExpand }: any) {
 
+    const { page } = useSelector((state: any) => state.app);
+    const dispatch = useDispatch();
+
     const liStyle = 'hover:text-[#FF0000] border-b border-gray-200';
     const router = useRouter();
-    const handleClick = (value: any) => {
-        setCategory(value);
-        router.push(`/search-filter/${value}`)
+    const handleClick = async (value: any) => {
+        // setCategory(value);
+        try {
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${value}`);
+            dispatch(setProductData(res.data?.data.ad));
+            dispatch(setProductsCount(res.data?.data.totalAds));
+            router.push(`/advance-search/${value}`)
+        } catch (error) {
+
+        }
+        router.push(`/advance-search/${value}`)
         setExpand(false);
     }
     return (

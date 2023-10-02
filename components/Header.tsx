@@ -17,6 +17,8 @@ import ShareLink from "./ShareLink";
 import SellNow from "./SellNow";
 import RepairNow from "./RepairNow";
 import DeleteAd from "./DeleteAd";
+import axios from "axios";
+import { setProductData, setProductsCount } from "@/store/appSlice";
 
 export default function Header() {
 
@@ -30,7 +32,7 @@ export default function Header() {
 
 
   const { userInfo } = useSelector((state: any) => state.auth);
-  const { showShare, showSellNow, showRepairNow, showDeleteAd } = useSelector((state: any) => state.app);
+  const { showShare, showSellNow, showRepairNow, showDeleteAd, page } = useSelector((state: any) => state.app);
 
   const userData = userInfo?.data?.userDetails;
 
@@ -68,6 +70,20 @@ export default function Header() {
   const { width, height } = useWindowDimensions();
   const newWidth = width || 0;
 
+  const handleAdvanceSearch = async (value: any) => {
+    setNavbar(false);
+    try {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}`);
+      if (res.status == 200) {
+        dispatch(setProductData(res.data?.data?.ad));
+        dispatch(setProductsCount(res.data?.data?.totalAds));
+        router.push(`/advance-search/${value}`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
   return (
     <>
@@ -79,10 +95,8 @@ export default function Header() {
                 home
               </Link>
             </li>
-            <li className={navbarLiStyle} >
-              <Link href="/advance-search" onClick={() => setNavbar(false)}>
-                advance search
-              </Link>
+            <li className={navbarLiStyle} onClick={() => handleAdvanceSearch('all')}>
+              advance search
             </li>
             <li className={navbarLiStyle} onClick={handleContact}>contact us</li>
             <li>
@@ -120,10 +134,8 @@ export default function Header() {
                   home
                 </Link>
               </li>
-              <li className={navbarLiStyle}>
-                <Link href="/advance-search">
-                  advance search
-                </Link>
+              <li className={navbarLiStyle} onClick={() => handleAdvanceSearch('all')}>
+                advance search
               </li>
               <li className={navbarLiStyle} onClick={() => (setShowContact(!showContact))}>
                 contact us

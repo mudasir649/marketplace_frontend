@@ -180,8 +180,11 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
         }
     ];
 
-    const handleSearch = (value: any) => {
-        router.push(`/search-filter/${value}`)
+    const handleSearch = async (value: any) => {
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${value}`);
+        dispatch(setProductData(res.data?.data.ad));
+        dispatch(setProductsCount(res.data?.data.totalAds));
+        router.push(`/advance-search/${value}`)
     }
 
     const handleFilterData = (e: any) => {
@@ -201,6 +204,7 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
             const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/advance-search-filter?page=${page}&&condition=${condition}&&brand=${brand}&&minPrice=${minPrice}&&maxPrice=${maxPrice}`);
             dispatch(setProductData(res.data?.data?.ad));
             dispatch(setProductsCount(res.data?.data?.totalAds));
+            router.push(`/advance-search/mainFilter`)
             setLoading(false)
         } catch (error) {
             setLoading(false)
@@ -223,6 +227,9 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
         }
         setSortByLoading(false);
     }
+
+    console.log(productData);
+
 
     if (!productData) {
         return <div className="flex justify-center mt-5">
@@ -262,6 +269,7 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
                                 {conditionList?.map((list: any, i: number) => (
                                     <li key={i}><input type="radio"
                                         name='condition'
+                                        key={i}
                                         value={list?.value}
                                         onChange={(e: any) => handleFilterData(e)}
                                     />  {list?.name}</li>
@@ -373,23 +381,21 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
                                         ))}
                                     </>
                                 }
-                                {filterData?.length == 0 &&
-                                    <div className={`flex flex-row justify-between bg-white h-12 border border-[#e52320] rounded-sm px-5 py-2`} data-aos="fade-up">
-                                        <button className={btnStyle} onClick={previousHandle}>
-                                            <KeyboardDoubleArrowLeft className={logoStyle} />
-                                            <span className={spanStyle}>Previous</span>
-                                        </button>
-                                        <div className='flex flex-row space-x-4'>
-                                            {pagination().map((li: any, i: number) => (
-                                                <button className={`${page === li && 'bg-[#e52320] w-6 md:w-8 text-white text-[12px] border-none rounded-sm'} pt-[2px] text-[12px] md:text-lg`} key={i} onClick={() => dispatch(setPage(li))}>{li}</button>
-                                            ))}
-                                        </div>
-                                        <button className={btnStyle} onClick={nextHandle}>
-                                            <span className={spanStyle}>Next</span>
-                                            <KeyboardDoubleArrowRight className={logoStyle} />
-                                        </button>
+                                <div className={`flex flex-row justify-between bg-white h-12 border border-[#e52320] rounded-sm px-5 py-2`} data-aos="fade-up">
+                                    <button className={btnStyle} onClick={previousHandle}>
+                                        <KeyboardDoubleArrowLeft className={logoStyle} />
+                                        <span className={spanStyle}>Previous</span>
+                                    </button>
+                                    <div className='flex flex-row space-x-4'>
+                                        {pagination().map((li: any, i: number) => (
+                                            <button className={`${page === li && 'bg-[#e52320] w-6 md:w-8 text-white text-[12px] border-none rounded-sm'} pt-[2px] text-[12px] md:text-lg`} key={i} onClick={() => dispatch(setPage(li))}>{li}</button>
+                                        ))}
                                     </div>
-                                }
+                                    <button className={btnStyle} onClick={nextHandle}>
+                                        <span className={spanStyle}>Next</span>
+                                        <KeyboardDoubleArrowRight className={logoStyle} />
+                                    </button>
+                                </div>
                             </div>
                             :
                             <div className='flex w-full justify-center'>
