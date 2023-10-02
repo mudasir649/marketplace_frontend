@@ -6,7 +6,7 @@ import "./Search.css";
 import axios from "axios";
 import CategoryList from "./CategoryList";
 import { useDispatch } from "react-redux";
-import { setFilterData } from "@/store/appSlice";
+import { setFilterData, setProductData, setProductsCount } from "@/store/appSlice";
 import { useRouter } from "next/navigation";
 
 export default function SearchPage() {
@@ -18,12 +18,10 @@ export default function SearchPage() {
 
   const [googleLocation, setGoogleLocation] = useState<any>()
   const [showLocation, setShowLocation] = useState<Boolean>(false);
-  const [showMake, setShowMake] = useState<Boolean>(false);
+  const [showTitle, setShowTitle] = useState<Boolean>(false);
   const [address, setAddress] = useState<string>('');
-  const [make, setMake] = useState<string>('');
-  const [makeData, setMakeData] = useState<any>();
-  const [isExpand, setIsExpand] = useState<Boolean>(false);
-  const [allCategory, setAllCategory] = useState<string>("");
+  const [title, setTitle] = useState<string>('');
+  const [titleData, setTitleData] = useState<any>();
   const [category, setCategory] = useState<string>("Select category");
   const dropdownRef = useRef<HTMLDivElement | null>(null)
   const dispatch = useDispatch();
@@ -41,28 +39,25 @@ export default function SearchPage() {
     setShowLocation(false);
   }
 
-  const handleMake = async (e: any) => {
-    setShowMake(true)
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/search-make?searchTerm=${e.target.value}`);
-    setMakeData(res.data?.data);
+  const handleTitle = async (e: any) => {
+    setShowTitle(true)
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/search-title?searchTerm=${e.target.value}`);
+    setTitleData(res.data?.data);
   }
 
-  const saveMake = async (value: any) => {
-    setMake(value);
-    setShowMake(false)
+  const saveTitle = async (value: any) => {
+    setTitle(value);
+    setShowTitle(false)
   }
 
   const searchFilter = async () => {
-    const data = {
-      address: address,
-      category: category
-    }
     try {
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/searchRecord`, data);
-      console.log(res);
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/searchRecord?address=${address}&title=${title}`);
+      console.log(res.data.data);
 
-      if (res.status === 200) {
-        dispatch(setFilterData(res.data?.data));
+      if (res.status == 200) {
+        dispatch(setProductData(res.data?.data?.ad));
+        dispatch(setProductsCount(res.data?.data?.totalAds));
         router.push('/advance-search')
       }
     }
@@ -75,7 +70,7 @@ export default function SearchPage() {
     (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setShowLocation(false);
-        setShowMake(false);
+        setShowTitle(false);
       }
     },
     []
@@ -114,42 +109,22 @@ export default function SearchPage() {
             }
           </div>
         </div>
-        {/* <div className='flex flex-col w-full border border-gray-300 rounded-sm' onClick={() => setIsExpand(!isExpand)}>
-          <span className="flex flex-row p-2">
-            <Category className="text-[#FF0000]" />
-            <h1 className="ml-2">{category}</h1>
-          </span>
-          {isExpand && <div className="border border-gray-300 bg-white absolute z-10 p-2 mt-11 w-[275px]">
-            <CategoryList setCategory={setCategory} setExpand={setIsExpand} />
-          </div>
-          }
-        </div> */}
         <div className='flex flex-col w-full p-2 border border-gray-300 rounded-sm'>
           <span className="flex flex-row">
             <DirectionsCar className="text-[#FF0000]" />
-            <input type="text" placeholder='enter keyword here...' name='name' className="focus:outline-none pl-2 overflow-hidden" value={make} onChange={(e: any) => setMake(e.target.value)} onKeyUp={(e: any) => handleMake(e)} />
+            <input type="text" placeholder='enter keyword here...' name='name' className="focus:outline-none pl-2 overflow-hidden" value={title} onChange={(e: any) => setTitle(e.target.value)} onKeyUp={(e: any) => handleTitle(e)} />
           </span>
           <div className="ml-[-9px]">
-            {showMake && <div className='border border-gray-300 bg-white absolute z-20 p-2 mt-3 w-[370px]'>
-              {showMake ?
+            {showTitle && <div className='border border-gray-300 bg-white absolute z-20 p-2 mt-3 w-[370px]'>
+              {showTitle ?
                 <ul className="h-72 overflow-y-scroll">
-                  {makeData?.map((make: any, i: number) => (
-                    <li className="border-b" key={i} onClick={() => saveMake(make?.make)}>{make?.make}</li>
+                  {titleData?.map((title: any, i: number) => (
+                    <li className="border-b" key={i} onClick={() => saveTitle(title?.title)}>{title?.title}</li>
                   ))}
                 </ul>
                 :
                 ''
               }
-              {/* {
-                showLocation ?
-                  <ul>
-                    {googleLocation?.map((predict: any, i: any) => (
-                      <li className="border-b" key={i} onClick={() => saveMake(predict?.description)}>{predict?.description}</li>
-                    ))}
-                  </ul>
-                  :
-                  ''
-              } */}
             </div>
             }
           </div>

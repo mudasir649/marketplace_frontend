@@ -66,13 +66,12 @@ export default function SellNow() {
         for (let i = 0; i < images.length; i++) {
             form.append('file', images[i]);
         }
-
         for (const key in data) {
+            console.log(key);
             if (data.hasOwnProperty(key)) {
                 form.append(key, data[key as keyof IData]);
             }
         }
-
         try {
             const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/send-email`, form);
             if (res.status == 200) {
@@ -82,13 +81,12 @@ export default function SellNow() {
         } catch (error) {
             console.log(error);
         }
-
     }
 
 
     return (
         <div className={`fixed inset-0 flex justify-center items-center bg-opacity-100 backdrop-blur-sm z-10 overflow-y-scroll`}>
-            <div className='container mx-10 w-[800px] h-auto mt-12 bg-white shadow-3xl border rounded-lg'>
+            <div className={`${images ? 'mt-32 mb-5' : 'mt-5'} container mx-10 w-[800px] h-auto bg-white shadow-3xl border rounded-lg`}>
                 <div className='flex justify-end'>
                     <button className='text-white text-xl lg:mr-[-30px]' onClick={() => handleSellNow()}>
                         <Cancel className='text-[#FF0000]' />
@@ -106,8 +104,8 @@ export default function SellNow() {
                     <div className="mb-4">
                         <label className="block text-sm font-medium text-gray-600">Full Name</label>
                         <input type="text"
-                            id="fullname"
-                            name="fullname"
+                            id="fullName"
+                            name="fullName"
                             className="w-full border py-2 px-3 focus:outline-none focus:border-red-600"
                             placeholder="John Doe"
                             value={data.fullName}

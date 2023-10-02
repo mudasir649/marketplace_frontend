@@ -20,9 +20,6 @@ export default function Page() {
         fetchData();
     }, [page, dispatch]);
 
-
-    console.log(page);
-
     return (
         <AdvanceSearch />
     )
