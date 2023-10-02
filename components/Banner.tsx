@@ -6,7 +6,9 @@ import SearchPage from './Search';
 import useWindowDimensions from '@/utils/useWindowDimensions';
 import CategoryList from './CategoryList';
 import { usePathname, useRouter } from 'next/navigation';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setProductData, setProductsCount } from '@/store/appSlice';
+import axios from 'axios';
 
 export default function Banner() {
 
@@ -17,6 +19,8 @@ export default function Banner() {
   const pathname = usePathname();
   const dispatch = useDispatch();
   const router = useRouter();
+
+  const { page } = useSelector((state: any) => state.app)
 
   useEffect(() => {
     Aos.init();
@@ -52,8 +56,19 @@ export default function Banner() {
     setIsExpand(!isExpand);
   }
 
-  const handleCat = (value: any) => {
-    router.push(`/search-filter/${value}`)
+  const handleCat = async (value: any) => {
+    try {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${value}`);
+      console.log(res.data.data.ad);
+
+      if (res.status == 200) {
+        dispatch(setProductData(res.data?.data?.ad));
+        dispatch(setProductsCount(res.data?.data?.totalAds));
+        router.push(`/advance-search/${value}`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (

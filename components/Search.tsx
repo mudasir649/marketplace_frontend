@@ -52,13 +52,11 @@ export default function SearchPage() {
 
   const searchFilter = async () => {
     try {
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/searchRecord?address=${address}&title=${title}`);
-      console.log(res.data.data);
-
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?address=${address}&title=${title}`);
       if (res.status == 200) {
         dispatch(setProductData(res.data?.data?.ad));
         dispatch(setProductsCount(res.data?.data?.totalAds));
-        router.push('/advance-search')
+        router.push(`/advance-search/mainFIlter`);
       }
     }
     catch (error) {
