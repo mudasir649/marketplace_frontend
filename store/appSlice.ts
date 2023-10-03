@@ -22,9 +22,15 @@ const initialState = {
     productId: '',
     showRepairNow: false,
     showDeleteAd: false,
-    productData: getProductInitialState() !== null ? getProductInitialState() : null,
-    productsCount: getProductInitialCount() !== null ? getProductInitialCount() : 0,
-    page: 1
+    productData: null,
+    productsCount: 0,
+    // productData: getProductInitialState() !== null ? getProductInitialState() : null,
+    // productsCount: getProductInitialCount() !== null ? getProductInitialCount() : 0,
+    page: 1,
+    sortBy: '',
+    type: '',
+    title:'',
+    address: ''
 }
 
 
@@ -53,16 +59,34 @@ const appSlice = createSlice({
         setShowDeleteAd: (state, actions) => {
             state.showDeleteAd = actions.payload
         },
+        // setProductData: (state, actions) => {
+        //     state.productData = actions.payload;
+        //     localStorage.setItem('productsData', JSON.stringify(actions.payload));
+        // },
+        // setProductsCount: (state, actions) => {
+        //     state.productsCount = actions.payload;
+        //     localStorage.setItem('productsCount', actions.payload);
+        // },
         setProductData: (state, actions) => {
             state.productData = actions.payload;
-            localStorage.setItem('productsData', JSON.stringify(actions.payload));
         },
         setProductsCount: (state, actions) => {
             state.productsCount = actions.payload;
-            localStorage.setItem('productsCount', actions.payload);
         },
         setPage: (state, actions) => {
             state.page = actions.payload
+        },
+        setSortBy: (state, actions) => {
+            state.sortBy = actions.payload
+        },
+        setType: (state, actions) => {
+            state.type = actions.payload;
+        },
+        setReduxTitle: (state, actions) => {
+            state.title = actions.payload
+        },
+        setReduxAddress: (state, actions) => {
+            state.address = actions.payload;
         }
     }
 });
@@ -71,6 +95,8 @@ export const { refreshPage, setFilterData,
                 setShowShare, setProductId, 
                 setShowSellNow, setShowRepairNow, 
                 setShowDeleteAd, setPage,
-                setProductData, setProductsCount } = appSlice.actions;
+                setProductData, setProductsCount, 
+                setSortBy, setType,
+                setReduxTitle, setReduxAddress } = appSlice.actions;
 
 export default appSlice.reducer;
