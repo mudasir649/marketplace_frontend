@@ -5,13 +5,18 @@ import useWindowDimensions from "@/utils/useWindowDimensions";
 import "./Search.css";
 import axios from "axios";
 import CategoryList from "./CategoryList";
-import { useDispatch } from "react-redux";
-import { setFilterData, setProductData, setProductsCount } from "@/store/appSlice";
-import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { setFilterData, setProductData, setProductsCount, setReduxAddress, setReduxTitle } from "@/store/appSlice";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function SearchPage() {
 
   const { width, height } = useWindowDimensions();
+
+  const pathname = usePathname();
+
+  console.log(pathname);
+
 
   const newWidth = width || 0;
   const newHeight = height || 0;
@@ -26,6 +31,8 @@ export default function SearchPage() {
   const dropdownRef = useRef<HTMLDivElement | null>(null)
   const dispatch = useDispatch();
   const router = useRouter();
+
+  const { page, type } = useSelector((state: any) => state.app);
 
   const checkPlace = async (e: any) => {
     setShowLocation(true)
@@ -51,16 +58,21 @@ export default function SearchPage() {
   }
 
   const searchFilter = async () => {
-    try {
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?address=${address}&title=${title}`);
-      if (res.status == 200) {
-        dispatch(setProductData(res.data?.data?.ad));
-        dispatch(setProductsCount(res.data?.data?.totalAds));
-        router.push(`/advance-search/mainFIlter`);
+    if (pathname === `/advance-search/${type}` || pathname == '/advance-search' || pathname == '/advance-search/search') {
+      try {
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address}&title=${title}`);
+        if (res.status == 200) {
+          dispatch(setProductData(res.data?.data?.ad));
+          dispatch(setProductsCount(res.data?.data?.totalAds));
+        }
       }
-    }
-    catch (error) {
-      console.log(error);
+      catch (error) {
+        console.log(error);
+      }
+    } else {
+      dispatch(setReduxTitle(title));
+      dispatch(setReduxAddress(address))
+      router.push('/advance-search/search');
     }
   }
 

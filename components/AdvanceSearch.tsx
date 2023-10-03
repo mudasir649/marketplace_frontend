@@ -3,7 +3,7 @@
 import Home from '@/components/Home';
 import { AirportShuttle, ArrowForward, ArrowForwardIos, BuildCircle, Chat, Circle, DataSaverOn, DirectionsBike, DirectionsBoat, DirectionsBus, DirectionsCar, ExpandLess, ExpandMore, FireTruck, Flight, KeyboardArrowLeft, KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight, PhoneEnabled, PrecisionManufacturing, RemoveRedEye, RvHookup, Search, Share } from '@mui/icons-material';
 import Aos from 'aos';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import ReactStars from "react-stars";
 import useWindowDimensions from '@/utils/useWindowDimensions';
 import axios from 'axios';
@@ -95,6 +95,9 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
         }
     };
 
+    console.log(productsCount);
+
+
 
     const categoryList = [
         {
@@ -119,7 +122,7 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
         },
         {
             logo: <PrecisionManufacturing />,
-            name: "Construction machines",
+            name: "Construction Machine",
             quantity: 74
         },
         {
@@ -181,9 +184,6 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
     ];
 
     const handleSearch = async (value: any) => {
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${value}`);
-        dispatch(setProductData(res.data?.data.ad));
-        dispatch(setProductsCount(res.data?.data.totalAds));
         router.push(`/advance-search/${value}`)
     }
 
@@ -201,10 +201,9 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
         const { brand, condition, minPrice, maxPrice } = filtersData;
         setLoading(true)
         try {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/advance-search-filter?page=${page}&&condition=${condition}&&brand=${brand}&&minPrice=${minPrice}&&maxPrice=${maxPrice}`);
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&&condition=${condition}&&brand=${brand}&&minPrice=${minPrice}&&maxPrice=${maxPrice}`);
             dispatch(setProductData(res.data?.data?.ad));
             dispatch(setProductsCount(res.data?.data?.totalAds));
-            router.push(`/advance-search/mainFilter`)
             setLoading(false)
         } catch (error) {
             setLoading(false)
@@ -213,11 +212,12 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
         setLoading(false)
     }
 
+
     const handleSortBy = async (e: any) => {
         const { value } = e.target;
         setSortByLoading(true);
         try {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/advance-search-filter?page=${page}&&sortBy=${value}`);
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${category}&sortBy=${value}`);
             dispatch(setProductData(res.data?.data?.ad));
             dispatch(setProductsCount(res.data?.data?.totalAds));
             setSortByLoading(false);
@@ -227,9 +227,6 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
         }
         setSortByLoading(false);
     }
-
-    console.log(productData);
-
 
     if (!productData) {
         return <div className="flex justify-center mt-5">
@@ -334,17 +331,20 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
                                     <div className=''>
                                         <h1 className='text-xl font-bold'>{productsCount} Results</h1>
                                     </div>
-                                    <div className=''>
-                                        <select
-                                            className="block appearance-none w-72 bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
-                                            name='sort'
-                                            onChange={(e: any) => handleSortBy(e)}
-                                        >
-                                            {sortByList.map((list: any, i: number) => (
-                                                <option className='my-1' value={list} key={i}>{list}</option>
-                                            ))}
-                                        </select>
-                                    </div>
+                                    {!category ? ''
+                                        :
+                                        <div className=''>
+                                            <select
+                                                className="block appearance-none w-72 bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+                                                name='sort'
+                                                onChange={(e: any) => handleSortBy(e)}
+                                            >
+                                                {sortByList.map((list: any, i: number) => (
+                                                    <option className='my-1' value={list} key={i}>{list}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                    }
                                 </div>
                                 {sortByLoading ?
                                     <>
