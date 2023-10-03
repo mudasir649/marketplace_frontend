@@ -90,7 +90,7 @@ export default function AutosComponent() {
     const id = userData;
 
     const [data, setData] = useState<IData>({
-        category: 'autos',
+        category: 'Autos',
         userId: id,
         title: null || '',
         price: null || '',

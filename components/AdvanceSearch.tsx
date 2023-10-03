@@ -1,18 +1,21 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
 import Home from '@/components/Home';
-import { AirportShuttle, ArrowForward, ArrowForwardIos, BuildCircle, Chat, Circle, DataSaverOn, DirectionsBike, DirectionsBoat, DirectionsBus, DirectionsCar, ExpandLess, ExpandMore, FireTruck, Flight, KeyboardArrowLeft, KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight, PhoneEnabled, PrecisionManufacturing, RemoveRedEye, RvHookup, Search, Share } from '@mui/icons-material';
+import {
+    AirportShuttle, BuildCircle, Chat, DataSaverOn, DirectionsBike, DirectionsBoat, DirectionsBus,
+    DirectionsCar, FireTruck, Flight, KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight, PhoneEnabled,
+    PrecisionManufacturing, RemoveRedEye, RvHookup, Search, Share
+} from '@mui/icons-material';
 import Aos from 'aos';
-import React, { useCallback, useEffect, useState } from 'react';
-import ReactStars from "react-stars";
+import React, { useEffect, useState } from 'react';
 import useWindowDimensions from '@/utils/useWindowDimensions';
 import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { conditionList, sortByList, subList } from '@/utils/dataVariables';
-import { setPage, setProductData, setProductsCount } from '@/store/appSlice';
+import { setPage } from '@/store/appSlice';
 import { CircularProgress, createStyles, makeStyles } from '@material-ui/core';
 import { Theme } from '@mui/material';
 
@@ -47,12 +50,13 @@ interface IRating {
 }
 
 
-export default function AdvanceSearch({ category, subCategory, brands }: any) {
+export default function AdvanceSearch({ category, subCategory, brands, productsCount, productData, setProductData, setProductsCount }: any) {
 
     // Redux hooks
-    const { page, productsCount, productData } = useSelector((state: any) => state.app);
+    const { page, address, title } = useSelector((state: any) => state.app);
     const [loading, setLoading] = useState<Boolean>(false);
     const [sortByLoading, setSortByLoading] = useState<Boolean>(false);
+    const pathname = usePathname();
     const dispatch = useDispatch();
     const classes = useStyles();
 
@@ -184,6 +188,7 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
     ];
 
     const handleSearch = async (value: any) => {
+        dispatch(setPage(1))
         router.push(`/advance-search/${value}`)
     }
 
@@ -199,15 +204,27 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
 
     async function applyFilter() {
         const { brand, condition, minPrice, maxPrice } = filtersData;
-        setLoading(true)
-        try {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&&condition=${condition}&&brand=${brand}&&minPrice=${minPrice}&&maxPrice=${maxPrice}`);
-            dispatch(setProductData(res.data?.data?.ad));
-            dispatch(setProductsCount(res.data?.data?.totalAds));
-            setLoading(false)
-        } catch (error) {
-            setLoading(false)
-            console.log(error);
+        setLoading(true);
+        if (pathname == '/advance-search/search') {
+            try {
+                const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address}&title=${title}&minPrice=${minPrice}&maxPrice=${maxPrice}`);
+                setProductData(res.data?.data?.ad);
+                setProductsCount(res.data?.data?.totalAds);
+                setLoading(false)
+            } catch (error) {
+                setLoading(false)
+                console.log(error);
+            }
+        } else {
+            try {
+                const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${category}&condition=${condition}&brand=${brand}&minPrice=${minPrice}&maxPrice=${maxPrice}`);
+                setProductData(res.data?.data?.ad);
+                setProductsCount(res.data?.data?.totalAds);
+                setLoading(false)
+            } catch (error) {
+                setLoading(false)
+                console.log(error);
+            }
         }
         setLoading(false)
     }
@@ -218,8 +235,8 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
         setSortByLoading(true);
         try {
             const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${category}&sortBy=${value}`);
-            dispatch(setProductData(res.data?.data?.ad));
-            dispatch(setProductsCount(res.data?.data?.totalAds));
+            setProductData(res.data?.data?.ad);
+            setProductsCount(res.data?.data?.totalAds);
             setSortByLoading(false);
         } catch (error) {
             setSortByLoading(false);
@@ -381,7 +398,7 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
                                         ))}
                                     </>
                                 }
-                                <div className={`flex flex-row justify-between bg-white h-12 border border-[#e52320] rounded-sm px-5 py-2`} data-aos="fade-up">
+                                <div className={`flex flex-row justify-between bg-white h-12 border border-[#e52320] rounded-sm px-5 py-2`}>
                                     <button className={btnStyle} onClick={previousHandle}>
                                         <KeyboardDoubleArrowLeft className={logoStyle} />
                                         <span className={spanStyle}>Previous</span>

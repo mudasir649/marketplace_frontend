@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
 import AdvanceSearch from "@/components/AdvanceSearch"
-import { setProductData, setProductsCount, setType } from "@/store/appSlice";
+import { setType } from "@/store/appSlice";
 import productData from "@/utils/data";
 import axios from "axios";
 import { useParams, usePathname } from "next/navigation";
@@ -10,13 +10,13 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function Page() {
 
-    const { productData, productsCount } = useSelector((state: any) => state.app);
     const { type } = useParams();
 
     const { page } = useSelector((state: any) => state.app);
     const dispatch = useDispatch();
     const [brands, setBrands] = useState<string>("");
-
+    const [productData, setProductData] = useState<any>()
+    const [productsCount, setProductsCount] = useState<number>(0);
 
     const subCategory = type == 'Bicycles' ? 'Bicycles' :
         type == 'E-scooter' ? 'E-scooter' :
@@ -29,15 +29,15 @@ export default function Page() {
         if (!subCategory) {
             const fetchData = async () => {
                 const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${checkType}`);
-                dispatch(setProductData(res.data?.data.ad));
-                dispatch(setProductsCount(res.data?.data.totalAds));
+                setProductData(res.data?.data.ad);
+                setProductsCount(res.data?.data.totalAds);
             }
             fetchData()
         } else {
             const fetchData = async () => {
                 const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&subCategory=${type}`);
-                dispatch(setProductData(res.data?.data.ad));
-                dispatch(setProductsCount(res.data?.data.totalAds));
+                setProductData(res.data?.data.ad);
+                setProductsCount(res.data?.data.totalAds);
             }
             fetchData()
         }
@@ -52,6 +52,6 @@ export default function Page() {
     }, [type, dispatch, page, subCategory, checkType]);
 
     return (
-        <AdvanceSearch category={checkType} subCategory={subCategory} brands={brands} />
+        <AdvanceSearch setProductData={setProductData} setProductsCount={setProductsCount} productData={productData} productsCount={productsCount} category={checkType} subCategory={subCategory} brands={brands} />
     )
 }

@@ -58,22 +58,25 @@ export default function SearchPage() {
   }
 
   const searchFilter = async () => {
-    if (pathname === `/advance-search/${type}` || pathname == '/advance-search' || pathname == '/advance-search/search') {
-      try {
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address}&title=${title}`);
-        if (res.status == 200) {
-          dispatch(setProductData(res.data?.data?.ad));
-          dispatch(setProductsCount(res.data?.data?.totalAds));
-        }
-      }
-      catch (error) {
-        console.log(error);
-      }
-    } else {
-      dispatch(setReduxTitle(title));
-      dispatch(setReduxAddress(address))
-      router.push('/advance-search/search');
-    }
+    dispatch(setReduxTitle(title));
+    dispatch(setReduxAddress(address))
+    router.push('/advance-search/search');
+    // if (pathname === `/advance-search/${type}` || pathname == '/advance-search' || pathname == '/advance-search/search') {
+    //   try {
+    //     const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address}&title=${title}`);
+    //     if (res.status == 200) {
+    //       dispatch(setProductData(res.data?.data?.ad));
+    //       dispatch(setProductsCount(res.data?.data?.totalAds));
+    //     }
+    //   }
+    //   catch (error) {
+    //     console.log(error);
+    //   }
+    // } else {
+    //   dispatch(setReduxTitle(title));
+    //   dispatch(setReduxAddress(address))
+    //   router.push('/advance-search/search');
+    // }
   }
 
   const handleOutsideClick = useCallback(
