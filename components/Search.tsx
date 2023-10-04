@@ -15,9 +15,6 @@ export default function SearchPage() {
 
   const pathname = usePathname();
 
-  console.log(pathname);
-
-
   const newWidth = width || 0;
   const newHeight = height || 0;
 
@@ -27,7 +24,6 @@ export default function SearchPage() {
   const [address, setAddress] = useState<string>('');
   const [title, setTitle] = useState<string>('');
   const [titleData, setTitleData] = useState<any>();
-  const [category, setCategory] = useState<string>("Select category");
   const dropdownRef = useRef<HTMLDivElement | null>(null)
   const dispatch = useDispatch();
   const router = useRouter();
@@ -61,22 +57,6 @@ export default function SearchPage() {
     dispatch(setReduxTitle(title));
     dispatch(setReduxAddress(address))
     router.push('/advance-search/search');
-    // if (pathname === `/advance-search/${type}` || pathname == '/advance-search' || pathname == '/advance-search/search') {
-    //   try {
-    //     const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address}&title=${title}`);
-    //     if (res.status == 200) {
-    //       dispatch(setProductData(res.data?.data?.ad));
-    //       dispatch(setProductsCount(res.data?.data?.totalAds));
-    //     }
-    //   }
-    //   catch (error) {
-    //     console.log(error);
-    //   }
-    // } else {
-    //   dispatch(setReduxTitle(title));
-    //   dispatch(setReduxAddress(address))
-    //   router.push('/advance-search/search');
-    // }
   }
 
   const handleOutsideClick = useCallback(

@@ -67,7 +67,6 @@ export default function SellNow() {
             form.append('file', images[i]);
         }
         for (const key in data) {
-            console.log(key);
             if (data.hasOwnProperty(key)) {
                 form.append(key, data[key as keyof IData]);
             }

@@ -20,9 +20,6 @@ export default function Addtype() {
 
     const pathname = usePathname();
 
-    console.log(pathname);
-
-
     useEffect(() => {
         if (userData === null) {
             router.push('/')

@@ -14,6 +14,7 @@ import { CircularProgress } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/core';
 import { Theme } from '@mui/material';
 import { useSelector } from 'react-redux';
+import locateAddress from '@/utils/GoogleLocation';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -53,11 +54,8 @@ interface IData {
     viber: any,
     email: any,
     year: any,
-}
-
-interface ILocation {
-    lat: Number,
-    long: Number,
+    latitude: any,
+    longitude: any
 }
 
 export default function OthersComponent({ type }: any) {
@@ -94,6 +92,8 @@ export default function OthersComponent({ type }: any) {
         viber: null || '',
         email: null || '',
         year: null || '',
+        latitude: null || '',
+        longitude: null || ''
     });
     const [howContact, setHowContact] = useState<string>('Whatsapp');
 
@@ -159,7 +159,14 @@ export default function OthersComponent({ type }: any) {
 
     const saveLocation = (value: any) => {
         setData({ ...data, ['address']: value });
+        locateAddress(process.env.NEXT_PUBLIC_GOOGLE_MAP_API, data.address).then((location: any) => {
+            setData({ ...data, ['latitude']: location.lat, ['longitude']: location.long });
+        })
         setShowLocation(false);
+    }
+
+    const handleLocation = (e: any) => {
+        setData({ ...data, ['address']: e.target.value });
     }
 
     useEffect(() => {
@@ -364,7 +371,10 @@ export default function OthersComponent({ type }: any) {
                             <div className={style.divStyle}>
                                 <h1 className={style.h1Style}>Location</h1>
                                 <div className='flex flex-col w-full'>
-                                    <input required className={style.inputStyle} type="text" placeholder='enter your address here' name='name' value={data?.address} onChange={(e) => setData({ ...data, ['address']: e.target.value })} onKeyUp={(e: any) => checkPlace(e)} />
+                                    <input required className={style.inputStyle} type="text"
+                                        placeholder='enter your address here' name='name'
+                                        value={data?.address} onChange={(e) => handleLocation(e)}
+                                        onKeyUp={(e: any) => checkPlace(e)} />
                                     {showLocation ?
                                         <ul className='border border-gray-100 mt-1 space-y-2'>
                                             {googleLocation?.map((predict: any, i: any) => (

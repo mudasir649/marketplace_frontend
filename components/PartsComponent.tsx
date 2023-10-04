@@ -3,17 +3,16 @@ import Home from '@/components/Home';
 import { ArrowForwardIos, Cancel, Description, ExpandMore, Image, InsertLink, Person, PlaylistAdd } from '@mui/icons-material';
 import axios from 'axios';
 import Link from 'next/link';
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { bodyShape, conditionList, exteriorColor, fuelType, gearBox, howContactList, interiorColor, priceList } from '@/utils/dataVariables';
-import { carsList } from '@/utils/carsList';
+import { conditionList, howContactList, priceList } from '@/utils/dataVariables';
 import "../app/post-ad/post-ad.css"
-import { bikesList } from '@/utils/bikesList';
 import { CircularProgress } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/core';
 import { Theme } from '@mui/material';
 import { useSelector } from 'react-redux';
+import locateAddress from '@/utils/GoogleLocation';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -54,12 +53,10 @@ interface IData {
     viber: any,
     email: any,
     year: any,
+    latitude: any,
+    longitude: any
 }
 
-interface ILocation {
-    lat: Number,
-    long: Number,
-}
 
 export default function PartsComponent({ type }: any) {
     const { userInfo } = useSelector((state: any) => state.auth);
@@ -67,22 +64,13 @@ export default function PartsComponent({ type }: any) {
     const classes = useStyles()
     const [open, isOpen] = useState<Boolean>(false);
     const [openSub, isOpenSub] = useState<Boolean>(false);
-    const [openBrand, isOpenBrand] = useState<Boolean>(false);
-    const [openSubModel, isOpenSubModel] = useState<Boolean>(false);
-    const [openModel, isOpenModel] = useState<Boolean>(false);
-    const [openSubBrand, isOpenSubBrand] = useState<Boolean>(false);
     const [images, setImages] = useState<any>([]);
     const [loading, setLoading] = useState<Boolean>(false);
     const [priceListValue, setPriceListValue] = useState<string>('price');
-    const [models, setModels] = useState<any>([]);
-    const [brands, setBrands] = useState<any>([]);
     const [googleLocation, setGoogleLocation] = useState<any>(null);
     const [showLocation, setShowLocation] = useState<Boolean>(false);
     let router = useRouter();
     const id = userData;
-
-    console.log("parts component", type);
-
 
     const [data, setData] = useState<IData>({
         category: 'Parts',
@@ -114,6 +102,8 @@ export default function PartsComponent({ type }: any) {
         viber: null || '',
         email: null || '',
         year: null || '',
+        latitude: null || '',
+        longitude: null || ''
     });
     const [howContact, setHowContact] = useState<string>('Whatsapp');
 
@@ -179,7 +169,14 @@ export default function PartsComponent({ type }: any) {
 
     const saveLocation = (value: any) => {
         setData({ ...data, ['address']: value });
+        locateAddress(process.env.NEXT_PUBLIC_GOOGLE_MAP_API, data.address).then((location: any) => {
+            setData({ ...data, ['latitude']: location.lat, ['longitude']: location.long });
+        })
         setShowLocation(false);
+    }
+
+    const handleLocation = (e: any) => {
+        setData({ ...data, ['address']: e.target.value });
     }
 
     useEffect(() => {
@@ -355,7 +352,11 @@ export default function PartsComponent({ type }: any) {
                             <div className={style.divStyle}>
                                 <h1 className={style.h1Style}>Location</h1>
                                 <div className='flex flex-col w-full'>
-                                    <input required className={style.inputStyle} type="text" placeholder='enter your address here' name='name' value={data?.address} onChange={(e) => setData({ ...data, ['address']: e.target.value })} onKeyUp={(e: any) => checkPlace(e)} />
+                                    <input required className={style.inputStyle} type="text"
+                                        placeholder='enter your address here' name='name'
+                                        value={data?.address}
+                                        onChange={(e) => handleLocation(e)}
+                                        onKeyUp={(e: any) => checkPlace(e)} />
                                     {showLocation ?
                                         <ul className='border border-gray-100 mt-1 space-y-2'>
                                             {googleLocation?.map((predict: any, i: any) => (
@@ -420,19 +421,7 @@ export default function PartsComponent({ type }: any) {
                                             <p className='text-gray-400 text-sm mt-1'>Viber number with your country code. e.g.+41xxxxxxxxxx</p>
                                         </div>
                                     </div>
-                                    : howContact == 'Email' ?
-                                        <div className={style.divStyle}>
-                                            <h1 className={style.h1Style}>Email  <span className='text-[#FF0000]'>*</span></h1>
-                                            <div className='flex flex-col w-full'>
-                                                <input type="text" className={style.inputStyle}
-                                                    name='email'
-                                                    value={data.email}
-                                                    onChange={(e: any) => handleInput(e)}
-                                                />
-                                            </div>
-                                        </div>
-                                        :
-                                        ''
+                                    : ''
                             }
                             <div className={style.divStyle}>
                                 <h1 className={style.h1Style}>Website</h1>
