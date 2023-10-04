@@ -170,10 +170,10 @@ export default function SpecialCatComponent({ type }: any) {
 
     const saveLocation = (value: any) => {
         setData({ ...data, ['address']: value });
-        locateAddress(process.env.NEXT_PUBLIC_GOOGLE_MAP_API, data.address).then((location: any) => {
+        setShowLocation(false);
+        locateAddress(process.env.NEXT_PUBLIC_GOOGLE_MAP_API, value).then((location: any) => {
             setData({ ...data, ['latitude']: location.lat, ['longitude']: location.long });
         })
-        setShowLocation(false);
     }
 
     const handleLocation = (e: any) => {

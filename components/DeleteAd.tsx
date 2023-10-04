@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 export default function DeleteAd() {
 
 
-    const { productId } = useSelector((state: any) => state.app);
+    const { productId, refresh } = useSelector((state: any) => state.app);
 
     const dispatch = useDispatch();
 
@@ -19,7 +19,7 @@ export default function DeleteAd() {
         try {
             const res = await axios.delete(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/deleteAd/${productId}`);
             if (res.status === 204) {
-                dispatch(refreshPage(true));
+                dispatch(refreshPage(refresh + 1));
                 dispatch(setShowDeleteAd(false));
             }
         } catch (error) {

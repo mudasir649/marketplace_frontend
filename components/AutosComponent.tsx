@@ -195,11 +195,10 @@ export default function AutosComponent() {
     }
 
     const saveLocation = (value: any) => {
-        setData({ ...data, ['address']: value });
-        setShowLocation(false);
         locateAddress(process.env.NEXT_PUBLIC_GOOGLE_MAP_API, value).then((location: any) => {
-            setData({ ...data, ['latitude']: location.lat, ['longitude']: location.long });
+            setData({ ...data, ['address']: value, ['latitude']: location.lat, ['longitude']: location.long });
         })
+        setShowLocation(false);
     }
 
     const handleLocation = (e: any) => {
@@ -513,7 +512,7 @@ export default function AutosComponent() {
                                     <input required className={style.inputStyle} type="text"
                                         placeholder='enter your address here'
                                         name='name' value={data?.address}
-                                        onChange={(e: any) => setData({ ...data, ['address']: e.target.value })} onKeyUp={(e: any) => checkPlace(e)} />
+                                        onChange={(e: any) => handleLocation(e)} onKeyUp={(e: any) => checkPlace(e)} />
                                     {showLocation ?
                                         <ul className='border border-gray-100 mt-1 space-y-2'>
                                             {googleLocation?.map((predict: any, i: any) => (

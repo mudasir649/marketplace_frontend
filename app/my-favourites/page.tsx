@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 export default function Favorite() {
     const [favAds, setFavAds] = useState<any>();
     const { userInfo } = useSelector((state: any) => state.auth);
+    const { refresh } = useSelector((state: any) => state.app);
     const userId = userInfo?.data?.userDetails?._id;
     const router = useRouter();
 
@@ -21,7 +22,7 @@ export default function Favorite() {
             }
         }
         fetchAds()
-    }, [userId])
+    }, [userId, refresh])
 
     useEffect(() => {
         if (userInfo === null) {
@@ -42,7 +43,7 @@ export default function Favorite() {
 
     return (
         <Home>
-            <div className='container mx-auto'>
+            <div className='container mx-auto mt-10'>
                 <ProductList productList={favAds} />
             </div>
         </Home>

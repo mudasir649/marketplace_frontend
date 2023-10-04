@@ -27,6 +27,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning={true}>
       <Head>
         <link rel="icon" href="/favicon.ico" sizes='any' />
+        <title>Eidcarosse.ch</title>
       </Head>
       <body className={`${inter.className}`}>
         <Provider store={store}>

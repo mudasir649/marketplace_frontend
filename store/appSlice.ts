@@ -15,7 +15,7 @@ const getProductInitialCount = () => {
 
 
 const initialState = {
-    refresh: false,
+    refresh: 0,
     filterData: [],
     showShare: false,
     showSellNow: false,
