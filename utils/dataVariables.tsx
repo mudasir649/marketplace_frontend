@@ -137,11 +137,6 @@ export const priceList = [
         value: 'price'
     },
     {
-        id: '2',
-        name: 'Price Range',
-        value: 'priceRange'
-    },
-    {
         id: '3',
         name: 'Disabled',
         value: 'disabled'

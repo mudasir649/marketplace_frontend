@@ -14,6 +14,7 @@ import { CircularProgress } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/core';
 import { Theme } from '@mui/material';
 import { useSelector } from 'react-redux';
+import locateAddress from '@/utils/GoogleLocation';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -60,12 +61,9 @@ interface IData {
     interiorColor: any,
     engineCapacity: any,
     cylinder: any,
-    km: any
-}
-
-interface ILocation {
-    lat: Number,
-    long: Number,
+    km: any,
+    latitude: any,
+    longitude: any
 }
 
 export default function AutosComponent() {
@@ -75,10 +73,6 @@ export default function AutosComponent() {
     const classes = useStyles()
     const [open, isOpen] = useState<Boolean>(false);
     const [openSub, isOpenSub] = useState<Boolean>(false);
-    const [openBrand, isOpenBrand] = useState<Boolean>(false);
-    const [openSubModel, isOpenSubModel] = useState<Boolean>(false);
-    const [openModel, isOpenModel] = useState<Boolean>(false);
-    const [openSubBrand, isOpenSubBrand] = useState<Boolean>(false);
     const [images, setImages] = useState<any>([]);
     const [loading, setLoading] = useState<Boolean>(false);
     const [priceListValue, setPriceListValue] = useState<string>('price');
@@ -116,7 +110,9 @@ export default function AutosComponent() {
         interiorColor: null || '',
         engineCapacity: null || '',
         cylinder: null || '',
-        km: null || ''
+        km: null || '',
+        latitude: null || '',
+        longitude: null || ''
     });
     const [howContact, setHowContact] = useState<string>('Whatsapp');
 
@@ -201,7 +197,15 @@ export default function AutosComponent() {
     const saveLocation = (value: any) => {
         setData({ ...data, ['address']: value });
         setShowLocation(false);
+        locateAddress(process.env.NEXT_PUBLIC_GOOGLE_MAP_API, value).then((location: any) => {
+            setData({ ...data, ['latitude']: location.lat, ['longitude']: location.long });
+        })
     }
+
+    const handleLocation = (e: any) => {
+        setData({ ...data, ['address']: e.target.value });
+    }
+
 
     useEffect(() => {
         if (userData === null) {
@@ -266,31 +270,7 @@ export default function AutosComponent() {
                                         />
                                     </div>
                                 </div>
-                                :
-                                priceListValue === 'priceRange' ?
-                                    <div className='flex flex-col md:flex-row my-5 space-y-2 md:space-y-0 md:space-x-2'>
-                                        <div className='w-full flex flex-row'>
-                                            <h1 className='text-md font-bold  w-80 lg:w-64 mt-1'>Min Pirce {`[CHF]`}<span className='text-[#FF0000]'>*</span></h1>
-                                            <input type="text" className={style.inputStyle}
-                                                name='minPrice'
-                                                value={data?.minPrice}
-                                                onChange={(e: any) => handleInput(e)}
-                                                required
-                                            />
-                                        </div>
-                                        <div className='w-full flex flex-row'>
-                                            <h1 className='text-md font-bold w-72 lg:w-64 mt-1'>Max Pirce {`[CHF]`}<span className='text-[#FF0000]'>*</span></h1>
-                                            <input type="text"
-                                                className={style.inputStyle}
-                                                name='maxPrice'
-                                                value={data?.maxPrice}
-                                                onChange={(e: any) => handleInput(e)}
-                                                required
-                                            />
-                                        </div>
-                                    </div>
-                                    :
-                                    ''
+                                : ''
                             }
                             <div className={style.divStyle}>
                                 <h1 className={style.h1Style}>Condition <span className='text-[#FF0000]'>*</span></h1>
@@ -313,7 +293,7 @@ export default function AutosComponent() {
                                     name='brand'
                                     onChange={(e: any) => handleInput(e)}
                                 >
-                                    <option value="option1">Select Model</option>
+                                    <option value="option1">Select Brand</option>
                                     {brands?.make?.map((brand: any, i: number) => (
                                         <option value={brand} key={i}>{brand}</option>
                                     ))}
@@ -353,7 +333,7 @@ export default function AutosComponent() {
                                         name='bodyShape'
                                         onChange={(e: any) => handleInput(e)}
                                     >
-                                        <option value="option1">Select Model</option>
+                                        <option value="option1">Select Body Shape</option>
                                         {bodyShape?.map((body: any, i: number) => (
                                             <option value={body.name} key={i}>{body.name}</option>
                                         ))}
@@ -437,7 +417,7 @@ export default function AutosComponent() {
                                         name='exteriorColor'
                                         onChange={(e: any) => handleInput(e)}
                                     >
-                                        <option value="option1">Select Model</option>
+                                        <option value="option1">Select Exterior Color</option>
                                         {exteriorColor.map((color: any, i: number) => (
                                             <option value={color?.name} key={i}>{color?.name}</option>
                                         ))}
@@ -452,7 +432,7 @@ export default function AutosComponent() {
                                         name='interiorColor'
                                         onChange={(e: any) => handleInput(e)}
                                     >
-                                        <option value="option1">Select Model</option>
+                                        <option value="option1">Select Interior Color</option>
                                         {interiorColor.map((color: any, i: number) => (
                                             <option value={color?.name} key={i}>{color?.name}</option>
                                         ))}
@@ -530,7 +510,10 @@ export default function AutosComponent() {
                             <div className={style.divStyle}>
                                 <h1 className={style.h1Style}>Location</h1>
                                 <div className='flex flex-col w-full'>
-                                    <input required className={style.inputStyle} type="text" placeholder='enter your address here' name='name' value={data?.address} onChange={(e) => setData({ ...data, ['address']: e.target.value })} onKeyUp={(e: any) => checkPlace(e)} />
+                                    <input required className={style.inputStyle} type="text"
+                                        placeholder='enter your address here'
+                                        name='name' value={data?.address}
+                                        onChange={(e: any) => setData({ ...data, ['address']: e.target.value })} onKeyUp={(e: any) => checkPlace(e)} />
                                     {showLocation ?
                                         <ul className='border border-gray-100 mt-1 space-y-2'>
                                             {googleLocation?.map((predict: any, i: any) => (

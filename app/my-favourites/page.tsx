@@ -23,9 +23,6 @@ export default function Favorite() {
         fetchAds()
     }, [userId])
 
-    console.log(favAds);
-
-
     useEffect(() => {
         if (userInfo === null) {
             router.push('/');

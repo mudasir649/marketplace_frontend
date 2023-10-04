@@ -3,17 +3,16 @@ import Home from '@/components/Home';
 import { ArrowForwardIos, Cancel, Description, ExpandMore, Image, InsertLink, Person, PlaylistAdd } from '@mui/icons-material';
 import axios from 'axios';
 import Link from 'next/link';
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { bodyShape, conditionList, exteriorColor, fuelType, gearBox, howContactList, interiorColor, priceList } from '@/utils/dataVariables';
-import { carsList } from '@/utils/carsList';
+import { conditionList, howContactList, priceList } from '@/utils/dataVariables';
 import "../app/post-ad/post-ad.css"
-import { bikesList } from '@/utils/bikesList';
 import { CircularProgress } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/core';
 import { Theme } from '@mui/material';
 import { useSelector } from 'react-redux';
+import locateAddress from '@/utils/GoogleLocation';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -53,11 +52,8 @@ interface IData {
     viber: any,
     email: any,
     year: any,
-}
-
-interface ILocation {
-    lat: Number,
-    long: Number,
+    latitude: any,
+    longitude: any
 }
 
 export default function SpecialCatComponent({ type }: any) {
@@ -99,6 +95,8 @@ export default function SpecialCatComponent({ type }: any) {
         viber: null || '',
         email: null || '',
         year: null || '',
+        latitude: null || '',
+        longitude: null || ''
     });
     const [howContact, setHowContact] = useState<string>('Whatsapp');
 
@@ -136,8 +134,6 @@ export default function SpecialCatComponent({ type }: any) {
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
-        console.log(data);
-        return;
         setLoading(true)
         const formData = new FormData()
 
@@ -174,7 +170,14 @@ export default function SpecialCatComponent({ type }: any) {
 
     const saveLocation = (value: any) => {
         setData({ ...data, ['address']: value });
+        locateAddress(process.env.NEXT_PUBLIC_GOOGLE_MAP_API, data.address).then((location: any) => {
+            setData({ ...data, ['latitude']: location.lat, ['longitude']: location.long });
+        })
         setShowLocation(false);
+    }
+
+    const handleLocation = (e: any) => {
+        setData({ ...data, ['address']: e.target.value });
     }
 
     useEffect(() => {
@@ -426,7 +429,11 @@ export default function SpecialCatComponent({ type }: any) {
                             <div className={style.divStyle}>
                                 <h1 className={style.h1Style}>Location</h1>
                                 <div className='flex flex-col w-full'>
-                                    <input required className={style.inputStyle} type="text" placeholder='enter your address here' name='name' value={data?.address} onChange={(e) => setData({ ...data, ['address']: e.target.value })} onKeyUp={(e: any) => checkPlace(e)} />
+                                    <input required className={style.inputStyle}
+                                        type="text" placeholder='enter your address here'
+                                        name='name' value={data?.address}
+                                        onChange={(e) => handleLocation(e)}
+                                        onKeyUp={(e: any) => checkPlace(e)} />
                                     {showLocation ?
                                         <ul className='border border-gray-100 mt-1 space-y-2'>
                                             {googleLocation?.map((predict: any, i: any) => (

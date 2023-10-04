@@ -59,8 +59,6 @@ export default function Banner() {
   const handleCat = async (value: any) => {
     try {
       const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${value}`);
-      console.log(res.data.data.ad);
-
       if (res.status == 200) {
         dispatch(setProductData(res.data?.data?.ad));
         dispatch(setProductsCount(res.data?.data?.totalAds));

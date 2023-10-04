@@ -14,6 +14,7 @@ import { CircularProgress } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/core';
 import { Theme } from '@mui/material';
 import { useSelector } from 'react-redux';
+import locateAddress from '@/utils/GoogleLocation';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -62,14 +63,10 @@ interface IData {
     engineCapacity: any,
     cylinder: any,
     km: any,
-    axeltype: any
+    axeltype: any,
+    latitude: any,
+    longitude: any
 }
-
-interface ILocation {
-    lat: Number,
-    long: Number,
-}
-
 
 export default function VehicleSubComponent({ type }: any) {
     const { userInfo } = useSelector((state: any) => state.auth);
@@ -120,12 +117,11 @@ export default function VehicleSubComponent({ type }: any) {
         engineCapacity: null || '',
         cylinder: null || '',
         km: null || '',
-        axeltype: null || ''
+        axeltype: null || '',
+        latitude: null || '',
+        longitude: null || ''
     });
     const [howContact, setHowContact] = useState<string>('Whatsapp');
-
-    console.log(type);
-
 
     useEffect(() => {
         const fetchCategory = async () => {
@@ -134,9 +130,6 @@ export default function VehicleSubComponent({ type }: any) {
         }
         fetchCategory()
     }, [type]);
-
-    console.log(subCategory);
-
 
     const handleInput = (e: any) => {
         setData({ ...data, [e.target.name]: e.target.value });
@@ -221,7 +214,14 @@ export default function VehicleSubComponent({ type }: any) {
 
     const saveLocation = (value: any) => {
         setData({ ...data, ['address']: value });
+        locateAddress(process.env.NEXT_PUBLIC_GOOGLE_MAP_API, data.address).then((location: any) => {
+            setData({ ...data, ['latitude']: location.lat, ['longitude']: location.long });
+        })
         setShowLocation(false);
+    }
+
+    const handleLocation = (e: any) => {
+        setData({ ...data, ['address']: e.target.value });
     }
 
     useEffect(() => {
@@ -510,7 +510,11 @@ export default function VehicleSubComponent({ type }: any) {
                             <div className={style.divStyle}>
                                 <h1 className={style.h1Style}>Location</h1>
                                 <div className='flex flex-col w-full'>
-                                    <input required className={style.inputStyle} type="text" placeholder='enter your address here' name='name' value={data?.address} onChange={(e) => setData({ ...data, ['address']: e.target.value })} onKeyUp={(e: any) => checkPlace(e)} />
+                                    <input required className={style.inputStyle} type="text"
+                                        placeholder='enter your address here' name='name'
+                                        value={data?.address}
+                                        onChange={(e) => handleLocation(e)}
+                                        onKeyUp={(e: any) => checkPlace(e)} />
                                     {showLocation ?
                                         <ul className='border border-gray-100 mt-1 space-y-2'>
                                             {googleLocation?.map((predict: any, i: any) => (

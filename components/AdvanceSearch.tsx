@@ -99,10 +99,6 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
         }
     };
 
-    console.log(productsCount);
-
-
-
     const categoryList = [
         {
             logo: <DirectionsCar />,

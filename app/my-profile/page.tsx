@@ -71,9 +71,6 @@ export default function MyProfile() {
         setShowImage(true)
     }
 
-    console.log(image1);
-
-
     const handleInput = (e: any) => {
         const name = e.target.name;
         const value = e.target.value;
@@ -132,9 +129,6 @@ export default function MyProfile() {
         }
         setLoading(false);
     }
-
-    console.log(userData);
-
 
 
     return (
