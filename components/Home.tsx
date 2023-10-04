@@ -12,7 +12,7 @@ export default function Home({ children }: any) {
   const newHeight = height || 0;
   return (
     <div className=''>
-      <div className={`bg-[#FF0000] rounded-br-[70px] rounded-bl-[70px] md:rounded-br-[120px] md:rounded-bl-[120px] `}>
+      <div className={`bg-gradient-to-b from-red-600 to-[#FF0000] rounded-br-[70px] rounded-bl-[70px] md:rounded-br-[120px] md:rounded-bl-[120px] `}>
         <Header />
         <Banner />
       </div>

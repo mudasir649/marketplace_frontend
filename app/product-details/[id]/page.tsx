@@ -160,19 +160,29 @@ export default function ProductDetails() {
                 </div>
               </div>
               <div className='flex flex-col max-w-[1400px] h-[780px] w-full m-auto py-5 px-4 relative items-start gap-8 lg:flex-row group'>
-                <div style={{ backgroundImage: `url(${product?.images[currentImage]})` }} className='w-full h-full rounded-lg bg-center bg-cover duration-500'>
+                {/* <div style={{ backgroundImage: `url(${product?.images[currentImage]})` }} className='w-full h-full rounded-lg bg-center bg-cover duration-500'>
+                </div> */}
+                <div className='h-full w-full'>
+                  <div className='image-gallery p-10 border-none rounded-md bg-gray-50 overflow-hidden'>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={product?.images[currentImage]}
+                      className='w-full transition-transform duration-500'
+                      alt=''
+                    />
+                  </div>
                 </div>
-                <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl 
-                    rounded-full p-2 bg-black/20 text-white cursor-pointer' onClick={prevSlide}>
+                <div className='hidden group-hover:block absolute top-[40%] -translate-x-0 translate-y-[-50%] left-5 text-2xl 
+                    rounded-full p-2 text-[#FF0000] cursor-pointer' onClick={prevSlide}>
                   <ArrowBackIos />
                 </div>
-                <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl 
-                  rounded-full p-2 bg-black/20 text-white cursor-pointer' onClick={nextSlide}>
+                <div className='hidden group-hover:block absolute top-[40%] -translate-x-0 translate-y-[-50%] right-5 text-2xl 
+                  rounded-full p-2 text-[#FF0000] cursor-pointer' onClick={nextSlide}>
                   <ArrowForwardIos />
                 </div>
               </div>
               {product?.images.length > 1 &&
-                <div className='my-5'>
+                <div className='mt-[-150px]'>
                   <div className='flex flex-row space-x-4'>
                     {product?.images?.map((image: any, i: any) => (
                       <div key={i} className="image-item" onClick={() => setCurrentImage(i)}>
