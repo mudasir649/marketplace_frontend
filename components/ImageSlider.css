@@ -12,10 +12,14 @@
     transition: var(--speed) ease;
   }
 
+  .image-transition {
+    transition: opacity 0.5s ease-in-out;
+  }
+
   .prev-button,
   .next-button {
     position: absolute;
-    top: 50%;
+    top: 25%;
     transform: translateY(-50%);
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
@@ -32,22 +36,4 @@
     right: 4px;
   }
   
-
-  .image-gallery {
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    margin-bottom: 20px;
-    height: 500px;
-  }
-  
-  .image-gallery img {
-    object-fit: contain;
-    width: 200px; /* Set the desired width */
-    height: 200px; /* Set the desired height */
-    display: block;
-    transition: transform 0.3s ease-in-out;
-    flex-shrink: 0; /* Prevents the image from shrinking */
-    flex-grow: 0;
-  }
   

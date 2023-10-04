@@ -2,7 +2,7 @@ import { AccessTime, ArrowBackIos, ArrowForwardIos, Chat, Delete, EditNote, Favo
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
-import AOS from 'aos';
+import AOS, { refresh } from 'aos';
 import 'aos/dist/aos.css';
 import useWindowDimensions from '@/utils/useWindowDimensions';
 import { usePathname } from 'next/navigation';
@@ -13,15 +13,9 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { refreshPage, setProductId, setShowDeleteAd } from '@/store/appSlice';
 import { setShowShare } from '@/store/appSlice';
 
-interface AdFavoriteData {
-  userId: string;
-  adId: string;
-  favorite: boolean;
-}
-
 export default function Product({ product, url }: any) {
 
-  // const { refresh } = useSelector((state: any) => state.app);
+  const { refresh } = useSelector((state: any) => state.app);
 
   const pathname = usePathname();
   const dispatch = useDispatch();
@@ -78,31 +72,17 @@ export default function Product({ product, url }: any) {
   };
 
   const adFavorite = async () => {
-    let data: AdFavoriteData = {
-      userId: userId,
-      adId: product?._id,
-      favorite: true,
-    }
     if (userInfo === null) {
       router.push('/login')
     } else {
-      if (fav === false) {
-        try {
-          const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/adFavorite`, data);
-          if (res?.status === 201) {
-            setFav(true)
-          }
-        } catch (error) {
-          console.log(error);
-        }
+      const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/setFavorite/${product?._id}/${userId}`);
+      if (res.status == 201) {
+        setFav(true)
       } else {
-        const config: AxiosRequestConfig = {
-          data: data
-        }
-        const res = await axios.delete(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/removeFavorite/${product?.favAdId}`, config);
-        if (res?.status === 204) {
-          setFav(false);
-          dispatch(refreshPage(true));
+        if (pathname == '/my-favourites') {
+          dispatch(refreshPage(refresh + 1))
+        } else {
+          setFav(false)
         }
       }
     }
@@ -113,7 +93,81 @@ export default function Product({ product, url }: any) {
     dispatch(setProductId(product?._id))
   }
 
+  const addInvertedComma = (price: Number) => {
+    let priceString = price.toLocaleString();
 
+    priceString = priceString.replace(',', "'");
+
+    return priceString;
+
+  }
+
+
+  return (
+    <div className='scroll' data-aos="fade-up">
+      <div className="image-slider group relative max-w-sm rounded-lg overflow-hidden shadow-lg bg-white m-2 cursor-pointer hover:shadow-md hover:shadow-[#e52320]">
+        <Link href={`/product-details/${product?._id}`}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="w-full h-52 md:h-60 object-cover image-transition" src={product?.images[currentSlide]} alt="Product Image" />
+        </Link>
+        {product?.images?.length > 1 &&
+          <>
+            <button className="prev-button hidden group-hover:block" onClick={prevSlide}>
+              <ArrowBackIos />
+            </button>
+            <button className="next-button hidden group-hover:block" onClick={nextSlide}>
+              <ArrowForwardIos />
+            </button>
+          </>
+        }
+        <Link href={`/product-details/${product?._id}`}>
+          <div className="px-6 py-4 flex flex-row justify-between max-w-full">
+            <div className='space-y-4'>
+              <span>
+                <h2 className='text-[#FF0000] font-semibold text-lg'>CHF  {addInvertedComma(product?.price)}</h2>
+                <h1 className='text-gray-400 font-semibold text-sm'>EURO {addInvertedComma(product?.price * 2)}</h1>
+              </span>
+              <h1 className='text-xl md:text-2xl font-semibold text-black line-clamp-1'>{product?.title}</h1>
+              <section className='flex flex-row space-x-2'>
+                <LocationOn className="text-gray-400" />
+                <h1 className='w-32 lg:w-40 truncate mt-[-1px] text-sm'>{product?.address}</h1>
+              </section>
+            </div>
+            <div className='flex flex-row space-x-2'>
+              <AccessTime className="text-gray-500 text-sm" />
+              <h1 className='text-sm mt-[0.5px] w-16 truncate'>{showDate() <= 2 ?
+                <div className='bg-green-600 text-white rounded-full px-3 text-center'>{'new'}</div> : Number.isNaN(showDate()) ? '0 days ago' : `${showDate()} days ago`}
+              </h1>
+            </div>
+          </div>
+        </Link>
+        <div className='mx-5'>
+          <div className='flex justify-between space-x-4 text-gray-600 w-full h-10 mb-10 border-t-2 pt-4 px-3'>
+            {pathname == '/my-ads' ?
+              <div className='flex flex-row space-x-2'>
+                <EditNote className='text-4xl text-yellow-500' />
+                <Delete className='text-3xl text-red-500' onClick={() => deleteAd(product?._id)} />
+              </div>
+              :
+              <>
+                <div className='space-x-3'>
+                  <Share
+                    onClick={() => handleShare()}
+                    className='cursor-pointer'
+                  />
+                  <Chat />
+                  <Favorite className={`${fav ? 'text-[#FF0000]' : 'text-gray-300'} cursor-pointer`} onClick={() => adFavorite()} />
+                </div>
+                <div className='flex flex-row space-x-3'>
+                  <RemoveRedEye className="text-gray-500" />
+                  <h1>{product?.views}</h1>
+                </div>
+              </>}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
 
   return (
     <div className={`${newWidth < 688 ? 'max-w-[500px]' : 'max-w-[352px]'} bg-white shadow-lg border-[#795453] 
