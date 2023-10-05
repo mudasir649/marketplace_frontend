@@ -1,5 +1,4 @@
 import { AccessTime, ArrowBackIos, ArrowForwardIos, Chat, Delete, EditNote, Favorite, LocationOn, Phone, PhoneIphone, RemoveRedEye, Share } from '@mui/icons-material';
-import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 import AOS, { refresh } from 'aos';
@@ -9,7 +8,7 @@ import { usePathname } from 'next/navigation';
 import './ImageSlider.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
-import axios, { AxiosRequestConfig } from 'axios';
+import axios from 'axios';
 import { refreshPage, setProductId, setShowDeleteAd } from '@/store/appSlice';
 import { setShowShare } from '@/store/appSlice';
 
@@ -104,11 +103,13 @@ export default function Product({ product, url }: any) {
 
 
   return (
-    <div className='scroll' data-aos="fade-up">
+    <div data-aos="fade-up">
       <div className="image-slider group relative max-w-sm rounded-lg overflow-hidden shadow-lg bg-white m-2 cursor-pointer hover:shadow-md hover:shadow-[#e52320]">
         <Link href={`/product-details/${product?._id}`}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="w-full h-52 md:h-60 object-cover image-transition" src={product?.images[currentSlide]} alt="Product Image" />
+          <div className='w-full h-52 md:h-40 flex justify-center bg-gray-50'>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="h-40 object-cover image-transition" src={product?.images[currentSlide]} alt="Product Image" />
+          </div>
         </Link>
         {product?.images?.length > 1 &&
           <>
@@ -122,15 +123,15 @@ export default function Product({ product, url }: any) {
         }
         <Link href={`/product-details/${product?._id}`}>
           <div className="px-6 py-4 flex flex-row justify-between max-w-full">
-            <div className='space-y-4'>
-              <span>
+            <div className='space-y-4 w-auto overflow-hidden'>
+              <section>
                 <h2 className='text-[#FF0000] font-semibold text-lg'>CHF  {addInvertedComma(product?.price)}</h2>
                 <h1 className='text-gray-400 font-semibold text-sm'>EURO {addInvertedComma(product?.price * 2)}</h1>
-              </span>
-              <h1 className='text-xl md:text-2xl font-semibold text-black line-clamp-1'>{product?.title}</h1>
+              </section>
+              <h1 className='text-xl font-semibold text-black line-clamp-1'>{product?.title}</h1>
               <section className='flex flex-row space-x-2'>
                 <LocationOn className="text-gray-400" />
-                <h1 className='w-32 lg:w-40 truncate mt-[-1px] text-sm'>{product?.address}</h1>
+                <h1 className='line-clamp-1 mt-[-1px] text-sm'>{product?.address}</h1>
               </section>
             </div>
             <div className='flex flex-row space-x-2'>

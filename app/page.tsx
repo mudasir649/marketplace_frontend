@@ -55,13 +55,13 @@ export default function MainPage() {
     <div className="">
       <Home suppressHydrationWarning={true}>
         <SellRepairComponent />
-        <TopProducts>
+        {/* <TopProducts>
           <ProductList productList={topAds} />
         </TopProducts>
-        <FooterBanner />
-        <section className='mb-20'>
+        <FooterBanner /> */}
+        <section className='mb-20 mt-5'>
           <div className='container mx-auto flex justify-between mb-5'>
-            <h1 className='text-xl lg:text-3xl font-bold mt-1'>Top Inserts</h1>
+            <h1 className='text-xl lg:text-3xl font-bold mt-1'>Latest Ads</h1>
             <Link href='/advance-search'>
               <span className='capitalize text-lg font-bold mt-[5px] mr-[-5px]'>see all Ads <East className='text-[#FF0000]' data-aos="fade-right" /> </span>
             </Link>
