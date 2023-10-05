@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { refreshPage, setProductId, setShowDeleteAd } from '@/store/appSlice';
 import { setShowShare } from '@/store/appSlice';
+import addInvertedComma from '@/utils/addInvertedComma';
 
 export default function Product({ product, url }: any) {
 
@@ -90,15 +91,6 @@ export default function Product({ product, url }: any) {
   const handleShare = () => {
     dispatch(setShowShare(true))
     dispatch(setProductId(product?._id))
-  }
-
-  const addInvertedComma = (price: Number) => {
-    let priceString = price.toLocaleString();
-
-    priceString = priceString.replace(',', "'");
-
-    return priceString;
-
   }
 
 

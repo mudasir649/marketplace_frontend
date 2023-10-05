@@ -149,7 +149,6 @@ export default function ProductDetails() {
       <Home>
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-0 lg:gap-4 grid-flow-rows mx-4 lg:mx-20 mt-10'>
           <div className='col-span-2'>
-            {/* <div className={`${newWidth <= 1024 && newHeight <= 885 ? 'md:mx-5' : 'md:mx-10'}  lg:w-[890px] min-h-[800px] mb-5 border rounded-lg bg-white p-5`} data-aos="fade-up"> */}
             <div className={`lg:w-auto min-h-[800px] mb-5 border rounded-lg bg-white p-5`} data-aos="fade-up">
               <div className='flex flex-col lg:flex-row lg:items-center lg:justify-between'>
                 <div>

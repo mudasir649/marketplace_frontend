@@ -23,7 +23,6 @@ export default function MyAds() {
         }
         const fetchData = async () => {
             const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/getUserAds/${userData}`)
-            console.log(res?.data.data);
             setUserAds(res?.data.data);
         }
         fetchData();
