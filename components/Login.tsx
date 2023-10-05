@@ -1,17 +1,55 @@
 import { Cancel, Google, Https, LoginSharp, Mail } from '@mui/icons-material'
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import googleLogo from "../public/assets/google_logo.png";
 import signLogo from "../public/assets/signLogo.png";
 import useWindowDimensions from '@/utils/useWindowDimensions';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { Theme, createStyles, makeStyles } from '@material-ui/core';
+import { CircularProgress } from "@material-ui/core";
+import { useDispatch, useSelector } from 'react-redux';
+import { setCredentials } from "../store/authSlice"
+import { useLoginMutation } from '@/store/userApiSlice';
+import { useRouter } from 'next/navigation';
+
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            display: 'flex',
+            '& > * + *': {
+                marginLeft: theme.spacing(2),
+            },
+        },
+    }),
+);
+
 
 export default function LoginPage() {
 
-    const { width, height } = useWindowDimensions();
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const classes = useStyles();
+    const dispatch = useDispatch();
+    const router = useRouter();
 
-    console.log(width);
-    console.log(height);
+    const [login, { isLoading }] = useLoginMutation();
+
+    const { userInfo } = useSelector((state: any) => state.auth);
+
+    const data = userInfo === null ? null : userInfo?.userInfo?.data;
+
+    const submitHandler = async (e: any) => {
+        e.preventDefault();
+        try {
+            const res = await login({ email, password }).unwrap();
+            dispatch(setCredentials({ ...res }));
+            router.push('/')
+        } catch (error: any) {
+            toast(error?.data?.message);
+        }
+    }
 
     return (
         <div className={`fixed inset-0 flex justify-center items-center bg-opacity-100 backdrop-blur-sm`}>
@@ -19,7 +57,7 @@ export default function LoginPage() {
                 <div className='flex justify-end'>
                     <Link href="/">
                         <button className='text-white text-xl lg:mr-[-30px]'>
-                            <Cancel className='text-[#e52320]' />
+                            <Cancel className='text-[#FF0000]' />
                         </button>
                     </Link>
                 </div>
@@ -46,28 +84,49 @@ export default function LoginPage() {
                         </button>
                         <div className='flex justify-center font-bold'>or</div>
                         <div className='flex flex-row border border-gray-200 hover:border-[#e52320] cursor-pointer rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>
-                            <Mail className='text-[#e52320] ml-5' />
-                            <input className='border-none bg-transparent focus:outline-none' type="text" placeholder='Your email address' />
+                            <Mail className='text-[#FF0000] ml-5' />
+                            <input className='border-none bg-transparent focus:outline-none'
+                                type="email"
+                                placeholder='Your email address'
+                                name='email'
+                                value={email}
+                                onChange={(e: any) => setEmail(e.target.value)}
+                            />
                         </div>
                         <div className='flex flex-row border border-gray-200 hover:border-[#e52320] rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>
-                            <Https className='text-[#e52320] ml-5' />
-                            <input className='border-none bg-transparent focus:outline-none' type="text" placeholder='Your password' />
+                            <Https className='text-[#FF0000] ml-5' />
+                            <input className='border-none bg-transparent focus:outline-none'
+                                type="password"
+                                placeholder='Your password'
+                                name='password'
+                                value={password}
+                                onChange={(e: any) => setPassword(e.target.value)}
+                            />
                         </div>
                         <div className='flex justify-center font-bold'>
-                            <button className='border border-red-400 bg-gradient-to-r from-red-300 to-[#e52320] hover:border-[#e52320] hover:from-red-600 hover:to-red-600 rounded-lg w-40 p-1 space-x-2 text-white'>
-                                <LoginSharp />
-                                <span>Login</span>
-                            </button>
+                            {!isLoading ?
+                                <button className='border border-red-400 bg-gradient-to-r 
+                                    from-red-300 to-[#e52320] hover:border-[#e52320] hover:from-red-600
+                                    hover:to-red-600 rounded-lg w-40 p-1 space-x-2 text-white'
+                                    onClick={(e: any) => submitHandler(e)}
+                                >
+                                    <LoginSharp />
+                                    <span>Login</span>
+                                </button>
+                                :
+                                <div className={classes.root}>
+                                    <CircularProgress color="secondary" />
+                                </div>}
                         </div>
                         <div className='flex justify-center'>
                             <h1>Not a member?
                                 <Link href="/signup">
-                                    <span className='text-[#e52320] cursor-pointer hover:text-red-800'> Create Account</span>
+                                    <span className='text-[#FF0000] cursor-pointer hover:text-red-800'> Create Account</span>
                                 </Link></h1>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

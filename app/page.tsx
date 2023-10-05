@@ -8,44 +8,65 @@ import TopProducts from "@/components/TopProducts";
 import useWindowDimensions from "@/utils/useWindowDimensions";
 import { East } from "@mui/icons-material";
 import SellRepairComponent from "@/components/SellRepairComponent";
+import ProductList from "@/components/ProductList";
+import { ToastContainer } from "react-toastify";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Image from "next/image";
+import { useSelector } from "react-redux";
+import Link from "next/link";
 
 export default function MainPage() {
 
-  const { width, height } = useWindowDimensions();
 
+  const [featuredAds, setFeaturedAds] = useState<any>()
+  const [topAds, setTopAds] = useState<any>()
+
+  const { width, height } = useWindowDimensions();
   const newWidth = width || 0;
   const newHeight = height || 0;
 
-  const ProductsList = ({ productList }: any) => {
+  useEffect(() => {
+    const fetchTopData = async () => {
+      const res = await axios(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/fetchTopAds`);
+      setTopAds(res?.data?.data);
+    }
+    const fetchFeaturedData = async () => {
+      const res = await axios(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/fetchFeatured`);
+      setFeaturedAds(res?.data?.data);
+    }
+    fetchTopData();
+    fetchFeaturedData();
+  }, []);
+
+  if (!featuredAds && !topAds) {
     return (
-      <>
-        <div className='container mx-auto'>
-          <div className={`grid ${newWidth < 688 ? 'grid-cols-1' : 'grid-cols-2'} md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-14`}>
-            {productList?.map((product: any, i: any) => {
-              return (
-                <Product product={product} key={i} />
-              )
-            })}
-          </div>
-        </div>
-      </>
+      <div className="flex justify-center mt-5">
+        <Image
+          src='/assets/eidcarosse.gif'
+          alt="eidcarosse_logo"
+          width={500}
+          height={500}
+        />
+      </div>
     )
   }
-
   return (
     <div className="">
-      <Home>
+      <Home suppressHydrationWarning={true}>
         <SellRepairComponent />
-        <TopProducts>
-          <ProductsList productList={topProductData} />
+        {/* <TopProducts>
+          <ProductList productList={topAds} />
         </TopProducts>
-        <FooterBanner />
-        <section className='mb-20 bg-gray-200 py-10'>
+        <FooterBanner /> */}
+        <section className='mb-20 mt-5'>
           <div className='container mx-auto flex justify-between mb-5'>
-            <h1 className='text-3xl font-bold'>Top Inserts</h1>
-            <span className='capitalize text-lg font-bold mt-[5px]'>see all Ads <East className='text-[#e52320]' data-aos="fade-right" /> </span>
+            <h1 className='text-xl lg:text-3xl font-bold mt-1'>Latest Ads</h1>
+            <Link href='/advance-search'>
+              <span className='capitalize text-lg font-bold mt-[5px] mr-[-5px]'>see all Ads <East className='text-[#FF0000]' data-aos="fade-right" /> </span>
+            </Link>
           </div>
-          <ProductsList productList={productData} />
+          <ProductList productList={featuredAds} />
         </section>
       </Home>
     </div>

@@ -1,45 +1,93 @@
 'use client';
-import { Add, AdminPanelSettings, ArrowDropDown, Cancel, Chat, Login, PlusOne } from "@mui/icons-material";
+import { Add, AddAPhoto, AdminPanelSettings, ArrowDropDown, Cancel, Chat, Checklist, ExpandMore, Favorite, FormatListNumbered, Login, Logout, Person, Person2, PlusOne, Sms } from "@mui/icons-material";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import Aos from "aos";
+import React, { MouseEvent, useCallback, useEffect, useRef, useState } from "react";
 import "./Header.css"
 import MenuIcon from '@mui/icons-material/Menu';
 import ListDownComponent from "./ListDownComponent";
 import ContactUs from "./ContactUs";
+import useWindowDimensions from "@/utils/useWindowDimensions";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "@/store/authSlice";
+import { useLogoutMutation } from "@/store/userApiSlice";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import ShareLink from "./ShareLink";
+import SellNow from "./SellNow";
+import RepairNow from "./RepairNow";
+import DeleteAd from "./DeleteAd";
+import axios from "axios";
+import { setProductData, setProductsCount } from "@/store/appSlice";
 
 export default function Header() {
 
   const [navbar, setNavbar] = useState<Boolean>(false);
   const [showContact, setShowContact] = useState(false);
-  const navbarLiStyle = navbar ? 'cursor-pointer hover:text-[#e52320]' : 'cursor-pointer hover:text-red-300';
+  const navbarLiStyle = navbar ? 'cursor-pointer hover:text-[#FF0000]' : 'cursor-pointer hover:p-2 hover:border hover:rounded-md hover:bg-white hover:text-[#FF0000] font-[600] ease-in duration-150';
+  const [open, isOpen] = useState<Boolean>(false);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const dispatch = useDispatch();
+  const router = useRouter();
 
 
-  useEffect(() => {
-    Aos.init();
-  }, []);
+  const { userInfo } = useSelector((state: any) => state.auth);
+  const { showShare, showSellNow, showRepairNow, showDeleteAd, page } = useSelector((state: any) => state.app);
+
+  const userData = userInfo?.data?.userDetails;
+
+  // console.log(userData);
+
 
   const handleContact = () => {
     setShowContact(true);
     setNavbar(false);
   }
 
+  const DropdownItem = ({ logo, text, href }: any) => {
+    return (
+      <li className="dropdownItem space-x-2 hover:text-[#FF0000]">
+        <span>{logo}</span>
+        <Link className='text-md font-semibold' href={href} onClick={() => isOpen(false)}>
+          {text}
+        </Link>
+      </li>
+    )
+  }
+
+  const [logoutApiCall, { isLoading }] = useLogoutMutation();
+
+  const logoutHandler = async () => {
+    try {
+      await logoutApiCall({}).unwrap();
+      dispatch(logout(null));
+      router.push('/')
+    } catch (error: any) {
+      toast(error?.data?.message)
+    }
+  }
+
+  const { width, height } = useWindowDimensions();
+  const newWidth = width || 0;
+
+  const handleAdvanceSearch = async (value: any) => {
+    setNavbar(false);
+    router.push(`/advance-search`);
+  }
+
 
   return (
     <>
       {navbar &&
-        <div className="h-[800px] w-96 absolute z-10 bg-white" data-aos="fade-right">
+        <div className="h-[800px] w-96 absolute z-10 bg-white">
           <ul className="flex flex-col space-y-5 uppercase m-7">
             <li className={navbarLiStyle}>
               <Link href="/" onClick={() => setNavbar(false)}>
                 home
               </Link>
             </li>
-            <li className={navbarLiStyle} >
-              <Link href="/advance-search" onClick={() => setNavbar(false)}>
-                advance search
-              </Link>
+            <li className={navbarLiStyle} onClick={() => handleAdvanceSearch('all')}>
+              advance search
             </li>
             <li className={navbarLiStyle} onClick={handleContact}>contact us</li>
             <li>
@@ -48,7 +96,7 @@ export default function Header() {
             <li className={navbarLiStyle}><Chat className="text-3xl -mt-1" /></li>
             <li className={navbarLiStyle}><AdminPanelSettings className="text-3xl -mt-1" /></li>
             <li className="cursor-pointer">
-              <Link href="/login">
+              <Link href="/post-ad">
                 <button className="flex flex-row space-x-1 p-2 bg-[#e52320] hover:bg-red-500 text-white hover:border border-gray-100 transition hover:w-52 hover:justify-center rounded-lg">
                   <Add className="text-md border border-[#e52320] rounded-full bg-[#e52320] text-white" />
                   <span className="capitalize text-md mt-[2px]">Post your ad</span>
@@ -56,7 +104,7 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Cancel className="hover:text-[#e52320]" onClick={() => setNavbar(false)} />
+              <Cancel className="hover:text-[#FF0000]" onClick={() => setNavbar(false)} />
             </li>
           </ul>
         </div>
@@ -77,52 +125,72 @@ export default function Header() {
                   home
                 </Link>
               </li>
-              <li className={navbarLiStyle}>
-                <Link href="advance-search">
-                  advance search
-                </Link>
+              <li className={navbarLiStyle} onClick={() => handleAdvanceSearch('all')}>
+                advance search
               </li>
               <li className={navbarLiStyle} onClick={() => (setShowContact(!showContact))}>
                 contact us
-                {/* <Link href="contact-us">
-                  contact us
-                </Link> */}
               </li>
               <li>
                 <ListDownComponent />
               </li>
               <li className={navbarLiStyle}><Chat className="text-3xl -mt-1" /></li>
               <li className={navbarLiStyle}><AdminPanelSettings className="text-3xl -mt-1" /></li>
-              <li className="cursor-pointer">
-                <Link href="/login">
-                  <button className="flex flex-row space-x-1 p-2 bg-white text-black mt-[-5px] hover:bg-red-500 hover:text-white hover:border hover:border-gray-100 transition rounded-lg">
-                    <Add className="text-md border border-[#e52320] rounded-full bg-[#e52320] text-white" />
-                    <span className="capitalize text-md mt-[2px]">Post your ad</span>
-                  </button>
-                </Link>
-              </li>
             </ul>
           </div>
           <div className="flex items-center gap-6">
-            {/*             
-              <Link href="/login">
-                <button className="text-white hover:text-red-200 transition duration-75 ease-in hover">Login</button>
-              </Link> 
-            */}
 
-            {/* button to show navbar on small screen start */}
-            <button className={`md:invisible visible`} onClick={() => setNavbar(!navbar)}>
-              <MenuIcon className="text-white" />
-            </button>
-            {/* button to show navbar on small screen end */}
 
-            <Link href="/login">
-              <button className="flex flex-row space-x-1 p-2 bg-white text-black mt-[-5px] hover:bg-red-500 hover:text-white hover:border hover:border-gray-100 transition rounded-lg">
-                <Login />
-                <span>Login</span>
+            {newWidth <= 1024 ?
+              <button onClick={() => setNavbar(!navbar)}>
+                <MenuIcon className="text-white" />
               </button>
-            </Link>
+              :
+              <div>
+                <Link href="/post-ad">
+                  <button className="flex flex-row justify-center space-x-4 mt-[-1px] p-2 w-52 bg-white hover:text-[#FF0000] text-black  rounded-lg">
+                    <Add className="text-md border border-[#FF0000] rounded-full bg-[#FF0000] text-white" />
+                    <span className="capitalize text-md mt-[2px]">Post your ad</span>
+                  </button>
+                </Link>
+              </div>
+            }
+            {userInfo !== null ?
+              <><div className="menu-container" onClick={() => isOpen(!open)} ref={dropdownRef}>
+                <button className="menu-trigger flex flex-row">
+                  {!userData?.image ? <Person2 className="text-3xl text-white" /> :
+                    <Image className="h-10 w-10 md:h-11 md:w-11 border-none rounded-full" width={100} height={100} src={userData?.image} alt="profile_image" />
+                  }
+                  <ExpandMore className={`${!userData?.image ? 'mt-1' : 'mt-2'}  text-gray-50 logo ${open ? 'active' : 'inactive'}`} />
+                </button>
+              </div>
+                <div className={`dropdown-menu border rounded-sm w-60 absolute ml-[-120px] z-10 ${newWidth == 1024 ? 'end-10' : 'end-4 lg:end-52'} top-20 ${open ? 'active' : 'inactive'}`}>
+                  <div>
+                    <h3>Hello,</h3><h1 className="text-lg font-bold mb-[-10px] hover:text-[#FF0000] cursor-pointer">{userData?.firstName}  {userData?.lastName}</h1>
+                  </div>
+                  <ul className="flex flex-col space-y-5 border-t-2 pt-3">
+                    <DropdownItem logo={<Person />} text="My Profile" href="/my-profile" />
+                    <DropdownItem logo={<FormatListNumbered />} text="My Ads" href="/my-ads" />
+                    <DropdownItem logo={<Favorite />} text="Favourites" href="/my-favourites" />
+                    <DropdownItem logo={<Sms />} text="Chat" href="/" />
+                  </ul>
+                  <ul className="flex flex-col space-y-5 border-t-2 pt-3" onClick={() => logoutHandler()}>
+                    <DropdownItem logo={<Logout />} text="Logout" href="/" />
+                  </ul>
+                </div></>
+              :
+              <Link href="/login">
+                <button className="flex flex-row space-x-1 p-2 bg-white text-black mt-[-5px] hover:bg-red-500 hover:text-white hover:border hover:border-gray-100 transition rounded-lg">
+                  <Login />
+                  <span>Login</span>
+                </button>
+              </Link>
+            }
             {!showContact ? "" : <ContactUs setShowContact={setShowContact} />}
+            {showShare && <ShareLink />}
+            {showSellNow && <SellNow />}
+            {showRepairNow && <RepairNow />}
+            {showDeleteAd && <DeleteAd />}
           </div>
         </div>
       </header ></>

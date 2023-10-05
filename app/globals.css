@@ -4,9 +4,25 @@
 
 /* @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap'); */
 
-/* body{
-  font-family: 'Roboto Condensed', sans-serif;
-} */
+body{
+  background-color: whitesmoke;
+}
+
+
+
+.logo.active{
+  transform: rotate(180deg);
+  transition: var(--speed) ease;
+}
+
+.logo.inactive{
+  transform: rotate(0deg);
+  transition: var(--speed) ease;
+}
+
+.dropdow:hover .dropdow-menu{
+  display: block
+}
 
 @layer base {
   body {
@@ -19,10 +35,10 @@
     @apply flex h-[64px] items-center px-[18px] border rounded-lg;
   }
   .dropdown-icon-primary {
-    @apply text-2xl mr-[18px] text-[#e52320];
+    @apply text-2xl mr-[18px] text-[#FF0000];
   }
   .dropdown-icon-secondary {
-    @apply text-2xl text-[#e52320] ml-auto;
+    @apply text-2xl text-[#FF0000] ml-auto;
   }
   .dropdown-menu {
     @apply px-6 py-8 text-[15px] space-y-6 shadow-md bg-white absolute w-full z-10 list-none rounded-b-lg;
