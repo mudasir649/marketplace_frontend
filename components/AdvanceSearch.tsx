@@ -3,7 +3,9 @@
 import Home from '@/components/Home';
 import {
     AirportShuttle, BuildCircle, Chat, DataSaverOn, DirectionsBike, DirectionsBoat, DirectionsBus,
-    DirectionsCar, FireTruck, Flight, KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight, PhoneEnabled,
+    DirectionsCar, Favorite, FireTruck, Flight, KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight, LocationOn, PhoneEnabled,
+    PinDrop,
+    PinOutlined,
     PrecisionManufacturing, RemoveRedEye, RvHookup, Search, Share
 } from '@mui/icons-material';
 import Aos from 'aos';
@@ -15,9 +17,10 @@ import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import { usePathname, useRouter } from 'next/navigation';
 import { conditionList, sortByList, subList } from '@/utils/dataVariables';
-import { setPage } from '@/store/appSlice';
+import { setPage, setProductId, setShowShare } from '@/store/appSlice';
 import { CircularProgress, createStyles, makeStyles } from '@material-ui/core';
 import { Theme } from '@mui/material';
+import addInvertedComma from '@/utils/addInvertedComma';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -54,6 +57,7 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
 
     // Redux hooks
     const { page, address, title } = useSelector((state: any) => state.app);
+    const [fav, setFav] = useState<Boolean>(false);
     const [loading, setLoading] = useState<Boolean>(false);
     const [sortByLoading, setSortByLoading] = useState<Boolean>(false);
     const pathname = usePathname();
@@ -241,6 +245,30 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
         setSortByLoading(false);
     }
 
+    const adFavorite = async () => {
+        console.log("hello");
+
+        // if (userInfo === null) {
+        //     router.push('/login')
+        // } else {
+        //     const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/setFavorite/${product?._id}/${userId}`);
+        //     if (res.status == 201) {
+        //         setFav(true)
+        //     } else {
+        //         if (pathname == '/my-favourites') {
+        //             dispatch(refreshPage(refresh + 1))
+        //         } else {
+        //             setFav(false)
+        //         }
+        //     }
+        // }
+    }
+
+    const handleShare = (productId: any) => {
+        dispatch(setShowShare(true))
+        dispatch(setProductId(productId))
+    }
+
     if (!productData) {
         return <div className="flex justify-center mt-5">
             <Image
@@ -368,27 +396,34 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
                                     :
                                     <>
                                         {productData?.map((product: any, i: number) => (
-                                            <div className='flex flex-row justify-between bg-white border border-gray-300 rounded-sm mb-5' key={i}>
-                                                <div className='bg-blue-500 md:bg-green-500 lg:bg-red-500'>
-                                                    <Link href={`/product-details/${product?._id}`}>
-                                                        <img className='w-64 h-48' src={product?.images[0]} alt="" />
-                                                    </Link>
+                                            <div className='flex flex-row space-x-5 w-auto h-52 bg-white mb-5 border-none rounded-lg' key={i}>
+                                                <div className='flex justify-center bg-gray-50 w-60 h-auto m-3 border-none rounded-lg'>
+                                                    <img src={product?.images[0]} className='h-auto w-auto object-fill border-none rounded-lg' alt="" />
                                                 </div>
-                                                <div className='space-y-1 p-0 pl-1 md:p-3 w-40 md:w-[500px]'>
-                                                    <Link href={`/product-details/${product?._id}`}>
-                                                        <h1 className={`${newWidth < 370 ? 'text-[11px]' : 'text-[12px] md:text-lg lg:text-2xl'} font-bold hover:text-[#FF0000]`}>{product?.title}</h1>
-                                                    </Link>
-                                                    <h2 className={`${newWidth < 370 ? 'text-[9px]' : 'text-[10px] md:text-base'}`}>{product?.category}</h2>
-                                                    <h3 className='text-[10px] md:text-base w-[100px] md:w-auto overflow-hidden'>{product?.address}</h3>
-                                                    <h1 className={`${newWidth < 370 ? 'text-[9px]' : 'md:text-lg text-[12px]'} text-[#FF0000] font-semibold`}>CHF {product?.price}</h1>
-                                                    <h2 className={`${newWidth < 370 ? 'text-[7px]' : 'text-[10px] md:text-sm'} text-gray-500  font-semibold`}>EURO {product?.price * 2.1}</h2>
-                                                </div >
-                                                <div className='pr-1'>
-                                                    <ul className={`${newWidth < 370 ? 'space-y-[-8.5px]' : 'space-y-[-7.5px] md:space-y-0 lg:space-y-3'}`}>
-                                                        {logo?.map((log: any, i: number) => (
-                                                            <li key={i}>{log.name}</li>
-                                                        ))}
-                                                    </ul>
+                                                <div className='my-3'>
+                                                    <section className='space-y-1'>
+                                                        <div className='flex flex-row justify-between w-[500px]'>
+                                                            <h2 className=' text-[22px] text-black font-bold'>{product?.title}</h2>
+                                                            <h1 className='bg-[#FF0000] text-center text-white w-16 h-8 p-1 border-none rounded-xl'>{product?.category}</h1>
+                                                        </div>
+                                                        <h1 className='text-[17px] text-[#FF0000] font-semibold'>CHF {addInvertedComma(product?.price)}</h1>
+                                                        <h1 className='text-[12px] text-gray-400 font-semibold'>EURO {addInvertedComma(product?.price * 2)}</h1>
+                                                    </section>
+                                                    <h1 className='text-gray-400 mt-6 text-[14px]'><LocationOn /> {product?.address}</h1>
+                                                    <div className='flex justify-between space-x-4 mt-3 text-gray-600 w-[500px] h-10 border-t-2 pt-2'>
+                                                        <div className='space-x-3'>
+                                                            <Share
+                                                                onClick={() => handleShare(product?._id)}
+                                                                className='cursor-pointer text-gray-400'
+                                                            />
+                                                            <Chat className='cursor-pointer text-gray-400' />
+                                                            <Favorite className={`${fav ? 'text-[#FF0000]' : 'text-gray-300'} cursor-pointer`} onClick={() => adFavorite()} />
+                                                        </div>
+                                                        <div className='flex flex-row space-x-3'>
+                                                            <RemoveRedEye className="text-gray-500" />
+                                                            <h1>{product?.views}</h1>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         ))}
@@ -422,3 +457,5 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
         </div>
     )
 }
+
+
