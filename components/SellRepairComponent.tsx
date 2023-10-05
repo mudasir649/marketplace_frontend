@@ -15,7 +15,7 @@ export default function SellRepairComponent() {
 
 
     return (
-        <div className='container mx-auto mt-48 md:mt-10'>
+        <div className='container mx-auto mt-5 md:mt-10'>
             <div className='flex flex-col space-y-5 md:space-y-0 md:flex-row lg:justify-center lg:space-x-10'>
                 <div className={bothDivsStyle}>
                     <DirectionsCar className={logoStyle} />
