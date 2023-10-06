@@ -12,6 +12,7 @@ import axios from 'axios';
 import { refreshPage, setProductId, setShowDeleteAd } from '@/store/appSlice';
 import { setShowShare } from '@/store/appSlice';
 import addInvertedComma from '@/utils/addInvertedComma';
+import showDate from '@/utils/showDate';
 
 export default function Product({ product, url }: any) {
 
@@ -49,14 +50,6 @@ export default function Product({ product, url }: any) {
   const deleteAd = async (id: any) => {
     dispatch(setProductId(id))
     dispatch(setShowDeleteAd(true))
-  }
-
-  const showDate = () => {
-    let date = new Date(`${product?.createdAt}`).getTime();
-    let now = new Date().getTime();
-    const difference = now - date;
-    const daysAgo = Math.floor(difference / (1000 * 60 * 60 * 24));
-    return daysAgo;
   }
 
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -122,8 +115,8 @@ export default function Product({ product, url }: any) {
               </section>
               <section className='flex flex-row space-x-1'>
                 <AccessTime className="text-gray-500 text-sm" />
-                <h1 className='text-sm w-16 truncate'>{showDate() <= 2 ?
-                  <div className='bg-green-600 text-white rounded-full px-3 text-center'>{'new'}</div> : <div className='text-[sm] mt-[0.5px]'>{Number.isNaN(showDate()) ? '0 days ago' : `${showDate()} days ago`}</div>
+                <h1 className='text-sm w-16 truncate'>{showDate(product?.createdAt) <= 2 ?
+                  <div className='bg-green-600 text-white rounded-full px-3 text-center'>{'new'}</div> : <div className='text-[sm] mt-[0.5px]'>{Number.isNaN(showDate(product?.createdAt)) ? '0 days ago' : `${showDate(product?.createdAt)} days ago`}</div>
                 }</h1>
               </section>
             </div>
@@ -212,8 +205,9 @@ export default function Product({ product, url }: any) {
               <div className='text-[10px]'>
                 <AccessTime className="text-gray-500" />
               </div>
-              <h1 className='text-sm'>{showDate() <= 2 ?
-                <div className='bg-green-600 text-white rounded-full px-3'>{'new'}</div> : Number.isNaN(showDate()) ? '0 days ago' : `${showDate()} days ago`}</h1>
+              {/* <h1 className='text-sm'>{showDate() <= 2 ?
+                <div className='bg-green-600 text-white rounded-full px-3'>{'new'}</div> : Number.isNaN(showDate()) ? '0 days ago' : `${showDate()} days ago`}
+              </h1> */}
             </div>
             {pathname == '/my-ads' ? '' :
               <div className='flex items-center text-gray-600 gap-2 mt-2 h-10'>

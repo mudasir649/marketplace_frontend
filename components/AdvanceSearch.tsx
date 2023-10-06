@@ -4,10 +4,9 @@ import Home from '@/components/Home';
 import {
     AirportShuttle, BuildCircle, Chat, DataSaverOn, DirectionsBike, DirectionsBoat, DirectionsBus,
     DirectionsCar, Favorite, FireTruck, Flight, KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight, LocationOn, PhoneEnabled,
-    PinDrop,
-    PinOutlined,
     PrecisionManufacturing, RemoveRedEye, RvHookup, Search, Share
 } from '@mui/icons-material';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Aos from 'aos';
 import React, { useEffect, useState } from 'react';
 import useWindowDimensions from '@/utils/useWindowDimensions';
@@ -21,6 +20,9 @@ import { setPage, setProductId, setShowShare } from '@/store/appSlice';
 import { CircularProgress, createStyles, makeStyles } from '@material-ui/core';
 import { Theme } from '@mui/material';
 import addInvertedComma from '@/utils/addInvertedComma';
+import ProductList from './ProductList';
+import { faClock, faMessage } from "@fortawesome/free-solid-svg-icons";
+import showDate from '@/utils/showDate';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -63,6 +65,9 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
     const pathname = usePathname();
     const dispatch = useDispatch();
     const classes = useStyles();
+    const { userInfo } = useSelector((state: any) => state.auth);
+    const userId = userInfo?.data?.userDetails?._id;
+
 
     const { width, height } = useWindowDimensions();
     const newWidth = width || 0;
@@ -245,23 +250,17 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
         setSortByLoading(false);
     }
 
-    const adFavorite = async () => {
-        console.log("hello");
-
-        // if (userInfo === null) {
-        //     router.push('/login')
-        // } else {
-        //     const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/setFavorite/${product?._id}/${userId}`);
-        //     if (res.status == 201) {
-        //         setFav(true)
-        //     } else {
-        //         if (pathname == '/my-favourites') {
-        //             dispatch(refreshPage(refresh + 1))
-        //         } else {
-        //             setFav(false)
-        //         }
-        //     }
-        // }
+    const adFavorite = async (productId: any) => {
+        if (userInfo === null) {
+            router.push('/login')
+        } else {
+            const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/setFavorite/${productId}/${userId}`);
+            if (res.status == 201) {
+                setFav(true)
+            } else {
+                setFav(false)
+            }
+        }
     }
 
     const handleShare = (productId: any) => {
@@ -394,40 +393,67 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
                                         </div>
                                     </>
                                     :
-                                    <>
-                                        {productData?.map((product: any, i: number) => (
-                                            <div className='flex flex-row space-x-5 w-auto h-52 bg-white mb-5 border-none rounded-lg' key={i}>
-                                                <div className='flex justify-center bg-gray-50 w-60 h-auto m-3 border-none rounded-lg'>
-                                                    <img src={product?.images[0]} className='h-auto w-auto object-fill border-none rounded-lg' alt="" />
-                                                </div>
-                                                <div className='my-3'>
-                                                    <section className='space-y-1'>
-                                                        <div className='flex flex-row justify-between w-[500px]'>
-                                                            <h2 className=' text-[22px] text-black font-bold'>{product?.title}</h2>
+                                    newWidth <= 550 ?
+                                        <ProductList productList={productData} />
+                                        :
+                                        <>
+                                            {productData?.map((product: any, i: number) => (
+                                                <div className='grid grid-cols-3 h-52 mb-10 bg-white' key={i}>
+                                                    <Link href={`/product-details/${product?._id}`}>
+                                                        <div className='w-60 lg:w-auto p-2'>
+                                                            <div className='flex justify-center bg-gray-50 w-full h-48 border-none rounded-lg'>
+                                                                <img src={product?.images[0]} className='h-auto w-auto object-fill border-none rounded-lg' alt="" />
+                                                            </div>
+                                                        </div>
+                                                    </Link>
+                                                    <div className='w-full col-span-2 p-2'>
+                                                        <div className='flex flex-row justify-between'>
+                                                            <Link href={`/product-details/${product?._id}`}>
+                                                                <h2 className=' text-[22px] text-black font-bold cursor-pointer hover:text-[#FF0000]'>{product?.title}</h2>
+                                                            </Link>
                                                             <h1 className='bg-[#FF0000] text-center text-white w-16 h-8 p-1 border-none rounded-xl'>{product?.category}</h1>
                                                         </div>
-                                                        <h1 className='text-[17px] text-[#FF0000] font-semibold'>CHF {addInvertedComma(product?.price)}</h1>
-                                                        <h1 className='text-[12px] text-gray-400 font-semibold'>EURO {addInvertedComma(product?.price * 2)}</h1>
-                                                    </section>
-                                                    <h1 className='text-gray-400 mt-6 text-[14px]'><LocationOn /> {product?.address}</h1>
-                                                    <div className='flex justify-between space-x-4 mt-3 text-gray-600 w-[500px] h-10 border-t-2 pt-2'>
-                                                        <div className='space-x-3'>
-                                                            <Share
-                                                                onClick={() => handleShare(product?._id)}
-                                                                className='cursor-pointer text-gray-400'
-                                                            />
-                                                            <Chat className='cursor-pointer text-gray-400' />
-                                                            <Favorite className={`${fav ? 'text-[#FF0000]' : 'text-gray-300'} cursor-pointer`} onClick={() => adFavorite()} />
+                                                        <div className='mt-3 space-y-1'>
+                                                            {product?.price ?
+                                                                <>
+                                                                    <h1 className='text-[17px] text-[#FF0000] font-semibold'>CHF {addInvertedComma(product?.price)}</h1>
+                                                                    <h1 className='text-[12px] text-gray-400 font-semibold'>EURO {addInvertedComma(product?.price * 2)}</h1>
+                                                                </>
+                                                                :
+                                                                <>
+                                                                    <h1 className='bg-black text-white text-center py-2 w-36 h-10 border-none rounded-lg text-[16px] font-semibold'>Contact For Price</h1>
+                                                                </>
+                                                            }
                                                         </div>
-                                                        <div className='flex flex-row space-x-3'>
-                                                            <RemoveRedEye className="text-gray-500" />
-                                                            <h1>{product?.views}</h1>
+                                                        <div className='flex flex-row justify-between mt-5 bg-gray-100'>
+                                                            <h1 className='bg-red-600 lg:w-[410px] truncate'>{product?.address}</h1>
+                                                            <h1 className='text-sm w-auto line-clamp-2 bg-green-600 mr-[10px] lg:mr-0'>{showDate(product?.createdAt) < 2 ?
+                                                                <>
+                                                                    <div className='bg-green-600 text-white rounded-full px-3 text-center'>{'new'}</div></>
+                                                                :
+                                                                <div className='text-[sm] mt-[0.5px]'>
+                                                                    <FontAwesomeIcon icon={faClock} /> {Number.isNaN(showDate(product?.createdAt)) ? '0 days ago' : `${showDate(product?.createdAt)} days ago`}
+                                                                </div>
+                                                            }</h1>
+                                                        </div>
+                                                        <div className={`flex justify-between space-x-4 mt-3 text-gray-600 h-10 border-t-2 pt-2 w-full`}>
+                                                            <div className='space-x-4 mt-1'>
+                                                                <Share
+                                                                    onClick={() => handleShare(product?._id)}
+                                                                    className='cursor-pointer text-gray-400 mt-[-5px]'
+                                                                />
+                                                                <FontAwesomeIcon className='cursor-pointer text-gray-400 text-[20px]' icon={faMessage} />
+                                                                <Favorite className={`${fav ? 'text-[#FF0000]' : 'text-gray-300'} mt-[-5px] cursor-pointer`} onClick={() => adFavorite(product?._id)} />
+                                                            </div>
+                                                            <div className='flex flex-row space-x-3'>
+                                                                <RemoveRedEye className="text-gray-500 " />
+                                                                <h1>{product?.views}</h1>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        ))}
-                                    </>
+                                            ))}
+                                        </>
                                 }
                                 <div className={`flex flex-row justify-between bg-white h-12 border border-[#e52320] rounded-sm px-5 py-2`}>
                                     <button className={btnStyle} onClick={previousHandle}>

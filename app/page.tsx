@@ -15,6 +15,8 @@ import axios from "axios";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import Link from "next/link";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+
 
 export default function MainPage() {
 
