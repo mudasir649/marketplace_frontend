@@ -425,7 +425,7 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
                                                                 </>
                                                             }
                                                         </div>
-                                                        <div className='flex flex-row justify-between mt-5 bg-gray-100'>
+                                                        <div className='flex flex-row justify-between mt-5'>
                                                             <h1 className='lg:w-[410px] truncate'>{product?.address}</h1>
                                                             <h1 className='text-sm w-auto line-clamp-2 mr-[10px] lg:mr-0'>{showDate(product?.createdAt) < 2 ?
                                                                 <>
