@@ -95,7 +95,7 @@ export default function Product({ product, url }: any) {
 
 
   return (
-    <div data-aos="fade-up">
+    <div className='mb-3' data-aos="fade-up">
       <div className="image-slider group relative max-w-sm rounded-lg overflow-hidden shadow-lg bg-white m-2 cursor-pointer hover:shadow-md hover:shadow-[#e52320]">
         <Link href={`/product-details/${product?._id}`}>
           <div className='w-full h-52 md:h-40 flex justify-center bg-gray-50'>
@@ -114,28 +114,30 @@ export default function Product({ product, url }: any) {
           </>
         }
         <Link href={`/product-details/${product?._id}`}>
-          <div className="px-6 py-4 flex flex-row justify-between max-w-full">
-            <div className='space-y-4 w-auto overflow-hidden'>
-              <section>
-                <h2 className='text-[#FF0000] font-semibold text-lg'>CHF  {addInvertedComma(product?.price)}</h2>
-                <h1 className='text-gray-400 font-semibold text-sm'>EURO {addInvertedComma(product?.price * 2)}</h1>
+          <div className="px-6 py-4 max-w-full">
+            <div className='w-auto overflow-hidden flex flex-row justify-between'>
+              <section className='overflow-hidden'>
+                <h2 className='text-[#FF0000] font-bold text-[17px] w-32 truncate'>CHF {addInvertedComma(product?.price * 2)}</h2>
+                <h1 className='text-gray-400 font-semibold text-[13px] w-32 truncate'>EURO {addInvertedComma(product?.price * 2)}</h1>
               </section>
-              <h1 className='text-xl font-semibold text-black line-clamp-1'>{product?.title}</h1>
-              <section className='flex flex-row space-x-2'>
-                <LocationOn className="text-gray-400" />
-                <h1 className='line-clamp-1 mt-[-1px] text-sm'>{product?.address}</h1>
+              <section className='flex flex-row space-x-1'>
+                <AccessTime className="text-gray-500 text-sm" />
+                <h1 className='text-sm w-16 truncate'>{showDate() <= 2 ?
+                  <div className='bg-green-600 text-white rounded-full px-3 text-center'>{'new'}</div> : <div className='text-[sm] mt-[0.5px]'>{Number.isNaN(showDate()) ? '0 days ago' : `${showDate()} days ago`}</div>
+                }</h1>
               </section>
             </div>
-            <div className='flex flex-row space-x-2'>
-              <AccessTime className="text-gray-500 text-sm" />
-              <h1 className='text-sm mt-[0.5px] w-16 truncate'>{showDate() <= 2 ?
-                <div className='bg-green-600 text-white rounded-full px-3 text-center'>{'new'}</div> : Number.isNaN(showDate()) ? '0 days ago' : `${showDate()} days ago`}
-              </h1>
+            <div className='space-y-3 mt-5'>
+              <h1 className='text-xl font-semibold text-black w-52 truncate'>{product?.title}</h1>
+              <section className='flex flex-row space-x-1 w-52 truncate'>
+                <LocationOn className="text-gray-400" />
+                <h1 className='mt-[-1px] text-sm'>{product?.address}</h1>
+              </section>
             </div>
           </div>
         </Link>
         <div className='mx-5'>
-          <div className='flex justify-between space-x-4 text-gray-600 w-full h-10 mb-10 border-t-2 pt-4 px-3'>
+          <div className='flex flex-ro justify-between space-x-4 text-gray-600 w-full h-10 mb-10 border-t-2 pt-4 px-1'>
             {pathname == '/my-ads' ?
               <div className='flex flex-row space-x-2'>
                 <EditNote className='text-4xl text-yellow-500' />
@@ -143,7 +145,7 @@ export default function Product({ product, url }: any) {
               </div>
               :
               <>
-                <div className='space-x-3'>
+                <div className='space-x-3 w-52'>
                   <Share
                     onClick={() => handleShare()}
                     className='cursor-pointer'
@@ -151,7 +153,7 @@ export default function Product({ product, url }: any) {
                   <Chat />
                   <Favorite className={`${fav ? 'text-[#FF0000]' : 'text-gray-300'} cursor-pointer`} onClick={() => adFavorite()} />
                 </div>
-                <div className='flex flex-row space-x-3'>
+                <div className='flex flex-row space-x-1'>
                   <RemoveRedEye className="text-gray-500" />
                   <h1>{product?.views}</h1>
                 </div>
