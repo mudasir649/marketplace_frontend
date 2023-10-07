@@ -1,5 +1,6 @@
 import { setShowRepairNow, setShowSellNow } from '@/store/appSlice';
 import { DirectionsCar, Handyman } from '@mui/icons-material';
+import Image from 'next/image';
 import React from 'react'
 import { useDispatch } from 'react-redux';
 
@@ -7,7 +8,6 @@ export default function SellRepairComponent() {
 
     const bothDivsStyle = 'bg-white rounded-md lg:w-[450px] hover:shadow-md hover:shadow-[#e52320] w-auto h-64 text-center p-5 space-y-3';
     const h1Style = 'cursor-pointer text-2xl font-semibold hover:text-[#FF0000]';
-    const logoStyle = 'text-7xl border rounded-full p-1 hover:bg-[#e52320] hover:text-white hover:border-[#e52320]';
     const btnStyle = 'h-10 w-40 bg-[#FF0000] text-white p-2';
 
     const dispatch = useDispatch();
@@ -18,13 +18,29 @@ export default function SellRepairComponent() {
         <div className='container mx-auto mt-5 md:mt-10'>
             <div className='flex flex-col space-y-5 md:space-y-0 md:flex-row lg:justify-center lg:space-x-10'>
                 <div className={bothDivsStyle}>
-                    <DirectionsCar className={logoStyle} />
+                    <div className='flex justify-center'>
+                        <Image
+                            src='/assets/Car_icon.png'
+                            alt='car logo'
+                            height={80}
+                            width={80}
+                            className='cursor-pointer'
+                        />
+                    </div>
                     <h1 className={h1Style}>Do you want to sell</h1>
                     <h1 className='text-md'>Get a free quote for your vehicle</h1>
                     <button className={btnStyle} onClick={() => dispatch(setShowSellNow(true))}>Click here</button>
                 </div>
                 <div className={bothDivsStyle}>
-                    <Handyman className={logoStyle} />
+                    <div className='flex justify-center'>
+                        <Image
+                            src='/assets/setting_icon.png'
+                            alt='car logo'
+                            height={80}
+                            width={80}
+                            className='cursor-pointer'
+                        />
+                    </div>
                     <h1 className={h1Style}>Request a repair quote</h1>
                     <h1 className='text-md'>Get a location-based cost estimate to repair your car</h1>
                     <button className={btnStyle} onClick={() => dispatch(setShowRepairNow(true))}>Click here</button>
