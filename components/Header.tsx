@@ -115,8 +115,8 @@ export default function Header() {
             <Image
               src="https://eidcarosse.ch/wp-content/uploads/2023/07/test-white-logo.png"
               alt="logo"
-              width={100}
-              height={100} />
+              width={200}
+              height={200} />
           </Link>
           <div className={`menu`}>
             <ul className="flex flex-row space-x-6 uppercase text-sm font-semibold text-white">

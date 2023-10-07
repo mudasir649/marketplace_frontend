@@ -104,7 +104,7 @@ export default function SearchPage() {
         </div>
         <div className='flex flex-col w-full p-2 border border-gray-300 rounded-sm'>
           <span className="flex flex-row">
-            <DirectionsCar className="text-[#FF0000]" />
+            <Search className="text-[#FF0000]" />
             <input type="text" placeholder='enter keyword here...' name='name' className="focus:outline-none pl-2 overflow-hidden" value={title} onChange={(e: any) => setTitle(e.target.value)} onKeyUp={(e: any) => handleTitle(e)} />
           </span>
           <div className="ml-[-9px]">
