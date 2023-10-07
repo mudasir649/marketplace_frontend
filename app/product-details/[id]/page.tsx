@@ -149,20 +149,12 @@ export default function ProductDetails() {
       <Home>
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-0 lg:gap-4 grid-flow-rows mx-4 lg:mx-20 mt-10'>
           <div className='col-span-2'>
-            <div className={`lg:w-auto min-h-[800px] mb-5 border rounded-lg bg-white p-5`} data-aos="fade-up">
-              <div className='flex flex-col lg:flex-row lg:items-center lg:justify-between'>
-                <div>
-                  <h1 className='text-2xl font-semibold'>{product?.title}</h1>
-                </div>
-                <div className='mb-4 lg:mb-0 flex gap-x-2 text-sm'>
-                  <h1 className={`${newWidth === 1024 && newHeight === 885 ? 'text-sm' : 'text-xl'} font-semibold text-white bg-[#FF0000] px-3 rounded-full`}>{product?.category}</h1>
-                </div>
-              </div>
-              <div className='flex flex-col max-w-[1400px] h-[780px] w-full m-auto py-5 px-4 relative items-start gap-8 lg:flex-row group'>
+            <div className={`lg:w-auto min-h-[800px] mb-5 border rounded-lg bg-white p-5`}>
+              <div className='flex flex-col max-w-[1400px] h-[550px] w-full m-auto relative items-start gap-8 lg:flex-row group'>
                 {/* <div style={{ backgroundImage: `url(${product?.images[currentImage]})` }} className='w-full h-full rounded-lg bg-center bg-cover duration-500'>
                 </div> */}
                 <div className='h-full w-full'>
-                  <div className='image-gallery p-10 border-none rounded-md bg-gray-50 overflow-hidden'>
+                  <div className='image-gallery p-5 border-none rounded-md bg-gray-50 overflow-hidden'>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={product?.images[currentImage]}
@@ -171,53 +163,66 @@ export default function ProductDetails() {
                     />
                   </div>
                 </div>
-                <div className='hidden group-hover:block absolute top-[40%] -translate-x-0 translate-y-[-50%] left-5 text-2xl 
+                {product?.images.length >= 2 &&
+                  <>
+                    <div className='hidden group-hover:block absolute top-[45%] -translate-x-0 translate-y-[-35%] md:left-5 lg:left-10 text-2xl 
                     rounded-full p-2 text-[#FF0000] cursor-pointer' onClick={prevSlide}>
-                  <ArrowBackIos />
-                </div>
-                <div className='hidden group-hover:block absolute top-[40%] -translate-x-0 translate-y-[-50%] right-5 text-2xl 
+                      <ArrowBackIos />
+                    </div>
+                    <div className='hidden group-hover:block absolute top-[45%] -translate-x-0 translate-y-[-35%] md:right-5 lg:right-10 text-2xl 
                   rounded-full p-2 text-[#FF0000] cursor-pointer' onClick={nextSlide}>
-                  <ArrowForwardIos />
-                </div>
+                      <ArrowForwardIos />
+                    </div>
+                  </>
+                }
               </div>
               {product?.images.length > 1 &&
-                <div className='mt-[-150px]'>
-                  <div className='flex flex-row space-x-4'>
+                <div className='flex flex-col md:flex-row justify-between my-[20px]'>
+                  <div className='flex flex-row space-x-4 mb-2'>
                     {product?.images?.map((image: any, i: any) => (
-                      <div key={i} className="image-item" onClick={() => setCurrentImage(i)}>
+                      <div key={i} className="w-[60px] h-auto md:w-[100px] bg-gray-500">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img className='h-32 w-full' src={image} alt={`Image ${i}`} />
+                        <img className='h-auto w-full cursor-pointer' onClick={() => setCurrentImage(i)} src={image} alt={`Image ${i}`} />
                       </div>))}
                   </div>
+                  <div><CameraAlt /> {currentImage + 1} / {product?.images.length}</div>
                 </div>
               }
-              <h1 className='mb-3'><CameraAlt /> {currentImage + 1} / {product?.images.length} </h1>
-              <div className='bg-[#FF0000] space-y-2 rounded-lg rounded-tr-[700px] rounded-br-[700px] w-40 p-2 mb-5 h-16 md:w-64 md:h-auto'>
+              {/* <h1 className='mb-3 cursor-pointer'><CameraAlt /> {currentImage + 1} / {product?.images.length} </h1> */}
+              <div className='bg-[#FF0000] space-y-2 rounded-lg rounded-tr-[700px] rounded-br-[700px] w-40 p-2 h-16 md:w-64 md:h-auto'>
                 <h1 className='text-white text-sm md:text-3xl font-bold'>CHF {product?.price}</h1>
                 <h1 className='text-gray-300 text-sm md:text-xl font-semibold'>Euro {Number(product?.price) * 2}</h1>
               </div>
-              <div className='flex flex-col lg:flex-row lg:space-x-4 lg:space-y-0 space-y-2'>
-                <div className='flex flex-row gap-2 text-gray-600'>
-                  <AccessTime className='text-[#FF0000]' />
-                  <h1>{formatDateTime(product?.createdAt)}</h1>
+              <div className='flex flex-col md:flex-row justify-between my-6'>
+                <div className='space-y-4 mb-5 md:mb-0'>
+                  <div className='text-black font-bold text-3xl'>
+                    <h1>{product?.title}</h1>
+                  </div>
+                  <div className='flex flex-row gap-2 text-gray-600'>
+                    <Place className='text-[#FF0000]' />
+                    <h1 className='text-black'>{product?.address}</h1>
+                  </div>
+                  <div className='flex flex-row gap-2 text-gray-600'>
+                    <AccessTime className='text-[#FF0000]' />
+                    <h1 className='text-black'>{formatDateTime(product?.createdAt)}</h1>
+                  </div>
                 </div>
-                {/* <div className='flex flex-row gap-2 text-gray-600'>
-                  <Place className='text-[#FF0000]' />
-                  <h1>{product?.address}</h1>
-                </div> */}
+                <div className='flex flex-row space-x-3'>
+                  <h1><Visibility className='text-gray-500' /> <span className={listStyle2}>{product?.views}</span></h1>
+                  <h1><Favorite className={`${fav ? 'text-[#FF0000]' : 'text-gray-500'}`} onClick={() => adFavorite(product?._id)} /></h1>
+                  <h1><Share className='text-gray-500' onClick={() => handleShare(product?._id)} /></h1>
+                </div>
               </div>
-              <div className='mt-5 bg-[#FF0000] text-white w-32 p-1 text-center text-md border-none rounded-full'>Description</div>
-              <div className='mt-5 w-full' style={{ wordWrap: 'break-word' }}>{product?.description}</div>
-              <div className='flex flex-col md:flex-row justify-between'>
+              <div className='border-t-2'>
                 <div className='mt-5'>
                   <h1 className='text-xl font-bold'>
                     <span className="relative">
                       <span>Ove</span>
-                      <span className="absolute bottom-0 left-0 w-7 h-1 bg-[#FF0000] top-7"></span>
+                      <span className="absolute bottom-0 left-0 w-8 h-1 bg-[#FF0000] top-7"></span>
                     </span>
                     <span>rview</span>
                   </h1>
-                  <ul className='space-y-2 mb-5 mt-5'>
+                  <ul className='grid grid-cols-3 mt-5 gap-3 mb-5'>
                     {!product?.condition ? '' : <li><span className={overviewStyle}>Condition: </span> {product?.condition}</li>}
                     {!product?.brand ? '' : <li><span className={overviewStyle}>Brand: </span> {product?.brand}</li>}
                     {!product?.year ? '' : <li><span className={overviewStyle}>Year: </span> {product?.year}</li>}
@@ -230,19 +235,19 @@ export default function ProductDetails() {
                     {!product?.extriorColor ? '' : <li><span className={overviewStyle}>Exterior: </span> {product?.exteriorColor}</li>}
                     {product?.category == 'Autos' && <li><span className={overviewStyle}>Interior: </span> {product?.interiorColor}</li>}
                   </ul>
-                  <div className={listStyle}>
-                    <Visibility className='text-gray-500' /> <span className={listStyle2}>{product?.views} views</span>
-                  </div>
-                  <div className={listStyle}>
-                    <Favorite className={`${fav ? 'text-[#FF0000]' : 'text-gray-500'}`} onClick={() => adFavorite(product?._id)} /> <span className={listStyle2}>Add to Favourites</span>
-                  </div>
-                  <div className={listStyle}>
-                    <Share className='text-gray-500' onClick={() => handleShare(product?._id)} /> <span className={listStyle2}>Share this add</span>
-                    <div className='space-x-2 mt-4'>
-                      <Facebook className='text-blue-600 text-3xl' /><Twitter className='text-blue-400 text-3xl' /><WhatsApp className='text-green-400 text-3xl' />
-                    </div>
-                  </div>
                 </div>
+              </div>
+              <div className='border-t-2 space-y-8'>
+                <h1 className='text-xl font-bold mt-5'>
+                  <span className="relative">
+                    <span>Desc</span>
+                    <span className="absolute bottom-0 left-0 w-10 h-1 bg-[#FF0000] top-7"></span>
+                  </span>
+                  <span>ription</span>
+                </h1>
+                <p className='bg-green-600 line-clamp-5'>
+                  {product?.description}
+                </p>
               </div>
             </div>
           </div>
@@ -264,12 +269,6 @@ export default function ProductDetails() {
                   <h1 className='mt-5 text-lg font-semibold'>{product?.userId?.firstName + " " + product?.userId.lastName} </h1>
                 </div>
                 <div className='space-y-3 mt-7'>
-                  {/* <div className='flex flex-row mt-5'>
-                    <div className='flex flex-row gap-2 text-gray-600'>
-                      <Place className='text-[#FF0000]' />
-                      <h1>{product?.address}</h1>
-                    </div>
-                  </div> */}
                   {!contact && <div className='border bg-gray-800 text-md font-semibold text-white p-2 rounded-md cursor-pointer' onClick={handleChange}>
                     <div className='flex flex-row justify-center gap-2'>
                       <Phone />
@@ -288,10 +287,10 @@ export default function ProductDetails() {
                       </ul>
                     </div>
                   }
-                  <div className='border bg-[#FF0000] text-md font-semibold text-white p-2 rounded-md'>
-                    <a className='flex flex-row justify-center gap-2' onClick={() => handleEmail(product?.email)}>
+                  <div className='border bg-[#FF0000] text-md font-semibold text-white p-2 rounded-md cursor-pointer'>
+                    <a className='flex flex-row justify-center gap-2' onClick={() => router.push('/chat')}>
                       <Mail />
-                      <span>Send Email</span>
+                      <span>Send Message</span>
                     </a>
                   </div>
                 </div>
@@ -308,7 +307,6 @@ export default function ProductDetails() {
           </div>
         </div>
       </Home >
-
     </>
   )
 }
