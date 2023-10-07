@@ -245,7 +245,7 @@ export default function ProductDetails() {
                   </span>
                   <span>ription</span>
                 </h1>
-                <p className='bg-green-600 line-clamp-5'>
+                <p className='line-clamp-5'>
                   {product?.description}
                 </p>
               </div>
