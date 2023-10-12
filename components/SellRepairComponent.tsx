@@ -20,7 +20,7 @@ export default function SellRepairComponent() {
                 <div className={bothDivsStyle}>
                     <div className='flex justify-center'>
                         <Image
-                            src='/assets/Car_icon.png'
+                            src='/assets/carIcon.png'
                             alt='car logo'
                             height={80}
                             width={80}
@@ -34,7 +34,7 @@ export default function SellRepairComponent() {
                 <div className={bothDivsStyle}>
                     <div className='flex justify-center'>
                         <Image
-                            src='/assets/setting_icon.png'
+                            src='/assets/repairIcon.png'
                             alt='car logo'
                             height={80}
                             width={80}

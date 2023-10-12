@@ -52,14 +52,15 @@ export default function CategoryList({ setCategory, setExpand }: any) {
                     Drones
                 </li>
                 <li className='dropdow'>
-                    <h1 className={liStyle}>Others</h1>
+                    <h1 className={liStyle}>Parts</h1>
                     <div className='absolute hidden ml-[190px] mt-[-30px] bg-white w-full h-auto p-2 border-none rounded-sm dropdow-menu'>
                         <ul className='block mx-2'>
                             {partsSubList?.map((list: any, i: number) => (
                                 <li className={liStyle} onClick={() => handleClick(list.name)} key={i}>{list.name}</li>
                             ))}
                         </ul>
-                    </div>                </li>
+                    </div>
+                </li>
                 <li onClick={() => handleClick("Trailers")} className={liStyle}>
                     Trailers
                 </li>
@@ -68,6 +69,9 @@ export default function CategoryList({ setCategory, setExpand }: any) {
                 </li>
                 <li onClick={() => handleClick("Vans")} className={liStyle}>
                     Vans
+                </li>
+                <li onClick={() => handleClick("Trailers")} className={liStyle}>
+                    Others
                 </li>
             </ul>
         </div>
