@@ -1,6 +1,4 @@
 .messageArea{
-    display: flex;
-    flex-direction: column-reverse;
     overflow: auto;
     scrollbar-width: none;
 }

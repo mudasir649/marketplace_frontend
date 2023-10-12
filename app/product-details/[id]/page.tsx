@@ -303,12 +303,15 @@ export default function ProductDetails() {
                       </ul>
                     </div>
                   }
-                  <div className='border bg-[#FF0000] text-md font-semibold text-white p-2 rounded-md cursor-pointer'>
-                    <a className='flex flex-row justify-center gap-2' onClick={handleChat}>
-                      <Mail />
-                      <span>Send Message</span>
-                    </a>
-                  </div>
+                  {userId === product?.userId._id ?
+                    ''
+                    : <div className='border bg-[#FF0000] text-md font-semibold text-white p-2 rounded-md cursor-pointer'>
+                      <a className='flex flex-row justify-center gap-2' onClick={handleChat}>
+                        <Mail />
+                        <span>Send Message</span>
+                      </a>
+                    </div>
+                  }
                 </div>
               </div>
             </div>
