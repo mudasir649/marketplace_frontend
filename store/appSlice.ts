@@ -8,9 +8,10 @@ const getProductInitialState = () => {
 }
 
 
-const getProductInitialCount = () => {
-    const productsCount = typeof window !== 'undefined' ? localStorage.getItem('productsCount') : null;
-    return productsCount;
+const getChatRoomData = () => {
+    const chatRoomData = typeof window !== 'undefined' ? localStorage.getItem('roomsData') : null;
+    const chatRoom = chatRoomData ? JSON.parse(chatRoomData) : null
+    return chatRoom;
 }
 
 
@@ -20,10 +21,12 @@ const initialState = {
     showShare: false,
     showSellNow: false,
     productId: '',
+    productUserId: '',
     showRepairNow: false,
     showDeleteAd: false,
     productData: null,
     productsCount: 0,
+    roomsData: getChatRoomData() !== null ? getChatRoomData() : null,
     // productData: getProductInitialState() !== null ? getProductInitialState() : null,
     // productsCount: getProductInitialCount() !== null ? getProductInitialCount() : 0,
     page: 1,
@@ -67,6 +70,9 @@ const appSlice = createSlice({
         //     state.productsCount = actions.payload;
         //     localStorage.setItem('productsCount', actions.payload);
         // },
+        setProductUserId: (state, actions) => {
+            state.productUserId = actions.payload;
+        },
         setProductData: (state, actions) => {
             state.productData = actions.payload;
         },
@@ -87,6 +93,10 @@ const appSlice = createSlice({
         },
         setReduxAddress: (state, actions) => {
             state.address = actions.payload;
+        },
+        setRoomsData: (state, actions) => {
+            state.roomsData = actions.payload;
+            localStorage.setItem('roomsData', JSON.stringify(actions.payload));
         }
     }
 });
@@ -97,6 +107,7 @@ export const { refreshPage, setFilterData,
                 setShowDeleteAd, setPage,
                 setProductData, setProductsCount, 
                 setSortBy, setType,
-                setReduxTitle, setReduxAddress } = appSlice.actions;
+                setReduxTitle, setReduxAddress, 
+                setProductUserId, setRoomsData } = appSlice.actions;
 
 export default appSlice.reducer;

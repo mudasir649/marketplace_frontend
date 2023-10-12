@@ -18,7 +18,10 @@ import SellNow from "./SellNow";
 import RepairNow from "./RepairNow";
 import DeleteAd from "./DeleteAd";
 import axios from "axios";
-import { setProductData, setProductsCount } from "@/store/appSlice";
+import { setProductData, setProductsCount, setRoomsData } from "@/store/appSlice";
+import { getApps, initializeApp } from "firebase/app";
+import { getDatabase, ref, onValue, off } from "firebase/database";
+import { db } from "@/utils/firebase-config";
 
 export default function Header() {
 
@@ -26,18 +29,48 @@ export default function Header() {
   const [showContact, setShowContact] = useState(false);
   const navbarLiStyle = navbar ? 'cursor-pointer hover:text-[#FF0000]' : 'cursor-pointer hover:p-2 hover:border hover:rounded-md hover:bg-white hover:text-[#FF0000] font-[600] ease-in duration-150';
   const [open, isOpen] = useState<Boolean>(false);
+  const [roomData, setRoomData] = useState<any>();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const dispatch = useDispatch();
   const router = useRouter();
 
 
   const { userInfo } = useSelector((state: any) => state.auth);
+  const userId = userInfo?.data?.userDetails?._id;
   const { showShare, showSellNow, showRepairNow, showDeleteAd, page } = useSelector((state: any) => state.app);
 
   const userData = userInfo?.data?.userDetails;
 
-  // console.log(userData);
+  useEffect(() => {
+    let roomRef: any;
 
+    const fetchRoomsData = async () => {
+      try {
+        console.log("Updating rooms list");
+        roomRef = ref(db, `RoomLists/${userId}/rooms`);
+
+        const handleRoomUpdate: any = (snapshot: any) => {
+          const room = snapshot.val() || [];
+          dispatch(setRoomsData(room))
+        };
+
+        onValue(roomRef, handleRoomUpdate);
+
+        // Clean up the listener when the component is unmounted or the user logs out
+        return () => {
+          if (roomRef) {
+            off(roomRef, handleRoomUpdate);
+          }
+        };
+      } catch (error) {
+        console.error('Error fetching room data:', error);
+      }
+    };
+
+    if (userInfo !== null) {
+      fetchRoomsData();
+    }
+  }, [userInfo, userId, dispatch]);
 
   const handleContact = () => {
     setShowContact(true);

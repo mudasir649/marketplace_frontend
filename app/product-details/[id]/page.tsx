@@ -17,7 +17,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import './productDetails.css';
 import formatDateTime from '@/utils/checkTime';
-import { refreshPage, setProductId, setShowShare } from '@/store/appSlice';
+import { refreshPage, setProductId, setShowShare, setProductUserId } from '@/store/appSlice';
 
 interface AdFavoriteData {
   userId: string,
@@ -31,6 +31,8 @@ export default function ProductDetails() {
   const [product, setProduct] = useState<any>();
 
   const { userInfo } = useSelector((state: any) => state.auth);
+  const userId = userInfo?.data?.userDetails?._id;
+
   const { refresh } = useSelector((state: any) => state.app);
   const [fav, setFav] = useState<Boolean>(false);
   const [clicked, setClicked] = useState(false);
@@ -140,6 +142,20 @@ export default function ProductDetails() {
   const handleShare = (productId: string) => {
     dispatch(setShowShare(true))
     dispatch(setProductId(productId))
+  }
+
+  const handleChat = async () => {
+    dispatch(setProductId(product?._id));
+    dispatch(setProductUserId(product?.userId?._id));
+    const data = {
+      userId: userId,
+      productUserId: product?.userId?._id,
+      productId: product?._id
+    }
+    const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URI}/chatroom`, data);
+    if (res.status === 200) {
+      router.push('/chat');
+    }
   }
 
 
@@ -288,7 +304,7 @@ export default function ProductDetails() {
                     </div>
                   }
                   <div className='border bg-[#FF0000] text-md font-semibold text-white p-2 rounded-md cursor-pointer'>
-                    <a className='flex flex-row justify-center gap-2' onClick={() => router.push('/chat')}>
+                    <a className='flex flex-row justify-center gap-2' onClick={handleChat}>
                       <Mail />
                       <span>Send Message</span>
                     </a>
