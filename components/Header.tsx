@@ -126,7 +126,7 @@ export default function Header() {
             <li>
               <ListDownComponent />
             </li>
-            <li className={navbarLiStyle}><Chat className="text-3xl -mt-1" /></li>
+            <li className={navbarLiStyle} onClick={() => router.push('/chat')}><Chat className="text-3xl -mt-1" /></li>
             <li className={navbarLiStyle}><AdminPanelSettings className="text-3xl -mt-1" /></li>
             <li className="cursor-pointer">
               <Link href="/post-ad">
@@ -167,7 +167,7 @@ export default function Header() {
               <li>
                 <ListDownComponent />
               </li>
-              <li className={navbarLiStyle}><Chat className="text-3xl -mt-1" /></li>
+              <li className={navbarLiStyle} onClick={() => router.push('/chat')}><Chat className="text-3xl -mt-1" /></li>
               <li className={navbarLiStyle}><AdminPanelSettings className="text-3xl -mt-1" /></li>
             </ul>
           </div>
@@ -197,7 +197,7 @@ export default function Header() {
                   <ExpandMore className={`${!userData?.image ? 'mt-1' : 'mt-2'}  text-gray-50 logo ${open ? 'active' : 'inactive'}`} />
                 </button>
               </div>
-                <div className={`dropdown-menu border rounded-sm w-60 absolute ml-[-120px] z-10 ${newWidth == 1024 ? 'end-10' : 'end-4 lg:end-52'} top-20 ${open ? 'active' : 'inactive'}`}>
+                <div className={`dropdown-menu border rounded-sm w-60 absolute ml-[-120px] z-10 ${newWidth == 1024 ? 'end-10' : 'end-4 lg:end-52'} top-28 ${open ? 'active' : 'inactive'}`}>
                   <div>
                     <h3>Hello,</h3><h1 className="text-lg font-bold mb-[-10px] hover:text-[#FF0000] cursor-pointer">{userData?.firstName}  {userData?.lastName}</h1>
                   </div>
@@ -205,7 +205,6 @@ export default function Header() {
                     <DropdownItem logo={<Person />} text="My Profile" href="/my-profile" />
                     <DropdownItem logo={<FormatListNumbered />} text="My Ads" href="/my-ads" />
                     <DropdownItem logo={<Favorite />} text="Favourites" href="/my-favourites" />
-                    <DropdownItem logo={<Sms />} text="Chat" href="/" />
                   </ul>
                   <ul className="flex flex-col space-y-5 border-t-2 pt-3" onClick={() => logoutHandler()}>
                     <DropdownItem logo={<Logout />} text="Logout" href="/" />

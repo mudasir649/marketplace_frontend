@@ -133,7 +133,7 @@ export default function MyProfile() {
 
     return (
         <Home>
-            <div className='container mx-auto mb-20'>
+            <div className='container mx-auto mb-20 mt-10'>
                 <ToastContainer />
                 <div className='border-none rounded-sm bg-white h-full p-3'>
                     <div className='flex justify-center border-b-2 pb-5'>
