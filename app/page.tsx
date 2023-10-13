@@ -15,6 +15,7 @@ import axios from "axios";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 
 
 export default function MainPage() {
@@ -28,48 +29,44 @@ export default function MainPage() {
   const newHeight = height || 0;
 
   useEffect(() => {
-    const fetchTopData = async () => {
-      const res = await axios(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/fetchTopAds`);
-      setTopAds(res?.data?.data);
-    }
     const fetchFeaturedData = async () => {
       const res = await axios(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/fetchFeatured`);
       setFeaturedAds(res?.data?.data);
     }
-    fetchTopData();
     fetchFeaturedData();
+    // const fetchTopData = async () => {
+    //   const res = await axios(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/fetchTopAds`);
+    //   setTopAds(res?.data?.data);
+    // }
+    // fetchTopData();
   }, []);
 
-  if (!featuredAds && !topAds) {
-    return (
-      <div className="flex justify-center mt-5">
-        <Image
-          src='/assets/eidcarosse.gif'
-          alt="eidcarosse_logo"
-          width={500}
-          height={500}
-        />
-      </div>
-    )
-  }
   return (
     <div className="">
-      <Home suppressHydrationWarning={true}>
+      <Home>
         <SellRepairComponent />
         {/* <TopProducts>
           <ProductList productList={topAds} />
         </TopProducts>
         <FooterBanner /> */}
-        <section className='mb-20 mt-5'>
-          <div className='container mx-auto flex justify-between mb-5'>
-            <h1 className='text-xl lg:text-3xl font-bold mt-1'>Latest Ads</h1>
-            <Link href='/advance-search'>
-              <span className='capitalize text-lg font-bold mt-[5px] mr-[-5px]'>see all Ads <East className='text-[#FF0000]' data-aos="fade-right" /> </span>
-            </Link>
+        {!featuredAds ?
+          <div className="flex justify-center">
+            <div className="spinner mt-8 w-40 h-40 mb-10"></div>
           </div>
-          <ProductList productList={featuredAds} />
-        </section>
+          :
+          <section className='mb-20 mt-5'>
+            <div className='container mx-auto flex justify-between mb-5'>
+              <h1 className='text-xl lg:text-3xl font-bold mt-1'>Latest Ads</h1>
+              <Link href='/advance-search'>
+                <span className='capitalize text-lg font-bold mt-[5px] mr-[-5px]'>see all Ads <East className='text-[#FF0000]' data-aos="fade-right" /> </span>
+              </Link>
+            </div>
+            <ProductList productList={featuredAds} />
+          </section>
+        }
       </Home>
     </div>
   )
 }
+
+// export default dynamic(() => Promise.resolve(MainPage), { ssr: false });

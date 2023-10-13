@@ -114,16 +114,16 @@ export default function Product({ product, url }: any) {
                 <h1 className='text-gray-400 font-semibold text-[13px] w-32 truncate'>EURO {addInvertedComma(product?.price * 2)}</h1>
               </section>
               <section className='flex flex-row space-x-1'>
-                <AccessTime className="text-gray-500 text-sm" />
+                <AccessTime className="text-gray-400" style={{ fontSize: "22px" }} />
                 <h1 className='text-sm w-16 truncate'>{showDate(product?.createdAt) <= 2 ?
-                  <div className='bg-green-600 text-white rounded-full px-3 text-center'>{'new'}</div> : <div className='text-[sm] mt-[0.5px]'>{Number.isNaN(showDate(product?.createdAt)) ? '0 days ago' : `${showDate(product?.createdAt)} days ago`}</div>
+                  <div className='bg-green-600 text-white rounded-full px-3 text-center'>{'new'}</div> : <div className='text-[12px] mt-[0.5px]'>{Number.isNaN(showDate(product?.createdAt)) ? '0 days ago' : `${showDate(product?.createdAt)} days ago`}</div>
                 }</h1>
               </section>
             </div>
             <div className='space-y-3 mt-5'>
               <h1 className='text-xl font-semibold text-black w-52 truncate'>{product?.title}</h1>
               <section className='flex flex-row space-x-1 w-52 truncate'>
-                <LocationOn className="text-gray-400" />
+                <LocationOn className="text-gray-400" style={{ fontSize: "20px" }} />
                 <h1 className='mt-[-1px] text-sm'>{product?.address}</h1>
               </section>
             </div>
@@ -142,109 +142,20 @@ export default function Product({ product, url }: any) {
                   <Share
                     onClick={() => handleShare()}
                     className='cursor-pointer'
+                    style={{ fontSize: "20px" }}
                   />
-                  <Chat />
-                  <Favorite className={`${fav ? 'text-[#FF0000]' : 'text-gray-300'} cursor-pointer`} onClick={() => adFavorite()} />
+                  <Chat style={{ fontSize: "20px" }} />
+                  <Favorite className={`${fav ? 'text-[#FF0000]'
+                    : 'text-gray-300'} cursor-pointer`}
+                    onClick={() => adFavorite()}
+                    style={{ fontSize: "20px" }}
+                  />
                 </div>
-                <div className='flex flex-row space-x-1'>
-                  <RemoveRedEye className="text-gray-500" />
-                  <h1>{product?.views}</h1>
+                <div className='flex flex-row space-x-1 mt-1'>
+                  <RemoveRedEye className="text-gray-500" style={{ fontSize: "20px" }} />
+                  <h1 className='text-sm'>{product?.views}</h1>
                 </div>
               </>}
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-
-  return (
-    <div className={`${newWidth < 688 ? 'max-w-[500px]' : 'max-w-[352px]'} bg-white shadow-lg border-[#795453] 
-      rounded-lg my-2 w-full h-auto mx-auto cursor-pointer hover:shadow-md hover:opacity-25 hover:shadow-[#e52320]`}
-      data-aos={url !== "login" && url !== "signup" && "fade-up"}
-    >
-      {/* <div className='border border-gray-300 mb-2 w-auto'>
-          <Image
-          src={pathname == '/' || pathname == '/my-ads' || pathname ? picOne : image}
-          alt={name}
-          width={500}
-          height={500}
-        />
-        </div> */}
-      <div className="image-slider group relative">
-        <Link href={`product-details/${product?._id}`}>
-          <div className="slide">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={product?.images[currentSlide]} alt="Image" className='w-96 h-48' />
-          </div>
-        </Link>
-        {product?.images?.length > 1 &&
-          <>
-            <button className="prev-button hidden group-hover:block" onClick={prevSlide}>
-              <ArrowBackIos />
-            </button>
-            <button className="next-button hidden group-hover:block" onClick={nextSlide}>
-              <ArrowForwardIos />
-            </button>
-          </>
-        }
-      </div>
-      <div className='p-5'>
-        <Link href={`/product-details/${product?._id}`}>
-          <div className='mb-4 flex gap-x-2 text-sm'>
-            <div className='bg-[#FF0000] text-white rounded-full px-3'>
-              {product?.category}
-            </div>
-          </div>
-          <div className='text-md line-clamp-2 h-5 font-semibold max-w-[260px] cursor-pointer hover:text-[#FF0000]'>
-            {product?.title}
-          </div>
-        </Link>
-        <div className='space-y-4'>
-          <Link href={`/product-details/${product?._id}`}>
-            <div className='flex items-center text-gray-600 gap-2 mt-2 h-10'>
-              <div className='text-[10px]'>
-                <AccessTime className="text-gray-500" />
-              </div>
-              {/* <h1 className='text-sm'>{showDate() <= 2 ?
-                <div className='bg-green-600 text-white rounded-full px-3'>{'new'}</div> : Number.isNaN(showDate()) ? '0 days ago' : `${showDate()} days ago`}
-              </h1> */}
-            </div>
-            {pathname == '/my-ads' ? '' :
-              <div className='flex items-center text-gray-600 gap-2 mt-2 h-10'>
-                <div className='text-[10px]'>
-                  <LocationOn className="text-gray-500" />
-                </div>
-                <h1 className='text-sm line-clamp-2'>{product?.address}</h1>
-              </div>
-            }
-            <div className='flex items-center text-gray-600 gap-2 mt-2'>
-              <div className='text-[10px]'>
-                <RemoveRedEye className="text-gray-500" />
-              </div>
-              <h1 className='text-sm'>{product?.views} Views</h1>
-            </div>
-          </Link>
-          {pathname == '/my-ads' ?
-            <>
-              <div className='flex flex-row space-x-2'>
-                <EditNote className='text-4xl text-yellow-500' />
-                <Delete className='text-3xl text-red-500 mt-1' onClick={() => deleteAd(product?._id)} />
-              </div>
-            </> :
-            <>
-              <div className='space-y-1'>
-                <h1 className='text-[#FF0000] text-2xl font-bold'>CHF {product?.price}</h1>
-                <h1 className='text-gray-500 text-lg font-bold'>Euro {product?.price * 2}</h1>
-              </div>
-              <div className='flex flex-row space-x-4 text-gray-600 w-full h-10 mb-10 border-t-2 pt-4'>
-                <Share onClick={() => handleShare()} />
-                <Chat />
-                <Favorite className={`${fav ? 'text-[#FF0000]' : 'text-gray-300'}`} onClick={() => adFavorite()} />
-              </div>
-            </>
-          }
-          <div className='invisible'>
-            flflf
           </div>
         </div>
       </div>
