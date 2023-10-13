@@ -5,24 +5,10 @@ import React, { useState } from 'react';
 import googleLogo from "../public/assets/google_logo.png";
 import signLogo from "../public/assets/signLogo.png";
 import { toast } from "react-toastify";
-import axios from "axios";
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
-import { CircularProgress } from '@material-ui/core';
 import { useRegisterMutation } from '@/store/userApiSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCredentials } from '@/store/authSlice';
 import { useRouter } from 'next/navigation';
-
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            display: 'flex',
-            '& > * + *': {
-                marginLeft: theme.spacing(2),
-            },
-        },
-    }),
-);
 
 export default function Signup() {
 
@@ -32,7 +18,6 @@ export default function Signup() {
     const [email, setEmail] = useState<string>("");
     const [phoneNumber, setPhoneNumber] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const classes = useStyles();
     const router = useRouter();
     const dispatch = useDispatch();
     const { userInfo } = useSelector((state: any) => state.auth);
@@ -181,9 +166,7 @@ export default function Signup() {
                                 <span>Register</span>
                             </button>
                                 :
-                                <div className={classes.root}>
-                                    <CircularProgress color="secondary" />
-                                </div>}
+                                <div className="spinner mt-8 w-10 h-10"></div>}
                         </div>
                         <div className='flex justify-center font-bold'>or</div>
                         <button className='border flex flex-row justify-center py-2 space-x-2 border-gray-200 hover:bg-red-400 hover:text-white rounded-md h-10 w-64 md:w-96'>

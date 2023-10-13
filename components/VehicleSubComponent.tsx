@@ -10,22 +10,8 @@ import { axelType, conditionList, fuelType, howContactList, priceList } from '@/
 import { carsList } from '@/utils/carsList';
 import "../app/post-ad/post-ad.css"
 import { bikesList } from '@/utils/bikesList';
-import { CircularProgress } from '@material-ui/core';
-import { createStyles, makeStyles } from '@material-ui/core';
-import { Theme } from '@mui/material';
 import { useSelector } from 'react-redux';
 import locateAddress from '@/utils/GoogleLocation';
-
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            display: 'flex',
-            '& > * + *': {
-                marginLeft: theme.spacing(2),
-            },
-        },
-    }),
-);
 
 const style = {
     inputStyle: 'border border-gray-200 hover:border-red-500 focus:outline-red-500 w-full rounded-sm h-10 pl-3',
@@ -71,7 +57,6 @@ interface IData {
 export default function VehicleSubComponent({ type }: any) {
     const { userInfo } = useSelector((state: any) => state.auth);
     const userData = userInfo === null ? userInfo : userInfo?.data?.userDetails?._id;
-    const classes = useStyles()
     const [open, isOpen] = useState<Boolean>(false);
     const [openSub, isOpenSub] = useState<Boolean>(false);
     const [openBrand, isOpenBrand] = useState<Boolean>(false);
@@ -611,9 +596,7 @@ export default function VehicleSubComponent({ type }: any) {
                                         <button className='bg-[#FF0000] hover:bg-red-800 w-32 h-10 text-white font-bold' >Submit</button>
                                     </div>
                                     :
-                                    <div className={classes.root}>
-                                        <CircularProgress color="secondary" />
-                                    </div>
+                                    <div className="spinner mt-8 w-10 h-10"></div>
                                 }
                             </div>
                         </form>

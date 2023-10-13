@@ -17,23 +17,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { usePathname, useRouter } from 'next/navigation';
 import { conditionList, sortByList, subList } from '@/utils/dataVariables';
 import { setPage, setProductId, setShowShare } from '@/store/appSlice';
-import { CircularProgress, createStyles, makeStyles } from '@material-ui/core';
-import { Theme } from '@mui/material';
 import addInvertedComma from '@/utils/addInvertedComma';
 import ProductList from './ProductList';
 import { faClock, faMessage } from "@fortawesome/free-solid-svg-icons";
 import showDate from '@/utils/showDate';
-
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            display: 'flex',
-            '& > * + *': {
-                marginLeft: theme.spacing(2),
-            },
-        },
-    }),
-);
 
 
 interface IList {
@@ -64,7 +51,6 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
     const [sortByLoading, setSortByLoading] = useState<Boolean>(false);
     const pathname = usePathname();
     const dispatch = useDispatch();
-    const classes = useStyles();
     const { userInfo } = useSelector((state: any) => state.auth);
     const userId = userInfo?.data?.userDetails?._id;
 
@@ -360,9 +346,7 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
                     </div>
                     {loading ?
                         <>
-                            <div className={`${classes.root} flex justify-center`}>
-                                <CircularProgress color="secondary" />
-                            </div>
+                            <div className="spinner mt-8 w-10 h-10"></div>
                         </>
                         :
                         <>{productData?.length > 0 ?
@@ -388,9 +372,7 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
                                 </div>
                                 {sortByLoading ?
                                     <>
-                                        <div className={`${classes.root} flex justify-center my-5`}>
-                                            <CircularProgress color="secondary" />
-                                        </div>
+                                        <div className="spinner mt-8 w-10 h-10"></div>
                                     </>
                                     :
                                     newWidth <= 550 ?

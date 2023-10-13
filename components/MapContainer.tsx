@@ -1,7 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { GoogleMap, LoadScript, Marker, useJsApiLoader } from "@react-google-maps/api"
-import { Box, CircularProgress } from '@mui/material';
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api"
 import useWindowDimensions from '@/utils/useWindowDimensions';
 import locateAddress from '@/utils/GoogleLocation';
 
