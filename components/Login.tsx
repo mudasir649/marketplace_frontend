@@ -1,36 +1,20 @@
-import { Cancel, Google, Https, LoginSharp, Mail } from '@mui/icons-material'
+import { Cancel, Https, LoginSharp, Mail } from '@mui/icons-material'
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import googleLogo from "../public/assets/google_logo.png";
 import signLogo from "../public/assets/signLogo.png";
-import useWindowDimensions from '@/utils/useWindowDimensions';
-import axios from 'axios';
 import { toast } from 'react-toastify';
-import { Theme, createStyles, makeStyles } from '@material-ui/core';
-import { CircularProgress } from "@material-ui/core";
 import { useDispatch, useSelector } from 'react-redux';
 import { setCredentials } from "../store/authSlice"
 import { useLoginMutation } from '@/store/userApiSlice';
 import { useRouter } from 'next/navigation';
-
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            display: 'flex',
-            '& > * + *': {
-                marginLeft: theme.spacing(2),
-            },
-        },
-    }),
-);
 
 
 export default function LoginPage() {
 
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const classes = useStyles();
     const dispatch = useDispatch();
     const router = useRouter();
 
@@ -114,9 +98,7 @@ export default function LoginPage() {
                                     <span>Login</span>
                                 </button>
                                 :
-                                <div className={classes.root}>
-                                    <CircularProgress color="secondary" />
-                                </div>}
+                                <div className="spinner mt-8 w-10 h-10"></div>}
                         </div>
                         <div className='flex justify-center'>
                             <h1>Not a member?

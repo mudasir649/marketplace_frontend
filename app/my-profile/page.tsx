@@ -1,28 +1,14 @@
 'use client';
 import Home from '@/components/Home'
-import { Cancel, InsertPhoto, Person } from '@mui/icons-material';
+import { Cancel, Person } from '@mui/icons-material';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import useWindowDimensions from '@/utils/useWindowDimensions';
 import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
-import { CircularProgress, createStyles, makeStyles } from '@material-ui/core';
-import { Theme } from '@mui/material';
 import { setCredentials } from '@/store/authSlice';
 import { refreshPage } from '@/store/appSlice';
 import { useRouter } from 'next/navigation';
-
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            display: 'flex',
-            '& > * + *': {
-                marginLeft: theme.spacing(2),
-            },
-        },
-    }),
-);
 
 
 interface IData {
@@ -34,7 +20,6 @@ interface IData {
 
 export default function MyProfile() {
 
-    const classes = useStyles();
     const router = useRouter();
     const { userInfo } = useSelector((state: any) => state.auth);
     const { refresh } = useSelector((state: any) => state.app);
@@ -199,9 +184,7 @@ export default function MyProfile() {
                         <div className={style.divStyle}>
                             <h1 className={`${style.h1Style} invisible`}>submit</h1>
                             {loading ?
-                                <div className={classes.root}>
-                                    <CircularProgress color="secondary" />
-                                </div>
+                                <div className="spinner mt-8 w-10 h-10"></div>
                                 :
                                 <div className='flex flex-col w-full'>
                                     <button className='bg-[#FF0000] hover:bg-red-800 w-32 h-10 text-white font-bold' onClick={(e: any) => updateProfile(e)}>Submit</button>

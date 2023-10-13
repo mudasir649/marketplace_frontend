@@ -1,19 +1,15 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
-import { addDoc, collection, doc, getDoc, getDocs, onSnapshot, orderBy, query, setDoc, where } from 'firebase/firestore';
-// import { db } from '@/utils/firebase-config';
 import { useSelector } from 'react-redux';
-import { db, storage } from '@/utils/firebase-config';
+import { db } from '@/utils/firebase-config';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsisVertical, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import addInvertedComma from '@/utils/addInvertedComma';
-import { CameraAlt, CameraAltOutlined, Cancel } from '@mui/icons-material';
+import { CameraAlt, CameraAltOutlined, Cancel, DeleteForever } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
-import { onValue, push, ref, set } from 'firebase/database';
-import { CircularProgress, createStyles, makeStyles } from '@material-ui/core';
-
+import { get, onValue, push, ref, set } from 'firebase/database';
 import {
     getStorage,
     ref as storageRef,
@@ -22,7 +18,7 @@ import {
 } from "@firebase/storage";
 import "./chat.css";
 import Home from '@/components/Home';
-import { Theme } from '@mui/material';
+import moment from "moment";
 
 interface Message {
     senderId: string;
@@ -38,20 +34,7 @@ interface NewMessages {
     [key: string]: MessageData;
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            display: 'flex',
-            '& > * + *': {
-                marginLeft: theme.spacing(2),
-            },
-        },
-    }),
-);
-
 export default function Chat() {
-    const classes = useStyles();
-    const { productId, productUserId } = useSelector((state: any) => state.app);
     const { userInfo } = useSelector((state: any) => state.auth);
     const { roomsData } = useSelector((state: any) => state.app);
     const userId = userInfo?.data?.userDetails?._id;
@@ -62,7 +45,6 @@ export default function Chat() {
     const [loading, setLoading] = useState<Boolean>(true);
     const [imageLoading, setImageLoading] = useState<Boolean>(false);
     const [chatRoomData, setChatRoomData] = useState<any>();
-    const userName = userInfo?.data?.userDetails?.userName;
     const [image, setImage] = useState<any>([]);
     const fileInputValue = useRef<HTMLInputElement | null>(null);
     const router = useRouter();
@@ -136,6 +118,7 @@ export default function Chat() {
 
     const handleMessage = async (e: any) => {
         e.preventDefault();
+        let imageUrls = [];
         if (message && image.length <= 0) {
             const messagesRef = ref(db, `chatrooms/${selected.roomId}/messages`);
             const newMessageRef = push(messagesRef);
@@ -145,9 +128,8 @@ export default function Chat() {
                 timestamp: Date.now(), // Or Firebase's server timestamp, if you prefer
             });
             setMessage(""); // Clear the input field after sending
-        } else if (image.length > 0) {
+        } else if (image.length >= 1) {
             const storage = getStorage();
-            let imageUrls = [];
             setImageLoading(true);
             for (const img of image) {
                 // Create image storage
@@ -167,17 +149,20 @@ export default function Chat() {
                     imageUrls.push(downloadURL)
                 }
 
-                // dbref for the database reference
-                const messageRef = ref(db, `chatrooms/${selected.roomId}/messages`);
 
-                const newMessageRef = push(messageRef);
-                set(newMessageRef, {
-                    senderId: userId,
-                    images: imageUrls,
-                    timestamps: Date.now()
-                });
+                if (image.length === imageUrls.length) {
+                    // // dbref for the database reference
+                    const messageRef = ref(db, `chatrooms/${selected.roomId}/messages`);
 
-                // Clear the selected images after sending
+                    const newMessageRef = push(messageRef);
+                    set(newMessageRef, {
+                        senderId: userId,
+                        images: imageUrls,
+                        timestamps: Date.now()
+                    });
+                }
+
+                // // Clear the selected images after sending
                 setImage([]);
             }
         } else {
@@ -201,33 +186,59 @@ export default function Chat() {
     }
 
 
-    const users = [
-        {
-            name: "Mark",
-            productName: 'phone12 pro MAX pro MAX',
-            message: 'hello',
-            time: '10 mins ago'
-        },
-        {
-            name: "Jane",
-            productName: 'phone12 pro MAX pro MAX',
-            message: 'hello',
-            time: '10 mins ago'
-        },
-        {
-            name: "Steve",
-            productName: 'phone12 pro MAX pro MAX phone12 pro MAX pro MAX',
-            message: 'hello',
-            time: '10 mins ago'
-        }
-    ];
-
     const disableButton = () => {
-        if (message !== "" || !image) {
+        if (image.length <= 0) {
             return false
         } else {
             return true;
         }
+    }
+
+    function getTimeDifference(Timestamp: any) {
+        const now = moment();
+        const messageDate = moment(Timestamp);
+
+        // Difference in milliseconds
+        const difference = now.diff(messageDate);
+
+        // Convert the difference to days
+        const daysDifference = difference / (1000 * 60 * 60 * 24);
+
+        if (daysDifference < 1) {
+            // If less than a day old, return the time
+            return messageDate.format("h:mm A");
+        } else if (daysDifference < 7) {
+            // If less than a week old, return the day name
+            return messageDate.format("dddd");
+        } else {
+            // If a week or more old, return the date
+            return messageDate.format("L");
+        }
+    }
+
+    const deleteMessage = async (roomId: any) => {
+        const userMessageRef = ref(db, `RoomLists/${userId}/rooms`);
+        try {
+            // fetch the current user's room
+            const snapshot = await get(userMessageRef);
+            if (snapshot.exists()) {
+                let userRoomList = snapshot.val();
+
+                // filter message using roomId
+                userRoomList = userRoomList.filter((roomID: any) => roomID !== roomId);
+
+                //update the room list
+                await set(userMessageRef, userRoomList);
+
+                console.log(`chat with roomId: ${roomId} is deleted successfully.`);
+            } else {
+                console.log('user rooms not found.');
+            }
+            setNewMessages([])
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 
 
@@ -236,11 +247,12 @@ export default function Chat() {
             <Home>
                 <div className='flex justify-center mb-20'>
                     {loading ?
-                        <div className={`${classes.root} mt-20`}>
-                            <CircularProgress color="secondary" />
-                        </div>
+                        <div className="spinner mt-8 w-40 h-40"></div>
                         :
-                        newMessages.length <= 0 && roomsData.length <= 0 ? 'no chat'
+                        newMessages.length <= 0 && roomsData.length <= 0 ?
+                            <div className='flex justify-center border border-[#FF0000] rounded-md w-60 p-5 mt-10'>
+                                <h1 className='text-lg font-bold'>You have no Chat !!</h1>
+                            </div>
                             :
                             <div className='container mx-auto flex items-center mt-20 cursor-pointer'>
                                 <div className='flex justify-center bg-white border border-gray-300 rounded-lg w-full'>
@@ -268,7 +280,7 @@ export default function Chat() {
                                                 <div className='w-full'>
                                                     <section className='flex flex-row justify-between'>
                                                         <h1 className='text-sm font-bold'>{chatRoomData[data].otherUser.firstName + chatRoomData[data].otherUser.lastName}</h1>
-                                                        <FontAwesomeIcon icon={faEllipsisVertical} />
+                                                        <DeleteForever className='text-[#FF0000]' onClick={() => deleteMessage(selected?.roomId)} />
                                                     </section>
                                                     <h1 className='text-sm font-bold line-clamp-1'>{chatRoomData[data].product?.title}</h1>
                                                     <section className='flex flex-row justify-between'>
@@ -278,7 +290,7 @@ export default function Chat() {
                                                                 ? (Object.keys((newMessages as NewMessages)[data]).pop() && (newMessages as NewMessages)[data][Object.keys((newMessages as NewMessages)[data]).pop() as string]?.text)
                                                                 : ""}
                                                         </h1>
-                                                        {/* {timeago} */}
+                                                        <h1 className='text-sm'>{getTimeDifference(message.timestamps)}</h1>
                                                     </section>
                                                 </div>
                                             </div>
@@ -286,7 +298,7 @@ export default function Chat() {
                                     </div>
                                     <div className='w-full'>
                                         <div className='m-5 flex flex-row space-x-4'>
-                                            <div className='w-20'>
+                                            <div className='w-16'>
                                                 <Image
                                                     className='h-16 w-16 border rounded-full'
                                                     src={selected?.otherUser?.image}
@@ -297,26 +309,29 @@ export default function Chat() {
                                             </div>
                                             <section className='mt-3'>
                                                 <h1 className='text-lg font-bold'>{selected?.otherUser?.firstName + selected?.otherUser?.lastName}</h1>
+                                                <div className='flex flex-row space-x-[2px] mt-1'>
+                                                    <h1 className='border-none rounded-full h-2 w-2 bg-green-700'></h1>
+                                                    <h1 className='text-[9px] mt-[-3px]'>online</h1>
+                                                </div>
                                             </section>
                                         </div>
-                                        <div className='flex flex-row h-24 w-full border-t-2 border-b-2 p-4 space-x-3'>
-                                            <div className='w-20'>
+                                        <div className='flex flex-row border-t-2 border-b-2 w-auto p-4 space-x-2'>
+                                            <div className='bg-gray-100 w-40 flex justify-center' onClick={() => router.push(`/product-details/${selected?.product?._id}`)}>
                                                 <Image
                                                     src={selected?.product?.images[0]}
                                                     alt='productImage'
                                                     height={100}
                                                     width={100}
-                                                    className='h-16 w-16 border-none rounded-md'
+                                                    className='h-20 w-auto border-none rounded-md'
                                                 />
                                             </div>
                                             <div className='w-full'>
                                                 <h1 className='text-lg font-bold'>{selected?.product?.title}</h1>
-                                                <section className='flex flex-row justify-between mb-3'>
-                                                    {selected?.product?.price && <h1 className='text-[14px] text-[#FF0000] font-semibold'>CHF {addInvertedComma(selected?.product?.price)}</h1>}
-                                                    <button className='bg-[#FF0000] border-none rounded-md text-white h-auto p-2' onClick={() => router.push(`/product-details/${selected?.product?._id}`)}>
-                                                        View Ad
-                                                    </button>
-                                                </section>
+                                                <div className='flex flex-row justify-between'>
+                                                    <h1 className='text-[#FF0000] text-sm font-semibold'>CHF {addInvertedComma(selected?.product?.price)}</h1>
+                                                    <button className='text-white bg-[#FF0000] border-none rounded-md w-32 p-2 mt-2'
+                                                        onClick={() => router.push(`/product-details/${selected?.product?._id}`)}>View Ad</button>
+                                                </div>
                                             </div>
                                         </div>
                                         <div className=''>
@@ -327,17 +342,21 @@ export default function Chat() {
                                                         Object.values(newMessages[selected.roomId]).sort((a: any, b: any) => a.timestamp - b.timestamp).map((message: any, i: number) => (
                                                             <div
                                                                 key={i}
-                                                                className={`${message.images ? 'flex flex-row space-x-4 w-auto' : 'w-40 h-auto'} bg-gray-100 p-5 mt-2 mb-2 border-none 
+                                                                className={`${message.images?.length <= 5 ? 'flex flex-col space-y-4' : 'flex flex-row space-x-4'} bg-gray-100 h-auto w-40 p-5 mt-2 mb-2 border-none 
                                                 ${message.senderId === userId ? 'ml-auto mr-2 rounded-bl-[6px] rounded-br-[6px] rounded-tl-[6px]'
                                                                         : 'mr-auto ml-2 rounded-bl-[6px] rounded-br-[6px] rounded-tr-[6px]'
                                                                     }`}
                                                             >
-                                                                {message.text ? (<span>{message.text}</span>)
+                                                                {message.text ? (
+                                                                    <>
+                                                                        <span className='inline-block break-words w-32'>{message.text}</span>
+                                                                    </>
+                                                                )
                                                                     :
                                                                     (
                                                                         message.images && message.images.map((imgs: any, i: number) => (
                                                                             // eslint-disable-next-line @next/next/no-img-element
-                                                                            <img src={imgs} alt="Your Alt Text" className='h-32 w-32' key={i} />
+                                                                            <img src={imgs} alt="Your Alt Text" className='h-24 w-32' key={i} />
                                                                         ))
                                                                     )}
                                                             </div>
@@ -351,9 +370,7 @@ export default function Chat() {
                                                             <Cancel className='absolute mt-[1px] ml-24 text-[#FF0000]' onClick={() => handleImageRemove(i)} />
                                                         </div>
                                                     ))}
-                                                    {imageLoading && <div className={`${classes.root} mt-8`}>
-                                                        <CircularProgress color='secondary' />
-                                                    </div>}
+                                                    {imageLoading && <div className="spinner mt-8 w-10 h-10"></div>}
                                                 </div>
                                                 }
                                             </div>
@@ -363,7 +380,7 @@ export default function Chat() {
                                                     <input type="file" className='invisible' id='fileInput' ref={fileInputValue} onChange={(e) => handleImage(e)} multiple />
                                                 </div>
                                                 <div className='w-full flex flex-row'>
-                                                    <input type="text" required placeholder='Type a message' value={message} className='focus:outline-none rounded-bl-md rounded-tl-md w-full h-full p-2' onChange={(e) => setMessage(e.target.value)} />
+                                                    <input type="text" disabled={disableButton()} required placeholder='Type a message' value={message} className='focus:outline-none rounded-bl-md rounded-tl-md w-full h-full p-2' onChange={(e) => setMessage(e.target.value)} />
                                                     <button className='bg-[#FF0000] w-20 cursor-pointer border-none rounded-br-md rounded-tr-md' onClick={(e) => handleMessage(e)}>
                                                         <FontAwesomeIcon icon={faPaperPlane} className='text-white text-xl p-2' />
                                                     </button>

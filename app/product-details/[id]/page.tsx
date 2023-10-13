@@ -261,7 +261,7 @@ export default function ProductDetails() {
                   </span>
                   <span>ription</span>
                 </h1>
-                <p className='line-clamp-5'>
+                <p className='inline-block break-words w-full'>
                   {product?.description}
                 </p>
               </div>

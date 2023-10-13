@@ -4,7 +4,7 @@ import Home from '@/components/Home';
 import Login from '@/components/Login';
 import productData from '@/utils/data';
 import Product from '@/components/Product';
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux"
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import Image from 'next/image';
