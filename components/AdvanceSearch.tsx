@@ -21,6 +21,8 @@ import addInvertedComma from '@/utils/addInvertedComma';
 import ProductList from './ProductList';
 import { faClock, faMessage } from "@fortawesome/free-solid-svg-icons";
 import showDate from '@/utils/showDate';
+import { useTranslation } from 'react-i18next'; 
+
 
 
 interface IList {
@@ -45,6 +47,8 @@ interface IRating {
 export default function AdvanceSearch({ category, subCategory, brands, productsCount, productData, setProductData, setProductsCount }: any) {
 
     // Redux hooks
+    const { t } = useTranslation(); // Initialize the translation hook
+
     const { page, address, title } = useSelector((state: any) => state.app);
     const [fav, setFav] = useState<Boolean>(false);
     const [loading, setLoading] = useState<Boolean>(false);
@@ -97,57 +101,57 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
     const categoryList = [
         {
             logo: <DirectionsCar />,
-            name: "Autos",
+            name: t('categories.0'),
             quantity: 23
         },
         {
             logo: <DirectionsBike />,
-            name: "Bikes",
+            name: t('categories.1'),
             quantity: 12
         },
         {
             logo: <DirectionsBoat />,
-            name: "Boats",
+            name: t('categories.2'),
             quantity: 2
         },
         {
             logo: <DirectionsBus />,
-            name: "Busses",
+            name: t('categories.3'),
             quantity: 0
         },
         {
             logo: <PrecisionManufacturing />,
-            name: "Construction Machine",
+            name: t('categories.4'),
             quantity: 74
         },
         {
             logo: <Flight />,
-            name: "Drones",
+            name: t('categories.5'),
             quantity: 32
         },
         {
             logo: <DataSaverOn />,
-            name: "Others",
+            name: t('categories.6'),
             quantity: 23
         },
         {
             logo: <BuildCircle />,
-            name: "Parts",
+            name: t('categories.7'),
             quantity: 0
         },
         {
             logo: <RvHookup />,
-            name: "Trailers",
+            name: t('categories.8'),
             quantity: 90
         },
         {
             logo: <FireTruck />,
-            name: "Trucks",
+            name: t('categories.9'),
             quantity: 11
         },
         {
             logo: <AirportShuttle />,
-            name: "Vans",
+            name: t('categories.10'),
             quantity: 9
         },
     ];
@@ -270,10 +274,10 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
                 <div className='container mx-auto flex flex-col lg:flex-row mt-5 lg:mt-10 space-y-3 lg:space-y-0 lg:space-x-3 w-full mb-[500px]'>
                     <div className='bg-white shadow-lg border rounded-md w-full lg:w-[400px] h-full p-2' data-aos="fade-right">
                         <div className='border-b flex flex-row justify-between p-2'>
-                            <h1 className='text-lg font-bold'>Category</h1>
+                            <h1 className='text-lg font-bold'>{t('categorySelection.category')}</h1>
                         </div>
                         <div className='transition ease-in-out duration-100 mb-10'>
-                            <h1 className='pl-1 pt-2  text-lg font-semibold'>All Categories</h1>
+                            <h1 className='pl-1 pt-2  text-lg font-semibold'>{t('categorySelection.allCategories')}</h1>
                             <ul className='space-y-3 mt-2 mx-1'>
                                 {categoryList?.map((list: IList, i: number) => (
                                     <><li onClick={() => handleSearch(list?.name)} className={`${category == list?.name ? 'text-[#FF0000]' : list?.name == 'Bikes' && subCategory ? 'text-[#FF0000]' : 'hover:text-[#FF0000] cursor-pointer'}`} key={i}>{list.logo} {list.name} {category == list?.name ? `(${productsCount})` : ''}</li>
@@ -286,7 +290,7 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
                         </div>
                         {category && <>
                             <div className='border-b flex flex-row justify-between p-2 mb-4'>
-                                <h1 className='text-lg font-bold'>Condition</h1>
+                                <h1 className='text-lg font-bold'>{t('categorySelection.condition')}</h1>
                             </div>
                             <ul className='space-y-2 mx-3 mb-3'>
                                 {conditionList?.map((list: any, i: number) => (
@@ -302,7 +306,7 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
                         {brands &&
                             <>
                                 <div className='border-b flex flex-row justify-between p-2 mb-4'>
-                                    <h1 className='text-lg font-bold'>Brand</h1>
+                                    <h1 className='text-lg font-bold'>{t('categorySelection.brand')}</h1>
                                 </div>
                                 <div>
                                     <select
@@ -319,28 +323,28 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
                             </>
                         }
                         <div className='border-b flex flex-row justify-between p-2'>
-                            <h1 className='text-lg font-bold'>Price Range</h1>
+                            <h1 className='text-lg font-bold'>{t('categorySelection.priceRange')}</h1>
                         </div>
                         <div className='grid grid-col-3 mt-4 space-y-3'>
                             <div className='h-auto w-auto space-x-4 mx-1'>
                                 <input type='text' name='maxPrice'
                                     value={filtersData.maxPrice}
-                                    className={inputStyle} placeholder='Max Price'
+                                    className={inputStyle} placeholder={t('categorySelection.maxPrice')}
                                     onChange={(e: any) => handleFilterData(e)}
                                 />
                                 <input type='text'
                                     className={inputStyle}
                                     name='minPrice'
                                     value={filtersData.minPrice}
-                                    placeholder='Min Price'
+                                    placeholder={t('categorySelection.minPrice')}
                                     onChange={(e: any) => handleFilterData(e)}
                                 />
                             </div>
                             <div className='h-auto w-full space-x-4'>
-                                <button className={btnStyle1} onClick={applyFilter}>Apply Filter</button>
+                                <button className={btnStyle1} onClick={applyFilter}>{t('categorySelection.applyFilter')}</button>
                             </div>
                             {brands && <div className='h-auto w-full space-x-4'>
-                                <button className={btnStyle1} onClick={() => { router.push('/advance-search') }}>Clear Filter</button>
+                                <button className={btnStyle1} onClick={() => { router.push('/advance-search') }}>{t('categorySelection.clearFilter')}</button>
                             </div>}
                         </div>
                     </div>
@@ -353,7 +357,7 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
                             <div className='flex flex-col w-full h-full'>
                                 <div className='flex flex-row justify-between  bg-white border border-[#e52320] mb-3 p-2 pl-5' data-aos="fade-left">
                                     <div className=''>
-                                        <h1 className='text-xl font-bold'>{productsCount} Results</h1>
+                                        <h1 className='text-xl font-bold'>{productsCount} {t('categorySelection.results')}</h1>
                                     </div>
                                     {!category ? ''
                                         :
@@ -440,7 +444,7 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
                                 <div className={`flex flex-row justify-between bg-white h-12 border border-[#e52320] rounded-sm px-5 py-2`}>
                                     <button className={btnStyle} onClick={previousHandle}>
                                         <KeyboardDoubleArrowLeft className={logoStyle} />
-                                        <span className={spanStyle}>Previous</span>
+                                        <span className={spanStyle}>{t('categorySelection.previous')}</span>
                                     </button>
                                     <div className='flex flex-row space-x-4'>
                                         {pagination().map((li: any, i: number) => (
@@ -448,14 +452,15 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
                                         ))}
                                     </div>
                                     <button className={btnStyle} onClick={nextHandle}>
-                                        <span className={spanStyle}>Next</span>
+                                        <span className={spanStyle}>{t('categorySelection.next')}</span>
                                         <KeyboardDoubleArrowRight className={logoStyle} />
                                     </button>
                                 </div>
                             </div>
                             :
                             <div className='flex w-full justify-center'>
-                                <h1 className='text-xl font-bold'>No Record found...</h1>
+                                <h1 className='text-xl font-bold'>  {t('categorySelection.noRecordFound')}
+</h1>
                             </div>
                         }
                         </>
