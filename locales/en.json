@@ -1,0 +1,116 @@
+{
+  "signup": {
+    "createAccount": "Create Account",
+    "firstNamePlaceholder": "Enter your first name",
+    "lastNamePlaceholder": "Enter your last name",
+    "phoneNumberPlaceholder": "Enter your phone number",
+    "usernamePlaceholder": "Enter your username",
+    "emailPlaceholder": "Enter your email address",
+    "passwordPlaceholder": "Enter your password",
+    "registerButton": "Register",
+    "or": "or",
+    "continueWithGoogle": "Continue with Google",
+    "alreadyHaveAccount": "Already have an account?",
+    "login": "Login"
+  } , 
+  
+    "login": {
+      "login": "Login",
+      "continueWithGoogle": "Continue with Google",
+      "or": "or",
+      "yourEmailAddress": "Your email address",
+      "yourPassword": "Your password",
+      "loginButton": "Login",
+      "notAMember": "Not a member?",
+      "createAccount": "Create Account"
+    } , 
+    
+      "categorySelection": {
+        "category": "Category",
+        "allCategories": "All Categories",
+        "condition": "Condition",
+        "brand": "Brand",
+        "priceRange": "Price Range",
+        "applyFilter": "Apply Filter",
+        "clearFilter": "Clear Filter",
+        "results": "Results",
+        "previous": "Previous",
+        "next": "Next",
+        "noRecordFound": "No Record found...",
+        "maxPrice": "Max Price",
+        "minPrice": "Min Price"
+      } , 
+      "categories": [
+        "Cars",
+        "Bikes",
+        "Boats",
+        "Buses",
+        "Construction Machines",
+        "Drones",
+        "Others",
+        "Parts",
+        "Trailers",
+        "Trucks",
+        "Vans"
+      ] , 
+
+      "autosComponent":{
+        "heading1": "Select Category",
+        "changeCategory": "Change category",
+        "productInfo": "Product Information",
+        "title": "Title",
+        "price": "Pricing ",
+        "condition": "Condition ",
+        "brand": "Brand ",
+        "selectBrand": "Select Brand",
+        "model": "Model ",
+        "selectModel": "Select Model",
+        "year": "Year ",
+        "bodyShape": "Body Shape ",
+        "selectBodyShape": "Select Body Shape",
+        "gearBox": "Gear Box ",
+        "selectGearBox": "Select Gear Box",
+        "fuelType": "Fuel Type ",
+        "selectFuelType": "Select Fuel Type",
+        "kilometers": "Kilometers ",
+        "engineCapacity": "Engine Capacity ",
+        "cylinders": "Cylinders ",
+        "exteriorColor": "Exterior Color ",
+        "selectExteriorColor": "Select Exterior Color",
+        "interiorColor": "Interior Color ",
+        "selectInteriorColor": "Select Interior Color",
+        "description": "Description ",
+        "images": "Images",
+        "imageSizeInfo": "Recommended image size is (870x493)px.",
+        "imageSizeInfo2": "Image maximum size is 2 MB.",
+        "imageSizeInfo3": "Allowed image types are (png, jpg, jpeg, webp).",
+        "imageSizeInfo4": "You can upload up to 5 images.",
+        "videoURL": "Video URL",
+        "videoURLPlaceholder": "Only Youtube or Video URL",
+        "contactDetails": "Contact details",
+        "location": "Location",
+        "enterAddress": "Enter your address here",
+        "howToContact": "How to contact ",
+        "whatsapp": "WhatsApp No ",
+        "viber": "Viber Number ",
+        "website": "Website",
+        "submit": "Submit" , 
+        "websitePlaceholder": "e.g. https://example.com",
+        "titleCharacterLimit": "Character limit 25",
+        "priceCHF": "Price[CHF]"
+      } , 
+      
+        "banner": {
+          "seeAllCategories": "See all categories",
+          "topCategories": "Top Categories:",
+          "autos": "Autos",
+          "parts": "Parts"
+        }
+      
+      
+      
+    
+    
+  
+  
+}

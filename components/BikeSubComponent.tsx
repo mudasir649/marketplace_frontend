@@ -256,7 +256,8 @@ export default function BikeSubComponent({ type }: any) {
                                 </div>
                             </div>
                             {priceListValue === 'price' ?
-                                <div className={style.divStyle}>
+
+                        <div className={style.divStyle}>
                                     <h1 className={style.h1Style}>Price{`[CHF]`} <span className='text-[#FF0000]'>*</span></h1>
                                     <div className='flex flex-col w-full'>
                                         <input type="text" className={style.inputStyle}
