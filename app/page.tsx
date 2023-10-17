@@ -18,7 +18,7 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 
 
-export default function MainPage() {
+function MainPage() {
 
 
   const [featuredAds, setFeaturedAds] = useState<any>()
@@ -51,7 +51,12 @@ export default function MainPage() {
         <FooterBanner /> */}
         {!featuredAds ?
           <div className="flex justify-center">
-            <div className="spinner mt-8 w-40 h-40 mb-10"></div>
+            <Image
+              src='/assets/eidcarosse.gif'
+              alt="eidcarosse_logo"
+              width={200}
+              height={200}
+            />
           </div>
           :
           <section className='mb-20 mt-5'>
@@ -69,4 +74,4 @@ export default function MainPage() {
   )
 }
 
-// export default dynamic(() => Promise.resolve(MainPage), { ssr: false });
+export default dynamic(() => Promise.resolve(MainPage), { ssr: false });
