@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { useParams, usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import AutosComponent from '@/components/AutosComponent';
 import { useSelector } from 'react-redux';
