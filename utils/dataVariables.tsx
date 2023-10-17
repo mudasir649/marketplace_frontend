@@ -1,9 +1,9 @@
 export const list1 = [
     {
-        name: "Cars"
+        name: "Autos"
     },
     {
-        name: "Motorbikes"
+        name: "Bikes"
     },
     {
         name: "Parts"
@@ -12,35 +12,40 @@ export const list1 = [
 
 export const list2 = [
     {
+        name: "Buy and Sell Quickly"
+    },
+    {
         name: "Promote Your Ad"
     },
     {
         name: "Banner Advertising"
     },
-    {
-        name: "Buy and Sell Quickly"
-
-    }
 ];
 
 export const list3 = [
     {
-        name: "About Eidcarosse"
+        name: "About Eidcarosse",
     },
     {
         name: "Contact"
     },
+    {
+        name: "Blog"
+    }
 ];
 
 export const list4 = [
     {
-        name: "FAQ"
+        name: "FAQ",
+        value: "faq"
     },
     {
-        name: "Privacy Policy"
+        name: "Privacy Policy",
+        value: "privacy-policy"
     },
     {
-        name: "Terms & Conditions"
+        name: "Terms & Conditions",
+        value: "terms-and-condition"
     }
 ];
 

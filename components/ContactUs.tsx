@@ -5,6 +5,8 @@ import signLogo from "../public/assets/signLogo.png";
 import Image from 'next/image';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { setShowContact } from '@/store/appSlice';
 
 interface IData {
     email: string,
@@ -13,13 +15,15 @@ interface IData {
 }
 
 
-export default function ContactUs({ setShowContact }: any) {
+export default function ContactUs() {
 
     const [data, setData] = useState<IData>({
         email: '',
         subject: '',
         message: ''
     });
+
+    const dispatch = useDispatch();
 
     const handleData = (e: any) => {
         setData({ ...data, [e.target.name]: e.target.value });
@@ -38,7 +42,7 @@ export default function ContactUs({ setShowContact }: any) {
         <div className={`fixed inset-0 flex justify-center items-center bg-opacity-100 backdrop-blur-sm z-10 overflow-y-scroll`}>
             <div className='container mx-10 w-[800px] h-auto mt-12 bg-white shadow-3xl border rounded-lg'>
                 <div className='flex justify-end'>
-                    <button className='text-white text-xl lg:mr-[-30px]' onClick={() => setShowContact(false)}>
+                    <button className='text-white text-xl lg:mr-[-30px]' onClick={() => dispatch(setShowContact(false))}>
                         <Cancel className='text-[#FF0000]' />
                     </button>
                 </div>

@@ -18,7 +18,7 @@ import SellNow from "./SellNow";
 import RepairNow from "./RepairNow";
 import DeleteAd from "./DeleteAd";
 import axios from "axios";
-import { setProductData, setProductsCount, setRoomsData } from "@/store/appSlice";
+import { setProductData, setProductsCount, setRoomsData, setShowContact } from "@/store/appSlice";
 import { getApps, initializeApp } from "firebase/app";
 import { getDatabase, ref, onValue, off } from "firebase/database";
 import { db } from "@/utils/firebase-config";
@@ -26,7 +26,6 @@ import { db } from "@/utils/firebase-config";
 export default function Header() {
 
   const [navbar, setNavbar] = useState<Boolean>(false);
-  const [showContact, setShowContact] = useState(false);
   const navbarLiStyle = navbar ? 'cursor-pointer hover:text-[#FF0000]' : 'cursor-pointer hover:p-2 hover:border hover:rounded-md hover:bg-white hover:text-[#FF0000] font-[600] ease-in duration-150';
   const [open, isOpen] = useState<Boolean>(false);
   const [roomData, setRoomData] = useState<any>();
@@ -37,6 +36,7 @@ export default function Header() {
 
   const { userInfo } = useSelector((state: any) => state.auth);
   const userId = userInfo?.data?.userDetails?._id;
+  const { showContact } = useSelector((state: any) => state.app);
   const { showShare, showSellNow, showRepairNow, showDeleteAd, page } = useSelector((state: any) => state.app);
 
   const userData = userInfo?.data?.userDetails;
@@ -73,7 +73,7 @@ export default function Header() {
   }, [userInfo, userId, dispatch]);
 
   const handleContact = () => {
-    setShowContact(true);
+    dispatch(setShowContact(true));
     setNavbar(false);
   }
 
@@ -148,8 +148,8 @@ export default function Header() {
             <Image
               src="https://eidcarosse.ch/wp-content/uploads/2023/07/test-white-logo.png"
               alt="logo"
-              width={200}
-              height={200} />
+              width={150}
+              height={150} />
           </Link>
           <div className={`menu`}>
             <ul className="flex flex-row space-x-6 uppercase text-sm font-semibold text-white">
@@ -161,7 +161,7 @@ export default function Header() {
               <li className={navbarLiStyle} onClick={() => handleAdvanceSearch('all')}>
                 advance search
               </li>
-              <li className={navbarLiStyle} onClick={() => (setShowContact(!showContact))}>
+              <li className={navbarLiStyle} onClick={() => (dispatch(setShowContact(!showContact)))}>
                 contact us
               </li>
               <li>
@@ -218,7 +218,7 @@ export default function Header() {
                 </button>
               </Link>
             }
-            {!showContact ? "" : <ContactUs setShowContact={setShowContact} />}
+            {!showContact ? "" : <ContactUs />}
             {showShare && <ShareLink />}
             {showSellNow && <SellNow />}
             {showRepairNow && <RepairNow />}
