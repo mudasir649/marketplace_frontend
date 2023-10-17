@@ -145,16 +145,20 @@ export default function ProductDetails() {
   }
 
   const handleChat = async () => {
-    dispatch(setProductId(product?._id));
-    dispatch(setProductUserId(product?.userId?._id));
-    const data = {
-      userId: userId,
-      productUserId: product?.userId?._id,
-      productId: product?._id
-    }
-    const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URI}/chatroom`, data);
-    if (res.status === 200) {
-      router.push('/chat');
+    if (userInfo !== null) {
+      dispatch(setProductId(product?._id));
+      dispatch(setProductUserId(product?.userId?._id));
+      const data = {
+        userId: userId,
+        productUserId: product?.userId?._id,
+        productId: product?._id
+      }
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URI}/chatroom`, data);
+      if (res.status === 200) {
+        router.push('/chat');
+      }
+    } else {
+      router.push('/login')
     }
   }
 
