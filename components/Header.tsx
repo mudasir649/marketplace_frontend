@@ -126,8 +126,12 @@ export default function Header() {
             <li>
               <ListDownComponent />
             </li>
-            <li className={navbarLiStyle} onClick={() => router.push('/chat')}><Chat className="text-3xl -mt-1" /></li>
-            <li className={navbarLiStyle}><AdminPanelSettings className="text-3xl -mt-1" /></li>
+            {userInfo !== null &&
+              <li className={navbarLiStyle} onClick={() => router.push('/chat')}><Chat className="text-3xl -mt-1" /></li>
+            }
+            {userInfo !== null &&
+              <li className={navbarLiStyle}><AdminPanelSettings className="text-3xl -mt-1" /></li>
+            }
             <li className="cursor-pointer">
               <Link href="/post-ad">
                 <button className="flex flex-row space-x-1 p-2 bg-[#e52320] hover:bg-red-500 text-white hover:border border-gray-100 transition hover:w-52 hover:justify-center rounded-lg">
@@ -167,8 +171,12 @@ export default function Header() {
               <li>
                 <ListDownComponent />
               </li>
-              <li className={navbarLiStyle} onClick={() => router.push('/chat')}><Chat className="text-3xl -mt-1" /></li>
-              <li className={navbarLiStyle}><AdminPanelSettings className="text-3xl -mt-1" /></li>
+              {userInfo !== null &&
+                <li className={navbarLiStyle} onClick={() => router.push('/chat')}><Chat className="text-3xl -mt-1" /></li>
+              }
+              {userInfo !== null &&
+                <li className={navbarLiStyle}><AdminPanelSettings className="text-3xl -mt-1" /></li>
+              }
             </ul>
           </div>
           <div className="flex items-center gap-6">

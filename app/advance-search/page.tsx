@@ -1,11 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
 import AdvanceSearch from "@/components/AdvanceSearch"
+import Home from "@/components/Home";
 import axios from "axios";
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-export default function Page() {
+function Page() {
 
     const { page } = useSelector((state: any) => state.app);
     const [productData, setProductData] = useState<any>()
@@ -24,6 +26,13 @@ export default function Page() {
     }, [page, dispatch])
 
     return (
-        <AdvanceSearch setProductData={setProductData} setProductsCount={setProductsCount} productData={productData} productsCount={productsCount} />
+        <div>
+            <Home>
+                <AdvanceSearch setProductData={setProductData} setProductsCount={setProductsCount} productData={productData} productsCount={productsCount} />
+            </Home>
+        </div>
     )
 }
+
+
+export default dynamic(() => Promise.resolve(Page), { ssr: false });

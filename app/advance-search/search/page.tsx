@@ -1,11 +1,13 @@
 'use client';
 import AdvanceSearch from '@/components/AdvanceSearch'
+import Home from '@/components/Home';
 import { setProductData, setProductsCount } from '@/store/appSlice';
 import axios from 'axios';
+import dynamic from 'next/dynamic';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-export default function Page() {
+function Page() {
 
     const { address, title, page } = useSelector((state: any) => state.app);
     const [productData, setProductData] = useState<any>()
@@ -29,8 +31,12 @@ export default function Page() {
     }, [address, title, page, dispatch])
 
     return (
-        <>
-            <AdvanceSearch setProductData={setProductData} setProductsCount={setProductsCount} productData={productData} productsCount={productsCount} />
-        </>
+        <div>
+            <Home>
+                <AdvanceSearch setProductData={setProductData} setProductsCount={setProductsCount} productData={productData} productsCount={productsCount} />
+            </Home>
+        </div>
     )
 }
+
+export default dynamic(() => Promise.resolve(Page), { ssr: false });

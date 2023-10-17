@@ -258,215 +258,229 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
         dispatch(setProductId(productId))
     }
 
-    if (!productData) {
-        return <div className="flex justify-center mt-5">
-            <Image
-                src='/assets/eidcarosse.gif'
-                alt="eidcarosse_logo"
-                width={500}
-                height={500}
-            />
-        </div>
-    }
+
+
     return (
         <div>
-            <Home>
-                <div className='container mx-auto flex flex-col lg:flex-row mt-5 lg:mt-10 space-y-3 lg:space-y-0 lg:space-x-3 w-full mb-[500px]'>
-                    <div className='bg-white shadow-lg border rounded-md w-full lg:w-[400px] h-full p-2' data-aos="fade-right">
-                        <div className='border-b flex flex-row justify-between p-2'>
-                            <h1 className='text-lg font-bold'>{t('categorySelection.category')}</h1>
-                        </div>
-                        <div className='transition ease-in-out duration-100 mb-10'>
-                            <h1 className='pl-1 pt-2  text-lg font-semibold'>{t('categorySelection.allCategories')}</h1>
-                            <ul className='space-y-3 mt-2 mx-1'>
-                                {categoryList?.map((list: IList, i: number) => (
-                                    <><li onClick={() => handleSearch(list?.name)} className={`${category == list?.name ? 'text-[#FF0000]' : list?.name == 'Bikes' && subCategory ? 'text-[#FF0000]' : 'hover:text-[#FF0000] cursor-pointer'}`} key={i}>{list.logo} {list.name} {category == list?.name ? `(${productsCount})` : ''}</li>
-                                        {(category == 'Bikes' || subCategory) && list?.name == "Bikes" && subList?.map((list: any, i: any) => (
-                                            <li className={`ml-5 cursor-pointer ${list?.name == subCategory ? 'text-[#FF0000]' : 'hover:text-[#FF0000]'}`} onClick={() => handleSearch(list?.name)} key={i}> <span className='text-[#FF0000]'>{`> `}</span>{list?.name} {subCategory == list?.name && `(${productsCount})`}</li>
-                                        ))}
-                                    </>
-                                ))}
-                            </ul>
-                        </div>
-                        {category && <>
-                            <div className='border-b flex flex-row justify-between p-2 mb-4'>
-                                <h1 className='text-lg font-bold'>{t('categorySelection.condition')}</h1>
-                            </div>
-                            <ul className='space-y-2 mx-3 mb-3'>
-                                {conditionList?.map((list: any, i: number) => (
-                                    <li key={i}><input type="radio"
-                                        name='condition'
-                                        key={i}
-                                        value={list?.value}
-                                        onChange={(e: any) => handleFilterData(e)}
-                                    />  {list?.name}</li>
-                                ))}
-                            </ul>
-                        </>}
-                        {brands &&
-                            <>
-                                <div className='border-b flex flex-row justify-between p-2 mb-4'>
-                                    <h1 className='text-lg font-bold'>{t('categorySelection.brand')}</h1>
-                                </div>
-                                <div>
-                                    <select
-                                        className="block mb-4 appearance-none w-full bg-white border rounded-sm border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
-                                        name='brand'
-                                        onChange={(e: any) => handleFilterData(e)}
-                                    >
-                                        <option value="option1">Select Brand</option>
-                                        {brands?.make.map((brand: any, i: number) => (
-                                            <option value={brand} key={i}>{brand}</option>
-                                        ))}
-                                    </select>
-                                </div>
-                            </>
-                        }
-                        <div className='border-b flex flex-row justify-between p-2'>
-                            <h1 className='text-lg font-bold'>{t('categorySelection.priceRange')}</h1>
-                        </div>
-                        <div className='grid grid-col-3 mt-4 space-y-3'>
-                            <div className='h-auto w-auto space-x-4 mx-1'>
-                                <input type='text' name='maxPrice'
-                                    value={filtersData.maxPrice}
-                                    className={inputStyle} placeholder={t('categorySelection.maxPrice')}
-                                    onChange={(e: any) => handleFilterData(e)}
-                                />
-                                <input type='text'
-                                    className={inputStyle}
-                                    name='minPrice'
-                                    value={filtersData.minPrice}
-                                    placeholder={t('categorySelection.minPrice')}
-                                    onChange={(e: any) => handleFilterData(e)}
-                                />
-                            </div>
-                            <div className='h-auto w-full space-x-4'>
-                                <button className={btnStyle1} onClick={applyFilter}>{t('categorySelection.applyFilter')}</button>
-                            </div>
-                            {brands && <div className='h-auto w-full space-x-4'>
-                                <button className={btnStyle1} onClick={() => { router.push('/advance-search') }}>{t('categorySelection.clearFilter')}</button>
-                            </div>}
-                        </div>
+            <div className='container mx-auto flex flex-col lg:flex-row mt-5 lg:mt-10 space-y-3 lg:space-y-0 lg:space-x-3 w-full mb-[500px]'>
+                <div className='bg-white shadow-lg border rounded-md w-full lg:w-[400px] h-full p-2' data-aos="fade-right">
+                    <div className='border-b flex flex-row justify-between p-2'>
+                        <h1 className='text-lg font-bold'>{t('categorySelection.category')}</h1>
                     </div>
-                    {loading ?
+                    <div className='transition ease-in-out duration-100 mb-10'>
+                        <h1 className='pl-1 pt-2  text-lg font-semibold'>{t('categorySelection.allCategories')}</h1>
+                        <ul className='space-y-3 mt-2 mx-1'>
+                            {categoryList?.map((list: IList, i: number) => (
+                                <><li onClick={() => handleSearch(list?.name)} className={`${category == list?.name ? 'text-[#FF0000]' : list?.name == 'Bikes' && subCategory ? 'text-[#FF0000]' : 'hover:text-[#FF0000] cursor-pointer'}`} key={i}>{list.logo} {list.name} {category == list?.name ? `(${productsCount})` : ''}</li>
+                                    {(category == 'Bikes' || subCategory) && list?.name == "Bikes" && subList?.map((list: any, i: any) => (
+                                        <li className={`ml-5 cursor-pointer ${list?.name == subCategory ? 'text-[#FF0000]' : 'hover:text-[#FF0000]'}`} onClick={() => handleSearch(list?.name)} key={i}> <span className='text-[#FF0000]'>{`> `}</span>{list?.name} {subCategory == list?.name && `(${productsCount})`}</li>
+                                    ))}
+                                </>
+                            ))}
+                        </ul>
+                    </div>
+                    {category && <>
+                        <div className='border-b flex flex-row justify-between p-2 mb-4'>
+                            <h1 className='text-lg font-bold'>{t('categorySelection.condition')}</h1>
+                        </div>
+                        <ul className='space-y-2 mx-3 mb-3'>
+                            {conditionList?.map((list: any, i: number) => (
+                                <li key={i}><input type="radio"
+                                    name='condition'
+                                    key={i}
+                                    value={list?.value}
+                                    onChange={(e: any) => handleFilterData(e)}
+                                />  {list?.name}</li>
+                            ))}
+                        </ul>
+                    </>}
+                    {brands &&
                         <>
-                            <div className="spinner mt-8 w-10 h-10"></div>
+                            <div className='border-b flex flex-row justify-between p-2 mb-4'>
+                                <h1 className='text-lg font-bold'>{t('categorySelection.brand')}</h1>
+                            </div>
+                            <div>
+                                <select
+                                    className="block mb-4 appearance-none w-full bg-white border rounded-sm border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+                                    name='brand'
+                                    onChange={(e: any) => handleFilterData(e)}
+                                >
+                                    <option value="option1">Select Brand</option>
+                                    {brands?.make.map((brand: any, i: number) => (
+                                        <option value={brand} key={i}>{brand}</option>
+                                    ))}
+                                </select>
+                            </div>
                         </>
-                        :
-                        <>{productData?.length > 0 ?
-                            <div className='flex flex-col w-full h-full'>
-                                <div className='flex flex-row justify-between  bg-white border border-[#e52320] mb-3 p-2 pl-5' data-aos="fade-left">
-                                    <div className=''>
-                                        <h1 className='text-xl font-bold'>{productsCount} {t('categorySelection.results')}</h1>
-                                    </div>
-                                    {!category ? ''
-                                        :
-                                        <div className=''>
-                                            <select
-                                                className="block appearance-none w-72 bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
-                                                name='sort'
-                                                onChange={(e: any) => handleSortBy(e)}
-                                            >
-                                                {sortByList.map((list: any, i: number) => (
-                                                    <option className='my-1' value={list} key={i}>{list}</option>
-                                                ))}
-                                            </select>
-                                        </div>
-                                    }
+                    }
+                    <div className='border-b flex flex-row justify-between p-2'>
+                        <h1 className='text-lg font-bold'>{t('categorySelection.priceRange')}</h1>
+                    </div>
+                    <div className='grid grid-col-3 mt-4 space-y-3'>
+                        <div className='h-auto w-auto space-x-4 mx-1'>
+                            <input type='text' name='maxPrice'
+                                value={filtersData.maxPrice}
+                                className={inputStyle} placeholder={t('categorySelection.maxPrice')}
+                                onChange={(e: any) => handleFilterData(e)}
+                            />
+                            <input type='text'
+                                className={inputStyle}
+                                name='minPrice'
+                                value={filtersData.minPrice}
+                                placeholder={t('categorySelection.minPrice')}
+                                onChange={(e: any) => handleFilterData(e)}
+                            />
+                        </div>
+                        <div className='h-auto w-full space-x-4'>
+                            <button className={btnStyle1} onClick={applyFilter}>{t('categorySelection.applyFilter')}</button>
+                        </div>
+                        {brands && <div className='h-auto w-full space-x-4'>
+                            <button className={btnStyle1} onClick={() => { router.push('/advance-search') }}>{t('categorySelection.clearFilter')}</button>
+                        </div>}
+                    </div>
+                </div>
+                {loading ?
+                    <div className="flex justify-center">
+                        <Image
+                            src='/assets/eidcarosse.gif'
+                            alt="eidcarosse_logo"
+                            width={200}
+                            height={200}
+                        />
+                    </div>
+                    :
+                    <>{productData?.length > 0 ?
+                        <div className='flex flex-col w-full h-full'>
+                            <div className='flex flex-row justify-between  bg-white border border-[#e52320] mb-3 p-2 pl-5' data-aos="fade-left">
+                                <div className=''>
+                                    <h1 className='text-xl font-bold'>{productsCount} {t('categorySelection.results')}</h1>
                                 </div>
-                                {sortByLoading ?
-                                    <>
-                                        <div className="spinner mt-8 w-10 h-10"></div>
-                                    </>
+                                {!category ? ''
                                     :
-                                    newWidth <= 550 ?
-                                        <ProductList productList={productData} />
-                                        :
-                                        <>
-                                            {productData?.map((product: any, i: number) => (
-                                                <div className='grid grid-cols-3 h-52 mb-10 bg-white' key={i}>
-                                                    <Link href={`/product-details/${product?._id}`}>
-                                                        <div className='w-60 lg:w-auto p-2'>
-                                                            <div className='flex justify-center bg-gray-50 w-full h-48 border-none rounded-lg'>
-                                                                <img src={product?.images[0]} className='h-auto w-auto object-fill border-none rounded-lg' alt="" />
+                                    <div className=''>
+                                        <select
+                                            className="block appearance-none w-72 bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+                                            name='sort'
+                                            onChange={(e: any) => handleSortBy(e)}
+                                        >
+                                            {sortByList.map((list: any, i: number) => (
+                                                <option className='my-1' value={list} key={i}>{list}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                }
+                            </div>
+                            {sortByLoading ?
+                                <div className="flex justify-center">
+                                    <Image
+                                        src='/assets/eidcarosse.gif'
+                                        alt="eidcarosse_logo"
+                                        width={200}
+                                        height={200}
+                                    />
+                                </div>
+                                :
+                                newWidth <= 550 ?
+                                    <ProductList productList={productData} />
+                                    :
+                                    <>
+                                        {productData?.map((product: any, i: number) => (
+                                            <div className='grid grid-cols-3 h-52 mb-10 bg-white' key={i}>
+                                                <Link href={`/product-details/${product?._id}`}>
+                                                    <div className='w-60 lg:w-auto p-2'>
+                                                        <div className='flex justify-center bg-gray-50 w-full h-48 border-none rounded-lg'>
+                                                            <img src={product?.images[0]} className='h-auto w-auto object-fill border-none rounded-lg' alt="" />
+                                                        </div>
+                                                    </div>
+                                                </Link>
+                                                <div className='w-full col-span-2 p-2'>
+                                                    <div className='flex flex-row justify-between'>
+                                                        <Link href={`/product-details/${product?._id}`}>
+                                                            <h2 className=' text-[22px] text-black font-bold cursor-pointer hover:text-[#FF0000]'>{product?.title}</h2>
+                                                        </Link>
+                                                        <h1 className='bg-[#FF0000] text-center text-white w-16 h-8 p-1 border-none rounded-xl'>{product?.category}</h1>
+                                                    </div>
+                                                    <div className='mt-3 space-y-1'>
+                                                        {product?.price ?
+                                                            <>
+                                                                <h1 className='text-[17px] text-[#FF0000] font-semibold'>CHF {addInvertedComma(product?.price)}</h1>
+                                                                <h1 className='text-[12px] text-gray-400 font-semibold'>EURO {addInvertedComma(product?.price * 2)}</h1>
+                                                            </>
+                                                            :
+                                                            <>
+                                                                <h1 className='bg-black text-white text-center py-2 w-36 h-10 border-none rounded-lg text-[16px] font-semibold'>Contact For Price</h1>
+                                                            </>
+                                                        }
+                                                    </div>
+                                                    <div className='flex flex-row justify-between mt-5'>
+                                                        <h1 className='lg:w-[410px] truncate'>{product?.address}</h1>
+                                                        <h1 className='text-sm w-auto line-clamp-2 mr-[10px] lg:mr-0'>{showDate(product?.createdAt) < 2 ?
+                                                            <>
+                                                                <div className='bg-green-600 text-white rounded-full px-3 text-center'>{'new'}</div></>
+                                                            :
+                                                            <div className='text-[sm] mt-[0.5px]'>
+                                                                <FontAwesomeIcon icon={faClock} /> {Number.isNaN(showDate(product?.createdAt)) ? '0 days ago' : `${showDate(product?.createdAt)} days ago`}
                                                             </div>
-                                                        </div>
-                                                    </Link>
-                                                    <div className='w-full col-span-2 p-2'>
-                                                        <div className='flex flex-row justify-between'>
-                                                            <Link href={`/product-details/${product?._id}`}>
-                                                                <h2 className=' text-[22px] text-black font-bold cursor-pointer hover:text-[#FF0000]'>{product?.title}</h2>
-                                                            </Link>
-                                                            <h1 className='bg-[#FF0000] text-center text-white w-16 h-8 p-1 border-none rounded-xl'>{product?.category}</h1>
-                                                        </div>
-                                                        <div className='mt-3 space-y-1'>
-                                                            {product?.price ?
+                                                        }</h1>
+                                                    </div>
+                                                    <div className={`flex justify-between space-x-4 mt-3 text-gray-600 h-10 border-t-2 pt-2 w-full`}>
+                                                        <div className='space-x-4 mt-1'>
+                                                            <Share
+                                                                onClick={() => handleShare(product?._id)}
+                                                                className='cursor-pointer text-gray-400 mt-[-5px]'
+                                                            />
+                                                            {userInfo !== null &&
                                                                 <>
-                                                                    <h1 className='text-[17px] text-[#FF0000] font-semibold'>CHF {addInvertedComma(product?.price)}</h1>
-                                                                    <h1 className='text-[12px] text-gray-400 font-semibold'>EURO {addInvertedComma(product?.price * 2)}</h1>
-                                                                </>
-                                                                :
-                                                                <>
-                                                                    <h1 className='bg-black text-white text-center py-2 w-36 h-10 border-none rounded-lg text-[16px] font-semibold'>Contact For Price</h1>
+                                                                    <FontAwesomeIcon className='cursor-pointer text-gray-400 text-[20px]' icon={faMessage} />
+                                                                    <Favorite className={`${fav ? 'text-[#FF0000]' : 'text-gray-300'} mt-[-5px] cursor-pointer`} onClick={() => adFavorite(product?._id)} />
                                                                 </>
                                                             }
                                                         </div>
-                                                        <div className='flex flex-row justify-between mt-5'>
-                                                            <h1 className='lg:w-[410px] truncate'>{product?.address}</h1>
-                                                            <h1 className='text-sm w-auto line-clamp-2 mr-[10px] lg:mr-0'>{showDate(product?.createdAt) < 2 ?
-                                                                <>
-                                                                    <div className='bg-green-600 text-white rounded-full px-3 text-center'>{'new'}</div></>
-                                                                :
-                                                                <div className='text-[sm] mt-[0.5px]'>
-                                                                    <FontAwesomeIcon icon={faClock} /> {Number.isNaN(showDate(product?.createdAt)) ? '0 days ago' : `${showDate(product?.createdAt)} days ago`}
-                                                                </div>
-                                                            }</h1>
-                                                        </div>
-                                                        <div className={`flex justify-between space-x-4 mt-3 text-gray-600 h-10 border-t-2 pt-2 w-full`}>
-                                                            <div className='space-x-4 mt-1'>
-                                                                <Share
-                                                                    onClick={() => handleShare(product?._id)}
-                                                                    className='cursor-pointer text-gray-400 mt-[-5px]'
-                                                                />
-                                                                <FontAwesomeIcon className='cursor-pointer text-gray-400 text-[20px]' icon={faMessage} />
-                                                                <Favorite className={`${fav ? 'text-[#FF0000]' : 'text-gray-300'} mt-[-5px] cursor-pointer`} onClick={() => adFavorite(product?._id)} />
-                                                            </div>
-                                                            <div className='flex flex-row space-x-3'>
-                                                                <RemoveRedEye className="text-gray-500 " />
-                                                                <h1>{product?.views}</h1>
-                                                            </div>
+                                                        <div className='flex flex-row space-x-3'>
+                                                            <RemoveRedEye className="text-gray-500 " />
+                                                            <h1>{product?.views}</h1>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            ))}
-                                        </>
-                                }
-                                <div className={`flex flex-row justify-between bg-white h-12 border border-[#e52320] rounded-sm px-5 py-2`}>
-                                    <button className={btnStyle} onClick={previousHandle}>
-                                        <KeyboardDoubleArrowLeft className={logoStyle} />
-                                        <span className={spanStyle}>{t('categorySelection.previous')}</span>
-                                    </button>
-                                    <div className='flex flex-row space-x-4'>
-                                        {pagination().map((li: any, i: number) => (
-                                            <button className={`${page === li && 'bg-[#e52320] w-6 md:w-8 text-white text-[12px] border-none rounded-sm'} pt-[2px] text-[12px] md:text-lg`} key={i} onClick={() => dispatch(setPage(li))}>{li}</button>
+                                            </div>
                                         ))}
-                                    </div>
-                                    <button className={btnStyle} onClick={nextHandle}>
-                                        <span className={spanStyle}>{t('categorySelection.next')}</span>
-                                        <KeyboardDoubleArrowRight className={logoStyle} />
-                                    </button>
+                                    </>
+                            }
+                            <div className={`flex flex-row justify-between bg-white h-12 border border-[#e52320] rounded-sm px-5 py-2`}>
+                                <button className={btnStyle} onClick={previousHandle}>
+                                    <KeyboardDoubleArrowLeft className={logoStyle} />
+                                    <span className={spanStyle}>{t('categorySelection.previous')}</span>
+                                </button>
+                                <div className='flex flex-row space-x-4'>
+                                    {pagination().map((li: any, i: number) => (
+                                        <button className={`${page === li && 'bg-[#e52320] w-6 md:w-8 text-white text-[12px] border-none rounded-sm'} pt-[2px] text-[12px] md:text-lg`} key={i} onClick={() => dispatch(setPage(li))}>{li}</button>
+                                    ))}
                                 </div>
+                                <button className={btnStyle} onClick={nextHandle}>
+                                    <span className={spanStyle}>{t('categorySelection.next')}</span>
+                                    <KeyboardDoubleArrowRight className={logoStyle} />
+                                </button>
+                            </div>
+                        </div>
+                        :
+                        !productData ?
+                            <div className="flex justify-center w-full h-full">
+                                <Image
+                                    src='/assets/eidcarosse.gif'
+                                    alt="eidcarosse_logo"
+                                    width={200}
+                                    height={200}
+                                />
                             </div>
                             :
                             <div className='flex w-full justify-center'>
                                 <h1 className='text-xl font-bold'>  {t('categorySelection.noRecordFound')}
                                 </h1>
                             </div>
-                        }
-                        </>
                     }
-                </div>
-            </Home>
+                    </>
+                }
+            </div>
         </div>
     )
 }

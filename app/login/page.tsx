@@ -44,7 +44,7 @@ export default function LoginPage() {
             {/* <div className='fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm'> */}
             <div className=''>
                 <section className='mb-20'>
-                    <div className='container mx-auto'>
+                    <div className='container mx-auto mt-20'>
                         <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-14'>
                             {featuredAds?.map((product: any, i: any) => {
                                 return (

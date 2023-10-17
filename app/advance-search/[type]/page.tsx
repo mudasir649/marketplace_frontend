@@ -1,14 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
 import AdvanceSearch from "@/components/AdvanceSearch"
+import Home from "@/components/Home";
 import { setType } from "@/store/appSlice";
 import productData from "@/utils/data";
 import axios from "axios";
+import dynamic from "next/dynamic";
 import { useParams, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-export default function Page() {
+function Page() {
 
     const { type } = useParams();
 
@@ -52,6 +54,13 @@ export default function Page() {
     }, [type, dispatch, page, subCategory, checkType]);
 
     return (
-        <AdvanceSearch setProductData={setProductData} setProductsCount={setProductsCount} productData={productData} productsCount={productsCount} category={checkType} subCategory={subCategory} brands={brands} />
+        <div>
+            <Home>
+                <AdvanceSearch setProductData={setProductData} setProductsCount={setProductsCount} productData={productData} productsCount={productsCount} category={checkType} subCategory={subCategory} brands={brands} />
+            </Home>
+        </div>
     )
 }
+
+
+export default dynamic(() => Promise.resolve(Page), { ssr: false });
