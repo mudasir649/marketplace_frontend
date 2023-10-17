@@ -27,13 +27,13 @@ const initialState = {
     productData: null,
     productsCount: 0,
     roomsData: getChatRoomData() !== null ? getChatRoomData() : null,
-    // productData: getProductInitialState() !== null ? getProductInitialState() : null,
-    // productsCount: getProductInitialCount() !== null ? getProductInitialCount() : 0,
     page: 1,
     sortBy: '',
     type: '',
     title:'',
-    address: ''
+    address: '',
+    language: 'en',
+    showContact: false
 }
 
 
@@ -97,6 +97,12 @@ const appSlice = createSlice({
         setRoomsData: (state, actions) => {
             state.roomsData = actions.payload;
             localStorage.setItem('roomsData', JSON.stringify(actions.payload));
+        },
+        setLanguage: (state, actions) => {
+            state.language = actions.payload;
+        },
+        setShowContact: (state, actions) => {
+            state.showContact = actions.payload
         }
     }
 });
@@ -108,6 +114,6 @@ export const { refreshPage, setFilterData,
                 setProductData, setProductsCount, 
                 setSortBy, setType,
                 setReduxTitle, setReduxAddress, 
-                setProductUserId, setRoomsData } = appSlice.actions;
+                setProductUserId, setRoomsData, setLanguage, setShowContact } = appSlice.actions;
 
 export default appSlice.reducer;

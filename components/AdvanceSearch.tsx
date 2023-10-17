@@ -21,7 +21,7 @@ import addInvertedComma from '@/utils/addInvertedComma';
 import ProductList from './ProductList';
 import { faClock, faMessage } from "@fortawesome/free-solid-svg-icons";
 import showDate from '@/utils/showDate';
-import { useTranslation } from 'react-i18next'; 
+import { useTranslation } from 'react-i18next';
 
 
 
@@ -73,7 +73,7 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
     const router = useRouter();
 
     const pagination = () => {
-        let paginationList = [];
+        let paginationList: number = [];
         let totalPages = Math.ceil(productsCount / 10);
         for (let i = 1; i <= totalPages; i++) {
             paginationList.push(i);
@@ -460,7 +460,7 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
                             :
                             <div className='flex w-full justify-center'>
                                 <h1 className='text-xl font-bold'>  {t('categorySelection.noRecordFound')}
-</h1>
+                                </h1>
                             </div>
                         }
                         </>

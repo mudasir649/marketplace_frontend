@@ -78,7 +78,7 @@ export default function Banner() {
             <div className={`flex flex-row justify-between border border-gray-200 rounded-full h-8 w-52 hover:border-red-500 
               bg-white px-5 py-1 capitalize text-sm focus:border-red-800 focus:shadown-lg`} onClick={() => categoryHandle()}>
               <h1>  {t('banner.seeAllCategories')}
-</h1>
+              </h1>
               <KeyboardArrowDown className="h-5 w-5 border border-red-500 rounded-full bg-red-500 text-white" />
             </div>
             {isExpand && <div className='h-auto p-2 w-auto lg:w-52 z-30 absolute bg-white border rounded-md mt-9' data-aos="fade-up">
@@ -88,7 +88,7 @@ export default function Banner() {
           {/* <div className={`felx flex-row  bg-[#FF0000] ${newWidth <= 834 && newWidth >= 768 ? 'mt-[-1.5px] ml-5' : ' mt-4 lg:mt-0'}`}> */}
           <div className={`felx flex-row col-span-2 ml-[-0px] mt-2 md:mt-0 md:ml-[-5px] lg:ml-[-90px]`}>
             <h1 className='text-white text-lg font-semibold flex space-x-5'>
-            {t('banner.topCategories')}
+              {t('banner.topCategories')}
               <span className='ml-4 cursor-pointer' onClick={() => handleCat('Autos')}>{t('banner.autos')}</span>
               <span className='cursor-pointer' onClick={() => handleCat('Parts')}>{t('banner.parts')}</span>
             </h1>
