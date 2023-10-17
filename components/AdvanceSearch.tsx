@@ -73,7 +73,7 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
     const router = useRouter();
 
     const pagination = () => {
-        let paginationList: number = [];
+        let paginationList: any = [];
         let totalPages = Math.ceil(productsCount / 10);
         for (let i = 1; i <= totalPages; i++) {
             paginationList.push(i);
