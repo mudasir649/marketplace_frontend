@@ -28,6 +28,7 @@ import { useTranslation } from 'react-i18next';
 interface IList {
     logo: any,
     name: string,
+    name1: string , 
     quantity: number
 }
 
@@ -108,69 +109,65 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
         {
             logo: <DirectionsBike />,
             name: t('categories.1'),
-            name1: "Autos",
+            name1: "Bikes",
             quantity: 12
         },
         {
             logo: <DirectionsBoat />,
             name: t('categories.2'),
-            name1: "Autos",
+            name1: "Boats",
             quantity: 2
         },
         {
             logo: <DirectionsBus />,
             name: t('categories.3'),
-            name1: "Autos",
+            name1: "Busses",
             quantity: 0
         },
         {
             logo: <PrecisionManufacturing />,
             name: t('categories.4'),
-            name1: "Autos",
+            name1: "Construction Machines",
             quantity: 74
         },
         {
             logo: <Flight />,
             name: t('categories.5'),
-            name1: "Autos",
+            name1: "Drones",
             quantity: 32
         },
         {
             logo: <DataSaverOn />,
             name: t('categories.6'),
-            name1: "Autos",
+            name1: "Others",
 
             quantity: 23
         },
         {
             logo: <BuildCircle />,
             name: t('categories.7'),
-            name1: "Autos",
+            name1: "Parts",
             quantity: 0
         },
         {
             logo: <RvHookup />,
             name: t('categories.8'),
-            name1: "Autos",
+            name1: "Trailers",
             quantity: 90
         },
         {
             logo: <FireTruck />,
             name: t('categories.9'),
-            name1: "Autos",
-            
-
+            name1: "Trucks",
             quantity: 11
         },
         {
             logo: <AirportShuttle />,
             name: t('categories.10'),
-            name1: "Autos",
-            
+            name1: "Vans",
             quantity: 9
         },
     ];
-
 
 
     useEffect(() => {
@@ -203,7 +200,7 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
     }
 
     const handleFilterData = (e: any) => {
-        setFiltersData({ ...filtersData, [e.target.name]: e.target.value });
+        setFiltersData({ ...filtersData, [e.target.name ]: e.target.value });
     }
 
     const inputStyle = 'border border-gray-300 hover:border-red-600 focus:outline-red-600 rounded-sm w-32 lg:w-32 h-10 p-2 cursor-pointer';
@@ -286,7 +283,7 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
                         <h1 className='pl-1 pt-2  text-lg font-semibold'>{t('categorySelection.allCategories')}</h1>
                         <ul className='space-y-3 mt-2 mx-1'>
                             {categoryList?.map((list: IList, i: number) => (
-                                <><li onClick={() => handleSearch(list?.name)} className={`${category == list?.name ? 'text-[#FF0000]' : list?.name == 'Bikes' && subCategory ? 'text-[#FF0000]' : 'hover:text-[#FF0000] cursor-pointer'}`} key={i}>{list.logo} {list.name} {category == list?.name ? `(${productsCount})` : ''}</li>
+                                <><li onClick={() => handleSearch(list?.name1)} className={`${category == list?.name ? 'text-[#FF0000]' : list?.name == 'Bikes' && subCategory ? 'text-[#FF0000]' : 'hover:text-[#FF0000] cursor-pointer'}`} key={i}>{list.logo} {list.name} {category == list?.name ? `(${productsCount})` : ''}</li>
                                     {(category == 'Bikes' || subCategory) && list?.name == "Bikes" && subList?.map((list: any, i: any) => (
                                         <li className={`ml-5 cursor-pointer ${list?.name == subCategory ? 'text-[#FF0000]' : 'hover:text-[#FF0000]'}`} onClick={() => handleSearch(list?.name)} key={i}> <span className='text-[#FF0000]'>{`> `}</span>{list?.name} {subCategory == list?.name && `(${productsCount})`}</li>
                                     ))}

@@ -4,13 +4,50 @@ import { ExpandMore, PlaylistAdd } from '@mui/icons-material';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import './post-ad.css';
-import { list, partsSubList, subList } from '@/utils/dataVariables';
+import { partsSubList, subList } from '@/utils/dataVariables';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 export default function PostAd() {
-
+    
     const { t } = useTranslation();
+
+    const list = [
+        {
+            name: t('categories.0')
+        },
+        {
+            name: t('categories.1')
+        },
+        {
+            name: t('categories.2')
+        },
+        {
+            name: t('categories.3')
+        },
+        {
+            name: t('categories.4')
+        },
+        {
+            name: t('categories.5')
+        },
+        {
+            name: t('categories.6')
+        },
+        {
+            name: t('categories.7')
+        },
+        {
+            name: t('categories.8')
+        },
+        {
+            name: t('categories.9')
+        },
+        {
+            name: t('categories.10')
+        }
+    ]
+
     const router = useRouter();
 
     const { userInfo } = useSelector((state: any) => state.auth);
