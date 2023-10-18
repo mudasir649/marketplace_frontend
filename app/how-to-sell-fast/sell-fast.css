@@ -1,4 +1,4 @@
-:root{
+/* :root{
     --speed: 900ms
 }
 
@@ -13,4 +13,4 @@
     visibility: hidden;
     transform: translateY(-50px);
     transition: var(--speed) ease;
-}
+} */
