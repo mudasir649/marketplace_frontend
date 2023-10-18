@@ -221,7 +221,7 @@ export default function BikeSubComponent({ type }: any) {
                     <div className=' container mx-auto flex flex-col mb-7'>
                         <div className='flex flex-row space-x-2 mt-5'>
                             <h1>{type == 'Contruction%20Machines' ? 'Construction Machines' : type}</h1>
-                            <ArrowForwardIos className='text-[12px] mt-[6.5px]' />
+                            <ArrowForwardIos className='mt-[5px]' style={{ fontSize: "14px" }} />
                             <h1 className='text-[#FF0000] underline'>
                                 <Link href="/post-ad">
                                     {'Change category'}
@@ -246,7 +246,7 @@ export default function BikeSubComponent({ type }: any) {
                                 </div>
                             </div>
                             <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Pricing <span className='text-[#FF0000]'>*</span></h1>
+                                <h1 className={style.h1Style}>Pricing </h1>
                                 <div className='flex flex-col w-full'>
                                     <ul className='flex flex-row space-x-2'>
                                         {priceList?.map((list: any, i: any) => (
@@ -257,7 +257,7 @@ export default function BikeSubComponent({ type }: any) {
                             </div>
                             {priceListValue === 'price' ?
 
-                        <div className={style.divStyle}>
+                                <div className={style.divStyle}>
                                     <h1 className={style.h1Style}>Price{`[CHF]`} <span className='text-[#FF0000]'>*</span></h1>
                                     <div className='flex flex-col w-full'>
                                         <input type="text" className={style.inputStyle}
@@ -269,30 +269,7 @@ export default function BikeSubComponent({ type }: any) {
                                     </div>
                                 </div>
                                 :
-                                priceListValue === 'priceRange' ?
-                                    <div className='flex flex-col md:flex-row my-5 space-y-2 md:space-y-0 md:space-x-2'>
-                                        <div className='w-full flex flex-row'>
-                                            <h1 className='text-md font-bold  w-80 lg:w-64 mt-1'>Min Pirce {`[CHF]`}<span className='text-[#FF0000]'>*</span></h1>
-                                            <input type="text" className={style.inputStyle}
-                                                name='minPrice'
-                                                value={data?.minPrice}
-                                                onChange={(e: any) => handleInput(e)}
-                                                required
-                                            />
-                                        </div>
-                                        <div className='w-full flex flex-row'>
-                                            <h1 className='text-md font-bold w-72 lg:w-64 mt-1'>Max Pirce {`[CHF]`}<span className='text-[#FF0000]'>*</span></h1>
-                                            <input type="text"
-                                                className={style.inputStyle}
-                                                name='maxPrice'
-                                                value={data?.maxPrice}
-                                                onChange={(e: any) => handleInput(e)}
-                                                required
-                                            />
-                                        </div>
-                                    </div>
-                                    :
-                                    ''
+                                ''
                             }
                             <div className={style.divStyle}>
                                 <h1 className={style.h1Style}>Condition <span className='text-[#FF0000]'>*</span></h1>
@@ -350,19 +327,18 @@ export default function BikeSubComponent({ type }: any) {
                                 </div>
                             }
                             {data?.brand && type == 'Motorcycle' && <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Year <span className='text-[#FF0000]'>*</span></h1>
+                                <h1 className={style.h1Style}>Year</h1>
                                 <div className='flex flex-col w-full'>
                                     <input type="text" className={style.inputStyle}
                                         name='year'
                                         value={data.year}
                                         onChange={(e: any) => handleInput(e)}
-                                        required
                                     />
                                 </div>
                             </div>}
                             {data?.brand && type == 'Motorcycle' &&
                                 <div className={style.divStyle}>
-                                    <h1 className={style.h1Style}>Body Shape<span className='text-[#FF0000]'>*</span></h1>
+                                    <h1 className={style.h1Style}>Body Shape</h1>
                                     <select
                                         className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
                                         name='bodyShape'
@@ -377,7 +353,7 @@ export default function BikeSubComponent({ type }: any) {
                             }
                             {data?.brand && type == 'Motorcycle' &&
                                 <div className={style.divStyle}>
-                                    <h1 className={style.h1Style}>Gear Box <span className='text-[#FF0000]'>*</span></h1>
+                                    <h1 className={style.h1Style}>Gear Box</h1>
                                     <select
                                         className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
                                         name='gearBox'
@@ -392,7 +368,7 @@ export default function BikeSubComponent({ type }: any) {
                             }
                             {data?.brand && type == 'Motorcycle' &&
                                 <div className={style.divStyle}>
-                                    <h1 className={style.h1Style}>Fuel Type <span className='text-[#FF0000]'>*</span></h1>
+                                    <h1 className={style.h1Style}>Fuel Type</h1>
                                     <select
                                         className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
                                         name='fuelType'
@@ -407,33 +383,31 @@ export default function BikeSubComponent({ type }: any) {
                             }
                             {data?.brand && type == 'Motorcycle' &&
                                 <div className={style.divStyle}>
-                                    <h1 className={style.h1Style}>Kilometers <span className='text-[#FF0000]'>*</span></h1>
+                                    <h1 className={style.h1Style}>Kilometers</h1>
                                     <div className='flex flex-col w-full'>
                                         <input type="text" className={style.inputStyle}
                                             name='km'
                                             value={data.km}
                                             onChange={(e: any) => handleInput(e)}
-                                            required
                                         />
                                     </div>
                                 </div>
                             }
                             {data?.brand && type == 'Motorcycle' &&
                                 <div className={style.divStyle}>
-                                    <h1 className={style.h1Style}>Engine Capacity <span className='text-[#FF0000]'>*</span></h1>
+                                    <h1 className={style.h1Style}>Engine Capacity</h1>
                                     <div className='flex flex-col w-full'>
                                         <input type="text" className={style.inputStyle}
                                             name='engineCapacity'
                                             value={data.engineCapacity}
                                             onChange={(e: any) => handleInput(e)}
-                                            required
                                         />
                                     </div>
                                 </div>
                             }
                             {data?.brand && type == 'Motorcycle' &&
                                 <div className={style.divStyle}>
-                                    <h1 className={style.h1Style}>Color<span className='text-[#FF0000]'>*</span></h1>
+                                    <h1 className={style.h1Style}>Color</h1>
                                     <select
                                         className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
                                         name='exteriorColor'
@@ -447,14 +421,13 @@ export default function BikeSubComponent({ type }: any) {
                                 </div>
                             }
                             <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Description <span className='text-[#FF0000]'>*</span></h1>
+                                <h1 className={style.h1Style}>Description</h1>
                                 <div className='flex flex-col w-full'>
                                     <textarea
                                         className={style.areaStyle}
                                         name='description'
                                         value={data.description}
                                         onChange={(e: any) => handleInput(e)}
-                                        required
                                     />
                                 </div>
                             </div>
@@ -502,7 +475,6 @@ export default function BikeSubComponent({ type }: any) {
                                         name='videoUrl'
                                         value={data.videoUrl}
                                         onChange={(e: any) => handleInput(e)}
-                                        required
                                     />
                                     <p className='text-gray-300 text-sm mt-1'>
                                         E.g. https://www.youtube.com/watch?v=RiXdDGk_XCU, https://vimeo.com/620922414
@@ -534,7 +506,7 @@ export default function BikeSubComponent({ type }: any) {
                                 </div>
                             </div>
                             <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>How to contact <span className='text-[#FF0000]'>*</span></h1>
+                                <h1 className={style.h1Style}>How to contact</h1>
                                 <div className='flex flex-col hover:border-red-500 w-full rounded-sm h-10'
                                     onClick={() => isOpenSub(!openSub)}
                                 >
@@ -586,19 +558,7 @@ export default function BikeSubComponent({ type }: any) {
                                             <p className='text-gray-400 text-sm mt-1'>Viber number with your country code. e.g.+41xxxxxxxxxx</p>
                                         </div>
                                     </div>
-                                    : howContact == 'Email' ?
-                                        <div className={style.divStyle}>
-                                            <h1 className={style.h1Style}>Email  <span className='text-[#FF0000]'>*</span></h1>
-                                            <div className='flex flex-col w-full'>
-                                                <input type="text" className={style.inputStyle}
-                                                    name='email'
-                                                    value={data.email}
-                                                    onChange={(e: any) => handleInput(e)}
-                                                />
-                                            </div>
-                                        </div>
-                                        :
-                                        ''
+                                    : ''
                             }
                             <div className={style.divStyle}>
                                 <h1 className={style.h1Style}>Website</h1>

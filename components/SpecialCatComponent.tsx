@@ -181,7 +181,7 @@ export default function SpecialCatComponent({ type }: any) {
                     <div className=' container mx-auto flex flex-col mb-7'>
                         <div className='flex flex-row space-x-2 mt-5'>
                             <h1>{type == 'Contruction%20Machines' ? 'Construction Machines' : type}</h1>
-                            <ArrowForwardIos className='text-[12px] mt-[6.5px]' />
+                            <ArrowForwardIos className='mt-[5px]' style={{ fontSize: "14px" }} />
                             <h1 className='text-[#FF0000] underline'>
                                 <Link href="/post-ad">
                                     {'Change category'}
@@ -228,30 +228,7 @@ export default function SpecialCatComponent({ type }: any) {
                                     </div>
                                 </div>
                                 :
-                                priceListValue === 'priceRange' ?
-                                    <div className='flex flex-col md:flex-row my-5 space-y-2 md:space-y-0 md:space-x-2'>
-                                        <div className='w-full flex flex-row'>
-                                            <h1 className='text-md font-bold  w-80 lg:w-64 mt-1'>Min Pirce {`[CHF]`}<span className='text-[#FF0000]'>*</span></h1>
-                                            <input type="text" className={style.inputStyle}
-                                                name='minPrice'
-                                                value={data?.minPrice}
-                                                onChange={(e: any) => handleInput(e)}
-                                                required
-                                            />
-                                        </div>
-                                        <div className='w-full flex flex-row'>
-                                            <h1 className='text-md font-bold w-72 lg:w-64 mt-1'>Max Pirce {`[CHF]`}<span className='text-[#FF0000]'>*</span></h1>
-                                            <input type="text"
-                                                className={style.inputStyle}
-                                                name='maxPrice'
-                                                value={data?.maxPrice}
-                                                onChange={(e: any) => handleInput(e)}
-                                                required
-                                            />
-                                        </div>
-                                    </div>
-                                    :
-                                    ''
+                                ''
                             }
                             <div className={style.divStyle}>
                                 <h1 className={style.h1Style}>Condition <span className='text-[#FF0000]'>*</span></h1>
@@ -320,38 +297,35 @@ export default function SpecialCatComponent({ type }: any) {
                                 </div>
                             }
                             {data?.brand && <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Year <span className='text-[#FF0000]'>*</span></h1>
+                                <h1 className={style.h1Style}>Year</h1>
                                 <div className='flex flex-col w-full'>
                                     <input type="text" className={style.inputStyle}
                                         name='year'
                                         value={data.year}
                                         onChange={(e: any) => handleInput(e)}
-                                        required
                                     />
                                 </div>
                             </div>
                             }
                             {type == 'Others' && <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Year <span className='text-[#FF0000]'>*</span></h1>
+                                <h1 className={style.h1Style}>Year</h1>
                                 <div className='flex flex-col w-full'>
                                     <input type="text" className={style.inputStyle}
                                         name='year'
                                         value={data.year}
                                         onChange={(e: any) => handleInput(e)}
-                                        required
                                     />
                                 </div>
                             </div>
                             }
                             <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Description <span className='text-[#FF0000]'>*</span></h1>
+                                <h1 className={style.h1Style}>Description</h1>
                                 <div className='flex flex-col w-full'>
                                     <textarea
                                         className={style.areaStyle}
                                         name='description'
                                         value={data.description}
                                         onChange={(e: any) => handleInput(e)}
-                                        required
                                     />
                                 </div>
                             </div>
