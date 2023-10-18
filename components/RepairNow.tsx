@@ -5,6 +5,8 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next'; 
+
 
 interface IData {
     fullName: any,
@@ -17,6 +19,7 @@ interface IData {
 }
 
 export default function BuyNow() {
+    const { t } = useTranslation(); // Initialize the translation hook
 
     const dispatch = useDispatch();
 
@@ -90,85 +93,91 @@ export default function BuyNow() {
                 </div>
                 <form>
                     <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-600">Full Name</label>
-                        <input type="text"
+                        <label className="block text-sm font-medium text-gray-600">{t('full_name')}</label>
+                        <input
+                            type="text"
                             id="fullName"
                             name="fullName"
                             value={data.fullName}
                             className="w-full border py-2 px-3 focus:outline-none focus:border-red-600"
-                            placeholder="John Doe"
+                            placeholder={t('full_name')}
                             required
                             onChange={(e) => handleInput(e)}
                         />
                     </div>
                     <div className="flex space-x-4 mb-4">
                         <div className="w-1/2">
-                            <label className="block text-sm font-medium text-gray-600">Phone Number</label>
+                            <label className="block text-sm font-medium text-gray-600">{t('phone_number')}</label>
                             <input
                                 type="tel"
                                 id="phoneNo"
                                 name="phoneNo"
                                 className="w-full border py-2 px-3 focus:outline-none focus:border-red-600"
-                                placeholder="555-555-5555"
+                                placeholder={t('phone_number')}
                                 required
                                 value={data.phoneNo}
                                 onChange={(e) => handleInput(e)}
                             />
                         </div>
                         <div className="w-1/2">
-                            <label className="block text-sm font-medium text-gray-600">Email Address</label>
+                            <label className="block text-sm font-medium text-gray-600">{t('email_address')}</label>
                             <input
                                 type="email"
                                 id="email"
                                 name="email"
                                 className="w-full border py-2 px-3 focus:outline-none focus:border-red-600"
-                                placeholder="johndoe@example.com"
+                                placeholder={t('email_address')}
                                 value={data.email}
                                 required
                                 onChange={(e) => handleInput(e)}
                             />
                         </div>
                     </div>
+
                     <div className="flex space-x-4 mb-4">
                         <div className="w-1/3">
-                            <label className="block text-sm font-medium text-gray-600">Make</label>
+                            <label className="block text-sm font-medium text-gray-600">{t('make')}</label>
                             <input
                                 type="text"
                                 id="make"
                                 name="make"
                                 className="w-full border py-2 px-3 focus:outline-none focus:border-red-600"
-                                placeholder="Make"
+                                placeholder={t('make')}
                                 value={data.make}
                                 onChange={(e) => handleInput(e)}
-                                required />
+                                required
+                            />
                         </div>
                         <div className="w-1/3">
-                            <label className="block text-sm font-medium text-gray-600">Model</label>
+                            <label className="block text-sm font-medium text-gray-600">{t('model')}</label>
                             <input
                                 type="text"
                                 id="model"
                                 name="model"
                                 className="w-full border py-2 px-3 focus:outline-none focus:border-red-600"
-                                placeholder="Model"
+                                placeholder={t('model')}
                                 value={data.model}
                                 onChange={(e) => handleInput(e)}
-                                required />
+                                required
+                            />
                         </div>
                         <div className="w-1/3">
-                            <label className="block text-sm font-medium text-gray-600">Year</label>
+                            <label className="block text-sm font-medium text-gray-600">{t('year')}</label>
                             <input
                                 type="text"
                                 id="year"
                                 name="year"
                                 className="w-full border py-2 px-3 focus:outline-none focus:border-red-600"
-                                placeholder="Year"
+                                placeholder={t('year')}
                                 value={data.year}
                                 onChange={(e) => handleInput(e)}
-                                required />
+                                required
+                            />
                         </div>
                     </div>
+
                     <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-600">Upload Image</label>
+                        <label className="block text-sm font-medium text-gray-600">{t('upload_image')}</label>
                         <input
                             type="file"
                             id="fileInput"
@@ -180,6 +189,7 @@ export default function BuyNow() {
                             onChange={(e) => handleImage(e)}
                         />
                     </div>
+
                     {!images ? '' :
                         <div className='flex flex-row space-x-4'>
                             {images?.map((image: any, i: any) => (
@@ -187,25 +197,29 @@ export default function BuyNow() {
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img className='h-32 w-32' src={URL.createObjectURL(image)} alt={`Image ${i}`} />
                                     <Cancel className='absolute mt-[-128px] ml-24 text-[#FF0000]' onClick={() => handleImageRemove(i)} />
-                                </div>))}
+                                </div>
+                            ))}
                         </div>
                     }
+
                     <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-600">Description</label>
+                        <label className="block text-sm font-medium text-gray-600">{t('description')}</label>
                         <textarea
                             id="description"
                             name="description"
                             className="w-full border py-2 px-3 focus:outline-none focus:border-red-600"
-                            placeholder="Enter a description..."
+                            placeholder={t('description')}
                             value={data.description}
                             onChange={(e) => handleInput(e)}
-                            required></textarea>
+                            required
+                        ></textarea>
                     </div>
+
                     <div className="mt-4 mb-10">
-                        <button type="submit" className="bg-[#FF0000] text-white px-4 py-2 hover:bg-red-800 focus:outline-none focus:bg-red-700" onClick={(e: any) => handleSubmit(e)}>Submit</button>
+                        <button type="submit" className="bg-[#FF0000] text-white px-4 py-2 hover:bg-red-800 focus:outline-none focus:bg-red-700" onClick={(e: any) => handleSubmit(e)}>{t('submit')}</button>
                     </div>
                 </form>
             </div>
         </div>
-    )
+    );
 }

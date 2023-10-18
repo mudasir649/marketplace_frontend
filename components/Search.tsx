@@ -8,7 +8,7 @@ import CategoryList from "./CategoryList";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilterData, setProductData, setProductsCount, setReduxAddress, setReduxTitle } from "@/store/appSlice";
 import { usePathname, useRouter } from "next/navigation";
-
+import { useTranslation } from 'react-i18next';
 export default function SearchPage() {
 
   const { width, height } = useWindowDimensions();
@@ -17,7 +17,7 @@ export default function SearchPage() {
 
   const newWidth = width || 0;
   const newHeight = height || 0;
-
+  const { t } = useTranslation();
   const [googleLocation, setGoogleLocation] = useState<any>()
   const [showLocation, setShowLocation] = useState<Boolean>(false);
   const [showTitle, setShowTitle] = useState<Boolean>(false);
@@ -84,7 +84,7 @@ export default function SearchPage() {
         <div className='flex flex-col w-full border border-gray-300 rounded-sm'>
           <span className="flex flex-row p-2">
             <LocationOn className="text-[#FF0000]" />
-            <input type="text" placeholder='enter your address here' name='address' value={address} onChange={(e: any) => setAddress(e.target.value)} className="focus:outline-none pl-2 w-auto overflow-hidden" onKeyUp={(e: any) => checkPlace(e)} />
+            <input type="text" placeholder={t('placeholderAddress')} name='address' value={address} onChange={(e: any) => setAddress(e.target.value)} className="focus:outline-none pl-2 w-auto overflow-hidden" onKeyUp={(e: any) => checkPlace(e)} />
           </span>
           <div className="">
             {showLocation && address && <div className='border border-gray-300 bg-white absolute z-20 p-2 mt-1 w-[370px]'>
@@ -105,7 +105,7 @@ export default function SearchPage() {
         <div className='flex flex-col w-full p-2 border border-gray-300 rounded-sm'>
           <span className="flex flex-row">
             <Search className="text-[#FF0000]" />
-            <input type="text" placeholder='enter keyword here...' name='name' className="focus:outline-none pl-2 overflow-hidden" value={title} onChange={(e: any) => setTitle(e.target.value)} onKeyUp={(e: any) => handleTitle(e)} />
+            <input type="text" placeholder={t('placeholderKeyword')} name='name' className="focus:outline-none pl-2 overflow-hidden" value={title} onChange={(e: any) => setTitle(e.target.value)} onKeyUp={(e: any) => handleTitle(e)} />
           </span>
           <div className="ml-[-9px]">
             {showTitle && <div className='border border-gray-300 bg-white absolute z-20 p-2 mt-3 w-[370px]'>
