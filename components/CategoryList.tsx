@@ -4,8 +4,11 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next'; 
+
 
 export default function CategoryList({ setCategory, setExpand }: any) {
+    const { t } = useTranslation(); // Initialize the translation hook
 
     const { page } = useSelector((state: any) => state.app);
     const dispatch = useDispatch();
@@ -28,9 +31,10 @@ export default function CategoryList({ setCategory, setExpand }: any) {
     return (
         <div>
             <ul className='text-gray-500 space-y-1 cursor-pointer dropdow-menu z-10'>
-                <li onClick={() => handleClick("Autos")} className={liStyle}>Autos</li>
+                <li onClick={() => handleClick("Autos")} className={liStyle}>  {t('categories.0')}
+</li>
                 <li className={`dropdow`}>
-                    <h1 onClick={() => handleClick("Bikes")} className={liStyle}>Bikes</h1>
+                    <h1 onClick={() => handleClick("Bikes")} className={liStyle}>{t('categories.1')}</h1>
                     <div className='absolute hidden ml-[190px] mt-[-30px] bg-white w-auto h-auto p-2 border-none rounded-sm dropdow-menu'>
                         <ul className='block'>
                             {subList?.map((list: any, i: number) => (
@@ -40,19 +44,19 @@ export default function CategoryList({ setCategory, setExpand }: any) {
                     </div>
                 </li>
                 <li onClick={() => handleClick("Boats")} className={liStyle}>
-                    Boats
+                {t('categories.2')}
                 </li >
                 <li onClick={() => handleClick("Busses")} className={liStyle}>
-                    Busses
+                {t('categories.3')}
                 </li>
                 <li onClick={() => handleClick("Construction Machines")} className={liStyle}>
-                    Construction Machines
+                {t('categories.4')}
                 </li>
                 <li onClick={() => handleClick("Drones")} className={liStyle}>
-                    Drones
+                {t('categories.5')}
                 </li>
                 <li className='dropdow'>
-                    <h1 className={liStyle}>Parts</h1>
+                    <h1 className={liStyle}>{t('categories.6')}</h1>
                     <div className='absolute hidden ml-[190px] mt-[-30px] bg-white w-full h-auto p-2 border-none rounded-sm dropdow-menu'>
                         <ul className='block mx-2'>
                             {partsSubList?.map((list: any, i: number) => (
@@ -62,16 +66,16 @@ export default function CategoryList({ setCategory, setExpand }: any) {
                     </div>
                 </li>
                 <li onClick={() => handleClick("Trailers")} className={liStyle}>
-                    Trailers
+                {t('categories.7')}
                 </li>
                 <li onClick={() => handleClick("Trucks")} className={liStyle}>
-                    Trucks
+                {t('categories.8')}
                 </li>
                 <li onClick={() => handleClick("Vans")} className={liStyle}>
-                    Vans
+                {t('categories.9')}
                 </li>
                 <li onClick={() => handleClick("Trailers")} className={liStyle}>
-                    Others
+                {t('categories.10')}
                 </li>
             </ul>
         </div>

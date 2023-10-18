@@ -16,6 +16,8 @@ import { toast } from "react-toastify";
 import ShareLink from "./ShareLink";
 import SellNow from "./SellNow";
 import RepairNow from "./RepairNow";
+import { useTranslation } from 'react-i18next'; 
+
 import DeleteAd from "./DeleteAd";
 import axios from "axios";
 import { setProductData, setProductsCount, setRoomsData, setShowContact } from "@/store/appSlice";
@@ -87,6 +89,7 @@ export default function Header() {
       </li>
     )
   }
+  const { t } = useTranslation(); // Initialize the translation hook
 
   const [logoutApiCall, { isLoading }] = useLogoutMutation();
 
@@ -116,13 +119,13 @@ export default function Header() {
           <ul className="flex flex-col space-y-5 uppercase m-7">
             <li className={navbarLiStyle}>
               <Link href="/" onClick={() => setNavbar(false)}>
-                home
+              {t('header.home')}
               </Link>
             </li>
             <li className={navbarLiStyle} onClick={() => handleAdvanceSearch('all')}>
-              advance search
+            {t('header.advanceSearch')}
             </li>
-            <li className={navbarLiStyle} onClick={handleContact}>contact us</li>
+            <li className={navbarLiStyle} onClick={handleContact}>{t('header.contactUs')}</li>
             <li>
               <ListDownComponent />
             </li>
@@ -159,14 +162,14 @@ export default function Header() {
             <ul className="flex flex-row space-x-6 uppercase text-sm font-semibold text-white">
               <li className={navbarLiStyle}>
                 <Link href="/">
-                  home
+                {t('header.home')}
                 </Link>
               </li>
               <li className={navbarLiStyle} onClick={() => handleAdvanceSearch('all')}>
-                advance search
+              {t('header.advanceSearch')}
               </li>
               <li className={navbarLiStyle} onClick={() => (dispatch(setShowContact(!showContact)))}>
-                contact us
+              {t('header.contactUs')}
               </li>
               <li>
                 <ListDownComponent />
@@ -191,7 +194,7 @@ export default function Header() {
                 <Link href="/post-ad">
                   <button className="flex flex-row justify-center space-x-4 mt-[-1px] p-2 w-52 bg-white hover:text-[#FF0000] text-black  rounded-lg">
                     <Add className="text-md border border-[#FF0000] rounded-full bg-[#FF0000] text-white" />
-                    <span className="capitalize text-md mt-[2px]">Post your ad</span>
+                    <span className="capitalize text-md mt-[2px]">{t('header.postYourAd')}</span>
                   </button>
                 </Link>
               </div>
@@ -207,22 +210,22 @@ export default function Header() {
               </div>
                 <div className={`dropdown-menu border rounded-sm w-60 absolute ml-[-120px] z-10 ${newWidth == 1024 ? 'end-10' : 'end-4 lg:end-52'} top-28 ${open ? 'active' : 'inactive'}`}>
                   <div>
-                    <h3>Hello,</h3><h1 className="text-lg font-bold mb-[-10px] hover:text-[#FF0000] cursor-pointer">{userData?.firstName}  {userData?.lastName}</h1>
+                    <h3>{t('header.hello')}</h3><h1 className="text-lg font-bold mb-[-10px] hover:text-[#FF0000] cursor-pointer">{userData?.firstName}  {userData?.lastName}</h1>
                   </div>
                   <ul className="flex flex-col space-y-5 border-t-2 pt-3">
-                    <DropdownItem logo={<Person />} text="My Profile" href="/my-profile" />
-                    <DropdownItem logo={<FormatListNumbered />} text="My Ads" href="/my-ads" />
-                    <DropdownItem logo={<Favorite />} text="Favourites" href="/my-favourites" />
+                    <DropdownItem logo={<Person />} text={t('header.myProfile')} href="/my-profile" />
+                    <DropdownItem logo={<FormatListNumbered />} text={t('header.myAds')} href="/my-ads" />
+                    <DropdownItem logo={<Favorite />} text={t('header.favourites')} href="/my-favourites" />
                   </ul>
                   <ul className="flex flex-col space-y-5 border-t-2 pt-3" onClick={() => logoutHandler()}>
-                    <DropdownItem logo={<Logout />} text="Logout" href="/" />
+                    <DropdownItem logo={<Logout />} text={t('header.logout')} href="/" />
                   </ul>
                 </div></>
               :
               <Link href="/login">
                 <button className="flex flex-row space-x-1 p-2 bg-white text-black mt-[-5px] hover:bg-red-500 hover:text-white hover:border hover:border-gray-100 transition rounded-lg">
                   <Login />
-                  <span>Login</span>
+                  <span>{t('header.login')}</span>
                 </button>
               </Link>
             }

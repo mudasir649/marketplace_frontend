@@ -6,6 +6,8 @@ import signLogo from "../public/assets/signLogo.png";
 import { useDispatch } from 'react-redux'
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next'; 
+
 
 interface IData {
     fullName: any,
@@ -18,6 +20,7 @@ interface IData {
 }
 
 export default function SellNow() {
+    const { t } = useTranslation(); // Initialize the translation hook
 
     const dispatch = useDispatch();
 
@@ -101,12 +104,13 @@ export default function SellNow() {
                 </div>
                 <form>
                     <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-600">Full Name</label>
+                        <label className="block text-sm font-medium text-gray-600">  {t('labels.fullName')}
+</label>
                         <input type="text"
                             id="fullName"
                             name="fullName"
                             className="w-full border py-2 px-3 focus:outline-none focus:border-red-600"
-                            placeholder="John Doe"
+                            placeholder={t('placeholders.name')}
                             value={data.fullName}
                             required
                             onChange={(e) => handleInput(e)}
@@ -114,24 +118,24 @@ export default function SellNow() {
                     </div>
                     <div className="flex space-x-4 mb-4">
                         <div className="w-1/2">
-                            <label className="block text-sm font-medium text-gray-600">Phone Number</label>
+                            <label className="block text-sm font-medium text-gray-600">{t('labels.phoneNo')}</label>
                             <input type="tel"
                                 id="phoneNo"
                                 name="phoneNo"
                                 className="w-full border py-2 px-3 focus:outline-none focus:border-red-600"
-                                placeholder="555-555-5555"
+                                placeholder={t('placeholders.phoneNo')}
                                 value={data.phoneNo}
                                 onChange={(e) => handleInput(e)}
                                 required />
                         </div>
                         <div className="w-1/2">
-                            <label className="block text-sm font-medium text-gray-600">Email Address</label>
+                            <label className="block text-sm font-medium text-gray-600"> {t('labels.email')}</label>
                             <input
                                 type="email"
                                 id="email"
                                 name="email"
                                 className="w-full border py-2 px-3 focus:outline-none focus:border-red-600"
-                                placeholder="johndoe@example.com"
+                                placeholder={t('placeholders.email')}
                                 value={data.email}
                                 onChange={(e) => handleInput(e)}
                                 required />
@@ -139,44 +143,44 @@ export default function SellNow() {
                     </div>
                     <div className="flex space-x-4 mb-4">
                         <div className="w-1/3">
-                            <label className="block text-sm font-medium text-gray-600">Make</label>
+                            <label className="block text-sm font-medium text-gray-600">{t('labels.make')}</label>
                             <input
                                 type="text"
                                 id="make"
                                 name="make"
                                 className="w-full border py-2 px-3 focus:outline-none focus:border-red-600"
-                                placeholder="Make"
+                                placeholder={t('placeholders.make')}
                                 value={data.make}
                                 onChange={(e) => handleInput(e)}
                                 required />
                         </div>
                         <div className="w-1/3">
-                            <label className="block text-sm font-medium text-gray-600">Model</label>
+                            <label className="block text-sm font-medium text-gray-600">{t('labels.model')}</label>
                             <input
                                 type="text"
                                 id="model"
                                 name="model"
                                 className="w-full border py-2 px-3 focus:outline-none focus:border-red-600"
-                                placeholder="Model"
+                                placeholder={t('placeholders.model')}
                                 value={data.model}
                                 onChange={(e) => handleInput(e)}
                                 required />
                         </div>
                         <div className="w-1/3">
-                            <label className="block text-sm font-medium text-gray-600">Year</label>
+                            <label className="block text-sm font-medium text-gray-600">{t('labels.year')}</label>
                             <input
                                 type="text"
                                 id="year"
                                 name="year"
                                 className="w-full border py-2 px-3 focus:outline-none focus:border-red-600"
-                                placeholder="Year"
+                                placeholder={t('placeholders.year')}
                                 value={data.year}
                                 onChange={(e) => handleInput(e)}
                                 required />
                         </div>
                     </div>
                     <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-600">Upload Image</label>
+                        <label className="block text-sm font-medium text-gray-600">{t('labels.upload')}</label>
                         <input
                             type="file"
                             id="fileInput"
@@ -199,18 +203,18 @@ export default function SellNow() {
                         </div>
                     }
                     <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-600">Description</label>
+                        <label className="block text-sm font-medium text-gray-600">{t('labels.description')}</label>
                         <textarea
                             id="description"
                             name="description"
                             className="w-full border py-2 px-3 focus:outline-none focus:border-red-600"
-                            placeholder="Enter a description..."
+                            placeholder={t('placeholders.description')}
                             value={data.description}
                             onChange={(e) => handleInput(e)}
                             required></textarea>
                     </div>
                     <div className="mt-4 mb-10">
-                        <button type="submit" className="bg-[#FF0000] text-white px-4 py-2 hover:bg-red-800 focus:outline-none focus:bg-red-700" onClick={(e: any) => handleSubmit(e)}>Submit</button>
+                        <button type="submit" className="bg-[#FF0000] text-white px-4 py-2 hover:bg-red-800 focus:outline-none focus:bg-red-700" onClick={(e: any) => handleSubmit(e)}>{t('buttonText')}</button>
                     </div>
                 </form>
             </div>

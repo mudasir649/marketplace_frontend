@@ -105,7 +105,91 @@
           "topCategories": "Top Categories:",
           "autos": "Autos",
           "parts": "Parts"
-        }
+        } , 
+        "sellRepairComponent": {
+          "sellTitle": "Do you want to sell",
+          "sellSubtitle": "Get a free quote for your vehicle",
+          "repairTitle": "Request a repair quote",
+          "repairSubtitle": "Get a location-based cost estimate to repair your car",
+          "sellButton": "Click here",
+          "repairButton": "Click here"
+        } , 
+        "deleteAd": {
+          "title": "Are you sure you want to delete this ad?",
+          "cancel": "Cancel",
+          "delete": "Delete"
+        } , 
+        "footer": {
+          "popularCategories": "Popular Categories",
+          "howToSellFast": "How to sell fast",
+          "information": "Information",
+          "helpSupport": "Help & Support",
+          "aboutEidcarosse": "About Eidcarosse",
+          "contact": "Contact"
+        },
+        "copyright": "Copyright © 2023 Eidcarosse. All rights reserved." , 
+        "header": {
+          "home": "Home",
+          "advanceSearch": "Advance Search",
+          "contactUs": "Contact Us",
+          "listDown": "List Down Component",
+          "chat": "Chat",
+          "adminPanelSettings": "Admin Panel Settings",
+          "postYourAd": "Post your ad",
+          "hello": "Hello",
+          "myProfile": "My Profile",
+          "myAds": "My Ads",
+          "favourites": "Favourites",
+          "logout": "Logout",
+          "login": "Login"
+        } , 
+        "labels": {
+          "fullName": "Full Name",
+          "phoneNo": "Phone Number",
+          "email": "Email Address",
+          "make": "Make",
+          "model": "Model",
+          "year": "Year",
+          "description": "Description" , 
+          "upload": "Upload Image"
+        },
+        "placeholders": {
+          "fullName": "John Doe",
+          "phoneNo": "555-555-5555",
+          "email": "johndoe@example.com",
+          "make": "Make",
+          "model": "Model",
+          "year": "Year",
+          "description": "Enter a description..."
+        },
+        "buttonText": "Submit" , 
+        "topProducts": {
+          "title": "Top Inserts",
+          "seeAllAds": "See all Ads"
+        } , 
+        "aboutUs": {
+          "title": "About Us",
+          "description": "Eidcarosse is a comprehensive online marketplace dedicated to facilitating the buying and selling of vehicles. With a user-friendly interface and powerful search features, Eidcarosse connects individuals looking for vehicles with sellers offering an extensive range of options. Whether you’re in the market for a stylish sedan, a powerful truck, a sleek bike, or any other vehicle, Eidcarosse provides a platform that simplifies the entire process."
+        },
+        "buyers": {
+          "title": "Buyers",
+          "description": [
+            "For buyers, Eidcarosse offers a vast selection of vehicles from private sellers and dealerships, ensuring you have access to a wide range of options to suit your preferences and budget.",
+            "With detailed listings and comprehensive vehicle information, including specifications, mileage, and pricing, you can make informed decisions and find the perfect vehicle that meets your needs."
+          ]
+        },
+        "sellers": {
+          "title": "Sellers",
+          "description": [
+            "For sellers, Eidcarosse offers a convenient platform to showcase your vehicles to a large and diverse audience of potential buyers.",
+            "List your vehicle with detailed descriptions, high-quality images, and competitive pricing, and connect directly with interested buyers.",
+            "Eidcarosse empowers sellers to reach a wider market and streamline the selling process, making it easier to find the right buyer for your vehicle."
+          ]
+        },
+        "pageDescription": [
+          "Eidcarosse prioritizes user experience and ensures a secure and transparent transaction process. The platform provides messaging capabilities, allowing buyers and sellers to communicate directly and negotiate terms. Additionally, Eidcarosse offers a range of verification and safety features to provide peace of mind to all users.",
+          "Join Eidcarosse today and discover a vibrant marketplace where buying and selling vehicles is made simple. Experience the convenience, transparency, and efficiency of Eidcarosse as you embark on your vehicle buying or selling journey. Whether you’re a buyer searching for your dream vehicle or a seller looking to find the right buyer, Eidcarosse is your go-to destination for a seamless and rewarding experience."
+        ]
       
       
       

@@ -103,7 +103,94 @@
       "topCategories": "Top-Kategorien:",
       "autos": "Autos",
       "parts": "Teile"
-    }
+    } ,
+    "sellRepairComponent": {
+      "sellTitle": "Möchten Sie verkaufen",
+      "sellSubtitle": "Erhalten Sie ein kostenloses Angebot für Ihr Fahrzeug",
+      "repairTitle": "Reparaturangebot anfordern",
+      "repairSubtitle": "Erhalten Sie eine für die Reparatur Ihres Autos",
+      "sellButton": "Hier klicken",
+      "repairButton": "Hier klicken"
+    } , 
+    "deleteAd": {
+      "title": "Sind Sie sicher, dass Sie diese Anzeige löschen möchten?",
+      "cancel": "Abbrechen",
+      "delete": "Löschen"
+    } , 
+    "footer": {
+      "popularCategories": "Beliebte Kategorien",
+      "howToSellFast": "Schnell verkaufen",
+      "information": "Informationen",
+      "helpSupport": "Hilfe & Unterstützung",
+      "aboutEidcarosse": "Über Eidcarosse",
+      "contact": "Kontakt"
+    },
+    "copyright": "Urheberrecht © 2023 Eidcarosse. Alle Rechte vorbehalten." , 
+    
+      "header": {
+        "home": "Startseite",
+        "advanceSearch": "Erweiterte Suche",
+        "contactUs": "Kontaktiere uns",
+        "listDown": "Dropdown-Liste",
+        "chat": "Chat",
+        "adminPanelSettings": "Admin Panel Einstellungen",
+        "postYourAd": "Anzeige",
+        "hello": "Hallo",
+        "myProfile": "Mein Profil",
+        "myAds": "Meine Anzeigen",
+        "favourites": "Favoriten",
+        "logout": "Abmelden",
+        "login": "Anmelden"
+      } , 
+      "labels": {
+        "fullName": "Vollständiger Name",
+        "phoneNo": "Telefonnummer",
+        "email": "E-Mail-Adresse",
+        "make": "Hersteller",
+        "model": "Modell",
+        "year": "Jahr",
+        "description": "Beschreibung" , 
+          "upload": "Bild hochladen"
+      },
+      "placeholders": {
+        "fullName": "Max Mustermann",
+        "phoneNo": "01234-56789",
+        "email": "max@example.com",
+        "make": "Hersteller",
+        "model": "Modell",
+        "year": "Jahr",
+        "description": "Geben Sie eine Beschreibung ein..."
+      },
+      "buttonText": "Absenden" , 
+      "topProducts": {
+        "title": "Top Inserts (German)",
+        "seeAllAds": "Alle Anzeigen ansehen"
+      } , 
+      "aboutUs": {
+        "title": "Über uns",
+        "description": "Eidcarosse ist ein umfassender Online-Marktplatz, der sich auf die Vermittlung des Kaufs und Verkaufs von Fahrzeugen spezialisiert hat. Mit einer benutzerfreundlichen Oberfläche und leistungsstarken Suchfunktionen verbindet Eidcarosse Personen, die nach Fahrzeugen suchen, mit Verkäufern, die eine umfangreiche Auswahl an Optionen anbieten. Egal, ob Sie auf der Suche nach einer schicken Limousine, einem leistungsstarken LKW, einem schicken Fahrrad oder einem anderen Fahrzeug sind, bietet Eidcarosse eine Plattform, die den gesamten Prozess vereinfacht."
+      },
+      "buyers": {
+        "title": "Käufer",
+        "description": [
+          "Für Käufer bietet Eidcarosse eine große Auswahl an Fahrzeugen von Privatverkäufern und Autohäusern, sodass Sie Zugang zu einer breiten Palette von Optionen haben, die Ihren Vorlieben und Ihrem Budget entsprechen.",
+          "Mit detaillierten Inseraten und umfassenden Informationen zu den Fahrzeugen, einschließlich Spezifikationen, Kilometerstand und Preisen, können Sie informierte Entscheidungen treffen und das perfekte Fahrzeug finden, das Ihren Anforderungen entspricht."
+        ]
+      },
+      "sellers": {
+        "title": "Verkäufer",
+        "description": [
+          "Für Verkäufer bietet Eidcarosse eine bequeme Plattform, um Ihre Fahrzeuge einem großen und vielfältigen Publikum potenzieller Käufer zu präsentieren.",
+          "Bieten Sie Ihr Fahrzeug mit ausführlichen Beschreibungen, hochwertigen Bildern und wettbewerbsfähigen Preisen an und treten Sie direkt mit interessierten Käufern in Kontakt.",
+          "Eidcarosse ermöglicht es Verkäufern, einen breiteren Markt zu erreichen und den Verkaufsprozess zu optimieren, um den richtigen Käufer für Ihr Fahrzeug zu finden."
+        ]
+      },
+      "pageDescription": [
+        "Eidcarosse legt Wert auf die Benutzererfahrung und gewährleistet einen sicheren und transparenten Transaktionsprozess. Die Plattform bietet Messaging-Funktionen, mit denen Käufer und Verkäufer direkt kommunizieren und Bedingungen verhandeln können. Darüber hinaus bietet Eidcarosse eine Reihe von Verifizierungs- und Sicherheitsfunktionen, um allen Benutzern ein gutes Gefühl zu geben.",
+        "Treten Sie noch heute Eidcarosse bei und entdecken Sie einen lebendigen Marktplatz, auf dem der Kauf und Verkauf von Fahrzeugen einfach gemacht wird. Erleben Sie die Bequemlichkeit, Transparenz und Effizienz von Eidcarosse, während Sie Ihre Reise zum Fahrzeugkauf oder -verkauf antreten. Egal, ob Sie ein Käufer sind, der nach seinem Traumfahrzeug sucht, oder ein Verkäufer, der den richtigen Käufer finden möchte, Eidcarosse ist Ihr Ziel für eine reibungslose und lohnende Erfahrung."
+      ]
+    
+    
   
   
   

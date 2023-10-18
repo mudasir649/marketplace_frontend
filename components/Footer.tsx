@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { setProductData, setProductsCount, setShowContact } from '@/store/appSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next'; 
 
 interface IList {
   name: String,
@@ -15,6 +16,7 @@ interface IList1 {
 }
 
 export default function Footer() {
+  const { t } = useTranslation(); // Initialize the translation hook
 
   const headingStyle = 'capitalize text-xl font-bold text-white mb-5';
   const ulStyle = 'text-gray-300 mb-5';
@@ -51,7 +53,7 @@ export default function Footer() {
       <div className='bg-gray-900'>
         <div className='flex flex-col lg:flex-row container mx-auto lg:space-x-20 lg:p-20 p-10'>
           <div>
-            <h1 className={headingStyle}>Popular Categories</h1>
+            <h1 className={headingStyle}>{t('footer.popularCategories')}</h1>
             <ul className={`${ulStyle} cursor-pointer`}>
               {list1?.map((lst: IList, i: number) => (
                 <li className='mb-3' key={i} onClick={() => handleCat(lst.name)}>{lst.name}</li>
@@ -59,7 +61,7 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h1 className={headingStyle}>How to sell fast</h1>
+            <h1 className={headingStyle}>{t('footer.howToSellFast')}</h1>
             <ul className={`${ulStyle} cursor-pointer`}>
               {list2?.map((lst: IList, i: number) => (
                 <li className='mb-3' key={i} onClick={() => router.push('/how-to-sell-fast')}>{lst.name}</li>
@@ -67,7 +69,7 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h1 className={headingStyle}>Information</h1>
+            <h1 className={headingStyle}>{t('footer.information')}</h1>
             <ul className={`${ulStyle} cursor-pointer`}>
               {list3?.map((lst: IList, i: number) => (
                 <li className='mb-3' key={i} onClick={() => handleFooter(lst.name)}>{lst.name}</li>
@@ -75,7 +77,7 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h1 className={headingStyle}>help & support</h1>
+            <h1 className={headingStyle}>{t('footer.helpSupport')}</h1>
             <ul className={`${ulStyle} cursor-pointer`}>
               {list4?.map((lst: IList1, i: number) => (
                 <li className='mb-3' key={i} onClick={() => router.push(`${lst.value}`)}>{lst.name}</li>
@@ -86,8 +88,8 @@ export default function Footer() {
       </div>
       <div className='bg-black py-8 text-center text-white'>
         <div className='container mx-auto'>
-          Cospyright &copy; 2023 Eidcarosse. All rights reserved.
-        </div>
+        {t('copyright')}
+         </div>
       </div>
     </footer>
   )
