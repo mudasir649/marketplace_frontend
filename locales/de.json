@@ -215,7 +215,51 @@
     "parts": "Teile",
     "selectSubCategory": "Unterkategorie auswählen"
   }
-  
+, 
+
+
+  "privacyPolicy": {
+    "heading": "Datenschutzrichtlinie",
+    "intro": "Die Ersteller der mobilen Anwendung Eidcarosse priorisieren und schätzen die Sicherheit und den Datenschutz der Informationen, die Sie über Eidcarosse mit uns teilen. Wir möchten, dass sich unsere Benutzer so komfortabel wie möglich bei der Verwendung unserer App fühlen. Wenn Sie uns Ihre Informationen anvertrauen, müssen Sie verstehen, wie wir sie sammeln, verwenden und aufbewahren. Wenn Sie Eidcarosse erwerben möchten, müssen Sie sich bei uns registrieren. Die Registrierung gibt uns Ihren Vornamen, Nachnamen, Ihre E-Mail-Adresse und Ihre Telefonnummer.",
+    "collectionAndUse": {
+      "heading": "Informationssammlung und -verwendung",
+      "text": "Wir können von Ihnen verlangen, uns bestimmte persönliche Informationen für ein besseres Nutzungserlebnis zur Verfügung zu stellen. Diese Informationen umfassen, sind jedoch nicht beschränkt auf Name und Adresse. Wenn Sie sich registrieren und uns Ihren Namen, Ihre Telefonnummer, Ihre E-Mail-Adresse, Ihren Benutzernamen und Ihr Passwort zur Verfügung stellen, werden wir Ihre Adressinformationen nicht speichern."
+    },
+    "personalInfo": {
+      "heading": "Persönliche Informationen",
+      "text": "Wenn Sie sich registrieren und uns Ihren Namen, Ihre Telefonnummer, Ihre E-Mail-Adresse, Ihren Benutzernamen und Ihr Passwort zur Verfügung stellen, werden wir Ihre Adressinformationen nicht speichern."
+    },
+    "retentionPeriod": {
+      "heading": "Wie lange werden persönliche Informationen aufbewahrt?",
+      "text": "Wenn Sie sich bei uns registrieren, werden Ihre persönlichen Informationen und Ihre E-Mail-Adresse zur Unterstützung in der Zukunft aufbewahrt. Diese Informationen bleiben bei uns gespeichert, bis Sie Ihre persönlichen Informationen löschen."
+    },
+    "dataUsage": {
+      "heading": "Was wir mit Ihren persönlichen Informationen nicht tun",
+      "text": "Wir werden Ihre privaten Informationen niemals offenlegen, teilen oder zur Vermarktung ihrer eigenen Dienste oder Produkte an andere Unternehmen weitergeben. Es ist auch gegen unsere Richtlinien, Ihre persönlichen Informationen an unbefugte Personen weiterzugeben."
+    },
+    "userRights": {
+      "heading": "Ihre Rechte über Ihre Daten",
+      "text": "Als registrierter Benutzer haben Sie das Recht, Ihre persönlichen Informationen zu bearbeiten. Sie können auch eine Datei Ihrer Informationen anfordern. Wenn Sie sich auf unserer Website anmelden, können Sie Ihre Daten auch löschen."
+    },
+    "cookies": {
+      "heading": "Cookies",
+      "text": "Cookies sind kleine Dateien mit geringen Datenmengen, die oft zur eindeutigen anonymen Identifizierung verwendet werden. Die Website, die Sie besuchen, sendet sie an Ihren Browser und speichert sie im internen Speicher Ihres Geräts. Obwohl unsere App oder unser Dienst keine Cookies explizit verwendet, kann sie Drittanbieter-Codes verwenden, die sie zur Datensammlung und Verbesserung ihrer Dienste nutzen. Sie werden benachrichtigt, wenn Cookies an Ihr Gerät gesendet werden, und haben die Möglichkeit, Cookies zu akzeptieren oder abzulehnen. Das Ablehnen von Cookies kann Sie jedoch daran hindern, auf einige Dienste zuzugreifen."
+    },
+    "security": {
+      "heading": "Unsere Sicherheitsmaßnahmen gegen Datenverletzungen",
+      "text": "Wir schätzen das Vertrauen, das Sie uns entgegengebracht haben, indem Sie uns Ihre persönlichen Informationen gegeben haben. Daher setzen wir branchenübliche Sicherheitsmittel und Technologien ein, um Ihre persönlichen Informationen vor unbefugter Offenlegung, Zugriff oder Verwendung zu schützen. Bitte geben Sie Ihr Registrierungspasswort und Ihren Benutzernamen nicht an unbefugte Personen weiter, um uns beim Schutz Ihrer Privatsphäre zu unterstützen. Obwohl keine Internetübertragungsmethode oder elektronische Speicherprozedur zu 100 % undurchlässig ist, lässt Eidcarosse nichts unversucht, um Ihre persönlichen Informationen zu schützen. Falls Ihre Informationen von unbefugten Personen abgerufen werden oder verloren gehen, werden wir Sie so schnell wie möglich darüber informieren."
+    },
+    "editData": {
+      "heading": "Wie Sie auf Ihre Daten zugreifen oder Ihre persönlichen Informationen bearbeiten können",
+      "text": "Wenn Sie sich mit Ihren Details auf unserer Website anmelden, stehen Ihnen alle Kontoinformationen zur Bearbeitung oder Löschung zur Verfügung. Wenn Sie keine E-Mail-Benachrichtigungen für die Eidcarosse-App erhalten möchten, melden Sie sich einfach ab oder senden Sie uns eine E-Mail, und wir löschen Ihre E-Mail oder Ihr Konto. Stellen Sie sicher, dass der Betreff Ihrer E-Mail 'Meinen Benutzernamen löschen' lautet."
+    },
+    "contact": {
+      "heading": "Kontaktiere uns",
+      "text": "Wenn Sie Anregungen oder Fragen zu unserer Datenschutzrichtlinie haben, kontaktieren Sie uns bitte über den Link."
+    }
+  }
+
+
   
     
     
