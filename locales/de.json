@@ -257,15 +257,57 @@
       "heading": "Kontaktiere uns",
       "text": "Wenn Sie Anregungen oder Fragen zu unserer Datenschutzrichtlinie haben, kontaktieren Sie uns bitte über den Link."
     }
+  }  ,
+
+  "TermsAndConditions": {
+    "title": "Nutzungsbedingungen",
+    "intro": "Bevor Sie den mobilen App-Dienst von Eidcarosse verwenden, ist es unerlässlich, dass Sie die folgenden Nutzungsbedingungen sorgfältig durchlesen und zustimmen. Ihre Zustimmung zu diesen Bedingungen ist erforderlich, um die App nutzen zu können. Lesen Sie die Nutzungsbedingungen vor der Verwendung des Dienstes sorgfältig durch.",
+    
+    "title1": "Allgemeines",
+    "content1": "Eidcarosse macht Werbetreibende und Benutzer dafür verantwortlich, sicherzustellen, dass alle auf der Plattform hochgeladenen Inhalte, einschließlich Bilder, Videos, Grafiken und Text, den geltenden Gesetzen entsprechen. Etwaige Ungenauigkeiten oder rechtliche Probleme, die sich aus den veröffentlichten Inhalten ergeben, liegen nicht in der Verantwortung von Eidcarosse. Sowohl Werbetreibende als auch Benutzer garantieren, dass ihre Inhalte keine Urheberrechte, geistigen Eigentumsrechte oder andere Rechte von Einzelpersonen oder Organisationen verletzen. Durch die Nutzung des Dienstes erklärt sich der Benutzer oder Werbetreibende damit einverstanden, Eidcarosse von jeglichen Verpflichtungen, Ansprüchen oder Haftungen im Zusammenhang mit der Nutzung oder Unfähigkeit zur Nutzung der Plattform freizustellen. Darüber hinaus willigen Werbetreibende ein, dass ihre Inhalte auf Partnerseiten von Eidcarosse angezeigt werden können, unter denselben Nutzungsbedingungen wie auf Eidcarosse selbst.",
+    
+    "title2": "Urheberrecht",
+    "content2": "Werbetreibende gewähren Eidcarosse eine unbefristete, unwiderrufliche, gebührenfreie, nicht-exklusive Lizenz und das Recht zur Nutzung, Änderung, Vervielfältigung, Veröffentlichung, Anpassung, Übersetzung, Erstellung von abgeleiteten Werken, Verbreitung oder Integration der bereitgestellten Inhalte in jede Form, Technologie oder Medium, sei es gegenwärtig bekannt oder in Zukunft entwickelt.",
+    
+    "title3": "Wasserzeichen",
+    "content3": "Eidcarosse versieht alle Bilder mit Wasserzeichen, um deren unbefugte Wiederverwendung für andere Zwecke ohne ausdrückliche Genehmigung des Werbetreibenden zu verhindern.",
+    
+    "title4": "Sicherheit und Bilder",
+    "content4": "Eidcarosse behält sich das Recht vor, die Titel jeglicher Inhalte in der App aus redaktionellen Gründen zu ändern.",
+    
+    "title5": "Persönliche Daten",
+    "content5": "Eidcarosse behält sich das Recht vor, im Falle von Rechtsverletzungen durch Inhalte in der App mit den Behörden zusammenzuarbeiten. Die Identität von Benutzern, Käufern oder Werbetreibenden kann beispielsweise über einen ISP ermittelt werden. IP-Adressen können ebenfalls registriert werden, um die Einhaltung der Nutzungsbedingungen sicherzustellen.",
+    
+    "title6": "Cookies",
+    "content6": "Cookies sind kleine Dateien mit geringen Datenmengen, die oft zur eindeutigen anonymen Identifizierung verwendet werden. Die Website, die Sie besuchen, sendet sie an Ihren Browser und speichert sie im internen Speicher Ihres Geräts. Obwohl unsere App oder unser Dienst Cookies möglicherweise nicht explizit verwendet, können sie von Drittanbieter-Codes genutzt werden, um Informationen zu sammeln und ihre Dienste zu verbessern. Sie werden darüber informiert, wenn Cookies an Ihr Gerät gesendet werden, und haben die Möglichkeit, sie zu akzeptieren oder abzulehnen. Das Ablehnen von Cookies kann Sie jedoch daran hindern, auf einige Dienste zuzugreifen.",
+    
+    "title7": "Datenschutz",
+    "content7": "Eidcarosse sammelt Informationen von Benutzern, Käufern und Werbetreibenden. Durch die Nutzung von Eidcarosse willigt jeder Benutzer und Werbetreibende in die Erfassung und Nutzung dieser Informationen ein und autorisiert dies. Eidcarosse behält sich auch das Recht vor, diese Informationen an Unternehmensverbundene und andere Personen weiterzugeben, um Eidcarosse bei der Unterstützung, Verwaltung und Aufrechterhaltung, einschließlich Marketing, Forschung, Planung und Produktentwicklung, zu unterstützen.",
+    
+    "title8": "Cookies",
+    "content8": "Diese App kann Cookies verwenden, die cookie-fähige Geräte erfordern. Eine Cookie-Datei enthält Informationen wie eine zandomisierte Benutzer-ID, die die Website automatisch einem Besucher zuordnet, um die von ihm besuchten Seiten zu verfolgen. Cookies können keine Daten von Ihrer Festplatte lesen oder den Benutzer identifizieren.",
+    
+    "title9": "E-Mail-Adressen von Benutzern",
+    "content9": "Benutzer müssen gültige E-Mail-Adressen angeben, bevor sie Anzeigenlisten veröffentlichen dürfen. Die E-Mail-Adressen werden nicht öffentlich angezeigt. Benutzer dürfen jedoch über Eidcarosse E-Mails an andere Benutzer senden.",
+    
+    "title10": "Verfügbarkeit der Website",
+    "content10": "Eidcarosse garantiert keine ununterbrochene oder sichere Zugriffsmöglichkeit auf die App. Die App wird auf einer wie sie ist und wie verfügbar-Basis bereitgestellt.",
+    
+    "title11": "Haftungsausschluss",
+    "content11": "Eidcarosse übernimmt keinerlei Verantwortung für die Verwendung von Eidcarosse und lehnt jegliche Verantwortung für Ansprüche, Verletzungen, Schäden oder Haftungen jeglicher Art ab, die sich aus Fehlern auf Eidcarosse oder dem Inhalt ergeben, einschließlich, aber nicht beschränkt auf typografische Fehler und technische Fehler, b) auf Drittanbieter-Websites oder Inhalte, die direkt oder indirekt über Links in Eidcarosse abgerufen oder aufgerufen werden, c) auf die Nichtverfügbarkeit von Eidcarosse, d) auf die Verwendung von Eidcarosse oder des Inhalts, oder e) auf die Verwendung von Geräten (oder Software) im Zusammenhang mit Eidcarosse.",
+    
+    "title12": "Haftungsfreistellung",
+    "content12": "Werbetreibende und andere Benutzer stimmen zu, Eidcarosse und seine Mitarbeiter, Vertreter, Beamte und Direktoren von allen Ausgaben, Verlusten, Schäden und Kosten, einschließlich Anwaltsgebühren, freizustellen, die aus einer Verletzung dieser Nutzungsbedingungen (einschließlich fahrlässigen oder rechtswidrigen Verhaltens) resultieren.",
+    
+    "title13": "Änderungen",
+    "content13": "Eidcarosse behält sich das Recht vor, diese Nutzungsbedingungen zu ändern oder zu modifizieren. Solche Änderungen oder Modifikationen werden unverzüglich nach ihrer Veröffentlichung auf Eidcarosse wirksam. Sie sind verpflichtet, regelmäßig auf solche Änderungen zu überprüfen. Ihre fortgesetzte Nutzung von Eidcarosse gilt als Ihre Zustimmung zu den geänderten Nutzungsbedingungen.",
+    
+    "title14": "Geltendes Recht",
+    "content14": "Eidcarosse wird gemäß den Gesetzen und Vorschriften des jeweiligen Landes betrieben."
   }
+  
 
 
   
-    
-    
-  
-  
-  
-  
-  
+     
 }
