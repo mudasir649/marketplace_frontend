@@ -385,7 +385,7 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
                                     :
                                     <>
                                         {productData?.map((product: any, i: number) => (
-                                            <div className='grid grid-cols-3 h-52 mb-10 bg-white' key={i}>
+                                            <div className='grid grid-cols-3 h-52 mb-5 bg-white' key={i}>
                                                 <Link href={`/product-details/${product?._id}`}>
                                                     <div className='w-60 lg:w-auto p-2'>
                                                         <div className='flex justify-center bg-gray-50 w-full h-48 border-none rounded-lg'>
