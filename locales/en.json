@@ -207,6 +207,17 @@
   "random": {
     "latestAds": "Latest Ads",
   "seeAllAds": "See all Ads"
+  } , 
+  "postAd": {
+    
+      "selectCategory": "Select Category",
+      "category": "Category",
+      "subCategory": "Sub Category",
+      "required": "* Required",
+      "bikes": "Bikes",
+      "parts": "Parts",
+      "selectSubCategory": "Select Sub Category"
+    
   }
       
       

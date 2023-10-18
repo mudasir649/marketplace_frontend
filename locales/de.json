@@ -204,8 +204,18 @@
   } , 
   "random": {
     "latestAds": "Neueste Anzeigen",
-    "seeAllAds": "Alle Anzeigen"
+    "seeAllAds": "Alle Anzeigen "
+  } , 
+  "postAd": {
+    "selectCategory": "Kategorie auswählen",
+    "category": "Kategorie",
+    "subCategory": "Unterkategorie",
+    "required": "* Erforderlich",
+    "bikes": "Fahrräder",
+    "parts": "Teile",
+    "selectSubCategory": "Unterkategorie auswählen"
   }
+  
   
     
     
