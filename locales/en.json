@@ -203,6 +203,10 @@
     "upload_image": "Upload Image",
     "description": "Description",
     "submit": "Submit"
+  } , 
+  "random": {
+    "latestAds": "Latest Ads",
+  "seeAllAds": "See all Ads"
   }
       
       

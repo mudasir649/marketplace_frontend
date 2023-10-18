@@ -201,6 +201,10 @@
     "upload_image": "Bild hochladen",
     "description": "Beschreibung",
     "submit": "Absenden"
+  } , 
+  "random": {
+    "latestAds": "Neueste Anzeigen",
+    "seeAllAds": "Alle Anzeigen"
   }
   
     
