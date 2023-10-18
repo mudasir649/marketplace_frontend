@@ -102,56 +102,71 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
         {
             logo: <DirectionsCar />,
             name: t('categories.0'),
+            name1: "Autos",
             quantity: 23
         },
         {
             logo: <DirectionsBike />,
             name: t('categories.1'),
+            name1: "Autos",
             quantity: 12
         },
         {
             logo: <DirectionsBoat />,
             name: t('categories.2'),
+            name1: "Autos",
             quantity: 2
         },
         {
             logo: <DirectionsBus />,
             name: t('categories.3'),
+            name1: "Autos",
             quantity: 0
         },
         {
             logo: <PrecisionManufacturing />,
             name: t('categories.4'),
+            name1: "Autos",
             quantity: 74
         },
         {
             logo: <Flight />,
             name: t('categories.5'),
+            name1: "Autos",
             quantity: 32
         },
         {
             logo: <DataSaverOn />,
             name: t('categories.6'),
+            name1: "Autos",
+
             quantity: 23
         },
         {
             logo: <BuildCircle />,
             name: t('categories.7'),
+            name1: "Autos",
             quantity: 0
         },
         {
             logo: <RvHookup />,
             name: t('categories.8'),
+            name1: "Autos",
             quantity: 90
         },
         {
             logo: <FireTruck />,
             name: t('categories.9'),
+            name1: "Autos",
+            
+
             quantity: 11
         },
         {
             logo: <AirportShuttle />,
             name: t('categories.10'),
+            name1: "Autos",
+            
             quantity: 9
         },
     ];
