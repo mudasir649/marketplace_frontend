@@ -322,6 +322,13 @@
           "content14": "Eidcarosse is operated under the laws and regulations of the respective country."
         
       
+    } , 
+    "contactPage": {
+      "placeholderEmail": "Enter your email",
+      "placeholderSubject": "Subject*",
+      "placeholderMessage": "Message*",
+      "buttonSubmit": "Submit",
+      "contactUs": "Contact Us"
     }
   
   

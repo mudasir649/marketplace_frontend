@@ -277,5 +277,12 @@
     "content10": "Estos términos y condiciones constituyen el acuerdo completo entre el usuario o anunciante y Eidcarosse en relación con el uso de la plataforma y reemplazan cualquier acuerdo previo o contemporáneo, ya sea oral o por escrito.",
     "title11": "Preguntas",
     "content11": "Si tienes alguna pregunta o comentario sobre estos términos y condiciones, no dudes en contactarnos a través del enlace de contacto en la plataforma Eidcarosse."
+  }  , 
+  "contactPage": {
+    "placeholderEmail": "Ingrese su correo electrónico",
+    "placeholderSubject": "Asunto*",
+    "placeholderMessage": "Mensaje*",
+    "buttonSubmit": "Enviar",
+    "contactUs": "Contáctenos"
   }
 }

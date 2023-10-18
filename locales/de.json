@@ -305,7 +305,15 @@
     "title14": "Geltendes Recht",
     "content14": "Eidcarosse wird gemäß den Gesetzen und Vorschriften des jeweiligen Landes betrieben."
   }
-  
+  , 
+   
+  "contactPage": {
+    "placeholderEmail": "Geben Sie Ihre E-Mail ein",
+    "placeholderSubject": "Betreff*",
+    "placeholderMessage": "Nachricht*",
+    "buttonSubmit": "Absenden",
+    "contactUs": "Kontaktiere uns"
+  }
 
 
   

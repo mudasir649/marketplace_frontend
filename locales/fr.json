@@ -269,5 +269,12 @@
     "content6": "Cette application peut utiliser des cookies, nécessitant des appareils activés pour les cookies. Un fichier de cookie contient des informations, telles qu'un identifiant d'utilisateur aléatoire que le site attribue automatiquement à un visiteur pour suivre les pages qu'il visite. Les cookies ne peuvent pas lire de données sur votre disque dur ni identifier l'utilisateur.",
     "title7": "Adresse e-mail des utilisateurs",
     "content7": "Les utilisateurs doivent soumettre des adresses e-mail valides avant de pouvoir publier des annonces. Les adresses e-mail ne seront pas affichées publiquement. Cependant, les utilisateurs sont autorisés à être contactés par le biais d'une adresse e-mail fournie, via un formulaire de contact sur le site. Les adresses e-mail ne doivent pas être utilisées à des fins de spam ou pour envoyer des courriels indésirables. Les adresses e-mail ne peuvent pas être collectées de l'application sans autorisation. Eidcarosse se réserve le droit de communiquer avec les utilisateurs en utilisant leur adresse e-mail pour des informations sur le compte, des notifications sur le site et des mises à jour."
+  } , 
+  "contactPage": {
+    "placeholderEmail": "Entrez votre adresse e-mail",
+    "placeholderSubject": "Sujet*",
+    "placeholderMessage": "Message*",
+    "buttonSubmit": "Envoyer",
+    "contactUs": "Nous contacter"
   }
 }

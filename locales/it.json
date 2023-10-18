@@ -275,5 +275,12 @@
       "heading": "Modifiche ai termini",
       "text": "Gli ideatori dell'applicazione mobile Eidcarosse possono aggiornare periodicamente questi termini. In tal caso, vi informeremo di eventuali modifiche pubblicando i nuovi termini su questa pagina."
     }
+  } , 
+  "contactPage": {
+    "placeholderEmail": "Inserisci la tua email",
+    "placeholderSubject": "Oggetto*",
+    "placeholderMessage": "Messaggio*",
+    "buttonSubmit": "Invia",
+    "contactUs": "Contattaci"
   }
 }

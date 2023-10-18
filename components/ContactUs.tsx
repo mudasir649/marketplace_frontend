@@ -7,6 +7,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { setShowContact } from '@/store/appSlice';
+import { useTranslation } from 'react-i18next'; 
 
 interface IData {
     email: string,
@@ -16,6 +17,7 @@ interface IData {
 
 
 export default function ContactUs() {
+    const { t } = useTranslation(); // Initialize the translation hook
 
     const [data, setData] = useState<IData>({
         email: '',
@@ -56,14 +58,15 @@ export default function ContactUs() {
                                 height={100}
                             />
                         </div>
-                        <h1 className='flex justify-center text-2xl font-bold'>Contact Us</h1>
+                        <h1 className='flex justify-center text-2xl font-bold'>  {t('contactPage.contactUs')}
+</h1>
                         <form className='space-y-4' onSubmit={(e: any) => handleSubmit(e)} method='post'>
                             <div className='flex flex-row border border-gray-200 hover:border-[#FF0000] focus:border-[#FF0000]
                                     cursor-pointer rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>
                                 <Person className='text-[#FF0000]' />
                                 <input className='border-none w-full bg-transparent focus:outline-none mt-[1px]'
                                     type="text"
-                                    placeholder='Enter your email'
+                                    placeholder={t('contactPage.placeholderEmail')}
                                     name='email'
                                     value={data.email}
                                     required
@@ -75,7 +78,7 @@ export default function ContactUs() {
                                 <Title className='text-[#FF0000]' />
                                 <input className='border-none w-full bg-transparent focus:outline-none mt-[1px]'
                                     type="text"
-                                    placeholder='Subject*'
+                                    placeholder={t('contactPage.placeholderSubject')}
                                     name='subject'
                                     value={data.subject}
                                     required
@@ -85,7 +88,7 @@ export default function ContactUs() {
                             <textarea className='flex flex-row border border-gray-200 hover:border-[#FF0000] 
                                 cursor-pointer focus:outline-[#FF0000] rounded-md h-52 w-64 md:w-96 space-x-4 p-2 bg-gray-100'
                                 maxLength={250}
-                                placeholder='Message*'
+                                placeholder={t('contactPage.placeholderMessage')}
                                 style={{ resize: "none" }}
                                 name='message'
                                 value={data.message}
@@ -94,7 +97,7 @@ export default function ContactUs() {
                             />
                             <div className='flex justify-center font-bold'>
                                 <button className='border border-red-500 bg-gradient-to-r from-red-300 to-[#FF0000] hover:border-[#FF0000] hover:from-red-600 hover:to-red-600 rounded-lg w-40 p-1 space-x-2 text-white mb-8'>
-                                    <span>Submit</span>
+                                    <span>{t('contactPage.buttonSubmit')}</span>
                                 </button>
                             </div>
                         </form>
