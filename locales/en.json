@@ -189,7 +189,36 @@
         "pageDescription": [
           "Eidcarosse prioritizes user experience and ensures a secure and transparent transaction process. The platform provides messaging capabilities, allowing buyers and sellers to communicate directly and negotiate terms. Additionally, Eidcarosse offers a range of verification and safety features to provide peace of mind to all users.",
           "Join Eidcarosse today and discover a vibrant marketplace where buying and selling vehicles is made simple. Experience the convenience, transparency, and efficiency of Eidcarosse as you embark on your vehicle buying or selling journey. Whether you’re a buyer searching for your dream vehicle or a seller looking to find the right buyer, Eidcarosse is your go-to destination for a seamless and rewarding experience."
-        ]
+        ] , 
+        "placeholderAddress": "enter your address here",
+  "placeholderKeyword": "enter keyword here..."  , 
+
+  "repairNow": {
+    "full_name": "Full Name",
+    "phone_number": "Phone Number",
+    "email_address": "Email Address",
+    "make": "Make",
+    "model": "Model",
+    "year": "Year",
+    "upload_image": "Upload Image",
+    "description": "Description",
+    "submit": "Submit"
+  } , 
+  "random": {
+    "latestAds": "Latest Ads",
+  "seeAllAds": "See all Ads"
+  } , 
+  "postAd": {
+    
+      "selectCategory": "Select Category",
+      "category": "Category",
+      "subCategory": "Sub Category",
+      "required": "* Required",
+      "bikes": "Bikes",
+      "parts": "Parts",
+      "selectSubCategory": "Select Sub Category"
+    
+  }
       
       
       

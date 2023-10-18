@@ -188,7 +188,35 @@
       "pageDescription": [
         "Eidcarosse legt Wert auf die Benutzererfahrung und gewährleistet einen sicheren und transparenten Transaktionsprozess. Die Plattform bietet Messaging-Funktionen, mit denen Käufer und Verkäufer direkt kommunizieren und Bedingungen verhandeln können. Darüber hinaus bietet Eidcarosse eine Reihe von Verifizierungs- und Sicherheitsfunktionen, um allen Benutzern ein gutes Gefühl zu geben.",
         "Treten Sie noch heute Eidcarosse bei und entdecken Sie einen lebendigen Marktplatz, auf dem der Kauf und Verkauf von Fahrzeugen einfach gemacht wird. Erleben Sie die Bequemlichkeit, Transparenz und Effizienz von Eidcarosse, während Sie Ihre Reise zum Fahrzeugkauf oder -verkauf antreten. Egal, ob Sie ein Käufer sind, der nach seinem Traumfahrzeug sucht, oder ein Verkäufer, der den richtigen Käufer finden möchte, Eidcarosse ist Ihr Ziel für eine reibungslose und lohnende Erfahrung."
-      ]
+      ] , 
+      "placeholderAddress": "Geben Sie Ihre Adresse hier ein",
+  "placeholderKeyword": "Geben Sie hier das Stichwort ein..." , 
+  "repairNow":  {
+    "full_name": "Vollständiger Name",
+    "phone_number": "Telefonnummer",
+    "email_address": "E-Mail-Adresse",
+    "make": "Marke",
+    "model": "Modell",
+    "year": "Jahr",
+    "upload_image": "Bild hochladen",
+    "description": "Beschreibung",
+    "submit": "Absenden"
+  } , 
+  "random": {
+    "latestAds": "Neueste Anzeigen",
+    "seeAllAds": "Alle Anzeigen "
+  } , 
+  "postAd": {
+    "selectCategory": "Kategorie auswählen",
+    "category": "Kategorie",
+    "subCategory": "Unterkategorie",
+    "required": "* Erforderlich",
+    "bikes": "Fahrräder",
+    "parts": "Teile",
+    "selectSubCategory": "Unterkategorie auswählen"
+  }
+  
+  
     
     
   

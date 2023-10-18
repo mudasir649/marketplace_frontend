@@ -6,14 +6,17 @@ import i18n from 'i18next';
 import enTranslation from '../locales/en.json';
 import deTranslation from '../locales/de.json';
 import frTranslation from '../locales/fr.json';
+import esTranslation from '../locales/es.json';
+import itTranslation from '../locales/it.json';
 
-import bhTranslation from '../locales/bh.json';
 i18n.use(initReactI18next).init({
   resources: {
     en: { translation: enTranslation },
-    bh: { translation: bhTranslation },
+    es: { translation: esTranslation },
     de: { translation: deTranslation },
     fr: { translation: frTranslation },
+    it: { translation: itTranslation },
+    
   },
   lng: 'en', // Set the default language here
   fallbackLng: 'en',

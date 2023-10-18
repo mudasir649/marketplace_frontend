@@ -7,9 +7,10 @@ import './post-ad.css';
 import { list, partsSubList, subList } from '@/utils/dataVariables';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 export default function PostAd() {
 
-
+    const { t } = useTranslation();
     const router = useRouter();
 
     const { userInfo } = useSelector((state: any) => state.auth);
@@ -47,16 +48,16 @@ export default function PostAd() {
                 <div className='container mx-auto mb-20 mt-10'>
                     <div className='border-none box-container bg-white rounded-sm h-full p-3'>
                         <div className='container mx-auto'>
-                            <h1 className='space-x-3 border-b-2 pb-3'><PlaylistAdd className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>Select Category</span></h1>
+                            <h1 className='space-x-3 border-b-2 pb-3'><PlaylistAdd className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>{t('postAd.selectCategory')}</span></h1>
                         </div>
                         <div className='container mx-0 mt-6 lg:mx-20 w-auto'>
                             <div className='flex flex-col md:flex-row justify-end space-x-0 md:space-x-20 space-y-2 md:space-y-0 mb-5 mt-5'>
-                                <h1 className={`flex flex-row space-x-1 text-md font-bold ${showSub && 'w-40'}`}>Category <span className='text-[#FF0000]'>*</span></h1>
+                                <h1 className={`flex flex-row space-x-1 text-md font-bold ${showSub && 'w-40'}`}>{t('postAd.category')} <span className='text-[#FF0000]'>*</span></h1>
                                 <div className='flex flex-col hover:border-red-500 w-full rounded-sm h-10'
                                     onClick={() => isOpen(!open)}
                                 >
                                     <div className='flex flex-row border border-gray-300' >
-                                        <h1 className='w-full p-2'>{category == '' ? `Select Category` : <>{category}</>}</h1>
+                                        <h1 className='w-full p-2'>{category == '' ? t('postAd.selectCategory') : <>{category}</>}</h1>
                                         <div className={`p-1 pl-2 text-gray-600
                                                 bg-gray-300 w-10`}>
                                             <ExpandMore className={`logo ${open ? 'active' : 'inactive'}`} />
@@ -77,12 +78,12 @@ export default function PostAd() {
                             </div>
                             {showSub &&
                                 <div className='flex flex-col md:flex-row justify-end space-x-0 md:space-x-20 space-y-2 md:space-y-0 mb-5 mt-5'>
-                                    <h1 className='flex flex-row space-x-1 text-md font-bold w-40'>Sub Category <span className='text-[#FF0000]'>*</span></h1>
+                                    <h1 className='flex flex-row space-x-1 text-md font-bold w-40'>{t('postAd.subCategory')} <span className='text-[#FF0000]'>*</span></h1>
                                     <div className='flex flex-col hover:border-red-500 w-full rounded-sm h-10'
                                         onClick={() => isOpenSub(!openSub)}
                                     >
                                         <div className='flex flex-row border border-gray-300' >
-                                            <h1 className='w-full p-2'>Select Category</h1>
+                                            <h1 className='w-full p-2'>{t('postAd.selectCategory')}</h1>
                                             <div className={`p-1 pl-2 text-gray-600
                                             bg-gray-300 w-10`}>
                                                 <ExpandMore className={`logo ${open ? 'hidden' : 'visible'} ${openSub ? 'active' : 'inactive'}`} />
