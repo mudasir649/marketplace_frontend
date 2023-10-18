@@ -282,5 +282,25 @@
     "placeholderMessage": "Messaggio*",
     "buttonSubmit": "Invia",
     "contactUs": "Contattaci"
-  }
+  } , 
+  
+    "list2": [
+      "Compra e vendi rapidamente",
+      "Promuovi il tuo annuncio",
+      "Pubblicità tramite banner"
+    ],
+    "list3": [
+      "Informazioni su Eidcarosse",
+      "Contatti",
+      "Blog"
+    ],
+    "list4": [
+      "Domande frequenti",
+      "Informativa sulla privacy",
+      "Termini e condizioni"
+    ]
+  
+  
+  
+  
 }

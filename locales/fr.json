@@ -276,5 +276,24 @@
     "placeholderMessage": "Message*",
     "buttonSubmit": "Envoyer",
     "contactUs": "Nous contacter"
-  }
+  } , 
+  
+    "list2": [
+      "Achetez et vendez rapidement",
+      "Promouvez votre annonce",
+      "Publicité en bannière"
+    ],
+    "list3": [
+      "À propos d'Eidcarosse",
+      "Contact",
+      "Blog"
+    ],
+    "list4": [
+      "FAQ",
+      "Politique de confidentialité",
+      "Conditions d'utilisation"
+    ]
+  
+  
+  
 }

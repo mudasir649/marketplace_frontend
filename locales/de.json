@@ -313,7 +313,28 @@
     "placeholderMessage": "Nachricht*",
     "buttonSubmit": "Absenden",
     "contactUs": "Kontaktiere uns"
-  }
+  } , 
+  
+  
+    "list2": [
+      "Kaufen und schnell verkaufen",
+      "Werben Sie für Ihre Anzeige",
+      "Bannerwerbung"
+    ],
+    "list3": [
+      "Über Eidcarosse",
+      "Kontakt",
+      "Blog"
+    ],
+    "list4": [
+      "FAQ",
+      "Häufig gestellte Fragen",
+      "Datenschutzrichtlinie",
+      "Nutzungsbedingungen"
+    ]
+  
+  
+
 
 
   

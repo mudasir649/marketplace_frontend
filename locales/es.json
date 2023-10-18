@@ -284,5 +284,23 @@
     "placeholderMessage": "Mensaje*",
     "buttonSubmit": "Enviar",
     "contactUs": "Contáctenos"
-  }
+  } , 
+  
+    "list2": [
+      "Comprar y vender rápidamente",
+      "Promocione su anuncio",
+      "Publicidad en banners"
+    ],
+    "list3": [
+      "Acerca de Eidcarosse",
+      "Contacto",
+      "Blog"
+    ],
+    "list4": [
+      "Preguntas frecuentes",
+      "Política de privacidad",
+      "Términos y condiciones"
+    ]
+  
+  
 }

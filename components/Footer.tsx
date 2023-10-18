@@ -1,5 +1,4 @@
 import React from 'react'
-import { list1, list2, list3, list4 } from "../utils/dataVariables";
 import { useRouter } from 'next/navigation';
 import { setProductData, setProductsCount, setShowContact } from '@/store/appSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -34,6 +33,58 @@ export default function Footer() {
     }
   }
 
+   const list1 = [
+    {
+        name:   t('categories.0')
+
+    },
+    {
+        name: t('categories.1')
+    },
+    {
+        name: t('categories.2')
+    }
+];
+
+const list2 = [
+  {
+    name: t('list2.0'),
+  },
+  {
+    name: t('list2.1'),
+  },
+  {
+    name: t('list2.2'),
+  },
+];
+
+const list3 = [
+  {
+    name: t('list3.0'),
+  },
+  {
+    name: t('list3.1'),
+  },
+  {
+    name: t('list3.2'),
+  },
+];
+
+const list4 = [
+  {
+    name: t('list4.0'),
+    value: t('list4.1'),
+  },
+  {
+    name: t('list4.2'),
+    value: t('list4.3'),
+  },
+  {
+    name: t('list4.4'),
+    value: t('list4.5'),
+
+  },
+];
 
   const handleCat = async (value: any) => {
     try {
