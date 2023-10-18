@@ -1,522 +1,279 @@
 {
-    "faq": {
-      "title": "Često postavljana pitanja",
-      "howToPostAd": "Kako objaviti oglas?",
-      "howToPostAdContent": "Možete jednostavno objaviti svoj oglas. Samo kliknite na plus znak (+), prijavite se i unesite svoj oglas s pravim informacijama. Nakon što pošaljete oglas, primit ćete obavijest.",
-      "editDeleteAds": "Kako urediti/izbrisati svoje oglase?",
-      "editDeleteAdsContent": "Prijavite se i idite na Moj račun => Moji oglasi. Imat ćete popis svojih oglasa. Svaki oglas ima opciju brisanja.",
-      "howToEditAd": "Kako urediti oglas?",
-      "howToEditAdContent": "Prijavite se i idite na Moj račun => Moji oglasi. Imat ćete popis svojih oglasa. Svaki oglas ima opciju uređivanja.",
-      "adDuration": "Koliko dugo ostaju moji oglasi aktivni?",
-      "adDurationContent": "To ovisi o vašim postavkama, koliko dana oglas ostaje aktivan i koliko dugo su oglasi vidljivi.",
-      "freeAdsLimit": "Koliko besplatnih oglasa mogu objaviti?",
-      "freeAdsLimitContent": "To ovisi o vašim postavkama na web mjestu. Prodavatelj dobiva određeni broj besplatnih oglasa koje može objaviti na određeni broj dana.",
-      "editAccountInfo": "Kako urediti informacije o računu?",
-      "editAccountInfoContent": "Prijavite se, zatim idite na Moj račun i imat ćete opciju uređivanja informacija o računu.",
-      "startChat": "Kako započeti chat s nekim?",
-      "startChatContent": "Idite na pojedinosti oglasa. Tamo ćete pronaći opcije za e-poštu, telefon i chat. Samo kliknite na ikonu chata i započnite razgovor.",
-      "chatNotifications": "Dobivam li obavijesti o chatu kao prodavatelj?",
-      "chatNotificationsContent": "Da, kao prodavatelj ćete dobiti obavijest e-poštom o chat zahtjevima ili e-poštom. Kupac će primiti prvu početnu poruku kao obavijest e-poštom."
+  "signup": {
+    "createAccount": "Crea Account",
+    "firstNamePlaceholder": "Inserisci il tuo nome",
+    "lastNamePlaceholder": "Inserisci il tuo cognome",
+    "phoneNumberPlaceholder": "Inserisci il tuo numero di telefono",
+    "usernamePlaceholder": "Inserisci il tuo nome utente",
+    "emailPlaceholder": "Inserisci il tuo indirizzo email",
+    "passwordPlaceholder": "Inserisci la tua password",
+    "registerButton": "Registrati",
+    "or": "o",
+    "continueWithGoogle": "Continua con Google",
+    "alreadyHaveAccount": "Hai già un account?",
+    "login": "Accedi"
+  },
+  "login": {
+    "login": "Accedi",
+    "continueWithGoogle": "Continua con Google",
+    "or": "o",
+    "yourEmailAddress": "Il tuo indirizzo email",
+    "yourPassword": "La tua password",
+    "loginButton": "Accedi",
+    "notAMember": "Non sei ancora un membro?",
+    "createAccount": "Crea Account"
+  },
+  "categorySelection": {
+    "category": "Categoria",
+    "allCategories": "Tutte le categorie",
+    "condition": "Condizione",
+    "brand": "Marca",
+    "priceRange": "Intervallo di prezzo",
+    "applyFilter": "Applica filtro",
+    "clearFilter": "Cancella filtro",
+    "results": "Risultati",
+    "previous": "Precedente",
+    "next": "Successivo",
+    "noRecordFound": "Nessun record trovato...",
+    "maxPrice": "Prezzo massimo",
+    "minPrice": "Prezzo minimo"
+  },
+  "categories": [
+    "Auto",
+    "Moto",
+    "Barche",
+    "Autobus",
+    "Macchine per la costruzione",
+    "Droni",
+    "Altri",
+    "Ricambi",
+    "Rimorchi",
+    "Camion",
+    "Furgoni"
+  ],
+  "autosComponent": {
+    "heading1": "Seleziona la categoria",
+    "changeCategory": "Cambia categoria",
+    "productInfo": "Informazioni sul prodotto",
+    "title": "Titolo",
+    "price": "Prezzo",
+    "condition": "Condizione",
+    "brand": "Marca",
+    "selectBrand": "Seleziona marca",
+    "model": "Modello",
+    "selectModel": "Seleziona modello",
+    "year": "Anno",
+    "bodyShape": "Forma della carrozzeria",
+    "selectBodyShape": "Seleziona forma della carrozzeria",
+    "gearBox": "Cambio",
+    "selectGearBox": "Seleziona il tipo di cambio",
+    "fuelType": "Tipo di carburante",
+    "selectFuelType": "Seleziona il tipo di carburante",
+    "kilometers": "Chilometraggio",
+    "engineCapacity": "Cilindrata del motore",
+    "cylinders": "Cilindri",
+    "exteriorColor": "Colore esterno",
+    "selectExteriorColor": "Seleziona il colore esterno",
+    "interiorColor": "Colore interno",
+    "selectInteriorColor": "Seleziona il colore interno",
+    "description": "Descrizione",
+    "images": "Immagini",
+    "imageSizeInfo": "Dimensione consigliata dell'immagine è (870x493) px.",
+    "imageSizeInfo2": "Dimensione massima dell'immagine è 2 MB.",
+    "imageSizeInfo3": "I tipi di immagine consentiti sono (png, jpg, jpeg, webp).",
+    "imageSizeInfo4": "Puoi caricare fino a 5 immagini.",
+    "videoURL": "URL del video",
+    "videoURLPlaceholder": "Solo URL di YouTube o video",
+    "contactDetails": "Dettagli del contatto",
+    "location": "Posizione",
+    "enterAddress": "Inserisci il tuo indirizzo qui",
+    "howToContact": "Come contattare",
+    "whatsapp": "Numero WhatsApp",
+    "viber": "Numero Viber",
+    "website": "Sito web",
+    "submit": "Invia",
+    "websitePlaceholder": "es. https://esempio.com",
+    "titleCharacterLimit": "Limite di caratteri 25",
+    "priceCHF": "Prezzo [CHF]"
+  },
+  "banner": {
+    "seeAllCategories": "Vedi tutte le categorie",
+    "topCategories": "Categorie principali:",
+    "autos": "Auto",
+    "parts": "Ricambi"
+  },
+  "sellRepairComponent": {
+    "sellTitle": "Vuoi vendere",
+    "sellSubtitle": "Ottieni un preventivo gratuito per il tuo veicolo",
+    "repairTitle": "Richiedi un preventivo per la riparazione",
+    "repairSubtitle": "Ottieni una stima dei costi basata sulla posizione per riparare la tua auto",
+    "sellButton": "Clicca qui",
+    "repairButton": "Clicca qui"
+  },
+  "deleteAd": {
+    "title": "Sei sicuro di voler eliminare questo annuncio?",
+    "cancel": "Annulla",
+    "delete": "Elimina"
+  },
+  "footer": {
+    "popularCategories": "Categorie popolari",
+    "howToSellFast": "Come vendere velocemente",
+    "information": "Informazioni",
+    "helpSupport": "Aiuto e supporto",
+    "aboutEidcarosse": "Informazioni su Eidcarosse",
+    "contact": "Contatti"
+  },
+  "copyright": "Copyright © 2023 Eidcarosse. Tutti i diritti riservati.",
+  "header": {
+    "home": "Home",
+    "advanceSearch": "Ricerca avanzata",
+    "contactUs": "Contattaci",
+    "listDown": "Elenco dei componenti",
+    "chat": "Chat",
+    "adminPanelSettings": "Impostazioni del pannello di amministrazione",
+    "postYourAd": "Pubblica il tuo annuncio",
+    "hello": "Ciao",
+    "myProfile": "Il mio profilo",
+    "myAds": "I miei annunci",
+    "favourites": "Preferiti",
+    "logout": "Esci",
+    "login": "Accedi"
+  },
+  "labels": {
+    "fullName": "Nome completo",
+    "phoneNo": "Numero di telefono",
+    "email": "Indirizzo email",
+    "make": "Marca",
+    "model": "Modello",
+    "year": "Anno",
+    "description": "Descrizione",
+    "upload": "Carica immagine"
+  },
+  "placeholders": {
+    "fullName": "Mario Rossi",
+    "phoneNo": "555-555-5555",
+    "email": "mariorossi@esempio.com",
+    "make": "Marca",
+    "model": "Modello",
+    "year": "Anno",
+    "description": "Inserisci una descrizione..."
+  },
+  "buttonText": "Invia",
+  "topProducts": {
+    "title": "Prodotti in primo piano",
+    "seeAllAds": "Vedi tutti gli annunci"
+  },
+  "aboutUs": {
+    "title": "Chi siamo",
+    "description": "Eidcarosse è un completo mercato online dedicato a facilitare l'acquisto e la vendita di veicoli. Con un'interfaccia utente amichevole e potenti funzionalità di ricerca, Eidcarosse mette in contatto individui in cerca di veicoli con venditori che offrono un'ampia gamma di opzioni. Che tu stia cercando una berlina elegante, un potente camion, una moto elegante o qualsiasi altro veicolo, Eidcarosse fornisce una piattaforma che semplifica l'intero processo."
+  },
+  "buyers": {
+    "title": "Acquirenti",
+    "description": [
+      "Per gli acquirenti, Eidcarosse offre una vasta selezione di veicoli da venditori privati e concessionari, garantendo l'accesso a una vasta gamma di opzioni per soddisfare le tue preferenze e il tuo budget.",
+      "Con annunci dettagliati e informazioni complete sui veicoli, tra cui specifiche, chilometraggio e prezzi, puoi prendere decisioni informate e trovare il veicolo perfetto che soddisfa le tue esigenze."
+    ]
+  },
+  "sellers": {
+    "title": "Venditori",
+    "description": [
+      "Per i venditori, Eidcarosse offre una piattaforma conveniente per mostrare i propri veicoli a un'ampia e diversificata platea di potenziali acquirenti.",
+      "Elencate il vostro veicolo con descrizioni dettagliate, immagini di alta qualità e prezzi competitivi e connettetevi direttamente con acquirenti interessati.",
+      "Eidcarosse offre ai venditori la possibilità di raggiungere un mercato più ampio e semplificare il processo di vendita, rendendo più facile trovare il giusto acquirente per il vostro veicolo."
+    ]
+  },
+  "pageDescription": [
+    "Eidcarosse privilegia l'esperienza dell'utente e assicura un processo di transazione sicuro e trasparente. La piattaforma offre funzionalità di messaggistica, consentendo agli acquirenti e ai venditori di comunicare direttamente e negoziare i termini. Inoltre, Eidcarosse offre una serie di funzionalità di verifica e sicurezza per garantire la tranquillità di tutti gli utenti.",
+    "Unisciti a Eidcarosse oggi stesso e scopri un vivace mercato in cui l'acquisto e la vendita di veicoli è reso semplice. Sperimenta la comodità, la trasparenza e l'efficienza di Eidcarosse mentre intraprendi il tuo viaggio di acquisto o vendita di veicoli. Che tu sia un acquirente in cerca del veicolo dei tuoi sogni o un venditore alla ricerca del giusto acquirente, Eidcarosse è la tua destinazione per un'esperienza senza problemi e gratificante."
+  ],
+  "placeholderAddress": "inserisci il tuo indirizzo qui",
+  "placeholderKeyword": "inserisci una parola chiave qui...",
+  "repairNow": {
+    "full_name": "Nome completo",
+    "phone_number": "Numero di telefono",
+    "email_address": "Indirizzo email",
+    "make": "Marca",
+    "model": "Modello",
+    "year": "Anno",
+    "upload_image": "Carica immagine",
+    "description": "Descrizione",
+    "submit": "Invia"
+  },
+  "random": {
+    "latestAds": "Ultimi annunci",
+    "seeAllAds": "Vedi tutti gli annunci"
+  },
+  "postAd": {
+    "selectCategory": "Seleziona categoria",
+    "category": "Categoria",
+    "subCategory": "Sottocategoria",
+    "required": "* Obbligatorio",
+    "bikes": "Moto",
+    "parts": "Ricambi",
+    "selectSubCategory": "Seleziona sottocategoria"
+  },
+  "privacyPolicy": {
+    "heading": "Informativa sulla privacy",
+    "intro": "Gli ideatori dell'applicazione mobile Eidcarosse danno priorità alla sicurezza e alla privacy delle informazioni condivise con noi tramite Eidcarosse. Intendiamo rendere i nostri utenti il più confortevoli possibile nell'uso della nostra app. Se vuoi fidarti di noi con le tue informazioni, devi capire come le raccogliamo, le usiamo e le manteniamo. Quando ti accingi a acquisire Eidcarosse, dovrai registrarvi con noi. La registrazione ci fornisce il tuo nome e cognome, indirizzo email e numero di telefono.",
+    "collectionAndUse": {
+      "heading": "Raccolta e uso delle informazioni",
+      "text": "Potremmo chiederti di fornirci determinate informazioni personali per un'esperienza migliore. Queste informazioni includono, ma non sono limitate a, nome e indirizzo. Quando ti registri e fornisci il tuo nome, numero di telefono, indirizzo email, nome utente e password, non conserveremo le informazioni sul tuo indirizzo."
     },
-    "privacyPolicy": {
-      "title": "Politika privatnosti",
-      "intro": "Razvojni tim Gratis aplikacije izuzetno cijeni sigurnost i zaštitu vaših informacija koje dijelite s nama putem naše Gratis aplikacije. Želimo osigurati da se naši korisnici osjećaju što ugodnije pri korištenju naše aplikacije. Ako želite povjeriti svoje informacije, morate razumjeti kako ih prikupljamo, koristimo i čuvamo. Za korištenje Gratisa morate se registrirati kod nas. Registracija nam daje vaše ime i prezime, e-mail adresu i broj telefona.",
-      "infoCollection": "Prikupljanje i korištenje podataka",
-      "infoCollectionContent": "Radi boljeg korisničkog iskustva, možemo zatražiti da nam dostavite određene osobne informacije. Te informacije uključuju, ali nisu ograničene na, ime i adresu. Kad se registrirate i navedete svoje ime, broj telefona, e-mail adresu, korisničko ime i lozinku, nećemo pohranjivati vaše adresne podatke.",
-      "personalInformation": "Osobne informacije",
-      "personalInformationContent": "Kad se registrirate i navedete svoje ime, broj telefona, e-mail adresu, korisničko ime i lozinku, nećemo pohranjivati vaše adresne podatke.",
-      "infoRetention": "Koliko dugo se čuvaju osobne informacije?",
-      "infoRetentionContent": "Kad se registrirate kod nas, vaše osobne informacije i e-mail adresa bit će sačuvane za buduću podršku. Te informacije ostaju kod nas dok ne izbrišete svoje osobne informacije.",
-      "noDisclosure": "Što ne radimo s vašim osobnim informacijama",
-      "noDisclosureContent": "Nećemo dijeliti, prodavati ili dostavljati vaše privatne informacije drugim tvrtkama radi promocije njihovih usluga ili proizvoda. Također je protiv naših pravila dijeliti vaše osobne informacije s neovlaštenim osobama.",
-      "yourRights": "Vaša prava u vezi s vašim podacima",
-      "yourRightsContent": "Kao registrirani korisnik, imate pravo urediti svoje osobne informacije. Također možete zatražiti izvoz datoteke s vašim informacijama. Nakon što se prijavite na našoj web stranici, također možete izbrisati svoje podatke.",
-      "cookies": "Kolačići",
-      "cookiesContent": "Ova aplikacija može koristiti kolačiće koji zahtijevaju uređaje s podrškom za kolačiće. Datoteka s kolačićem sadrži informacije poput slučajnog korisničkog ID-a koji se automatski dodjeljuje posjetitelju kako bi se pratile stranice koje posjećuju. Kolačići ne mogu čitati podatke s vašeg tvrdog diska niti identificirati korisnika.",
-      "securityProcedures": "Naše sigurnosne mjere protiv curenja podataka",
-      "securityProceduresContent": "Cijenimo povjerenje koje ste nam ukazali pružajući nam svoje osobne informacije. Stoga koristimo industrijske standarde sigurnosnih mjera i tehnologije kako bismo zaštitili vaše osobne informacije od neovlaštenog otkrivanja, pristupa ili upotrebe. Molimo vas da ne dijelite svoju registracijsku lozinku i korisničko ime s neovlaštenim osobama kako biste nam pomogli zaštititi vašu privatnost. Iako nijedna metoda internetskog prijenosa ili elektroničke pohrane nije 100% nepropusna, Eidcarosse ne štedi napore kako bi zaštitio vaše osobne informacije. Ako saznamo da su vaše informacije došle u ruke neovlaštenih osoba ili su izgubljene, obavijestit ćemo vas čim saznamo za to.",
-      "accessEditData": "Kako možete pristupiti svojim podacima ili urediti svoje osobne informacije?",
-      "accessEditDataContent": "Kada se prijavite s vašim podacima na našoj web stranici, imate pristup svim informacijama o vašem računu koje možete uređivati ili brisati. Ako želite zaustaviti primanje e-mail obavijesti za Eidcarosse aplikaciju, jednostavno se odjavite ili nam pošaljite e-mail, a mi ćemo izbrisati vašu e-mail adresu ili račun. Molimo vas da se pobrinite da je predmet vašeg e-maila 'Izbriši moje korisničko ime'.",
-      "contactUs": "Kontaktirajte nas"
+    "personalInfo": {
+      "heading": "Informazioni personali",
+      "text": "Quando ti registri e fornisci il tuo nome, numero di telefono, indirizzo email, nome utente e password, non conserveremo le informazioni sul tuo indirizzo."
     },
-    "termsAndConditions": {
-      "title": "Uvjeti korištenja",
-      "intro": "Prije korištenja usluge Gratis mobilne aplikacije važno je pažljivo pročitati i pristati na sljedeće Uvjete korištenja. Vaša prihvaćanja ovih uvjeta je obavezna za korištenje aplikacije. Prije korištenja usluge, pažljivo pročitajte Uvjete korištenja.",
-      "general": {
-        "title": "Općenito",
-        "content": "Gratis zahtijeva da oglašivači i korisnici budu odgovorni za osiguranje da svi sadržaji, uključujući slike, videozapise, grafike i tekst, koje postavljaju na platformu, usklađuju sa primjenjivim zakonima. Sve netočnosti ili pravni problemi koji proizlaze iz objavljenih sadržaja nisu odgovornost Gratisa. I oglašivači i korisnici jamče da njihovi sadržaji ne krše autorska prava, prava intelektualnog vlasništva ili bilo koja druga prava pojedinaca ili entiteta. Korištenjem usluge korisnik ili oglašivač pristaju osloboditi Gratis od svih obveza, zahtjeva ili odgovornosti povezanih s korištenjem ili nesposobnošću korištenja platforme. Osim toga, oglašivači pristaju na prikazivanje svojih sadržaja na partnerskim web stranicama Gratisa, pod istim uvjetima i odredbama kao i na samom Gratisu."
-      },
-      "copyright": {
-        "title": "Autorsko pravo",
-        "content": "Oglašivači dodjeljuju Gratisu trajnu, neopozivu, besplatnu, neisključivu licencu i pravo korištenja, mijenjanja, reproduciranja, objavljivanja, prilagodbe, prijevoda, stvaranja izvedenih djela, distribucije ili uključivanja pruženog sadržaja u bilo koju formu, tehnologiju ili medij, bilo sada poznatu ili razvijenu u budućnosti."
-      },
-      "watermarks": {
-        "title": "Vodeni žigovi",
-        "content": "Gratis primjenjuje vodene žigove na sve slike kako bi spriječio njihovu neovlaštenu upotrebu u druge svrhe bez izričite dozvole oglašivača."
-      },
-      "safetyAndImages": {
-        "title": "Sigurnost i slike",
-        "content": "Gratis zadržava pravo izmijeniti naslove sadržaja na aplikaciji iz redakcijskih razloga."
-      },
-      "personal": {
-        "title": "Osobno",
-        "content": "Gratis zadržava pravo surađivati s vlastima u slučaju da sadržaj na aplikaciji krši zakon. Identitet korisnika, kupaca ili oglašivača može, na primjer, utvrditi ISP. IP adrese također mogu biti registrirane kako bi se osiguralo poštivanje uvjeta korištenja."
-      },
-      "privacy": {
-        "title": "Privatnost",
-        "content": "Gratis će prikupljati informacije od korisnika, kupaca i oglašivača. Korištenjem Gratisa, svaki korisnik i oglašivač daje pristanak na prikupljanje i korištenje tih informacija. Gratis također zadržava pravo otkriti informacije Povezanim društvima i drugim osobama radi podrške, upravljanja i održavanja Gratisa, uključujući marketing, istraživanje, planiranje i razvoj proizvoda."
-      },
-      "cookies": {
-        "title": "Kolačići",
-        "content": "Ova aplikacija može koristiti kolačiće koji ovise o uređajima. Datoteka s kolačićem sadrži informacije poput slučajnog korisničkog ID-a koji se automatski dodjeljuje posjetitelju kako bi se pratili odabrani sadržaji. Kolačići ne mogu čitati podatke s tvrdog diska ili identificirati korisnika."
-      },
-      "emailAddressOfUsers": {
-        "title": "E-mail adrese korisnika",
-        "content": "Korisnici moraju navesti valjane e-mail adrese prije nego što mogu objaviti popise oglasa. E-mail adrese neće biti javno prikazane, ali korisnici mogu slati e-mailove drugim korisnicima putem Gratisa."
-      },
-      "siteAvailability": {
-        "title": "Dostupnost web mjesta",
-        "content": "Gratis ne jamči neprekidan ili siguran pristup aplikaciji. Aplikacija se pruža kako je i kada je dostupna."
-      },
-      "disclaimer": {
-        "title": "Izjava o odgovornosti",
-        "content": "Gratis ne preuzima odgovornost za korištenje Gratisa i odbija svaku odgovornost za zahtjeve, povrede, štetu ili obveze bilo koje vrste koje proizlaze iz (a) grešaka na Gratisu ili sadržaja, uključujući, ali ne ograničavajući se na pogrješke u tipkanju i tehničke greške, (b) web stranica ili sadržaja trećih strana koji su izravno ili neizravno dostupni ili dobiveni putem poveznica na Gratisu, (c) nedostupnost Gratisa, (d) vašeg korištenja Gratisa ili sadržaja, ili (e) vašeg korištenja uređaja (ili softvera) u vezi s Gratisom."
-      },
-      "indemnification": {
-        "title": "Nadoknada štete",
-        "content": "Oglašivači i drugi korisnici pristaju osloboditi Gratis i njegove zaposlenike, predstavnike, službenike i direktore od svih troškova, gubitaka, štete i troškova, uključujući pravne troškove, koji proizlaze iz kršenja ovih Uvjeta korištenja (uključujući nepažljivo ili nezakonito ponašanje)."
-      },
-      "modifications": {
-        "title": "Izmjene",
-        "content": "Gratis zadržava pravo izmijeniti ili modificirati ove Uvjete korištenja. Takve izmjene ili modifikacije stupaju na snagu odmah nakon objave na Gratisu. Vi ste odgovorni za redovitu provjeru takvih promjena. Vaše daljnje korištenje Gratisa smatrat će se vašim pristankom na izmijenjene Uvjete korištenja."
-      },
-      "governingLaw": {
-        "title": "Pravo koje se primjenjuje",
-        "content": "Gratis se upravlja prema zakonima i propisima zemlje u kojoj se pruža usluga."
-      }
+    "retentionPeriod": {
+      "heading": "Per quanto tempo vengono conservate le informazioni personali?",
+      "text": "Quando ti registri con noi, le tue informazioni personali e l'indirizzo email vengono conservati per il supporto futuro. Queste informazioni rimangono memorizzate con noi fino a quando non cancelli le tue informazioni personali."
+    },
+    "dataUsage": {
+      "heading": "Cosa non facciamo con le tue informazioni personali",
+      "text": "Quando ti registri con noi, le tue informazioni personali e l'indirizzo email vengono conservati per il supporto futuro. Queste informazioni rimangono memorizzate con noi fino a quando non cancelli le tue informazioni personali."
+    },
+    "cookies": {
+      "heading": "Cookie",
+      "text": "I cookie sono file con una piccola quantità di dati, che possono includere un identificatore univoco anonimo. I cookie vengono inviati al tuo browser da un sito web e memorizzati sul disco rigido del tuo computer."
+    },
+    "changes": {
+      "heading": "Modifiche all'informativa sulla privacy",
+      "text": "Gli ideatori dell'applicazione mobile Eidcarosse possono aggiornare periodicamente questa informativa sulla privacy. Ti informeremo di eventuali modifiche pubblicando la nuova informativa sulla privacy su questa pagina."
+    },
+    "contactUs": {
+      "heading": "Contattaci",
+      "text": "Se hai domande o suggerimenti sull'app Eidcarosse o sull'informativa sulla privacy, non esitare a contattarci all'indirizzo email seguente: privacy@eidcarosse.com."
     }
-    ,
-    
-    
-        "aboutUs": {
-          "title": "O nama",
-          "intro": "Gratis je sveobuhvatno online tržište posvećeno olakšavanju kupovine i prodaje proizvoda. Sa korisničkim interfejsom koji je jednostavan za korištenje i moćnim funkcijama pretrage, Gratis povezuje pojedince koji traže vozila sa prodavcima koji nude širok spektar opcija. Bilo da tražite elegantan automobil, moćan laptop, stilsku dodatnu opremu ili bilo koji drugi proizvod, Gratis pruža platformu koja pojednostavljuje ceo proces.",
-          "buyers": "Kupci",
-          "buyersContent": [
-            "Za kupce, Gratis nudi veliki izbor vozila od privatnih prodavaca i prodavnica, osiguravajući vam pristup širokom spektru opcija koje odgovaraju vašim preferencijama i budžetu.",
-            "Sa detaljnim oglasima i sveobuhvatnim informacijama o vozilima, uključujući specifikacije, pređenu kilometražu i cene, možete doneti informisane odluke i pronaći savršeno vozilo koje zadovoljava vaše potrebe."
-          ],
-          "sellers": "Prodavci",
-          "sellersContent": [
-            "Za prodavce, Gratis nudi praktičnu platformu za prikazivanje vaših vozila velikoj i raznovrsnoj publici potencijalnih kupaca.",
-            "Oglasi svoje vozilo sa detaljnim opisima, visokokvalitetnim slikama i konkurentnim cenama, i direktno se povežite sa zainteresovanim kupcima.",
-            "Gratis osnažuje prodavce da dosegnu širi tržište i pojednostave proces prodaje, olakšavajući pronalaženje pravog kupca za vaše vozilo."
-          ],
-          "prioritizes": "Gratis prioritetizira korisničko iskustvo i osigurava siguran i transparentan proces transakcije. Platforma pruža mogućnosti za slanje poruka, omogućavajući kupcima i prodavcima da direktno komuniciraju i pregovaraju o uslovima. Dodatno, Gratis nudi niz funkcija za verifikaciju i sigurnost kako bi pružio mir svim korisnicima.",
-          "joinToday": "Pridružite se Gratisu danas i otkrijte živo tržište gde je kupovina i prodaja vozila jednostavna. Iskusite praktičnost, transparentnost i efikasnost Gratisa dok se upuštate u svoje putovanje kupovine ili prodaje vozila. Bez obzira da li ste kupac koji traži svoje snovito vozilo ili prodavac koji želi pronaći pravog kupca, Gratis je vaša destinacija za jednostavno i nagrađujuće iskustvo."
-        }
-        ,
-        "howItWorks": {
-            "title": "Kako Funkcioniše",
-            "sections": [
-              {
-                "title": "Kreirajte Račun",
-                "content": "Naš jednostavan proces registracije omogućava vam trenutan pristup našem živahnom tržištu, spremnom za kupovinu i prodaju. Samo pružite osnovne informacije i izaberite lozinku."
-              },
-              {
-                "title": "Postavite Vaš Oglas",
-                "content": "Bit ćete u mogućnosti da dostignete hiljade potencijalnih kupaca u roku od nekoliko dana, čim odaberete pravu kategoriju, dodate privlačan opis i dodate atraktivne slike svog oglasa."
-              },
-              {
-                "title": "Dobijte Ponude",
-                "content": "Počet ćete dobijati odgovore od zainteresovanih kupaca čim vaš oglas postane aktivan, tako da ćete biti u mogućnosti da odaberete najbolju ponudu koja zadovoljava vaše potrebe i maksimizira vaše prodaje."
-              },
-              {
-                "title": "Prodajte Vašu Stvar",
-                "content": "Kako biste osigurali glatku i uspješnu prodaju na našem tržištu za kupovinu i prodaju, moći ćete komunicirati direktno sa zainteresovanim kupcima, pregovarati o cijeni sa njima."
-              }
-            ]
-          }
-          ,
-          
-            "contactUs": {
-              "contactDetails": "Kontakt Detalji",
-              "email": "Email",
-              "phone": "Telefon",
-              "address": "Adresa",
-              "contactForm": "Kontakt Forma",
-              "nameLabel": "Vaše Ime",
-              "emailLabel": "Vaš Email",
-              "subjectLabel": "Naslov",
-              "messageLabel": "Poruka",
-              "sendButton": "Pošalji Poruku"
-            }
-            ,
-            
-                "signUp": {
-                  "signUp": "Registrirajte se",
-                  "firstName": "Ime",
-                  "lastName": "Prezime",
-                  "email": "Adresa e-pošte",
-                  "password": "Lozinka",
-                  "acceptTerms": "Slažem se s uvjetima i odredbama i želim otvoriti račun na Gratisu",
-                  "signUpButton": "Registrirajte se",
-                  "alreadyHaveAccount": "Već imate račun? Prijavite se"
-                }
-
-                ,
-                
-                    "signIn": {
-                      "signIn": "Prijavite se",
-                      "email": "Adresa e-pošte",
-                      "password": "Lozinka",
-                      "rememberMe": "Zapamti me",
-                      "signInButton": "Prijavi se",
-                      "forgotPassword": "Zaboravljena lozinka?",
-                      "dontHaveAccount": "Nemate račun? Registrirajte se",
-                      "loggingIn": "Prijavljivanje...",
-    "loggedInSuccessfully": "Uspješno ste prijavljeni!",
-    "loginFailed": "Prijavljivanje nije uspjelo!",
-    "invalidCredentials": "Netačno korisničko ime ili lozinka."
-
-                    }
-                  ,
-                  
-                    "resetPassword": {
-                      "resetPassword": "Resetiranje lozinke",
-                      "emailAddress": "Adresa e-pošte",
-                      "enterEmail": "Unesite vašu adresu e-pošte",
-                      "resetButton": "Resetiraj",
-                      "emailFormatError": "Unesite ispravan format adrese e-pošte",
-                      "accountNotFound": "Nalog s ovom adresom e-pošte nije pronađen",
-                      "resetLinkSent": "Veza za resetiranje lozinke poslana je na vašu registriranu adresu e-pošte."
-                    }
-                    ,
-                    
-                        "changePassword": {
-                          "resetPassword": "Resetiranje lozinke",
-                          "password": "Lozinka",
-                          "confirmPassword": "Potvrdite lozinku",
-                          "submit": "Pošalji",
-                          "passwordsDoNotMatch": "Lozinke se ne podudaraju.",
-                          "passwordChanged": "Lozinka je promijenjena",
-                          "passwordChangedSuccessfully": "Vaša lozinka je uspješno promijenjena."
-                        }
-                      ,
-                      
-                        "accountMenu": {
-                          "hello": "Zdravo",
-                          "seeAndEditProfile": "Pregledajte i uredite profil",
-                          "favorites": "Favoriti",
-                          "myAds": "Moji oglasi",
-                          "settings": "Postavke",
-                          "logout": "Odjava"
-                        }
-                      ,
-                      
-                        "cardDescription": {
-                          "loading": "Učitavanje...",
-                          "price": "KM {{price}}",
-                          "location": "Lokacija: {{location}}",
-                          "details": "Detalji",
-                          "description": "Opis",
-                          "showPhoneNumber": "Prikaži broj telefona",
-                          "chat": "Ćaskanje",
-                          "seeProfile": "Pogledaj profil",
-                          "memberSince": "Član od "
-
-                          
-                        }
-                      ,
-                      
-                        "categorySelection": {
-                          "loading": "Učitavanje...",
-                          "postAnAd": "Objavi oglas",
-                          "forwardArrow": "Ikona naprijed",
-                          "subcategory": "Podkategorija",
-                          "selectCategory": "Odaberi kategoriju",
-                          "selectSubcategory": "Odaberi podkategoriju",
-                          "noSubcategories": "Nema dostupnih podkategorija",
-                          "backToCategories": "Nazad na kategorije"
-                          
-                        }
-                      
-                        ,
-                        
-                            "categories": {
-                              "Mobiles": "Mobilni",
-                              "Vehicles": "Vozila",
-                              "Sale": "Nekretnine na prodaju",
-                              "Rent": "najam",
-                              "Services": "Usluge",
-                              "Furniture": "namještaj",
-                              "Camera": "kamera",
-                              "Animals": "Životinje",
-                              "Book": "knjiga",
-                              "Beauty": "ljepota",
-                              "Bikes": "Bicikli",
-                              "Truck": "kamion",
-                              "Kids": "Djeca",
-                              
-                                 "Property for Rent": "Nekretnine na iznajmljivanje",
-                                 "Electronics & Home Appliances": "Elektronika i kućni aparati",
-                                    "Business, Industrial & Agriculture": "Poslovanje",
-                            "Jobs": "Poslovi",
-                          "Furniture & Home Decor": "Namještaj i dekoracija",
-                               "Fashion & Beauty": "Moda i ljepota",
-                         "Books, Sports & Hobbies": "Knjige, sport i hobi"
-                            }
-                            ,
-                            "notFound": {
-                                "notFound": "Nije pronađeno",
-                                "emptySearch": "Žao nam je, pretraga je prazna.",
-                                "goBack": "Idi nazad"
-                              },
-                              "notificationContent": {
-                                "notifications": "Obavijesti",
-                                "specialCommunications": "Posebne komunikacije i ponude",
-                                "receiveUpdates": "Primajte obavijesti, ponude i više",
-                                "recommendations": "Preporuke",
-                                "receiveRecommendations": "Primajte preporuke na osnovu vaše aktivnosti",
-                                "chatSafetyTips": "Savjeti za siguran chat",
-                                "receiveSafetyTips": "Primajte savjete za siguran chat na osnovu vaše chat aktivnosti"
-                              },
-                              "privacySection": {
-                                "myAdsSettings": "Postavke mojih oglasa",
-                                "showPhoneNumberInAds": "Pokaži moj broj telefona u oglasima",
-                                "changePassword": "Promijeni šifru",
-                                "currentPassword": "Trenutna šifra",
-                                "newPassword": "Nova šifra",
-                                "confirmNewPassword": "Potvrdi novu šifru",
-                                "passwordChanged": "Šifra promijenjena",
-                                "passwordChangedMessage": "Vaša šifra je uspješno promijenjena.",
-                                "ok": "OK"
-                              }
-                          
-                          ,
-                          
-                            "cardTemplate": {
-                                "editAction": "Uredi",
-                            "deleteAction": "Izbriši",
-                              "deleteAd": {
-                                "confirmation": "Potvrda",
-                                "deleteAdMessage": "Da li ste sigurni da želite izbrisati ovaj oglas?",
-                                "cancel": "Otkaži",
-                                "yes": "Da",
-                                "deleteSuccess": "Vaš oglas je uspješno izbrisan"
-                              },
-                              "editAd": "Uredi Oglas"
-                            },
-                            "time": {
-                              "time.secondsAgo": "{{count}} seconds ago",
-                              "time.minutesAgo": "{{count}} minutes ago",
-                              "time.hoursAgo": "{{count}} hours ago",
-                              "time.daysAgo": "{{count}} days ago",
-                              "time.yearsAgo": "{{count}} years ago"
-                          }
-                            ,
-                            
-                              "editAd": {
-                                "updatingAd": "Ažuriranje oglasa...",
-                                "adUpdatedSuccessfully": "Oglas uspješno ažuriran!",
-                                "errorUpdatingAd": "Greška prilikom ažuriranja oglasa.",
-                                "adTitle": "Naslov oglasa",
-                                "description": "Opis",
-                                "price": "Cijena",
-                                "location": "Lokacija",
-                                "showPhoneNumberInAds": "Prikaži moj broj telefona u oglasima",
-                                "updateAd": "Ažuriraj oglas",
-                                "cancel": "Otkaži",
-                                "delete": "Obriši",
-                                "images": "Slike"
-                              }
-                            
-                            
-
-                            ,
-                            
-                                "featuredProducts": {
-                                  "heading": "Istaknuti Proizvodi",
-                                  "loadMoreButton": "Učitaj više" , 
-                                  "latest": "Najnoviji oglasi"
-                                },
-                                "buttons": {
-                                  "sell": "Proda",
-                                  "loadMore": "Učitaj više",
-                                  "signIn": "Prijavi se",
-                                  "signUp": "Registriraj se"
-                              },
-                                "searchResults": {
-                                  "ads": "Oglasi",
-                                  "newlyListed": "Novo u Ponudi",
-                                  "highToLow": "Cijene - Visoke do Niske",
-                                  "lowToHigh": "Cijene - Niske do Visoke",
-                                  "sortBy": "Sortiraj Prema: "
-                              }
-                              ,
-                              "random": {
-                                "followUs": "Prati Nas" , 
-                                "adTitle": "Naslov oglasa",
-                                "myFavourites": "Moji omiljeni",
-                                "myLisitngs": "Moji oglasi",
-                                "privacyTab": "Privatnost",
-                                "notificationsTab": "Obavijesti",
-                                "entercompany": "Unesite naziv kompanije",
-                                "motor": "Motori",
-                                "properties": "svojstva" ,
-                                "allCategories": "sve kategorije"
-        
-               
-                                },
-                                
-                                "subNavbar": 
-                                    { "nav1": "Mobilni",
-                                    "nav2": "Automobili",
-                                    "nav3": "Motocikli",
-                                    "nav4": "Kuće",
-                                    "nav5": "Životinje",
-                                    "nav6": "Kamera",
-                                    "nav7": "Zemljišta i placevi"
-                                    }
-                                  
-          ,
-                                "profileEdit": {
-                                    "editProfile": "Uredi profil",
-                                    "updatePhoto": "Ažuriraj fotografiju",
-                                    "firstName": "Ime",
-                                    "lastName": "Prezime",
-                                    "location": "Lokacija",
-                                    "phoneNumber": "Broj telefona",
-                                    "saveChanges": "Spremi promjene",
-                                    "profileUpdated": "Profil ažuriran",
-                                    "profileUpdatedMessage": "Vaš profil je uspješno ažuriran.",
-                                    "okay": "U redu"
-                                  },
-
-
-                                
-                                
-                                    "listingspage": {
-                                        "adTitle": "Naslov oglasa",
-                                        "description": "Opis",
-                                        "condition": "Stanje",
-                                        "new": "Novo",
-                                        "used": "Korišteno",
-                                        "make": "Proizvođač",
-                                        "model": "Model",
-                                        "price": "Cijena (KM)",
-                                        "location": "Lokacija",
-                                        "showPhoneNumber": "Prikaži moj broj telefona u oglasima",
-                                        "uploadImages": "Dodaj slike (do 5)",
-                                        "postNow": "Objavi",
-                                        "delete": "Obriši",
-                                        "selectmake": "Odaberi ili unesi proizvođača",
-                                        "year": "Godina",
-                                        "mileage": "Pređena kilometraža (KM)",
-                                        "fuel": "Gorivo",
-                                        "petrol": "Benzin",
-                                        "diesel": "Dizel",
-                                        "transmission": "Prijenos",
-                                        "manual": "Ručni",
-                                        "automatic": "Automatski",
-                                        "downPayment": "Depozit",
-                                        "monthlyInstallments": "Mjesečne rate",
-                                        "modelplace": "Odaberi ili upiši model",
-                                        "installmentPlan": "Plan rata",
-      "area": "Područje",
-      "furnished": "Namješteno",
-      "yes": "Da",
-      "no": "Ne",
-      "type": "Tip",
-      "breed": "Rasa",
-      "gender": "Spol",
-      "male": "Muški",
-      "female": "Ženski",
-      "age": "Dob",
-      "bedrooms": "Broj spavaćih soba",
-      "bathrooms": "Broj kupatila",
-      "companyName": "Ime kompanije",
-      "salaryFrom": "Plata od",
-      "salaryTo": "Plata do",
-      "jobLevel": "Nivo posla",
-      "salaryPeriod": "Period plate",
-      "positionType": "Tip pozicije",
-      "enterStartingSalary": "Unesite početnu plaću",
-      "enterMaximumSalary": "Unesite maksimalnu plaću",
-      "enterJobLevel": "Unesite nivo posla (npr. Senior, Junior)",
-      "enterSalaryPeriod": "Unesite period plate (npr. Mjesečno, Godišnje)",
-      "enterPositionType": "Unesite tip pozicije (npr. Puno radno vrijeme, Nepuno radno vrijeme)"
-              
-                                    }
-                                
-                                
-                              ,
-                                "filterAndSortComponent": {
-                                  "filters": "Filteri",
-                                  "categories": "Kategorije",
-                                  "allCategories": "Sve",
-                                  "locations": "Lokacije",
-                                  "searchPlaceholder": "Pretražite grad, područje ili mjesto",
-                                  "price": "Cijena",
-                                  "minPrice": "Min",
-                                  "maxPrice": "Maks",
-                                  "itemCondition": "Stanje predmeta",
-                                  "new": "Novo",
-                                  "used": "Korišteno"
-                                }
-
-                                ,
-                                
-                                    "footerItem": [
-                                        {
-                                            "heading": "POPULARNE KATEGORIJE",
-                                            "item1": "Vozila",
-                                            "item2": "Mobiteli",
-                                            "item3": "Bicikli",
-                                            "item4": "Dodaci za djecu",
-                                            "link1": "/category/Vehicles",
-                                            "link2": "/category/Mobiles",
-                                            "link3": "/category/Bikes",
-                                            "link4": "/category/Kids"
-                                        },
-                                        {
-                                            "heading": "TRENDING PRETRAGE",
-                                            "item1": "Bicikli",
-                                            "item2": "Mobiteli",
-                                            "item3": "Knjige",
-                                            "item4": "Životinje",
-                                            "link1": "/category/Bikes",
-                      "link2": "/category/Mobiles",
-                      "link3": "/category/Books",
-                      "link4": "/category/Animals"
-                  },
-                                        {
-                                            "heading": "Informacije",
-                                            "item1": "O nama",
-                                            "item2": "Blogovi",
-                                            "item3": "Kontaktirajte nas",
-                                            "item4": "Gratis za poslovne subjekte",
-                                            "link1": "/about-us",
-                      "link2": "/blogs",
-                      "link3": "/contact-us",
-                      "link4": "/gratis-for-businesses"
-                  },
-                                        {
-                                            "heading": "Pomoć i podrška",
-                                            "item1": "Često postavljana pitanja",
-                                            "item2": "Mapa sajta",
-                                            "item3": "Uslovi korištenja",
-                                            "item4": "Politika privatnosti",
-                                            "link1": "/faq",
-                      "link2": "/sitemap",
-                      "link3": "/terms-and-conditions",
-                      "link4": "/privacy-policy"
-                  }
-                                    ]
-                                  
-                                
-        
-      
-      
+  },
+  "termsOfService": {
+    "heading": "Termini di servizio",
+    "intro": "Gli ideatori dell'applicazione mobile Eidcarosse offrono questa app come servizio. Con l'uso dell'applicazione, accetti questi termini. Leggi attentamente e rispetta i seguenti termini. Se non accetti questi termini, non sarai autorizzato a utilizzare l'applicazione Eidcarosse.",
+    "useOfService": {
+      "heading": "Uso del servizio",
+      "text": "È possibile utilizzare il servizio solo in conformità con questi termini, in qualsiasi momento accetti i termini, anche con modifiche che potremmo apportare in futuro. Puoi utilizzare il servizio solo se puoi stipulare un contratto giuridicamente vincolante con noi, e solo in conformità con questi termini e con tutte le leggi applicabili."
+    },
+    "appAvailability": {
+      "heading": "Disponibilità dell'applicazione",
+      "text": "Potremmo sospendere o chiudere l'applicazione a nostra esclusiva discrezione, e non saremo responsabili nei confronti dell'utente o di terzi in caso di sospensione o chiusura del servizio."
+    },
+    "registrationAndAccount": {
+      "heading": "Registrazione e account",
+      "text": "Per utilizzare alcune funzionalità del servizio, potremmo richiedere di registrarsi per un account. Quando ti registri, dovrai fornire informazioni complete e accurate. Non puoi utilizzare come nome utente il nome di un'altra persona o un nome che sia stato precedentemente utilizzato da un altro. Non consentiamo di avere più di un account. Deve anche essere maggiorenne e rispettare tutte le leggi applicabili. Non possiamo accettare nomi che siano volgari o diffamatori."
+    },
+    "accessToService": {
+      "heading": "Accesso al servizio",
+      "text": "Eidcarosse offre ai venditori la possibilità di raggiungere un mercato più ampio e semplificare il processo di vendita, rendendo più facile trovare il giusto acquirente per il vostro veicolo."
+    },
+    "feedback": {
+      "heading": "Risposta alle recensioni",
+      "text": "Ogni recensione può essere inoltrata alla nostra e-mail all'indirizzo feedback@eidcarosse.com."
+    },
+    "termination": {
+      "heading": "Risoluzione",
+      "text": "I termini continuano a essere applicati finché non vengono terminati dall'utente o da noi. Puoi terminare i termini in qualsiasi momento terminando il tuo account e cessando di utilizzare il servizio. Non verrà rimborsato alcun costo pagato in anticipo."
+    },
+    "changesToTerms": {
+      "heading": "Modifiche ai termini",
+      "text": "Gli ideatori dell'applicazione mobile Eidcarosse possono aggiornare periodicamente questi termini. In tal caso, vi informeremo di eventuali modifiche pubblicando i nuovi termini su questa pagina."
+    }
   }
-  
+}
