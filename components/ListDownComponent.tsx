@@ -1,9 +1,9 @@
 import { ArrowDropDown } from '@mui/icons-material'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import i18n from 'i18next';
 
 export default function ListDownComponent() {
-    const [language, setLanguage] = useState<string>('en'); // Initialize with the default language 'en'
+    const [language, setLanguage] = useState<string>(i18n.language); // Initialize with the current language
     const [showList, setShowList] = useState<Boolean>(false);
 
     const liStyle = 'cursor-pointer hover:text-[#FF0000] hover:w-7';
@@ -11,8 +11,13 @@ export default function ListDownComponent() {
     const handleLanguage = (value: string) => {
         setLanguage(value);
         setShowList(false);
-        i18n.changeLanguage(value); // Change the language using i18n
+        i18n.changeLanguage(value);
     }
+
+    // Update the selected language in state when i18next language changes
+    useEffect(() => {
+        setLanguage(i18n.language);
+    }, [i18n.language]);
 
     return (
         <div>
