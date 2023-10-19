@@ -49,7 +49,7 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
     // Redux hooks
     const { t } = useTranslation(); // Initialize the translation hook
 
-    
+
     const { page, address, title } = useSelector((state: any) => state.app);
     const [fav, setFav] = useState<Boolean>(false);
     const [loading, setLoading] = useState<Boolean>(false);
@@ -224,8 +224,9 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
         setSortByLoading(true);
         try {
             const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${category}&sortBy=${value}`);
-            setProductData(res.data?.data?.ad);
-            setProductsCount(res.data?.data?.totalAds);
+            console.log(res.data?.data.ad);
+            dispatch(setProductData(res.data?.data?.ad));
+            dispatch(setProductsCount(res.data?.data?.totalAds));
             setSortByLoading(false);
         } catch (error) {
             setSortByLoading(false);
@@ -233,6 +234,10 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
         }
         setSortByLoading(false);
     }
+
+    console.log(productData);
+
+
 
     const adFavorite = async (productId: any) => {
         if (userInfo === null) {
@@ -292,7 +297,7 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
                         <h1 className='pl-1 pt-2  text-lg font-semibold'>{t('categorySelection.allCategories')}</h1>
                         <ul className='space-y-3 mt-2 mx-1'>
                             {categoryList?.map((list: IList, i: number) => (
-                                <><li onClick={() => handleSearch(list?.name1)} className={`${category == list?.name ? 'text-[#FF0000]' : list?.name == 'Bikes' && subCategory ? 'text-[#FF0000]' : 'hover:text-[#FF0000] cursor-pointer'}`} key={i}>{list.logo} {list.name} {category == list?.name ? `(${productsCount})` : ''}</li>
+                                <><li onClick={() => handleSearch(list?.name1)} className={`${category == list?.name ? 'text-[#FF0000] cursor-pointer' : list?.name == 'Bikes' && subCategory ? 'text-[#FF0000]' : 'hover:text-[#FF0000] cursor-pointer'}`} key={i}>{list.logo} {list.name} {category == list?.name ? `(${productsCount})` : ''}</li>
                                     {(category == 'Bikes' || subCategory) && list?.name == "Bikes" && subList?.map((list: any, i: any) => (
                                         <li className={`ml-5 cursor-pointer ${list?.name == subCategory ? 'text-[#FF0000]' : 'hover:text-[#FF0000]'}`} onClick={() => handleSearch(list?.name)} key={i}> <span className='text-[#FF0000]'>{`> `}</span>{list?.name} {subCategory == list?.name && `(${productsCount})`}</li>
                                     ))}
