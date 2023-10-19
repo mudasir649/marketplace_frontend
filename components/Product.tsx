@@ -20,50 +20,34 @@ export default function Product({ product, url }: any) {
 
   const pathname = usePathname();
   const dispatch = useDispatch();
-
   const checkPathname = pathname == '/my-favourites' ? true : false;
-
   const [fav, setFav] = useState<Boolean>(checkPathname);
-
   const router = useRouter();
-
   const { width, height } = useWindowDimensions();
-
   const { userInfo } = useSelector((state: any) => state.auth);
   const { productId } = useSelector((state: any) => state.app);
-
   const userId = userInfo?.data?.userDetails?._id;
-
   const newWidth = width || 0;
   const newHeight = height || 0;
-
-
   useEffect(() => {
     AOS.init();
   }, [product]);
-
-
   const editAd = (id: any) => {
     console.log(id);
   }
-
   const deleteAd = async (id: any) => {
     dispatch(setProductId(id))
     dispatch(setShowDeleteAd(true))
   }
-
   const [currentSlide, setCurrentSlide] = useState(0);
-
   const nextSlide = () => {
     setCurrentSlide((prevSlide) => (prevSlide + 1) % product?.images.length);
   };
-
   const prevSlide = () => {
     setCurrentSlide((prevSlide) =>
       prevSlide === 0 ? product?.images.length - 1 : prevSlide - 1
     );
   };
-
   const adFavorite = async () => {
     if (userInfo === null) {
       router.push('/login')
@@ -80,13 +64,10 @@ export default function Product({ product, url }: any) {
       }
     }
   }
-
   const handleShare = () => {
     dispatch(setShowShare(true))
     dispatch(setProductId(product?._id))
   }
-
-
   return (
     <div className='mb-3' data-aos="fade-up">
       <div className="image-slider group relative max-w-sm rounded-lg overflow-hidden shadow-lg bg-white m-2 cursor-pointer hover:shadow-md hover:shadow-[#e52320]">
