@@ -20,6 +20,7 @@ import formatDateTime from '@/utils/checkTime';
 import { refreshPage, setProductId, setShowShare, setProductUserId } from '@/store/appSlice';
 import dynamic from 'next/dynamic';
 import addInvertedComma from '@/utils/addInvertedComma';
+import { useTranslation } from 'react-i18next';
 
 interface AdFavoriteData {
   userId: string,
@@ -28,6 +29,7 @@ interface AdFavoriteData {
 }
 
 function ProductDetails() {
+  const { t } = useTranslation(); // Initialize the translation hook
 
   const { id } = useParams();
   const [product, setProduct] = useState<any>();
@@ -229,24 +231,25 @@ function ProductDetails() {
                   <div className='mt-5'>
                     <h1 className='text-xl font-bold'>
                       <span className="relative">
-                        <span>Ove</span>
+                        <span>{t('product.Overview')}</span>
                         <span className="absolute bottom-0 left-0 w-8 h-1 bg-[#FF0000] top-7"></span>
                       </span>
-                      <span>rview</span>
+
                     </h1>
                     <ul className='grid grid-cols-3 mt-5 gap-3 mb-5'>
-                      {!product?.condition ? '' : <li><span className={overviewStyle}>Condition: </span> {product?.condition}</li>}
-                      {!product?.brand ? '' : <li><span className={overviewStyle}>Brand: </span> {product?.brand}</li>}
-                      {!product?.year ? '' : <li><span className={overviewStyle}>Year: </span> {product?.year}</li>}
-                      {!product?.bodyShape ? '' : <li><span className={overviewStyle}>Body Shape: </span> {product?.bodyShape}</li>}
-                      {!product?.gearBox ? '' : <li><span className={overviewStyle}>Gearbox: </span> {product?.gearBox}</li>}
-                      {!product?.fuelType ? '' : <li><span className={overviewStyle}>fuel type: </span> {product?.fuelType}</li>}
-                      {!product?.km ? '' : <li><span className={overviewStyle}>Kilometers: </span> {product?.km}</li>}
-                      {!product?.engineCapacity ? '' : <li><span className={overviewStyle}>Engine capacity: </span> {product?.engineCapacity}</li>}
-                      {product?.category == 'Autos' && <li><span className={overviewStyle}>Cylinders: </span> {product?.cylinder}</li>}
-                      {!product?.extriorColor ? '' : <li><span className={overviewStyle}>Exterior: </span> {product?.exteriorColor}</li>}
-                      {product?.category == 'Autos' && <li><span className={overviewStyle}>Interior: </span> {product?.interiorColor}</li>}
+                      {!product?.condition ? '' : <li><span className={overviewStyle}>{t('product.Condition')}: </span> {product?.condition}</li>}
+                      {!product?.brand ? '' : <li><span className={overviewStyle}>{t('product.Brand')}: </span> {product?.brand}</li>}
+                      {!product?.year ? '' : <li><span className={overviewStyle}>{t('product.Year')}: </span> {product?.year}</li>}
+                      {!product?.bodyShape ? '' : <li><span className={overviewStyle}>{t('product.BodyShape')}: </span> {product?.bodyShape}</li>}
+                      {!product?.gearBox ? '' : <li><span className={overviewStyle}>{t('product.Gearbox')}: </span> {product?.gearBox}</li>}
+                      {!product?.fuelType ? '' : <li><span className={overviewStyle}>{t('product.FuelType')}: </span> {product?.fuelType}</li>}
+                      {!product?.km ? '' : <li><span className={overviewStyle}>{t('product.Kilometers')}: </span> {product?.km}</li>}
+                      {!product?.engineCapacity ? '' : <li><span className={overviewStyle}>{t('product.EngineCapacity')}: </span> {product?.engineCapacity}</li>}
+                      {product?.category == 'Autos' && <li><span className={overviewStyle}>{t('product.Cylinders')}: </span> {product?.cylinder}</li>}
+                      {!product?.extriorColor ? '' : <li><span className={overviewStyle}>{t('product.Exterior')}: </span> {product?.exteriorColor}</li>}
+                      {product?.category == 'Autos' && <li><span className={overviewStyle}>{t('product.Interior')}: </span> {product?.interiorColor}</li>}
                     </ul>
+                    {product?.videoUrl && <div className='flex flex-row space-x-2'><span className={`${overviewStyle}`}> <InsertLink className='text-[#FF0000] mt-[-4px]' /> {t('product.videoUrl')}: </span><Link className='hover:text-red-500' href={product?.videoUrl}> {product?.videoUrl}</Link></div>}
                   </div>
                 </div>
                 {product?.description !== "" &&
@@ -274,7 +277,7 @@ function ProductDetails() {
               <div className='w-full lg:w-auto max-h-[440px]'>
                 <div className=' bg-white p-5 border rounded-lg'>
                   <div className='border-b border-gray-300'>
-                    <h1 className='text-xl text-center font-bold uppercase mb-3'>Seller Information</h1>
+                    <h1 className='text-xl text-center font-bold uppercase mb-3'>{t('product.SellerInformation')}</h1>
                   </div>
                   <div className='flex flex-row mt-4 space-x-4'>
                     <Image
@@ -290,7 +293,7 @@ function ProductDetails() {
                     {!contact && <div className='border bg-gray-800 text-md font-semibold text-white p-2 rounded-md cursor-pointer' onClick={handleChange}>
                       <div className='flex flex-row justify-center gap-2'>
                         <Phone />
-                        <span>Contact Seller</span>
+                        <span>{t('product.ContactSeller')}</span>
                       </div>
                     </div>}
                     {contact &&
@@ -310,7 +313,7 @@ function ProductDetails() {
                       : <div className='border bg-[#FF0000] text-md font-semibold text-white p-2 rounded-md cursor-pointer'>
                         <a className='flex flex-row justify-center gap-2' onClick={handleChat}>
                           <Mail />
-                          <span>Send Message</span>
+                          <span>{t('product.SendMessage')}</span>
                         </a>
                       </div>
                     }
@@ -318,7 +321,8 @@ function ProductDetails() {
                 </div>
               </div>
               <div className='mt-5 bg-white p-3 space-y-3'>
-                <h1 className='font-bold text-xl'>Location</h1>
+                <h1 className='font-bold text-xl'>  {t('product.Location')}
+                </h1>
                 <div className='flex flex-row gap-2 text-gray-600'>
                   <Place className='text-[#FF0000]' />
                   <h1>{product?.address}</h1>

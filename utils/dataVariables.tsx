@@ -51,41 +51,6 @@ export const list4 = [
 
 
 // post ad variables
-export const list = [
-    {
-        name: 'Autos'
-    },
-    {
-        name: 'Bikes'
-    },
-    {
-        name: 'Boats'
-    },
-    {
-        name: 'Busses'
-    },
-    {
-        name: 'Construction Machines'
-    },
-    {
-        name: 'Drones'
-    },
-    {
-        name: 'Others'
-    },
-    {
-        name: 'Parts'
-    },
-    {
-        name: 'Trailers'
-    },
-    {
-        name: 'Trucks'
-    },
-    {
-        name: 'Vans'
-    }
-]
 
 export const subList = [
     {

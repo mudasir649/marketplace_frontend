@@ -332,12 +332,120 @@
     }
   
   
+  , 
   
+    "list2": [
       
+        "Buy and Sell Quickly"
+      ,
       
+        "Promote Your Ad"
+      ,
       
+     "Banner Advertising"
     
+    ],
+    "list3": [
+      
+         "About Eidcarosse" ,
+      
+       "Contact" ,
+       "Blog"
+      
+    ],
+    "list4": [
+       "FAQ",
+        "faq"
+      ,
+       "Privacy Policy",
+        "privacy-policy"
+     ,
+      "Terms & Conditions",
+      "terms-and-condition"
+      
+    ] , 
+    "faq": {
+      
+      "pageTitle": "Frequently Asked",
+      
+        "title1": "HOW DO I POST AN AD?",
+        "description1": "You can easily post your ad; Just tap on the plus (+) icon & then login and submit your ad with proper data. You will get a notification after submitting your ad."
+      
+      ,
+        "title2": "HOW DO I EDIT/DELETE MY ADS?",
+        "description2": "Simply login and go to Account => my listing & you will get a list of your ads. Each ad has a delete option.",
+        "title3": "HOW TO EDIT MY AD?",
+        "description3": "Simply login and go to Account => my listing & you will get a list of your ads. Each ad has an edit option."
+      ,
+      
+        "title4": "HOW MANY DAYS MY ADS WILL REMAIN ACTIVE?",
+        "description4": "It depends on your settings how many days the listing will be active, depending on it ads will be visible."
+      ,
+      
+        "title5": "HOW MANY ADS CAN I POST FOR FREE?",
+        "description5": "It depends on your settings on the website; sellers will get a number of free ads to post for a certain number of days."
+      ,
+      
+        "title6": "HOW CAN I EDIT MY ACCOUNT INFORMATION?",
+        "description6": "Login, then go to my account, you will get your account information edit option."
+      ,
+      
+        "title7": "HOW TO START CHAT WITH SOMEONE?",
+        "description7": "Go to the details of an ad; you will get an email, phone, and chat option. Just tap the chat icon and start your conversation."
+      ,
+      
+        "title8": "WILL I GET CHAT NOTIFICATIONS AS A SELLER?",
+        "description8": "Yes. For chat requests or emails, sellers will get an email notification. For chat, buyers will get the first initial message as an email notification."
+      
+    } , 
+
+    "sell": {
+      "sellPage": "How To Sell Fast",
+        "title1": "PICK THE RIGHT PRICE",
+        "description1": "Price is a big factor for customers who purchase the item. So before setting the price, visit similar ads and set a reasonable and competitive price."
+      ,
+      
+        "title2": "USE GREAT PHOTOS",
+        "description2": "Use clear and actual photos of your product/products. You can use multiple images from different views so buyers will get a clearer idea about your item/items."
+      
+      ,
+        "title3": "PROVIDE CLEAR DESCRIPTION",
+        "description3": "Provide a clear and detailed description of your product. Make sure you've added the right information about your items/items."
+      
+    } , 
+
     
-  
-  
+      "subList": [
+         "Bicycles",  
+        "E-scooter",  
+        "E-bikes", 
+        "Motorcycle" 
+      ]  ,
+
+      "product": {
+        "Condition": "Condition",
+        "Brand": "Brand",
+        "Year": "Year",
+        "BodyShape": "Body Shape",
+        "Gearbox": "Gearbox",
+        "FuelType": "Fuel Type",
+        "Kilometers": "Kilometers",
+        "EngineCapacity": "Engine Capacity",
+        "Cylinders": "Cylinders",
+        "Exterior": "Exterior",
+        "videoUrl": "Video URL",
+
+        "Interior": "Interior",
+        "Price": "Price",
+        "Euro": "Euro",
+        "Views": "Views",
+        "Favorite": "Favorite",
+        "Share": "Share",
+        "Description": "Description",
+        "SellerInformation": "Seller Information",
+        "ContactSeller": "Contact Seller",
+        "SendMessage": "Send Message",
+        "Location": "Location" , 
+        "Overview": "Overview"
+      }
 }

@@ -284,5 +284,94 @@
     "placeholderMessage": "Mensaje*",
     "buttonSubmit": "Enviar",
     "contactUs": "Contáctenos"
-  }
+  } , 
+  
+    "list2": [
+      "Comprar y vender rápidamente",
+      "Promocione su anuncio",
+      "Publicidad en banners"
+    ],
+    "list3": [
+      "Acerca de Eidcarosse",
+      "Contacto",
+      "Blog"
+    ],
+    "list4": [
+      "Preguntas frecuentes",
+      "Política de privacidad",
+      "Términos y condiciones"
+    ]
+  ,
+  
+    "faq": {
+      "pageTitle": "Preguntas Frecuentes",
+      "title1": "¿CÓMO PUBLICO UN ANUNCIO?",
+      "description1": "Puede publicar su anuncio fácilmente. Simplemente toque el icono de más (+), inicie sesión y envíe su anuncio con los datos adecuados. Recibirá una notificación después de enviar su anuncio."
+      ,
+      "title2": "¿CÓMO PUEDO EDITAR/ELIMINAR MIS ANUNCIOS?",
+      "description2": "Simplemente inicie sesión y vaya a Cuenta => Mis anuncios. Obtendrá una lista de sus anuncios. Cada anuncio tiene una opción de eliminación."
+      ,
+      "title3": "¿CÓMO EDITO MI ANUNCIO?",
+      "description3": "Simplemente inicie sesión y vaya a Cuenta => Mis anuncios. Obtendrá una lista de sus anuncios. Cada anuncio tiene una opción de edición."
+      ,
+      "title4": "¿CUÁNTOS DÍAS PERMANECERÁN ACTIVOS MIS ANUNCIOS?",
+      "description4": "Depende de su configuración. El número de días que un anuncio permanecerá activo depende de su configuración y de ello dependerá su visibilidad."
+      ,
+      "title5": "¿CUÁNTOS ANUNCIOS PUEDO PUBLICAR GRATIS?",
+      "description5": "Depende de su configuración en el sitio web. Los vendedores pueden publicar un número de anuncios gratuitos durante un cierto número de días."
+      ,
+      "title6": "¿CÓMO PUEDO EDITAR LA INFORMACIÓN DE MI CUENTA?",
+      "description6": "Inicie sesión y vaya a Mi cuenta, allí encontrará la opción para editar la información de su cuenta."
+      ,
+      "title7": "¿CÓMO EMPEZAR UNA CHARLA CON ALGUIEN?",
+      "description7": "Vaya a los detalles de un anuncio; encontrará una opción de correo electrónico, teléfono y chat. Simplemente toque el icono de chat y comience su conversación."
+      ,
+      "title8": "¿RECIBIRÉ NOTIFICACIONES DE CHAT COMO VENDEDOR?",
+      "description8": "Sí. Para solicitudes de chat o correos electrónicos, los vendedores recibirán una notificación por correo electrónico. Para el chat, el comprador recibirá el primer mensaje inicial como notificación por correo electrónico."
+      } , 
+      
+        "sell": {
+          "sellPage": "Cómo vender rápido",
+          "title1": "ELIJA EL PRECIO CORRECTO",
+          "description1": "El precio es un factor importante para los clientes que compran el artículo. Antes de establecer el precio, visite anuncios similares y establezca un precio razonable y competitivo."
+          ,
+          "title2": "USE GRANDES FOTOS",
+          "description2": "Utilice fotos claras y actuales de su producto/sus productos. Puede utilizar varias imágenes desde diferentes ángulos para que los compradores obtengan una idea más clara de su artículo/sus artículos."
+          ,
+          "title3": "PROPORCIONE UNA DESCRIPCIÓN CLARA",
+          "description3": "Proporcione una descripción clara y detallada de su producto. Asegúrese de haber añadido la información correcta sobre sus artículos."
+        } , 
+        "subList": [
+          "Bicicletas",
+          "Patinete eléctrico",
+          "Bicicletas eléctricas",
+          "Motocicleta"
+        ] , 
+        
+          "product": {
+            "Condition": "Condición",
+            "Brand": "Marca",
+            "Year": "Año",
+            "BodyShape": "Forma del cuerpo",
+            "Gearbox": "Caja de cambios",
+            "FuelType": "Tipo de combustible",
+            "Kilometers": "Kilómetros",
+            "EngineCapacity": "Capacidad del motor",
+            "Cylinders": "Cilindros",
+            "Exterior": "Exterior",
+            "Interior": "Interior",
+            "Price": "Precio",
+            "videoUrl": "URL del video",
+
+            "Euro": "Euro",
+            "Views": "Vistas",
+            "Favorite": "Favorito",
+            "Share": "Compartir",
+            "Description": "Descripción",
+            "SellerInformation": "Información del vendedor",
+            "ContactSeller": "Contactar al vendedor",
+            "SendMessage": "Enviar mensaje",
+            "Location": "Ubicación", 
+        "Overview": "Resumen"
+          } 
 }

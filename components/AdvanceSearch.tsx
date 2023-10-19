@@ -49,6 +49,7 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
     // Redux hooks
     const { t } = useTranslation(); // Initialize the translation hook
 
+    
     const { page, address, title } = useSelector((state: any) => state.app);
     const [fav, setFav] = useState<Boolean>(false);
     const [loading, setLoading] = useState<Boolean>(false);

@@ -276,5 +276,95 @@
     "placeholderMessage": "Message*",
     "buttonSubmit": "Envoyer",
     "contactUs": "Nous contacter"
-  }
+  } , 
+  
+    "list2": [
+      "Achetez et vendez rapidement",
+      "Promouvez votre annonce",
+      "Publicité en bannière"
+    ],
+    "list3": [
+      "À propos d'Eidcarosse",
+      "Contact",
+      "Blog"
+    ],
+    "list4": [
+      "FAQ",
+      "Politique de confidentialité",
+      "Conditions d'utilisation"
+    ]
+  ,
+  
+    "faq": {
+      
+      "title1": "COMMENT PUIS-JE POSTER UNE ANNONCE ?",
+      "description1": "Vous pouvez facilement poster votre annonce. Il vous suffit de cliquer sur l'icône plus (+), de vous connecter et de soumettre votre annonce avec les informations appropriées. Vous recevrez une notification après avoir soumis votre annonce."
+      ,
+      "title2": "COMMENT PUIS-JE MODIFIER/ SUPPRIMER MES ANNONCES ?",
+      "description2": "Il vous suffit de vous connecter et d'aller dans Compte => Mes annonces. Vous obtiendrez une liste de vos annonces. Chaque annonce dispose d'une option de suppression."
+      ,
+      "title3": "COMMENT MODIFIER MON ANNONCE ?",
+      "description3": "Il vous suffit de vous connecter et d'aller dans Compte => Mes annonces. Vous obtiendrez une liste de vos annonces. Chaque annonce dispose d'une option de modification."
+      ,
+      "title4": "COMBIEN DE TEMPS MES ANNONCES RESTERONT-ELLES ACTIVES ?",
+      "description4": "Cela dépend de vos paramètres. Le nombre de jours pendant lesquels l'annonce restera active dépend de vos paramètres et déterminera sa visibilité."
+      ,
+      "title5": "COMBIEN D'ANNONCES PUIS-JE POSTER GRATUITEMENT ?",
+      "description5": "Cela dépend de vos paramètres sur le site web. Les vendeurs peuvent poster un certain nombre d'annonces gratuites pendant un certain nombre de jours."
+      ,
+      "title6": "COMMENT PUIS-JE MODIFIER LES INFORMATIONS DE MON COMPTE ?",
+      "description6": "Connectez-vous, puis allez dans Mon compte. Vous trouverez l'option pour modifier les informations de votre compte."
+      ,
+      "title7": "COMMENT DÉMARRER UNE DISCUSSION AVEC QUELQU'UN ?",
+      "description7": "Allez dans les détails d'une annonce ; vous trouverez une option de messagerie électronique, de téléphone et de chat. Il vous suffit de cliquer sur l'icône de chat et de commencer votre conversation."
+      ,
+      "title8": "VAIS-JE RECEVOIR DES NOTIFICATIONS DE DISCUSSION EN TANT QUE VENDEUR ?",
+      "description8": "Oui. Pour les demandes de chat ou les e-mails, les vendeurs recevront une notification par e-mail. Pour la messagerie, l'acheteur recevra le premier message initial sous forme de notification par e-mail."
+      }
+  ,
+  
+    "sell": {
+      "sellPage": "Comment vendre rapidement",
+      "title1": "CHOISISSEZ LE BON PRIX",
+      "description1": "Le prix est un facteur clé pour les clients qui achètent l'article. Avant de fixer le prix, consultez des annonces similaires et définissez un prix raisonnable et compétitif."
+      ,
+      "title2": "UTILISEZ DE SUPERBES PHOTOS",
+      "description2": "Utilisez des photos claires et actuelles de votre produit/vos produits. Vous pouvez utiliser plusieurs images sous différents angles pour que les acheteurs aient une idée plus précise de votre article/vos articles."
+      ,
+      "title3": "FOURNISSEZ UNE DESCRIPTION CLAIRE",
+      "description3": "Fournissez une description claire et détaillée de votre produit. Assurez-vous d'avoir ajouté les bonnes informations concernant vos articles."
+    } , 
+    "subList": [
+      "Vélos",
+      "Trottinette électrique",
+      "Vélos électriques",
+      "Moto"
+    ] , 
+    
+      "product": {
+        "Condition": "État",
+        "Brand": "Marque",
+        "Year": "Année",
+        "BodyShape": "Forme du corps",
+        "Gearbox": "Boîte de vitesses",
+        "FuelType": "Type de carburant",
+        "Kilometers": "Kilométrage",
+        "EngineCapacity": "Cylindrée",
+        "Cylinders": "Cylindres",
+        "Exterior": "Extérieur",
+        "Interior": "Intérieur",
+        "Price": "Prix",
+        "videoUrl": "URL de la vidéo" , 
+
+        "Euro": "Euro",
+        "Views": "Vues",
+        "Favorite": "Favori",
+        "Share": "Partager",
+        "Description": "Description",
+        "SellerInformation": "Informations sur le vendeur",
+        "ContactSeller": "Contacter le vendeur",
+        "SendMessage": "Envoyer un message",
+        "Location": "Emplacement", 
+        "Overview": "Aperçu"
+      }
 }

@@ -313,9 +313,99 @@
     "placeholderMessage": "Nachricht*",
     "buttonSubmit": "Absenden",
     "contactUs": "Kontaktiere uns"
-  }
-
-
+  } , 
   
-     
+  
+    "list2": [
+      "Kaufen und schnell verkaufen",
+      "Werben Sie für Ihre Anzeige",
+      "Bannerwerbung"
+    ],
+    "list3": [
+      "Über Eidcarosse",
+      "Kontakt",
+      "Blog"
+    ],
+    "list4": [
+      "FAQ",
+      "Häufig gestellte Fragen",
+      "Datenschutzrichtlinie",
+      "Nutzungsbedingungen"
+    ]
+    ,
+
+    
+      "faq": {
+        
+      "pageTitle": "Häufig Gestellte Fragen",
+        "title1": "WIE KANN ICH EINE ANZEIGE AUFGEBEN?",
+        "description1": "Sie können ganz einfach Ihre Anzeige schalten. Tippen Sie einfach auf das Pluszeichen (+), melden Sie sich an und geben Sie Ihre Anzeige mit den richtigen Daten auf. Sie erhalten eine Benachrichtigung, nachdem Sie Ihre Anzeige gesendet haben."
+        ,
+        "title2": "WIE KANN ICH MEINE ANZEIGEN BEARBEITEN/LÖSCHEN?",
+        "description2": "Melden Sie sich einfach an und gehen Sie zu Konto => Meine Anzeigen. Dort erhalten Sie eine Liste Ihrer Anzeigen. Jede Anzeige verfügt über eine Löschoption."
+        ,
+        "title3": "WIE KANN ICH MEINE ANZEIGE BEARBEITEN?",
+        "description3": "Melden Sie sich einfach an und gehen Sie zu Konto => Meine Anzeigen. Dort erhalten Sie eine Liste Ihrer Anzeigen. Jede Anzeige verfügt über eine Bearbeitungsoption."
+        ,
+        "title4": "WIE LANGE BLEIBEN MEINE ANZEIGEN AKTIV?",
+        "description4": "Es hängt von Ihren Einstellungen ab, wie viele Tage die Anzeige aktiv bleibt. Je nachdem, wie die Einstellungen sind, werden die Anzeigen sichtbar."
+        ,
+        "title5": "WIE VIELE ANZEIGEN KANN ICH KOSTENLOS SCHALTEN?",
+        "description5": "Es hängt von Ihren Einstellungen auf der Website ab. Verkäufer können eine bestimmte Anzahl kostenloser Anzeigen für eine bestimmte Anzahl von Tagen schalten."
+        ,
+        "title6": "WIE KANN ICH MEINE KONTOINFORMATIONEN BEARBEITEN?",
+        "description6": "Melden Sie sich an und gehen Sie zu Mein Konto. Dort erhalten Sie die Bearbeitungsoption für Ihre Kontoinformationen."
+        ,
+        "title7": "WIE KANN ICH EINE UNTERHALTUNG MIT JEMANDEM BEGINNEN?",
+        "description7": "Gehen Sie zu den Details einer Anzeige. Dort finden Sie eine E-Mail-, Telefon- und Chat-Option. Tippen Sie einfach auf das Chat-Symbol und starten Sie Ihre Unterhaltung."
+        ,
+        "title8": "ERHALTE ICH ALS VERKÄUFER CHAT-BENACHRICHTIGUNGEN?",
+        "description8": "Ja. Für Chat-Anfragen oder E-Mails erhalten Verkäufer eine E-Mail-Benachrichtigung. Käufer erhalten für Chats die erste anfängliche Nachricht als E-Mail-Benachrichtigung."
+        }
+    ,
+    
+      "sell": {
+        "sellPage": "Schnell verkaufen",
+        "title1": "DEN RICHTIGEN PREIS FESTLEGEN",
+        "description1": "Der Preis ist ein wichtiger Faktor für Kunden, die den Artikel kaufen. Bevor Sie den Preis festlegen, sollten Sie ähnliche Anzeigen prüfen und einen angemessenen und wettbewerbsfähigen Preis festlegen."
+        ,
+        "title2": "VERWENDEN SIE TOLLE FOTOS",
+        "description2": "Verwenden Sie klare und aktuelle Fotos Ihres Produkts/Ihrer Produkte. Sie können mehrere Bilder aus verschiedenen Blickwinkeln verwenden, damit die Käufer eine klarere Vorstellung von Ihrem Artikel/Ihren Artikeln bekommen."
+        ,
+        "title3": "KLARE BESCHREIBUNG BEREITSTELLEN",
+        "description3": "Geben Sie eine klare und detaillierte Beschreibung Ihres Produkts an. Stellen Sie sicher, dass Sie die richtigen Informationen zu Ihren Artikeln hinzugefügt haben."
+      } , 
+      "subList": [
+        "Fahrräder",
+        "Scooter",
+        "E-Bikes",
+        "Motorrad"
+      ]
+    , 
+    
+      "product": {
+        "Condition": "Zustand",
+        "Brand": "Marke",
+        "Year": "Jahr",
+        "BodyShape": "Karosserieform",
+        "Gearbox": "Getriebe",
+        "FuelType": "Kraftstoffart",
+        "Kilometers": "Kilometerstand",
+        "EngineCapacity": "Hubraum",
+        "Cylinders": "Zylinder",
+        "Exterior": "Außenansicht",
+        "Interior": "Innenraum",
+        "Price": "Preis",
+        "Euro": "Euro",
+        "videoUrl": "Video URL",
+        "Views": "Ansichten",
+        "Favorite": "Favorit",
+        "Share": "Teilen",
+        "Description": "Beschreibung",
+        "SellerInformation": "Verkäuferinformation",
+        "ContactSeller": "Verkäufer kontaktieren",
+        "SendMessage": "Nachricht senden",
+        "Location": "Ort", 
+        "Overview": "Überblick"
+      }
 }
