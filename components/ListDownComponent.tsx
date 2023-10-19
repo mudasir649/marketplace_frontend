@@ -17,13 +17,13 @@ export default function ListDownComponent() {
     // Update the selected language in state when i18next language changes
     useEffect(() => {
         setLanguage(i18n.language);
-    }, [i18n.language]);
+    }, []);
 
     return (
-        <div>
+        <div onClick={() => setShowList(!showList)}>
             <div className="flex flex-row cursor-pointer">
                 <span>{language}</span>
-                <ArrowDropDown className="mt-[-2px]" onClick={() => setShowList(!showList)} />
+                <ArrowDropDown className="mt-[-2px]" />
             </div>
             {showList &&
                 <ul className="absolute bg-white text-black w-11 p-3 border space-y-2" data-aos="fade-up">
