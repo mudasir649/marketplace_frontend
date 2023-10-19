@@ -339,7 +339,40 @@
           ,
           "title3": "FORNIRE UNA DESCRIZIONE CHIARA",
           "description3": "Fornite una descrizione chiara e dettagliata del vostro prodotto. Assicuratevi di aver aggiunto le informazioni corrette sui vostri articoli."
-        }
+        } , 
+        "subList": [
+          "Biciclette",
+          "Monopattini elettrici",
+          "Biciclette elettriche",
+          "Motociclette"
+        ] , 
+        
+          "product": {
+            "Condition": "Condizione",
+            "Brand": "Marca",
+            "Year": "Anno",
+            "BodyShape": "Forma della carrozzeria",
+            "Gearbox": "Cambio",
+            "FuelType": "Tipo di carburante",
+            "Kilometers": "Chilometri",
+            "EngineCapacity": "Cilindrata",
+            "Cylinders": "Cilindri",
+            "Exterior": "Esterno",
+            "videoUrl": "URL del video",
+            "Interior": "Interno",
+            "Price": "Prezzo",
+            "Euro": "Euro",
+            "Views": "Visualizzazioni",
+            "Favorite": "Preferito",
+            "Share": "Condividi",
+            "Description": "Descrizione",
+            "SellerInformation": "Informazioni sul venditore",
+            "ContactSeller": "Contatta il venditore",
+            "SendMessage": "Invia messaggio",
+            "Location": "Posizione"
+          }
+        
+        
       
       
   

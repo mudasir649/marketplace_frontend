@@ -340,7 +340,41 @@
           ,
           "title3": "PROPORCIONE UNA DESCRIPCIÓN CLARA",
           "description3": "Proporcione una descripción clara y detallada de su producto. Asegúrese de haber añadido la información correcta sobre sus artículos."
-        }
+        } , 
+        "subList": [
+          "Bicicletas",
+          "Patinete eléctrico",
+          "Bicicletas eléctricas",
+          "Motocicleta"
+        ] , 
+        
+          "product": {
+            "Condition": "Condición",
+            "Brand": "Marca",
+            "Year": "Año",
+            "BodyShape": "Forma del cuerpo",
+            "Gearbox": "Caja de cambios",
+            "FuelType": "Tipo de combustible",
+            "Kilometers": "Kilómetros",
+            "EngineCapacity": "Capacidad del motor",
+            "Cylinders": "Cilindros",
+            "Exterior": "Exterior",
+            "Interior": "Interior",
+            "Price": "Precio",
+            "videoUrl": "URL del video",
+            
+            "Euro": "Euro",
+            "Views": "Vistas",
+            "Favorite": "Favorito",
+            "Share": "Compartir",
+            "Description": "Descripción",
+            "SellerInformation": "Información del vendedor",
+            "ContactSeller": "Contactar al vendedor",
+            "SendMessage": "Enviar mensaje",
+            "Location": "Ubicación"
+          }
+        
+        
       
       
   

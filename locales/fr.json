@@ -333,7 +333,41 @@
       ,
       "title3": "FOURNISSEZ UNE DESCRIPTION CLAIRE",
       "description3": "Fournissez une description claire et détaillée de votre produit. Assurez-vous d'avoir ajouté les bonnes informations concernant vos articles."
-    }
+    } , 
+    "subList": [
+      "Vélos",
+      "Trottinette électrique",
+      "Vélos électriques",
+      "Moto"
+    ] , 
+    
+      "product": {
+        "Condition": "État",
+        "Brand": "Marque",
+        "Year": "Année",
+        "BodyShape": "Forme du corps",
+        "Gearbox": "Boîte de vitesses",
+        "FuelType": "Type de carburant",
+        "Kilometers": "Kilométrage",
+        "EngineCapacity": "Cylindrée",
+        "Cylinders": "Cylindres",
+        "Exterior": "Extérieur",
+        "Interior": "Intérieur",
+        "Price": "Prix",
+        "videoUrl": "URL de la vidéo" , 
+        
+        "Euro": "Euro",
+        "Views": "Vues",
+        "Favorite": "Favori",
+        "Share": "Partager",
+        "Description": "Description",
+        "SellerInformation": "Informations sur le vendeur",
+        "ContactSeller": "Contacter le vendeur",
+        "SendMessage": "Envoyer un message",
+        "Location": "Emplacement"
+      }
+    
+    
   
   
   

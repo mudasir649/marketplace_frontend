@@ -1,5 +1,5 @@
 import { setProductData, setProductsCount } from '@/store/appSlice';
-import { partsSubList, subList } from '@/utils/dataVariables';
+import { partsSubList,  } from '@/utils/dataVariables';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import React from 'react'
@@ -8,9 +8,24 @@ import { useTranslation } from 'react-i18next';
 
 
 export default function CategoryList({ setCategory, setExpand }: any) {
+     
+    
     const { t } = useTranslation(); // Initialize the translation hook
-
-    const { page } = useSelector((state: any) => state.app);
+    const subList = [
+        {
+          name: t('subList.0')
+        },
+        {
+          name: t('subList.1')
+        },
+        {
+          name: t('subList.2')
+        },
+        {
+          name: t('subList.3')
+        }
+      ];
+       const { page } = useSelector((state: any) => state.app);
     const dispatch = useDispatch();
 
     const liStyle = 'hover:text-[#FF0000] border-b border-gray-200';

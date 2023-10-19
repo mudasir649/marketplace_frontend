@@ -412,7 +412,42 @@
         "title3": "PROVIDE CLEAR DESCRIPTION",
         "description3": "Provide a clear and detailed description of your product. Make sure you've added the right information about your items/items."
       
-    }
+    } , 
+
+    
+      "subList": [
+         "Bicycles",  
+        "E-scooter",  
+        "E-bikes", 
+        "Motorcycle" 
+      ]  ,
+
+      "product": {
+        "Condition": "Condition",
+        "Brand": "Brand",
+        "Year": "Year",
+        "BodyShape": "Body Shape",
+        "Gearbox": "Gearbox",
+        "FuelType": "Fuel Type",
+        "Kilometers": "Kilometers",
+        "EngineCapacity": "Engine Capacity",
+        "Cylinders": "Cylinders",
+        "Exterior": "Exterior",
+        "videoUrl": "Video URL",
+        
+        "Interior": "Interior",
+        "Price": "Price",
+        "Euro": "Euro",
+        "Views": "Views",
+        "Favorite": "Favorite",
+        "Share": "Share",
+        "Description": "Description",
+        "SellerInformation": "Seller Information",
+        "ContactSeller": "Contact Seller",
+        "SendMessage": "Send Message",
+        "Location": "Location"
+      }
+    
   
   
       

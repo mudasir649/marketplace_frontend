@@ -374,7 +374,40 @@
         ,
         "title3": "KLARE BESCHREIBUNG BEREITSTELLEN",
         "description3": "Geben Sie eine klare und detaillierte Beschreibung Ihres Produkts an. Stellen Sie sicher, dass Sie die richtigen Informationen zu Ihren Artikeln hinzugefügt haben."
+      } , 
+      "subList": [
+        "Fahrräder",
+        "Scooter",
+        "E-Bikes",
+        "Motorrad"
+      ]
+    , 
+    
+      "product": {
+        "Condition": "Zustand",
+        "Brand": "Marke",
+        "Year": "Jahr",
+        "BodyShape": "Karosserieform",
+        "Gearbox": "Getriebe",
+        "FuelType": "Kraftstoffart",
+        "Kilometers": "Kilometerstand",
+        "EngineCapacity": "Hubraum",
+        "Cylinders": "Zylinder",
+        "Exterior": "Außenansicht",
+        "Interior": "Innenraum",
+        "Price": "Preis",
+        "Euro": "Euro",
+        "videoUrl": "Video URL",
+        "Views": "Ansichten",
+        "Favorite": "Favorit",
+        "Share": "Teilen",
+        "Description": "Beschreibung",
+        "SellerInformation": "Verkäuferinformation",
+        "ContactSeller": "Verkäufer kontaktieren",
+        "SendMessage": "Nachricht senden",
+        "Location": "Ort"
       }
+    
     
     
     
