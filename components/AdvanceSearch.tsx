@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
-import Home from '@/components/Home';
 import {
     AirportShuttle, BuildCircle, Chat, DataSaverOn, DirectionsBike, DirectionsBoat, DirectionsBus,
     DirectionsCar, Favorite, FireTruck, Flight, KeyboardDoubleArrowLeft, KeyboardDoubleArrowRight, LocationOn, PhoneEnabled,
@@ -16,7 +15,7 @@ import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import { usePathname, useRouter } from 'next/navigation';
 import { conditionList, sortByList, subList } from '@/utils/dataVariables';
-import { setPage, setProductId, setShowShare } from '@/store/appSlice';
+import { setPage, setProductData, setProductId, setProductUserId, setProductsCount, setShowShare } from '@/store/appSlice';
 import addInvertedComma from '@/utils/addInvertedComma';
 import ProductList from './ProductList';
 import { faClock, faMessage } from "@fortawesome/free-solid-svg-icons";
@@ -28,7 +27,7 @@ import { useTranslation } from 'react-i18next';
 interface IList {
     logo: any,
     name: string,
-    name1: string , 
+    name1: string,
     quantity: number
 }
 
@@ -45,7 +44,7 @@ interface IRating {
 }
 
 
-export default function AdvanceSearch({ category, subCategory, brands, productsCount, productData, setProductData, setProductsCount }: any) {
+export default function AdvanceSearch({ category, subCategory, brands }: any) {
 
     // Redux hooks
     const { t } = useTranslation(); // Initialize the translation hook
@@ -57,6 +56,8 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
     const pathname = usePathname();
     const dispatch = useDispatch();
     const { userInfo } = useSelector((state: any) => state.auth);
+    const { productData, productsCount } = useSelector((state: any) => state.app);
+    const [prodId, setProdId] = useState<any>([]);
     const userId = userInfo?.data?.userDetails?._id;
 
 
@@ -174,33 +175,13 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
         Aos.init();
     }, []);
 
-    const logoStyle1 = newWidth < 370 ? 'text-[8px]' : 'text-[10px] md:text-base lg:text-xl';
-
-    const logo = [
-        {
-            name: <PhoneEnabled className={logoStyle1} />
-        },
-        {
-            name: <Chat className={logoStyle1} />
-        },
-        {
-            name: <Share className={logoStyle1} />
-        },
-        {
-            name: <RemoveRedEye className={logoStyle1} />
-        },
-        {
-            name: <span className='text-[8px] md:text-sm'>123</span>
-        }
-    ];
-
     const handleSearch = async (value: any) => {
         dispatch(setPage(1))
         router.push(`/advance-search/${value}`)
     }
 
     const handleFilterData = (e: any) => {
-        setFiltersData({ ...filtersData, [e.target.name ]: e.target.value });
+        setFiltersData({ ...filtersData, [e.target.name]: e.target.value });
     }
 
     const inputStyle = 'border border-gray-300 hover:border-red-600 focus:outline-red-600 rounded-sm w-32 lg:w-32 h-10 p-2 cursor-pointer';
@@ -215,8 +196,8 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
         if (pathname == '/advance-search/search') {
             try {
                 const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address}&title=${title}&minPrice=${minPrice}&maxPrice=${maxPrice}`);
-                setProductData(res.data?.data?.ad);
-                setProductsCount(res.data?.data?.totalAds);
+                dispatch(setProductData(res.data?.data?.ad));
+                dispatch(setProductsCount(res.data?.data?.totalAds));
                 setLoading(false)
             } catch (error) {
                 setLoading(false)
@@ -225,8 +206,8 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
         } else {
             try {
                 const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${category}&condition=${condition}&brand=${brand}&minPrice=${minPrice}&maxPrice=${maxPrice}`);
-                setProductData(res.data?.data?.ad);
-                setProductsCount(res.data?.data?.totalAds);
+                dispatch(setProductData(res.data?.data?.ad));
+                dispatch(setProductsCount(res.data?.data?.totalAds));
                 setLoading(false)
             } catch (error) {
                 setLoading(false)
@@ -258,9 +239,12 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
         } else {
             const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/setFavorite/${productId}/${userId}`);
             if (res.status == 201) {
-                setFav(true)
+                setProdId([...prodId, productId]);
             } else {
-                setFav(false)
+                const newProdId = prodId.filter((prod: any, i: number) => {
+                    return prod !== productId;
+                });
+                setProdId(newProdId);
             }
         }
     }
@@ -268,6 +252,30 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
     const handleShare = (productId: any) => {
         dispatch(setShowShare(true))
         dispatch(setProductId(productId))
+    }
+
+
+    const findProductId = (productId: any) => {
+        return prodId.includes(productId);
+    }
+
+
+    const handleChat = async (product: any) => {
+        if (userInfo !== null) {
+            dispatch(setProductId(product?._id));
+            dispatch(setProductUserId(product?.userId?._id));
+            const data = {
+                userId: userId,
+                productUserId: product?.userId?._id,
+                productId: product?._id
+            }
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URI}/chatroom`, data);
+            if (res.status === 200) {
+                router.push('/chat');
+            }
+        } else {
+            router.push('/login')
+        }
     }
 
 
@@ -352,7 +360,7 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
                     </div>
                 </div>
                 {loading ?
-                    <div className="flex justify-center">
+                    <div className="flex justify-center w-full h-full">
                         <Image
                             src='/assets/eidcarosse.gif'
                             alt="eidcarosse_logo"
@@ -383,7 +391,7 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
                                 }
                             </div>
                             {sortByLoading ?
-                                <div className="flex justify-center">
+                                <div className="flex justify-center w-full h-full">
                                     <Image
                                         src='/assets/eidcarosse.gif'
                                         alt="eidcarosse_logo"
@@ -440,11 +448,12 @@ export default function AdvanceSearch({ category, subCategory, brands, productsC
                                                             <Share
                                                                 onClick={() => handleShare(product?._id)}
                                                                 className='cursor-pointer text-gray-400 mt-[-5px]'
+                                                                style={{ fontSize: "20px" }}
                                                             />
                                                             {userInfo !== null &&
                                                                 <>
-                                                                    <FontAwesomeIcon className='cursor-pointer text-gray-400 text-[20px]' icon={faMessage} />
-                                                                    <Favorite className={`${fav ? 'text-[#FF0000]' : 'text-gray-300'} mt-[-5px] cursor-pointer`} onClick={() => adFavorite(product?._id)} />
+                                                                    <Chat className='cursor-pointer mt-[-1.5px] text-gray-400' style={{ fontSize: "20px" }} onClick={() => handleChat(product)} />
+                                                                    <Favorite className={`${findProductId(product?._id) ? 'text-[#FF0000]' : 'text-gray-300'} mt-[-5px] cursor-pointer`} onClick={() => adFavorite(product?._id)} style={{ fontSize: "20px" }} />
                                                                 </>
                                                             }
                                                         </div>

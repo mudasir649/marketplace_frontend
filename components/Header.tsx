@@ -16,8 +16,7 @@ import { toast } from "react-toastify";
 import ShareLink from "./ShareLink";
 import SellNow from "./SellNow";
 import RepairNow from "./RepairNow";
-import { useTranslation } from 'react-i18next'; 
-
+import { useTranslation } from 'react-i18next';
 import DeleteAd from "./DeleteAd";
 import axios from "axios";
 import { setProductData, setProductsCount, setRoomsData, setShowContact } from "@/store/appSlice";
@@ -119,11 +118,11 @@ export default function Header() {
           <ul className="flex flex-col space-y-5 uppercase m-7">
             <li className={navbarLiStyle}>
               <Link href="/" onClick={() => setNavbar(false)}>
-              {t('header.home')}
+                {t('header.home')}
               </Link>
             </li>
             <li className={navbarLiStyle} onClick={() => handleAdvanceSearch('all')}>
-            {t('header.advanceSearch')}
+              {t('header.advanceSearch')}
             </li>
             <li className={navbarLiStyle} onClick={handleContact}>{t('header.contactUs')}</li>
             <li>
@@ -162,14 +161,14 @@ export default function Header() {
             <ul className="flex flex-row space-x-6 uppercase text-sm font-semibold text-white">
               <li className={navbarLiStyle}>
                 <Link href="/">
-                {t('header.home')}
+                  {t('header.home')}
                 </Link>
               </li>
               <li className={navbarLiStyle} onClick={() => handleAdvanceSearch('all')}>
-              {t('header.advanceSearch')}
+                {t('header.advanceSearch')}
               </li>
               <li className={navbarLiStyle} onClick={() => (dispatch(setShowContact(!showContact)))}>
-              {t('header.contactUs')}
+                {t('header.contactUs')}
               </li>
               <li>
                 <ListDownComponent />

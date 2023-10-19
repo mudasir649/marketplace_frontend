@@ -10,8 +10,6 @@ import { useDispatch, useSelector } from 'react-redux'
 function Page() {
 
     const { address, title, page } = useSelector((state: any) => state.app);
-    const [productData, setProductData] = useState<any>()
-    const [productsCount, setProductsCount] = useState<number>(0);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -19,8 +17,8 @@ function Page() {
             try {
                 const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address}&title=${title}`);
                 if (res.status == 200) {
-                    setProductData(res.data?.data?.ad);
-                    setProductsCount(res.data?.data?.totalAds);
+                    dispatch(setProductData(res.data?.data?.ad));
+                    dispatch(setProductsCount(res.data?.data?.totalAds));
                 }
             }
             catch (error) {
@@ -33,7 +31,7 @@ function Page() {
     return (
         <div>
             <Home>
-                <AdvanceSearch setProductData={setProductData} setProductsCount={setProductsCount} productData={productData} productsCount={productsCount} />
+                <AdvanceSearch />
             </Home>
         </div>
     )

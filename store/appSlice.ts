@@ -7,6 +7,12 @@ const getProductInitialState = () => {
     return productsData;
 }
 
+const getProductCountsInitialState = () => {
+    const productDataCount = typeof window !== 'undefined' ? localStorage.getItem('productsCount') : null;
+    const productsCount = productDataCount ? productDataCount : null;
+    return productsCount;
+}
+
 
 const getChatRoomData = () => {
     const chatRoomData = typeof window !== 'undefined' ? localStorage.getItem('roomsData') : null;
@@ -24,8 +30,8 @@ const initialState = {
     productUserId: '',
     showRepairNow: false,
     showDeleteAd: false,
-    productData: null,
-    productsCount: 0,
+    productData: getProductInitialState() !== null ? getProductInitialState() : null,
+    productsCount: getProductCountsInitialState() !== null ? getProductCountsInitialState() : null,
     roomsData: getChatRoomData() !== null ? getChatRoomData() : null,
     page: 1,
     sortBy: '',
@@ -33,7 +39,7 @@ const initialState = {
     title:'',
     address: '',
     language: 'en',
-    showContact: false
+    showContact: false,
 }
 
 
@@ -62,22 +68,16 @@ const appSlice = createSlice({
         setShowDeleteAd: (state, actions) => {
             state.showDeleteAd = actions.payload
         },
-        // setProductData: (state, actions) => {
-        //     state.productData = actions.payload;
-        //     localStorage.setItem('productsData', JSON.stringify(actions.payload));
-        // },
-        // setProductsCount: (state, actions) => {
-        //     state.productsCount = actions.payload;
-        //     localStorage.setItem('productsCount', actions.payload);
-        // },
-        setProductUserId: (state, actions) => {
-            state.productUserId = actions.payload;
-        },
         setProductData: (state, actions) => {
             state.productData = actions.payload;
+            localStorage.setItem('productsData', JSON.stringify(actions.payload));
         },
         setProductsCount: (state, actions) => {
             state.productsCount = actions.payload;
+            localStorage.setItem('productsCount', actions.payload);
+        },
+        setProductUserId: (state, actions) => {
+            state.productUserId = actions.payload;
         },
         setPage: (state, actions) => {
             state.page = actions.payload

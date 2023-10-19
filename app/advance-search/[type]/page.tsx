@@ -2,8 +2,7 @@
 'use client'
 import AdvanceSearch from "@/components/AdvanceSearch"
 import Home from "@/components/Home";
-import { setType } from "@/store/appSlice";
-import productData from "@/utils/data";
+import { setProductData, setProductsCount, setType } from "@/store/appSlice";
 import axios from "axios";
 import dynamic from "next/dynamic";
 import { useParams, usePathname } from "next/navigation";
@@ -17,8 +16,6 @@ function Page() {
     const { page } = useSelector((state: any) => state.app);
     const dispatch = useDispatch();
     const [brands, setBrands] = useState<string>("");
-    const [productData, setProductData] = useState<any>()
-    const [productsCount, setProductsCount] = useState<number>(0);
 
     const subCategory = type == 'Bicycles' ? 'Bicycles' :
         type == 'E-scooter' ? 'E-scooter' :
@@ -31,15 +28,15 @@ function Page() {
         if (!subCategory) {
             const fetchData = async () => {
                 const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${checkType}`);
-                setProductData(res.data?.data.ad);
-                setProductsCount(res.data?.data.totalAds);
+                dispatch(setProductData(res.data?.data.ad));
+                dispatch(setProductsCount(res.data?.data.totalAds));
             }
             fetchData()
         } else {
             const fetchData = async () => {
                 const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&subCategory=${type}`);
-                setProductData(res.data?.data.ad);
-                setProductsCount(res.data?.data.totalAds);
+                dispatch(setProductData(res.data?.data.ad));
+                dispatch(setProductsCount(res.data?.data.totalAds));
             }
             fetchData()
         }
@@ -56,7 +53,7 @@ function Page() {
     return (
         <div>
             <Home>
-                <AdvanceSearch setProductData={setProductData} setProductsCount={setProductsCount} productData={productData} productsCount={productsCount} category={checkType} subCategory={subCategory} brands={brands} />
+                <AdvanceSearch category={checkType} subCategory={subCategory} brands={brands} />
             </Home>
         </div>
     )
