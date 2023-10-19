@@ -257,11 +257,10 @@ function ProductDetails() {
                 <div className='border-t-2 space-y-8 mt-2'>
                   <h1 className='text-xl font-bold mt-5'>
                     <span className="relative">
-                      <span>Desc</span>
+                      <span>{t('product.Description')}</span>
                       <span className="absolute bottom-0 left-0 w-10 h-1 bg-[#FF0000] top-7"></span>
                     </span>
-                    <span>ription</span>
-                  </h1>
+                   </h1>
                   <p className='inline-block break-words w-full'>
                     {product?.description}
                   </p>

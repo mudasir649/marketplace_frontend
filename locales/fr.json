@@ -355,7 +355,7 @@
         "Interior": "Intérieur",
         "Price": "Prix",
         "videoUrl": "URL de la vidéo" , 
-        
+
         "Euro": "Euro",
         "Views": "Vues",
         "Favorite": "Favori",
@@ -364,7 +364,8 @@
         "SellerInformation": "Informations sur le vendeur",
         "ContactSeller": "Contacter le vendeur",
         "SendMessage": "Envoyer un message",
-        "Location": "Emplacement"
+        "Location": "Emplacement", 
+        "Overview": "Aperçu"
       }
     
     

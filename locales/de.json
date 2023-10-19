@@ -405,7 +405,8 @@
         "SellerInformation": "Verkäuferinformation",
         "ContactSeller": "Verkäufer kontaktieren",
         "SendMessage": "Nachricht senden",
-        "Location": "Ort"
+        "Location": "Ort", 
+        "Overview": "Überblick"
       }
     
     

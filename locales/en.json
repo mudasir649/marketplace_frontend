@@ -434,7 +434,7 @@
         "Cylinders": "Cylinders",
         "Exterior": "Exterior",
         "videoUrl": "Video URL",
-        
+
         "Interior": "Interior",
         "Price": "Price",
         "Euro": "Euro",
@@ -445,7 +445,8 @@
         "SellerInformation": "Seller Information",
         "ContactSeller": "Contact Seller",
         "SendMessage": "Send Message",
-        "Location": "Location"
+        "Location": "Location" , 
+        "Overview": "Overview"
       }
     
   
