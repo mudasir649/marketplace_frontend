@@ -35,7 +35,7 @@ export default function Addtype() {
                             : pathname === '/post-ad/E-bikes' ? <BikeSubComponent type={'E-bikes'} />
                                 : pathname === '/post-ad/Motorcycle' ? <BikeSubComponent type={'Motorcycle'} />
                                     : pathname === '/post-ad/Busses' ? <VehicleSubComponent type={'Busses'} />
-                                        : pathname === '/post-ad/Construction%20Machines' ? <VehicleSubComponent type={'Construction Machine'} />
+                                        : pathname === '/post-ad/Construction%20Machines' ? <VehicleSubComponent type={'Construction Machines'} />
                                             : pathname === '/post-ad/Trailers' ? <VehicleSubComponent type={'Trailers'} />
                                                 : pathname === '/post-ad/Trucks' ? <VehicleSubComponent type={'Trucks'} />
                                                     : pathname === '/post-ad/Vans' ? <VehicleSubComponent type={'Vans'} />
