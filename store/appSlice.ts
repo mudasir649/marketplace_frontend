@@ -13,6 +13,10 @@ const getProductCountsInitialState = () => {
     return productsCount;
 }
 
+const getProdIdInitialState = (): string[] => {
+    const prodIdData = typeof window !== 'undefined' ? localStorage.getItem('prodId') : null;
+    return prodIdData ? JSON.parse(prodIdData) : [];
+};
 
 const getChatRoomData = () => {
     const chatRoomData = typeof window !== 'undefined' ? localStorage.getItem('roomsData') : null;
@@ -21,7 +25,34 @@ const getChatRoomData = () => {
 }
 
 
-const initialState = {
+interface InitialStateInterface {
+    refresh: number;
+    filterData: string[]; // Change this to match your data type.
+    showShare: boolean;
+    showSellNow: boolean;
+    productId: string;
+    productUserId: string;
+    showRepairNow: boolean;
+    showDeleteAd: boolean;
+    productData: any | null;
+    productsCount: any | null;
+    roomsData: any | null;
+    page: number;
+    sortBy: string;
+    type: string;
+    title: string;
+    address: string;
+    language: string;
+    showContact: boolean;
+    condition: string | null;
+    brand: string | null;
+    minPrice: any | null;
+    maxPrice: any | null;
+    prodId: string[];
+}
+
+
+const initialState: InitialStateInterface = {
     refresh: 0,
     filterData: [],
     showShare: false,
@@ -43,7 +74,8 @@ const initialState = {
     condition: null || '',
     brand: null || '',
     minPrice: null || '',
-    maxPrice: null || ''
+    maxPrice: null || '',
+    prodId: getProdIdInitialState()
 }
 
 
@@ -119,7 +151,11 @@ const appSlice = createSlice({
         },
         setMinPrice: (state, actions) => {
             state.minPrice = actions.payload;
-        }
+        },
+        setProdId: (state, actions) => {
+            state.prodId = actions.payload;
+            localStorage.setItem('prodId', JSON.stringify(state.prodId));
+    }
     }
 });
 
@@ -133,6 +169,6 @@ export const { refreshPage, setFilterData,
                 setProductUserId, setRoomsData, 
                 setLanguage, setShowContact, 
                 setCondition, setBrand, 
-                setMinPrice, setMaxPrice } = appSlice.actions;
+                setMinPrice, setMaxPrice, setProdId } = appSlice.actions;
 
 export default appSlice.reducer;
