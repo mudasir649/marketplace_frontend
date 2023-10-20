@@ -315,7 +315,7 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
                                 <li key={i}><input type="radio"
                                     name='condition'
                                     key={i}
-                                    value={condition}
+                                    value={list?.value}
                                     onChange={(e: any) => dispatch(setCondition(e.target.value))}
                                 />  {list?.name}</li>
                             ))}
