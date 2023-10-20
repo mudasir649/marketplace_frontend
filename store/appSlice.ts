@@ -40,6 +40,10 @@ const initialState = {
     address: '',
     language: 'en',
     showContact: false,
+    condition: null || '',
+    brand: null || '',
+    minPrice: null || '',
+    maxPrice: null || ''
 }
 
 
@@ -102,7 +106,19 @@ const appSlice = createSlice({
             state.language = actions.payload;
         },
         setShowContact: (state, actions) => {
-            state.showContact = actions.payload
+            state.showContact = actions.payload;
+        },
+        setCondition: (state, actions) => {
+            state.condition = actions.payload;
+        },
+        setBrand: (state, actions) => {
+            state.brand = actions.payload;
+        },
+        setMaxPrice: (state, actions) => {
+            state.maxPrice = actions.payload;
+        },
+        setMinPrice: (state, actions) => {
+            state.minPrice = actions.payload;
         }
     }
 });
@@ -114,6 +130,9 @@ export const { refreshPage, setFilterData,
                 setProductData, setProductsCount, 
                 setSortBy, setType,
                 setReduxTitle, setReduxAddress, 
-                setProductUserId, setRoomsData, setLanguage, setShowContact } = appSlice.actions;
+                setProductUserId, setRoomsData, 
+                setLanguage, setShowContact, 
+                setCondition, setBrand, 
+                setMinPrice, setMaxPrice } = appSlice.actions;
 
 export default appSlice.reducer;
