@@ -33,7 +33,7 @@ interface IData {
     model: any,
     description: any,
     videoUrl: any,
-    webSite: any,
+    website: any,
     address: any,
     feature_list: any,
     howToContact: any,
@@ -73,7 +73,7 @@ export default function OthersComponent({ type }: any) {
         model: null || '',
         description: null || '',
         videoUrl: null || '',
-        webSite: null || '',
+        website: null || '',
         address: null || '',
         feature_list: null || '',
         howToContact: 'Whatsapp',
@@ -421,7 +421,7 @@ export default function OthersComponent({ type }: any) {
                                 <div className='flex flex-col w-full'>
                                     <input type="text" className={style.inputStyle}
                                         name='webSite'
-                                        value={data.webSite}
+                                        value={data.website}
                                         onChange={(e: any) => handleInput(e)}
                                     />
                                     <p className='text-gray-400 text-sm'>e.g. https://example.com</p>
