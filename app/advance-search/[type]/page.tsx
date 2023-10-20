@@ -13,7 +13,7 @@ function Page() {
 
     const { type } = useParams();
 
-    const { page } = useSelector((state: any) => state.app);
+    const { page, sortBy } = useSelector((state: any) => state.app);
     const dispatch = useDispatch();
     const [brands, setBrands] = useState<string>("");
 
@@ -27,14 +27,14 @@ function Page() {
     useEffect(() => {
         if (!subCategory) {
             const fetchData = async () => {
-                const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${checkType}`);
+                const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${checkType}&sortBy=${sortBy}`);
                 dispatch(setProductData(res.data?.data.ad));
                 dispatch(setProductsCount(res.data?.data.totalAds));
             }
             fetchData()
         } else {
             const fetchData = async () => {
-                const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&subCategory=${type}`);
+                const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&subCategory=${type}&sortBy=${sortBy}`);
                 dispatch(setProductData(res.data?.data.ad));
                 dispatch(setProductsCount(res.data?.data.totalAds));
             }
@@ -48,7 +48,7 @@ function Page() {
             fetchBrands()
         }
         dispatch(setType(checkType));
-    }, [type, dispatch, page, subCategory, checkType]);
+    }, [type, dispatch, page, subCategory, checkType, sortBy]);
 
     return (
         <div>
