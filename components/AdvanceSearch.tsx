@@ -15,7 +15,7 @@ import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import { usePathname, useRouter } from 'next/navigation';
 import { conditionList, sortByList, subList } from '@/utils/dataVariables';
-import { setBrand, setCondition, setMaxPrice, setMinPrice, setPage, setProductData, setProductId, setProductUserId, setProductsCount, setShowShare, setSortBy } from '@/store/appSlice';
+import { setBrand, setCondition, setMaxPrice, setMinPrice, setPage, setProdId, setProductData, setProductId, setProductUserId, setProductsCount, setShowShare, setSortBy } from '@/store/appSlice';
 import addInvertedComma from '@/utils/addInvertedComma';
 import ProductList from './ProductList';
 import { faClock, faMessage } from "@fortawesome/free-solid-svg-icons";
@@ -57,10 +57,8 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
     const pathname = usePathname();
     const dispatch = useDispatch();
     const { userInfo } = useSelector((state: any) => state.auth);
-    const { productData, productsCount, condition, brand, minPrice, maxPrice } = useSelector((state: any) => state.app);
-    const [prodId, setProdId] = useState<any>([]);
+    const { productData, productsCount, condition, brand, minPrice, maxPrice, prodId } = useSelector((state: any) => state.app);
     const userId = userInfo?.data?.userDetails?._id;
-
 
     const { width, height } = useWindowDimensions();
     const newWidth = width || 0;
@@ -72,7 +70,6 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
         minPrice: null || '',
         maxPrice: null || ''
     })
-    const { filterData } = useSelector((state: any) => state.app);
     const router = useRouter();
 
     const pagination = () => {
@@ -91,6 +88,9 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
             return;
         }
     }
+
+    console.log(prodId);
+
 
 
     const nextHandle = () => {
@@ -192,7 +192,6 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
     const spanStyle = newWidth < 370 ? 'text-[10px] cursor-pointer font-bold' : 'text-[12px] cursor-pointer font-bold';
 
     async function applyFilter() {
-        // const { brand, condition, minPrice, maxPrice } = filtersData;
         setLoading(true);
         if (pathname == '/advance-search/search' || pathname == '/advance-search') {
             try {
@@ -236,9 +235,6 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
         setSortByLoading(false);
     }
 
-    console.log(productData);
-
-
 
     const adFavorite = async (productId: any) => {
         if (userInfo === null) {
@@ -246,12 +242,7 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
         } else {
             const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/setFavorite/${productId}/${userId}`);
             if (res.status == 201) {
-                setProdId([...prodId, productId]);
-            } else {
-                const newProdId = prodId.filter((prod: any, i: number) => {
-                    return prod !== productId;
-                });
-                setProdId(newProdId);
+                dispatch(setProdId([...prodId, productId]));
             }
         }
     }
@@ -260,12 +251,6 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
         dispatch(setShowShare(true))
         dispatch(setProductId(productId))
     }
-
-
-    const findProductId = (productId: any) => {
-        return prodId.includes(productId);
-    }
-
 
     const handleChat = async (product: any) => {
         if (userInfo !== null) {
@@ -285,6 +270,17 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
         }
     }
 
+    useEffect(() => {
+        const fetchAds = async () => {
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/getFavAds/${userId}`);
+            if (res.status === 200) {
+                dispatch(setProdId(res?.data?.data));
+            }
+        }
+        if (userInfo !== null) {
+            fetchAds();
+        }
+    }, [userId, dispatch, userInfo])
 
 
     return (
@@ -460,7 +456,7 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
                                                             {userInfo !== null &&
                                                                 <>
                                                                     <Chat className='cursor-pointer mt-[-1.5px] text-gray-400' style={{ fontSize: "20px" }} onClick={() => handleChat(product)} />
-                                                                    <Favorite className={`${findProductId(product?._id) ? 'text-[#FF0000]' : 'text-gray-300'} mt-[-5px] cursor-pointer`} onClick={() => adFavorite(product?._id)} style={{ fontSize: "20px" }} />
+                                                                    {/* <Favorite className={`${findProductId(product?._id) ? 'text-[#FF0000]' : 'text-gray-300'} mt-[-5px] cursor-pointer`} onClick={() => adFavorite(product?._id)} style={{ fontSize: "20px" }} /> */}
                                                                 </>
                                                             }
                                                         </div>

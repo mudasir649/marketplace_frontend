@@ -9,7 +9,7 @@ import './ImageSlider.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
-import { refreshPage, setProductId, setProductUserId, setShowDeleteAd } from '@/store/appSlice';
+import { refreshPage, setProdId, setProductId, setProductUserId, setShowDeleteAd } from '@/store/appSlice';
 import { setShowShare } from '@/store/appSlice';
 import addInvertedComma from '@/utils/addInvertedComma';
 import showDate from '@/utils/showDate';
@@ -25,7 +25,7 @@ export default function Product({ product, url }: any) {
   const router = useRouter();
   const { width, height } = useWindowDimensions();
   const { userInfo } = useSelector((state: any) => state.auth);
-  const { productId } = useSelector((state: any) => state.app);
+  const { prodId } = useSelector((state: any) => state.app);
   const userId = userInfo?.data?.userDetails?._id;
   const newWidth = width || 0;
   const newHeight = height || 0;
@@ -54,11 +54,19 @@ export default function Product({ product, url }: any) {
     } else {
       const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/setFavorite/${product?._id}/${userId}`);
       if (res.status == 201) {
-        setFav(true)
+        dispatch(refreshPage(refresh + 1))
       } else {
         if (pathname == '/my-favourites') {
           dispatch(refreshPage(refresh + 1))
+          const newRecord = prodId?.filter((item: any) => {
+            return item._id !== product?._id
+          });
+          dispatch(setProdId(newRecord));
         } else {
+          const newRecord = prodId?.filter((item: any) => {
+            return item._id !== product?._id
+          });
+          dispatch(setProdId(newRecord));
           setFav(false)
         }
       }
@@ -85,6 +93,24 @@ export default function Product({ product, url }: any) {
     } else {
       router.push('/login')
     }
+  }
+
+
+
+  useEffect(() => {
+    const fetchAds = async () => {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/getFavAds/${userId}`);
+      if (res.status === 200) {
+        dispatch(setProdId(res?.data?.data));
+      }
+    }
+    if (userInfo !== null) {
+      fetchAds();
+    }
+  }, [userId, dispatch, userInfo]);
+
+  const checkFavAds = () => {
+    return prodId.some((item: any) => item._id === product?._id)
   }
 
 
@@ -152,7 +178,7 @@ export default function Product({ product, url }: any) {
                     style={{ fontSize: "20px" }}
                   />
                   <Chat style={{ fontSize: "20px" }} onClick={() => handleChat()} />
-                  <Favorite className={`${fav ? 'text-[#FF0000]'
+                  <Favorite className={`${checkFavAds() ? 'text-[#FF0000]'
                     : 'text-gray-300'} cursor-pointer`}
                     onClick={() => adFavorite()}
                     style={{ fontSize: "20px" }}
