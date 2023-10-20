@@ -249,7 +249,6 @@ function ProductDetails() {
                       {!product?.extriorColor ? '' : <li><span className={overviewStyle}>{t('product.Exterior')}: </span> {product?.exteriorColor}</li>}
                       {product?.category == 'Autos' && <li><span className={overviewStyle}>{t('product.Interior')}: </span> {product?.interiorColor}</li>}
                     </ul>
-                    {product?.videoUrl && <div className='flex flex-row space-x-2'><span className={`${overviewStyle}`}> <InsertLink className='text-[#FF0000] mt-[-4px]' /> {t('product.videoUrl')}: </span><Link className='hover:text-red-500' href={product?.videoUrl}> {product?.videoUrl}</Link></div>}
                   </div>
                 </div>
                 {product?.description !== "" &&

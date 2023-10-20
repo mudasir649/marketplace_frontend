@@ -15,7 +15,7 @@ import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import { usePathname, useRouter } from 'next/navigation';
 import { conditionList, sortByList, subList } from '@/utils/dataVariables';
-import { setPage, setProductData, setProductId, setProductUserId, setProductsCount, setShowShare, setSortBy } from '@/store/appSlice';
+import { setBrand, setCondition, setMaxPrice, setMinPrice, setPage, setProductData, setProductId, setProductUserId, setProductsCount, setShowShare, setSortBy } from '@/store/appSlice';
 import addInvertedComma from '@/utils/addInvertedComma';
 import ProductList from './ProductList';
 import { faClock, faMessage } from "@fortawesome/free-solid-svg-icons";
@@ -57,7 +57,7 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
     const pathname = usePathname();
     const dispatch = useDispatch();
     const { userInfo } = useSelector((state: any) => state.auth);
-    const { productData, productsCount } = useSelector((state: any) => state.app);
+    const { productData, productsCount, condition, brand, minPrice, maxPrice } = useSelector((state: any) => state.app);
     const [prodId, setProdId] = useState<any>([]);
     const userId = userInfo?.data?.userDetails?._id;
 
@@ -192,9 +192,9 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
     const spanStyle = newWidth < 370 ? 'text-[10px] cursor-pointer font-bold' : 'text-[12px] cursor-pointer font-bold';
 
     async function applyFilter() {
-        const { brand, condition, minPrice, maxPrice } = filtersData;
+        // const { brand, condition, minPrice, maxPrice } = filtersData;
         setLoading(true);
-        if (pathname == '/advance-search/search') {
+        if (pathname == '/advance-search/search' || pathname == '/advance-search') {
             try {
                 const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address}&title=${title}&minPrice=${minPrice}&maxPrice=${maxPrice}`);
                 dispatch(setProductData(res.data?.data?.ad));
@@ -315,8 +315,8 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
                                 <li key={i}><input type="radio"
                                     name='condition'
                                     key={i}
-                                    value={list?.value}
-                                    onChange={(e: any) => handleFilterData(e)}
+                                    value={condition}
+                                    onChange={(e: any) => dispatch(setCondition(e.target.value))}
                                 />  {list?.name}</li>
                             ))}
                         </ul>
@@ -330,7 +330,7 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
                                 <select
                                     className="block mb-4 appearance-none w-full bg-white border rounded-sm border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
                                     name='brand'
-                                    onChange={(e: any) => handleFilterData(e)}
+                                    onChange={(e: any) => dispatch(setBrand(e.target.value))}
                                 >
                                     <option value="option1">Select Brand</option>
                                     {brands?.make.map((brand: any, i: number) => (
@@ -346,16 +346,16 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
                     <div className='grid grid-col-3 mt-4 space-y-3'>
                         <div className='h-auto w-auto space-x-4 mx-1'>
                             <input type='text' name='maxPrice'
-                                value={filtersData.maxPrice}
+                                value={maxPrice}
                                 className={inputStyle} placeholder={t('categorySelection.maxPrice')}
-                                onChange={(e: any) => handleFilterData(e)}
+                                onChange={(e: any) => dispatch(setMaxPrice(e.target.value))}
                             />
                             <input type='text'
                                 className={inputStyle}
                                 name='minPrice'
-                                value={filtersData.minPrice}
+                                value={minPrice}
                                 placeholder={t('categorySelection.minPrice')}
-                                onChange={(e: any) => handleFilterData(e)}
+                                onChange={(e: any) => dispatch(setMinPrice(e.target.value))}
                             />
                         </div>
                         <div className='h-auto w-full space-x-4'>

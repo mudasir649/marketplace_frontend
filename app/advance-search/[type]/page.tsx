@@ -13,7 +13,7 @@ function Page() {
 
     const { type } = useParams();
 
-    const { page, sortBy } = useSelector((state: any) => state.app);
+    const { page, sortBy, condition, brand, minPrice, maxPrice } = useSelector((state: any) => state.app);
     const dispatch = useDispatch();
     const [brands, setBrands] = useState<string>("");
 
@@ -24,17 +24,22 @@ function Page() {
 
     const checkType = type === 'Construction%20Machine' ? 'Construction Machine' : type;
 
+    console.log(condition);
+    console.log(brand);
+
+
+
     useEffect(() => {
         if (!subCategory) {
             const fetchData = async () => {
-                const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${checkType}&sortBy=${sortBy}`);
+                const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${checkType}&sortBy=${sortBy}&condition=${condition}&brand=${brand}&minPrice=${minPrice}&mxPrice=${maxPrice}`);
                 dispatch(setProductData(res.data?.data.ad));
                 dispatch(setProductsCount(res.data?.data.totalAds));
             }
             fetchData()
         } else {
             const fetchData = async () => {
-                const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&subCategory=${type}&sortBy=${sortBy}`);
+                const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&subCategory=${type}&sortBy=${sortBy}&condition=${condition}&brand=${brand}&minPrice=${minPrice}&mxPrice=${maxPrice}`);
                 dispatch(setProductData(res.data?.data.ad));
                 dispatch(setProductsCount(res.data?.data.totalAds));
             }
