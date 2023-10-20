@@ -15,7 +15,7 @@ import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import { usePathname, useRouter } from 'next/navigation';
 import { conditionList, sortByList, subList } from '@/utils/dataVariables';
-import { setPage, setProductData, setProductId, setProductUserId, setProductsCount, setShowShare } from '@/store/appSlice';
+import { setPage, setProductData, setProductId, setProductUserId, setProductsCount, setShowShare, setSortBy } from '@/store/appSlice';
 import addInvertedComma from '@/utils/addInvertedComma';
 import ProductList from './ProductList';
 import { faClock, faMessage } from "@fortawesome/free-solid-svg-icons";
@@ -221,6 +221,7 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
 
     const handleSortBy = async (e: any) => {
         const { value } = e.target;
+        dispatch(setSortBy(value))
         setSortByLoading(true);
         try {
             const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${category}&sortBy=${value}`);
@@ -289,7 +290,7 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
     return (
         <div>
             <div className='container mx-auto flex flex-col lg:flex-row mt-5 lg:mt-10 space-y-3 lg:space-y-0 lg:space-x-3 w-full mb-[500px]'>
-                <div className='bg-white shadow-lg border rounded-md w-full lg:w-[400px] h-full p-2' data-aos="fade-right">
+                <div className='bg-white shadow-lg border rounded-sm w-full lg:w-[400px] h-full p-2' data-aos="fade-right">
                     <div className='border-b flex flex-row justify-between p-2'>
                         <h1 className='text-lg font-bold'>{t('categorySelection.category')}</h1>
                     </div>
