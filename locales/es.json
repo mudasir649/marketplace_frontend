@@ -285,7 +285,6 @@
     "buttonSubmit": "Enviar",
     "contactUs": "Contáctenos"
   } , 
-  
     "list2": [
       "Comprar y vender rápidamente",
       "Promocione su anuncio",
@@ -300,9 +299,7 @@
       "Preguntas frecuentes",
       "Política de privacidad",
       "Términos y condiciones"
-    ]
-  ,
-  
+    ], 
     "faq": {
       "pageTitle": "Preguntas Frecuentes",
       "title1": "¿CÓMO PUBLICO UN ANUNCIO?",
@@ -362,7 +359,6 @@
             "Interior": "Interior",
             "Price": "Precio",
             "videoUrl": "URL del video",
-
             "Euro": "Euro",
             "Views": "Vistas",
             "Favorite": "Favorito",
@@ -372,6 +368,6 @@
             "ContactSeller": "Contactar al vendedor",
             "SendMessage": "Enviar mensaje",
             "Location": "Ubicación", 
-        "Overview": "Resumen"
+            "Overview": "Resumen"
           } 
 }

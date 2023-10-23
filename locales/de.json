@@ -1,27 +1,27 @@
 {
   "signup": {
-    "createAccount": "Konto erstellen",
-    "firstNamePlaceholder": "Geben Sie Ihren Vornamen ein",
-    "lastNamePlaceholder": "Geben Sie Ihren Nachnamen ein",
-    "phoneNumberPlaceholder": "Geben Sie Ihre Telefonnummer ein",
-    "usernamePlaceholder": "Geben Sie Ihren Benutzernamen ein",
-    "emailPlaceholder": "Geben Sie Ihre E-Mail-Adresse ein",
-    "passwordPlaceholder": "Geben Sie Ihr Passwort ein",
+    "createAccount": "Registrieren",
+    "firstNamePlaceholder": " Vornamen ein",
+    "lastNamePlaceholder": " Nachnamen ein",
+    "phoneNumberPlaceholder": " Telefonnummer ein",
+    "usernamePlaceholder": " Benutzernamen ein",
+    "emailPlaceholder": " E-Mail-Adresse ein",
+    "passwordPlaceholder": " Passwort ein",
     "registerButton": "Registrieren",
     "or": "oder",
     "continueWithGoogle": "Mit Google fortfahren",
     "alreadyHaveAccount": "Haben Sie bereits ein Konto?",
-    "login": "Einloggen"
+    "login": "Anmelden"
   } , 
   "login": {
     "login": "Anmelden",
     "continueWithGoogle": "Mit Google anmelden",
     "or": "oder",
-    "yourEmailAddress": "Deine E-Mail-Adresse",
-    "yourPassword": "Dein Passwort",
+    "yourEmailAddress": " E-Mail-Adresse",
+    "yourPassword": " Passwort",
     "loginButton": "Anmelden",
     "notAMember": "Noch kein Mitglied?",
-    "createAccount": "Konto erstellen"
+    "createAccount": "Registrieren"
   } , 
   
     "categorySelection": {
@@ -55,7 +55,7 @@
     "autosComponent": {
       "heading1": "Kategorie auswählen",
       "changeCategory": "Kategorie ändern",
-      "productInfo": "Produktinformation",
+      "productInfo": " Informationen zum Produkt",
       "title": "Titel",
       "price": "Preisgestaltung",
       "condition": "Zustand",
@@ -87,12 +87,12 @@
       "videoURLPlaceholder": "Nur YouTube oder Video-URL",
       "contactDetails": "Kontaktdaten",
       "location": "Standort",
-      "enterAddress": "Geben Sie Ihre Adresse hier ein",
+      "enterAddress": "Wählen Sie einen Standort",
       "howToContact": "Kontaktmöglichkeit ",
       "whatsapp": "WhatsApp-Nr. ",
       "viber": "Viber-Nr. ",
       "website": "Website",
-      "submit": "Senden" , 
+      "submit": "Aufgeben" , 
       "websitePlaceholder": "z.B. https://beispiel.com",
     "titleCharacterLimit": "Zeichenbegrenzung 25",
     "priceCHF": "Preis[CHF]"
@@ -105,12 +105,12 @@
       "parts": "Teile"
     } ,
     "sellRepairComponent": {
-      "sellTitle": "Möchten Sie verkaufen",
-      "sellSubtitle": "Erhalten Sie ein kostenloses Angebot für Ihr Fahrzeug",
-      "repairTitle": "Reparaturangebot anfordern",
-      "repairSubtitle": "Erhalten Sie eine für die Reparatur Ihres Autos",
-      "sellButton": "Hier klicken",
-      "repairButton": "Hier klicken"
+      "sellTitle": "Wollen Sie verkaufen",
+      "sellSubtitle": "Holen Sie sich jetzt ein kostenloses und unverbindliches Angebot für Ihr Fahrzeug",
+      "repairTitle": " Angebot für eine Reparatur anfordern",
+      "repairSubtitle": "Erhalten Sie einen ortsbezogenen Kostenvoranschlag für die Reparatur Ihres Autos",
+      "sellButton": "klicken Sie hier",
+      "repairButton": "klicken Sie hier"
     } , 
     "deleteAd": {
       "title": "Sind Sie sicher, dass Sie diese Anzeige löschen möchten?",
@@ -119,7 +119,7 @@
     } , 
     "footer": {
       "popularCategories": "Beliebte Kategorien",
-      "howToSellFast": "Schnell verkaufen",
+      "howToSellFast": "Erfolgreich verkaufen",
       "information": "Informationen",
       "helpSupport": "Hilfe & Unterstützung",
       "aboutEidcarosse": "Über Eidcarosse",
@@ -134,7 +134,7 @@
         "listDown": "Dropdown-Liste",
         "chat": "Chat",
         "adminPanelSettings": "Admin Panel Einstellungen",
-        "postYourAd": "Anzeige",
+        "postYourAd": "Inserat aufgeben",
         "hello": "Hallo",
         "myProfile": "Mein Profil",
         "myAds": "Meine Anzeigen",
@@ -189,8 +189,8 @@
         "Eidcarosse legt Wert auf die Benutzererfahrung und gewährleistet einen sicheren und transparenten Transaktionsprozess. Die Plattform bietet Messaging-Funktionen, mit denen Käufer und Verkäufer direkt kommunizieren und Bedingungen verhandeln können. Darüber hinaus bietet Eidcarosse eine Reihe von Verifizierungs- und Sicherheitsfunktionen, um allen Benutzern ein gutes Gefühl zu geben.",
         "Treten Sie noch heute Eidcarosse bei und entdecken Sie einen lebendigen Marktplatz, auf dem der Kauf und Verkauf von Fahrzeugen einfach gemacht wird. Erleben Sie die Bequemlichkeit, Transparenz und Effizienz von Eidcarosse, während Sie Ihre Reise zum Fahrzeugkauf oder -verkauf antreten. Egal, ob Sie ein Käufer sind, der nach seinem Traumfahrzeug sucht, oder ein Verkäufer, der den richtigen Käufer finden möchte, Eidcarosse ist Ihr Ziel für eine reibungslose und lohnende Erfahrung."
       ] , 
-      "placeholderAddress": "Geben Sie Ihre Adresse hier ein",
-  "placeholderKeyword": "Geben Sie hier das Stichwort ein..." , 
+      "placeholderAddress": "Wählen Sie einen Standort",
+  "placeholderKeyword": "Schlüsselwort hier eingeben ..." , 
   "repairNow":  {
     "full_name": "Vollständiger Name",
     "phone_number": "Telefonnummer",
@@ -203,8 +203,8 @@
     "submit": "Absenden"
   } , 
   "random": {
-    "latestAds": "Neueste Anzeigen",
-    "seeAllAds": "Alle Anzeigen "
+    "latestAds": "Top Inserate",
+    "seeAllAds": "Alle Inserate "
   } , 
   "postAd": {
     "selectCategory": "Kategorie auswählen",
@@ -260,23 +260,23 @@
   }  ,
 
   "TermsAndConditions": {
-    "title": "Nutzungsbedingungen",
-    "intro": "Bevor Sie den mobilen App-Dienst von Eidcarosse verwenden, ist es unerlässlich, dass Sie die folgenden Nutzungsbedingungen sorgfältig durchlesen und zustimmen. Ihre Zustimmung zu diesen Bedingungen ist erforderlich, um die App nutzen zu können. Lesen Sie die Nutzungsbedingungen vor der Verwendung des Dienstes sorgfältig durch.",
+    "title": "Allgemeine Geschäftsbedingungen",
+    "intro": "Bevor Sie den Eidcarosse-Mobil-App-Service nutzen, ist es wichtig, dass Sie diese Allgemeinen Geschäftsbedingungen sorgfältig durchlesen und ihnen zustimmen. Ihre Zustimmung zu diesen Bedingungen ist erforderlich, um die App zu nutzen. Lesen Sie die Allgemeinen Geschäftsbedingungen sorgfältig durch, bevor Sie den Service nutzen.",
     
     "title1": "Allgemeines",
-    "content1": "Eidcarosse macht Werbetreibende und Benutzer dafür verantwortlich, sicherzustellen, dass alle auf der Plattform hochgeladenen Inhalte, einschließlich Bilder, Videos, Grafiken und Text, den geltenden Gesetzen entsprechen. Etwaige Ungenauigkeiten oder rechtliche Probleme, die sich aus den veröffentlichten Inhalten ergeben, liegen nicht in der Verantwortung von Eidcarosse. Sowohl Werbetreibende als auch Benutzer garantieren, dass ihre Inhalte keine Urheberrechte, geistigen Eigentumsrechte oder andere Rechte von Einzelpersonen oder Organisationen verletzen. Durch die Nutzung des Dienstes erklärt sich der Benutzer oder Werbetreibende damit einverstanden, Eidcarosse von jeglichen Verpflichtungen, Ansprüchen oder Haftungen im Zusammenhang mit der Nutzung oder Unfähigkeit zur Nutzung der Plattform freizustellen. Darüber hinaus willigen Werbetreibende ein, dass ihre Inhalte auf Partnerseiten von Eidcarosse angezeigt werden können, unter denselben Nutzungsbedingungen wie auf Eidcarosse selbst.",
+    "content1": "Eidcarosse macht Werbetreibende und Benutzer dafür verantwortlich, sicherzustellen, dass alle Inhalte, einschließlich Bilder, Videos, Grafiken und Texte, die auf der Plattform hochgeladen werden, den geltenden Gesetzen entsprechen. Für Ungenauigkeiten oder rechtliche Probleme, die aus dem geposteten Inhalt entstehen, ist Eidcarosse nicht verantwortlich. Sowohl Werbetreibende als auch Benutzer garantieren, dass ihre Inhalte keine Urheberrechte, geistigen Eigentumsrechte oder andere Rechte einer Person oder Einrichtung verletzen. Durch die Nutzung des Dienstes erklärt der Benutzer oder Werbetreibende, Eidcarosse von jeglichen Verpflichtungen, Ansprüchen oder Haftungen im Zusammenhang mit der Nutzung oder Unfähigkeit zur Nutzung der Plattform freizustellen. Darüber hinaus erklären sich Werbetreibende damit einverstanden, dass ihre Inhalte auf Partnerseiten von Eidcarosse angezeigt werden, unter den gleichen Bedingungen wie auf Eidcarosse selbst.",
     
     "title2": "Urheberrecht",
-    "content2": "Werbetreibende gewähren Eidcarosse eine unbefristete, unwiderrufliche, gebührenfreie, nicht-exklusive Lizenz und das Recht zur Nutzung, Änderung, Vervielfältigung, Veröffentlichung, Anpassung, Übersetzung, Erstellung von abgeleiteten Werken, Verbreitung oder Integration der bereitgestellten Inhalte in jede Form, Technologie oder Medium, sei es gegenwärtig bekannt oder in Zukunft entwickelt.",
+    "content2": "Werbetreibende gewähren Eidcarosse eine unbefristete, unwiderrufliche, gebührenfreie, nicht exklusive Lizenz und das Recht, die bereitgestellten Inhalte in jede Form, Technologie oder jedes Medium zu nutzen, zu ändern, zu reproduzieren, zu veröffentlichen, anzupassen, zu übersetzen, abgeleitete Werke zu erstellen, zu verteilen oder in diese einzuarbeiten, sei es derzeit bekannt oder in der Zukunft entwickelt.",
     
     "title3": "Wasserzeichen",
-    "content3": "Eidcarosse versieht alle Bilder mit Wasserzeichen, um deren unbefugte Wiederverwendung für andere Zwecke ohne ausdrückliche Genehmigung des Werbetreibenden zu verhindern.",
+    "content3": "Eidcarosse bringt Wasserzeichen auf alle Bilder an, um deren unbefugte Wiederverwendung für andere Zwecke ohne ausdrückliche Genehmigung des Werbetreibenden zu verhindern.",
     
     "title4": "Sicherheit und Bilder",
-    "content4": "Eidcarosse behält sich das Recht vor, die Titel jeglicher Inhalte in der App aus redaktionellen Gründen zu ändern.",
+    "content4": "Eidcarosse behält sich das Recht vor, die Titel beliebiger Inhalte in der App aus redaktionellen Gründen zu ändern.",
     
-    "title5": "Persönliche Daten",
-    "content5": "Eidcarosse behält sich das Recht vor, im Falle von Rechtsverletzungen durch Inhalte in der App mit den Behörden zusammenzuarbeiten. Die Identität von Benutzern, Käufern oder Werbetreibenden kann beispielsweise über einen ISP ermittelt werden. IP-Adressen können ebenfalls registriert werden, um die Einhaltung der Nutzungsbedingungen sicherzustellen.",
+    "title5": "Persönlich",
+    "content5": "Eidcarosse behält sich das Recht vor, bei Verstoß gegen das Gesetz jeden Inhalt auf der App zu bearbeiten oder zu entfernen, um mit den Behörden zusammenzuarbeiten. Die Identität von Benutzern, Käufern oder Werbetreibenden kann beispielsweise durch einen Internetdienstanbieter (ISP) festgestellt werden. IP-Adressen können ebenfalls registriert werden, um die Einhaltung der Allgemeinen Geschäftsbedingungen zu gewährleisten.",
     
     "title6": "Cookies",
     "content6": "Cookies sind kleine Dateien mit geringen Datenmengen, die oft zur eindeutigen anonymen Identifizierung verwendet werden. Die Website, die Sie besuchen, sendet sie an Ihren Browser und speichert sie im internen Speicher Ihres Geräts. Obwohl unsere App oder unser Dienst Cookies möglicherweise nicht explizit verwendet, können sie von Drittanbieter-Codes genutzt werden, um Informationen zu sammeln und ihre Dienste zu verbessern. Sie werden darüber informiert, wenn Cookies an Ihr Gerät gesendet werden, und haben die Möglichkeit, sie zu akzeptieren oder abzulehnen. Das Ablehnen von Cookies kann Sie jedoch daran hindern, auf einige Dienste zuzugreifen.",
@@ -302,8 +302,8 @@
     "title13": "Änderungen",
     "content13": "Eidcarosse behält sich das Recht vor, diese Nutzungsbedingungen zu ändern oder zu modifizieren. Solche Änderungen oder Modifikationen werden unverzüglich nach ihrer Veröffentlichung auf Eidcarosse wirksam. Sie sind verpflichtet, regelmäßig auf solche Änderungen zu überprüfen. Ihre fortgesetzte Nutzung von Eidcarosse gilt als Ihre Zustimmung zu den geänderten Nutzungsbedingungen.",
     
-    "title14": "Geltendes Recht",
-    "content14": "Eidcarosse wird gemäß den Gesetzen und Vorschriften des jeweiligen Landes betrieben."
+    "title14": "Anwendbares Recht",
+    "content14": "Eidcarosse wird nach den Gesetzen und Vorschriften des jeweiligen Landes betrieben."
   }
   , 
    
@@ -337,29 +337,29 @@
     
       "faq": {
         
-      "pageTitle": "Häufig Gestellte Fragen",
-        "title1": "WIE KANN ICH EINE ANZEIGE AUFGEBEN?",
+      "pageTitle": "HÄUFIG GEFRAGT",
+        "title1": "WIE KANN ICH EIN INSERAT PUBLIZIEREN?",
         "description1": "Sie können ganz einfach Ihre Anzeige schalten. Tippen Sie einfach auf das Pluszeichen (+), melden Sie sich an und geben Sie Ihre Anzeige mit den richtigen Daten auf. Sie erhalten eine Benachrichtigung, nachdem Sie Ihre Anzeige gesendet haben."
         ,
-        "title2": "WIE KANN ICH MEINE ANZEIGEN BEARBEITEN/LÖSCHEN?",
+        "title2": "WIE KANN ICH MEINE INSERATE BEARBEITEN/LÖSCHEN?",
         "description2": "Melden Sie sich einfach an und gehen Sie zu Konto => Meine Anzeigen. Dort erhalten Sie eine Liste Ihrer Anzeigen. Jede Anzeige verfügt über eine Löschoption."
         ,
-        "title3": "WIE KANN ICH MEINE ANZEIGE BEARBEITEN?",
+        "title3": "WIE KANN ICH MEINE INSERATE BEARBEITEN?",
         "description3": "Melden Sie sich einfach an und gehen Sie zu Konto => Meine Anzeigen. Dort erhalten Sie eine Liste Ihrer Anzeigen. Jede Anzeige verfügt über eine Bearbeitungsoption."
         ,
         "title4": "WIE LANGE BLEIBEN MEINE ANZEIGEN AKTIV?",
         "description4": "Es hängt von Ihren Einstellungen ab, wie viele Tage die Anzeige aktiv bleibt. Je nachdem, wie die Einstellungen sind, werden die Anzeigen sichtbar."
         ,
-        "title5": "WIE VIELE ANZEIGEN KANN ICH KOSTENLOS SCHALTEN?",
+        "title5": "WIE VIEL INSERATE KANN ICH KOSTENLOS PUBLIZIEREN?",
         "description5": "Es hängt von Ihren Einstellungen auf der Website ab. Verkäufer können eine bestimmte Anzahl kostenloser Anzeigen für eine bestimmte Anzahl von Tagen schalten."
         ,
         "title6": "WIE KANN ICH MEINE KONTOINFORMATIONEN BEARBEITEN?",
         "description6": "Melden Sie sich an und gehen Sie zu Mein Konto. Dort erhalten Sie die Bearbeitungsoption für Ihre Kontoinformationen."
         ,
-        "title7": "WIE KANN ICH EINE UNTERHALTUNG MIT JEMANDEM BEGINNEN?",
+        "title7": "WIE STARTE ICH EINEN CHAT MIT JEMANDEM?",
         "description7": "Gehen Sie zu den Details einer Anzeige. Dort finden Sie eine E-Mail-, Telefon- und Chat-Option. Tippen Sie einfach auf das Chat-Symbol und starten Sie Ihre Unterhaltung."
         ,
-        "title8": "ERHALTE ICH ALS VERKÄUFER CHAT-BENACHRICHTIGUNGEN?",
+        "title8": "ERHALTE ICH ALS VERKÄUFER CHAT-BENACHRICHTIGUNGEN?",
         "description8": "Ja. Für Chat-Anfragen oder E-Mails erhalten Verkäufer eine E-Mail-Benachrichtigung. Käufer erhalten für Chats die erste anfängliche Nachricht als E-Mail-Benachrichtigung."
         }
     ,

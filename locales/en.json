@@ -447,5 +447,67 @@
         "SendMessage": "Send Message",
         "Location": "Location" , 
         "Overview": "Overview"
-      }
+      } , 
+      
+        "Home": {
+          "SelectCategory": {
+            "Title": "Select Category",
+            "ChangeCategory": "Change category"
+          },
+          "ProductInformation": {
+            "Title": "Product Information",
+            "Pricing": "Pricing",
+            "PriceCHF": "Price ",
+            "Condition": "Condition",
+            "Brand": "Brand",
+            "Model": "Model",
+            "Year": "Year",
+            "BodyShape": "Body Shape",
+            "GearBox": "Gear Box",
+            "FuelType": "Fuel Type",
+            "Kilometers": "Kilometers",
+            "EngineCapacity": "Engine Capacity",
+            "Color": "Color"
+          },
+          "CharacterLimit": "Character limit 25",
+          "SelectBrand": "Select Brand",
+          "SelectBodyShape": "Select Body Shape",
+          "SelectGearType": "Select Gear Type",
+          "SelectFuelType": "Select Fuel Type",
+          "SelectColorType": "Select Color Type",
+          "Description": "Description",
+          "Images": {
+            "Title": "Images",
+            "RecommendedSize": "Recommended image size to (870x493)px.",
+            "MaxSize": "Image maximum size 2 MB.",
+            "AllowedType": "Allowed image type (png, jpg, jpeg, webp).",
+            "UploadLimit": "You can upload up to 5 images."
+          },
+          "VideoURL": {
+            "Title": "Video URL",
+            "Placeholder": "Only Youtube or Video Url",
+            "Example": "E.g. https://www.youtube.com/watch?v=RiXdDGk_XCU, https://vimeo.com/620922414"
+          },
+          "ContactDetails": {
+            "Title": "Contact details",
+            "Location": {
+              "Title": "Location",
+              "Placeholder": "enter your address here"
+            },
+            "HowToContact": "How to contact",
+            "WhatsAppNumber": "WhatsApp No",
+            "WhatsAppNumberRequired": "WhatsApp No *",
+            "WhatsAppNumberInfo": "Whatsapp number with your country code. e.g.+41xxxxxxxxxx",
+            "ViberNumber": "Viber Number",
+            "ViberNumberRequired": "Viber Number *",
+            "ViberNumberInfo": "Viber number with your country code. e.g.+41xxxxxxxxxx",
+            "Website": {
+              "Title": "Website",
+              "Placeholder": "e.g. https://example.com"
+            },
+            "SubmitButton": "Submit"
+          }
+        }
+      
+      
 }

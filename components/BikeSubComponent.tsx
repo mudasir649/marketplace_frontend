@@ -12,6 +12,8 @@ import "../app/post-ad/post-ad.css"
 import { bikesList } from '@/utils/bikesList';
 import { useSelector } from 'react-redux';
 import locateAddress from '@/utils/GoogleLocation';
+import { useTranslation } from 'react-i18next'; 
+
 
 const style = {
     inputStyle: 'border border-gray-200 hover:border-red-500 focus:outline-red-500 w-full rounded-sm h-10 pl-3',
@@ -73,6 +75,7 @@ export default function BikeSubComponent({ type }: any) {
     const [showLocation, setShowLocation] = useState<Boolean>(false);
     let router = useRouter();
     const id = userData;
+    const { t } = useTranslation(); // Initialize the translation hook
 
     const [data, setData] = useState<IData>({
         category: 'Bikes',
@@ -216,25 +219,25 @@ export default function BikeSubComponent({ type }: any) {
             <div className='container mx-auto mt-10'>
                 <div className='border-none rounded-sm bg-white mb-10 h-full p-3'>
                     <div className='container mx-auto'>
-                        <h1 className='space-x-3 border-b-2 pb-3'><PlaylistAdd className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>Select Category</span></h1>
+                        <h1 className='space-x-3 border-b-2 pb-3'><PlaylistAdd className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>{t('autosComponent.heading1')}</span></h1>
                     </div>
                     <div className=' container mx-auto flex flex-col mb-7'>
                         <div className='flex flex-row space-x-2 mt-5'>
                             <h1>{type == 'Contruction%20Machines' ? 'Construction Machines' : type}</h1>
-                            <ArrowForwardIos className='mt-[5px]' style={{ fontSize: "14px" }} />
+                            <ArrowForwardIos className='text-[12px] mt-[6.5px]' />
                             <h1 className='text-[#FF0000] underline'>
                                 <Link href="/post-ad">
-                                    {'Change category'}
+                                {t('autosComponent.changeCategory')}
                                 </Link>
                             </h1>
                         </div>
                         <div className='mt-5 w-full mb-5'>
-                            <h1 className='space-x-3 border-b-2 pb-3'><Description className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>Product Information</span></h1>
+                            <h1 className='space-x-3 border-b-2 pb-3'><Description className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>{t('autosComponent.productInfo')}</span></h1>
                         </div>
 
                         <form onSubmit={(e: any) => handleSubmit(e)}>
                             <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Title <span className='text-[#FF0000]'>*</span></h1>
+                                <h1 className={style.h1Style}>{t('autosComponent.title')} <span className='text-[#FF0000]'>*</span></h1>
                                 <div className='flex flex-col w-full'>
                                     <input type="text" className={style.inputStyle}
                                         name='title'
@@ -242,11 +245,11 @@ export default function BikeSubComponent({ type }: any) {
                                         onChange={(e: any) => handleInput(e)}
                                         required
                                     />
-                                    <p className='text-gray-300 italic'>Character limit 25</p>
+                                    <p className='text-gray-300 italic'>{t('autosComponent.titleCharacterLimit')}</p>
                                 </div>
                             </div>
                             <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Pricing </h1>
+                                <h1 className={style.h1Style}>{t('autosComponent.price')} <span className='text-[#FF0000]'>*</span></h1>
                                 <div className='flex flex-col w-full'>
                                     <ul className='flex flex-row space-x-2'>
                                         {priceList?.map((list: any, i: any) => (
@@ -256,9 +259,8 @@ export default function BikeSubComponent({ type }: any) {
                                 </div>
                             </div>
                             {priceListValue === 'price' ?
-
                                 <div className={style.divStyle}>
-                                    <h1 className={style.h1Style}>Price{`[CHF]`} <span className='text-[#FF0000]'>*</span></h1>
+                                    <h1 className={style.h1Style}>{t('autosComponent.price')}{`[CHF]`} <span className='text-[#FF0000]'>*</span></h1>
                                     <div className='flex flex-col w-full'>
                                         <input type="text" className={style.inputStyle}
                                             name='price'
@@ -269,10 +271,33 @@ export default function BikeSubComponent({ type }: any) {
                                     </div>
                                 </div>
                                 :
-                                ''
+                                priceListValue === 'priceRange' ?
+                                    <div className='flex flex-col md:flex-row my-5 space-y-2 md:space-y-0 md:space-x-2'>
+                                        <div className='w-full flex flex-row'>
+                                            <h1 className='text-md font-bold  w-80 lg:w-64 mt-1'>{t('autosComponent.minPrice')} {`[CHF]`}<span className='text-[#FF0000]'>*</span></h1>
+                                            <input type="text" className={style.inputStyle}
+                                                name='minPrice'
+                                                value={data?.minPrice}
+                                                onChange={(e: any) => handleInput(e)}
+                                                required
+                                            />
+                                        </div>
+                                        <div className='w-full flex flex-row'>
+                                            <h1 className='text-md font-bold w-72 lg:w-64 mt-1'>{t('autosComponent.maxPrice')} {`[CHF]`}<span className='text-[#FF0000]'>*</span></h1>
+                                            <input type="text"
+                                                className={style.inputStyle}
+                                                name='maxPrice'
+                                                value={data?.maxPrice}
+                                                onChange={(e: any) => handleInput(e)}
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+                                    :
+                                    ''
                             }
                             <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Condition <span className='text-[#FF0000]'>*</span></h1>
+                                <h1 className={style.h1Style}>{t('autosComponent.condition')} <span className='text-[#FF0000]'>*</span></h1>
                                 <div className='flex flex-col w-full'>
                                     <ul className='space-y-1'>
                                         {conditionList?.map((list: any, i: number) => (
@@ -286,14 +311,14 @@ export default function BikeSubComponent({ type }: any) {
                                 </div>
                             </div>
                             <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Brand <span className='text-[#FF0000]'>*</span></h1>
+                                <h1 className={style.h1Style}>{t('autosComponent.brand')} <span className='text-[#FF0000]'>*</span></h1>
                                 {type == 'Motorcycle' ?
                                     <select
                                         className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
                                         name='brand'
                                         onChange={(e: any) => handleInput(e)}
                                     >
-                                        <option value="option1">Select Brand</option>
+                                        <option value="option1">{t('autosComponent.selectBrand')}</option>
                                         {brands?.make?.map((brand: any, i: number) => (
                                             <option value={brand} key={i}>{brand}</option>
                                         ))}
@@ -304,7 +329,7 @@ export default function BikeSubComponent({ type }: any) {
                                         name='brand'
                                         onChange={(e: any) => handleInput(e)}
                                     >
-                                        <option value="option1">Select Brand</option>
+                                        <option value="option1">{t('autosComponent.selectBrand')}</option>
                                         {brands.make?.map((list: any, i: number) => (
                                             <option value={list} key={i}>{list}</option>
                                         ))}
@@ -313,13 +338,13 @@ export default function BikeSubComponent({ type }: any) {
                             </div>
                             {data?.brand && type == 'Motorcycle' &&
                                 <div className={style.divStyle}>
-                                    <h1 className={style.h1Style}>Model <span className='text-[#FF0000]'>*</span></h1>
+                                    <h1 className={style.h1Style}>{t('autosComponent.model')} <span className='text-[#FF0000]'>*</span></h1>
                                     <select
                                         className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
                                         name='model'
                                         onChange={(e: any) => handleInput(e)}
                                     >
-                                        <option value="option1">Select Brand</option>
+                                        <option value="option1">{t('autosComponent.selectBrand')}</option>
                                         {models[0]?.model?.map((model: any, i: number) => (
                                             <option value={model} key={i}>{model}</option>
                                         ))}
@@ -327,24 +352,25 @@ export default function BikeSubComponent({ type }: any) {
                                 </div>
                             }
                             {data?.brand && type == 'Motorcycle' && <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Year</h1>
+                                <h1 className={style.h1Style}>{t('autosComponent.year')} <span className='text-[#FF0000]'>*</span></h1>
                                 <div className='flex flex-col w-full'>
                                     <input type="text" className={style.inputStyle}
                                         name='year'
                                         value={data.year}
                                         onChange={(e: any) => handleInput(e)}
+                                        required
                                     />
                                 </div>
                             </div>}
                             {data?.brand && type == 'Motorcycle' &&
                                 <div className={style.divStyle}>
-                                    <h1 className={style.h1Style}>Body Shape</h1>
+                                    <h1 className={style.h1Style}>{t('autosComponent.bodyShape')}<span className='text-[#FF0000]'>*</span></h1>
                                     <select
                                         className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
                                         name='bodyShape'
                                         onChange={(e: any) => handleInput(e)}
                                     >
-                                        <option >Select Body Shape </option>
+                                        <option >{t('autosComponent.selectBodyShape')} </option>
                                         {bikeBodyShape?.map((body: any, i: number) => (
                                             <option value={body.name} key={i}>{body.name}</option>
                                         ))}
@@ -353,13 +379,13 @@ export default function BikeSubComponent({ type }: any) {
                             }
                             {data?.brand && type == 'Motorcycle' &&
                                 <div className={style.divStyle}>
-                                    <h1 className={style.h1Style}>Gear Box</h1>
+                                    <h1 className={style.h1Style}>{t('autosComponent.gearBox')} <span className='text-[#FF0000]'>*</span></h1>
                                     <select
                                         className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
                                         name='gearBox'
                                         onChange={(e: any) => handleInput(e)}
                                     >
-                                        <option value="option1">Select Gear Type</option>
+                                        <option value="option1">{t('autosComponent.selectGearBox')}</option>
                                         {gearBox?.map((gear: any, i: number) => (
                                             <option value={gear.name} key={i}>{gear.name}</option>
                                         ))}
@@ -368,13 +394,13 @@ export default function BikeSubComponent({ type }: any) {
                             }
                             {data?.brand && type == 'Motorcycle' &&
                                 <div className={style.divStyle}>
-                                    <h1 className={style.h1Style}>Fuel Type</h1>
+                                    <h1 className={style.h1Style}>{t('autosComponent.fuelType')} <span className='text-[#FF0000]'>*</span></h1>
                                     <select
                                         className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
                                         name='fuelType'
                                         onChange={(e: any) => handleInput(e)}
                                     >
-                                        <option value="option1">Select Fuel Type</option>
+                                        <option value="option1">{t('autosComponent.selectFuelType')}</option>
                                         {BikeFuelType?.map((fuel: any, i: number) => (
                                             <option value={fuel.name} key={i}>{fuel.name}</option>
                                         ))}
@@ -383,31 +409,33 @@ export default function BikeSubComponent({ type }: any) {
                             }
                             {data?.brand && type == 'Motorcycle' &&
                                 <div className={style.divStyle}>
-                                    <h1 className={style.h1Style}>Kilometers</h1>
+                                    <h1 className={style.h1Style}>{t('autosComponent.kilometers')} <span className='text-[#FF0000]'>*</span></h1>
                                     <div className='flex flex-col w-full'>
                                         <input type="text" className={style.inputStyle}
                                             name='km'
                                             value={data.km}
                                             onChange={(e: any) => handleInput(e)}
+                                            required
                                         />
                                     </div>
                                 </div>
                             }
                             {data?.brand && type == 'Motorcycle' &&
                                 <div className={style.divStyle}>
-                                    <h1 className={style.h1Style}>Engine Capacity</h1>
+                                    <h1 className={style.h1Style}>{t('autosComponent.engineCapacity')} <span className='text-[#FF0000]'>*</span></h1>
                                     <div className='flex flex-col w-full'>
                                         <input type="text" className={style.inputStyle}
                                             name='engineCapacity'
                                             value={data.engineCapacity}
                                             onChange={(e: any) => handleInput(e)}
+                                            required
                                         />
                                     </div>
                                 </div>
                             }
                             {data?.brand && type == 'Motorcycle' &&
                                 <div className={style.divStyle}>
-                                    <h1 className={style.h1Style}>Color</h1>
+                                    <h1 className={style.h1Style}>{t('autosComponent.color')}<span className='text-[#FF0000]'>*</span></h1>
                                     <select
                                         className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
                                         name='exteriorColor'
@@ -421,19 +449,20 @@ export default function BikeSubComponent({ type }: any) {
                                 </div>
                             }
                             <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Description</h1>
+                                <h1 className={style.h1Style}>{t('autosComponent.description')} <span className='text-[#FF0000]'>*</span></h1>
                                 <div className='flex flex-col w-full'>
                                     <textarea
                                         className={style.areaStyle}
                                         name='description'
                                         value={data.description}
                                         onChange={(e: any) => handleInput(e)}
+                                        required
                                     />
                                 </div>
                             </div>
                             <div className='mt-5 w-full mb-5'>
                                 {/* eslint-disable-next-line jsx-a11y/alt-text */}
-                                <h1 className='space-x-3 border-b-2 pb-3'><Image className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>Images</span></h1>
+                                <h1 className='space-x-3 border-b-2 pb-3'><Image className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>{t('autosComponent.images')}</span></h1>
                             </div>
                             <div className={style.divStyle}>
                                 <div className='flex flex-col w-full'>
@@ -446,10 +475,10 @@ export default function BikeSubComponent({ type }: any) {
                                         onChange={(e: any) => handleImage(e)} />
                                     <div className='bg-red-300 mt-4 p-2 border-none rounded-sm italic'>
                                         <ul className='italic text-sm space-y-2'>
-                                            <li>Recommended image size to (870x493)px.</li>
-                                            <li>Image maximum size 2 MB.</li>
-                                            <li>Allowed image type (png, jpg, jpeg, webp).</li>
-                                            <li>You can upload up to 5 images.</li>
+                                            <li>{t('autosComponent.imageSizeInfo')}</li>
+                                            <li>{t('autosComponent.imageSizeInfo1')}</li>
+                                            <li>{t('autosComponent.imageSizeInfo2')}</li>
+                                            <li>{t('autosComponent.imageSizeInfo3')}</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -466,15 +495,16 @@ export default function BikeSubComponent({ type }: any) {
                             }
                             <div className='mt-5 w-full mb-5'>
                                 <h1 className='space-x-3 border-b-2 pb-3'>
-                                    <InsertLink className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>Video URL</span></h1>
+                                    <InsertLink className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>{t('autosComponent.videoURL')}</span></h1>
                             </div>
                             <div className={style.divStyle}>
                                 <div className='flex flex-col w-full'>
                                     <input type="text" className={style.inputStyle}
-                                        placeholder='Only Youtube or Video Url'
+                                        placeholder={t('autosComponent.videoURLPlaceholder')}
                                         name='videoUrl'
                                         value={data.videoUrl}
                                         onChange={(e: any) => handleInput(e)}
+                                        required
                                     />
                                     <p className='text-gray-300 text-sm mt-1'>
                                         E.g. https://www.youtube.com/watch?v=RiXdDGk_XCU, https://vimeo.com/620922414
@@ -484,13 +514,13 @@ export default function BikeSubComponent({ type }: any) {
                             <div className='mt-5 w-full mb-5'>
                                 <h1 className='space-x-3 border-b-2 pb-3'>
                                     <Person className='text-[#FF0000] mt-[-4px]' />
-                                    <span className='text-lg font-bold'>Contact details</span></h1>
+                                    <span className='text-lg font-bold'>{t('autosComponent.contactDetails')}</span></h1>
                             </div>
                             <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Location</h1>
+                                <h1 className={style.h1Style}>{t('autosComponent.location')}</h1>
                                 <div className='flex flex-col w-full'>
                                     <input required className={style.inputStyle} type="text"
-                                        placeholder='enter your address here' name='name'
+                                        placeholder={t('autosComponent.enterAddress')} name='name'
                                         value={data?.address}
                                         onChange={(e) => handleLocation(e)}
                                         onKeyUp={(e: any) => checkPlace(e)} />
@@ -506,7 +536,7 @@ export default function BikeSubComponent({ type }: any) {
                                 </div>
                             </div>
                             <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>How to contact</h1>
+                                <h1 className={style.h1Style}>{t('autosComponent.howToContact')} <span className='text-[#FF0000]'>*</span></h1>
                                 <div className='flex flex-col hover:border-red-500 w-full rounded-sm h-10'
                                     onClick={() => isOpenSub(!openSub)}
                                 >
@@ -533,7 +563,7 @@ export default function BikeSubComponent({ type }: any) {
                             </div>
                             {howContact == 'Whatsapp' ?
                                 <div className={style.divStyle}>
-                                    <h1 className={style.h1Style}>WhatsApp No  <span className='text-[#FF0000]'>*</span></h1>
+                                    <h1 className={style.h1Style}>{t('autosComponent.whatsapp')}  <span className='text-[#FF0000]'>*</span></h1>
                                     <div className='flex flex-col w-full'>
                                         <input type="text" className={style.inputStyle}
                                             required
@@ -547,7 +577,7 @@ export default function BikeSubComponent({ type }: any) {
                                     </div>
                                 </div> : howContact == 'Viber' ?
                                     <div className={style.divStyle}>
-                                        <h1 className={style.h1Style}>Viber Number  <span className='text-[#FF0000]'>*</span></h1>
+                                        <h1 className={style.h1Style}>{t('autosComponent.viber')}  <span className='text-[#FF0000]'>*</span></h1>
                                         <div className='flex flex-col w-full'>
                                             <input type="text" className={style.inputStyle}
                                                 required
@@ -558,10 +588,22 @@ export default function BikeSubComponent({ type }: any) {
                                             <p className='text-gray-400 text-sm mt-1'>Viber number with your country code. e.g.+41xxxxxxxxxx</p>
                                         </div>
                                     </div>
-                                    : ''
+                                    : howContact == 'Email' ?
+                                        <div className={style.divStyle}>
+                                            <h1 className={style.h1Style}>{t('autosComponent.email')}  <span className='text-[#FF0000]'>*</span></h1>
+                                            <div className='flex flex-col w-full'>
+                                                <input type="text" className={style.inputStyle}
+                                                    name='email'
+                                                    value={data.email}
+                                                    onChange={(e: any) => handleInput(e)}
+                                                />
+                                            </div>
+                                        </div>
+                                        :
+                                        ''
                             }
                             <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Website</h1>
+                                <h1 className={style.h1Style}>{t('autosComponent.website')}</h1>
                                 <div className='flex flex-col w-full'>
                                     <input type="text" className={style.inputStyle}
                                         name='webSite'

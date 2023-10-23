@@ -80,7 +80,7 @@ const list4 = [
     value: t('list4.3'),
   },
   {
-    name: t('list4.4'),
+    name: t('list4.3'),
     value: t('list4.5'),
 
   },
