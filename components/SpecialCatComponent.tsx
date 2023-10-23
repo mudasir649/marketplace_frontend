@@ -481,7 +481,7 @@ export default function SpecialCatComponent({ type }: any) {
                                         value={data.webSite}
                                         onChange={(e: any) => handleInput(e)}
                                     />
-                                    <p className='text-gray-400 text-sm'>e.g. https://example.com</p>
+                                    <p className='text-gray-400 text-sm'>{t('autosComponent.websitePlaceholder')}</p>
                                 </div>
                             </div>
                             <div className={style.divStyle}>
