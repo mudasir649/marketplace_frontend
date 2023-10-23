@@ -168,7 +168,7 @@ export default function OthersComponent({ type }: any) {
             <div className='container mx-auto mt-10'>
                 <div className='border-none rounded-sm bg-white mb-10 h-full p-3'>
                     <div className='container mx-auto'>
-                        <h1 className='space-x-3 border-b-2 pb-3'><PlaylistAdd className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>Select Category</span></h1>
+                        <h1 className='space-x-3 border-b-2 pb-3'><PlaylistAdd className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>{t('autosComponent.heading1')}</span></h1>
                     </div>
                     <div className=' container mx-auto flex flex-col mb-7'>
                         <div className='flex flex-row space-x-2 mt-5'>
@@ -176,16 +176,16 @@ export default function OthersComponent({ type }: any) {
                             <ArrowForwardIos className='mt-[5px]' style={{ fontSize: "14px" }} />
                             <h1 className='text-[#FF0000] underline'>
                                 <Link href="/post-ad">
-                                    {'Change category'}
+                                {t('autosComponent.changeCategory')}
                                 </Link>
                             </h1>
                         </div>
                         <div className='mt-5 w-full mb-5'>
-                            <h1 className='space-x-3 border-b-2 pb-3'><Description className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>Product Information</span></h1>
+                            <h1 className='space-x-3 border-b-2 pb-3'><Description className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>{t('autosComponent.productInfo')} </span></h1>
                         </div>
                         <form onSubmit={(e: any) => handleSubmit(e)}>
                             <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Title <span className='text-[#FF0000]'>*</span></h1>
+                                <h1 className={style.h1Style}>{t('autosComponent.title')} <span className='text-[#FF0000]'>*</span></h1>
                                 <div className='flex flex-col w-full'>
                                     <input type="text" className={style.inputStyle}
                                         name='title'
@@ -193,11 +193,11 @@ export default function OthersComponent({ type }: any) {
                                         onChange={(e: any) => handleInput(e)}
                                         required
                                     />
-                                    <p className='text-gray-300 italic'>Character limit 25</p>
+                                    <p className='text-gray-300 italic'>{t('autosComponent.titleCharacterLimit')}</p>
                                 </div>
                             </div>
                             <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Pricing <span className='text-[#FF0000]'>*</span></h1>
+                                <h1 className={style.h1Style}>{t('autosComponent.price')} <span className='text-[#FF0000]'>*</span></h1>
                                 <div className='flex flex-col w-full'>
                                     <ul className='flex flex-row space-x-2'>
                                         {priceList?.map((list: any, i: any) => (
@@ -208,7 +208,7 @@ export default function OthersComponent({ type }: any) {
                             </div>
                             {priceListValue === 'price' ?
                                 <div className={style.divStyle}>
-                                    <h1 className={style.h1Style}>Price{`[CHF]`} <span className='text-[#FF0000]'>*</span></h1>
+                                    <h1 className={style.h1Style}>{t('autosComponent.price')}{`[CHF]`} <span className='text-[#FF0000]'>*</span></h1>
                                     <div className='flex flex-col w-full'>
                                         <input type="text" className={style.inputStyle}
                                             name='price'
@@ -221,7 +221,7 @@ export default function OthersComponent({ type }: any) {
                                 : ''
                             }
                             <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Condition <span className='text-[#FF0000]'>*</span></h1>
+                                <h1 className={style.h1Style}>{t('autosComponent.condition')} <span className='text-[#FF0000]'>*</span></h1>
                                 <div className='flex flex-col w-full'>
                                     <ul className='space-y-1'>
                                         {conditionList?.map((list: any, i: number) => (
@@ -235,7 +235,7 @@ export default function OthersComponent({ type }: any) {
                                 </div>
                             </div>
                             <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Brand</h1>
+                                <h1 className={style.h1Style}>{t('autosComponent.brand')}</h1>
                                 <div className='flex flex-col w-full'>
                                     <input type="text" className={style.inputStyle}
                                         name='brand'
@@ -245,7 +245,7 @@ export default function OthersComponent({ type }: any) {
                                 </div>
                             </div>
                             <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Model</h1>
+                                <h1 className={style.h1Style}>{t('autosComponent.model')}</h1>
                                 <div className='flex flex-col w-full'>
                                     <input type="text" className={style.inputStyle}
                                         name='model'
@@ -255,7 +255,7 @@ export default function OthersComponent({ type }: any) {
                                 </div>
                             </div>
                             <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Year</h1>
+                                <h1 className={style.h1Style}>{t('autosComponent.year')}</h1>
                                 <div className='flex flex-col w-full'>
                                     <input type="text" className={style.inputStyle}
                                         name='year'
@@ -265,7 +265,7 @@ export default function OthersComponent({ type }: any) {
                                 </div>
                             </div>
                             <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Description <span className='text-[#FF0000]'>*</span></h1>
+                                <h1 className={style.h1Style}>{t('autosComponent.description')} <span className='text-[#FF0000]'>*</span></h1>
                                 <div className='flex flex-col w-full'>
                                     <textarea
                                         className={style.areaStyle}
@@ -278,7 +278,7 @@ export default function OthersComponent({ type }: any) {
                             </div>
                             <div className='mt-5 w-full mb-5'>
                                 {/* eslint-disable-next-line jsx-a11y/alt-text */}
-                                <h1 className='space-x-3 border-b-2 pb-3'><Image className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>Images</span></h1>
+                                <h1 className='space-x-3 border-b-2 pb-3'><Image className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>{t('autosComponent.images')}</span></h1>
                             </div>
                             <div className={style.divStyle}>
                                 <div className='flex flex-col w-full'>
@@ -291,10 +291,10 @@ export default function OthersComponent({ type }: any) {
                                         onChange={(e: any) => handleImage(e)} />
                                     <div className='bg-red-300 mt-4 p-2 border-none rounded-sm italic'>
                                         <ul className='italic text-sm space-y-2'>
-                                            <li>Recommended image size to (870x493)px.</li>
-                                            <li>Image maximum size 2 MB.</li>
-                                            <li>Allowed image type (png, jpg, jpeg, webp).</li>
-                                            <li>You can upload up to 5 images.</li>
+                                            <li>{t('autosComponent.imageSizeInfo')}</li>
+                                            <li>{t('autosComponent.imageSizeInfo1')}</li>
+                                            <li>{t('autosComponent.imageSizeInfo2')}</li>
+                                            <li>{t('autosComponent.imageSizeInfo3')}</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -311,12 +311,12 @@ export default function OthersComponent({ type }: any) {
                             }
                             <div className='mt-5 w-full mb-5'>
                                 <h1 className='space-x-3 border-b-2 pb-3'>
-                                    <InsertLink className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>Video URL</span></h1>
+                                    <InsertLink className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>{t('autosComponent.videoURL')}</span></h1>
                             </div>
                             <div className={style.divStyle}>
                                 <div className='flex flex-col w-full'>
                                     <input type="text" className={style.inputStyle}
-                                        placeholder='Only Youtube or Video Url'
+                                        placeholder={t('autosComponent.videoURLPlaceholder')}
                                         name='videoUrl'
                                         value={data.videoUrl}
                                         onChange={(e: any) => handleInput(e)}
@@ -329,7 +329,7 @@ export default function OthersComponent({ type }: any) {
                             <div className='mt-5 w-full mb-5'>
                                 <h1 className='space-x-3 border-b-2 pb-3'>
                                     <Person className='text-[#FF0000] mt-[-4px]' />
-                                    <span className='text-lg font-bold'>Contact details</span></h1>
+                                    <span className='text-lg font-bold'>{t('autosComponent.contactDetails')}</span></h1>
                             </div>
                             <div className={style.divStyle}>
                                 <h1 className={style.h1Style}>{t('autosComponent.location')}</h1>
@@ -350,7 +350,7 @@ export default function OthersComponent({ type }: any) {
                                 </div>
                             </div>
                             <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>How to contact <span className='text-[#FF0000]'>*</span></h1>
+                                <h1 className={style.h1Style}>{t('autosComponent.howToContact')} <span className='text-[#FF0000]'>*</span></h1>
                                 <div className='flex flex-col hover:border-red-500 w-full rounded-sm h-10'
                                     onClick={() => isOpenSub(!openSub)}
                                 >
@@ -377,7 +377,7 @@ export default function OthersComponent({ type }: any) {
                             </div>
                             {howContact == 'Whatsapp' ?
                                 <div className={style.divStyle}>
-                                    <h1 className={style.h1Style}>WhatsApp No  <span className='text-[#FF0000]'>*</span></h1>
+                                    <h1 className={style.h1Style}>{t('autosComponent.whatsapp')}  <span className='text-[#FF0000]'>*</span></h1>
                                     <div className='flex flex-col w-full'>
                                         <input type="text" className={style.inputStyle}
                                             required
@@ -391,7 +391,7 @@ export default function OthersComponent({ type }: any) {
                                     </div>
                                 </div> : howContact == 'Viber' ?
                                     <div className={style.divStyle}>
-                                        <h1 className={style.h1Style}>Viber Number  <span className='text-[#FF0000]'>*</span></h1>
+                                        <h1 className={style.h1Style}>{t('autosComponent.viber')}  <span className='text-[#FF0000]'>*</span></h1>
                                         <div className='flex flex-col w-full'>
                                             <input type="text" className={style.inputStyle}
                                                 required
@@ -404,7 +404,7 @@ export default function OthersComponent({ type }: any) {
                                     </div>
                                     : howContact == 'Email' ?
                                         <div className={style.divStyle}>
-                                            <h1 className={style.h1Style}>Email  <span className='text-[#FF0000]'>*</span></h1>
+                                            <h1 className={style.h1Style}>{t('autosComponent.email')}  <span className='text-[#FF0000]'>*</span></h1>
                                             <div className='flex flex-col w-full'>
                                                 <input type="text" className={style.inputStyle}
                                                     name='email'
@@ -417,7 +417,7 @@ export default function OthersComponent({ type }: any) {
                                         ''
                             }
                             <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>Website</h1>
+                                <h1 className={style.h1Style}>{t('autosComponent.website')}</h1>
                                 <div className='flex flex-col w-full'>
                                     <input type="text" className={style.inputStyle}
                                         name='webSite'
@@ -431,7 +431,7 @@ export default function OthersComponent({ type }: any) {
                                 <h1 className={`${style.h1Style} invisible`}>ffj</h1>
                                 {!loading ?
                                     <div className='flex flex-col w-full'>
-                                        <button className='bg-[#FF0000] hover:bg-red-800 w-32 h-10 text-white font-bold' >Submit</button>
+                                        <button className='bg-[#FF0000] hover:bg-red-800 w-32 h-10 text-white font-bold' >{t('autosComponent.submit')}</button>
                                     </div>
                                     :
                                     <div className="spinner mt-8 w-10 h-10"></div>
