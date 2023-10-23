@@ -32,7 +32,7 @@
       "priceRange": "Preisspanne",
       "applyFilter": "Filter anwenden",
       "clearFilter": "Filter zurücksetzen",
-      "results": "Ergebnisse",
+      "results": "Resultate",
       "previous": "Zurück",
       "next": "Weiter",
       "noRecordFound": "Keine Aufzeichnung gefunden...",
@@ -95,7 +95,9 @@
       "submit": "Aufgeben" , 
       "websitePlaceholder": "z.B. https://beispiel.com",
     "titleCharacterLimit": "Zeichenbegrenzung 25",
-    "priceCHF": "Preis[CHF]"
+    "priceCHF": "Preis[CHF]"  ,
+    "subCategory": "Unterkategorie",
+    "selectSubCategory": "Unterkategorie auswählen"
   } , 
   
     "banner": {

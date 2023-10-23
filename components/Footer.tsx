@@ -7,11 +7,12 @@ import { useTranslation } from 'react-i18next';
 
 interface IList {
   name: String,
+
 }
 
 interface IList1 {
   name: String,
-  value: String
+  value: String,
 }
 
 export default function Footer() {
@@ -35,8 +36,7 @@ export default function Footer() {
 
    const list1 = [
     {
-        name:   t('categories.0')
-
+        name:   t('categories.0'),    
     },
     {
         name: t('categories.1')

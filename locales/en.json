@@ -97,7 +97,9 @@
         "submit": "Submit" , 
         "websitePlaceholder": "e.g. https://example.com",
         "titleCharacterLimit": "Character limit 25",
-        "priceCHF": "Price[CHF]"
+        "priceCHF": "Price[CHF]",
+        "subCategory": "Sub Category", 
+        "selectSubCategory":"Select Sub Category"
       } , 
       
         "banner": {
