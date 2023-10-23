@@ -19,9 +19,9 @@ import RepairNow from "./RepairNow";
 import { useTranslation } from 'react-i18next';
 import DeleteAd from "./DeleteAd";
 import axios from "axios";
-import { setProductData, setProductsCount, setRoomsData, setShowContact } from "@/store/appSlice";
+import { setRoomsData, setShowContact } from "@/store/appSlice";
 import { getApps, initializeApp } from "firebase/app";
-import { getDatabase, ref, onValue, off } from "firebase/database";
+import { getDatabase, ref, onValue, off, update, onDisconnect } from "firebase/database";
 import { db } from "@/utils/firebase-config";
 
 export default function Header() {
@@ -43,12 +43,23 @@ export default function Header() {
   const userData = userInfo?.data?.userDetails;
 
   useEffect(() => {
+    if (userInfo && userId) {
+      const userStatusRef = ref(db, `users/${userId}/`);
+
+      update(userStatusRef, { online: true });
+
+      onDisconnect(userStatusRef).update({ online: false });
+
+    }
+  }, [userInfo, userId])
+
+  useEffect(() => {
     let roomRef: any;
 
     const fetchRoomsData = async () => {
       try {
         console.log("Updating rooms list");
-        roomRef = ref(db, `RoomLists/${userId}/rooms`);
+        roomRef = ref(db, `users/${userId}/rooms`);
 
         const handleRoomUpdate: any = (snapshot: any) => {
           const room = snapshot.val() || [];
@@ -73,10 +84,13 @@ export default function Header() {
     }
   }, [userInfo, userId, dispatch]);
 
+  console.log(userId);
+
   const handleContact = () => {
     dispatch(setShowContact(true));
     setNavbar(false);
   }
+
 
   const DropdownItem = ({ logo, text, href }: any) => {
     return (
