@@ -73,15 +73,15 @@ const list3 = [
 const list4 = [
   {
     name: t('list4.0'),
-    value: t('list4.1'),
+    value: "faq",
   },
   {
     name: t('list4.2'),
-    value: t('list4.3'),
+    value: "privacy-policy",
   },
   {
     name: t('list4.3'),
-    value: t('list4.5'),
+    value: "terms-and-condition",
 
   },
 ];
