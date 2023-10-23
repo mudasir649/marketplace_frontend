@@ -9,44 +9,56 @@ import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 export default function PostAd() {
-    
+
     const { t } = useTranslation();
+
 
     const list = [
         {
-            name: t('categories.0')
+            name: t('categories.0'),
+            name1: "Autos",
         },
         {
-            name: t('categories.1')
+            name: t('categories.1'),
+            name1: "Bikes",
         },
         {
-            name: t('categories.2')
+            name: t('categories.2'),
+            name1: "Boats",
         },
         {
-            name: t('categories.3')
+            name: t('categories.3'),
+            name1: "Busses",
         },
         {
-            name: t('categories.4')
+            name: t('categories.4'),
+            name1: "Construction Machines",
         },
         {
-            name: t('categories.5')
+            name: t('categories.5'),
+            name1: "Drones",
         },
         {
-            name: t('categories.6')
+            name: t('categories.6'),
+            name1: "Others",
         },
         {
-            name: t('categories.7')
+            name: t('categories.7'),
+            name1: "Parts",
         },
         {
-            name: t('categories.8')
+            name: t('categories.8'),
+            name1: "Trailers",
         },
         {
-            name: t('categories.9')
+            name: t('categories.9'),
+            name1: "Trucks",
         },
         {
-            name: t('categories.10')
-        }
-    ]
+            name: t('categories.10'),
+            name1: "Vans",
+        },
+    ];
 
     const router = useRouter();
 
@@ -107,7 +119,7 @@ export default function PostAd() {
                                             {list?.map((lst: any, i: number) => (
                                                 <li className={`hover:bg-red-500 hover:text-white 
                                                         ml-1 mb-1 ${list.length - 1 == i ? '' : ' border-b-2'}`}
-                                                    key={i} onClick={() => handleCategory(lst.name)}>{lst?.name}</li>
+                                                    key={i} onClick={() => handleCategory(lst.name1)}>{lst?.name}</li>
                                             ))}
                                         </ul>
                                     </div>

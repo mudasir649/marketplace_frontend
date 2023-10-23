@@ -12,9 +12,8 @@ import "../app/post-ad/post-ad.css"
 import { bikesList } from '@/utils/bikesList';
 import { useSelector } from 'react-redux';
 import locateAddress from '@/utils/GoogleLocation';
-import { useTranslation } from 'react-i18next'; 
 
-
+import { useTranslation } from 'react-i18next';
 const style = {
     inputStyle: 'border border-gray-200 hover:border-red-500 focus:outline-red-500 w-full rounded-sm h-10 pl-3',
     divStyle: 'flex flex-col md:flex-row space-x-0 md:space-x-10 space-y-1 md:space-y-0 mb-5 mt-5',
@@ -58,6 +57,8 @@ interface IData {
 
 
 export default function BikeSubComponent({ type }: any) {
+
+    
     const { userInfo } = useSelector((state: any) => state.auth);
     const userData = userInfo === null ? userInfo : userInfo?.data?.userDetails?._id;
     const [open, isOpen] = useState<Boolean>(false);
@@ -197,9 +198,8 @@ export default function BikeSubComponent({ type }: any) {
     }
 
     const saveLocation = (value: any) => {
-        setData({ ...data, ['address']: value });
-        locateAddress(process.env.NEXT_PUBLIC_GOOGLE_MAP_API, data.address).then((location: any) => {
-            setData({ ...data, ['latitude']: location.lat, ['longitude']: location.long });
+        locateAddress(process.env.NEXT_PUBLIC_GOOGLE_MAP_API, value).then((location: any) => {
+            setData({ ...data, ['address']: value, ['latitude']: location.lat, ['longitude']: location.long });
         })
         setShowLocation(false);
     }
@@ -520,10 +520,9 @@ export default function BikeSubComponent({ type }: any) {
                                 <h1 className={style.h1Style}>{t('autosComponent.location')}</h1>
                                 <div className='flex flex-col w-full'>
                                     <input required className={style.inputStyle} type="text"
-                                        placeholder={t('autosComponent.enterAddress')} name='name'
-                                        value={data?.address}
-                                        onChange={(e) => handleLocation(e)}
-                                        onKeyUp={(e: any) => checkPlace(e)} />
+                                        placeholder={t('autosComponent.enterAddress')}
+                                        name='name' value={data?.address}
+                                        onChange={(e: any) => handleLocation(e)} onKeyUp={(e: any) => checkPlace(e)} />
                                     {showLocation ?
                                         <ul className='border border-gray-100 mt-1 space-y-2'>
                                             {googleLocation?.map((predict: any, i: any) => (

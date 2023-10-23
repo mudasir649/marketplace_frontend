@@ -19,7 +19,8 @@ import './productDetails.css';
 import formatDateTime from '@/utils/checkTime';
 import { refreshPage, setProductId, setShowShare, setProductUserId } from '@/store/appSlice';
 import dynamic from 'next/dynamic';
-import { useTranslation } from 'react-i18next'; 
+import addInvertedComma from '@/utils/addInvertedComma';
+import { useTranslation } from 'react-i18next';
 
 interface AdFavoriteData {
   userId: string,
@@ -42,6 +43,8 @@ function ProductDetails() {
   const userData = userInfo?.data?.userDetails;
   const router = useRouter();
   const dispatch = useDispatch();
+  const [prodId, setProdId] = useState<any>([]);
+
 
   const [slide, setSlide] = useState(0)
 
@@ -98,34 +101,24 @@ function ProductDetails() {
   };
 
   const adFavorite = async (productId: any) => {
-    let data: AdFavoriteData = {
-      userId: userData?._id,
-      adId: productId,
-      favorite: true,
-    }
     if (userInfo === null) {
       router.push('/login')
     } else {
-      if (fav === false) {
-        try {
-          const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/adFavorite`, data);
-          if (res?.status === 201) {
-            setFav(true)
-          }
-        } catch (error) {
-          console.log(error);
-        }
+      const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/setFavorite/${productId}/${userId}`);
+      if (res.status == 201) {
+        setProdId([...prodId, productId]);
       } else {
-        const config: AxiosRequestConfig = {
-          data: data
-        }
-        const res = await axios.delete(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/removeFavorite/${product?.favAdId}`, config);
-        if (res?.status === 204) {
-          setFav(false);
-          dispatch(refreshPage(true));
-        }
+        const newProdId = prodId.filter((prod: any, i: number) => {
+          return prod !== productId;
+        });
+        setProdId(newProdId);
       }
     }
+  }
+
+
+  const findProductId = (productId: any) => {
+    return prodId.includes(productId);
   }
 
   const handleShare = (productId: string) => {
@@ -204,11 +197,16 @@ function ProductDetails() {
                     <div><CameraAlt /> {currentImage + 1} / {product?.images.length}</div>
                   </div>
                 }
-                {/* <h1 className='mb-3 cursor-pointer'><CameraAlt /> {currentImage + 1} / {product?.images.length} </h1> */}
-                <div className='bg-[#FF0000] space-y-2 rounded-lg rounded-tr-[700px] rounded-br-[700px] w-40 p-2 h-16 md:w-64 md:h-auto'>
-                  <h1 className='text-white text-sm md:text-3xl font-bold'>CHF {product?.price}</h1>
-                  <h1 className='text-gray-300 text-sm md:text-xl font-semibold'>Euro {Number(product?.price) * 2}</h1>
-                </div>
+                {product?.price * 1 === 0 ?
+                  <div className='bg-black space-y-2 rounded-lg rounded-tr-[700px] rounded-br-[700px] w-40 p-2 h-16 md:w-64 md:h-auto'>
+                    <h1 className='text-white text-sm md:text-3xl font-bold'>Contact for Price</h1>
+                  </div>
+                  :
+                  <div className='bg-[#FF0000] space-y-2 rounded-lg rounded-tr-[700px] rounded-br-[700px] w-40 p-2 h-16 md:w-64 md:h-auto'>
+                    <h1 className='text-white text-sm md:text-3xl font-bold'>CHF {addInvertedComma(product?.price * 1)}</h1>
+                    <h1 className='text-gray-300 text-sm md:text-xl font-semibold'>Euro {addInvertedComma(product?.price * 2)}</h1>
+                  </div>
+                }
                 <div className='flex flex-col md:flex-row justify-between my-6'>
                   <div className='space-y-4 mb-5 md:mb-0'>
                     <div className='text-black font-bold text-3xl'>
@@ -225,7 +223,7 @@ function ProductDetails() {
                   </div>
                   <div className='flex flex-row space-x-3'>
                     <h1><Visibility className='text-gray-500' /> <span className={listStyle2}>{product?.views}</span></h1>
-                    <h1><Favorite className={`${fav ? 'text-[#FF0000]' : 'text-gray-500'}`} onClick={() => adFavorite(product?._id)} /></h1>
+                    <Favorite className={`${findProductId(product?._id) ? 'text-[#FF0000]' : 'text-gray-300'} cursor-pointer`} onClick={() => adFavorite(product?._id)} />
                     <h1><Share className='text-gray-500' onClick={() => handleShare(product?._id)} /></h1>
                   </div>
                 </div>
@@ -236,7 +234,7 @@ function ProductDetails() {
                         <span>{t('product.Overview')}</span>
                         <span className="absolute bottom-0 left-0 w-8 h-1 bg-[#FF0000] top-7"></span>
                       </span>
-                      
+
                     </h1>
                     <ul className='grid grid-cols-3 mt-5 gap-3 mb-5'>
                       {!product?.condition ? '' : <li><span className={overviewStyle}>{t('product.Condition')}: </span> {product?.condition}</li>}
@@ -251,20 +249,26 @@ function ProductDetails() {
                       {!product?.extriorColor ? '' : <li><span className={overviewStyle}>{t('product.Exterior')}: </span> {product?.exteriorColor}</li>}
                       {product?.category == 'Autos' && <li><span className={overviewStyle}>{t('product.Interior')}: </span> {product?.interiorColor}</li>}
                     </ul>
-                    {product?.videoUrl && <div className='flex flex-row space-x-2'><span className={`${overviewStyle}`}> <InsertLink className='text-[#FF0000] mt-[-4px]' /> {t('product.videoUrl')}: </span><Link className='hover:text-red-500' href={product?.videoUrl}> {product?.videoUrl}</Link></div>}
                   </div>
                 </div>
-                <div className='border-t-2 space-y-8 mt-2'>
-                  <h1 className='text-xl font-bold mt-5'>
-                    <span className="relative">
-                      <span>{t('product.Description')}</span>
-                      <span className="absolute bottom-0 left-0 w-10 h-1 bg-[#FF0000] top-7"></span>
-                    </span>
-                   </h1>
-                  <p className='inline-block break-words w-full'>
-                    {product?.description}
-                  </p>
-                </div>
+                {product?.description !== "" &&
+                  <div className='border-t-2 space-y-8 mt-2'>
+                    <h1 className='text-xl font-bold mt-5'>
+                      <span className="relative">
+                        <span>Desc</span>
+                        <span className="absolute bottom-0 left-0 w-10 h-1 bg-[#FF0000] top-7"></span>
+                      </span>
+                      <span>ription</span>
+                    </h1>
+                    <p className='inline-block break-words w-full border-b-2 p-2'>
+                      {product?.description}
+                    </p>
+                  </div>
+                }
+                <section className='space-y-1 mt-3'>
+                  {product?.videoUrl && <div className='flex flex-row space-x-2'><span className={`${overviewStyle}`}> <InsertLink className='text-[#FF0000] mt-[-4px]' /> Video URL: </span><Link className='hover:text-red-500' href={product?.videoUrl}> {product?.videoUrl}</Link></div>}
+                  {product?.website && <div className='flex flex-row space-x-2'><span className={`${overviewStyle}`}> <InsertLink className='text-[#FF0000] mt-[-4px]' /> Website: </span><Link className='hover:text-red-500' href={product?.website}> {product?.website}</Link></div>}
+                </section>
               </div>
             </div>
 
@@ -317,7 +321,7 @@ function ProductDetails() {
               </div>
               <div className='mt-5 bg-white p-3 space-y-3'>
                 <h1 className='font-bold text-xl'>  {t('product.Location')}
-</h1>
+                </h1>
                 <div className='flex flex-row gap-2 text-gray-600'>
                   <Place className='text-[#FF0000]' />
                   <h1>{product?.address}</h1>

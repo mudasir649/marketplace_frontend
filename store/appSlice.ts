@@ -7,6 +7,16 @@ const getProductInitialState = () => {
     return productsData;
 }
 
+const getProductCountsInitialState = () => {
+    const productDataCount = typeof window !== 'undefined' ? localStorage.getItem('productsCount') : null;
+    const productsCount = productDataCount ? productDataCount : null;
+    return productsCount;
+}
+
+const getProdIdInitialState = (): string[] => {
+    const prodIdData = typeof window !== 'undefined' ? localStorage.getItem('prodId') : null;
+    return prodIdData ? JSON.parse(prodIdData) : [];
+};
 
 const getChatRoomData = () => {
     const chatRoomData = typeof window !== 'undefined' ? localStorage.getItem('roomsData') : null;
@@ -15,7 +25,34 @@ const getChatRoomData = () => {
 }
 
 
-const initialState = {
+interface InitialStateInterface {
+    refresh: number;
+    filterData: string[]; // Change this to match your data type.
+    showShare: boolean;
+    showSellNow: boolean;
+    productId: string;
+    productUserId: string;
+    showRepairNow: boolean;
+    showDeleteAd: boolean;
+    productData: any | null;
+    productsCount: any | null;
+    roomsData: any | null;
+    page: number;
+    sortBy: string;
+    type: string;
+    title: string;
+    address: string;
+    language: string;
+    showContact: boolean;
+    condition: string | null;
+    brand: string | null;
+    minPrice: any | null;
+    maxPrice: any | null;
+    prodId: string[];
+}
+
+
+const initialState: InitialStateInterface = {
     refresh: 0,
     filterData: [],
     showShare: false,
@@ -24,8 +61,8 @@ const initialState = {
     productUserId: '',
     showRepairNow: false,
     showDeleteAd: false,
-    productData: null,
-    productsCount: 0,
+    productData: getProductInitialState() !== null ? getProductInitialState() : null,
+    productsCount: getProductCountsInitialState() !== null ? getProductCountsInitialState() : null,
     roomsData: getChatRoomData() !== null ? getChatRoomData() : null,
     page: 1,
     sortBy: '',
@@ -33,7 +70,12 @@ const initialState = {
     title:'',
     address: '',
     language: 'en',
-    showContact: false
+    showContact: false,
+    condition: null || '',
+    brand: null || '',
+    minPrice: null || '',
+    maxPrice: null || '',
+    prodId: getProdIdInitialState()
 }
 
 
@@ -62,22 +104,16 @@ const appSlice = createSlice({
         setShowDeleteAd: (state, actions) => {
             state.showDeleteAd = actions.payload
         },
-        // setProductData: (state, actions) => {
-        //     state.productData = actions.payload;
-        //     localStorage.setItem('productsData', JSON.stringify(actions.payload));
-        // },
-        // setProductsCount: (state, actions) => {
-        //     state.productsCount = actions.payload;
-        //     localStorage.setItem('productsCount', actions.payload);
-        // },
-        setProductUserId: (state, actions) => {
-            state.productUserId = actions.payload;
-        },
         setProductData: (state, actions) => {
             state.productData = actions.payload;
+            localStorage.setItem('productsData', JSON.stringify(actions.payload));
         },
         setProductsCount: (state, actions) => {
             state.productsCount = actions.payload;
+            localStorage.setItem('productsCount', actions.payload);
+        },
+        setProductUserId: (state, actions) => {
+            state.productUserId = actions.payload;
         },
         setPage: (state, actions) => {
             state.page = actions.payload
@@ -102,8 +138,24 @@ const appSlice = createSlice({
             state.language = actions.payload;
         },
         setShowContact: (state, actions) => {
-            state.showContact = actions.payload
-        }
+            state.showContact = actions.payload;
+        },
+        setCondition: (state, actions) => {
+            state.condition = actions.payload;
+        },
+        setBrand: (state, actions) => {
+            state.brand = actions.payload;
+        },
+        setMaxPrice: (state, actions) => {
+            state.maxPrice = actions.payload;
+        },
+        setMinPrice: (state, actions) => {
+            state.minPrice = actions.payload;
+        },
+        setProdId: (state, actions) => {
+            state.prodId = actions.payload;
+            localStorage.setItem('prodId', JSON.stringify(state.prodId));
+    }
     }
 });
 
@@ -114,6 +166,9 @@ export const { refreshPage, setFilterData,
                 setProductData, setProductsCount, 
                 setSortBy, setType,
                 setReduxTitle, setReduxAddress, 
-                setProductUserId, setRoomsData, setLanguage, setShowContact } = appSlice.actions;
+                setProductUserId, setRoomsData, 
+                setLanguage, setShowContact, 
+                setCondition, setBrand, 
+                setMinPrice, setMaxPrice, setProdId } = appSlice.actions;
 
 export default appSlice.reducer;

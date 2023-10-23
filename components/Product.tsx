@@ -9,7 +9,7 @@ import './ImageSlider.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
-import { refreshPage, setProductId, setShowDeleteAd } from '@/store/appSlice';
+import { refreshPage, setProdId, setProductId, setProductUserId, setShowDeleteAd } from '@/store/appSlice';
 import { setShowShare } from '@/store/appSlice';
 import addInvertedComma from '@/utils/addInvertedComma';
 import showDate from '@/utils/showDate';
@@ -25,7 +25,7 @@ export default function Product({ product, url }: any) {
   const router = useRouter();
   const { width, height } = useWindowDimensions();
   const { userInfo } = useSelector((state: any) => state.auth);
-  const { productId } = useSelector((state: any) => state.app);
+  const { prodId } = useSelector((state: any) => state.app);
   const userId = userInfo?.data?.userDetails?._id;
   const newWidth = width || 0;
   const newHeight = height || 0;
@@ -54,11 +54,19 @@ export default function Product({ product, url }: any) {
     } else {
       const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/setFavorite/${product?._id}/${userId}`);
       if (res.status == 201) {
-        setFav(true)
+        dispatch(refreshPage(refresh + 1))
       } else {
         if (pathname == '/my-favourites') {
           dispatch(refreshPage(refresh + 1))
+          const newRecord = prodId?.filter((item: any) => {
+            return item._id !== product?._id
+          });
+          dispatch(setProdId(newRecord));
         } else {
+          const newRecord = prodId?.filter((item: any) => {
+            return item._id !== product?._id
+          });
+          dispatch(setProdId(newRecord));
           setFav(false)
         }
       }
@@ -68,6 +76,44 @@ export default function Product({ product, url }: any) {
     dispatch(setShowShare(true))
     dispatch(setProductId(product?._id))
   }
+
+  const handleChat = async () => {
+    if (userInfo !== null) {
+      dispatch(setProductId(product?._id));
+      dispatch(setProductUserId(product?.userId?._id));
+      const data = {
+        userId: userId,
+        productUserId: product?.userId?._id,
+        productId: product?._id
+      }
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URI}/chatroom`, data);
+      if (res.status === 200) {
+        router.push('/chat');
+      }
+    } else {
+      router.push('/login')
+    }
+  }
+
+
+
+  useEffect(() => {
+    const fetchAds = async () => {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/getFavAds/${userId}`);
+      if (res.status === 200) {
+        dispatch(setProdId(res?.data?.data));
+      }
+    }
+    if (userInfo !== null) {
+      fetchAds();
+    }
+  }, [userId, dispatch, userInfo]);
+
+  const checkFavAds = () => {
+    return prodId.some((item: any) => item._id === product?._id)
+  }
+
+
   return (
     <div className='mb-3' data-aos="fade-up">
       <div className="image-slider group relative max-w-sm rounded-lg overflow-hidden shadow-lg bg-white m-2 cursor-pointer hover:shadow-md hover:shadow-[#e52320]">
@@ -91,8 +137,14 @@ export default function Product({ product, url }: any) {
           <div className="px-6 py-4 max-w-full">
             <div className='w-auto overflow-hidden flex flex-row justify-between'>
               <section className='overflow-hidden'>
-                <h2 className='text-[#FF0000] font-bold text-[17px] w-32 truncate'>CHF {addInvertedComma(product?.price * 2)}</h2>
-                <h1 className='text-gray-400 font-semibold text-[13px] w-32 truncate'>EURO {addInvertedComma(product?.price * 2)}</h1>
+                {product?.price * 1 === 0 ?
+                  <h1 className='bg-black text-white text-center py-2 w-32 h-10 border-none rounded-lg text-[14px] font-semibold'>Contact For Price</h1>
+                  :
+                  <>
+                    <h2 className='text-[#FF0000] font-bold text-[17px] w-32 truncate'>CHF {addInvertedComma(product?.price * 1)}</h2>
+                    <h1 className='text-gray-400 font-semibold text-[13px] w-32 truncate'>EURO {addInvertedComma(product?.price * 2)}</h1>
+                  </>
+                }
               </section>
               <section className='flex flex-row space-x-1'>
                 <AccessTime className="text-gray-400" style={{ fontSize: "22px" }} />
@@ -125,8 +177,8 @@ export default function Product({ product, url }: any) {
                     className='cursor-pointer'
                     style={{ fontSize: "20px" }}
                   />
-                  <Chat style={{ fontSize: "20px" }} />
-                  <Favorite className={`${fav ? 'text-[#FF0000]'
+                  <Chat style={{ fontSize: "20px" }} onClick={() => handleChat()} />
+                  <Favorite className={`${checkFavAds() ? 'text-[#FF0000]'
                     : 'text-gray-300'} cursor-pointer`}
                     onClick={() => adFavorite()}
                     style={{ fontSize: "20px" }}
