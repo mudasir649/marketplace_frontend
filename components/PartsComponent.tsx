@@ -366,7 +366,7 @@ export default function PartsComponent({ type }: any) {
                                             onChange={(e: any) => handleInput(e)}
                                         />
                                         <p className='text-gray-400 text-sm mt-1'>
-                                            Whatsapp number with your country code. e.g.+41xxxxxxxxxx
+                                            Whatsapp number country code. e.g.+41xxxxxxxxxx
                                         </p>
                                     </div>
                                 </div> : howContact == 'Viber' ?
@@ -379,7 +379,7 @@ export default function PartsComponent({ type }: any) {
                                                 value={data.viber}
                                                 onChange={(e: any) => handleInput(e)}
                                             />
-                                            <p className='text-gray-400 text-sm mt-1'>Viber number with your country code. e.g.+41xxxxxxxxxx</p>
+                                            <p className='text-gray-400 text-sm mt-1'>Viber number country code. e.g.+41xxxxxxxxxx</p>
                                         </div>
                                     </div>
                                     : ''

@@ -443,7 +443,7 @@ export default function SpecialCatComponent({ type }: any) {
                                             onChange={(e: any) => handleInput(e)}
                                         />
                                         <p className='text-gray-400 text-sm mt-1'>
-                                            Whatsapp number with your country code. e.g.+41xxxxxxxxxx
+                                            Whatsapp number country code. e.g.+41xxxxxxxxxx
                                         </p>
                                     </div>
                                 </div> : howContact == 'Viber' ?
