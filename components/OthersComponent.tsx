@@ -181,7 +181,7 @@ export default function OthersComponent({ type }: any) {
                             </h1>
                         </div>
                         <div className='mt-5 w-full mb-5'>
-                            <h1 className='space-x-3 border-b-2 pb-3'><Description className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>{t('autosComponent.productInformation')} </span></h1>
+                            <h1 className='space-x-3 border-b-2 pb-3'><Description className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>{t('autosComponent.productInfo')} </span></h1>
                         </div>
                         <form onSubmit={(e: any) => handleSubmit(e)}>
                             <div className={style.divStyle}>
