@@ -9,7 +9,7 @@ import addInvertedComma from '@/utils/addInvertedComma';
 import { CameraAlt, CameraAltOutlined, Cancel, DeleteForever } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
-import { get, onValue, push, ref, set } from 'firebase/database';
+import { get, getDatabase, onValue, push, ref, set } from 'firebase/database';
 import {
     getStorage,
     ref as storageRef,
@@ -20,6 +20,7 @@ import "./chat.css";
 import Home from '@/components/Home';
 import moment from "moment";
 import dynamic from 'next/dynamic';
+import { NextFetchEvent } from 'next/server';
 
 interface Message {
     senderId: string;
@@ -42,13 +43,18 @@ function Chat() {
 
     const [message, setMessage] = useState<any>('');
     const [newMessages, setNewMessages] = useState<any>([]);
+    const [unreadRooms, setUnreadRooms] = useState<any>([]);
     const [selected, setSelected] = useState<any>({});
     const [loading, setLoading] = useState<Boolean>(true);
     const [imageLoading, setImageLoading] = useState<Boolean>(false);
+    const [chatData, setChatData] = useState<any>({});
     const [chatRoomData, setChatRoomData] = useState<any>();
+    const [otherUserOnline, setOtherUserOnline] = useState(false);
     const [image, setImage] = useState<any>([]);
     const fileInputValue = useRef<HTMLInputElement | null>(null);
     const router = useRouter();
+
+
 
     useEffect(() => {
         if (userInfo === null) {
@@ -56,50 +62,65 @@ function Chat() {
         }
     }, [userInfo, router]);
 
+
+    useEffect(() => {
+        const checkUnreadMessage = async () => {
+            const unread = [];
+            for (let roomId of roomsData) {
+                const roomRef = ref(db, `chatrooms/${roomId}`);
+
+                //fetch the last message's timestamp and compare it
+                const roomSnapChat = await get(roomRef);
+                const roomData = roomSnapChat.val();
+                const lastMessageTimestamp = roomData?.messages
+                    ? (Object.values(roomData.messages).slice(-1)[0] as Message).timestamp
+                    : null;
+                const lastReadTimestamp = roomData?.lastRead?.[userId];
+
+                if (lastMessageTimestamp && (!lastReadTimestamp || lastMessageTimestamp > lastReadTimestamp)) {
+                    unread.push(roomId)
+                }
+            }
+            setUnreadRooms(unread);
+        }
+
+        checkUnreadMessage();
+    }, [roomsData, userId]);
+
     useEffect(() => {
         const fetchChatData = async () => {
             let temporaryChatData: any = {};
-
             for (let roomId of roomsData) {
-                const ids = roomId.split("_");
-                let otherUserId = ids[0] === userId ? ids[1] : ids[0];
+                const ids = roomId.split('_');
+                let OtherUserId = ids[0] === userId ? ids[1] : ids[0];
                 let productId = ids[2];
 
-                const userResponse = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/getUser/${otherUserId}`);
-                const productResponse = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/getSpecific/${productId}`);
+                const userData = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/getUser/${OtherUserId}`);
+                const productData = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/getSpecific/${productId}`);
 
                 temporaryChatData[roomId] = {
-                    otherUser: userResponse.data.data,
-                    product: productResponse.data.data,
-                };
+                    otherUser: userData.data,
+                    product: productData.data
+                }
             }
-
-            setChatRoomData(temporaryChatData);
-            setLoading(false)
-
-            // Get the last entry of 'temporaryChatData' and set it as 'selected'
-            const keys = Object.keys(temporaryChatData);
-            const lastKey = keys[keys.length - 1];
-            if (lastKey) {
-                setSelected({
-                    roomId: lastKey,
-                    ...temporaryChatData[lastKey],
-                });
-            }
-        };
-
-        fetchChatData();
-    }, [roomsData, userId]);
-
-    const handleImageRemove = (index: any) => {
-        const fileInput = document.getElementById('fileInput') as HTMLInputElement;
-        if (fileInput) {
-            fileInput.value = ''
+            setChatData(temporaryChatData);
+            setLoading(false);
         }
-        const updatedImages = [...image];
-        updatedImages.splice(index, 1);
-        setImage(updatedImages)
-    }
+        fetchChatData();
+    }, [roomsData, userId, setChatData]);
+
+    useEffect(() => {
+        if (selected && selected?.otherUser) {
+            const otherUserStatusRef = ref(db, `users/${selected.otherUser?.data?._id}/online`);
+
+            const listner = onValue(otherUserStatusRef, (snapshot) => {
+                const isOnline = !!snapshot.val();
+
+                setOtherUserOnline(isOnline);
+            });
+        }
+    }, [selected]);
+
 
     useEffect(() => {
         const fetchLatestMessages = () => {
@@ -121,6 +142,32 @@ function Chat() {
 
         fetchLatestMessages();
     }, [roomsData]);
+
+    const handleChatRoom = async (roomId: any) => {
+        // 1. set the room as selecteds
+        setSelected({
+            roomId: roomId,
+            ...chatData[roomId]
+        });
+
+        // 2. update the last read timestamp for this room
+        const db = getDatabase();
+        const lastReadRef = ref(db, `chatrooms/${roomId}/lastRead/${userId}`);
+        await set(lastReadRef, Date.now());
+
+        // 3. update the local unreadRooms state.
+        setUnreadRooms((prevState: any) => prevState.filter((id: any) => id !== roomId))
+    }
+
+    const handleImageRemove = (index: any) => {
+        const fileInput = document.getElementById('fileInput') as HTMLInputElement;
+        if (fileInput) {
+            fileInput.value = ''
+        }
+        const updatedImages = [...image];
+        updatedImages.splice(index, 1);
+        setImage(updatedImages)
+    }
 
 
     const handleMessage = async (e: any) => {
@@ -256,29 +303,23 @@ function Chat() {
                         {loading ?
                             <div className="spinner mt-8 w-40 h-40"></div>
                             :
-                            newMessages.length <= 0 && roomsData.length <= 0 ?
-                                <div className='flex justify-center border border-[#FF0000] rounded-md w-60 p-5 mt-10'>
-                                    <h1 className='text-lg font-bold'>You have no Chat !!</h1>
-                                </div>
-                                :
-                                <div className='container mx-auto flex items-center mt-20 cursor-pointer'>
-                                    <div className='flex justify-center bg-white border border-gray-300 rounded-lg w-full'>
-                                        <div className='w-[500px] border-r-2 border-gray-300'>
-                                            <h1 className='uppercase text-2xl font-semibold p-3 border-b-2'>
-                                                Inbox
-                                            </h1>
-                                            {chatRoomData && roomsData && Object.values(roomsData)?.reverse()?.map((data: any, i: number) => (
+                            <div className='container mx-auto flex items-center mt-20 cursor-pointer'>
+                                <div className='flex justify-center bg-white border border-gray-300 rounded-lg w-full'>
+                                    <div className='w-[500px] border-r-2 border-gray-300'>
+                                        <h1 className='uppercase text-2xl font-semibold p-3 border-b-2'>
+                                            Inbox
+                                        </h1>
+                                        {roomsData && [...roomsData].map((data: any, i: any) => (
+                                            chatData[data] && (
                                                 <div
                                                     className='flex flex-row space-x-2 border-b-2 m-3 py-2'
                                                     key={i}
-                                                    onClick={() => {
-                                                        setSelected({ roomId: data, ...chatRoomData[data] })
-                                                    }}
+                                                    onClick={() => handleChatRoom(data)}
                                                 >
                                                     <div className='w-20'>
                                                         <Image
                                                             className='h-16 w-16 border rounded-full'
-                                                            src={chatRoomData[data].otherUser.image}
+                                                            src={chatData[data].otherUser.data.image}
                                                             alt="logo"
                                                             width={100}
                                                             height={100}
@@ -286,117 +327,125 @@ function Chat() {
                                                     </div>
                                                     <div className='w-full'>
                                                         <section className='flex flex-row justify-between'>
-                                                            <h1 className='text-sm font-bold'>{chatRoomData[data].otherUser.firstName + chatRoomData[data].otherUser.lastName}</h1>
-                                                            <DeleteForever className='text-[#FF0000]' onClick={() => deleteMessage(selected?.roomId)} />
+                                                            <h1 className='text-sm font-bold'>{chatData[data].otherUser.data.firstName}  {chatData[data].otherUser.data.lastName}</h1>
+                                                            <DeleteForever className='text-[#FF0000]' />
                                                         </section>
-                                                        <h1 className='text-sm font-bold line-clamp-1'>{chatRoomData[data].product?.title}</h1>
+                                                        <h1 className='text-sm font-bold line-clamp-1'>{chatData[data].product?.data?.title}</h1>
                                                         <section className='flex flex-row justify-between'>
                                                             {/* <h1 className='text-sm line-clamp-1'>{chatRoomData[data].otherUser.email}</h1> */}
                                                             <h1 className='text-sm w-20 truncate'>
-                                                                {newMessages[data] && typeof newMessages[data] === 'object'
+                                                                {newMessages[data]
                                                                     ? (Object.keys((newMessages as NewMessages)[data]).pop() && (newMessages as NewMessages)[data][Object.keys((newMessages as NewMessages)[data]).pop() as string]?.text)
-                                                                    : ""}
+                                                                    :
+                                                                    ""}
                                                             </h1>
                                                             <h1 className='text-sm'>{getTimeDifference(message.timestamps)}</h1>
                                                         </section>
                                                     </div>
                                                 </div>
-                                            ))}
-                                        </div>
-                                        <div className='w-full'>
-                                            <div className='m-5 flex flex-row space-x-4'>
-                                                <div className='w-16'>
-                                                    <Image
-                                                        className='h-16 w-16 border rounded-full'
-                                                        src={selected?.otherUser?.image}
-                                                        alt="logo"
-                                                        width={100}
-                                                        height={100}
-                                                    />
-                                                </div>
-                                                <section className='mt-3'>
-                                                    <h1 className='text-lg font-bold'>{selected?.otherUser?.firstName + selected?.otherUser?.lastName}</h1>
-                                                    <div className='flex flex-row space-x-[2px] mt-1'>
-                                                        <h1 className='border-none rounded-full h-2 w-2 bg-green-700'></h1>
-                                                        <h1 className='text-[9px] mt-[-3px]'>online</h1>
+                                            )
+                                        ))}
+                                    </div>
+                                    <div className='w-full'>
+                                        {Object.keys(selected).length <= 0 ? <div className='h-[400px]'>
+                                            <h1 className='border rounded-md border-red-500 mx-3 mt-52 p-3'>No chat selected</h1>
+                                        </div> :
+                                            <>
+                                                <div className='m-5 flex flex-row space-x-4'>
+                                                    <div className='w-16'>
+                                                        <Image
+                                                            className='h-16 w-16 border rounded-full'
+                                                            src={selected?.otherUser?.data.image}
+                                                            alt="logo"
+                                                            width={100}
+                                                            height={100}
+                                                        />
                                                     </div>
-                                                </section>
-                                            </div>
-                                            <div className='flex flex-row border-t-2 border-b-2 w-auto p-4 space-x-2'>
-                                                <div className='bg-gray-100 w-40 flex justify-center' onClick={() => router.push(`/product-details/${selected?.product?._id}`)}>
-                                                    <Image
-                                                        src={selected?.product?.images[0]}
-                                                        alt='productImage'
-                                                        height={100}
-                                                        width={100}
-                                                        className='h-20 w-auto border-none rounded-md'
-                                                    />
+                                                    <section className='mt-3'>
+                                                        <h1 className='text-lg font-bold'>{selected?.otherUser?.data?.firstName} {selected?.otherUser?.data?.lastName}</h1>
+                                                        <div className='flex flex-row space-x-[2px] mt-1'>
+                                                            <h1 className={`border-none rounded-full h-2 w-2 ${otherUserOnline ? 'bg-green-700' : 'bg-red-700'}`}></h1>
+                                                            <h1 className='text-[9px] mt-[-3px]'>{otherUserOnline ? 'online' : 'offline'}</h1>
+                                                        </div>
+                                                    </section>
                                                 </div>
-                                                <div className='w-full'>
-                                                    <h1 className='text-lg font-bold'>{selected?.product?.title}</h1>
-                                                    <div className='flex flex-row justify-between'>
-                                                        <h1 className='text-[#FF0000] text-sm font-semibold'>CHF {addInvertedComma(selected?.product?.price)}</h1>
-                                                        <button className='text-white bg-[#FF0000] border-none rounded-md w-32 p-2 mt-2'
-                                                            onClick={() => router.push(`/product-details/${selected?.product?._id}`)}>View Ad</button>
-                                                    </div>
+                                                <div className='flex flex-row border-t-2 border-b-2 w-auto p-4 space-x-2'>
+                                                    {selected.product && (
+                                                        <><div className='bg-gray-100 w-40 flex justify-center' onClick={() => router.push(`/product-details/${selected?.product?._id}`)}>
+                                                            <Image
+                                                                src={selected?.product?.data.images[0]}
+                                                                alt='productImage'
+                                                                height={100}
+                                                                width={100}
+                                                                className='h-20 w-auto border-none rounded-md' />
+                                                        </div><div className='w-full'>
+                                                                <h1 className='text-lg font-bold'>{selected?.product?.data.title}</h1>
+                                                                <div className='flex flex-row justify-between'>
+                                                                    <h1 className='text-[#FF0000] text-sm font-semibold'>CHF {addInvertedComma(selected?.product?.data.price * 1)}</h1>
+                                                                    <button className='text-white bg-[#FF0000] border-none rounded-md w-32 p-2 mt-2'
+                                                                        onClick={() => router.push(`/product-details/${selected?.product?._id}`)}>View Ad</button>
+                                                                </div>
+                                                            </div></>
+                                                    )}
                                                 </div>
-                                            </div>
-                                            <div className=''>
-                                                <div className={`${newMessages.length <= 0 ? 'h-[500px]' : ''}`}>
-                                                    <div className='h-[400px] messageArea'>
-                                                        {selected.roomId && newMessages[selected.roomId]
-                                                            &&
-                                                            Object.values(newMessages[selected.roomId]).sort((a: any, b: any) => a.timestamp - b.timestamp).map((message: any, i: number) => (
-                                                                <div
-                                                                    key={i}
-                                                                    className={`${message.images?.length <= 5 ? 'flex flex-col space-y-4' : 'flex flex-row space-x-4'} bg-gray-100 h-auto w-40 p-5 mt-2 mb-2 border-none 
+                                                <div className=''>
+                                                    <div className={`${newMessages.length <= 0 ? 'h-[500px]' : ''}`}>
+                                                        <div className='h-[400px] messageArea'>
+                                                            {selected.roomId && newMessages[selected.roomId]
+                                                                &&
+                                                                Object.values(newMessages[selected.roomId]).sort((a: any, b: any) => a.timestamp - b.timestamp).map((message: any, i: number) => (
+                                                                    <div
+                                                                        key={i}
+                                                                        className={`${message.images?.length <= 5 ? 'flex flex-col space-y-4' : 'flex flex-row space-x-4'} bg-gray-100 h-auto w-40 p-5 mt-2 mb-2 border-none 
                                                 ${message.senderId === userId ? 'ml-auto mr-2 rounded-bl-[6px] rounded-br-[6px] rounded-tl-[6px]'
-                                                                            : 'mr-auto ml-2 rounded-bl-[6px] rounded-br-[6px] rounded-tr-[6px]'
-                                                                        }`}
-                                                                >
-                                                                    {message.text ? (
-                                                                        <>
-                                                                            <span className='inline-block break-words w-32'>{message.text}</span>
-                                                                        </>
-                                                                    )
-                                                                        :
-                                                                        (
-                                                                            message.images && message.images.map((imgs: any, i: number) => (
-                                                                                // eslint-disable-next-line @next/next/no-img-element
-                                                                                <img src={imgs} alt="Your Alt Text" className='h-24 w-32' key={i} />
-                                                                            ))
-                                                                        )}
+                                                                                : 'mr-auto ml-2 rounded-bl-[6px] rounded-br-[6px] rounded-tr-[6px]'
+                                                                            }`}
+                                                                    >
+                                                                        {message.text ? (
+                                                                            <>
+                                                                                <span className='inline-block break-words w-32'>{message.text}</span>
+                                                                            </>
+                                                                        )
+                                                                            :
+                                                                            (
+                                                                                message.images && message.images.map((imgs: any, i: number) => (
+                                                                                    // eslint-disable-next-line @next/next/no-img-element
+                                                                                    <img src={imgs} alt="Your Alt Text" className='h-24 w-32' key={i} />
+                                                                                ))
+                                                                            )}
+                                                                    </div>
+                                                                ))}
+                                                        </div>
+                                                        {image.length > 0 && <div className='flex flex-row p-2 space-x-5  bg-gray-100'>
+                                                            {image.map((img: any, i: number) => (
+                                                                <div className='flex justify-center h-24 w-32 bg-green-400' key={i}>
+                                                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                                                    <img src={URL.createObjectURL(img)} alt="Your Alt Text" className='h-24 w-32' />
+                                                                    <Cancel className='absolute mt-[1px] ml-24 text-[#FF0000]' onClick={() => handleImageRemove(i)} />
                                                                 </div>
                                                             ))}
+                                                            {imageLoading && <div className="spinner mt-8 w-10 h-10"></div>}
+                                                        </div>
+                                                        }
                                                     </div>
-                                                    {image.length > 0 && <div className='flex flex-row p-2 space-x-5  bg-gray-100'>
-                                                        {image.map((img: any, i: number) => (
-                                                            <div className='flex justify-center h-24 w-32 bg-green-400' key={i}>
-                                                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                                                <img src={URL.createObjectURL(img)} alt="Your Alt Text" className='h-24 w-32' />
-                                                                <Cancel className='absolute mt-[1px] ml-24 text-[#FF0000]' onClick={() => handleImageRemove(i)} />
-                                                            </div>
-                                                        ))}
-                                                        {imageLoading && <div className="spinner mt-8 w-10 h-10"></div>}
-                                                    </div>
-                                                    }
+                                                    <form className='bg-gray-100 flex flex-row px-7 p-2'>
+                                                        <div className='w-12 h-10 cursor-pointer py-1'>
+                                                            <CameraAlt className='text-4xl text-gray-500' onClick={() => handleCamera()} />
+                                                            <input type="file" className='invisible' id='fileInput' ref={fileInputValue} onChange={(e) => handleImage(e)} multiple />
+                                                        </div>
+                                                        <div className='w-full flex flex-row'>
+                                                            <input type="text" disabled={disableButton()} required placeholder='Type a message' value={message} className='focus:outline-none rounded-bl-md rounded-tl-md w-full h-full p-2' onChange={(e) => setMessage(e.target.value)} />
+                                                            <button className='bg-[#FF0000] w-20 cursor-pointer border-none rounded-br-md rounded-tr-md' onClick={(e) => handleMessage(e)}>
+                                                                <FontAwesomeIcon icon={faPaperPlane} className='text-white text-xl p-2' />
+                                                            </button>
+                                                        </div>
+                                                    </form>
                                                 </div>
-                                                <form className='bg-gray-100 flex flex-row px-7 p-2'>
-                                                    <div className='w-12 h-10 cursor-pointer py-1'>
-                                                        <CameraAlt className='text-4xl text-gray-500' onClick={() => handleCamera()} />
-                                                        <input type="file" className='invisible' id='fileInput' ref={fileInputValue} onChange={(e) => handleImage(e)} multiple />
-                                                    </div>
-                                                    <div className='w-full flex flex-row'>
-                                                        <input type="text" disabled={disableButton()} required placeholder='Type a message' value={message} className='focus:outline-none rounded-bl-md rounded-tl-md w-full h-full p-2' onChange={(e) => setMessage(e.target.value)} />
-                                                        <button className='bg-[#FF0000] w-20 cursor-pointer border-none rounded-br-md rounded-tr-md' onClick={(e) => handleMessage(e)}>
-                                                            <FontAwesomeIcon icon={faPaperPlane} className='text-white text-xl p-2' />
-                                                        </button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
+                                            </>
+                                        }
                                     </div>
                                 </div>
+                            </div>
                         }
                     </div >
                 </Home >
