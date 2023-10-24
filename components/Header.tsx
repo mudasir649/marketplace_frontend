@@ -84,8 +84,6 @@ export default function Header() {
     }
   }, [userInfo, userId, dispatch]);
 
-  console.log(userId);
-
   const handleContact = () => {
     dispatch(setShowContact(true));
     setNavbar(false);
