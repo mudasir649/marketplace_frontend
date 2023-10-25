@@ -78,7 +78,7 @@
       "interiorColor": "Innenfarbe",
       "selectInteriorColor": "Innenfarbe auswählen",
       "description": "Beschreibung",
-      "images": "Bilder",
+      "images": "Bilder", 
       "imageSizeInfo": "Empfohlene Bildgröße ist (870x493)px.",
       "imageSizeInfo2": "Maximale Bildgröße beträgt 2 MB.",
       "imageSizeInfo3": "Erlaubte Bildformate sind (png, jpg, jpeg, webp).",
@@ -99,6 +99,46 @@
     "subCategory": "Unterkategorie",
     "selectSubCategory": "Unterkategorie auswählen"
   } , 
+  
+    "color": {
+        "name1": "Beige",
+        "name2": "Braun",
+        "name3": "Bronze",
+        "name4": "Gelb",
+        "name5": "Grün",
+        "name6": "Rot",
+        "name7": "Schwarz",
+        "name8": "Silber",
+        "name9": "Violett",
+        "name10": "Orange",
+        "name11": "Gold",
+        "name12": "Lackierung (Metall)",
+        "name13": "Weiß",
+        "name14": "Andere"
+    }
+,
+
+  "gearBox": {
+      "name1": "Automatisch",
+      "name2": "Manuell",
+      "name3": "Halbautomatisch"
+  }
+
+,
+  "interiorColor": {
+      "name1": "Beige",
+      "name2": "Schwarz",
+      "name3": "Grau",
+      "name4": "Weiß",
+      "name5": "Braun",
+      "name6": "Rot",
+      "name7": "Gelb",
+      "name8": "Orange",
+      "name9": "Andere"
+  }
+
+,
+
   
     "banner": {
       "seeAllCategories": "Alle Kategorien",

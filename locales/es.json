@@ -139,6 +139,46 @@
     "logout": "Cerrar sesión",
     "login": "Iniciar sesión"
   },
+  
+    "color": {
+        "name1": "Beige",
+        "name2": "Marrón",
+        "name3": "Bronce",
+        "name4": "Amarillo",
+        "name5": "Verde",
+        "name6": "Rojo",
+        "name7": "Negro",
+        "name8": "Plata",
+        "name9": "Violeta",
+        "name10": "Naranja",
+        "name11": "Oro",
+        "name12": "Pintura (Metálica)",
+        "name13": "Blanco",
+        "name14": "Otro"
+    }
+
+,
+
+  "gearBox": {
+      "name1": "Automático",
+      "name2": "Manual",
+      "name3": "Semiautomático"
+  }
+
+,
+  "interiorColor": {
+      "name1": "Beige",
+      "name2": "Negro",
+      "name3": "Gris",
+      "name4": "Blanco",
+      "name5": "Marrón",
+      "name6": "Rojo",
+      "name7": "Amarillo",
+      "name8": "Naranja",
+      "name9": "Otro"
+  }
+
+,
   "labels": {
     "fullName": "Nombre completo",
     "phoneNo": "Número de teléfono",

@@ -101,13 +101,73 @@
         "subCategory": "Sub Category", 
         "selectSubCategory":"Select Sub Category"
       } , 
-      
+      "color": {
+        
+            "name1": "Beige"
+        ,
+        
+            "name2": "Brown"
+        ,
+        
+            "name3": "Bronze"
+        ,
+        
+            "name4": "Yellow"
+        ,
+        
+            "name5": "Green"
+        ,
+        
+            "name6": "Red"
+        ,
+        
+            "name7": "Black"
+        ,
+        
+            "name8": "Silver"
+        ,
+        
+            "name9": "Violet"
+        ,
+        
+            "name10": "Orange"
+        ,
+        
+            "name11": "Gold"
+        ,
+        
+            "name12": "Paintwork (Metallic)"
+        ,
+        
+            "name13": "White"
+        ,
+        
+            "name14": "Other"
+        
+      },
+      "interiorColor": {
+        "name1": "Beige",
+        "name2": "Black",
+        "name3": "Grey",
+        "name4": "White",
+        "name5": "Brown",
+        "name6": "Red",
+        "name7": "Yellow",
+        "name8": "Orange",
+        "name9": "Other"
+      },
         "banner": {
           "seeAllCategories": "See all categories",
           "topCategories": "Top Categories:",
           "autos": "Autos",
           "parts": "Parts"
         } , 
+        
+        "gearBox": {
+          "name1": "Automatic",
+          "name2": "Manual",
+          "name3": "Semi-automatic"
+        },
         "sellRepairComponent": {
           "sellTitle": "Do you want to sell",
           "sellSubtitle": "Get a free quote for your vehicle",

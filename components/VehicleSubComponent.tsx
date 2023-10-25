@@ -217,8 +217,94 @@ export default function VehicleSubComponent({ type }: any) {
             router.push('/')
         }
     }, [router, userData]);
+    
+    const interiorColor = [
+        {
+            name: t('interiorColor.name1')
+        },
+        {
+            name: t('interiorColor.name2')
+        },
+        {
+            name: t('interiorColor.name3')
+        },
+        {
+            name: t('interiorColor.name4')
+        },
+        {
+            name: t('interiorColor.name5')
+        },
+        {
+            name: t('interiorColor.name6')
+        },
+        {
+            name: t('interiorColor.name7')
+        },
+        {
+            name: t('interiorColor.name8')
+        },
+        {
+            name: t('interiorColor.name9')
+        },
+    ];
+    
 
-
+    const gearBox = [
+        {
+            name: t('gearBox.name1')
+        },
+        {
+            name: t('gearBox.name2')
+        },
+        {
+            name: t('gearBox.name3')
+        }
+    ];
+        const exteriorColor = [
+        {
+            "name": t('color.name1')
+        },
+        {
+            "name": t('color.name2')
+        },
+        {
+            "name": t('color.name3')
+        },
+        {
+            "name": t('color.name4')
+        },
+        {
+            "name": t('color.name5')
+        },
+        {
+            "name": t('color.name6')
+        },
+        {
+            "name": t('color.name7')
+        },
+        {
+            "name": t('color.name8')
+        },
+        {
+            "name": t('color.name9')
+        },
+        {
+            "name": t('color.name10')
+        },
+        {
+            "name": t('color.name11')
+        },
+        {
+            "name": t('color.name12')
+        },
+        {
+            "name": t('color.name13')
+        },
+        {
+            "name": t('color.name14')
+        }
+    ];
+    
     return (
         <Home>
             <div className='container mx-auto mt-10'>

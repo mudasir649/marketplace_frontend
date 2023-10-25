@@ -244,6 +244,46 @@
       "text": "Se hai domande o suggerimenti sull'app Eidcarosse o sull'informativa sulla privacy, non esitare a contattarci all'indirizzo email seguente: privacy@eidcarosse.com."
     }
   },
+  
+    "interiorColor": {
+        "name1": "Beige",
+        "name2": "Nero",
+        "name3": "Grigio",
+        "name4": "Bianco",
+        "name5": "Marrone",
+        "name6": "Rosso",
+        "name7": "Giallo",
+        "name8": "Arancione",
+        "name9": "Altro"
+    }
+
+,
+
+  "gearBox": {
+      "name1": "Automatico",
+      "name2": "Manuale",
+      "name3": "Semiautomatico"
+  }
+
+,
+    "color": {
+        "name1": "Beige",
+        "name2": "Marrone",
+        "name3": "Bronzo",
+        "name4": "Giallo",
+        "name5": "Verde",
+        "name6": "Rosso",
+        "name7": "Nero",
+        "name8": "Argento",
+        "name9": "Viola",
+        "name10": "Arancione",
+        "name11": "Oro",
+        "name12": "Vernice (Metallica)",
+        "name13": "Bianco",
+        "name14": "Altro"
+    }
+
+,
   "termsOfService": {
     "heading": "Termini di servizio",
     "intro": "Gli ideatori dell'applicazione mobile Eidcarosse offrono questa app come servizio. Con l'uso dell'applicazione, accetti questi termini. Leggi attentamente e rispetta i seguenti termini. Se non accetti questi termini, non sarai autorizzato a utilizzare l'applicazione Eidcarosse.",

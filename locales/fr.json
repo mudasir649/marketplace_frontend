@@ -366,5 +366,45 @@
         "SendMessage": "Envoyer un message",
         "Location": "Emplacement", 
         "Overview": "Aperçu"
-      }
+      } ,
+      
+        "interiorColor": {
+            "name1": "Beige",
+            "name2": "Noir",
+            "name3": "Gris",
+            "name4": "Blanc",
+            "name5": "Marron",
+            "name6": "Rouge",
+            "name7": "Jaune",
+            "name8": "Orange",
+            "name9": "Autre"
+        }
+    
+,    
+
+  "gearBox": {
+      "name1": "Automatique",
+      "name2": "Manuel",
+      "name3": "Semi-automatique"
+  }
+
+,
+        "color": {
+            "name1": "Beige",
+            "name2": "Marron",
+            "name3": "Bronze",
+            "name4": "Jaune",
+            "name5": "Vert",
+            "name6": "Rouge",
+            "name7": "Noir",
+            "name8": "Argent",
+            "name9": "Violet",
+            "name10": "Orange",
+            "name11": "Or",
+            "name12": "Peinture (Métallisée)",
+            "name13": "Blanc",
+            "name14": "Autre"
+        }
+    
+    
 }

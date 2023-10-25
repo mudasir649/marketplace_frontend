@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { bodyShape, conditionList, exteriorColor, fuelType, gearBox, howContactList, interiorColor, priceList } from '@/utils/dataVariables';
+import { bodyShape, conditionList, fuelType, gearBox, howContactList, interiorColor, priceList } from '@/utils/dataVariables';
 import { carsList } from '@/utils/carsList';
 import "../app/post-ad/post-ad.css"
 import { bikesList } from '@/utils/bikesList';
@@ -61,6 +61,92 @@ export default function OthersComponent({ type }: any) {
     const [showLocation, setShowLocation] = useState<Boolean>(false);
     let router = useRouter();
     const id = userData;
+    const exteriorColor = [
+        {
+            "name": t('color.name1')
+        },
+        {
+            "name": t('color.name2')
+        },
+        {
+            "name": t('color.name3')
+        },
+        {
+            "name": t('color.name4')
+        },
+        {
+            "name": t('color.name5')
+        },
+        {
+            "name": t('color.name6')
+        },
+        {
+            "name": t('color.name7')
+        },
+        {
+            "name": t('color.name8')
+        },
+        {
+            "name": t('color.name9')
+        },
+        {
+            "name": t('color.name10')
+        },
+        {
+            "name": t('color.name11')
+        },
+        {
+            "name": t('color.name12')
+        },
+        {
+            "name": t('color.name13')
+        },
+        {
+            "name": t('color.name14')
+        }
+    ];
+    
+    const interiorColor = [
+        {
+            name: t('interiorColor.name1')
+        },
+        {
+            name: t('interiorColor.name2')
+        },
+        {
+            name: t('interiorColor.name3')
+        },
+        {
+            name: t('interiorColor.name4')
+        },
+        {
+            name: t('interiorColor.name5')
+        },
+        {
+            name: t('interiorColor.name6')
+        },
+        {
+            name: t('interiorColor.name7')
+        },
+        {
+            name: t('interiorColor.name8')
+        },
+        {
+            name: t('interiorColor.name9')
+        },
+    ];
+    const gearBox = [
+        {
+            name: t('gearBox.name1')
+        },
+        {
+            name: t('gearBox.name2')
+        },
+        {
+            name: t('gearBox.name3')
+        }
+    ];
+        
 
     const [data, setData] = useState<IData>({
         category: 'Others',
@@ -386,7 +472,7 @@ export default function OthersComponent({ type }: any) {
                                             onChange={(e: any) => handleInput(e)}
                                         />
                                         <p className='text-gray-400 text-sm mt-1'>
-                                            Whatsapp number  country code. e.g.+41xxxxxxxxxx
+                                            Whatsapp number country code. e.g.+41xxxxxxxxxx 
                                         </p>
                                     </div>
                                 </div> : howContact == 'Viber' ?
