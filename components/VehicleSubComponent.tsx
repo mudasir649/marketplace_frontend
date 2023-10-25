@@ -404,7 +404,7 @@ export default function VehicleSubComponent({ type }: any) {
                                         name='brand'
                                         onChange={(e) => handleInput(e)}
                                     >
-                                        <option value="option1"> {t('autosComponent.selectBrandType')}</option>
+                                        <option value="option1"> {t('autosComponent.brand')}</option>
                                         {/* {brands[0].make?.map((list: any, i: number) => (
                                             <option className={`hover:bg-red-500 hover:text-white 
                                         ml-1 mb-1 ${list.length - 1 == i ? '' : ' border-b-2'}`}
