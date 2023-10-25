@@ -78,7 +78,7 @@ export default function VehicleSubComponent({ type }: any) {
     const id = userData;
 
     const [data, setData] = useState<IData>({
-        category: type == 'Busses' ? 'Busses' : type == 'Vans' ? 'Vans' : type == 'Trailers' ? 'Trailers' : type == 'Construction Machine' ? 'Construction Machine' : type == 'Trucks' ? 'Trucks' : '',
+        category: type == 'Busses' ? 'Busses' : type == 'Vans' ? 'Vans' : type == 'Trailers' ? 'Trailers' : type == 'Construction Machines' ? 'Construction Machines' : type == 'Trucks' ? 'Trucks' : '',
         subCategory: null || '',
         userId: id,
         title: null || '',

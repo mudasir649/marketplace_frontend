@@ -177,7 +177,9 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
     }, []);
 
     const handleSearch = async (value: any) => {
-        dispatch(setPage(1))
+        dispatch(setPage(1));
+        dispatch(setCondition(''));
+        dispatch(setBrand(''));
         router.push(`/advance-search/${value}`)
     }
 

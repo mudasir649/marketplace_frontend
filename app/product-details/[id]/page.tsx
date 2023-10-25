@@ -17,7 +17,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import './productDetails.css';
 import formatDateTime from '@/utils/checkTime';
-import { refreshPage, setProductId, setShowShare, setProductUserId } from '@/store/appSlice';
+import { refreshPage, setProductId, setShowShare, setProductUserId, setProdId } from '@/store/appSlice';
 import dynamic from 'next/dynamic';
 import addInvertedComma from '@/utils/addInvertedComma';
 import { useTranslation } from 'react-i18next';
@@ -37,13 +37,12 @@ function ProductDetails() {
   const { userInfo } = useSelector((state: any) => state.auth);
   const userId = userInfo?.data?.userDetails?._id;
 
-  const { refresh } = useSelector((state: any) => state.app);
+  const { refresh, prodId } = useSelector((state: any) => state.app);
   const [fav, setFav] = useState<Boolean>(false);
   const [clicked, setClicked] = useState(false);
   const userData = userInfo?.data?.userDetails;
   const router = useRouter();
   const dispatch = useDispatch();
-  const [prodId, setProdId] = useState<any>([]);
 
 
   const [slide, setSlide] = useState(0)
@@ -106,21 +105,22 @@ function ProductDetails() {
     } else {
       const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/setFavorite/${productId}/${userId}`);
       if (res.status == 201) {
-        setProdId([...prodId, productId]);
+        dispatch(setProdId([...prodId, product]));
       } else {
-        const newProdId = prodId.filter((prod: any, i: number) => {
-          return prod !== productId;
+        const newRecord = prodId?.filter((item: any) => {
+          return item._id !== productId
         });
-        setProdId(newProdId);
+        dispatch(setProdId(newRecord));
       }
     }
   }
 
 
-  const findProductId = (productId: any) => {
-    return prodId.includes(productId);
+  const findProductId = (productId: any) => {    
+    return prodId.some((item: any) => item._id === productId);
   }
-
+  
+  
   const handleShare = (productId: string) => {
     dispatch(setShowShare(true))
     dispatch(setProductId(productId))
