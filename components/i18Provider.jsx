@@ -18,8 +18,8 @@ i18n.use(initReactI18next).init({
     it: { translation: itTranslation },
     
   },
-  lng: 'de', // Set the default language here
-  fallbackLng: 'de',
+  lng: 'en', // Set the default language here
+  fallbackLng: 'en',
   interpolation: { escapeValue: false },
 });
 
