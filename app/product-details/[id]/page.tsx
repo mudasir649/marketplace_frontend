@@ -17,7 +17,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import './productDetails.css';
 import formatDateTime from '@/utils/checkTime';
-import { refreshPage, setProductId, setShowShare, setProductUserId, setProdId } from '@/store/appSlice';
+import { refreshPage, setProductId, setShowShare, setProductUserId } from '@/store/appSlice';
 import dynamic from 'next/dynamic';
 import addInvertedComma from '@/utils/addInvertedComma';
 import { useTranslation } from 'react-i18next';
@@ -37,12 +37,13 @@ function ProductDetails() {
   const { userInfo } = useSelector((state: any) => state.auth);
   const userId = userInfo?.data?.userDetails?._id;
 
-  const { refresh, prodId } = useSelector((state: any) => state.app);
+  const { refresh } = useSelector((state: any) => state.app);
   const [fav, setFav] = useState<Boolean>(false);
   const [clicked, setClicked] = useState(false);
   const userData = userInfo?.data?.userDetails;
   const router = useRouter();
   const dispatch = useDispatch();
+  const [prodId, setProdId] = useState<any>([]);
 
 
   const [slide, setSlide] = useState(0)
@@ -105,22 +106,21 @@ function ProductDetails() {
     } else {
       const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/setFavorite/${productId}/${userId}`);
       if (res.status == 201) {
-        dispatch(setProdId([...prodId, product]));
+        setProdId([...prodId, productId]);
       } else {
-        const newRecord = prodId?.filter((item: any) => {
-          return item._id !== productId
+        const newProdId = prodId.filter((prod: any, i: number) => {
+          return prod !== productId;
         });
-        dispatch(setProdId(newRecord));
+        setProdId(newProdId);
       }
     }
   }
 
 
-  const findProductId = (productId: any) => {    
-    return prodId.some((item: any) => item._id === productId);
+  const findProductId = (productId: any) => {
+    return prodId.includes(productId);
   }
-  
-  
+
   const handleShare = (productId: string) => {
     dispatch(setShowShare(true))
     dispatch(setProductId(productId))
@@ -199,7 +199,7 @@ function ProductDetails() {
                 }
                 {product?.price * 1 === 0 ?
                   <div className='bg-black space-y-2 rounded-lg rounded-tr-[700px] rounded-br-[700px] w-40 p-2 h-16 md:w-64 md:h-auto'>
-                    <h1 className='text-white text-sm md:text-3xl font-bold'>Contact for Price</h1>
+                    <h1 className='text-white text-sm md:text-3xl font-bold'>{t('product.contactForPrice')}</h1>
                   </div>
                   :
                   <div className='bg-[#FF0000] space-y-2 rounded-lg rounded-tr-[700px] rounded-br-[700px] w-40 p-2 h-16 md:w-64 md:h-auto'>

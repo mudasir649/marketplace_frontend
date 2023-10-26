@@ -10,6 +10,7 @@ import { bodyShape, conditionList, exteriorColor, fuelType, gearBox, howContactL
 import "../app/post-ad/post-ad.css"
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import "./autos.css";
 
 import locateAddress from '@/utils/GoogleLocation';
 
@@ -361,16 +362,26 @@ export default function AutosComponent() {
                             </div>
                             <div className={style.divStyle}>
                                 <h1 className={style.h1Style}>{t('autosComponent.brand')} <span className='text-[#FF0000]'>*</span></h1>
-                                <select
-                                    className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
-                                    name='brand'
-                                    onChange={(e: any) => handleInput(e)}
-                                >
-                                    <option value="option1">{t('autosComponent.selectBrand')}</option>
-                                    {brands?.make?.map((brand: any, i: number) => (
-                                        <option value={brand} key={i}>{brand}</option>
-                                    ))}
-                                </select>
+                                <div className="relative w-full">
+  <select
+    className="custom-select w-full block appearance-none bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+    name="brand"
+    onChange={(e: any) => handleInput(e)}
+  >
+    <option value="option1">{t('autosComponent.selectBrand')}</option>
+    {brands?.make?.map((brand: any, i: number) => (
+      <option value={brand} key={i}>
+        {brand}
+      </option>
+    ))}
+  </select>
+  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+    {/* You can replace '▼' with any down arrow icon you prefer */}
+    ▼
+  </div>
+</div>
+
+
                             </div>
                             {data?.brand &&
                                 <div className={style.divStyle}>

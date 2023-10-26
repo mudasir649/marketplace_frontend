@@ -387,6 +387,7 @@
         
           "product": {
             "subCategory":"Subcategoría",
+            "contactForPrice": "Contactar para el precio",
             "Condition": "Condición",
             "Brand": "Marca",
             "Year": "Año",
