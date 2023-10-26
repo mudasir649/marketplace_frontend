@@ -342,6 +342,7 @@
     ] , 
     
       "product": {
+        "contactForPrice": "Contactez pour le prix",
         "Condition": "État",
         "Brand": "Marque",
         "Year": "Année",

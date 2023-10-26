@@ -433,7 +433,7 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
                                                             </>
                                                             :
                                                             <>
-                                                                <h1 className='bg-black text-white text-center py-2 w-36 h-10 border-none rounded-lg text-[16px] font-semibold'>Contact For Price</h1>
+                                                                <h1 className='bg-black text-white text-center py-2 w-36 h-10 border-none rounded-lg text-[16px] font-semibold'>{t('product.contactForPrice')}</h1>
                                                             </>
                                                         }
                                                     </div>

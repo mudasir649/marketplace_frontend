@@ -13,10 +13,14 @@ import { refreshPage, setProdId, setProductId, setProductUserId, setShowDeleteAd
 import { setShowShare } from '@/store/appSlice';
 import addInvertedComma from '@/utils/addInvertedComma';
 import showDate from '@/utils/showDate';
+import { useTranslation } from 'react-i18next';
+
 
 export default function Product({ product, url }: any) {
 
   const { refresh } = useSelector((state: any) => state.app);
+  const { t } = useTranslation(); // Initialize the translation hook
+
 
   const pathname = usePathname();
   const dispatch = useDispatch();
@@ -140,7 +144,7 @@ export default function Product({ product, url }: any) {
             <div className='w-auto overflow-hidden flex flex-row justify-between'>
               <section className='overflow-hidden'>
                 {product?.price * 1 === 0 ?
-                  <h1 className='bg-black text-white text-center py-2 w-32 h-10 border-none rounded-lg text-[14px] font-semibold'>Contact For Price</h1>
+                  <h1 className='bg-black text-white text-center py-2 w-32 h-10 border-none rounded-lg text-[14px] font-semibold'>{t('product.contactForPrice')}</h1>
                   :
                   <>
                     <h2 className='text-[#FF0000] font-bold text-[17px] w-32 truncate'>CHF {addInvertedComma(product?.price * 1)}</h2>
