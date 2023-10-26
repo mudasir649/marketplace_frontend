@@ -108,10 +108,8 @@ function Chat() {
                 const ids = roomId.split('_');
                 let OtherUserId = ids[0] === userId ? ids[1] : ids[0];
                 let productId = ids[2];
-
                 const userData = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/getUser/${OtherUserId}`);
-                const productData = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/getSpecific/${productId}`);
-
+                const productData = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/getSpecific/${productId}`);                                
                 temporaryChatData[roomId] = {
                     otherUser: userData.data,
                     product: productData.data
@@ -328,7 +326,7 @@ function Chat() {
                             <>
                                 {newWidth <= 425 ?
                                     <div className='container mx-auto items-center mt-20'>
-                                        <div className='bg-white border border-gray-300 rounded-lg w-full'>
+                                        <div className='bg-white border border-gray-300 rounded-lg w-full cursor-pointer'>
                                             {!smallScreen ?
                                                 <div className="ease-linear duration-200 h-[600px] messageArea">
                                                     <h1 className='uppercase text-2xl font-semibold p-3 border-b-2'>
@@ -549,7 +547,7 @@ function Chat() {
                                                                         <div className='flex flex-row justify-between'>
                                                                             <h1 className='text-[#FF0000] text-sm font-semibold'>CHF {addInvertedComma(selected?.product?.data.price * 1)}</h1>
                                                                             <button className='text-white bg-[#FF0000] border-none rounded-md w-32 p-2 mt-2'
-                                                                                onClick={() => router.push(`/product-details/${selected?.product?._id}`)}>View Ad</button>
+                                                                                onClick={() => router.push(`/product-details/${selected?.product?.data._id}`)}>View Ad</button>
                                                                         </div>
                                                                     </div></>
                                                             )}

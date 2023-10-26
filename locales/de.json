@@ -426,6 +426,7 @@
     , 
     
       "product": {
+        "subCategory":"Unterkategorie",
         "Condition": "Zustand",
         "Brand": "Marke",
         "Year": "Jahr",

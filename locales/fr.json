@@ -342,6 +342,7 @@
     ] , 
     
       "product": {
+        "subCategory":"Sous-catégorie",
         "Condition": "État",
         "Brand": "Marque",
         "Year": "Année",

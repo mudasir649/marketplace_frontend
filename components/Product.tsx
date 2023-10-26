@@ -79,13 +79,13 @@ export default function Product({ product, url }: any) {
     dispatch(setProductId(product?._id))
   }
 
-  const handleChat = async () => {
+  const handleChat = async () => {    
     if (userInfo !== null) {
       dispatch(setProductId(product?._id));
       dispatch(setProductUserId(product?.userId?._id));
       const data = {
         userId: userId,
-        productUserId: product?.userId?._id,
+        productUserId: product?.userId,
         productId: product?._id
       }
       const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URI}/chatroom`, data);
@@ -159,7 +159,7 @@ export default function Product({ product, url }: any) {
               <h1 className='text-xl font-semibold text-black w-52 truncate'>{product?.title}</h1>
               <section className='flex flex-row space-x-1 w-52 truncate'>
                 <LocationOn className="text-gray-400" style={{ fontSize: "20px" }} />
-                <h1 className='mt-[-1px] text-sm'>{product?.address}</h1>
+                <h1 className='mt-[-1px] text-sm line-clamp-1'>{product?.address}</h1>
               </section>
             </div>
           </div>

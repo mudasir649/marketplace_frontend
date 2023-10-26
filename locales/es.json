@@ -386,6 +386,7 @@
         ] , 
         
           "product": {
+            "subCategory":"Subcategoría",
             "Condition": "Condición",
             "Brand": "Marca",
             "Year": "Año",

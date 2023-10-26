@@ -126,13 +126,13 @@ export default function Header() {
   return (
     <>
       {navbar &&
-        <div className="h-[800px] w-96 absolute z-10 bg-white">
+        <div className="ease-in-out duration-300 h-full w-96 absolute z-10 bg-white">
           <ul className="flex flex-col space-y-5 uppercase m-7">
             <li className={navbarLiStyle}>
               <Link href="/" onClick={() => setNavbar(false)}>
                 {t('header.home')}
               </Link>
-            </li>
+            </li> 
             <li className={navbarLiStyle} onClick={() => handleAdvanceSearch('all')}>
               {t('header.advanceSearch')}
             </li>
@@ -155,7 +155,7 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Cancel className="hover:text-[#FF0000]" onClick={() => setNavbar(false)} />
+              <Cancel className="hover:text-[#FF0000] cursor-pointer" onClick={() => setNavbar(false)} />
             </li>
           </ul>
         </div>
@@ -171,15 +171,15 @@ export default function Header() {
           </Link>
           <div className={`menu`}>
             <ul className="flex flex-row space-x-6 uppercase text-sm font-semibold text-white">
-              <li className={navbarLiStyle}>
+              <li className={`${navbarLiStyle} line-clamp-1`}>
                 <Link href="/">
                   {t('header.home')}
                 </Link>
               </li>
-              <li className={navbarLiStyle} onClick={() => handleAdvanceSearch('all')}>
+              <li className={`${navbarLiStyle} line-clamp-1`} onClick={() => handleAdvanceSearch('all')}>
                 {t('header.advanceSearch')}
               </li>
-              <li className={navbarLiStyle} onClick={() => (dispatch(setShowContact(!showContact)))}>
+              <li className={`${navbarLiStyle} line-clamp-1`} onClick={() => (dispatch(setShowContact(!showContact)))}>
                 {t('header.contactUs')}
               </li>
               <li>
@@ -194,8 +194,6 @@ export default function Header() {
             </ul>
           </div>
           <div className="flex items-center gap-6">
-
-
             {newWidth <= 1024 ?
               <button onClick={() => setNavbar(!navbar)}>
                 <MenuIcon className="text-white" />
@@ -203,9 +201,11 @@ export default function Header() {
               :
               <div>
                 <Link href="/post-ad">
-                  <button className="flex flex-row justify-center space-x-4 mt-[-1px] p-2 w-52 bg-white hover:text-[#FF0000] text-black  rounded-lg">
-                    <Add className="text-md border border-[#FF0000] rounded-full bg-[#FF0000] text-white" />
-                    <span className="capitalize text-md mt-[2px]">{t('header.postYourAd')}</span>
+                  <button className="flex flex-row justify-center mt-[-1px] p-2 w-52 gap-2 bg-white hover:text-[#FF0000] text-black rounded-lg">
+                    <section className="">
+                      <Add className="text-md border border-[#FF0000] rounded-full bg-[#FF0000] text-white" />
+                    </section>
+                    <section className="capitalize text-md line-clamp-1 font-semibold">{t('header.postYourAd')}</section>
                   </button>
                 </Link>
               </div>
@@ -236,7 +236,7 @@ export default function Header() {
               <Link href="/login">
                 <button className="flex flex-row space-x-1 p-2 bg-white text-black mt-[-5px] hover:bg-red-500 hover:text-white hover:border hover:border-gray-100 transition rounded-lg">
                   <Login />
-                  <span>{t('header.login')}</span>
+                  <span className="capitalize text-md mt-[2px] line-clamp-1 font-semibold">{t('header.login')}</span>
                 </button>
               </Link>
             }
