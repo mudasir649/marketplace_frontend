@@ -426,6 +426,7 @@
     , 
     
       "product": {
+        "subCategory":"Unterkategorie",
         "contactForPrice": "Kontaktieren Sie für den Preis",
         "Condition": "Zustand",
         "Brand": "Marke",

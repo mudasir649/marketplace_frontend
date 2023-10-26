@@ -485,6 +485,7 @@
       ]  ,
 
       "product": {
+        "subCategory":"Sub Category",
         "contactForPrice": "Contact For Price",
         "Condition": "Condition",
         "Brand": "Brand",

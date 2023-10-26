@@ -7,7 +7,7 @@ details. Both divs are named in comments
 import React, { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { AccessTime, ArrowBackIos, ArrowForwardIos, Camera, CameraAlt, Cancel, Facebook, Favorite, FavoriteBorder, InsertLink, Mail, Phone, PhoneInTalk, Place, Share, Twitter, Visibility, WarningAmber, WhatsApp } from '@mui/icons-material';
+import { AccessTime, ArrowBackIos, ArrowForwardIos, Camera, CameraAlt, Cancel, Category, Facebook, Favorite, FavoriteBorder, InsertLink, Language, Mail, Phone, PhoneInTalk, Place, Share, Twitter, Visibility, WarningAmber, WhatsApp } from '@mui/icons-material';
 import Link from 'next/link';
 import MapContainer from '@/components/MapContainer';
 import Home from '@/components/Home';
@@ -167,7 +167,7 @@ function ProductDetails() {
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={product?.images[currentImage]}
-                        className='w-full ease-in-out duration-100'
+                        className='w-full ease-linear duration-150'
                         alt=''
                       />
                     </div>
@@ -213,6 +213,10 @@ function ProductDetails() {
                       <h1>{product?.title}</h1>
                     </div>
                     <div className='flex flex-row gap-2 text-gray-600'>
+                      <Category className='text-[#FF0000]' />
+                      <h1 className='text-black'>{product?.category}</h1>
+                    </div>
+                    <div className='flex flex-row gap-2 text-gray-600'>
                       <Place className='text-[#FF0000]' />
                       <h1 className='text-black'>{product?.address}</h1>
                     </div>
@@ -237,6 +241,7 @@ function ProductDetails() {
 
                     </h1>
                     <ul className='grid grid-cols-3 mt-5 gap-3 mb-5'>
+                      {!product?.subCategory ? '' : <li><span className={overviewStyle}>{t('product.subCategory')}: </span> {product?.subCategory}</li>}
                       {!product?.condition ? '' : <li><span className={overviewStyle}>{t('product.Condition')}: </span> {product?.condition}</li>}
                       {!product?.brand ? '' : <li><span className={overviewStyle}>{t('product.Brand')}: </span> {product?.brand}</li>}
                       {!product?.year ? '' : <li><span className={overviewStyle}>{t('product.Year')}: </span> {product?.year}</li>}
@@ -266,8 +271,8 @@ function ProductDetails() {
                   </div>
                 }
                 <section className='space-y-1 mt-3'>
-                  {product?.videoUrl && <div className='flex flex-row space-x-2'><span className={`${overviewStyle}`}> <InsertLink className='text-[#FF0000] mt-[-4px]' /> Video URL: </span><Link className='hover:text-red-500' href={product?.videoUrl}> {product?.videoUrl}</Link></div>}
-                  {product?.website && <div className='flex flex-row space-x-2'><span className={`${overviewStyle}`}> <InsertLink className='text-[#FF0000] mt-[-4px]' /> Website: </span><Link className='hover:text-red-500' href={product?.website}> {product?.website}</Link></div>}
+                  {product?.videoUrl && <div className='flex flex-row space-x-2'><span className={`${overviewStyle}`}> <InsertLink className='text-[#FF0000] mt-[-4px]' /> Video URL: </span>{product?.videoUrl}</div>}
+                  {product?.website && <div className='flex flex-row space-x-2'><span className={`${overviewStyle}`}> <Language className='text-[#FF0000] mt-[-4px]' /> Website: </span>{product?.website}</div>}
                 </section>
               </div>
             </div>

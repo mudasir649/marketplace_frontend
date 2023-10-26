@@ -16,8 +16,8 @@ export default function SellRepairComponent() {
 
 
     return (
-        <div className='container mx-auto mt-5 md:mt-10'>
-            <div className='flex flex-col space-y-5 md:space-y-0 md:flex-row lg:justify-center lg:space-x-10'>
+        <div className='container mx-auto flex justify-center p-5'>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                 <div className={bothDivsStyle}>
                     <div className='flex justify-center'>
                         <Image
@@ -28,13 +28,14 @@ export default function SellRepairComponent() {
                             className='cursor-pointer'
                         />
                     </div>
-                    <h1 className={h1Style}>{t('sellRepairComponent.sellTitle')}</h1>
-          <h1 className='text-md'>{t('sellRepairComponent.sellSubtitle')}</h1>
+                    <h1 className={`${h1Style} line-clamp-1`}>{t('sellRepairComponent.sellTitle')}</h1>
+          <h1 className='text-md line-clamp-1'>{t('sellRepairComponent.sellSubtitle')}</h1>
           <button className={btnStyle} onClick={() => dispatch(setShowSellNow(true))}>
             {t('sellRepairComponent.sellButton')}
           </button>
           </div>
-                <div className={bothDivsStyle}>
+          <div className={bothDivsStyle}>
+
                     <div className='flex justify-center'>
                         <Image
                             src='/assets/repairIcon.png'
@@ -44,8 +45,8 @@ export default function SellRepairComponent() {
                             className='cursor-pointer'
                         />
                     </div>
-                    <h1 className={h1Style}>{t('sellRepairComponent.repairTitle')}</h1>
-          <h1 className='text-md'>{t('sellRepairComponent.repairSubtitle')}</h1>
+                    <h1 className={`${h1Style} line-clamp-1`}>{t('sellRepairComponent.repairTitle')}</h1>
+          <h1 className='text-md line-clamp-1'>{t('sellRepairComponent.repairSubtitle')}</h1>
           <button className={btnStyle} onClick={() => dispatch(setShowRepairNow(true))}>
             {t('sellRepairComponent.repairButton')}
           </button>

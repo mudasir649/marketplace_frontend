@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 
 
 export default function CategoryList({ setCategory, setExpand }: any) {
-     
+    
     
     const { t } = useTranslation(); // Initialize the translation hook
     const subList = [
@@ -32,6 +32,7 @@ export default function CategoryList({ setCategory, setExpand }: any) {
     const router = useRouter();
     const handleClick = async (value: any) => {
         // setCategory(value);
+
         try {
             const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${value}`);
             dispatch(setProductData(res.data?.data.ad));

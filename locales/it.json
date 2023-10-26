@@ -388,8 +388,8 @@
         ] , 
         
           "product": {
-              "contactForPrice": "Contattare per il prezzo",
-            
+            "subCategory":"Sottocategoria",
+            "contactForPrice": "Contattare per il prezzo",
             "Condition": "Condizione",
             "Brand": "Marca",
             "Year": "Anno",
