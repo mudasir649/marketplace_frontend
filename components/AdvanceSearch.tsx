@@ -282,7 +282,11 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
         if (userInfo !== null) {
             fetchAds();
         }
-    }, [userId, dispatch, userInfo])
+    }, [userId, dispatch, userInfo]);
+
+    const findProductId = (productId: any) => {
+        return prodId.some((item: any) => item._id === productId);
+    }
 
 
     return (
@@ -410,7 +414,7 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
                                     :
                                     <>
                                         {productData?.map((product: any, i: number) => (
-                                            <div className='grid grid-cols-3 h-52 mb-5 bg-white' key={i}>
+                                            <div className='grid grid-cols-3 h-auto mb-5 bg-white' key={i}>
                                                 <Link href={`/product-details/${product?._id}`}>
                                                     <div className='w-60 lg:w-auto p-2'>
                                                         <div className='flex justify-center bg-gray-50 w-full h-48 border-none rounded-lg'>
@@ -458,7 +462,7 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
                                                             {userInfo !== null &&
                                                                 <>
                                                                     <Chat className='cursor-pointer mt-[-1.5px] text-gray-400' style={{ fontSize: "20px" }} onClick={() => handleChat(product)} />
-                                                                    {/* <Favorite className={`${findProductId(product?._id) ? 'text-[#FF0000]' : 'text-gray-300'} mt-[-5px] cursor-pointer`} onClick={() => adFavorite(product?._id)} style={{ fontSize: "20px" }} /> */}
+                                                                    <Favorite className={`${findProductId(product?._id) ? 'text-[#FF0000]' : 'text-gray-300'} mt-[-5px] cursor-pointer`} onClick={() => adFavorite(product?._id)} style={{ fontSize: "20px" }} />
                                                                 </>
                                                             }
                                                         </div>

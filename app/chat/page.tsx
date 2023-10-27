@@ -321,8 +321,14 @@ function Chat() {
                 <Home>
                     <div className='flex justify-center mb-20'>
                         {loading ?
-                            <div className="spinner mt-8 w-40 h-40"></div>
-                            :
+                            <div className="flex justify-center mt-8">
+                                <Image
+                                src='/assets/eidcarosse.gif'
+                                alt="eidcarosse_logo"
+                                width={200}
+                                height={200}
+                                />
+                            </div>                            :
                             <>
                                 {newWidth <= 425 ?
                                     <div className='container mx-auto items-center mt-20'>
