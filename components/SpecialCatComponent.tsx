@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { conditionList, howContactList, priceList } from '@/utils/dataVariables';
+import { conditionList, howContactList, kilometers, priceList } from '@/utils/dataVariables';
 import "../app/post-ad/post-ad.css"
 import { useSelector } from 'react-redux';
 import locateAddress from '@/utils/GoogleLocation';
@@ -309,6 +309,27 @@ export default function SpecialCatComponent({ type }: any) {
                                     />
                                 </div>
                             </div>
+                            }
+                              {data?.brand &&
+                                 <div className={style.divStyle}>
+                                 <h1 className={style.h1Style}>
+                                   {t("autosComponent.kilometers")}
+                                 </h1>
+                                 <select
+                                   className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+                                   name="model"
+                                   onChange={(e: any) => handleInput(e)}
+                                 >
+                                   <option>
+                                       Select Kilometers
+                                   </option>
+                                   {kilometers.map((kms: any, i: number) => (
+                                     <option value={kms.name} key={i}>
+                                       {kms.name}
+                                     </option>
+                                   ))}
+                                 </select>
+                               </div>
                             }
                             {type == 'Others' && <div className={style.divStyle}>
                                 <h1 className={style.h1Style}>{t('autosComponent.year')}</h1>
