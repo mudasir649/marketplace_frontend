@@ -53,6 +53,10 @@
   ],
   "autosComponent": {
     "heading1": "Seleccionar Categoría",
+      "color": "Color"
+,
+"axleCount": "Número de Ejes",
+"selectAxleCount": "Seleccionar Número de Ejes",    
     "changeCategory": "Cambiar categoría",
     "productInfo": "Información del producto",
     "title": "Título",
