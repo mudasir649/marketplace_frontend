@@ -92,36 +92,47 @@ export const howContactList = [
 
 export const fuelType = [
     {
-        name: "Gasoline"
+        name: "Gasoline",
+        value: "Gasoline"
     },
     {
-        name: "Diesel"
+        name: "Diesel",
+        value: "Diesel"
     },
     {
-        name: "Ethanol"
+        name: "Ethanol",
+        value: "Ethanol"
     },
     {
-        name: "Electric"
+        name: "Electric",
+        value: "Electric"
     },
     {
-        name: "Hydrogen"
+        name: "Hydrogen",
+        value: "Hydrogen"
     },
     {
-        name: "LPG"
+        name: "LPG",
+        value: "LPG"
     },
     {
         name: "CNG",
+        value: "CNG"
     },
     {
-        name: "Hybrid (Electric/Gasoline)"
+        name: "Hybrid (Electric/Gasoline)",
+        value: "Hybrid (Electric/Gasoline)"
     },
     {
-        name: "Hybrid (Electric/Diesel)"
+        name: "Hybrid (Electric/Diesel)",
+        value: "Hybrid (Electric/Diesel)"
     },
     {
-        name: "Others"
+        name: "Others",
+        value: "Others"
     },
 ];
+
 
 export const axelType = [
     {
@@ -141,249 +152,355 @@ export const axelType = [
 
 export const bikeBodyShape = [
     {
-        name: "Supersport"
+        name: "Supersport",
+        value: "Supersport"
     },
     {
-        name: "Sport Touring"
+        name: "Sport Touring",
+        value: "Sport Touring"
     },
     {
-        name: "Chopper/Cruiser"
+        name: "Chopper/Cruiser",
+        value: "Chopper/Cruiser"
     },
     {
-        name: "Touring Enduro"
+        name: "Touring Enduro",
+        value: "Touring Enduro"
     },
     {
-        name: "Streetfighter"
+        name: "Streetfighter",
+        value: "Streetfighter"
     },
     {
-        name: "Enduro Bike"
+        name: "Enduro Bike",
+        value: "Enduro Bike"
     },
     {
-        name: "Motocrosser"
+        name: "Motocrosser",
+        value: "Motocrosser"
     },
     {
-        name: "Sidecar"
+        name: "Sidecar",
+        value: "Sidecar"
     },
     {
-        name: "Classic"
+        name: "Classic",
+        value: "Classic"
     },
     {
-        name: "Three Wheeler"
+        name: "Three Wheeler",
+        value: "Three Wheeler"
     },
     {
-        name: "Scooter"
+        name: "Scooter",
+        value: "Scooter"
     },
     {
-        name: "Moped"
+        name: "Moped",
+        value: "Moped"
     },
     {
-        name: "Super Moto"
+        name: "Super Moto",
+        value: "Super Moto"
     },
     {
-        name: "Minibike"
+        name: "Minibike",
+        value: "Minibike"
     },
     {
-        name: "Naked Bike"
+        name: "Naked Bike",
+        value: "Naked Bike"
     },
     {
-        name: "Quad"
+        name: "Quad",
+        value: "Quad"
     },
     {
-        name: "Rally"
+        name: "Rally",
+        value: "Rally"
     },
     {
-        name: "Trials Bike"
+        name: "Trials Bike",
+        value: "Trials Bike"
     },
     {
-        name: "Racing"
+        name: "Racing",
+        value: "Racing"
     },
     {
-        name: "Tourer"
+        name: "Tourer",
+        value: "Tourer"
     },
     {
-        name: "Other"
+        name: "Other",
+        value: "Other"
     }
 ];
 
+
 export const BikeFuelType = [
     {
-        name: "Gasoline"
+        name: "Gasoline",
+        value: "Gasoline"
     },
     {
-        name: "Diesel"
+        name: "Diesel",
+        value: "Diesel"
     },
     {
-        name: "Electric"
+        name: "Electric",
+        value: "Electric"
     },
     {
-        name: "LPG"
+        name: "LPG",
+        value: "LPG"
     },
     {
-        name: "Hybrid (Electric/Gasoline)"
+        name: "Hybrid (Electric/Gasoline)",
+        value: "Hybrid (Electric/Gasoline)"
     },
     {
-        name: "Others"
-    },
+        name: "Others",
+        value: "Others"
+    }
 ];
+
 
 export const bodyShape = [
     {
-        name: "Convertible"
+        name: "Convertible",
+        value: "Convertible"
     },
     {
-        name: "Compact"
+        name: "Compact",
+        value: "Compact"
     },
     {
-        name: "Coupe"
+        name: "Coupe",
+        value: "Coupe"
     },
     {
-        name: "SUV/Off-Road/Pick-up"
+        name: "SUV/Off-Road/Pick-up",
+        value: "SUV/Off-Road/Pick-up"
     },
     {
-        name: "Station Wagon"
+        name: "Station Wagon",
+        value: "Station Wagon"
     },
     {
-        name: "Sedan"
+        name: "Sedan",
+        value: "Sedan"
     },
     {
-        name: "Van"
+        name: "Van",
+        value: "Van"
     },
     {
-        name: "Transporter"
+        name: "Transporter",
+        value: "Transporter"
     },
     {
-        name: "Other"
-    },
+        name: "Other",
+        value: "Other"
+    }
 ];
 
 export const gearBox = [
     {
-        name: "Automatic"
+        name: "Automatic",
+        value: "Automatic"
     },
     {
-        name: "Manual"
+        name: "Manual",
+        value: "Manual"
     },
     {
-        name: "Semi-automatic"
+        name: "Semi-automatic",
+        value: "Semi-automatic"
     }
 ];
 
 export const exteriorColor = [
     {
-        name: 'Blue'
+        name: 'Blue',
+        value: 'Blue'
     },
     {
-        name: 'Brown'
+        name: 'Brown',
+        value: 'Brown'
     },
     {
-        name: 'Bronze'
+        name: 'Bronze',
+        value: 'Bronze'
     },
     {
-        name: 'Yellow'
+        name: 'Yellow',
+        value: 'Yellow'
     },
     {
-        name: 'Grey'
+        name: 'Grey',
+        value: 'Grey'
     },
     {
-        name: 'Green'
+        name: 'Green',
+        value: 'Green'
     },
     {
-        name: 'Red'
+        name: 'Red',
+        value: 'Red'
     },
     {
-        name: 'White'
+        name: 'White',
+        value: 'White'
     },
     {
-        name: 'Black'
+        name: 'Black',
+        value: 'Black'
     },
     {
-        name: 'Silver'
+        name: 'Silver',
+        value: 'Silver'
     },
     {
-        name: 'Violet'
+        name: 'Violet',
+        value: 'Violet'
     },
     {
-        name: 'Gold'
+        name: 'Gold',
+        value: 'Gold'
     },
     {
-        name: 'Other'
+        name: 'Other',
+        value: 'Other'
     }
 ];
 
 export const bikeExteriorColor = [
     {
-        "name": "Beige"
+        name: "Beige",
+        value: "Beige"
     },
     {
-        "name": "Brown"
+        name: "Brown",
+        value: "Brown"
     },
     {
-        "name": "Bronze"
+        name: "Bronze",
+        value: "Bronze"
     },
     {
-        "name": "Yellow"
+        name: "Yellow",
+        value: "Yellow"
     },
     {
-        "name": "Green"
+        name: "Green",
+        value: "Green"
     },
     {
-        "name": "Red"
+        name: "Red",
+        value: "Red"
     },
     {
-        "name": "Black"
+        name: "Black",
+        value: "Black"
     },
     {
-        "name": "Silver"
+        name: "Silver",
+        value: "Silver"
     },
     {
-        "name": "Violet"
+        name: "Violet",
+        value: "Violet"
     },
     {
-        "name": "Orange"
+        name: "Orange",
+        value: "Orange"
     },
     {
-        "name": "Gold"
+        name: "Gold",
+        value: "Gold"
     },
     {
-        "name": "Paintwork (Metallic)"
+        name: "Paintwork (Metallic)",
+        value: "Paintwork (Metallic)"
     },
     {
-        "name": "White"
+        name: "White",
+        value: "White"
     },
     {
-        "name": "Other"
+        name: "Other",
+        value: "Other"
     }
-]
+];
+
 
 export const interiorColor = [
     {
-        name: 'Beige'
+        name: 'Beige',
+        value: 'Beige'
     },
     {
-        name: 'Black'
+        name: 'Black',
+        value: 'Black'
     },
     {
-        name: 'Grey'
+        name: 'Grey',
+        value: 'Grey'
     },
     {
-        name: 'White'
+        name: 'White',
+        value: 'White'
     },
     {
-        name: 'Brown'
+        name: 'Brown',
+        value: 'Brown'
     },
     {
-        name: 'Red'
+        name: 'Red',
+        value: 'Red'
     },
     {
-        name: 'Yellow'
+        name: 'Yellow',
+        value: 'Yellow'
     },
     {
-        name: 'Orange'
+        name: 'Orange',
+        value: 'Orange'
     },
     {
-        name: 'Other'
-    },
+        name: 'Other',
+        value: 'Other'
+    }
 ];
+
+export const kilometers = [
+    {
+        name: "1-100 km's"
+    },
+    {
+        name: "100-500 km's"
+    },
+    {
+        name: "500-1,000 km's"
+    },
+    {
+        name: "1,000-10,000 km's"
+    },
+    {
+        name: "10,000-50,000 km's"
+    },
+    {
+        name: "50,000-100,000 km's"
+    },
+    {
+        name: "100,000-500,000 km's"
+    },
+    {
+        name: "500,000-10,00,000 km's"
+    },
+]
+
 
 
 export const sortByList = ['A to Z (title)', 'Z to A (title)', 'Price (low to high)', 'Price (high to low)'];

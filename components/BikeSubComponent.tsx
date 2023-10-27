@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { BikeFuelType, bikeBodyShape, bodyShape, conditionList, gearBox, howContactList, priceList } from '@/utils/dataVariables';
+import { BikeFuelType, bikeBodyShape, bodyShape, conditionList, gearBox, howContactList, kilometers, priceList } from '@/utils/dataVariables';
 import { carsList } from '@/utils/carsList';
 import "../app/post-ad/post-ad.css"
 import { bikesList } from '@/utils/bikesList';
@@ -311,7 +311,7 @@ export default function BikeSubComponent({ type }: any) {
                     <div className=' container mx-auto flex flex-col mb-7'>
                         <div className='flex flex-row space-x-2 mt-5'>
                             <h1>{type == 'Contruction%20Machines' ? 'Construction Machines' : type}</h1>
-                            <ArrowForwardIos className='text-[12px] mt-[6.5px]' />
+                            <ArrowForwardIos className='mt-[5px]' style={{ fontSize: "14px" }} />
                             <h1 className='text-[#FF0000] underline'>
                                 <Link href="/post-ad">
                                 {t('autosComponent.changeCategory')}
@@ -459,7 +459,7 @@ export default function BikeSubComponent({ type }: any) {
                                     >
                                         <option >{t('autosComponent.selectBodyShape')} </option>
                                         {bikeBodyShape?.map((body: any, i: number) => (
-                                            <option value={body.name} key={i}>{body.name}</option>
+                                            <option value={body.value} key={i}>{body.name}</option>
                                         ))}
                                     </select>
                                 </div>
@@ -474,7 +474,7 @@ export default function BikeSubComponent({ type }: any) {
                                     >
                                         <option value="option1">{t('autosComponent.selectGearBox')}</option>
                                         {gearBox?.map((gear: any, i: number) => (
-                                            <option value={gear.name} key={i}>{gear.name}</option>
+                                            <option value={gear.value} key={i}>{gear.name}</option>
                                         ))}
                                     </select>
                                 </div>
@@ -489,23 +489,31 @@ export default function BikeSubComponent({ type }: any) {
                                     >
                                         <option value="option1">{t('autosComponent.selectFuelType')}</option>
                                         {BikeFuelType?.map((fuel: any, i: number) => (
-                                            <option value={fuel.name} key={i}>{fuel.name}</option>
+                                            <option value={fuel.value} key={i}>{fuel.name}</option>
                                         ))}
                                     </select>
                                 </div>
                             }
                             {data?.brand && type == 'Motorcycle' &&
-                                <div className={style.divStyle}>
-                                    <h1 className={style.h1Style}>{t('autosComponent.kilometers')} <span className='text-[#FF0000]'>*</span></h1>
-                                    <div className='flex flex-col w-full'>
-                                        <input type="text" className={style.inputStyle}
-                                            name='km'
-                                            value={data.km}
-                                            onChange={(e: any) => handleInput(e)}
-                                            required
-                                        />
-                                    </div>
-                                </div>
+                                 <div className={style.divStyle}>
+                                 <h1 className={style.h1Style}>
+                                   {t("autosComponent.kilometers")}
+                                 </h1>
+                                 <select
+                                   className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+                                   name="model"
+                                   onChange={(e: any) => handleInput(e)}
+                                 >
+                                   <option>
+                                       Select Kilometers
+                                   </option>
+                                   {kilometers.map((kms: any, i: number) => (
+                                     <option value={kms.name} key={i}>
+                                       {kms.name}
+                                     </option>
+                                   ))}
+                                 </select>
+                               </div>
                             }
                             {data?.brand && type == 'Motorcycle' &&
                                 <div className={style.divStyle}>
@@ -530,7 +538,7 @@ export default function BikeSubComponent({ type }: any) {
                                     >
                                         <option value="option1">Select Color Type</option>
                                         {bikeExteriorColor?.map((color: any, i: number) => (
-                                            <option value={color.name} key={i}>{color.name}</option>
+                                            <option value={color.value} key={i}>{color.name}</option>
                                         ))}
                                     </select>
                                 </div>
