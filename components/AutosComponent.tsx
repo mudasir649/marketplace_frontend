@@ -170,6 +170,7 @@ export default function AutosComponent() {
   const gearBox = [
     {
       name: t("gearBox.name1"),
+      
     },
     {
       name: t("gearBox.name2"),
@@ -224,6 +225,7 @@ export default function AutosComponent() {
 
   const handleInput = (e: any) => {
     setData({ ...data, [e.target.name]: e.target.value });
+    console.log(e.target.value)
     if (e.target.name == "brand") fetchBrand(e.target.value);
   };
 
