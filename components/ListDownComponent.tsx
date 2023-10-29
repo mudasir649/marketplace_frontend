@@ -1,15 +1,29 @@
-import { ArrowDropDown } from '@mui/icons-material'
-import React, { useState, useEffect } from 'react'
+import { ArrowDropDown, KeyboardArrowDown } from '@mui/icons-material'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import i18n from 'i18next';
 
 export default function ListDownComponent() {
     const [language, setLanguage] = useState<string>(i18n.language); // Initialize with the current language
     const [showList, setShowList] = useState<Boolean>(false);
+    const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+    const handleOutsideClick = useCallback((event: MouseEvent) => {
+        if(dropdownRef.current && !dropdownRef.current.contains(event.target as Node)){
+            setShowList(false);
+        }
+    }, [])
+
+    useEffect(() => {
+        document.addEventListener('click', handleOutsideClick);
+        return () => {
+            document.removeEventListener('click', handleOutsideClick);
+        }
+    }, [handleOutsideClick])
 
     const liStyle = 'cursor-pointer hover:text-[#FF0000] hover:w-7';
 
-    const handleLanguage = (value: string) => {
-        setLanguage(value);
+    const handleLanguage = (value: string, value2: string) => {
+        setLanguage(value2);
         setShowList(false);
         i18n.changeLanguage(value);
     }
@@ -20,18 +34,18 @@ export default function ListDownComponent() {
     }, []);
 
     return (
-        <div onClick={() => setShowList(!showList)}>
+        <div onClick={() => setShowList(!showList)} ref={dropdownRef}>
             <div className="flex flex-row cursor-pointer">
                 <span>{language}</span>
-                <ArrowDropDown className="mt-[-2px]" />
+                <KeyboardArrowDown fontSize='small' className="mt-1 text-[#FF0000]" />
             </div>
             {showList &&
                 <ul className="absolute bg-white text-black w-11 p-3 border space-y-2" data-aos="fade-up">
-                    <li className={liStyle} onClick={() => handleLanguage('en')}>en</li>
-                    <li className={liStyle} onClick={() => handleLanguage('de')}>de</li>
-                    <li className={liStyle} onClick={() => handleLanguage('fr')}>fr</li>
-                    <li className={liStyle} onClick={() => handleLanguage('es')}>es</li>
-                    <li className={liStyle} onClick={() => handleLanguage('it')}>it</li>
+                    <li className={liStyle} onClick={() => handleLanguage('en', 'EN')}>EN</li>
+                    <li className={liStyle} onClick={() => handleLanguage('de', 'DE')}>DE</li>
+                    <li className={liStyle} onClick={() => handleLanguage('fr', 'FR')}>FR</li>
+                    <li className={liStyle} onClick={() => handleLanguage('es', 'ES')}>ES</li>
+                    <li className={liStyle} onClick={() => handleLanguage('it', 'IT')}>IT</li>
                 </ul>}
         </div>
     )

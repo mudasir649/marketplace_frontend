@@ -58,7 +58,6 @@ export default function Product({ product, url }: any) {
     } else {
       const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/setFavorite/${product?._id}/${userId}`);
       if (res.status == 201) {
-        alert('helo')
         dispatch(setProdId([...prodId, product]));
         dispatch(refreshPage(refresh + 1))
       } else {

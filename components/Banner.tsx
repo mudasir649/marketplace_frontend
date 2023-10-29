@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setProductData, setProductsCount } from '@/store/appSlice';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
+import Image from 'next/image';
 export default function Banner() {
   const { t } = useTranslation(); // Initialize the translation hook
 
@@ -71,33 +72,52 @@ export default function Banner() {
   }
 
   return (
-    <div className={`${pathname == '/my-ads' && 'mb-44 md:mb-10'} border-green-400 mt-1 h-[300px]`}>
-      <div className='container mx-auto'>
-        <div className='grid  grid-cols-2 md:grid-cols-3'>
-          <div className='flex flex-col w-52' ref={dropdownRef}>
-            <div className={`flex flex-row justify-between border border-gray-200 rounded-full h-8 w-52 hover:border-red-500 
-              bg-white px-5 py-1 capitalize text-sm focus:border-red-800 focus:shadown-lg`} onClick={() => categoryHandle()}>
-              <h1>  {t('banner.seeAllCategories')}
-              </h1>
-              <KeyboardArrowDown className="h-5 w-5 border border-red-500 rounded-full bg-red-500 text-white" />
-            </div>
-            {isExpand && <div className='h-auto p-2 w-auto lg:w-52 z-30 absolute bg-white border rounded-md mt-9' data-aos="fade-up">
-              <CategoryList setCategory={setCategory} setExpand={setIsExpand} />
-            </div>}
-          </div>
-          {/* <div className={`felx flex-row  bg-[#FF0000] ${newWidth <= 834 && newWidth >= 768 ? 'mt-[-1.5px] ml-5' : ' mt-4 lg:mt-0'}`}> */}
-          <div className={`felx flex-row col-span-2 ml-[-0px] mt-2 md:mt-0 md:ml-[-5px] lg:ml-[-90px]`}>
-            <h1 className='text-white text-lg font-semibold flex space-x-5'>
-              {t('banner.topCategories')}
-              <span className='ml-4 cursor-pointer' onClick={() => handleCat('Autos')}>{t('banner.autos')}</span>
-              <span className='cursor-pointer' onClick={() => handleCat('Parts')}>{t('banner.parts')}</span>
-            </h1>
-          </div>
-        </div>
-      </div>
-      <div className='pt-10'>
+    <>
+    <div className={`border-b-2 container mx-auto pb-5`}>
+      <div className=''>
         <SearchPage />
       </div>
     </div >
+    <div className='container mx-auto mt-5'>
+        <div className='grid grid-cols-2 md:grid-cols-3'>
+          <div className='flex flex-col w-52' ref={dropdownRef}>
+            <div className={`flex flex-row justify-between border border-gray-200 rounded-full h-14 w-60 hover:border-red-500 
+              bg-white px-5 py-4 capitalize text-sm focus:border-red-800 focus:shadown-lg font-semibold`} onClick={() => categoryHandle()}>
+              <h1>  {t('banner.seeAllCategories')}
+              </h1>
+              <KeyboardArrowDown className="h-5 w-5 text-[#FF0000] mt-[-3px]" />
+            </div>
+            {isExpand && <div className='h-auto p-2 w-auto lg:w-60 z-30 absolute bg-white border rounded-md mt-16' data-aos="fade-up">
+              <CategoryList setCategory={setCategory} setExpand={setIsExpand} />
+            </div>}
+          </div>
+          <div className={`felx flex-row col-span-2 ml-[-0px] mt-2 md:mt-2 md:ml-[-5px] lg:ml-[-90px]`}>
+            <div className=' text-lg font-semibold flex space-x-5 lg:space-x-8'>
+              <h1 className='line-clamp-1'>{t('banner.topCategories')}</h1>
+              <section className='cursor-pointer flex space-x-2' onClick={() => handleCat('Autos')}>
+                <Image
+                src='/assets/car_2.png'
+                alt='car'
+                width={100}
+                height={100}
+                className='h-8 w-8'
+                /> 
+                <h1>{t('banner.autos')}</h1>
+              </section>
+              <section className='cursor-pointer flex space-x-2' onClick={() => handleCat('Parts')}>
+              <Image
+                src='/assets/brake.png'
+                alt='car'
+                width={100}
+                height={100}
+                className='h-8 w-8'
+                /> 
+                <h1>{t('banner.parts')}</h1>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   )
 }
