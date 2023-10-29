@@ -54,7 +54,10 @@
   "autosComponent": {
     "heading1": "Sélectionner une catégorie",
     "changeCategory": "Changer de catégorie",
+    "color": "Couleur",
     "productInfo": "Informations sur le produit",
+    "axleCount": "Nombre d'Essieux",
+  "selectAxleCount": "Sélectionnez le Nombre d'Essieux",
     "title": "Titre",
     "price": "Prix",
     "condition": "État",

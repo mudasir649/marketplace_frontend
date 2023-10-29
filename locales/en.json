@@ -99,7 +99,10 @@
         "titleCharacterLimit": "Character limit 25",
         "priceCHF": "Price[CHF]",
         "subCategory": "Sub Category", 
-        "selectSubCategory":"Select Sub Category"
+        "color": "Color",
+        "selectSubCategory":"Select Sub Category" , 
+        "axleCount": "Axle Count",
+        "selectAxleCount": "Select Axle Count"
       } , 
       "color": {
         "name1": "Beige",
