@@ -105,48 +105,34 @@
         "selectAxleCount": "Select Axle Count"
       } , 
       "color": {
-        
-            "name1": "Beige"
-        ,
-        
-            "name2": "Brown"
-        ,
-        
-            "name3": "Bronze"
-        ,
-        
-            "name4": "Yellow"
-        ,
-        
-            "name5": "Green"
-        ,
-        
-            "name6": "Red"
-        ,
-        
-            "name7": "Black"
-        ,
-        
-            "name8": "Silver"
-        ,
-        
-            "name9": "Violet"
-        ,
-        
-            "name10": "Orange"
-        ,
-        
-            "name11": "Gold"
-        ,
-        
-            "name12": "Paintwork (Metallic)"
-        ,
-        
-            "name13": "White"
-        ,
-        
-            "name14": "Other"
-        
+        "name1": "Beige",
+        "name2": "Brown",
+        "name3": "Bronze",
+        "name4": "Yellow",
+        "name5": "Green",
+        "name6": "Red",
+        "name7": "Black",
+        "name8": "Silver",
+        "name9": "Violet",
+        "name10": "Orange",
+        "name11": "Gold",
+        "name12": "Paintwork (Metallic)",
+        "name13": "White",
+        "name14": "Other",
+        "value1": "Beige",
+        "value2": "Brown",
+        "value3": "Bronze",
+        "value4": "Yellow",
+        "value5": "Green",
+        "value6": "Red",
+        "value7": "Black",
+        "value8": "Silver",
+        "value9": "Violet",
+        "value10": "Orange",
+        "value11": "Gold",
+        "value12": "Paintwork (Metallic)",
+        "value13": "White",
+        "value14": "Other"
       },
       "interiorColor": {
         "name1": "Beige",
@@ -157,7 +143,16 @@
         "name6": "Red",
         "name7": "Yellow",
         "name8": "Orange",
-        "name9": "Other"
+        "name9": "Other",
+        "value1": "Beige",
+        "value2": "Black",
+        "value3": "Grey",
+        "value4": "White",
+        "value5": "Brown",
+        "value6": "Red",
+        "value7": "Yellow",
+        "value8": "Orange",
+        "value9": "Other"
       },
         "banner": {
           "seeAllCategories": "See all categories",
@@ -169,7 +164,10 @@
         "gearBox": {
           "name1": "Automatic",
           "name2": "Manual",
-          "name3": "Semi-automatic"
+          "name3": "Semi-automatic",
+          "value2":"Manual",
+          "value1":"Automatic",
+          "value3":"Manual"
         },
         "sellRepairComponent": {
           "sellTitle": "Do you want to sell",
@@ -200,7 +198,7 @@
           "listDown": "List Down Component",
           "chat": "Chat",
           "adminPanelSettings": "Admin Panel Settings",
-          "postYourAd": "Post your ad",
+          "postYourAd": "Post your ads",
           "hello": "Hello",
           "myProfile": "My Profile",
           "myAds": "My Ads",

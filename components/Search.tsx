@@ -79,15 +79,15 @@ export default function SearchPage() {
   }, [handleOutsideClick]);
 
   return (
-    <>
-      <div className={`bg-white grid grid-cols-1 mt-[-20px] md:mt-10 md:grid-cols-3 lg:grid-cols-3 mx-5 md:mx-10 lg:mx-52 h-auto p-5 gap-2 border-none rounded-md screen-1`} ref={dropdownRef}>
-        <div className='flex flex-col w-full border border-gray-300 rounded-sm'>
+    <div className="">
+      <div className={`grid grid-cols-1 mt-[-20px] md:mt-10 md:grid-cols-3 lg:grid-cols-3 h-auto p-5 ml-0 md:ml-20 gap-2 border-none rounded-md screen-1`} ref={dropdownRef}>
+        <div className='flex flex-col w-full h-[60px] border-2 border-[#FF0000] rounded-lg p-2 lg:p-2 bg-white'>
           <span className="flex flex-row p-2">
-            <LocationOn className="text-[#FF0000]" />
-            <input type="text" placeholder={t('placeholderAddress')} name='address' value={address} onChange={(e: any) => setAddress(e.target.value)} className="focus:outline-none pl-2 w-auto overflow-hidden" onKeyUp={(e: any) => checkPlace(e)} />
+            <LocationOn className="text-gray-800" />
+            <input type="text" placeholder={t('placeholderAddress')} name='address' value={address} onChange={(e: any) => setAddress(e.target.value)} className="focus:outline-none pl-2 w-auto overflow-hidden bg-transparent" onKeyUp={(e: any) => checkPlace(e)} />
           </span>
-          <div className="">
-            {showLocation && address && <div className='border border-gray-300 bg-white absolute z-20 p-2 mt-1 w-[370px]'>
+          <div className="ml-[-3px]">
+            {showLocation && address && <div className='border border-gray-300 bg-white absolute z-20 p-2 mt-1 w-[350px]'>
               {
                 showLocation ?
                   <ul className="h-52 overflow-y-scroll">
@@ -102,9 +102,9 @@ export default function SearchPage() {
             }
           </div>
         </div>
-        <div className='flex flex-col w-full p-2 border border-gray-300 rounded-sm'>
+        <div className='flex flex-col w-full h-[60px] border-2 border-[#FF0000] rounded-lg p-4 lg:p-4 bg-white'>
           <span className="flex flex-row">
-            <Search className="text-[#FF0000]" />
+            <Search className="text-gray-800" />
             <input type="text" placeholder={t('placeholderKeyword')} name='name' className="focus:outline-none pl-2 overflow-hidden" value={title} onChange={(e: any) => setTitle(e.target.value)} onKeyUp={(e: any) => handleTitle(e)} />
           </span>
           <div className="ml-[-9px]">
@@ -123,11 +123,11 @@ export default function SearchPage() {
           </div>
         </div>
         <button className='flex flex-row justify-center 
-            cursor-pointer w-full p-2 border-none 
-            border-gray-300 rounded-sm bg-[#FF0000]' onClick={() => searchFilter()}>
-          <Search className="text-white" />
+            cursor-pointer w-full lg:w-24 p-3 border-none 
+            border-[#FF0000] rounded-md bg-[#FF0000] ' onClick={() => searchFilter()}>
+          <Search fontSize="large" className="text-white" />
         </button>
       </div >
-    </>
+    </div>
   );
 }

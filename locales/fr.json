@@ -382,7 +382,16 @@
             "name6": "Rouge",
             "name7": "Jaune",
             "name8": "Orange",
-            "name9": "Autre"
+            "name9": "Autre",
+            "value1": "Beige",
+            "value2": "Black",
+            "value3": "Grey",
+            "value4": "White",
+            "value5": "Brown",
+            "value6": "Red",
+            "value7": "Yellow",
+            "value8": "Orange",
+            "value9": "Other"
         }
     
 ,    
@@ -390,7 +399,10 @@
   "gearBox": {
       "name1": "Automatique",
       "name2": "Manuel",
-      "name3": "Semi-automatique"
+      "name3": "Semi-automatique",
+      "value2":"Manual",
+      "value1":"Automatic",
+      "value3":"Manual"
   }
 
 ,
@@ -408,7 +420,21 @@
             "name11": "Or",
             "name12": "Peinture (Métallisée)",
             "name13": "Blanc",
-            "name14": "Autre"
+            "name14": "Autre",
+            "value1": "Beige",
+            "value2": "Brown",
+            "value3": "Bronze",
+            "value4": "Yellow",
+            "value5": "Green",
+            "value6": "Red",
+            "value7": "Black",
+            "value8": "Silver",
+            "value9": "Violet",
+            "value10": "Orange",
+            "value11": "Gold",
+            "value12": "Paintwork (Metallic)",
+            "value13": "White",
+            "value14": "Other"
         }
     
     

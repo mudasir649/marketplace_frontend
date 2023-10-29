@@ -126,7 +126,7 @@ export default function Header() {
   return (
     <>
       {navbar &&
-        <div className="ease-in-out duration-300 h-full w-96 absolute z-10 bg-white">
+        <div className="h-full w-96 absolute z-10 bg-white" data-aos='fade-right'>
           <ul className="flex flex-col space-y-5 uppercase m-7">
             <li className={navbarLiStyle}>
               <Link href="/" onClick={() => setNavbar(false)}>
@@ -148,9 +148,9 @@ export default function Header() {
             }
             <li className="cursor-pointer">
               <Link href="/post-ad">
-                <button className="flex flex-row space-x-1 p-2 bg-[#e52320] hover:bg-red-500 text-white hover:border border-gray-100 transition hover:w-52 hover:justify-center rounded-lg">
-                  <Add className="text-md border border-[#e52320] rounded-full bg-[#e52320] text-white" />
-                  <span className="capitalize text-md mt-[2px]">Post your ad</span>
+                <button className="flex flex-row space-x-2 p-3 border border-gray-300 rounded-lg hover:bg-[#FF0000] hover:border-[#FF0000] hover:text-white">
+                  <Add className="text-md border border-[#e52320] rounded-full bg-[#FF0000] text-white" />
+                  <span className="capitalize text-md font-semibold">{t('header.postYourAd')}</span>
                 </button>
               </Link>
             </li>

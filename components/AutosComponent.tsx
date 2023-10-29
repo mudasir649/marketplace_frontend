@@ -136,6 +136,48 @@ export default function AutosComponent() {
     {
       name: t("color.name14"),
     },
+    {
+      value: t("color.value1"),
+    },
+    {
+      value: t("color.value2"),
+    },
+    {
+      value: t("color.value3"),
+    },
+    {
+      value: t("color.value4"),
+    },
+    {
+      value: t("color.value5"),
+    },
+    {
+      value: t("color.value6"),
+    },
+    {
+      value: t("color.value7"),
+    },
+    {
+      value: t("color.value8"),
+    },
+    {
+      value: t("color.value9"),
+    },
+    {
+      value: t("color.value10"),
+    },
+    {
+      value: t("color.value11"),
+    },
+    {
+      value: t("color.value12"),
+    },
+    {
+      value: t("color.value13"),
+    },
+    {
+      value: t("color.value14"),
+    },
   ];
 
   const interiorColor = [
@@ -166,6 +208,33 @@ export default function AutosComponent() {
     {
       name: t("interiorColor.name9"),
     },
+    {
+      value: t("interiorColor.value1")
+    },
+    {
+      value: t("interiorColor.value2")
+    },
+    {
+      value: t("interiorColor.value3")
+    },
+    {
+      value: t("interiorColor.value4")
+    },
+    {
+      value: t("interiorColor.value5")
+    },
+    {
+      value: t("interiorColor.value6")
+    },
+    {
+      value: t("interiorColor.value7")
+    },
+    {
+      value: t("interiorColor.value8")
+    },
+    {
+      value: t("interiorColor.value9")
+    },
   ];
   const gearBox = [
     {
@@ -177,6 +246,15 @@ export default function AutosComponent() {
     },
     {
       name: t("gearBox.name3"),
+    },
+    {
+      value: t("gearBox.value1")
+    },
+    {
+      value: t("gearBox.value2")
+    },
+    {
+      value: t("gearBox.value3")
     },
   ];
 

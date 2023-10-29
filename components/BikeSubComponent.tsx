@@ -80,47 +80,89 @@ export default function BikeSubComponent({ type }: any) {
 
     const bikeExteriorColor = [
         {
-            "name": t('color.name1')
+            name: t('color.name1')
         },
         {
-            "name": t('color.name2')
+            name: t('color.name2')
         },
         {
-            "name": t('color.name3')
+            name: t('color.name3')
         },
         {
-            "name": t('color.name4')
+            name: t('color.name4')
         },
         {
-            "name": t('color.name5')
+            name: t('color.name5')
         },
         {
-            "name": t('color.name6')
+            name: t('color.name6')
         },
         {
-            "name": t('color.name7')
+            name: t('color.name7')
         },
         {
-            "name": t('color.name8')
+            name: t('color.name8')
         },
         {
-            "name": t('color.name9')
+            name: t('color.name9')
         },
         {
-            "name": t('color.name10')
+            name: t('color.name10')
         },
         {
-            "name": t('color.name11')
+            name: t('color.name11')
         },
         {
-            "name": t('color.name12')
+            name: t('color.name12')
         },
         {
-            "name": t('color.name13')
+            name: t('color.name13')
         },
         {
-            "name": t('color.name14')
-        }
+            name: t('color.name14')
+        },
+        {
+            value: t("color.value1"),
+          },
+          {
+            value: t("color.value2"),
+          },
+          {
+            value: t("color.value3"),
+          },
+          {
+            value: t("color.value4"),
+          },
+          {
+            value: t("color.value5"),
+          },
+          {
+            value: t("color.value6"),
+          },
+          {
+            value: t("color.value7"),
+          },
+          {
+            value: t("color.value8"),
+          },
+          {
+            value: t("color.value9"),
+          },
+          {
+            value: t("color.value10"),
+          },
+          {
+            value: t("color.value11"),
+          },
+          {
+            value: t("color.value12"),
+          },
+          {
+            value: t("color.value13"),
+          },
+          {
+            value: t("color.value14"),
+          },
     ];
     const gearBox = [
         {
@@ -131,7 +173,16 @@ export default function BikeSubComponent({ type }: any) {
         },
         {
             name: t('gearBox.name3')
-        }
+        },
+        {
+            value: t("gearBox.value1")
+        },
+        {
+            value: t("gearBox.value2")
+        },
+        {
+            value: t("gearBox.value3")
+        },
     ];
     
     const interiorColor = [
