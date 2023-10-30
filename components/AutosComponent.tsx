@@ -251,8 +251,6 @@ export default function AutosComponent() {
   }, []);
 
   const handleInput = (e: any) => {
-    console.log(e.target.value);
-    return;
     setData({ ...data, [e.target.name]: e.target.value });
     if (e.target.name == "brand") fetchBrand(e.target.value);
   };
@@ -570,8 +568,7 @@ export default function AutosComponent() {
                     </option>
                     {gearBox.map((gear: any, i: number) => (
                       <option value={gear?.value} key={i}>
-                        {gear.value}
-                        {gear?.name}
+                         {gear?.name}
                       </option>
                     ))}
                   </select>
