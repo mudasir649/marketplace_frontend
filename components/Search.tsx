@@ -80,14 +80,14 @@ export default function SearchPage() {
 
   return (
     <div className="">
-      <div className={`grid grid-cols-1 mt-[-20px] md:mt-10 md:grid-cols-3 lg:grid-cols-3 h-auto p-5 ml-0 md:ml-20 gap-2 border-none rounded-md screen-1`} ref={dropdownRef}>
+      <div className={`grid grid-cols-1 mt-[-20px] md:mt-10 md:grid-cols-3 lg:grid-cols-3 h-auto p-5 ml-0 md:ml-40 gap-2 border-none rounded-md screen-1`} ref={dropdownRef}>
         <div className='flex flex-col w-full h-[60px] border-2 border-[#FF0000] rounded-lg p-2 lg:p-2 bg-white'>
           <span className="flex flex-row p-2">
             <LocationOn className="text-gray-800" />
             <input type="text" placeholder={t('placeholderAddress')} name='address' value={address} onChange={(e: any) => setAddress(e.target.value)} className="focus:outline-none pl-2 w-auto overflow-hidden bg-transparent" onKeyUp={(e: any) => checkPlace(e)} />
           </span>
-          <div className="ml-[-3px]">
-            {showLocation && address && <div className='border border-gray-300 bg-white absolute z-20 p-2 mt-1 w-[350px]'>
+          <div className="ml-[-10px]">
+            {showLocation && address && <div className='border-2 border-[#FF0000] bg-white rounded-lg absolute z-20 p-2 mt-3 w-[320px]'>
               {
                 showLocation ?
                   <ul className="h-52 overflow-y-scroll">
@@ -107,8 +107,8 @@ export default function SearchPage() {
             <Search className="text-gray-800" />
             <input type="text" placeholder={t('placeholderKeyword')} name='name' className="focus:outline-none pl-2 overflow-hidden" value={title} onChange={(e: any) => setTitle(e.target.value)} onKeyUp={(e: any) => handleTitle(e)} />
           </span>
-          <div className="ml-[-9px]">
-            {showTitle && <div className='border border-gray-300 bg-white absolute z-20 p-2 mt-3 w-[370px]'>
+          <div className="ml-[-19px]">
+            {showTitle && <div className='border-2 border-[#FF0000] rounded-lg bg-white absolute z-20 p-2 mt-5 w-[320px]'>
               {showTitle ?
                 <ul className="h-72 overflow-y-scroll">
                   {titleData?.map((title: any, i: number) => (

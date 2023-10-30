@@ -80,7 +80,7 @@ const list4 = [
     value: "privacy-policy",
   },
   {
-    name: t('list4.3'),
+    name: t('list4.4'),
     value: "terms-and-condition",
 
   },
