@@ -14,13 +14,6 @@ export default function ProductList({ productList }: any) {
     return (
         <>
             <div className='container mx-auto'>
-                {/* <div className={`grid ${newWidth < 688 ? 'grid-cols-1' : 'grid-cols-2'} md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-14`}>
-                    {productList?.map((product: any, i: any) => {
-                        return (
-                            <Product product={product} key={i} />
-                        )
-                    })}
-                </div> */}
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
                     {productList?.map((product: any, i: number) => (
                         <Product product={product} key={i} />
