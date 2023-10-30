@@ -84,7 +84,7 @@ export default function SearchPage() {
         <div className='flex flex-col w-full h-[60px] border-2 border-[#FF0000] rounded-lg p-2 lg:p-2 bg-white'>
           <span className="flex flex-row p-2">
             <LocationOn className="text-gray-800" />
-            <input type="text" placeholder={t('placeholderAddress')} name='address' value={address} onChange={(e: any) => setAddress(e.target.value)} className="focus:outline-none pl-2 w-auto overflow-hidden bg-transparent" onKeyUp={(e: any) => checkPlace(e)} />
+            <input type="text" placeholder={t('placeholderAddress')} name='address' value={address} onChange={(e: any) => setAddress(e.target.value)} className="focus:outline-none pl-2 w-96 overflow-hidden bg-transparent" onKeyUp={(e: any) => checkPlace(e)} />
           </span>
           <div className="ml-[-10px]">
             {showLocation && address && <div className='border-2 border-[#FF0000] bg-white rounded-lg absolute z-20 p-2 mt-3 w-[320px]'>
@@ -105,7 +105,7 @@ export default function SearchPage() {
         <div className='flex flex-col w-full h-[60px] border-2 border-[#FF0000] rounded-lg p-4 lg:p-4 bg-white'>
           <span className="flex flex-row">
             <Search className="text-gray-800" />
-            <input type="text" placeholder={t('placeholderKeyword')} name='name' className="focus:outline-none pl-2 overflow-hidden" value={title} onChange={(e: any) => setTitle(e.target.value)} onKeyUp={(e: any) => handleTitle(e)} />
+            <input type="text" placeholder={t('placeholderKeyword')} name='name' className="focus:outline-none w-96 pl-2 overflow-hidden" value={title} onChange={(e: any) => setTitle(e.target.value)} onKeyUp={(e: any) => handleTitle(e)} />
           </span>
           <div className="ml-[-19px]">
             {showTitle && <div className='border-2 border-[#FF0000] rounded-lg bg-white absolute z-20 p-2 mt-5 w-[320px]'>

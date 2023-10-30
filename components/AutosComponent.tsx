@@ -96,86 +96,58 @@ export default function AutosComponent() {
   const exteriorColor = [
     {
       name: t("color.name1"),
-    },
-    {
-      name: t("color.name2"),
-    },
-    {
-      name: t("color.name3"),
-    },
-    {
-      name: t("color.name4"),
-    },
-    {
-      name: t("color.name5"),
-    },
-    {
-      name: t("color.name6"),
-    },
-    {
-      name: t("color.name7"),
-    },
-    {
-      name: t("color.name8"),
-    },
-    {
-      name: t("color.name9"),
-    },
-    {
-      name: t("color.name10"),
-    },
-    {
-      name: t("color.name11"),
-    },
-    {
-      name: t("color.name12"),
-    },
-    {
-      name: t("color.name13"),
-    },
-    {
-      name: t("color.name14"),
-    },
-    {
       value: t("color.value1"),
     },
     {
+      name: t("color.name2"),
       value: t("color.value2"),
     },
     {
+      name: t("color.name3"),
       value: t("color.value3"),
     },
     {
+      name: t("color.name4"),
       value: t("color.value4"),
     },
     {
+      name: t("color.name5"),
       value: t("color.value5"),
     },
     {
+      name: t("color.name6"),
       value: t("color.value6"),
     },
     {
+      name: t("color.name7"),
       value: t("color.value7"),
     },
     {
+      name: t("color.name8"),
       value: t("color.value8"),
     },
     {
+      name: t("color.name9"),
       value: t("color.value9"),
     },
     {
+      name: t("color.name10"),
       value: t("color.value10"),
     },
     {
+      name: t("color.name11"),
       value: t("color.value11"),
     },
     {
+      name: t("color.name12"),
       value: t("color.value12"),
     },
     {
+      name: t("color.name13"),
       value: t("color.value13"),
     },
     {
+      name: t("color.name14"),
       value: t("color.value14"),
     },
   ];
@@ -183,79 +155,56 @@ export default function AutosComponent() {
   const interiorColor = [
     {
       name: t("interiorColor.name1"),
-    },
-    {
-      name: t("interiorColor.name2"),
-    },
-    {
-      name: t("interiorColor.name3"),
-    },
-    {
-      name: t("interiorColor.name4"),
-    },
-    {
-      name: t("interiorColor.name5"),
-    },
-    {
-      name: t("interiorColor.name6"),
-    },
-    {
-      name: t("interiorColor.name7"),
-    },
-    {
-      name: t("interiorColor.name8"),
-    },
-    {
-      name: t("interiorColor.name9"),
-    },
-    {
       value: t("interiorColor.value1")
     },
     {
+      name: t("interiorColor.name2"),
       value: t("interiorColor.value2")
     },
     {
+      name: t("interiorColor.name3"),
       value: t("interiorColor.value3")
     },
     {
+      name: t("interiorColor.name4"),
       value: t("interiorColor.value4")
     },
     {
+      name: t("interiorColor.name5"),
       value: t("interiorColor.value5")
     },
     {
+      name: t("interiorColor.name6"),
       value: t("interiorColor.value6")
     },
     {
+      name: t("interiorColor.name7"),
       value: t("interiorColor.value7")
     },
     {
+      name: t("interiorColor.name8"),
       value: t("interiorColor.value8")
     },
     {
+      name: t("interiorColor.name9"),
       value: t("interiorColor.value9")
     },
   ];
+
+  
   const gearBox = [
     {
       name: t("gearBox.name1"),
-      
-    },
-    {
-      name: t("gearBox.name2"),
-    },
-    {
-      name: t("gearBox.name3"),
-    },
-    {
       value: t("gearBox.value1")
     },
     {
+      name: t("gearBox.name2"),
       value: t("gearBox.value2")
     },
     {
+      name: t("gearBox.name3"),
       value: t("gearBox.value3")
-    },
+    }
   ];
 
   const [data, setData] = useState<IData>({
@@ -302,8 +251,9 @@ export default function AutosComponent() {
   }, []);
 
   const handleInput = (e: any) => {
+    console.log(e.target.value);
+    return;
     setData({ ...data, [e.target.name]: e.target.value });
-    console.log(e.target.value)
     if (e.target.name == "brand") fetchBrand(e.target.value);
   };
 
