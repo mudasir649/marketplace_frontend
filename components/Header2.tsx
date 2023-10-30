@@ -207,17 +207,17 @@ export default function Header2() {
             : ""
         }`}
       >
-        <div className="container mx-auto flex justify-between space-x-10 items-center my-5 mt-4">
+        <div className="container mx-auto flex justify-between space-x-10 items-center my-5">
           <Image
             src="/assets/eidcarosse_website_logo.png"
             alt="eidcarosse_logo"
             width={300}
             height={300}
-            className={`${newWidth <= 1024 ? 'h-12 mt-[-30px]' : 'h-24'}  w-auto cursor-pointer`}
+            className={`${newWidth <= 1024 ? 'h-12 mt-[-30px]' : 'h-20'}  w-auto cursor-pointer`}
             onClick={() => router.push('/')}
           />
           <div className="w-full flex">
-            <ul className="flex flex-row p-5 text-md space-x-7 mt-5 menu">
+            <ul className="flex flex-row p-5 text-md space-x-7 mt-2 menu">
               <li className={navbarLiStyle} onClick={() => router.push("/")}>
                 {t("header.home")}
               </li>
@@ -243,7 +243,7 @@ export default function Header2() {
                 <ChatBubbleOutline />
               </li>
             </ul>
-            <ul className="flex flex-row p-2 space-x-7 mt-3">
+            <ul className="flex flex-row p-2 space-x-7">
               <li>
                 {newWidth <= 1024 ? (
                   <button onClick={() => setNavbar(!navbar)}>
@@ -285,7 +285,7 @@ export default function Header2() {
                       />
                     </button>
                     <div
-                      className={`dropdown-menu bg-white shadow-lg ml-[-150px] w-64 ${
+                      className={`dropdown-menu absolute bg-white shadow-lg ml-[-150px] w-64 ${
                         open ? "active" : "inactive"
                       }`}
                     >
