@@ -14,7 +14,7 @@ import {
   AdminPanelSettings,
   Cancel,
 } from "@mui/icons-material";
-import MenuIcon from '@mui/icons-material/Menu';
+import MenuIcon from "@mui/icons-material/Menu";
 import { useTranslation } from "react-i18next";
 import "./Header.css";
 import Link from "next/link";
@@ -114,7 +114,7 @@ export default function Header2() {
     };
   }, [handleOutsideClick]);
 
-  const navbarLiStyle = "cursor-pointer hover:text-[#FF0000]";
+  const navbarLiStyle = "cursor-pointer hover:text-[#FF0000] line-clamp-1";
 
   const DropdownItem = ({ logo, text, href }: any) => {
     return (
@@ -203,21 +203,34 @@ export default function Header2() {
           pathname !== "/" &&
           pathname !== `/advance-search` &&
           pathname !== `/advance-search/${type}`
-            ? "shadow-md h-28 sticky top-0"
+            ? "shadow-md h-28 border-b-[3px] border-[#FF0000]"
             : ""
         }`}
       >
-        <div className="container mx-auto flex justify-between space-x-10 items-center my-5">
-          <Image
-            src="/assets/eidcarosse_website_logo.png"
-            alt="eidcarosse_logo"
-            width={300}
-            height={300}
-            className={`${newWidth <= 1024 ? 'h-12 mt-[-30px]' : 'h-20'}  w-auto cursor-pointer`}
-            onClick={() => router.push('/')}
-          />
-          <div className="w-full flex">
-            <ul className="flex flex-row p-5 text-md space-x-7 mt-2 menu">
+        <div className="container mx-auto flex space-x-10 mt-8">
+          <div className="">
+          <Link href="/">
+            {newWidth <= 1024 ? (
+              <Image
+                src='/assets/test-white-logo.png'
+                alt="logo"
+                width={150}
+                height={150}
+              />
+            ) : (
+              <Image
+                src="/assets/eidcarosse_website_logo.png"
+                alt="eidcarosse_logo"
+                width={300}
+                height={300}
+                className={`w-auto cursor-pointer`}
+                onClick={() => router.push("/")}
+              />
+            )}
+          </Link>
+          </div>
+          <div className="w-full flex justify-between">
+            <ul className="flex flex-row text-md space-x-7 menu p-6">
               <li className={navbarLiStyle} onClick={() => router.push("/")}>
                 {t("header.home")}
               </li>
@@ -243,13 +256,13 @@ export default function Header2() {
                 <ChatBubbleOutline />
               </li>
             </ul>
-            <ul className="flex flex-row p-2 space-x-7">
+            <ul className={`${newWidth <= 1024 && 'absolute end-10 mt-2'} flex justify-end p-2 space-x-7`}>
               <li>
                 {newWidth <= 1024 ? (
                   <button onClick={() => setNavbar(!navbar)}>
                     <MenuIcon className="text-[#FF0000]" />
-                  </button>                
-              ) : (
+                  </button>
+                ) : (
                   <>
                     <Link href="/post-ad">
                       <button className="border border-white hover:border-[#FF0000] bg-white hover:bg-[#FF0000] hover:text-white drop-shadow-lg rounded-lg p-3 flex flex-row space-x-3">

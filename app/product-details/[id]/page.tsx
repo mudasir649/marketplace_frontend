@@ -201,62 +201,14 @@ function ProductDetails() {
               <div
                 className={`lg:w-auto min-h-[800px] mb-5 border rounded-lg bg-white p-5`}
               >
-                <div className="flex flex-col max-w-[1400px] h-[550px] w-full m-auto relative items-start gap-8 lg:flex-row group">
-                  {/* <div style={{ backgroundImage: `url(${product?.images[currentImage]})` }} className='w-full h-full rounded-lg bg-center bg-cover duration-500'>
-                </div> */}
-                  <div className="h-full w-full">
-                    <div className="image-gallery p-5 border-none rounded-md bg-gray-50 overflow-hidden">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={product?.images[currentImage]}
-                        className="w-full ease-linear duration-150"
-                        alt=""
-                      />
-                    </div>
-                  </div>
-                  {product?.images.length >= 2 && (
-                    <>
-                      <div
-                        className="hidden group-hover:block absolute top-[45%] -translate-x-0 translate-y-[-35%] md:left-5 lg:left-10 text-2xl 
-                    rounded-full p-2 text-[#FF0000] cursor-pointer"
-                        onClick={prevSlide}
-                      >
-                        <ArrowBackIos />
-                      </div>
-                      <div
-                        className="hidden group-hover:block absolute top-[45%] -translate-x-0 translate-y-[-35%] md:right-5 lg:right-10 text-2xl 
-                  rounded-full p-2 text-[#FF0000] cursor-pointer"
-                        onClick={nextSlide}
-                      >
-                        <ArrowForwardIos />
-                      </div>
-                    </>
-                  )}
+                <div>
+                  <Carousel>
+                    {product?.images.map((img: number, i: number) => (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={img} alt={`image${i}`} key={i} />
+                    ))}
+                  </Carousel>
                 </div>
-                {product?.images.length > 1 && (
-                  <div className="flex flex-col md:flex-row justify-between my-[20px]">
-                    <div className="flex flex-row space-x-4 mb-2">
-                      {product?.images?.map((image: any, i: any) => (
-                        <div
-                          key={i}
-                          className="w-[60px] h-auto md:w-[100px] bg-gray-500"
-                        >
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            className="h-auto w-full cursor-pointer"
-                            onClick={() => setCurrentImage(i)}
-                            src={image}
-                            alt={`Image ${i}`}
-                          />
-                        </div>
-                      ))}
-                    </div>
-                    <div>
-                      <CameraAlt /> {currentImage + 1} /{" "}
-                      {product?.images.length}
-                    </div>
-                  </div>
-                )}
                 {product?.price * 1 === 0 ? (
                   <div className="bg-black space-y-2 rounded-lg rounded-tr-[700px] rounded-br-[700px] w-40 p-2 h-16 md:w-64 md:h-auto">
                     <h1 className="text-white text-sm md:text-3xl font-bold">
@@ -500,7 +452,7 @@ function ProductDetails() {
                     <h1 className="mt-5 text-lg font-semibold">
                       {product?.userId?.firstName +
                         " " +
-                        product?.userId.lastName}{" "}
+                        product?.userId?.lastName}{" "}
                     </h1>
                   </div>
                   <div className="space-y-3 mt-7">
@@ -547,7 +499,7 @@ function ProductDetails() {
                         </ul>
                       </div>
                     )}
-                    {userId === product?.userId._id ? (
+                    {userId === product?.userId?._id ? (
                       ""
                     ) : (
                       <div className="border bg-[#FF0000] text-md font-semibold text-white p-2 rounded-md cursor-pointer">

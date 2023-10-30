@@ -73,7 +73,7 @@ export default function Banner() {
 
   return (
     <>
-    <div className={`border-b-2 container mx-auto pb-5 -mt-10`}>
+    <div className={`border-b-2 container mx-auto pb-5 ${newWidth <= 1024 ? 'mt-5' : ' -mt-10'}`}>
       <div className=''>
         <SearchPage />
       </div>

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import Product from "@/components/Product";
 import Home from "../components/Home";
 import productData from "@/utils/data";
@@ -16,17 +16,13 @@ import Image from "next/image";
 import { useSelector } from "react-redux";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { useTranslation } from 'react-i18next';
-
-
-
+import { useTranslation } from "react-i18next";
 
 function MainPage() {
-
   const { t } = useTranslation(); // Initialize the translation hook
 
-  const [featuredAds, setFeaturedAds] = useState<any>()
-  const [topAds, setTopAds] = useState<any>()
+  const [featuredAds, setFeaturedAds] = useState<any>();
+  const [topAds, setTopAds] = useState<any>();
 
   const { width, height } = useWindowDimensions();
   const newWidth = width || 0;
@@ -34,9 +30,11 @@ function MainPage() {
 
   useEffect(() => {
     const fetchFeaturedData = async () => {
-      const res = await axios(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/fetchFeatured`);
+      const res = await axios(
+        `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/fetchFeatured`
+      );
       setFeaturedAds(res?.data?.data);
-    }
+    };
     fetchFeaturedData();
     // const fetchTopData = async () => {
     //   const res = await axios(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/fetchTopAds`);
@@ -48,36 +46,49 @@ function MainPage() {
   return (
     <div className="">
       <Home>
-        <SellRepairComponent />
         {/* <TopProducts>
           <ProductList productList={topAds} />
         </TopProducts>
         <FooterBanner /> */}
-        {!featuredAds ?
+        {!featuredAds ? (
           <div className="flex justify-center mt-8">
             <Image
-              src='/assets/eidcarosse.gif'
+              src="/assets/eidcarosse.gif"
               alt="eidcarosse_logo"
               width={200}
               height={200}
             />
           </div>
-          :
-          <section className='mb-20 mt-5'>
-            <div className='container mx-auto flex justify-between mb-5'>
-              <h1 className='text-xl lg:text-3xl font-bold mt-1'>  {t('random.latestAds')}
-              </h1>
-              <Link href='/advance-search'>
-                <span className='capitalize text-lg font-bold mt-[5px] mr-[-5px]'>  {t('random.seeAllAds')}
-                  <East className='text-[#FF0000]' data-aos="fade-right" style={{fontSize:'20px'}} /> </span>
-              </Link>
+        ) : (
+          <>
+            <section className="mb-20 mt-5">
+              <div className="container mx-auto flex justify-between mb-5">
+                <h1 className="text-xl lg:text-3xl font-bold mt-1">
+                  {" "}
+                  {t("random.latestAds")}
+                </h1>
+                <Link href="/advance-search">
+                  <span className="capitalize text-lg font-bold mt-[5px] mr-[-5px]">
+                    {" "}
+                    {t("random.seeAllAds")}
+                    <East
+                      className="text-[#FF0000]"
+                      data-aos="fade-right"
+                      style={{ fontSize: "20px" }}
+                    />{" "}
+                  </span>
+                </Link>
+              </div>
+              <ProductList productList={featuredAds} />
+            </section>
+            <div className="bg-white">
+            <SellRepairComponent />
             </div>
-            <ProductList productList={featuredAds} />
-          </section>
-        }
+          </>
+        )}
       </Home>
     </div>
-  )
+  );
 }
 
 export default dynamic(() => Promise.resolve(MainPage), { ssr: false });
