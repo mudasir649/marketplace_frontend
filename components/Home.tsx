@@ -3,18 +3,18 @@ import React from 'react'
 import Header from './Header'
 import Banner from './Banner'
 import Footer from './Footer'
-import useWindowDimensions from '@/utils/useWindowDimensions';
 import I18nProvider from './i18Provider';
-import i18n from 'i18next';
 import Header2 from './Header2';
+import { usePathname } from 'next/navigation';
+import { useSelector } from 'react-redux';
 
 
 
 export default function Home({ children }: any) {
-  const { width, height } = useWindowDimensions();
+  const { type } = useSelector((state: any) => state.app);
+  
+  const pathname = usePathname()
 
-  const newWidth = width || 0;
-  const newHeight = height || 0;
   return (
     <div className=''>
       <I18nProvider>
@@ -23,7 +23,7 @@ export default function Home({ children }: any) {
       </div> */}
       <div className='w-full'>
         <Header2 />
-        <Banner />
+        { (pathname === '/' || pathname === '/advance-search' || pathname === `/advance-search/${type}`) ? <Banner /> : '' }
       </div>
       {children}
       <Footer />

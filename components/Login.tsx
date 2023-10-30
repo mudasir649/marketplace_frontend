@@ -68,7 +68,7 @@ export default function LoginPage() {
             <div className='flex flex-row border border-gray-200 hover:border-[#e52320] cursor-pointer rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>
               <Mail className='text-[#FF0000] ml-5' />
               <input
-                className='border-none bg-transparent focus:outline-none'
+                className='border-none bg-transparent focus:outline-none focus:bg-transparent'
                 type="email"
                 placeholder={t('login.yourEmailAddress')}
                 name='email'
@@ -79,7 +79,7 @@ export default function LoginPage() {
             <div className='flex flex-row border border-gray-200 hover:border-[#e52320] rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>
               <Https className='text-[#FF0000] ml-5' />
               <input
-                className='border-none bg-transparent focus:outline-none'
+                className='border-none bg-transparent focus:outline-none focus:bg-transparent'
                 type='password'
                 placeholder={t('login.yourPassword')}
                 name='password'
