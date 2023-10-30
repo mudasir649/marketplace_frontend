@@ -48,6 +48,8 @@ import {
 import dynamic from "next/dynamic";
 import addInvertedComma from "@/utils/addInvertedComma";
 import { useTranslation } from "react-i18next";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 
 interface AdFavoriteData {
   userId: string;
@@ -229,7 +231,7 @@ function ProductDetails() {
               >
                 <div>
                   <Carousel>
-                    {product?.images.map((img: number, i: number) => (
+                    {product?.images.map((img: any, i: number) => (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img src={img} alt={`image${i}`} key={i} />
                     ))}
