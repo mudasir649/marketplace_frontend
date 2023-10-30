@@ -48,8 +48,6 @@ import {
 import dynamic from "next/dynamic";
 import addInvertedComma from "@/utils/addInvertedComma";
 import { useTranslation } from "react-i18next";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel"
 
 interface AdFavoriteData {
   userId: string;
@@ -149,6 +147,35 @@ function ProductDetails() {
       }
     }
   };
+  type InteriorColor = "Beige" | "Black" | "Grey" | "White" | "Brown" | "Red" | "Yellow" | "Orange" | "Other";
+  const interiorColor: InteriorColor = product?.interiorColor || "Other";
+
+  const interiorColorTranslations: {
+    [key in InteriorColor]: string;
+  } = {
+    Beige: t('interiorColor.name1'),
+    Black: t('interiorColor.name2'),
+    Grey: t('interiorColor.name3'),
+    White: t('interiorColor.name4'),
+    Brown: t('interiorColor.name5'),
+    Red: t('interiorColor.name6'),
+    Yellow: t('interiorColor.name7'),
+    Orange: t('interiorColor.name8'),
+    Other: t('interiorColor.name9'),
+  };
+  
+  const translatedInteriorColor = interiorColorTranslations[interiorColor];
+
+
+  const gearboxTranslations: {
+    Automatic: string;
+    Manual: string;
+    "Semi-Automatic": string;
+  } = {
+    Automatic: t("gearBox.name1"),
+    Manual: t("gearBox.name2"),
+    "Semi-Automatic": t("gearBox.name3"),
+  };
 
   const findProductId = (productId: any) => {
     return prodId.includes(productId);
@@ -179,7 +206,6 @@ function ProductDetails() {
       router.push("/login");
     }
   };
-
   console.log(product?.images);
   
 
@@ -377,11 +403,11 @@ function ProductDetails() {
                         ""
                       ) : (
                         <li>
-                          <span className={overviewStyle}>
-                            {t("product.Gearbox")}:{" "}
-                          </span>{" "}
-                          {product?.gearBox}
-                        </li>
+                        <span className={overviewStyle}>
+                          {t("product.Gearbox")}:{" "}
+                        </span>{" "}
+                        {gearboxTranslations[product?.gearBox as 'Automatic' | 'Manual' | 'Semi-Automatic']}
+                      </li>
                       )}
                       {!product?.fuelType ? (
                         ""
@@ -432,12 +458,13 @@ function ProductDetails() {
                         </li>
                       )}
                       {product?.category == "Autos" && (
-                        <li>
-                          <span className={overviewStyle}>
-                            {t("product.Interior")}:{" "}
-                          </span>{" "}
-                          {product?.interiorColor}
-                        </li>
+                    <li>
+                    <span className={overviewStyle}>
+                      {t("product.Interior")}:{" "}
+                    </span>{" "}
+                    {translatedInteriorColor}
+                  </li>
+
                       )}
                     </ul>
                   </div>
