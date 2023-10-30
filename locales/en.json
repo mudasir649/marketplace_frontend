@@ -167,7 +167,7 @@
           "name3": "Semi-automatic",
           "value2":"Manual",
           "value1":"Automatic",
-          "value3":"Manual"
+          "value3":"Semi-Automatic"
         },
         "sellRepairComponent": {
           "sellTitle": "Do you want to sell",

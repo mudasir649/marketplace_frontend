@@ -620,6 +620,7 @@ export default function AutosComponent() {
                     </option>
                     {gearBox.map((gear: any, i: number) => (
                       <option value={gear?.value} key={i}>
+                        {gear.value}
                         {gear?.name}
                       </option>
                     ))}
