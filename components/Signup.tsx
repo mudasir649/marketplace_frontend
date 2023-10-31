@@ -99,7 +99,7 @@ export default function Signup() {
             <div className='flex flex-row border border-gray-200 hover:border-[#e52320] cursor-pointer rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>
               <AccountCircle className='text-[#FF0000] ml-5' />
               <input required={true}
-                className='border-none bg-transparent focus:outline-none'
+                className="focus:outline-none w-96 p-1 overflow-hidden bg-transparent focus:bg-transparent"
                 type="text"
                 placeholder={t("signup.firstNamePlaceholder")}
                 name='firstName'
@@ -111,7 +111,7 @@ export default function Signup() {
             <div className='flex flex-row border border-gray-200 hover:border-[#e52320] cursor-pointer rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>
               <AccountCircle className='text-[#FF0000] ml-5' />
               <input required={true}
-                className='border-none bg-transparent focus:outline-none'
+                className="focus:outline-none w-96 p-1 overflow-hidden bg-transparent focus:bg-transparent"
                 type="text"
                 placeholder={t("signup.lastNamePlaceholder")}
                 name='lastName'
@@ -123,7 +123,7 @@ export default function Signup() {
             <div className='flex flex-row border border-gray-200 hover:border-[#e52320] cursor-pointer rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>
               <Phone className='text-[#FF0000] ml-5' />
               <input required={true}
-                className='border-none bg-transparent focus:outline-none'
+                className="focus:outline-none w-96 p-1 overflow-hidden bg-transparent focus:bg-transparent"
                 type="text"
                 placeholder={t("signup.phoneNumberPlaceholder")}
                 name='phoneNumber'
@@ -135,7 +135,7 @@ export default function Signup() {
             <div className='flex flex-row border border-gray-200 hover:border-[#e52320] cursor-pointer rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>
               <AccountCircle className='text-[#FF0000] ml-5' />
               <input required={true}
-                className='border-none bg-transparent focus:outline-none'
+                className="focus:outline-none w-96 p-1 overflow-hidden bg-transparent focus:bg-transparent"
                 type="text"
                 placeholder={t("signup.usernamePlaceholder")}
                 name='username'
@@ -147,7 +147,7 @@ export default function Signup() {
             <div className='flex flex-row border border-gray-200 hover:border-[#e52320] cursor-pointer rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>
               <Mail className='text-[#FF0000] ml-5' />
               <input required={true}
-                className='border-none bg-transparent focus:outline-none'
+                className="focus:outline-none w-96 p-1 overflow-hidden bg-transparent focus:bg-transparent"
                 type="text"
                 placeholder={t("signup.emailPlaceholder")}
                 name='email'
@@ -159,7 +159,7 @@ export default function Signup() {
             <div className='flex flex-row border border-gray-200 hover:border-[#e52320] rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>
               <Https className='text-[#FF0000] ml-5' />
               <input required={true}
-                className='border-none bg-transparent focus:outline-none'
+                className="focus:outline-none w-96 p-1 overflow-hidden bg-transparent focus:bg-transparent"
                 type="password"
                 placeholder={t("signup.passwordPlaceholder")}
                 name='password'

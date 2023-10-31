@@ -3,7 +3,6 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 import AOS, { refresh } from 'aos';
 import 'aos/dist/aos.css';
-import useWindowDimensions from '@/utils/useWindowDimensions';
 import { usePathname } from 'next/navigation';
 import './ImageSlider.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -27,12 +26,10 @@ export default function Product({ product, url }: any) {
   const checkPathname = pathname == '/my-favourites' ? true : false;
   const [fav, setFav] = useState<Boolean>(checkPathname);
   const router = useRouter();
-  const { width, height } = useWindowDimensions();
   const { userInfo } = useSelector((state: any) => state.auth);
   const { prodId } = useSelector((state: any) => state.app);
   const userId = userInfo?.data?.userDetails?._id;
-  const newWidth = width || 0;
-  const newHeight = height || 0;
+
   useEffect(() => {
     AOS.init();
   }, [product]);
