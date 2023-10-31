@@ -267,6 +267,11 @@
     }
 
 ,
+"condition": {
+  "new": "Nuovo",
+  "used": "Usato",
+  "recondition": "Ricondizionato"
+},
 
   "gearBox": {
       "name1": "Automatico",

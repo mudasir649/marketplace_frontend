@@ -134,6 +134,13 @@
         "value13": "White",
         "value14": "Other"
       },
+
+      "condition" : {
+        "new": "New",
+        "used": "Used",
+        "recondition": "Recondition"
+      },
+
       "interiorColor": {
         "name1": "Beige",
         "name2": "Black",

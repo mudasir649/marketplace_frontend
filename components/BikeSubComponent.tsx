@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { BikeFuelType, bikeBodyShape, bodyShape, conditionList, gearBox, howContactList, kilometers, priceList } from '@/utils/dataVariables';
+import { BikeFuelType, bikeBodyShape, bodyShape, gearBox, howContactList, kilometers, priceList } from '@/utils/dataVariables';
 import { carsList } from '@/utils/carsList';
 import "../app/post-ad/post-ad.css"
 import { bikesList } from '@/utils/bikesList';
@@ -77,6 +77,24 @@ export default function BikeSubComponent({ type }: any) {
     let router = useRouter();
     const id = userData;
     const { t } = useTranslation(); // Initialize the translation hook
+
+    const conditionList = [
+        {
+            id: 1,
+            name: t('condition.new'),
+            value: 'new'
+        },
+        {
+            id: 2,
+            name: t('condition.used'),
+            value: 'used'
+        },
+        {
+            id: 3,
+            name: t('condition.recondition'),
+            value: 'recondition'
+        }
+    ];
 
     const bikeExteriorColor = [
         {

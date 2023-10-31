@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { bodyShape, conditionList, fuelType, gearBox, howContactList, interiorColor, priceList } from '@/utils/dataVariables';
+import { bodyShape, fuelType, gearBox, howContactList, interiorColor, priceList } from '@/utils/dataVariables';
 import { carsList } from '@/utils/carsList';
 import "../app/post-ad/post-ad.css"
 import { bikesList } from '@/utils/bikesList';
@@ -61,6 +61,23 @@ export default function OthersComponent({ type }: any) {
     const [showLocation, setShowLocation] = useState<Boolean>(false);
     let router = useRouter();
     const id = userData;
+    const conditionList = [
+        {
+            id: 1,
+            name: t('condition.new'),
+            value: 'new'
+        },
+        {
+            id: 2,
+            name: t('condition.used'),
+            value: 'used'
+        },
+        {
+            id: 3,
+            name: t('condition.recondition'),
+            value: 'recondition'
+        }
+    ];
     const exteriorColor = [
         {
             "name": t('color.name1')

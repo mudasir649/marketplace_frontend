@@ -142,6 +142,11 @@
       "value2":"Manual",
       "value1":"Automatic",
       "value3":"Semi-Automatic"
+  },
+  "condition": {
+    "new": "Neu",
+    "used": "Gebraucht",
+    "recondition": "Generalüberholt"
   }
 
 ,

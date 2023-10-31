@@ -126,6 +126,12 @@
     "aboutEidcarosse": "À propos d'Eidcarosse",
     "contact": "Contact"
   },
+  "condition": {
+    "new": "Neuf",
+    "used": "D'occasion",
+    "recondition": "Reconditionné"
+  },
+
   "copyright": "Copyright © 2023 Eidcarosse. Tous droits réservés.",
   "header": {
     "home": "Accueil",

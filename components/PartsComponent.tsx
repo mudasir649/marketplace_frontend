@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { conditionList, howContactList, priceList } from '@/utils/dataVariables';
+import {  howContactList, priceList } from '@/utils/dataVariables';
 import "../app/post-ad/post-ad.css"
 import { useSelector } from 'react-redux';
 import locateAddress from '@/utils/GoogleLocation';
@@ -48,6 +48,23 @@ interface IData {
 export default function PartsComponent({ type }: any) {
 
     const { t } = useTranslation();
+    const conditionList = [
+        {
+            id: 1,
+            name: t('condition.new'),
+            value: 'new'
+        },
+        {
+            id: 2,
+            name: t('condition.used'),
+            value: 'used'
+        },
+        {
+            id: 3,
+            name: t('condition.recondition'),
+            value: 'recondition'
+        }
+    ];
 
     const { userInfo } = useSelector((state: any) => state.auth);
     const userData = userInfo === null ? userInfo : userInfo?.data?.userDetails?._id;

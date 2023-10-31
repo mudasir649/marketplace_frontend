@@ -17,7 +17,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import {
   bodyShape,
-  conditionList,
+  
   exteriorColor,
   fuelType,
   gearBox,
@@ -84,6 +84,23 @@ export default function AutosComponent() {
   const { type } = useParams();
   const [open, isOpen] = useState<Boolean>(false);
   const [openSub, isOpenSub] = useState<Boolean>(false);
+  const conditionList = [
+    {
+        id: 1,
+        name: t('condition.new'),
+        value: 'new'
+    },
+    {
+        id: 2,
+        name: t('condition.used'),
+        value: 'used'
+    },
+    {
+        id: 3,
+        name: t('condition.recondition'),
+        value: 'recondition'
+    }
+];
   const [images, setImages] = useState<any>([]);
   const [loading, setLoading] = useState<Boolean>(false);
   const [priceListValue, setPriceListValue] = useState<string>("price");

@@ -51,6 +51,11 @@
     "Camiones",
     "Furgonetas"
   ],
+  "condition": {
+    "new": "Nuevo",
+    "used": "Usado",
+    "recondition": "Reacondicionado"
+  },
   "autosComponent": {
     "heading1": "Seleccionar Categoría",
       "color": "Color"

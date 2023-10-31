@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { conditionList, howContactList, kilometers, priceList } from '@/utils/dataVariables';
+import {  howContactList, kilometers, priceList } from '@/utils/dataVariables';
 import "../app/post-ad/post-ad.css"
 import { useSelector } from 'react-redux';
 import locateAddress from '@/utils/GoogleLocation';
@@ -173,7 +173,23 @@ export default function SpecialCatComponent({ type }: any) {
             router.push('/')
         }
     }, [router, userData]);
-
+    const conditionList = [
+        {
+            id: 1,
+            name: t('condition.new'),
+            value: 'new'
+        },
+        {
+            id: 2,
+            name: t('condition.used'),
+            value: 'used'
+        },
+        {
+            id: 3,
+            name: t('condition.recondition'),
+            value: 'recondition'
+        }
+    ];
     return (
         <Home>
             <div className='container mx-auto mt-10'>
