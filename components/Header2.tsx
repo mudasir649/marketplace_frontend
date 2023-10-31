@@ -221,9 +221,9 @@ export default function Header2() {
                 <Image
                   src="/assets/eidcarosse_website_logo.png"
                   alt="eidcarosse_logo"
-                  width={300}
-                  height={300}
-                  className={`w-full h-full cursor-pointer`}
+                  width={200}
+                  height={200}
+                  className={`w-full h-full cursor-pointer mt-[-8px]`}
                   onClick={() => router.push("/")}
                 />
               )}
