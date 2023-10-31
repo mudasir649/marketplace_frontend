@@ -208,27 +208,27 @@ export default function Header2() {
         }`}
       >
         <div className="container mx-auto flex space-x-10 mt-8">
-        <div className="w-96">
-  <Link href="/">
-    {newWidth <= 1024 ? (
-      <Image
-        src='/assets/icon_copy.png'
-        alt="logo"
-        width={100}
-        height={100}
-      />
-    ) : (
-      <Image
-        src="/assets/eidcarosse_website_logo.png"
-        alt="eidcarosse_logo"
-        width={300}
-        height={300}
-        className={`w-full h-full cursor-pointer object-cover`}
-        onClick={() => router.push("/")}
-      />
-    )}
-  </Link>
-</div>
+          <div className="w-96">
+            <Link href="/">
+              {newWidth <= 1024 ? (
+                <Image
+                  src="/assets/icon_copy.png"
+                  alt="logo"
+                  width={100}
+                  height={100}
+                />
+              ) : (
+                <Image
+                  src="/assets/eidcarosse_website_logo.png"
+                  alt="eidcarosse_logo"
+                  width={300}
+                  height={300}
+                  className={`w-full h-full cursor-pointer`}
+                  onClick={() => router.push("/")}
+                />
+              )}
+            </Link>
+          </div>
 
           <div className="w-full flex justify-between">
             <ul className="flex flex-row text-md space-x-7 menu p-6">
@@ -257,7 +257,11 @@ export default function Header2() {
                 <ChatBubbleOutline />
               </li>
             </ul>
-            <ul className={`${newWidth <= 1024 && 'absolute end-10 mt-2'} flex justify-end p-2 space-x-7`}>
+            <ul
+              className={`${
+                newWidth <= 1024 && "absolute end-10 mt-2"
+              } flex justify-end p-2 space-x-7`}
+            >
               <li>
                 {newWidth <= 1024 ? (
                   <button onClick={() => setNavbar(!navbar)}>
