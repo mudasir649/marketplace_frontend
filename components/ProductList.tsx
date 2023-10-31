@@ -6,11 +6,6 @@ import { AccessTime, Chat, Favorite, LocationOn, RemoveRedEye, Share } from '@mu
 
 export default function ProductList({ productList }: any) {
 
-    const { width, height } = useWindowDimensions();
-
-    const newWidth = width || 0;
-    const newHeight = height || 0;
-
     return (
         <>
             <div className='container mx-auto'>

@@ -9,15 +9,9 @@ import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import {
   AccessTime,
-  ArrowBackIos,
-  ArrowForwardIos,
-  Camera,
-  CameraAlt,
   Cancel,
   Category,
-  Facebook,
   Favorite,
-  FavoriteBorder,
   InsertLink,
   Language,
   Mail,
@@ -25,22 +19,18 @@ import {
   PhoneInTalk,
   Place,
   Share,
-  Twitter,
   Visibility,
-  WarningAmber,
   WhatsApp,
 } from "@mui/icons-material";
-import Link from "next/link";
 import MapContainer from "@/components/MapContainer";
 import Home from "@/components/Home";
 import AOS from "aos";
 import useWindowDimensions from "@/utils/useWindowDimensions";
-import axios, { AxiosRequestConfig } from "axios";
+import axios  from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import "./productDetails.css";
 import formatDateTime from "@/utils/checkTime";
 import {
-  refreshPage,
   setProductId,
   setShowShare,
   setProductUserId,
