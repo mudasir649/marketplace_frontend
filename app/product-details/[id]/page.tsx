@@ -220,6 +220,7 @@ function ProductDetails() {
                 className={`lg:w-auto min-h-[800px] mb-5 border rounded-lg bg-white p-5`}
               >
                 <div>
+
                   <Carousel>
                     {product?.images.map((img: any, i: number) => (
                       // eslint-disable-next-line @next/next/no-img-element
@@ -417,11 +418,10 @@ function ProductDetails() {
                   <div className="border-t-2 space-y-8 mt-2">
                     <h1 className="text-xl font-bold mt-5">
                       <span className="relative">
-                        <span>Desc</span>
+                        <span>{t('autosComponent.description')}</span>
                         <span className="absolute bottom-0 left-0 w-10 h-1 bg-[#FF0000] top-7"></span>
                       </span>
-                      <span>ription</span>
-                    </h1>
+                      </h1>
                     <p className="inline-block break-words w-full border-b-2 p-2">
                       {product?.description}
                     </p>
@@ -433,7 +433,7 @@ function ProductDetails() {
                       <span className={`${overviewStyle}`}>
                         {" "}
                         <InsertLink className="text-[#FF0000] mt-[-4px]" />{" "}
-                        Video URL:{" "}
+                        {t('autosComponent.videoURL')}:{" "}
                       </span>
                       {product?.videoUrl}
                     </div>

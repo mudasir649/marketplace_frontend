@@ -40,7 +40,7 @@
   },
   "categories": [
     "Autos",
-    "Motos",
+    "Biciclette",
     "Bateaux",
     "Autobus",
     "Machines de construction",
@@ -372,13 +372,24 @@
         "Favorite": "Favori",
         "Share": "Partager",
         "Description": "Description",
-        "SellerInformation": "Informations sur le vendeur",
+        "SellerInformation": "Information du vendeur",
         "ContactSeller": "Contacter le vendeur",
         "SendMessage": "Envoyer un message",
         "Location": "Emplacement", 
         "Overview": "Aperçu"
       } ,
-      
+      "bodyShape": {
+        "Convertible": "Décapotable",
+        "Compact": "Compacte",
+        "Coupe": "Coupé",
+        "SUV/Off-Road/Pick-up": "VUS/Tout-terrain/Pick-up",
+        "Station Wagon": "Break",
+        "Sedan": "Berline",
+        "Van": "Fourgon",
+        "Transporter": "Transporteur",
+        "Other": "Autre"
+      }
+,      
         "interiorColor": {
             "name1": "Beige",
             "name2": "Noir",

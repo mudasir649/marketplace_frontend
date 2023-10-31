@@ -480,10 +480,22 @@
         "Favorite": "Favorit",
         "Share": "Teilen",
         "Description": "Beschreibung",
-        "SellerInformation": "Verkäuferinformation",
+        "SellerInformation": "Angaben zum Verkaufer",
         "ContactSeller": "Verkäufer kontaktieren",
         "SendMessage": "Nachricht senden",
         "Location": "Ort", 
         "Overview": "Überblick"
+      } ,
+      "bodyShape": {
+        "Convertible": "Cabrio",
+        "Compact": "Kompakt",
+        "Coupe": "Coupé",
+        "SUV/Off-Road/Pick-up": "SUV/Off-Road/Pick-up",
+        "Station Wagon": "Kombi",
+        "Sedan": "Limousine",
+        "Van": "Van",
+        "Transporter": "Transporter",
+        "Other": "Sonstiges"
       }
+      
 }

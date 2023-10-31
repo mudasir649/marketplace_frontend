@@ -167,6 +167,18 @@
           "autos": "Autos",
           "parts": "Parts"
         } , 
+        "bodyShape": {
+
+          "Convertible": "Convertible",
+          "Compact": "Compact",
+          "Coupe": "Coupe",
+          "suv": "SUV/Off-Road/Pick-up",
+          "Station":"Station Wagon",
+          "Sedan":"Sedan",
+          "Van":"Van",
+          "Transporter": "Transporter",
+          "Other": "other"
+        },
 
         "gearBox": {
           "name1": "Automatic",
