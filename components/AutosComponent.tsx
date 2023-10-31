@@ -84,6 +84,7 @@ export default function AutosComponent() {
   const { type } = useParams();
   const [open, isOpen] = useState<Boolean>(false);
   const [openSub, isOpenSub] = useState<Boolean>(false);
+
   const conditionList = [
     {
         id: 1,
@@ -207,6 +208,47 @@ export default function AutosComponent() {
       value: t("interiorColor.value9")
     },
   ];
+
+
+  
+ const bodyShape = [
+  {
+      name: t('bodyShape.Convertible'),
+      value: "Convertible"
+  },
+  {
+      name: t('bodyShape.Compact'),
+      value: "Compact"
+  },
+  {
+      name: t('bodyShape.Coupe'),
+      value: "Coupe"
+  },
+  {
+      name: t('bodyShape.suv'),
+      value: "SUV/Off-Road/Pick-up"
+  },
+  {
+      name: t('bodyShape.Station'),
+      value: "Station Wagon"
+  },
+  {
+      name: t('bodyShape.Sedan'),
+      value: "Sedan"
+  },
+  {
+      name: t('bodyShape.Van'),
+      value: "Van"
+  },
+  {
+      name: t('bodyShape.Transporter'),
+      value: "Transporter"
+  },
+  {
+      name: t('bodyShape.Other'),
+      value: "Other"
+  }
+];
 
   
   const gearBox = [

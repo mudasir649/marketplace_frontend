@@ -443,10 +443,22 @@
             "Favorite": "Preferito",
             "Share": "Condividi",
             "Description": "Descrizione",
-            "SellerInformation": "Informazioni sul venditore",
+            "SellerInformation": "Informazioni del venditore",
             "ContactSeller": "Contatta il venditore",
             "SendMessage": "Invia messaggio",
             "Location": "Posizione", 
             "Overview": "Panoramica"
-          }  
+          }  ,
+          "bodyShape": {
+            "Convertible": "Cabrio",
+            "Compact": "Compatto",
+            "Coupe": "Coupé",
+            "SUV/Off-Road/Pick-up": "SUV/Fuoristrada/Pick-up",
+            "Station Wagon": "Station Wagon",
+            "Sedan": "Berlina",
+            "Van": "Furgone",
+            "Transporter": "Trasportatore",
+            "Other": "Altro"
+          }
+          
 }

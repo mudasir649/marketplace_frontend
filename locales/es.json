@@ -51,6 +51,18 @@
     "Camiones",
     "Furgonetas"
   ],
+  "bodyShape": {
+    "Convertible": "Convertible",
+    "Compact": "Compacto",
+    "Coupe": "Coupé",
+    "SUV/Off-Road/Pick-up": "SUV/Off-Road/Pick-up",
+    "Station Wagon": "Familiar",
+    "Sedan": "Sedán",
+    "Van": "Furgoneta",
+    "Transporter": "Transportador",
+    "Other": "Otro"
+  }
+,  
   "condition": {
     "new": "Nuevo",
     "used": "Usado",
