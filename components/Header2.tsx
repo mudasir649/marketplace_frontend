@@ -49,6 +49,9 @@ export default function Header2() {
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const pathname = usePathname();
 
+  const checkType = type === "Construction Machines" ? "Construction%20Machines" : type; 
+
+
   const { width, height } = useWindowDimensions();
   const newWidth = width || 0;
 
@@ -114,11 +117,11 @@ export default function Header2() {
     };
   }, [handleOutsideClick]);
 
-  const navbarLiStyle = "cursor-pointer hover:text-[#FF0000] line-clamp-1";
+  const navbarLiStyle = "cursor-pointer hover:text-[#FF0000]";
 
   const DropdownItem = ({ logo, text, href }: any) => {
     return (
-      <li className="dropdownItem space-x-2 hover:text-[#FF0000]">
+      <li className="dropdownItem space-x-2 hover:text-[#FF0000] ">
         <span>{logo}</span>
         <Link
           className="text-md font-semibold"
@@ -202,7 +205,8 @@ export default function Header2() {
         className={`${
           pathname !== "/" &&
           pathname !== `/advance-search` &&
-          pathname !== `/advance-search/${type}`
+          pathname !== `/advance-search/search` &&
+          pathname !== `/advance-search/${checkType}`
             ? "shadow-md h-28 border-b-[3px] border-[#FF0000]"
             : ""
         }`}
@@ -216,14 +220,15 @@ export default function Header2() {
                   alt="logo"
                   width={100}
                   height={100}
+                  className={`w-auto h-20 cursor-pointer mt-[-8px]`}
                 />
               ) : (
                 <Image
                   src="/assets/eidcarosse_website_logo.png"
                   alt="eidcarosse_logo"
-                  width={200}
-                  height={200}
-                  className={`w-full h-full cursor-pointer mt-[-8px]`}
+                  width={150}
+                  height={150}
+                  className={`w-full h-20 cursor-pointer mt-[-8px]`}
                   onClick={() => router.push("/")}
                 />
               )}
@@ -272,9 +277,9 @@ export default function Header2() {
                     <Link href="/post-ad">
                       <button className="border border-white hover:border-[#FF0000] bg-white hover:bg-[#FF0000] hover:text-white drop-shadow-lg rounded-lg p-3 flex flex-row space-x-3">
                         <section className="">
-                          <Add className="text-md border border-[#FF0000] rounded-full bg-[#FF0000] text-white" />
+                          <Add className="text-md border bg-[#FF0000] border-[#FF0000] rounded-full text-white" />
                         </section>
-                        <section className="capitalize text-lg line-clamp-1 font-semibold">
+                        <section className="capitalize text-lg font-semibold text-left line-clamp-1 whitespace-nowrap">
                           {t("header.postYourAd")}
                         </section>
                       </button>

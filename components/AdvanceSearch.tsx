@@ -31,7 +31,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { usePathname, useRouter } from "next/navigation";
-import { conditionList, sortByList, subList } from "@/utils/dataVariables";
+import { conditionList, sortByList } from "@/utils/dataVariables";
 import {
   setBrand,
   setCondition,
@@ -71,7 +71,7 @@ interface IRating {
   value: number;
 }
 
-export default function AdvanceSearch({ category, subCategory, brands }: any) {
+export default function AdvanceSearch({ productData, productsCount, setProductData, setProductsCount, category, subCategory, brands, checkType }: any) {
   // Redux hooks
   const { t } = useTranslation(); // Initialize the translation hook
 
@@ -83,8 +83,6 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state: any) => state.auth);
   const {
-    productData,
-    productsCount,
     condition,
     brand,
     minPrice,
@@ -121,8 +119,6 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
       return;
     }
   };
-
-  console.log(prodId);
 
   const nextHandle = () => {
     if (page !== pagination().length) {
@@ -202,6 +198,21 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
     },
   ];
 
+  const subList = [
+    {
+        name: t('subList.0')
+    },
+    {
+        name: t('subList.1')
+    },
+    {
+        name: t('subList.2')
+    },
+    {
+        name: t('subList.3')
+    },
+];
+
   useEffect(() => {
     Aos.init();
   }, []);
@@ -237,8 +248,8 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
         const res = await axios.get(
           `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address}&title=${title}&minPrice=${minPrice}&maxPrice=${maxPrice}`
         );
-        dispatch(setProductData(res.data?.data?.ad));
-        dispatch(setProductsCount(res.data?.data?.totalAds));
+        setProductData(res.data?.data?.ad);
+        setProductsCount(res.data?.data?.totalAds);
         setLoading(false);
       } catch (error) {
         setLoading(false);
@@ -249,8 +260,8 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
         const res = await axios.get(
           `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${category}&condition=${condition}&brand=${brand}&minPrice=${minPrice}&maxPrice=${maxPrice}`
         );
-        dispatch(setProductData(res.data?.data?.ad));
-        dispatch(setProductsCount(res.data?.data?.totalAds));
+        setProductData(res.data?.data?.ad);
+        setProductsCount(res.data?.data?.totalAds);
         setLoading(false);
       } catch (error) {
         setLoading(false);
@@ -269,8 +280,8 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${category}&sortBy=${value}`
       );
       console.log(res.data?.data.ad);
-      dispatch(setProductData(res.data?.data?.ad));
-      dispatch(setProductsCount(res.data?.data?.totalAds));
+      setProductData(res.data?.data?.ad);
+      setProductsCount(res.data?.data?.totalAds);
       setSortByLoading(false);
     } catch (error) {
       setSortByLoading(false);
@@ -335,6 +346,8 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
   const findProductId = (productId: any) => {
     return prodId.some((item: any) => item._id === productId);
   };
+  
+  
 
   return (
     <div>
@@ -354,6 +367,18 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
             </h1>
             <ul className="space-y-3 mt-2 mx-1">
               {categoryList?.map((list: IList, i: number) => (
+                <li className={`${category === list?.name1 ? 'text-[#FF0000]' : ''} cursor-pointer`} onClick={() => handleSearch(list?.name1)} key={i}>
+                    {list.logo} {list.name}{" "}
+                    {(category == list?.name1 && productsCount !== 0) ? `(${productsCount})` : ""}
+                    {(category == "Bikes" || subCategory) &&
+                    list?.name == "Bikes" && 
+                    subList.map((list: any, i: number) => (
+                      <li key={i}>{list.name}</li>
+                    ))
+                    }
+                </li>
+              ))}
+              {/* {categoryList?.map((list: IList, i: number) => (
                 <>
                   <li
                     onClick={() => handleSearch(list?.name1)}
@@ -388,7 +413,7 @@ export default function AdvanceSearch({ category, subCategory, brands }: any) {
                       </li>
                     ))}
                 </>
-              ))}
+              ))} */}
             </ul>
           </div>
           {category && (
