@@ -29,6 +29,7 @@ import useWindowDimensions from "@/utils/useWindowDimensions";
 import axios  from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import "./productDetails.css";
+
 import formatDateTime from "@/utils/checkTime";
 import {
   setProductId,
@@ -219,15 +220,28 @@ function ProductDetails() {
               <div
                 className={`lg:w-auto min-h-[800px] mb-5 border rounded-lg bg-white p-5`}
               >
-                <div>
+<div style={{ width: '100%', maxWidth: '600px', margin: '0 auto' }}>
+  <Carousel>
+    {product?.images.map((img: any, i: number) => (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={img}
+        alt={`image${i}`}
+        key={i}
+        style={{
+          width: '100%',
+          height: 'auto',
+          maxWidth: '600px',
+          maxHeight: '400px',
+          objectFit: 'contain',
+          display: 'block', // Ensures the image is centered within its container
+          margin: '0 auto', // Horizontally centers the image
+        }}
+      />
+    ))}
+  </Carousel>
+</div>
 
-                  <Carousel>
-                    {product?.images.map((img: any, i: number) => (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={img} alt={`image${i}`} key={i} />
-                    ))}
-                  </Carousel>
-                </div>
                 {product?.price * 1 === 0 ? (
                   <div className="bg-black space-y-2 rounded-lg rounded-tr-[700px] rounded-br-[700px] w-40 p-2 h-16 md:w-64 md:h-auto">
                     <h1 className="text-white text-sm md:text-3xl font-bold">
