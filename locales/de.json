@@ -279,6 +279,10 @@
     "submit": "Absenden"
   } , 
   "random": {
+      "myAdsListing": "Meine Anzeigenliste"
+,
+"myFavouriteListings": "Meine Favorisierten Angebote",
+    
     "latestAds": "Top Inserate",
     "seeAllAds": "Alle Inserate "
   } , 
@@ -496,6 +500,37 @@
         "Van": "Van",
         "Transporter": "Transporter",
         "Other": "Sonstiges"
-      }
+      } ,
+      
+        "myProfile": {
+          "labels": {
+            "basicInformation": "Grundinformation",
+            "username": "Benutzername",
+            "email": "E-Mail",
+            "firstName": "Vorname",
+            "lastName": "Nachname",
+            "phone": "Telefon",
+            "submit": "Einreichen"
+          },
+          "buttons": {
+            "uploadPicture": "Bild hochladen"
+          },
+          "tooltips": {
+            "cancelImage": "Bild abbrechen"
+          },
+          "placeholders": {
+            "firstName": "Vorname",
+            "lastName": "Nachname",
+            "phoneNumber": "Telefonnummer"
+          },
+          "messages": {
+            "imageUploadSuccess": "Bild erfolgreich hochgeladen."
+          },
+          "errors": {
+            "imageUploadFailed": "Bild konnte nicht hochgeladen werden."
+          },
+          "loading": "Wird geladen..."
+        }
+      
       
 }

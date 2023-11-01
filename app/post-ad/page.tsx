@@ -4,7 +4,7 @@ import { ExpandMore, PlaylistAdd } from '@mui/icons-material';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import './post-ad.css';
-import { partsSubList, subList } from '@/utils/dataVariables';
+import { partsSubList } from '@/utils/dataVariables';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -59,6 +59,21 @@ export default function PostAd() {
             name1: "Vans",
         },
     ];
+    const subList = [
+        {
+            name: t('subList.0')
+        },
+        {
+            name: t('subList.1')
+        },
+        {
+            name: t('subList.2')
+        },
+        {
+            name: t('subList.3')
+        },
+    ];
+    
 
     const router = useRouter();
 

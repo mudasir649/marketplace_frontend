@@ -209,6 +209,9 @@
     "submit": "Soumettre"
   },
   "random": {
+    "myAdsListing": "Ma Liste d'Annonces",
+    "myFavouriteListings": "Mes Annonces Préférées",
+    
     "latestAds": "Dernières annonces",
     "seeAllAds": "Voir toutes les annonces"
   },
@@ -453,6 +456,37 @@
             "value13": "White",
             "value14": "Other"
         }
+    ,
+    
+      "myProfile": {
+        "labels": {
+          "basicInformation": "Informations de Base",
+          "username": "Nom d'Utilisateur",
+          "email": "Email",
+          "firstName": "Prénom",
+          "lastName": "Nom de Famille",
+          "phone": "Téléphone",
+          "submit": "Envoyer"
+        },
+        "buttons": {
+          "uploadPicture": "Télécharger Image"
+        },
+        "tooltips": {
+          "cancelImage": "Annuler Image"
+        },
+        "placeholders": {
+          "firstName": "Prénom",
+          "lastName": "Nom de Famille",
+          "phoneNumber": "Numéro de Téléphone"
+        },
+        "messages": {
+          "imageUploadSuccess": "Image téléchargée avec succès."
+        },
+        "errors": {
+          "imageUploadFailed": "Échec du téléchargement de l'image."
+        },
+        "loading": "Chargement..."
+      }
     
     
 }

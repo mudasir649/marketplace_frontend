@@ -7,12 +7,16 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
+import { useTranslation } from 'react-i18next';
+
+
 export default function Favorite() {
   const [favAds, setFavAds] = useState<any>();
   const { userInfo } = useSelector((state: any) => state.auth);
   const { refresh } = useSelector((state: any) => state.app);
   const userId = userInfo?.data?.userDetails?._id;
   const router = useRouter();
+  const { t } = useTranslation(); // Initialize the translation hook
 
   useEffect(() => {
     const fetchAds = async () => {
@@ -59,7 +63,7 @@ export default function Favorite() {
       ) : (
         <div className="container mx-auto mt-10">
           <div className="text-center text-3xl font-bold mb-10">
-            <h1>My Favorite Listings</h1>
+            <h1>{t('random.myFavouriteListings')}</h1>
           </div>
           <ProductList productList={favAds} />
         </div>

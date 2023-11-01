@@ -8,6 +8,8 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
+import { useTranslation } from 'react-i18next';
+
 export default function MyAds() {
     const { userInfo } = useSelector((state: any) => state.auth);
     const userData = userInfo?.data?.userDetails?._id;
@@ -16,6 +18,9 @@ export default function MyAds() {
     const [userAds, setUserAds] = useState<any>();
 
     const { refresh } = useSelector((state: any) => state.app);
+    
+    const { t } = useTranslation(); // Initialize the translation hook
+
 
     useEffect(() => {
         if (userInfo === null) {
@@ -44,7 +49,7 @@ export default function MyAds() {
             : 
             <div className='container mx-auto mt-10'>
                 <div className='text-center text-3xl font-bold mb-10'>
-                    <h1>My Ads Listing</h1>
+                    <h1>{t('random.myAdsListing')}</h1>
                 </div>
                 <ProductList productList={userAds} />
             </div>

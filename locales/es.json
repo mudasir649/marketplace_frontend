@@ -287,6 +287,9 @@
     "submit": "Enviar"
   },
   "random": {
+    "myAdsListing": "Mi Lista de Anuncios",
+    "myFavouriteListings": "Mis Anuncios Favoritos",
+    
     "latestAds": "Últimos anuncios",
     "seeAllAds": "Ver todos los anuncios"
   },
@@ -458,5 +461,36 @@
             "SendMessage": "Enviar mensaje",
             "Location": "Ubicación", 
             "Overview": "Resumen"
-          } 
+          } ,
+          
+            "myProfile": {
+              "labels": {
+                "basicInformation": "Información Básica",
+                "username": "Nombre de Usuario",
+                "email": "Correo Electrónico",
+                "firstName": "Nombre",
+                "lastName": "Apellido",
+                "phone": "Teléfono",
+                "submit": "Enviar"
+              },
+              "buttons": {
+                "uploadPicture": "Subir Imagen"
+              },
+              "tooltips": {
+                "cancelImage": "Cancelar Imagen"
+              },
+              "placeholders": {
+                "firstName": "Nombre",
+                "lastName": "Apellido",
+                "phoneNumber": "Número de Teléfono"
+              },
+              "messages": {
+                "imageUploadSuccess": "Imagen subida exitosamente."
+              },
+              "errors": {
+                "imageUploadFailed": "Fallo al subir la imagen."
+              },
+              "loading": "Cargando..."
+            }
+          
 }

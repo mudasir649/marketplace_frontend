@@ -287,6 +287,9 @@
     "submit": "Submit"
   } , 
   "random": {
+    "myAdsListing": "My Ads Listing",
+    "myFavouriteListings": "My Favourite Listings",
+    
     "latestAds": "Latest Ads",
   "seeAllAds": "See all Ads"
   } , 
@@ -495,6 +498,38 @@
         "description3": "Provide a clear and detailed description of your product. Make sure you've added the right information about your items/items."
       
     } , 
+    
+      "myProfile": {
+        "labels": {
+          "basicInformation": "Basic Information",
+          "username": "Username",
+          "email": "Email",
+          "firstName": "First Name",
+          "lastName": "Last Name",
+          "phone": "Phone",
+          "submit": "Submit"
+        },
+        "buttons": {
+          "uploadPicture": "Upload Picture"
+        },
+        "tooltips": {
+          "cancelImage": "Cancel Image"
+        },
+        "placeholders": {
+          "firstName": "First Name",
+          "lastName": "Last Name",
+          "phoneNumber": "Phone Number"
+        },
+        "messages": {
+          "imageUploadSuccess": "Image uploaded successfully."
+        },
+        "errors": {
+          "imageUploadFailed": "Image upload failed."
+        },
+        "loading": "Loading..."
+      }
+    
+,    
 
     
       "subList": [

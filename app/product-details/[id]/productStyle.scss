@@ -1,0 +1,312 @@
+/* CardDescription.scss */
+
+.loading-container {
+    // background-color: blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        width: 20vw;
+    }
+}
+
+.wrapper {
+    width: 80%;
+    margin: 5rem auto auto auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .carousel-status {
+        font-size: 24px;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 2;
+    }
+
+    //  Style for the carousel
+    .carousel {
+        position: relative;
+    }
+
+    /* Container for the card description */
+    .card-description-container {
+        // background-color: blue;
+        flex: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        /* Styling for the card description */
+        .card-description {
+            display: flex;
+            flex-direction: column;
+            min-width: 100%;
+            border: 1px solid #ccc;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+
+            /* Styling for the image gallery */
+            .image-gallery {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                border: 1px solid #ccc;
+                margin-bottom: 20px;
+
+                img {
+                    object-fit: contain;
+                    width: 100%;
+                    height: 500px;
+                    display: block;
+                    transition: transform 0.3s ease-in-out;
+                    flex-shrink: 0; /* Prevents the image from shrinking */
+                    flex-grow: 0;
+                    background-color: #eeeeee;
+                }
+            }
+
+            /* Styling for image info */
+            // .image-info {
+            //     .image-count{
+
+            //     }
+            // }
+        }
+
+        .item-details-container {
+            width: 100%;
+            border: 1px solid #ccc;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            border-radius: 5px;
+            margin: 10px 0;
+            padding: 10px;
+            padding-left: 15px;
+
+            .item-details {
+                display: grid;
+                grid-template-columns: 2fr 1fr; // Create two equal columns
+                gap: 10px; // Space between grid items
+                padding: 10px;
+
+                .detail {
+                    padding: 5px 0;
+
+                    strong {
+                        margin-right: 5px;
+                    }
+                }
+            }
+
+            div {
+                width: 100%;
+                span {
+                    font-weight: 600;
+                    font-size: 2rem;
+                }
+            }
+        }
+
+        // --------
+
+        // Item Info
+        .item-info-container {
+            width: 100%;
+            margin-top: 10px;
+
+            .item-info {
+                background-color: #fff;
+                border: 1px solid #ccc;
+                padding: 20px;
+                box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+                width: 100%;
+
+                .price {
+                    font-size: 24px;
+                    font-weight: bold;
+                    color: #333;
+                }
+
+                .title {
+                    font-size: 20px;
+                    font-weight: bold;
+                    color: #333;
+                    margin-top: 10px;
+                }
+
+                .bottom_row {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between; /* Align location content to the right */
+                    margin-top: 20px; /* Adjust margin as needed */
+                    color: #666;
+
+                    .date {
+                        flex: 1;
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                        color: #999;
+                    }
+
+                    .location {
+                        flex: 3;
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
+
+                        .location-text {
+                            margin-left: 5px; /* Add spacing between icon and text */
+                        }
+                    }
+                }
+            }
+        }
+
+        .description_box {
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding: 0 20px; /* Add left padding to shift the border to the right */
+            padding-bottom: 1rem;
+            padding-top: 2rem;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+
+            .desc_title {
+                font-size: 28px;
+                font-weight: bold;
+                color: #333;
+                margin-bottom: 15px;
+            }
+        }
+    }
+
+    .rightSide {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        flex: 1; /* Adjust the width as needed */
+        margin-bottom: auto;
+        margin-left: 20px;
+
+        /* Styling for the user profile information */
+        .profile-info {
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            // margin-left: 20px;
+            margin-bottom: 10px;
+
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            // width: 100%;
+
+            /* Styling for the user profile image */
+            .user-photo {
+                img {
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    margin-right: 10px;
+                }
+            }
+
+            /* Styling for user name */
+            .user-name {
+                font-weight: bold;
+            }
+
+            /* Styling for "Member since" */
+            .member-since {
+                font-size: 14px;
+            }
+
+            /* Styling for "See profile" link */
+            .see-profile-link {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-decoration: underline;
+                color: rgb(0, 0, 0);
+                margin-top: 10px;
+
+                /* Styling for the "See profile" icon */
+                .see-profile-icon {
+                    width: 16px;
+                    height: 16px;
+                    margin-left: 5px;
+                }
+            }
+
+            /* Style for the button container */
+            .buttons {
+                display: flex;
+                flex-direction: column;
+                margin-top: 10px;
+                width: 100%; /* Set the container width to 100% */
+
+                /* Styling for the "Show phone number" button */
+                .show-phone-button {
+                    background-color: black !important;
+                    color: white !important;
+                    border: none !important;
+                    padding: 10px 20px !important;
+                    cursor: pointer !important;
+                    margin-top: 10px !important;
+                    width: 100% !important; /* Set button width to 100% to match container */
+                }
+
+                .edit-button {
+                    background-color: black !important;
+                    color: white !important;
+                    border: none !important;
+                    padding: 10px 20px !important;
+                    cursor: pointer !important;
+                    margin-top: 10px !important;
+                    width: 100% !important; /* Set button width to 100% to match container */
+                }
+
+                .delete-button {
+                    background-color: black !important;
+                    color: white !important;
+                    border: none !important;
+                    padding: 10px 20px !important;
+                    cursor: pointer !important;
+                    margin-top: 10px !important;
+                    width: 100% !important; /* Set button width to 100% to match container */
+                }
+
+                /* Styling for the "Chat" button */
+                .chat-button {
+                    background-color: #fbce33 !important;
+                    color: #000 !important;
+                    border: none !important;
+                    padding: 10px 20px !important;
+                    cursor: pointer !important;
+                    margin-top: 10px !important;
+                    width: 100% !important; /* Set button width to 100% to match container */
+
+                    .chat-icon {
+                        width: 16px;
+                        height: 16px;
+                        margin-right: 5px;
+                    }
+                }
+            }
+        }
+    }
+}
