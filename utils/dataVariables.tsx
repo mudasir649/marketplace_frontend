@@ -476,28 +476,34 @@ export const interiorColor = [
 
 export const kilometers = [
     {
-        name: "1-100 km's"
+        name: "0 - 10000 Km"
     },
     {
-        name: "100-500 km's"
+        name: "10000 - 20000 Km"
     },
     {
-        name: "500-1,000 km's"
+        name: "20000 - 30000 Km"
     },
     {
-        name: "1,000-10,000 km's"
+        name: "30000 - 50000 Km"
     },
     {
-        name: "10,000-50,000 km's"
+        name: "50000 - 70000 Km"
     },
     {
-        name: "50,000-100,000 km's"
+        name: "70000 - 100000 Km"
     },
     {
-        name: "100,000-500,000 km's"
+        name: "100000 - 150000 Km"
     },
     {
-        name: "500,000-10,00,000 km's"
+        name: "150000 - 200000 Km"
+    },
+    {
+        name: "200000 - 300000 Km"
+    },
+    {
+        name: "300000+ Km"
     },
 ]
 

@@ -102,27 +102,17 @@ export default function PostAd() {
                         <div className='container mx-0 mt-6 lg:mx-20 w-auto'>
                             <div className='flex flex-col md:flex-row justify-end space-x-0 md:space-x-20 space-y-2 md:space-y-0 mb-5 mt-5'>
                                 <h1 className={`flex flex-row space-x-1 text-md font-bold ${showSub && 'w-40'}`}>{t('postAd.category')} <span className='text-[#FF0000]'>*</span></h1>
-                                <div className='flex flex-col hover:border-red-500 w-full rounded-sm h-10'
-                                    onClick={() => isOpen(!open)}
-                                >
-                                    <div className='flex flex-row border border-gray-300' >
-                                        <h1 className='w-full p-2'>{category == '' ? t('postAd.selectCategory') : <>{category}</>}</h1>
-                                        <div className={`p-1 pl-2 text-gray-600
-                                                bg-gray-300 w-10`}>
-                                            <ExpandMore className={`logo ${open ? 'active' : 'inactive'}`} />
-                                        </div>
-                                    </div>
-                                    <div className={`menu-item flex flex-row border bg-white h-auto border-gray-300 
-                                            w-full rounded-sm p-1 ${open ? 'active' : 'inactive'}`}
+                                <div className='w-full flex'>
+                                    <select
+                                    className="custom-select w-full block appearance-none bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+                                    name="brand"
+                                    onChange={(e: any) => handleCategory(e.target.value)}
                                     >
-                                        <ul className='w-full'>
-                                            {list?.map((lst: any, i: number) => (
-                                                <li className={`hover:bg-red-500 hover:text-white 
-                                                        ml-1 mb-1 ${list.length - 1 == i ? '' : ' border-b-2'}`}
-                                                    key={i} onClick={() => handleCategory(lst.name1)}>{lst?.name}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
+                                        <option className='w-full p-2'>{t('postAd.selectCategory')}</option>
+                                        {list?.map((lst:any, i: number) => (
+                                            <option value={lst.name1} key={i}>{lst.name}</option>
+                                        ))}
+                                    </select>
                                 </div>
                             </div>
                             {showSub &&
@@ -131,34 +121,19 @@ export default function PostAd() {
                                     <div className='flex flex-col hover:border-red-500 w-full rounded-sm h-10'
                                         onClick={() => isOpenSub(!openSub)}
                                     >
-                                        <div className='flex flex-row border border-gray-300' >
-                                            <h1 className='w-full p-2'>{t('postAd.selectCategory')}</h1>
-                                            <div className={`p-1 pl-2 text-gray-600
-                                            bg-gray-300 w-10`}>
-                                                <ExpandMore className={`logo ${open ? 'hidden' : 'visible'} ${openSub ? 'active' : 'inactive'}`} />
-                                            </div>
-                                        </div>
-                                        <div className={`menu-item flex flex-row border bg-white h-auto border-gray-300 
-                                        w-full rounded-sm p-1 ${openSub ? 'active' : 'inactive'}`}
-                                        >
-                                            {category == 'Bikes' &&
-                                                <ul className='w-full'>
-                                                    {subList?.map((lst: any, i: number) => (
-                                                        <li className={`hover:bg-red-500 hover:text-white 
-                                                    ml-1 mb-1 ${list.length - 1 == i ? '' : ' border-b-2'}`}
-                                                            key={i} onClick={() => handleSubCategory(lst.name)}>{lst?.name}</li>
-                                                    ))}
-                                                </ul>
-                                            }
-                                            {category == 'Parts' &&
-                                                <ul className='w-full'>
-                                                    {partsSubList?.map((lst: any, i: number) => (
-                                                        <li className={`hover:bg-red-500 hover:text-white 
-                                                    ml-1 mb-1 ${partsSubList.length - 1 == i ? '' : ' border-b-2'}`}
-                                                            key={i} onClick={() => handleSubCategory(lst.name)}>{lst?.name}</li>
-                                                    ))}
-                                                </ul>
-                                            }
+                                        <div className='flex flex-row' >
+                                            <select
+                                    className="custom-select w-full block appearance-none bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+                                    name="brand"
+                                    onChange={(e: any) => handleSubCategory(e.target.value)}
+                                    >
+                                        <option className='w-full p-2'>{t('postAd.selectCategory')}</option>
+                                        { category == 'Bikes' ? subList?.map((lst:any, i: number) => (
+                                            <option value={lst.name1} key={i}>{lst.name}</option>
+                                        )) : partsSubList?.map((lst:any, i: number) => (
+                                            <option value={lst.name1} key={i}>{lst.name}</option>
+                                        )) }
+                                    </select>
                                         </div>
                                     </div>
                                 </div>

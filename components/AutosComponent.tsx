@@ -678,38 +678,6 @@ export default function AutosComponent() {
               {data?.brand && (
                 <div className={style.divStyle}>
                   <h1 className={style.h1Style}>
-                    {t("autosComponent.engineCapacity")}
-                  </h1>
-                  <div className="flex flex-col w-full">
-                    <input
-                      type="text"
-                      className={style.inputStyle}
-                      name="engineCapacity"
-                      value={data.engineCapacity}
-                      onChange={(e: any) => handleInput(e)}
-                    />
-                  </div>
-                </div>
-              )}
-              {data?.brand && (
-                <div className={style.divStyle}>
-                  <h1 className={style.h1Style}>
-                    {t("autosComponent.cylinders")}
-                  </h1>
-                  <div className="flex flex-col w-full">
-                    <input
-                      type="text"
-                      className={style.inputStyle}
-                      name="cylinder"
-                      value={data.cylinder}
-                      onChange={(e: any) => handleInput(e)}
-                    />
-                  </div>
-                </div>
-              )}
-              {data?.brand && (
-                <div className={style.divStyle}>
-                  <h1 className={style.h1Style}>
                     {t("autosComponent.exteriorColor")}
                   </h1>
                   <select
@@ -763,8 +731,8 @@ export default function AutosComponent() {
                 </div>
               </div>
               <div className="mt-5 w-full mb-5">
-                {/* eslint-disable-next-line jsx-a11y/alt-text */}
                 <h1 className="space-x-3 border-b-2 pb-3">
+                  {/* eslint-disable-next-line jsx-a11y/alt-text */}
                   <Image className="text-[#FF0000] mt-[-4px]" />
                   <span className="text-lg font-bold">
                     {t("autosComponent.images")}

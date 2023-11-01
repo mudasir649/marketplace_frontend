@@ -28,8 +28,12 @@ export default function MyAds() {
         fetchData();
     }, [userData, router, userInfo, refresh]);
 
-    if (!userAds) {
-        return <div className="flex justify-center mt-5">
+
+
+    return (
+        <Home>
+            {!userAds ? 
+            <div className="flex justify-center mt-5">
             <Image
                 src='/assets/eidcarosse.gif'
                 alt="eidcarosse_logo"
@@ -37,17 +41,14 @@ export default function MyAds() {
                 height={500}
             />
         </div>
-    }
-
-
-    return (
-        <Home>
-            <div className='container mx-auto'>
+            : 
+            <div className='container mx-auto mt-10'>
                 <div className='text-center text-3xl font-bold mb-10'>
                     <h1>My Ads Listing</h1>
                 </div>
                 <ProductList productList={userAds} />
             </div>
+}
         </Home>
     )
 }
