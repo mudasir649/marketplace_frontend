@@ -200,6 +200,10 @@
     "submit": "Invia"
   },
   "random": {
+      "myAdsListing": "Il Mio Elenco Annunci"
+,
+"myFavouriteListings": "I Miei Annunci Preferiti",
+    
     "latestAds": "Ultimi annunci",
     "seeAllAds": "Vedi tutti gli annunci"
   },
@@ -459,6 +463,37 @@
             "Van": "Furgone",
             "Transporter": "Trasportatore",
             "Other": "Altro"
-          }
+          } ,
+          
+            "myProfile": {
+              "labels": {
+                "basicInformation": "Informazioni di Base",
+                "username": "Nome Utente",
+                "email": "Email",
+                "firstName": "Nome",
+                "lastName": "Cognome",
+                "phone": "Telefono",
+                "submit": "Invia"
+              },
+              "buttons": {
+                "uploadPicture": "Carica Immagine"
+              },
+              "tooltips": {
+                "cancelImage": "Annulla Immagine"
+              },
+              "placeholders": {
+                "firstName": "Nome",
+                "lastName": "Cognome",
+                "phoneNumber": "Numero di Telefono"
+              },
+              "messages": {
+                "imageUploadSuccess": "Immagine caricata con successo."
+              },
+              "errors": {
+                "imageUploadFailed": "Caricamento dell'immagine fallito."
+              },
+              "loading": "Caricamento..."
+            }
+          
           
 }

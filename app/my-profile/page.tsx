@@ -9,6 +9,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import { setCredentials } from '@/store/authSlice';
 import { refreshPage } from '@/store/appSlice';
 import { useRouter } from 'next/navigation';
+import { useTranslation } from 'react-i18next';
+
 
 
 interface IData {
@@ -19,6 +21,8 @@ interface IData {
 
 
 export default function MyProfile() {
+
+    const { t } = useTranslation(); // Initialize the translation hook
 
     const router = useRouter();
     const { userInfo } = useSelector((state: any) => state.auth);
@@ -122,7 +126,7 @@ export default function MyProfile() {
                 <ToastContainer />
                 <div className='border-none rounded-sm bg-white h-full p-3'>
                     <div className='flex justify-center border-b-2 pb-5'>
-                        <h1 className='space-x-3'><Person className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>Basic Information</span></h1>
+                        <h1 className='space-x-3'><Person className='text-[#FF0000] mt-[-4px]' /><span className='text-lg font-bold'>{t('myProfile.labels.basicInformation')}</span></h1>
                     </div>
                     <div className='flex justify-center mt-5'>
                         <div className='h-40 w-40 border rounded-full relative'>
@@ -141,18 +145,18 @@ export default function MyProfile() {
                             ref={fileInputRef1}
                             style={{ display: 'none' }}
                             onChange={(e: any) => handleImage1(e)} />
-                        <button className='h-10 w-auto bg-[#FF0000] text-white font-semibold p-2' onClick={() => handleLogo1()}>Upload Picture</button>
+                        <button className='h-10 w-auto bg-[#FF0000] text-white font-semibold p-2' onClick={() => handleLogo1()}>{t('myProfile.buttons.uploadPicture')}</button>
                     </div>
                     }
                     <div className='container mx-0 mt-6 lg:mx-20 w-auto'>
                         <div className='flex flex-col md:flex-row space-x-0 md:space-x-32 space-y-1 md:space-y-0 mb-6'>
-                            <h1 className='text-md font-bold'>Username</h1>
+                            <h1 className='text-md font-bold'>{t('myProfile.labels.username')}</h1>
                             <div>
                                 <h1 className='text-md mt-[0.5px] pl-0 md:pl-[15px]'>{userData?.userName}</h1>
                             </div>
                         </div>
                         <div className='flex flex-col md:flex-row space-x-0 md:space-x-32 space-y-1 md:space-y-0 mb-6'>
-                            <h1 className='text-md font-bold'>Email</h1>
+                            <h1 className='text-md font-bold'>{t('myProfile.labels.email')}</h1>
                             <div>
                                 <h1 className='text-md mt-[0.5px] pl-0 md:pl-[52px]'>{userData?.email}</h1>
                             </div>
@@ -176,7 +180,7 @@ export default function MyProfile() {
                             </div>
                         </div> */}
                         <div className={style.divStyle}>
-                            <h1 className={style.h1Style}>First Name</h1>
+                            <h1 className={style.h1Style}>{t('myProfile.labels.firstName')}</h1>
                             <input type="text" className={style.inputStyle}
                                 name='firstName'
                                 placeholder={userData?.firstName}
@@ -184,7 +188,7 @@ export default function MyProfile() {
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
                         <div className={style.divStyle}>
-                            <h1 className={style.h1Style}>Last Name</h1>
+                            <h1 className={style.h1Style}>{t('myProfile.labels.lastName')}</h1>
                             <input type="text" className={style.inputStyle}
                                 name='lastName'
                                 placeholder={userData?.lastName}
@@ -192,7 +196,7 @@ export default function MyProfile() {
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
                         <div className={style.divStyle}>
-                            <h1 className={style.h1Style}>Phone</h1>
+                            <h1 className={style.h1Style}>{t('myProfile.labels.phone')}</h1>
                             <input type="text" className={style.inputStyle}
                                 name='phoneNumber'
                                 placeholder={userData?.phoneNumber}
@@ -202,12 +206,12 @@ export default function MyProfile() {
 
 
                         <div className={style.divStyle}>
-                            <h1 className={`${style.h1Style} invisible`}>submit</h1>
+                            <h1 className={`${style.h1Style} invisible`}>{t('myProfile.labels.submit')}</h1>
                             {loading ?
                                 <div className="spinner mt-8 w-10 h-10"></div>
                                 :
                                 <div className='flex flex-col w-full'>
-                                    <button className='bg-[#FF0000] hover:bg-red-800 w-32 h-10 text-white font-bold' onClick={(e: any) => updateProfile(e)}>Submit</button>
+                                    <button className='bg-[#FF0000] hover:bg-red-800 w-32 h-10 text-white font-bold' onClick={(e: any) => updateProfile(e)}>{t('myProfile.labels.submit')}</button>
                                 </div>
                             }
                         </div>
