@@ -9,18 +9,18 @@ import {
   DirectionsBoat,
   DirectionsBus,
   DirectionsCar,
-  Favorite,
+  ElectricBike,
+  ElectricScooter,
   FireTruck,
   Flight,
-  KeyboardDoubleArrowLeft,
-  KeyboardDoubleArrowRight,
-  LocationOn,
-  PhoneEnabled,
   PrecisionManufacturing,
-  RemoveRedEye,
   RvHookup,
-  Search,
+  TwoWheeler,
   Share,
+  Favorite,
+  RemoveRedEye,
+  KeyboardDoubleArrowLeft,
+  KeyboardDoubleArrowRight
 } from "@mui/icons-material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Aos from "aos";
@@ -31,7 +31,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { usePathname, useRouter } from "next/navigation";
-import { conditionList, sortByList } from "@/utils/dataVariables";
+import { conditionList, partsSubList, sortByList } from "@/utils/dataVariables";
 import {
   setBrand,
   setCondition,
@@ -136,7 +136,7 @@ export default function AdvanceSearch({ productData, productsCount, setProductDa
       quantity: 23,
     },
     {
-      logo: <DirectionsBike />,
+      logo: <TwoWheeler />,
       name: t("categories.1"),
       name1: "Bikes",
       quantity: 12,
@@ -200,16 +200,24 @@ export default function AdvanceSearch({ productData, productsCount, setProductDa
 
   const subList = [
     {
-        name: t('subList.0')
+        logo: <DirectionsBike />,
+        name: t('subList.0'),
+        name1: 'Bicycles'
+    },
+    { 
+        logo: <ElectricScooter />,
+        name: t('subList.1'),
+        name1: 'E-Scooters'
     },
     {
-        name: t('subList.1')
+        logo: <ElectricBike />,
+        name: t('subList.2'),
+        name1: 'E-Bikes'
     },
-    {
-        name: t('subList.2')
-    },
-    {
-        name: t('subList.3')
+    { 
+        logo: <DirectionsBike />,
+        name: t('subList.3'),
+        name1: 'Motorcycles'
     },
 ];
 
@@ -347,6 +355,7 @@ export default function AdvanceSearch({ productData, productsCount, setProductDa
     return prodId.some((item: any) => item._id === productId);
   };
   
+  console.log(subCategory);
   
 
   return (
@@ -367,16 +376,18 @@ export default function AdvanceSearch({ productData, productsCount, setProductDa
             </h1>
             <ul className="space-y-3 mt-2 mx-1">
               {categoryList?.map((list: IList, i: number) => (
+                <>
                 <li className={`${category === list?.name1 ? 'text-[#FF0000]' : ''} cursor-pointer`} onClick={() => handleSearch(list?.name1)} key={i}>
                     {list.logo} {list.name}{" "}
                     {(category == list?.name1 && productsCount !== 0) ? `(${productsCount})` : ""}
-                    {(category == "Bikes" || subCategory) &&
-                    list?.name == "Bikes" && 
-                    subList.map((list: any, i: number) => (
-                      <li key={i}>{list.name}</li>
-                    ))
-                    }
                 </li>
+                {(category === 'Bikes' || subCategory) && list?.name1 === "Bikes" && subList.map((list: any, i: number) => (
+                      <li className={`${category === list?.name1 ? 'text-[#FF0000]' : ''} ml-10 cursor-pointer`} key={i} onClick={() => handleSearch(list?.name1)}> {list?.logo} {list.name} {(category == list?.name1 && productsCount !== 0) ? `(${productsCount})` : ""}</li>
+                    ))}
+                    {(category === 'Parts' && list.name1 === "Parts" && partsSubList?.map((list: any, i:number) => (
+                      <li className={`${category === list?.name ? 'text-[#FF0000]' : ''} ml-10 cursor-pointer`} key={i} onClick={() => handleSearch(list?.name1)}>{list.name}</li>
+                    )))}
+                </>
               ))}
               {/* {categoryList?.map((list: IList, i: number) => (
                 <>

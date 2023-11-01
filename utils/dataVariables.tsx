@@ -509,4 +509,4 @@ export const kilometers = [
 
 
 
-export const sortByList = ['A to Z (title)', 'Z to A (title)', 'Price (low to high)', 'Price (high to low)'];
+export const sortByList = ['Latest', 'A to Z (title)', 'Z to A (title)', 'Price (low to high)', 'Price (high to low)'];

@@ -17,45 +17,47 @@ function Page() {
   const [productData, setProductData] = useState<any>();
   const [productsCount, setProductsCount] = useState<any>(0);
   const [brands, setBrands] = useState<string>("");
-  const subCategory = type == 'Bicycles' ? 'Bicycles' :
-  type == 'E-scooter' ? 'E-scooter' :
-      type == 'E-bikes' ? 'E-bikes' :
-          type == 'Motorcycle' ? 'Motorcycle' : '';
+  const subCategory = type === 'Bicycles' ? 'Bicycles' :
+  type == 'E-Scooters' ? 'E-scooter' :
+      type == 'E-Bikes' ? 'E-bikes' :
+          type == 'Motorcycles' ? 'Motorcycle' : '';
 
-  const checkType =
-    type === "Construction%20Machines" ? "Construction Machines" : type;
+          console.log(subCategory);
+          
+
+  const checkType = type === "Construction%20Machines" ? "Construction Machines" : type;
+  
 
   useEffect(() => {
-    if(!subCategory){
-        const fetchData = async () => {
-            const res =  await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${checkType}&sortBy=${sortBy}&condition=${condition}&brand=${brand}&minPrice=${minPrice}&mxPrice=${maxPrice}`);
-            setProductData(res.data?.data?.ad);
-            setProductsCount(res.data?.data?.totalAds);
-            dispatch(setType(checkType));
-        };
-        fetchData();
-    }else{
-        const fetchData = async () => {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&subCategory=${type}&sortBy=${sortBy}&condition=${condition}&brand=${brand}&minPrice=${minPrice}&mxPrice=${maxPrice}`);
-            setProductData(res.data?.data.ad);
-            setProductsCount(res.data?.data.totalAds);
-            dispatch(setType(checkType));
-        }
-        fetchData()
-    }
-    
     const fetchBrands = async () => {
       const res = await axios.get(
         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/${checkType}`
       );
       setBrands(res.data?.data);
     };
-    if (
-      checkType !== "Bikes" &&
-      checkType !== "Parts" &&
-      checkType !== "Others"
-    ) {
-      fetchBrands();
+    if(!subCategory){
+        const fetchData = async () => {
+            const res =  await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${checkType}&sortBy=${sortBy}&condition=${condition}&brand=${brand}&minPrice=${minPrice}&mxPrice=${maxPrice}`);
+            setProductData(res.data?.data?.ad);
+            setProductsCount(res.data?.data?.totalAds);
+            dispatch(setType(checkType));
+            if (
+              checkType !== "Bikes" &&
+              checkType !== "Parts" &&
+              checkType !== "Others"
+            ) {
+              fetchBrands();
+            }
+        };
+        fetchData();
+    }else{
+        const fetchData = async () => {
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&subCategory=${subCategory}&sortBy=${sortBy}&condition=${condition}&brand=${brand}&minPrice=${minPrice}&mxPrice=${maxPrice}`);
+            setProductData(res.data?.data.ad);
+            setProductsCount(res.data?.data.totalAds);
+            dispatch(setType(checkType));
+        }
+        fetchData()
     }
   }, [page, checkType, dispatch]);
 
