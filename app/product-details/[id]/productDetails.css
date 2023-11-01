@@ -33,6 +33,7 @@
   img {
       object-fit: cover;
       width: 100% !important;
+      max-width: 800px;
       height: 500px !important;
       display: block !important;
       transition: transform 0.3s ease-in-out !important;

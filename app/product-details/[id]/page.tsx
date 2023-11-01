@@ -210,8 +210,8 @@ function ProductDetails() {
             <Image
               src="/assets/eidcarosse.gif"
               alt="eidcarosse_logo"
-              width={500}
-              height={500}
+              width={700}
+              height={700}
             />
           </div>
         ) : (
@@ -220,7 +220,7 @@ function ProductDetails() {
               <div
                 className={`lg:w-auto min-h-[800px] mb-5 border rounded-lg bg-white p-5`}
               >
-<div style={{ width: '100%', maxWidth: '600px', margin: '0 auto' }}>
+<div style={{ width: '100%', maxWidth: '800px', margin: '0 auto' }}>
   <Carousel>
     {product?.images.map((img: any, i: number) => (
       // eslint-disable-next-line @next/next/no-img-element
@@ -231,7 +231,7 @@ function ProductDetails() {
         style={{
           width: '100%',
           height: 'auto',
-          maxWidth: '600px',
+          maxWidth: '800px',
           maxHeight: '400px',
           objectFit: 'contain',
           display: 'block', // Ensures the image is centered within its container
