@@ -83,7 +83,7 @@ export default function Banner() {
           <div className='flex flex-col w-52' ref={dropdownRef}>
             <div className={`flex flex-row justify-between border border-gray-200 rounded-full h-14 w-60 hover:border-red-500 
               bg-white px-5 py-4 capitalize text-sm focus:border-red-800 focus:shadown-lg font-semibold`} onClick={() => categoryHandle()}>
-              <h1>  {t('banner.seeAllCategories')}
+              <h1 className='whitespace-nowrap'>  {t('banner.seeAllCategories')}
               </h1>
               <KeyboardArrowDown className="h-5 w-5 text-[#FF0000] mt-[-3px]" />
             </div>

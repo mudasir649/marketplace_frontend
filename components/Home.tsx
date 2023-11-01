@@ -13,14 +13,20 @@ import { useSelector } from 'react-redux';
 export default function Home({ children }: any) {
   const { type } = useSelector((state: any) => state.app);
   
-  const pathname = usePathname()
+  const pathname = usePathname();
+
+  const checkType = type === "Construction Machines" ? "Construction%20Machines" : type; 
+
+
+  
+  
 
   return (
     <div className=''>
       <I18nProvider>
       <div className='w-full'>
         <Header2 />
-        { (pathname === '/' || pathname === '/advance-search' || pathname === `/advance-search/${type}`) ? <Banner /> : '' }
+        { (pathname === '/' || pathname === '/advance-search' || pathname === `/advance-search/${checkType}` || pathname === `/advance-search/search`) ? <Banner /> : '' }
       </div>
       {children}
       <Footer />
