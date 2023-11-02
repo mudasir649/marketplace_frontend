@@ -31,7 +31,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { usePathname, useRouter } from "next/navigation";
-import { conditionList, sortByList } from "@/utils/dataVariables";
+import { sortByList } from "@/utils/dataVariables";
 import {
   setBrand,
   setCondition,
@@ -211,6 +211,23 @@ export default function AdvanceSearch({ productData, productsCount, setProductDa
     {
         name: t('subList.3')
     },
+];
+const conditionList = [
+  {
+      id: 1,
+      name: t('condition.new'),
+      value: 'new'
+  },
+  {
+      id: 2,
+      name: t('condition.used'),
+      value: 'used'
+  },
+  {
+      id: 3,
+      name: t('condition.recondition'),
+      value: 'recondition'
+  }
 ];
 
   useEffect(() => {
