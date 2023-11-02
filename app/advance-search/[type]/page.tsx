@@ -21,7 +21,7 @@ function Page() {
   const [brands, setBrands] = useState<string>("");
   
   const subCategory = subCategoryMap[type as string] || "";
-
+  
   const checkType = type1Map[type as string] || type;
 
   useEffect(() => {
@@ -48,10 +48,7 @@ function Page() {
         fetchBrands();
       }
     }
-
-    if(!subCategory || !validTypes.includes(checkType as string)){
       fetchData();
-    }
     // if (!subCategory) {
     //   const fetchData = async () => {
     //     const res = await axios.get(

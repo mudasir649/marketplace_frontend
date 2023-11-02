@@ -64,6 +64,29 @@
   "Pièces pour camions",
   "Pièces pour fourgonnettes"
   ],
+  "allCategories": [
+    "Autos",
+    "Biciclette",
+    "Bateaux",
+    "Autobus",
+    "Machines de construction",
+    "Drones",
+    "Autres",
+    "Pièces",
+    "Remorques",
+    "Camions",
+    "Fourgonnettes",
+    "Pièces pour voitures",
+    "Pièces pour vélos",
+    "Pièces pour bateaux",
+    "Pièces pour bus",
+    "Pièces pour engins de construction",
+    "Pièces pour drones",
+    "Autres pièces",
+    "Pièces pour remorques",
+    "Pièces pour camions",
+    "Pièces pour fourgonnettes"
+  ],
   "autosComponent": {
     
     "subCategory": "Sous-catégorie",

@@ -59,7 +59,7 @@ export default function Addtype() {
           <PartsComponent type={"Bike Parts"} />
         ) : pathname === "/post-ad/Boat%20Parts" ? (
           <PartsComponent type={"Boat Parts"} />
-        ) : pathname === "/post-ad/Bus%20Parts" ? (
+        ) : pathname === "/post-ad/Busses%20Parts" ? (
           <PartsComponent type={"Bus Parts"} />
         ) : pathname === "/post-ad/Construction%20Machine%20Parts" ? (
           <PartsComponent type={"Construction Machine Parts"} />
