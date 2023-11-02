@@ -11,16 +11,16 @@ import {
   DirectionsCar,
   ElectricBike,
   ElectricScooter,
+  Favorite,
   FireTruck,
   Flight,
-  PrecisionManufacturing,
-  RvHookup,
-  TwoWheeler,
-  Share,
-  Favorite,
-  RemoveRedEye,
   KeyboardDoubleArrowLeft,
   KeyboardDoubleArrowRight,
+  PrecisionManufacturing,
+  RemoveRedEye,
+  RvHookup,
+  TwoWheeler,
+  Share
 } from "@mui/icons-material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Aos from "aos";
@@ -142,7 +142,7 @@ export default function AdvanceSearch({
       quantity: 23,
     },
     {
-      logo: <TwoWheeler />,
+      logo: <DirectionsBike />,
       name: t("categories.1"),
       name1: "Bikes",
       quantity: 12,
@@ -756,7 +756,7 @@ export default function AdvanceSearch({
                             className={`flex justify-between space-x-4 mt-3 text-gray-600 h-10 border-t-2 pt-2 w-full`}
                           >
                             <div className="space-x-4 mt-1">
-                              <Share
+                            <Share
                                 onClick={() => handleShare(product?._id)}
                                 className="cursor-pointer text-gray-400 mt-[-5px]"
                                 style={{ fontSize: "20px" }}
