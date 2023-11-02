@@ -241,7 +241,7 @@ export default function AdvanceSearch({
     {
       logo: <DirectionsBoat />,
       name: t("categoriesParts.2"),
-      name1: "Boats Parts",
+      name1: "Boat Parts",
     },
     {
       logo: <DirectionsBus />,
@@ -426,7 +426,7 @@ export default function AdvanceSearch({
     } else if (
       subCategory === "Autos Parts" ||
       subCategory === "Bikes Parts" ||
-      subCategory === "Boats Parts" ||
+      subCategory === "Boat Parts" ||
       subCategory === "Drones Parts" ||
       subCategory === "Busses Parts" ||
       subCategory === "Construction Machines Parts" ||
@@ -438,6 +438,9 @@ export default function AdvanceSearch({
       return "Parts";
     }
   };
+
+  console.log(category);
+  
 
   return (
     <div>
@@ -502,42 +505,6 @@ export default function AdvanceSearch({
                     ))}
                 </>
               ))}
-              {/* {categoryList?.map((list: IList, i: number) => (
-                <>
-                  <li
-                    onClick={() => handleSearch(list?.name1)}
-                    className={`${
-                      category == list?.name
-                        ? "text-[#FF0000] cursor-pointer"
-                        : list?.name == "Bikes" && subCategory
-                        ? "text-[#FF0000]"
-                        : "hover:text-[#FF0000] cursor-pointer"
-                    }`}
-                    key={i}
-                  >
-                    {list.logo} {list.name}{" "}
-                    {category == list?.name ? `(${productsCount})` : ""}
-                  </li>
-                  {(category == "Bikes" || subCategory) &&
-                    list?.name == "Bikes" &&
-                    subList?.map((list: any, i: any) => (
-                      <li
-                        className={`ml-5 cursor-pointer ${
-                          list?.name == subCategory
-                            ? "text-[#FF0000]"
-                            : "hover:text-[#FF0000]"
-                        }`}
-                        onClick={() => handleSearch(list?.name)}
-                        key={i}
-                      >
-                        {" "}
-                        <span className="text-[#FF0000]">{`> `}</span>
-                        {list?.name}{" "}
-                        {subCategory == list?.name && `(${productsCount})`}
-                      </li>
-                    ))}
-                </>
-              ))} */}
             </ul>
           </div>
           {category && (

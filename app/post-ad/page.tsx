@@ -12,7 +12,6 @@ export default function PostAd() {
 
     const { t } = useTranslation();
 
-
     const list = [
         {
             name: t('categories.0'),
@@ -73,6 +72,49 @@ export default function PostAd() {
             name: t('subList.3')
         },
     ];
+
+    const partsSubList = [
+        {
+          name: t("categoriesParts.0"),
+          name1: "Autos Parts",
+        },
+        {
+          name: t("categoriesParts.1"),
+          name1: "Bikes Parts",
+        },
+        {
+          name: t("categoriesParts.2"),
+          name1: "Boat Parts",
+        },
+        {
+          name: t("categoriesParts.3"),
+          name1: "Busses Parts",
+        },
+        {
+          name: t("categoriesParts.4"),
+          name1: "Construction Machines Parts",
+        },
+        {
+          name: t("categoriesParts.5"),
+          name1: "Drones Parts",
+        },
+        {
+          name: t("categoriesParts.6"),
+          name1: "Other Parts",
+        },
+        {
+          name: t("categoriesParts.7"),
+          name1: "Trailers Parts",
+        },
+        {
+          name: t("categoriesParts.8"),
+          name1: "Trucks Parts",
+        },
+        {
+          name: t("categoriesParts.9"),
+          name1: "Vans Parts",
+        },
+      ];
     
 
     const router = useRouter();
@@ -132,7 +174,7 @@ export default function PostAd() {
                             </div>
                             {showSub &&
                                 <div className='flex flex-col md:flex-row justify-end space-x-0 md:space-x-20 space-y-2 md:space-y-0 mb-5 mt-5'>
-                                    <h1 className='flex flex-row space-x-1 text-md font-bold w-40'>{t('postAd.subCategory')} <span className='text-[#FF0000]'>*</span></h1>
+                                    <h1 className='flex flex-row space-x-1 text-md font-bold w-40 whitespace-nowrap truncate'>{t('postAd.subCategory')} <span className='text-[#FF0000]'>*</span></h1>
                                     <div className='flex flex-col hover:border-red-500 w-full rounded-sm h-10'
                                         onClick={() => isOpenSub(!openSub)}
                                     >

@@ -51,7 +51,6 @@
     "Camion",
     "Furgoni"
   ],
-  
   "categoriesParts": [
   "Ricambi per auto",
   "Ricambi per biciclette",
@@ -63,6 +62,29 @@
   "Ricambi per rimorchi",
   "Ricambi per camion",
   "Ricambi per furgoni"
+  ],
+  "allCategories": [
+    "Auto",
+    "Moto",
+    "Barche",
+    "Autobus",
+    "Macchine per la costruzione",
+    "Droni",
+    "Altri",
+    "Ricambi",
+    "Rimorchi",
+    "Camion",
+    "Furgoni",
+    "Ricambi per auto",
+    "Ricambi per biciclette",
+    "Ricambi per barche",
+    "Ricambi per autobus",
+    "Ricambi per macchine da costruzione",
+    "Ricambi per droni",
+    "Altri ricambi",
+    "Ricambi per rimorchi",
+    "Ricambi per camion",
+    "Ricambi per furgoni"
   ],
   "autosComponent": {
     "heading1": "Seleziona la categoria",
