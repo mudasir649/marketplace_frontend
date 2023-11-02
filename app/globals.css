@@ -13,8 +13,6 @@ body{
   background-color: whitesmoke;
 }
 
-
-
 .logo.active{
   transform: rotate(180deg);
   transition: var(--speed) ease;

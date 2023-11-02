@@ -39,7 +39,7 @@ interface InitialStateInterface {
     roomsData: any | null;
     page: number;
     sortBy: string;
-    type: string;
+    type1: string;
     title: string;
     address: string;
     language: string;
@@ -67,7 +67,7 @@ const initialState: InitialStateInterface = {
     roomsData: getChatRoomData() !== null ? getChatRoomData() : null,
     page: 1,
     sortBy: '',
-    type: '',
+    type1: '',
     title:'',
     address: '',
     language: 'en',
@@ -124,7 +124,7 @@ const appSlice = createSlice({
             state.sortBy = actions.payload
         },
         setType: (state, actions) => {
-            state.type = actions.payload;
+            state.type1 = actions.payload;
         },
         setReduxTitle: (state, actions) => {
             state.title = actions.payload
