@@ -65,6 +65,8 @@
   "Pièces pour fourgonnettes"
   ],
   "autosComponent": {
+    
+    "subCategory": "Sous-catégorie",
     "heading1": "Sélectionner une catégorie",
     "changeCategory": "Changer de catégorie",
     "color": "Couleur",
