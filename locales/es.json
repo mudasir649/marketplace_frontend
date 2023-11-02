@@ -51,6 +51,18 @@
     "Camiones",
     "Furgonetas"
   ],
+  "categoriesParts": [
+    "Piezas de automóviles",
+    "Piezas de bicicletas",
+    "Piezas de barcos",
+    "Piezas de autobuses",
+    "Piezas de maquinaria de construcción",
+    "Piezas de drones",
+    "Otras piezas",
+    "Piezas de remolques",
+    "Piezas de camiones",
+    "Piezas de furgonetas"
+    ],
   "bodyShape": {
     "Convertible": "Convertible",
     "Compact": "Compacto",

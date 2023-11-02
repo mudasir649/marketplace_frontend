@@ -62,7 +62,7 @@ export default function Page() {
                                     {showDesc[i] ? <RemoveCircle style={{ fontSize: "25px" }} /> : <AddCircle style={{ fontSize: "25px" }} />}
                                 </div>
                                 {showDesc[i] ?
-                                    <p className='text-justify my-5 mb-10 text-lg mt-3'>{data.description}</p>
+                                    <p className='text-justify my-5 mb-10 text-lg mt-3 ease-in-out duration-200'>{data.description}</p>
                                     :
                                     ''}
                             </div>

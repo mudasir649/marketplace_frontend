@@ -51,7 +51,19 @@
       "Anhänger",
       "Lastwagen",
       "Lieferwagen"
-    ] , 
+    ], 
+    "categoriesParts": [
+      "Autoteile",
+      "Fahrradteile",
+      "Bootsteile",
+      "Bussteile",
+      "Baumaschinen-Teile",
+      "Drohnenteile",
+      "Andere Teile",
+      "Anhängerteile",
+      "Lastwagenteile",
+      "Lieferwagenteile"
+      ],
     "autosComponent": {
       "heading1": "Kategorie auswählen",
       "changeCategory": "Kategorie ändern",

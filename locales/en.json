@@ -52,8 +52,19 @@
         "Trailers",
         "Trucks",
         "Vans"
-      ] , 
-
+      ],
+      "categoriesParts": [
+        "Autos Parts",
+        "Bikes Parts",
+        "Boats Parts",
+        "Busses Parts",
+        "Construction Machines Parts",
+        "Drones Parts",
+        "Other Parts",
+        "Trailers Parts",
+        "Trucks Parts",
+        "Vans Parts"
+      ],
       "autosComponent":{
         "heading1": "Select Category",
         "changeCategory": "Change category",

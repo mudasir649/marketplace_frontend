@@ -32,6 +32,7 @@ import { setRoomsData, setShowContact } from "@/store/appSlice";
 import { off, onDisconnect, onValue, ref, update } from "firebase/database";
 import { db } from "@/utils/firebase-config";
 import useWindowDimensions from "@/utils/useWindowDimensions";
+import { typeMap } from "@/utils/dataVariables";
 
 export default function Header2() {
   const [logoutApiCall, { isLoading }] = useLogoutMutation();
@@ -42,16 +43,13 @@ export default function Header2() {
   const router = useRouter();
   const { userInfo } = useSelector((state: any) => state.auth);
   const userId = userInfo?.data?.userDetails?._id;
-  const { showContact } = useSelector((state: any) => state.app);
-  const { showShare, showSellNow, showRepairNow, showDeleteAd, type } =
+  const { showShare, showSellNow, showRepairNow, showDeleteAd, type1, showContact } =
     useSelector((state: any) => state.app);
   const userData = userInfo?.data?.userDetails;
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const pathname = usePathname();
 
-  const checkType = type === "Construction Machines" ? "Construction%20Machines" : type; 
-
-
+  const checkType = typeMap[type1] || type1; 
   const { width, height } = useWindowDimensions();
   const newWidth = width || 0;
 

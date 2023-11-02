@@ -1,25 +1,20 @@
 'use client';
 import React from 'react'
-import Header from './Header'
 import Banner from './Banner'
 import Footer from './Footer'
 import I18nProvider from './i18Provider';
 import Header2 from './Header2';
 import { usePathname } from 'next/navigation';
 import { useSelector } from 'react-redux';
-
+import { typeMap } from '@/utils/dataVariables';
 
 
 export default function Home({ children }: any) {
-  const { type } = useSelector((state: any) => state.app);
+  const { type1 } = useSelector((state: any) => state.app);
   
   const pathname = usePathname();
 
-  const checkType = type === "Construction Machines" ? "Construction%20Machines" : type; 
-
-
-  
-  
+  const checkType: string = typeMap[type1] || type1
 
   return (
     <div className=''>
