@@ -151,7 +151,7 @@ export default function Product({ product, url }: any) {
               <section className='flex flex-row space-x-1'>
                 <AccessTime className="text-gray-400" style={{ fontSize: "22px" }} />
                 <h1 className='text-sm w-16 truncate'>{showDate(product?.createdAt) <= 2 ?
-                  <div className='bg-green-600 text-white rounded-full px-3 text-center'>{'new'}</div> : <div className='text-[12px] mt-[0.5px]'>{Number.isNaN(showDate(product?.createdAt)) ? '0 days ago' : `${showDate(product?.createdAt)} days ago`}</div>
+                  <div className='bg-green-600 text-white rounded-full px-3 text-center'>{t('condition.new')}</div> : <div className='text-[12px] mt-[0.5px]'>{Number.isNaN(showDate(product?.createdAt)) ? '0 days ago' : `${showDate(product?.createdAt)} days ago`}</div>
                 }</h1>
               </section>
             </div>

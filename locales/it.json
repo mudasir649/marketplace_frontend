@@ -87,6 +87,7 @@
     "Ricambi per furgoni"
   ],
   "autosComponent": {
+    "subCategory": "Sottocategoria",
     "heading1": "Seleziona la categoria",
     "changeCategory": "Cambia categoria",
     "productInfo": "Informazioni sul prodotto",
