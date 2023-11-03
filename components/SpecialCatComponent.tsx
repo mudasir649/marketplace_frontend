@@ -246,11 +246,11 @@ export default function SpecialCatComponent({ type }: any) {
         },
         {
           name: t("allCategories.13"),
-          name1: "Autos Parts",
+          name1: "Auto Parts",
         },
         {
           name: t("allCategories.14"),
-          name1: "Bikes Parts",
+          name1: "Bike Parts",
         },
         {
           name: t("allCategories.15"),
@@ -258,7 +258,7 @@ export default function SpecialCatComponent({ type }: any) {
         },
         {
           name: t("allCategories.16"),
-          name1: "Busses Parts",
+          name1: "Bus Parts",
         },
         {
           name: t("allCategories.17"),
@@ -266,7 +266,7 @@ export default function SpecialCatComponent({ type }: any) {
         },
         {
           name: t("allCategories.18"),
-          name1: "Drones Parts",
+          name1: "Drone Parts",
         },
         {
           name: t("allCategories.19"),
@@ -274,15 +274,15 @@ export default function SpecialCatComponent({ type }: any) {
         },
         {
           name: t("allCategories.20"),
-          name1: "Trailers Parts",
+          name1: "Trailer Parts",
         },
         {
           name: t("allCategories.21"),
-          name1: "Trucks Parts",
+          name1: "Truck Parts",
         },
         {
           name: t("allCategories.22"),
-          name1: "Vans Parts",
+          name1: "Van Parts",
         },
       ];
     

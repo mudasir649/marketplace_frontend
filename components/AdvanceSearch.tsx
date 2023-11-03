@@ -20,7 +20,8 @@ import {
   RemoveRedEye,
   RvHookup,
   TwoWheeler,
-  Share
+  Share,
+  LocationOn
 } from "@mui/icons-material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Aos from "aos";
@@ -83,11 +84,17 @@ export default function AdvanceSearch({
   checkType,
 }: any) {
   // Redux hooks
-  const { t } = useTranslation(); // Initialize the translation hook
+  const { t } = useTranslation(); // Initialize the translation hook  
+
+  console.log(subCategory);
+  
 
   const { page, address, title } = useSelector((state: any) => state.app);
+  const [googleLocation, setGoogleLocation] = useState<any>();
   const [fav, setFav] = useState<Boolean>(false);
   const [loading, setLoading] = useState<Boolean>(false);
+  const [showLocation, setShowLocation] = useState<Boolean>(false);
+  const [address1, setAddress1] = useState<string>("");
   const [sortByLoading, setSortByLoading] = useState<Boolean>(false);
   const pathname = usePathname();
   const dispatch = useDispatch();
@@ -314,7 +321,7 @@ export default function AdvanceSearch({
     if (pathname == "/advance-search/search" || pathname == "/advance-search") {
       try {
         const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address}&title=${title}&minPrice=${minPrice}&maxPrice=${maxPrice}`
+          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address1}&title=${title}&minPrice=${minPrice}&maxPrice=${maxPrice}`
         );
         setProductData(res.data?.data?.ad);
         setProductsCount(res.data?.data?.totalAds);
@@ -371,6 +378,20 @@ export default function AdvanceSearch({
     }
   };
 
+  const checkPlace = async (e: any) => {
+    setShowLocation(true);
+    const res = await axios.get(
+      `${process.env.NEXT_PUBLIC_BACKEND_URI}/googleRoutes?address=${e.target.value}`
+    );
+    let predictions = res.data?.data.predictions;
+    setGoogleLocation(predictions);
+  };
+
+  const saveLocation = (value: any) => {
+    setAddress1(value);
+    setShowLocation(false);
+  };
+
   const handleShare = (productId: any) => {
     dispatch(setShowShare(true));
     dispatch(setProductId(productId));
@@ -424,22 +445,20 @@ export default function AdvanceSearch({
     ) {
       return "Bikes";
     } else if (
-      subCategory === "Autos Parts" ||
-      subCategory === "Bikes Parts" ||
+      subCategory === "Auto Parts" ||
+      subCategory === "Bike Parts" ||
       subCategory === "Boat Parts" ||
-      subCategory === "Drones Parts" ||
-      subCategory === "Busses Parts" ||
-      subCategory === "Construction Machines Parts" ||
+      subCategory === "Drone Parts" ||
+      subCategory === "Bus Parts" ||
+      subCategory === "Construction Machine Parts" ||
       subCategory === "Other Parts" ||
-      subCategory === "Trailers Parts" ||
-      subCategory === "Trucks Parts" ||
-      subCategory === "Vans Parts"
+      subCategory === "Trailer Parts" ||
+      subCategory === "Truck Parts" ||
+      subCategory === "Van Parts"
     ) {
       return "Parts";
     }
   };
-
-  console.log(category);
   
 
   return (
@@ -500,13 +519,49 @@ export default function AdvanceSearch({
                         key={i}
                         onClick={() => handleSearch(list?.name1)}
                       >
-                        {list?.logo} {list.name}
+                        {list?.logo} {list.name} 
+                        {category == list?.name1 && productsCount !== 0
+                          ? `(${productsCount})`
+                          : ""}
                       </li>
                     ))}
                 </>
               ))}
             </ul>
           </div>
+             <div className="flex flex-col w-full space-y-1">
+          <div className="flex flex-row p-3 border-2 rounded-sm h-[50px] bg-white">
+            <LocationOn className="text-gray-800" />
+            <input
+              type="text"
+              placeholder={t("placeholderAddress")}
+              name="address"
+              value={address1}
+              onChange={(e: any) => setAddress1(e.target.value)}
+              className="focus:outline-none pl-2 w-96 overflow-hidden bg-transparent"
+              onKeyUp={(e: any) => checkPlace(e)}
+            />
+          </div>
+          {showLocation && address && (
+            <div className={`flex flex-row p-2 border-2 border-[#FF0000] h-52 rounded-lg lg:p-2 bg-white overflow-y-scroll ${newWidth <= 1024 ? '' : 'absolute top-[202px] z-20 w-[320px]'}`}>
+              {showLocation ? (
+                <ul className="w-full">
+                  {googleLocation?.map((location: any, i: number) => (
+                    <li
+                      className="border-b"
+                      key={i}
+                      onClick={() => saveLocation(location?.description)}
+                    >
+                      {location.description}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                ""
+              )}
+            </div>
+          )}
+        </div>
           {category && (
             <>
               <div className="border-b flex flex-row justify-between p-2 mb-4">

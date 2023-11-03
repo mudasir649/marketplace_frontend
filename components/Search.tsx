@@ -35,7 +35,7 @@ export default function SearchPage() {
   const [address, setAddress] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [titleData, setTitleData] = useState<any>();
-  const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const dropdownRef = useRef<HTMLFormElement | null>(null);
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -68,7 +68,8 @@ export default function SearchPage() {
     setShowTitle(false);
   };
 
-  const searchFilter = async () => {
+  const searchFilter = async (e: any) => {
+    e.preventDefault();
     dispatch(setReduxTitle(title));
     dispatch(setReduxAddress(address));
     router.push("/advance-search/search");
@@ -94,7 +95,8 @@ export default function SearchPage() {
 
   return (
     <div className="">
-      <div
+      <form
+        method="POST"
         className={`grid grid-cols-1 mt-[-20px] md:mt-10 md:grid-cols-3 lg:grid-cols-3 h-auto p-5 ml-0 md:ml-40 gap-2 border-none rounded-md screen-1`}
         ref={dropdownRef}
       >
@@ -138,7 +140,7 @@ export default function SearchPage() {
               type="text"
               placeholder={t("placeholderKeyword")}
               name="name"
-              className="focus:outline-none w-96 pl-2 overflow-hidden"
+              className="focus:outline-none w-full pl-2 overflow-hidden"
               value={title}
               onChange={(e: any) => setTitle(e.target.value)}
               onKeyUp={(e: any) => handleTitle(e)}
@@ -167,12 +169,12 @@ export default function SearchPage() {
         <button
           className="flex flex-row justify-center 
             cursor-pointer w-full ml-[3px] lg:w-52 p-3 border-none 
-            border-[#FF0000] rounded-md bg-[#FF0000] "
-          onClick={() => searchFilter()}
+              border-[#FF0000] rounded-md bg-[#FF0000] "
+          onClick={(e) => searchFilter(e)}
         >
           <Search fontSize="large" className="text-white" />
         </button>
-      </div>
+      </form>
     </div>
   );
 }

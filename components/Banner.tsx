@@ -85,7 +85,7 @@ export default function Banner() {
               bg-white px-5 py-4 capitalize text-sm focus:border-red-800 focus:shadown-lg font-semibold`} onClick={() => categoryHandle()}>
               <h1 className='whitespace-nowrap'>  {t('banner.seeAllCategories')}
               </h1>
-              <KeyboardArrowDown className="h-5 w-5 text-[#FF0000] mt-[-3px]" />
+              <KeyboardArrowDown className={`logo ${isExpand ? 'active': 'inactive'} h-5 w-5 text-[#FF0000] mt-[-3px]`} />
             </div>
             {isExpand && <div className='h-auto p-2 w-auto lg:w-60 z-30 absolute bg-white border rounded-md mt-16' data-aos="fade-up">
               <CategoryList setCategory={setCategory} setExpand={setIsExpand} />
