@@ -64,6 +64,29 @@
       "Lastwagenteile",
       "Lieferwagenteile"
       ],
+      "allCategories": [
+        "Autos",
+        "Fahrräder",
+        "Boote",
+        "Busse",
+        "Baumaschinen",
+        "Drohnen",
+        "Andere",
+        "Teile",
+        "Anhänger",
+        "Lastwagen",
+        "Lieferwagen",
+        "Autoteile",
+        "Fahrradteile",
+        "Bootsteile",
+        "Bussteile",
+        "Baumaschinen-Teile",
+        "Drohnenteile",
+        "Andere Teile",
+        "Anhängerteile",
+        "Lastwagenteile",
+        "Lieferwagenteile"
+      ],
     "autosComponent": {
       
       "heading1": "Kategorie auswählen",

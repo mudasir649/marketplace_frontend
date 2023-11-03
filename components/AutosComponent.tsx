@@ -17,7 +17,6 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import {
   bodyShape,
-  
   exteriorColor,
   fuelType,
   gearBox,
@@ -87,21 +86,125 @@ export default function AutosComponent() {
 
   const conditionList = [
     {
-        id: 1,
-        name: t('condition.new'),
-        value: 'new'
+      id: 1,
+      name: t("condition.new"),
+      value: "new",
     },
     {
-        id: 2,
-        name: t('condition.used'),
-        value: 'used'
+      id: 2,
+      name: t("condition.used"),
+      value: "used",
     },
     {
-        id: 3,
-        name: t('condition.recondition'),
-        value: 'recondition'
+      id: 3,
+      name: t("condition.recondition"),
+      value: "recondition",
+    },
+  ];
+
+  const formType = [
+    {
+      name: t("allCategories.0"),
+      name1: "Autos",
+    },
+    {
+      name: t("allCategories.1"),
+      name1: "Bicycles",
+    },
+    {
+      name: t("allCategories.2"),
+      name1: "E-scooter",
+    },
+    {
+      name: t("allCategories.3"),
+      name1: "E-bikes",
+    },
+    {
+      name: t("allCategories.4"),
+      name1: "Motorcycle",
+    },
+    {
+      name: t("allCategories.5"),
+      name1: "Boats",
+    },
+    {
+      name: t("allCategories.6"),
+      name1: "Busses",
+    },
+    {
+      name: t("allCategories.7"),
+      name1: "Construction Machines",
+    },
+    {
+      name: t("allCategories.8"),
+      name1: "Drones",
+    },
+    {
+      name: t("allCategories.9"),
+      name1: "Others",
+    },
+    {
+      name: t("allCategories.10"),
+      name1: "Trailers",
+    },
+    {
+      name: t("allCategories.11"),
+      name1: "Trucks",
+    },
+    {
+      name: t("allCategories.12"),
+      name1: "Vans",
+    },
+    {
+      name: t("allCategories.13"),
+      name1: "Autos Parts",
+    },
+    {
+      name: t("allCategories.14"),
+      name1: "Bikes Parts",
+    },
+    {
+      name: t("allCategories.15"),
+      name1: "Boat Parts",
+    },
+    {
+      name: t("allCategories.16"),
+      name1: "Busses Parts",
+    },
+    {
+      name: t("allCategories.17"),
+      name1: "Construction Machine Parts",
+    },
+    {
+      name: t("allCategories.18"),
+      name1: "Drones Parts",
+    },
+    {
+      name: t("allCategories.19"),
+      name1: "Other Parts",
+    },
+    {
+      name: t("allCategories.20"),
+      name1: "Trailers Parts",
+    },
+    {
+      name: t("allCategories.21"),
+      name1: "Trucks Parts",
+    },
+    {
+      name: t("allCategories.22"),
+      name1: "Vans Parts",
+    },
+  ];
+
+  const allCat = (type: string) => {
+    for (const item of formType) {
+      if (item.name1 === type) {
+        return item.name;
+      }
     }
-];
+  };
+
   const [images, setImages] = useState<any>([]);
   const [loading, setLoading] = useState<Boolean>(false);
   const [priceListValue, setPriceListValue] = useState<string>("price");
@@ -173,97 +276,94 @@ export default function AutosComponent() {
   const interiorColor = [
     {
       name: t("interiorColor.name1"),
-      value: t("interiorColor.value1")
+      value: t("interiorColor.value1"),
     },
     {
       name: t("interiorColor.name2"),
-      value: t("interiorColor.value2")
+      value: t("interiorColor.value2"),
     },
     {
       name: t("interiorColor.name3"),
-      value: t("interiorColor.value3")
+      value: t("interiorColor.value3"),
     },
     {
       name: t("interiorColor.name4"),
-      value: t("interiorColor.value4")
+      value: t("interiorColor.value4"),
     },
     {
       name: t("interiorColor.name5"),
-      value: t("interiorColor.value5")
+      value: t("interiorColor.value5"),
     },
     {
       name: t("interiorColor.name6"),
-      value: t("interiorColor.value6")
+      value: t("interiorColor.value6"),
     },
     {
       name: t("interiorColor.name7"),
-      value: t("interiorColor.value7")
+      value: t("interiorColor.value7"),
     },
     {
       name: t("interiorColor.name8"),
-      value: t("interiorColor.value8")
+      value: t("interiorColor.value8"),
     },
     {
       name: t("interiorColor.name9"),
-      value: t("interiorColor.value9")
+      value: t("interiorColor.value9"),
     },
   ];
 
+  const bodyShape = [
+    {
+      name: t("bodyShape.Convertible"),
+      value: "Convertible",
+    },
+    {
+      name: t("bodyShape.Compact"),
+      value: "Compact",
+    },
+    {
+      name: t("bodyShape.Coupe"),
+      value: "Coupe",
+    },
+    {
+      name: t("bodyShape.suv"),
+      value: "SUV/Off-Road/Pick-up",
+    },
+    {
+      name: t("bodyShape.Station"),
+      value: "Station Wagon",
+    },
+    {
+      name: t("bodyShape.Sedan"),
+      value: "Sedan",
+    },
+    {
+      name: t("bodyShape.Van"),
+      value: "Van",
+    },
+    {
+      name: t("bodyShape.Transporter"),
+      value: "Transporter",
+    },
+    {
+      name: t("bodyShape.Other"),
+      value: "Other",
+    },
+  ];
 
-  
- const bodyShape = [
-  {
-      name: t('bodyShape.Convertible'),
-      value: "Convertible"
-  },
-  {
-      name: t('bodyShape.Compact'),
-      value: "Compact"
-  },
-  {
-      name: t('bodyShape.Coupe'),
-      value: "Coupe"
-  },
-  {
-      name: t('bodyShape.suv'),
-      value: "SUV/Off-Road/Pick-up"
-  },
-  {
-      name: t('bodyShape.Station'),
-      value: "Station Wagon"
-  },
-  {
-      name: t('bodyShape.Sedan'),
-      value: "Sedan"
-  },
-  {
-      name: t('bodyShape.Van'),
-      value: "Van"
-  },
-  {
-      name: t('bodyShape.Transporter'),
-      value: "Transporter"
-  },
-  {
-      name: t('bodyShape.Other'),
-      value: "Other"
-  }
-];
-
-  
   const gearBox = [
     {
       name: t("gearBox.name1"),
-      value: t("gearBox.value1")
+      value: t("gearBox.value1"),
     },
     {
       name: t("gearBox.name2"),
-      value: t("gearBox.value2")
+      value: t("gearBox.value2"),
     },
     {
       name: t("gearBox.name3"),
-      value: t("gearBox.value3")
-    }
+      value: t("gearBox.value3"),
+    },
   ];
 
   const [data, setData] = useState<IData>({
@@ -425,9 +525,7 @@ export default function AutosComponent() {
           <div className=" container mx-auto flex flex-col mb-7">
             <div className="flex flex-row space-x-2 mt-5">
               <h1>
-                {type == "Contruction%20Machines"
-                  ? "Construction Machines"
-                  : type}
+              {allCat(type as any)}
               </h1>
               <ArrowForwardIos
                 className="mt-[5px]"
@@ -627,7 +725,7 @@ export default function AutosComponent() {
                     </option>
                     {gearBox.map((gear: any, i: number) => (
                       <option value={gear?.value} key={i}>
-                         {gear?.name}
+                        {gear?.name}
                       </option>
                     ))}
                   </select>
@@ -664,9 +762,7 @@ export default function AutosComponent() {
                     name="model"
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option>
-                        Select Kilometers
-                    </option>
+                    <option>Select Kilometers</option>
                     {kilometers.map((kms: any, i: number) => (
                       <option value={kms.name} key={i}>
                         {kms.name}
