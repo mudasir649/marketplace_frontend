@@ -400,10 +400,10 @@ export default function AdvanceSearch({
   const handleChat = async (product: any) => {
     if (userInfo !== null) {
       dispatch(setProductId(product?._id));
-      dispatch(setProductUserId(product?.userId?._id));
+      dispatch(setProductUserId(product?.userId));
       const data = {
         userId: userId,
-        productUserId: product?.userId?._id,
+        productUserId: product?.userId,
         productId: product?._id,
       };
       const res = await axios.post(
@@ -785,11 +785,12 @@ export default function AdvanceSearch({
                               />
                               {userInfo !== null && (
                                 <>
-                                  <Chat
+                                  {product?.userId === userId ? '' : <Chat
                                     className="cursor-pointer mt-[-1.5px] text-gray-400"
                                     style={{ fontSize: "20px" }}
                                     onClick={() => handleChat(product)}
                                   />
+                              }
                                   <Favorite
                                     className={`${
                                       findProductId(product?._id)
