@@ -21,6 +21,9 @@ function Page() {
   const [brands, setBrands] = useState<string>("");
   
   const subCategory = subCategoryMap[type as string] || "";
+
+  console.log(subCategory);
+  
   
   const checkType = type1Map[type as string] || type;
 

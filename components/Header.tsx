@@ -63,6 +63,8 @@ export default function Header() {
 
         const handleRoomUpdate: any = (snapshot: any) => {
           const room = snapshot.val() || [];
+          console.log(room);
+          
           dispatch(setRoomsData(room))
         };
 

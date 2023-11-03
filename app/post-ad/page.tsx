@@ -76,11 +76,11 @@ export default function PostAd() {
     const partsSubList = [
         {
           name: t("categoriesParts.0"),
-          name1: "Autos Parts",
+          name1: "Auto Parts",
         },
         {
           name: t("categoriesParts.1"),
-          name1: "Bikes Parts",
+          name1: "Bike Parts",
         },
         {
           name: t("categoriesParts.2"),
@@ -88,15 +88,15 @@ export default function PostAd() {
         },
         {
           name: t("categoriesParts.3"),
-          name1: "Busses Parts",
+          name1: "Bus Parts",
         },
         {
           name: t("categoriesParts.4"),
-          name1: "Construction Machines Parts",
+          name1: "Construction Machine Parts",
         },
         {
           name: t("categoriesParts.5"),
-          name1: "Drones Parts",
+          name1: "Drone Parts",
         },
         {
           name: t("categoriesParts.6"),
@@ -104,15 +104,15 @@ export default function PostAd() {
         },
         {
           name: t("categoriesParts.7"),
-          name1: "Trailers Parts",
+          name1: "Trailer Parts",
         },
         {
           name: t("categoriesParts.8"),
-          name1: "Trucks Parts",
+          name1: "Truck Parts",
         },
         {
           name: t("categoriesParts.9"),
-          name1: "Vans Parts",
+          name1: "Van Parts",
         },
       ];
     

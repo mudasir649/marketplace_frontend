@@ -114,7 +114,7 @@ export default function Product({ product, url }: any) {
   const checkFavAds = () => {
     return prodId.some((item: any) => item._id === product?._id)
   }
-
+  
 
   return (
     <div className='mb-3' data-aos="fade-up">
@@ -197,7 +197,7 @@ export default function Product({ product, url }: any) {
                     className='cursor-pointer'
                     style={{ fontSize: "20px" }}
                   />
-                  <Chat style={{ fontSize: "20px" }} onClick={() => handleChat()} />
+                  {product.userId === userId ? '' : <Chat style={{ fontSize: "20px" }} onClick={() => handleChat()} /> }
                   <Favorite className={`${checkFavAds() ? 'text-[#FF0000]'
                     : 'text-gray-300'} cursor-pointer`}
                     onClick={() => adFavorite()}

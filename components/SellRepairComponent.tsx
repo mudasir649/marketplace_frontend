@@ -75,7 +75,7 @@ export default function SellRepairComponent() {
       <div className="container mx-auto flex p-5">
         <div className="flex w-full">
             {newWidth <= 1024 ? '' :
-            <div className="bg-green-600 w-[500px]">
+            <div className="w-[500px]">
                 <Image 
             className="h-auto w-auto"
             src='/assets/banner12.jpeg'

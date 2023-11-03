@@ -115,7 +115,7 @@ export default function Header2() {
     };
   }, [handleOutsideClick]);
 
-  const navbarLiStyle = "cursor-pointer hover:text-[#FF0000]";
+  const navbarLiStyle = "cursor-pointer hover:text-[#FF0000] whitespace-nowrap";
 
   const DropdownItem = ({ logo, text, href }: any) => {
     return (
