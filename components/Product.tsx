@@ -120,25 +120,27 @@ export default function Product({ product, url }: any) {
     <div className='mb-3' data-aos="fade-up">
       <div className="image-slider group relative max-w-sm rounded-lg overflow-hidden shadow-lg bg-white m-2 cursor-pointer hover:shadow-md hover:shadow-[#e52320]">
         <Link href={`/product-details/${product?._id}`}>
-        <div className="w-full h-52 md:h-40 flex relative overflow-hidden">
+        <div className="w-full h-52 md:h-40 relative overflow-hidden">
   <div
     className="image-slider-container"
     style={{
-      transform: `translateX(-${currentSlide * 100}%)`, // Assuming each image takes 100% width
-      transition: "transform 0.5s ease-in-out", // Add a transition for smooth sliding
+      transform: `translateX(-${currentSlide * (100 / product?.images.length)}%)`,
+      transition: "transform 0.5s ease-in-out",
+      display: "flex",
+      width: `${product?.images.length * 100}%`, // Adjust the width
     }}
   >
     {product?.images.map((image: string, index: number) => (
       <img
         key={index}
-        className="h-40 object-cover image-transition"
+        className="h-40 object-contain image-transition"
         src={image}
-        alt="Product Image"
-        style={{ flex: "0 0 100%" }}
+          alt="Product Image"
+        style={{ flex: `0 0 ${100 / product?.images.length}%` }}
       />
     ))}
   </div>
-</div>
+</div>         
 
         </Link>
         {product?.images?.length > 1 && (

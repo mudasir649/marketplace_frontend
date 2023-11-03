@@ -884,7 +884,7 @@ export default function BikeSubComponent({ type }: any) {
                                 <h1 className={`${style.h1Style} invisible`}>ffj</h1>
                                 {!loading ?
                                     <div className='flex flex-col w-full'>
-                                        <button className='bg-[#FF0000] hover:bg-red-800 w-32 h-10 text-white font-bold' >Submit</button>
+                                        <button className='bg-[#FF0000] hover:bg-red-800 w-32 h-10 text-white font-bold' >{t('autosComponent.submit')}</button>
                                     </div>
                                     :
                                     <div className="spinner mt-8 w-10 h-10"></div>
