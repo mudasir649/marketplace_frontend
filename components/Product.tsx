@@ -1,4 +1,4 @@
-import { AccessTime, ArrowBackIos, ArrowForwardIos, Chat, Delete, EditNote, Favorite, LocationOn, Phone, PhoneIphone, RemoveRedEye, Share } from '@mui/icons-material';
+import { AccessTime, ArrowBackIos, ArrowForward, ArrowForwardIos, ArrowForwardIosOutlined, Chat, Delete, EditNote, Favorite, KeyboardArrowLeft, KeyboardArrowRight, LocationOn, Phone, PhoneIphone, RemoveRedEye, Share } from '@mui/icons-material';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 import AOS, { refresh } from 'aos';
@@ -13,7 +13,7 @@ import { setShowShare } from '@/store/appSlice';
 import addInvertedComma from '@/utils/addInvertedComma';
 import showDate from '@/utils/showDate';
 import { useTranslation } from 'react-i18next';
-
+import "./product.css";
 
 export default function Product({ product, url }: any) {
 
@@ -120,23 +120,39 @@ export default function Product({ product, url }: any) {
     <div className='mb-3' data-aos="fade-up">
       <div className="image-slider group relative max-w-sm rounded-lg overflow-hidden shadow-lg bg-white m-2 cursor-pointer hover:shadow-md hover:shadow-[#e52320]">
         <Link href={`/product-details/${product?._id}`}>
-          <div className='w-full h-52 md:h-40 flex justify-center bg-gray-50'>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="h-40 object-cover image-transition" src={product?.images[currentSlide]} alt="Product Image" />
-          </div>
+        <div className="w-full h-52 md:h-40 flex relative overflow-hidden">
+  <div
+    className="image-slider-container"
+    style={{
+      transform: `translateX(-${currentSlide * 100}%)`, // Assuming each image takes 100% width
+      transition: "transform 0.5s ease-in-out", // Add a transition for smooth sliding
+    }}
+  >
+    {product?.images.map((image: string, index: number) => (
+      <img
+        key={index}
+        className="h-40 object-cover image-transition"
+        src={image}
+        alt="Product Image"
+        style={{ flex: "0 0 100%" }}
+      />
+    ))}
+  </div>
+</div>
+
         </Link>
-        {product?.images?.length > 1 &&
-          <>
-            <button className="prev-button hidden group-hover:block" onClick={prevSlide}>
-              <ArrowBackIos />
-            </button>
-            <button className="next-button hidden group-hover:block" onClick={nextSlide}>
-              <ArrowForwardIos />
-            </button>
-          </>
-        }
+        {product?.images?.length > 1 && (
+  <div className="slide-buttons">
+    <button className="prev-button hidden group-hover:block" onClick={prevSlide}>
+      <KeyboardArrowLeft style={{ background: 'transparent' }} />
+    </button>
+    <button className="next-button hidden group-hover:block" onClick={nextSlide}>
+      <KeyboardArrowRight style={{ background: 'transparent' }} />
+    </button>
+  </div>
+)}
         <Link href={`/product-details/${product?._id}`}>
-          <div className="px-6 py-4 max-w-full">
+          <div className="px-6 py-4 max-w-full"> 
             <div className='w-auto overflow-hidden flex flex-row justify-between'>
               <section className='overflow-hidden'>
                 {product?.price * 1 === 0 ?
