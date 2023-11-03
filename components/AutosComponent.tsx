@@ -53,7 +53,7 @@ interface IData {
   model: any;
   description: any;
   videoUrl: any;
-  webSite: any;
+  website: any;
   address: any;
   feature_list: any;
   howToContact: any;
@@ -377,7 +377,7 @@ export default function AutosComponent() {
     model: null || "",
     description: null || "",
     videoUrl: null || "",
-    webSite: null || "",
+    website: null || "",
     address: null || "",
     feature_list: null || "",
     howToContact: "Whatsapp",
@@ -759,7 +759,7 @@ export default function AutosComponent() {
                   </h1>
                   <select
                     className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
-                    name="model"
+                    name="km"
                     onChange={(e: any) => handleInput(e)}
                   >
                     <option>Select Kilometers</option>
@@ -1025,8 +1025,8 @@ export default function AutosComponent() {
                   <input
                     type="text"
                     className={style.inputStyle}
-                    name="webSite"
-                    value={data.webSite}
+                    name="website"
+                    value={data.website}
                     onChange={(e: any) => handleInput(e)}
                   />
                   <p className="text-gray-400 text-sm">

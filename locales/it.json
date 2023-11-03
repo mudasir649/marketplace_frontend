@@ -463,10 +463,10 @@
             "contactForPrice": "Contattare per il prezzo",
             "color": "Colore",
               "axleCount": "Numero di Assi",
-              "selectAxleCount": "Seleziona Numero di Assi"
-,            
+              "selectAxleCount": "Seleziona Numero di Assi",            
             "Condition": "Condizione",
             "Brand": "Marca",
+            "model": "Modello",
             "Year": "Anno",
             "BodyShape": "Forma della carrozzeria",
             "Gearbox": "Cambio",

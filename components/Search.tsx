@@ -98,7 +98,7 @@ export default function SearchPage() {
         className={`grid grid-cols-1 mt-[-20px] md:mt-10 md:grid-cols-3 lg:grid-cols-3 h-auto p-5 ml-0 md:ml-40 gap-2 border-none rounded-md screen-1`}
         ref={dropdownRef}
       >
-        <div className="flex flex-col w-full space-y-1">
+        {/* <div className="flex flex-col w-full space-y-1">
           <div className="flex flex-row p-4 border-2 border-[#FF0000] rounded-lg h-[60px] bg-white">
             <LocationOn className="text-gray-800" />
             <input
@@ -130,8 +130,8 @@ export default function SearchPage() {
               )}
             </div>
           )}
-        </div>
-        <div className="flex flex-col w-full space-y-1">
+        </div> */}
+        <div className="flex flex-col w-full space-y-1 col-span-2">
           <div className="flex flex-row p-4 border-2 border-[#FF0000] rounded-lg h-[60px] bg-white">
             <Search className="text-gray-800" />
             <input
@@ -166,7 +166,7 @@ export default function SearchPage() {
         </div>
         <button
           className="flex flex-row justify-center 
-            cursor-pointer w-full lg:w-24 p-3 border-none 
+            cursor-pointer w-full ml-[3px] lg:w-52 p-3 border-none 
             border-[#FF0000] rounded-md bg-[#FF0000] "
           onClick={() => searchFilter()}
         >
