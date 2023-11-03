@@ -41,11 +41,11 @@ export default function ListDownComponent() {
             </div>
             {showList &&
                 <ul className="absolute bg-white text-black w-11 p-3 border space-y-2 z-20" data-aos="fade-up">
-                    <li className={liStyle} onClick={() => handleLanguage('en', 'EN')}>EN</li>
-                    <li className={liStyle} onClick={() => handleLanguage('de', 'DE')}>DE</li>
-                    <li className={liStyle} onClick={() => handleLanguage('fr', 'FR')}>FR</li>
-                    <li className={liStyle} onClick={() => handleLanguage('es', 'ES')}>ES</li>
-                    <li className={liStyle} onClick={() => handleLanguage('it', 'IT')}>IT</li>
+                    <li className={liStyle} onClick={() => handleLanguage('EN', 'EN')}>EN</li>
+                    <li className={liStyle} onClick={() => handleLanguage('DE', 'DE')}>DE</li>
+                    <li className={liStyle} onClick={() => handleLanguage('FR', 'FR')}>FR</li>
+                    <li className={liStyle} onClick={() => handleLanguage('ES', 'ES')}>ES</li>
+                    <li className={liStyle} onClick={() => handleLanguage('IT', 'IT')}>IT</li>
                 </ul>}
         </div>
     )

@@ -11,15 +11,15 @@ import itTranslation from '../locales/it.json';
 
 i18n.use(initReactI18next).init({
   resources: {
-    en: { translation: enTranslation },
-    es: { translation: esTranslation },
-    de: { translation: deTranslation },
-    fr: { translation: frTranslation },
-    it: { translation: itTranslation },
+    EN: { translation: enTranslation },
+    ES: { translation: esTranslation },
+    DE: { translation: deTranslation },
+    FR: { translation: frTranslation },
+    IT: { translation: itTranslation },
     
   },
-  lng: 'en', // Set the default language here
-  fallbackLng: 'en',
+  lng: 'EN', // Set the default language here
+  fallbackLng: 'EN',
   interpolation: { escapeValue: false },
 });
 
