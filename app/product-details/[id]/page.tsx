@@ -95,7 +95,7 @@ function ProductDetails() {
     setContact(!contact);
   };
 
-  const overviewStyle = "text-md font-bold";
+  const overviewStyle = "text-md font-bold whitespace-nowrap";
   const listStyle = "border-t border-gray-400 py-3 w-52";
   const listStyle2 = "text-sm text-gray-500";
 
@@ -338,6 +338,16 @@ function ProductDetails() {
                           {product?.brand}
                         </li>
                       )}
+                      {!product?.model ? (
+                        ""
+                      ) : (
+                        <li>
+                          <span className={overviewStyle}>
+                            {t("product.Model")}:{" "}
+                          </span>{" "}
+                          {product?.model}
+                        </li>
+                      )}
                       {!product?.year ? (
                         ""
                       ) : (
@@ -398,20 +408,12 @@ function ProductDetails() {
                           {product?.engineCapacity}
                         </li>
                       )}
-                      {product?.category == "Autos" && (
-                        <li>
-                          <span className={overviewStyle}>
-                            {t("product.Cylinders")}:{" "}
-                          </span>{" "}
-                          {product?.cylinder}
-                        </li>
-                      )}
                       {!product?.extriorColor ? (
                         ""
                       ) : (
                         <li>
                           <span className={overviewStyle}>
-                            {t("product.Exterior")}:{" "}
+                            {t("product.interiorColor")}:{" "}
                           </span>{" "}
                           {product?.exteriorColor}
                         </li>
@@ -449,7 +451,7 @@ function ProductDetails() {
                         <InsertLink className="text-[#FF0000] mt-[-4px]" />{" "}
                         {t('autosComponent.videoURL')}:{" "}
                       </span>
-                      {product?.videoUrl}
+                        {product?.videoUrl}
                     </div>
                   )}
                   {product?.website && (
@@ -459,7 +461,7 @@ function ProductDetails() {
                         <Language className="text-[#FF0000] mt-[-4px]" />{" "}
                         Website:{" "}
                       </span>
-                      {product?.website}
+                        {product?.website}
                     </div>
                   )}
                 </section>
@@ -502,13 +504,13 @@ function ProductDetails() {
                     )}
                     {contact && (
                       <div className="bg-gray-100 text-black border border-gray-100 flex justify-center transition ease-out duration-200">
-                        <span className="absolute ml-[390px]">
+                        <span className="absolute end-28 mt-1">
                           <Cancel
                             className="text-red-500"
                             onClick={() => setContact(false)}
                           />
                         </span>
-                        <ul className="space-y-3 py-3">
+                        <ul className="space-y-3 py-3 mt-3">
                           {product?.viber && (
                             <li className="space-x-3">
                               <PhoneInTalk className="text-white border bg-purple-500 border-purple-500 rounded-lg mr-3" />{" "}
