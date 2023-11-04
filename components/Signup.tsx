@@ -63,13 +63,43 @@ export default function Signup() {
         return;
       }
     }
+    // try {
+    //   const res = await registerUser({ firstName, lastName, userName, email, password, phoneNumber }).unwrap();    
+    //   dispatch(setCredentials({ ...res }));
+    //   router.push('/')
+    // } catch (error: any) {
+    //   toast(error?.data?.message);
+    // }
     try {
-      const res = await registerUser({ firstName, lastName, userName, email, password, phoneNumber }).unwrap();
+      const res = await registerUser({
+        firstName,
+        lastName,
+        userName,
+        email,
+        password,
+        phoneNumber
+      }).unwrap();
+      
       dispatch(setCredentials({ ...res }));
-      router.push('/')
+      router.push('/');
     } catch (error: any) {
-      toast(error?.data?.message);
+      if (error.data && error.data.errors) {
+        // If there are validation errors returned by the server
+        const errorMessages = error.data.errors.map((err: any) => err.path);        
+        
+        // You can display each error message to the user
+        errorMessages.forEach((errorMsg: string) => {
+          toast(`${errorMsg} is invalid.Please! enter valid value`, { type: 'error' });
+        });
+      } else if (error.data && error.data.message) {
+        // If there is a general error message
+        toast(`${error.data.message}`, { type: 'error' });
+      } else {
+        // Handle other types of errors
+        toast('An error occurred. Please try again later.', { type: 'error' });
+      }
     }
+    
   }
 
 
