@@ -47,7 +47,7 @@
       "Baumaschinen",
       "Drohnen",
       "Andere",
-      "Teile",
+      "Ersatzteile",
       "Anhänger",
       "Lastwagen",
       "Lieferwagen"
@@ -57,9 +57,9 @@
       "Fahrradteile",
       "Bootsteile",
       "Bussteile",
-      "Baumaschinen-Teile",
+      "Baumaschinen-Ersatzteile",
       "Drohnenteile",
-      "Andere Teile",
+      "Andere Ersatzteile",
       "Anhängerteile",
       "Lastwagenteile",
       "Lieferwagenteile"
@@ -72,7 +72,7 @@
         "Baumaschinen",
         "Drohnen",
         "Andere",
-        "Teile",
+        "Ersatzteile",
         "Anhänger",
         "Lastwagen",
         "Lieferwagen",
@@ -80,9 +80,9 @@
         "Fahrradteile",
         "Bootsteile",
         "Bussteile",
-        "Baumaschinen-Teile",
+        "Baumaschinen-Ersatzteile",
         "Drohnenteile",
-        "Andere Teile",
+        "Andere Ersatzteile",
         "Anhängerteile",
         "Lastwagenteile",
         "Lieferwagenteile"
@@ -96,7 +96,7 @@
   "selectAxleCount": "Achszahl auswählen",
       "color": "Farbe",
       "title": "Titel",
-      "price": "Preisgestaltung",
+      "price": "Preisart",
       "condition": "Zustand",
       "brand": "Marke",
       "selectBrand": "Marke auswählen",
@@ -127,14 +127,14 @@
       "contactDetails": "Kontaktdaten",
       "location": "Standort",
       "enterAddress": "Wählen Sie einen Standort",
-      "howToContact": "Kontaktmöglichkeit ",
+      "howToContact": "Bevozugte Kontaktanfnahme ",
       "whatsapp": "WhatsApp-Nr. ",
       "viber": "Viber-Nr. ",
       "website": "Website",
       "submit": "Aufgeben" , 
       "websitePlaceholder": "z.B. https://beispiel.com",
     "titleCharacterLimit": "Zeichenbegrenzung 25",
-    "priceCHF": "Preis[CHF]"  ,
+    "priceCHF": "Fixpreis[CHF]"  ,
     "subCategory": "Unterkategorie",
     "selectSubCategory": "Unterkategorie auswählen"
   } , 
@@ -182,7 +182,7 @@
   "condition": {
     "new": "Neu",
     "used": "Gebraucht",
-    "recondition": "Generalüberholt"
+    "recondition": "Ab Platz"
   }
 
 ,
@@ -214,7 +214,7 @@
       "seeAllCategories": "Alle Kategorien",
       "topCategories": "Top-Kategorien:",
       "autos": "Autos",
-      "parts": "Teile"
+      "parts": "Ersatzteile"
     } ,
     "sellRepairComponent": {
       "sellTitle": "Wollen Sie verkaufen",
@@ -249,7 +249,7 @@
         "postYourAd":"Inserat aufgeben",
         "hello": "Hallo",
         "myProfile": "Mein Profil",
-        "myAds": "Meine Anzeigen",
+        "myAds": "Meine Inserate",
         "favourites": "Favoriten",
         "logout": "Abmelden",
         "login": "Anmelden"
@@ -315,9 +315,9 @@
     "submit": "Absenden"
   } , 
   "random": {
-      "myAdsListing": "Meine Anzeigenliste"
+      "myAdsListing": "Meine Inserate"
 ,
-"myFavouriteListings": "Meine Favorisierten Angebote",
+"myFavouriteListings": "Favoriten",
     
     "latestAds": "Top Inserate",
     "seeAllAds": "Alle Inserate "
@@ -328,7 +328,7 @@
     "subCategory": "Unterkategorie",
     "required": "* Erforderlich",
     "bikes": "Fahrräder",
-    "parts": "Teile",
+    "parts": "Ersatzteile",
     "selectSubCategory": "Unterkategorie auswählen"
   }
 , 
@@ -458,12 +458,12 @@
         "description1": "Sie können ganz einfach Ihre Anzeige schalten. Tippen Sie einfach auf das Pluszeichen (+), melden Sie sich an und geben Sie Ihre Anzeige mit den richtigen Daten auf. Sie erhalten eine Benachrichtigung, nachdem Sie Ihre Anzeige gesendet haben."
         ,
         "title2": "WIE KANN ICH MEINE INSERATE BEARBEITEN/LÖSCHEN?",
-        "description2": "Melden Sie sich einfach an und gehen Sie zu Konto => Meine Anzeigen. Dort erhalten Sie eine Liste Ihrer Anzeigen. Jede Anzeige verfügt über eine Löschoption."
+        "description2": "Melden Sie sich einfach an und gehen Sie zu Konto => Meine Inserate. Dort erhalten Sie eine Liste Ihrer Anzeigen. Jede Anzeige verfügt über eine Löschoption."
         ,
         "title3": "WIE KANN ICH MEINE INSERATE BEARBEITEN?",
-        "description3": "Melden Sie sich einfach an und gehen Sie zu Konto => Meine Anzeigen. Dort erhalten Sie eine Liste Ihrer Anzeigen. Jede Anzeige verfügt über eine Bearbeitungsoption."
+        "description3": "Melden Sie sich einfach an und gehen Sie zu Konto => Meine Inserate. Dort erhalten Sie eine Liste Ihrer Anzeigen. Jede Anzeige verfügt über eine Bearbeitungsoption."
         ,
-        "title4": "WIE LANGE BLEIBEN MEINE ANZEIGEN AKTIV?",
+        "title4": "WIE LANGE BLEIBEN MEINE INSERATE AKTIV?",
         "description4": "Es hängt von Ihren Einstellungen ab, wie viele Tage die Anzeige aktiv bleibt. Je nachdem, wie die Einstellungen sind, werden die Anzeigen sichtbar."
         ,
         "title5": "WIE VIEL INSERATE KANN ICH KOSTENLOS PUBLIZIEREN?",
@@ -514,7 +514,7 @@
         "Cylinders": "Zylinder",
         "Exterior": "Außenansicht",
         "Interior": "Innenraum",
-        "Price": "Preis",
+        "Price": "Fixpreis",
         "Euro": "Euro",
         "videoUrl": "Video URL",
         "Views": "Ansichten",
@@ -541,13 +541,13 @@
       
         "myProfile": {
           "labels": {
-            "basicInformation": "Grundinformation",
+            "basicInformation": "Profil",
             "username": "Benutzername",
             "email": "E-Mail",
             "firstName": "Vorname",
             "lastName": "Nachname",
             "phone": "Telefon",
-            "submit": "Einreichen"
+            "submit": "Speichern"
           },
           "buttons": {
             "uploadPicture": "Bild hochladen"

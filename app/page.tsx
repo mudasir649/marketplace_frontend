@@ -51,14 +51,14 @@ function MainPage() {
         </TopProducts>
         <FooterBanner /> */}
         {!featuredAds ? (
-          <div className="flex justify-center mt-5">
+          <div className="flex justify-center mt-8">
           <Image
-              src='/assets/eidcarosse.gif'
-              alt="eidcarosse_logo"
-              width={500}
-              height={500}
+          src='/assets/eidcarosse.gif'
+          alt="eidcarosse_logo"
+          width={200}
+          height={200}
           />
-      </div>
+      </div> 
         ) : (
           <>
             <section className="mb-20 mt-5">

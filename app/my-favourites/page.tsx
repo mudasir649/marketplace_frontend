@@ -36,19 +36,6 @@ export default function Favorite() {
     }
   }, [userId, userInfo, favAds, router]);
 
-  if (!favAds) {
-    return (
-      <div className="flex justify-center mt-5">
-        <Image
-          src="/assets/eidcarosse.gif"
-          alt="eidcarosse_logo"
-          width={500}
-          height={500}
-        />
-      </div>
-    );
-  }
-
   return (
     <Home>
       {!favAds ? (
@@ -56,8 +43,8 @@ export default function Favorite() {
           <Image
             src="/assets/eidcarosse.gif"
             alt="eidcarosse_logo"
-            width={500}
-            height={500}
+            width={200}
+            height={200}
           />
         </div>
       ) : (

@@ -42,8 +42,8 @@ export default function MyAds() {
             <Image
                 src='/assets/eidcarosse.gif'
                 alt="eidcarosse_logo"
-                width={500}
-                height={500}
+                width={200}
+                height={200}
             />
         </div>
             : 

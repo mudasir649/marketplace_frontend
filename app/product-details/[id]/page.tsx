@@ -68,16 +68,22 @@ function ProductDetails() {
   const [slide, setSlide] = useState(0);
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/getSpecific/${id}`
+        );
+        setProduct(res.data?.data);
+      } catch (error: any) {
+        if(error.response.status === 400){
+          router.push('/')
+        }
+      }
+    };
     const addView = async () => {
       await axios.patch(
         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/addView?id=${id}`
       );
-    };
-    const fetchData = async () => {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/getSpecific/${id}`
-      );
-      setProduct(res.data?.data);
     };
     addView();
     fetchData();
@@ -200,7 +206,10 @@ function ProductDetails() {
     }
   };
   console.log(product?.images);
-  
+
+  const redirectLogin: any = () => {
+     router.push('/login')
+  }
 
   return (
     <>
@@ -210,8 +219,8 @@ function ProductDetails() {
             <Image
               src="/assets/eidcarosse.gif"
               alt="eidcarosse_logo"
-              width={700}
-              height={700}
+              width={200}
+              height={200}
             />
           </div>
         ) : (
@@ -502,7 +511,8 @@ function ProductDetails() {
                         </div>
                       </div>
                     )}
-                    {contact && (
+                    {contact ?  (
+                      userInfo ? 
                       <div className="bg-gray-100 text-black border border-gray-100 flex justify-center transition ease-out duration-200">
                         <span className="absolute end-28 mt-1">
                           <Cancel
@@ -533,7 +543,9 @@ function ProductDetails() {
                           )}
                         </ul>
                       </div>
-                    )}
+                      :
+                      redirectLogin()
+                    ) : ''}
                     {userId === product?.userId?._id ? (
                       ""
                     ) : (
