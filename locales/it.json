@@ -173,7 +173,8 @@
     "myAds": "I miei annunci",
     "favourites": "Preferiti",
     "logout": "Esci",
-    "login": "Accedi"
+    "login": "Accedi",
+    "changePassword": "Cambiare la password"
   },
   "labels": {
     "fullName": "Nome completo",

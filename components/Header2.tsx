@@ -13,6 +13,7 @@ import {
   ChatBubbleOutline,
   AdminPanelSettings,
   Cancel,
+  ManageAccounts,
 } from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useTranslation } from "react-i18next";
@@ -43,13 +44,19 @@ export default function Header2() {
   const router = useRouter();
   const { userInfo } = useSelector((state: any) => state.auth);
   const userId = userInfo?.data?.userDetails?._id;
-  const { showShare, showSellNow, showRepairNow, showDeleteAd, type1, showContact } =
-    useSelector((state: any) => state.app);
+  const {
+    showShare,
+    showSellNow,
+    showRepairNow,
+    showDeleteAd,
+    type1,
+    showContact,
+  } = useSelector((state: any) => state.app);
   const userData = userInfo?.data?.userDetails;
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const pathname = usePathname();
 
-  const checkType = typeMap[type1] || type1; 
+  const checkType = typeMap[type1] || type1;
   const { width, height } = useWindowDimensions();
   const newWidth = width || 0;
 
@@ -317,21 +324,34 @@ export default function Header2() {
                         </h4>
                       </div>
                       <ul className="flex flex-col space-y-3 w-full text-gray-700">
-                        <DropdownItem
-                          logo={<Person />}
-                          text={t("header.myProfile")}
-                          href="/my-profile"
-                        />
-                        <DropdownItem
-                          logo={<FormatListNumbered />}
-                          text={t("header.myAds")}
-                          href="/my-ads"
-                        />
-                        <DropdownItem
-                          logo={<Favorite />}
-                          text={t("header.favourites")}
-                          href="/my-favourites"
-                        />
+                        <li className="whitespace-nowrap">
+                          <DropdownItem
+                            logo={<Person />}
+                            text={t("header.myProfile")}
+                            href="/my-profile"
+                          />
+                        </li>
+                        <li className="whitespace-nowrap">
+                          <DropdownItem
+                            logo={<FormatListNumbered />}
+                            text={t("header.myAds")}
+                            href="/my-ads"
+                          />
+                        </li>
+                        <li className="whitespace-nowrap">
+                          <DropdownItem
+                            logo={<Favorite />}
+                            text={t("header.favourites")}
+                            href="/my-favourites"
+                          />
+                        </li>
+                        <li className="whitespace-nowrap">
+                          <DropdownItem
+                            logo={<ManageAccounts />}
+                            text={t("header.changePassword")}
+                            href="/change-password"
+                          />
+                        </li>
                       </ul>
                       <ul
                         className="flex flex-col space-y-5 border-t-2 pt-3 w-full text-gray-700"
