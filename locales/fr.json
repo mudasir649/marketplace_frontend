@@ -184,7 +184,8 @@
     "myAds": "Mes annonces",
     "favourites": "Favoris",
     "logout": "Déconnexion",
-    "login": "Se connecter"
+    "login": "Se connecter",
+    "changePassword": "Changer le mot de passe"
   },
   "labels": {
     "fullName": "Nom complet",

@@ -667,10 +667,10 @@ export default function AdvanceSearch({
             {productData?.length > 0 ? (
               <div className="flex flex-col w-full h-full">
                 <div
-                  className="flex flex-row justify-between  bg-white border border-[#e52320] mb-3 p-2 pl-5"
+                  className="flex flex-col md:flex-row justify-between bg-white border border-[#e52320] mb-3 p-2 pl-5"
                   data-aos="fade-left"
                 >
-                  <div className="">
+                  <div className="mb-2 md:mb-0">
                     <h1 className="text-xl font-bold">
                       {productsCount} {t("categorySelection.results")}
                     </h1>

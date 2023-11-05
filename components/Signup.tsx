@@ -89,7 +89,7 @@ export default function Signup() {
         
         // You can display each error message to the user
         errorMessages.forEach((errorMsg: string) => {
-          toast(`${errorMsg} is invalid.Please! enter valid value`, { type: 'error' });
+          toast(`${errorMsg} is invalid. Please! enter valid value`, { type: 'error' });
         });
       } else if (error.data && error.data.message) {
         // If there is a general error message

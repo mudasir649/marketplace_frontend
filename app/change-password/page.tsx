@@ -1,13 +1,9 @@
 'use client';
 import Home from '@/components/Home'
-import { Cancel, Person } from '@mui/icons-material';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
-import { setCredentials } from '@/store/authSlice';
-import { refreshPage } from '@/store/appSlice';
 import { useRouter } from 'next/navigation';
 
 
@@ -22,6 +18,7 @@ export default function MyProfile() {
 
     const router = useRouter();
     const { userInfo } = useSelector((state: any) => state.auth);
+    const userId = userInfo?.data?.userDetails?._id;
     const { refresh } = useSelector((state: any) => state.app);
 
     useEffect(() => {
@@ -36,13 +33,6 @@ export default function MyProfile() {
         newPassword: '',
         confirmPassword: '',
     });
-    const dispatch = useDispatch();
-
-    const refreshMyProfile = useCallback(() => {
-        if (refresh === true) {
-            router.refresh();
-        }
-    }, [refresh, router])
 
     const handleInput = (e: any) => {
         const name = e.target.name;
@@ -58,7 +48,35 @@ export default function MyProfile() {
 
     const updateProfile = async (e: any) => {
         e.preventDefault();
-        
+        setLoading(true)
+        if(data.newPassword === data.confirmPassword){
+            try {
+                const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/change-password/${userId}`, data);                
+                if(res?.status === 200){
+                    toast(res.data?.message);
+                }
+            } catch (error: any) {
+                console.log(error);
+                
+                if (error.response.data && error.response.data.errors) {
+                    // If there are validation errors returned by the server
+                    const errorMessages = error.response.data.errors.map((err: any) => err.path);        
+                    
+                    // You can display each error message to the user
+                    errorMessages.forEach((errorMsg: string) => {
+                      toast(`${errorMsg} is invalid. Please! enter valid value`, { type: 'error' });
+                    });
+                  }else if(error.response.data && error.response.data.message){
+                    toast(`${error.response.data.message}`, { type: 'error' });
+                  } else {
+                    // Handle other types of errors
+                    toast('An error occurred. Please try again later.', { type: 'error' });
+                  }
+            }
+        }else{
+            toast('Password and Confirm Password is not same.')
+        }
+        setLoading(false);
     }
 
 
@@ -78,14 +96,14 @@ export default function MyProfile() {
                         <div className={style.divStyle}>
                             <h1 className={style.h1Style}>New Password</h1>
                             <input type="password" className={style.inputStyle}
-                                name='lastName'
+                                name='newPassword'
                                 value={data?.newPassword}
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
                         <div className={style.divStyle}>
                             <h1 className={style.h1Style}>Confirm Password</h1>
                             <input type="password" className={style.inputStyle}
-                                name='phoneNumber'
+                                name='confirmPassword'
                                 value={data?.confirmPassword}
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
