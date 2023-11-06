@@ -60,16 +60,20 @@ export default function PostAd() {
     ];
     const subList = [
         {
-            name: t('subList.0')
+            name: t('subList.0'),
+            name1:'Bicycles'
         },
         {
-            name: t('subList.1')
+            name: t('subList.1'),
+            name1:'E-scooter'
         },
         {
-            name: t('subList.2')
+            name: t('subList.2'),
+            name1:'E-bikes'
         },
         {
-            name: t('subList.3')
+            name: t('subList.3'),
+            name1:'Motorcycle'
         },
     ];
 

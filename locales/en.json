@@ -129,6 +129,8 @@
         "howToContact": "How to contact ",
         "whatsapp": "WhatsApp No ",
         "viber": "Viber Number ",
+        "email": "Email",
+        "phone": "Phone",
         "website": "Website",
         "submit": "Submit" , 
         "websitePlaceholder": "e.g. https://example.com",

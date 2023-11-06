@@ -96,7 +96,7 @@ export default function Signup() {
         toast(`${error.data.message}`, { type: 'error' });
       } else {
         // Handle other types of errors
-        toast('An error occurred. Please try again later.', { type: 'error' });
+        toast('An error occurred. Please try again.', { type: 'error' });
       }
     }
     

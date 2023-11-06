@@ -78,8 +78,9 @@ export default function AutosComponent() {
   const { t } = useTranslation(); // Initialize the translation hook
 
   const { userInfo } = useSelector((state: any) => state.auth);
-  const userData =
-    userInfo === null ? userInfo : userInfo?.data?.userDetails?._id;
+  const userData = userInfo === null ? userInfo : userInfo?.data?.userDetails?._id;
+  const email = userInfo?.data?.userDetails?.email;
+  const phone = userInfo?.data?.userDetails?.phoneNumber;
   const { type } = useParams();
   const [open, isOpen] = useState<Boolean>(false);
   const [openSub, isOpenSub] = useState<Boolean>(false);
@@ -470,8 +471,17 @@ export default function AutosComponent() {
         setLoading(false);
         router.push("/my-ads");
       }
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      if(error.response.data && error.response.data.errors){
+        const errorMessages = error.response.data.errors.map((err: any) => err.path);
+
+        errorMessages.forEach((errorMessage: any) => {
+          toast(`${errorMessage} is invalid. Please enter valid value.`, { type: 'error' })
+        })
+
+      }else{
+        toast(`An error occured. Please! try again.`, { type: 'error' })
+      }
     }
     setLoading(false);
   };
@@ -1016,24 +1026,31 @@ export default function AutosComponent() {
                     </p>
                   </div>
                 </div>
-              ) : (
-                ""
-              )}
+              ) : howContact == 'email' ? 
               <div className={style.divStyle}>
-                <h1 className={style.h1Style}>{t("autosComponent.website")}</h1>
-                <div className="flex flex-col w-full">
-                  <input
-                    type="text"
-                    className={style.inputStyle}
-                    name="website"
-                    value={data.website}
-                    onChange={(e: any) => handleInput(e)}
-                  />
-                  <p className="text-gray-400 text-sm">
-                    {t("autosComponent.websitePlaceholder")}
-                  </p>
+                  <h1 className={style.h1Style}>
+                    {t("autosComponent.email")}{" "}
+                    <span className="text-[#FF0000]">*</span>
+                  </h1>
+                  <div className="flex flex-col w-full">
+                    <p className="text-black text-sm mt-1 font-bold">
+                      {email}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              : howContact === 'phone' ? 
+              <div className={style.divStyle}>
+                  <h1 className={style.h1Style}>
+                    {t("autosComponent.phone")}{" "}
+                    <span className="text-[#FF0000]">*</span>
+                  </h1>
+                  <div className="flex flex-col w-full">
+                    <p className="text-black text-sm mt-1 font-bold">
+                      {phone}
+                    </p>
+                  </div>
+                </div>
+              : ""}
               <div className={style.divStyle}>
                 <h1 className={`${style.h1Style} invisible`}>ffj</h1>
                 {!loading ? (

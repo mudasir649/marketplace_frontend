@@ -465,7 +465,7 @@ export default function AdvanceSearch({
     <div>
       <div className="container mx-auto flex flex-col lg:flex-row mt-5 lg:mt-10 space-y-3 lg:space-y-0 lg:space-x-3 w-full mb-[500px]">
         <div
-          className="bg-white shadow-lg border rounded-sm w-full lg:w-[400px] h-full p-2"
+          className="bg-white shadow-lg border rounded-sm w-full lg:w-[300px] h-full p-2"
           data-aos="fade-right"
         >
           <div className="border-b flex flex-row justify-between p-2">
@@ -716,7 +716,7 @@ export default function AdvanceSearch({
                             <div className="flex justify-center bg-gray-50 w-full h-48 border-none rounded-lg">
                               <img
                                 src={product?.images[0]}
-                                className="h-auto w-auto object-fill border-none rounded-lg"
+                                className="h-44 w-auto object-fill border-none rounded-lg"
                                 alt=""
                               />
                             </div>

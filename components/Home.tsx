@@ -11,9 +11,7 @@ import { typeMap } from '@/utils/dataVariables';
 
 export default function Home({ children }: any) {
   const { type1 } = useSelector((state: any) => state.app);
-  
   const pathname = usePathname();
-
   const checkType: string = typeMap[type1] || type1
 
   return (
