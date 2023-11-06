@@ -81,6 +81,8 @@ export default function VehicleSubComponent({ type }: any) {
   const { userInfo } = useSelector((state: any) => state.auth);
   const userData =
     userInfo === null ? userInfo : userInfo?.data?.userDetails?._id;
+  const email = userInfo?.data?.userDetails?.email;
+  const phone = userInfo?.data?.userDetails?.phoneNumber;
   const [open, isOpen] = useState<Boolean>(false);
   const [openSub, isOpenSub] = useState<Boolean>(false);
   const [openBrand, isOpenBrand] = useState<Boolean>(false);
@@ -261,6 +263,24 @@ export default function VehicleSubComponent({ type }: any) {
     }
   }, [router, userData]);
 
+  const conditionList = [
+    {
+      id: 1,
+      name: t("condition.new"),
+      value: "new",
+    },
+    {
+      id: 2,
+      name: t("condition.used"),
+      value: "used",
+    },
+    {
+      id: 3,
+      name: t("condition.recondition"),
+      value: "recondition",
+    },
+  ];
+
   const interiorColor = [
     {
       name: t("interiorColor.name1"),
@@ -349,107 +369,106 @@ export default function VehicleSubComponent({ type }: any) {
 
   const formType = [
     {
-      name:t('allCategories.0'),
-      name1: "Autos"
+      name: t("allCategories.0"),
+      name1: "Autos",
     },
     {
-      name:t('allCategories.1'),
-      name1: "Bicycles"
+      name: t("allCategories.1"),
+      name1: "Bicycles",
     },
     {
-      name:t('allCategories.2'),
-      name1: "E-scooter"
+      name: t("allCategories.2"),
+      name1: "E-scooter",
     },
     {
-      name:t('allCategories.3'),
-      name1: "E-bikes"
+      name: t("allCategories.3"),
+      name1: "E-bikes",
     },
     {
-      name:t('allCategories.4'),
-      name1: "Motorcycle"
+      name: t("allCategories.4"),
+      name1: "Motorcycle",
     },
     {
-      name:t('allCategories.5'),
-      name1: "Boats"
+      name: t("allCategories.5"),
+      name1: "Boats",
     },
     {
-      name:t('allCategories.6'),
-      name1: "Busses"
+      name: t("allCategories.6"),
+      name1: "Busses",
     },
     {
-      name:t('allCategories.7'),
-      name1: "Construction Machines"
+      name: t("allCategories.7"),
+      name1: "Construction Machines",
     },
     {
-      name:t('allCategories.8'),
-      name1: "Drones"
+      name: t("allCategories.8"),
+      name1: "Drones",
     },
     {
-      name:t('allCategories.9'),
-      name1: "Others"
+      name: t("allCategories.9"),
+      name1: "Others",
     },
     {
-      name:t('allCategories.10'),
-      name1: "Trailers"
+      name: t("allCategories.10"),
+      name1: "Trailers",
     },
     {
-      name:t('allCategories.11'),
-      name1: "Trucks"
+      name: t("allCategories.11"),
+      name1: "Trucks",
     },
     {
-      name:t('allCategories.12'),
-      name1: "Vans"
+      name: t("allCategories.12"),
+      name1: "Vans",
     },
     {
-      name:t('allCategories.13'),
-      name1: "Autos Parts"
+      name: t("allCategories.13"),
+      name1: "Autos Parts",
     },
     {
-      name:t('allCategories.14'),
-      name1: "Bikes Parts"
+      name: t("allCategories.14"),
+      name1: "Bikes Parts",
     },
     {
-      name:t('allCategories.15'),
-      name1: "Boat Parts"
+      name: t("allCategories.15"),
+      name1: "Boat Parts",
     },
     {
-      name:t('allCategories.16'),
-      name1: "Busses Parts"
+      name: t("allCategories.16"),
+      name1: "Busses Parts",
     },
     {
-      name:t('allCategories.17'),
-      name1: "Construction Machine Parts"
+      name: t("allCategories.17"),
+      name1: "Construction Machine Parts",
     },
     {
-      name:t('allCategories.18'),
-      name1: "Drones Parts"
+      name: t("allCategories.18"),
+      name1: "Drones Parts",
     },
     {
-      name:t('allCategories.19'),
-      name1: "Other Parts"
+      name: t("allCategories.19"),
+      name1: "Other Parts",
     },
     {
-      name:t('allCategories.20'),
-      name1: "Trailers Parts"
+      name: t("allCategories.20"),
+      name1: "Trailers Parts",
     },
     {
-      name:t('allCategories.21'),
-      name1: "Trucks Parts"
+      name: t("allCategories.21"),
+      name1: "Trucks Parts",
     },
     {
-      name:t('allCategories.22'),
-      name1: "Vans Parts"
+      name: t("allCategories.22"),
+      name1: "Vans Parts",
     },
-  ]
+  ];
 
   const allCat = (type: string) => {
     for (const item of formType) {
-      if(item.name1 === type){
-        return item.name
+      if (item.name1 === type) {
+        return item.name;
       }
     }
-  }
-  
+  };
 
   return (
     <Home>
@@ -465,9 +484,7 @@ export default function VehicleSubComponent({ type }: any) {
           </div>
           <div className=" container mx-auto flex flex-col mb-7">
             <div className="flex flex-row space-x-2 mt-5">
-              <h1>
-                {allCat(type)}
-              </h1>
+              <h1>{allCat(type)}</h1>
               <ArrowForwardIos
                 className="mt-[5px]"
                 style={{ fontSize: "14px" }}
@@ -873,8 +890,7 @@ export default function VehicleSubComponent({ type }: any) {
               </div>
               <div className={style.divStyle}>
                 <h1 className={style.h1Style}>
-                  {t("autosComponent.howToContact")}{" "}
-                  <span className="text-[#FF0000]">*</span>
+                  {t("autosComponent.howToContact")}
                 </h1>
                 <div
                   className="flex flex-col hover:border-red-500 w-full rounded-sm h-10"
@@ -892,19 +908,13 @@ export default function VehicleSubComponent({ type }: any) {
                   </div>
                   <div
                     className={`menu-item flex flex-row border bg-white border-gray-300 
-                                w-full rounded-sm p-1 ${
-                                  openSub ? "active" : "inactive"
-                                }`}
+    w-full rounded-sm p-1 ${openSub ? "active" : "inactive"}`}
                   >
                     <ul className="w-full max-h-96 overflow-y-auto">
                       {howContactList?.map((list: any, i: number) => (
                         <li
                           className={`hover:bg-red-500 hover:text-white 
-                                        ml-1 mb-1 ${
-                                          list.length - 1 == i
-                                            ? ""
-                                            : " border-b-2"
-                                        }`}
+                ml-1 mb-1 ${list.length - 1 == i ? "" : " border-b-2"}`}
                           key={i}
                           onClick={() => handleHowContact(list?.name)}
                         >
@@ -931,7 +941,7 @@ export default function VehicleSubComponent({ type }: any) {
                       onChange={(e: any) => handleInput(e)}
                     />
                     <p className="text-gray-400 text-sm mt-1">
-                      Whatsapp number country code. e.g.+41xxxxxxxxxx
+                      {t("autosComponent.whatsapp")} +41xxxxxxxxxx
                     </p>
                   </div>
                 </div>
@@ -951,44 +961,33 @@ export default function VehicleSubComponent({ type }: any) {
                       onChange={(e: any) => handleInput(e)}
                     />
                     <p className="text-gray-400 text-sm mt-1">
-                      Viber number with your country code. e.g.+41xxxxxxxxxx
+                      {t("autosComponent.viber")} +41xxxxxxxxxx
                     </p>
                   </div>
                 </div>
-              ) : howContact == "Email" ? (
+              ) : howContact == "email" ? (
                 <div className={style.divStyle}>
                   <h1 className={style.h1Style}>
                     {t("autosComponent.email")}{" "}
                     <span className="text-[#FF0000]">*</span>
                   </h1>
                   <div className="flex flex-col w-full">
-                    <input
-                      type="text"
-                      className={style.inputStyle}
-                      name="email"
-                      value={data.email}
-                      onChange={(e: any) => handleInput(e)}
-                    />
+                    <p className="text-black text-sm mt-1 font-bold">{email}</p>
+                  </div>
+                </div>
+              ) : howContact === "phone" ? (
+                <div className={style.divStyle}>
+                  <h1 className={style.h1Style}>
+                    {t("autosComponent.phone")}{" "}
+                    <span className="text-[#FF0000]">*</span>
+                  </h1>
+                  <div className="flex flex-col w-full">
+                    <p className="text-black text-sm mt-1 font-bold">{phone}</p>
                   </div>
                 </div>
               ) : (
                 ""
               )}
-              <div className={style.divStyle}>
-                <h1 className={style.h1Style}>{t("autosComponent.website")}</h1>
-                <div className="flex flex-col w-full">
-                  <input
-                    type="text"
-                    className={style.inputStyle}
-                    name="webSite"
-                    value={data.webSite}
-                    onChange={(e: any) => handleInput(e)}
-                  />
-                  <p className="text-gray-400 text-sm">
-                    {t("autosComponent.websitePlaceholder")}
-                  </p>
-                </div>
-              </div>
               <div className={style.divStyle}>
                 <h1 className={`${style.h1Style} invisible`}>ffj</h1>
                 {!loading ? (

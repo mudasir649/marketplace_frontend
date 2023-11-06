@@ -6,10 +6,8 @@ import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { BikeFuelType, bikeBodyShape, bodyShape, gearBox, howContactList, kilometers, priceList } from '@/utils/dataVariables';
-import { carsList } from '@/utils/carsList';
+import { BikeFuelType, bikeBodyShape, howContactList, kilometers, priceList } from '@/utils/dataVariables';
 import "../app/post-ad/post-ad.css"
-import { bikesList } from '@/utils/bikesList';
 import { useSelector } from 'react-redux';
 import locateAddress from '@/utils/GoogleLocation';
 
@@ -61,12 +59,11 @@ export default function BikeSubComponent({ type }: any) {
     
     const { userInfo } = useSelector((state: any) => state.auth);
     const userData = userInfo === null ? userInfo : userInfo?.data?.userDetails?._id;
+    const email = userInfo?.data?.userDetails?.email;
+    const phone = userInfo?.data?.userDetails?.phoneNumber;
     const [open, isOpen] = useState<Boolean>(false);
     const [openSub, isOpenSub] = useState<Boolean>(false);
-    const [openBrand, isOpenBrand] = useState<Boolean>(false);
     const [openSubModel, isOpenSubModel] = useState<Boolean>(false);
-    const [openModel, isOpenModel] = useState<Boolean>(false);
-    const [openSubBrand, isOpenSubBrand] = useState<Boolean>(false);
     const [images, setImages] = useState<any>([]);
     const [loading, setLoading] = useState<Boolean>(false);
     const [priceListValue, setPriceListValue] = useState<string>('price');
@@ -803,83 +800,107 @@ export default function BikeSubComponent({ type }: any) {
                                 </div>
                             </div>
                             <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>{t('autosComponent.howToContact')} <span className='text-[#FF0000]'>*</span></h1>
-                                <div className='flex flex-col hover:border-red-500 w-full rounded-sm h-10'
-                                    onClick={() => isOpenSub(!openSub)}
-                                >
-                                    <div className='flex flex-row border border-gray-300' >
-                                        <h1 className='w-full p-2'>{howContact} </h1>
-                                        <div className={`p-1 pl-2 text-gray-600 w-10`}>
-                                            <ExpandMore className={`logo ${open ? 'hidden' : 'visible'} ${openSub ? 'active' : 'inactive'}`} />
-                                        </div>
-                                    </div>
-                                    <div className={`menu-item flex flex-row border bg-white border-gray-300 
-                                w-full rounded-sm p-1 ${openSub ? 'active' : 'inactive'}`}
-                                    >
-                                        <ul className='w-full max-h-96 overflow-y-auto'>
-                                            {howContactList?.map((list: any, i: number) => (
-                                                <li className={`hover:bg-red-500 hover:text-white 
-                                        ml-1 mb-1 ${list.length - 1 == i ? '' : ' border-b-2'}`}
-                                                    key={i}
-                                                    onClick={() => handleHowContact(list?.name)}
-                                                >{list?.name}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            {howContact == 'Whatsapp' ?
-                                <div className={style.divStyle}>
-                                    <h1 className={style.h1Style}>{t('autosComponent.whatsapp')}  <span className='text-[#FF0000]'>*</span></h1>
-                                    <div className='flex flex-col w-full'>
-                                        <input type="text" className={style.inputStyle}
-                                            required
-                                            name='whatsapp'
-                                            value={data.whatsapp}
-                                            onChange={(e: any) => handleInput(e)}
-                                        />
-                                        <p className='text-gray-400 text-sm mt-1'>
-                                            Whatsapp number  country code. e.g.+41xxxxxxxxxx
-                                        </p>
-                                    </div>
-                                </div> : howContact == 'Viber' ?
-                                    <div className={style.divStyle}>
-                                        <h1 className={style.h1Style}>{t('autosComponent.viber')}  <span className='text-[#FF0000]'>*</span></h1>
-                                        <div className='flex flex-col w-full'>
-                                            <input type="text" className={style.inputStyle}
-                                                required
-                                                name='viber'
-                                                value={data.viber}
-                                                onChange={(e: any) => handleInput(e)}
-                                            />
-                                            <p className='text-gray-400 text-sm mt-1'>Viber number  country code. e.g.+41xxxxxxxxxx</p>
-                                        </div>
-                                    </div>
-                                    : howContact == 'Email' ?
-                                        <div className={style.divStyle}>
-                                            <h1 className={style.h1Style}>{t('autosComponent.email')}  <span className='text-[#FF0000]'>*</span></h1>
-                                            <div className='flex flex-col w-full'>
-                                                <input type="text" className={style.inputStyle}
-                                                    name='email'
-                                                    value={data.email}
-                                                    onChange={(e: any) => handleInput(e)}
-                                                />
-                                            </div>
-                                        </div>
-                                        :
-                                        ''
-                            }
-                            <div className={style.divStyle}>
-                                <h1 className={style.h1Style}>{t('autosComponent.website')}</h1>
-                                <div className='flex flex-col w-full'>
-                                    <input type="text" className={style.inputStyle}
-                                        name='webSite'
-                                        value={data.webSite}
-                                        onChange={(e: any) => handleInput(e)}
-                                    />
-                                    <p className='text-gray-400 text-sm'>e.g. https://example.com</p>
-                                </div>
-                            </div>
+                <h1 className={style.h1Style}>
+                  {t("autosComponent.howToContact")}
+                </h1>
+                <div
+                  className="flex flex-col hover:border-red-500 w-full rounded-sm h-10"
+                  onClick={() => isOpenSub(!openSub)}
+                >
+                  <div className="flex flex-row border border-gray-300">
+                    <h1 className="w-full p-2">{howContact} </h1>
+                    <div className={`p-1 pl-2 text-gray-600 w-10`}>
+                      <ExpandMore
+                        className={`logo ${open ? "hidden" : "visible"} ${
+                          openSub ? "active" : "inactive"
+                        }`}
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className={`menu-item flex flex-row border bg-white border-gray-300 
+    w-full rounded-sm p-1 ${openSub ? "active" : "inactive"}`}
+                  >
+                    <ul className="w-full max-h-96 overflow-y-auto">
+                      {howContactList?.map((list: any, i: number) => (
+                        <li
+                          className={`hover:bg-red-500 hover:text-white 
+                ml-1 mb-1 ${list.length - 1 == i ? "" : " border-b-2"}`}
+                          key={i}
+                          onClick={() => handleHowContact(list?.name)}
+                        >
+                          {list?.name}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              {howContact == "Whatsapp" ? (
+                <div className={style.divStyle}>
+                  <h1 className={style.h1Style}>
+                    {t("autosComponent.whatsapp")}{" "}
+                    <span className="text-[#FF0000]">*</span>
+                  </h1>
+                  <div className="flex flex-col w-full">
+                    <input
+                      type="text"
+                      className={style.inputStyle}
+                      required
+                      name="whatsapp"
+                      value={data.whatsapp}
+                      onChange={(e: any) => handleInput(e)}
+                    />
+                    <p className="text-gray-400 text-sm mt-1">
+                      {t("autosComponent.whatsapp")} +41xxxxxxxxxx
+                    </p>
+                  </div>
+                </div>
+              ) : howContact == "Viber" ? (
+                <div className={style.divStyle}>
+                  <h1 className={style.h1Style}>
+                    {t("autosComponent.viber")}{" "}
+                    <span className="text-[#FF0000]">*</span>
+                  </h1>
+                  <div className="flex flex-col w-full">
+                    <input
+                      type="text"
+                      className={style.inputStyle}
+                      required
+                      name="viber"
+                      value={data.viber}
+                      onChange={(e: any) => handleInput(e)}
+                    />
+                    <p className="text-gray-400 text-sm mt-1">
+                      {t("autosComponent.viber")} +41xxxxxxxxxx
+                    </p>
+                  </div>
+                </div>
+              ) : howContact == 'email' ? 
+              <div className={style.divStyle}>
+                  <h1 className={style.h1Style}>
+                    {t("autosComponent.email")}{" "}
+                    <span className="text-[#FF0000]">*</span>
+                  </h1>
+                  <div className="flex flex-col w-full">
+                    <p className="text-black text-sm mt-1 font-bold">
+                      {email}
+                    </p>
+                  </div>
+                </div>
+              : howContact === 'phone' ? 
+              <div className={style.divStyle}>
+                  <h1 className={style.h1Style}>
+                    {t("autosComponent.phone")}{" "}
+                    <span className="text-[#FF0000]">*</span>
+                  </h1>
+                  <div className="flex flex-col w-full">
+                    <p className="text-black text-sm mt-1 font-bold">
+                      {phone}
+                    </p>
+                  </div>
+                </div>
+              : ""}
                             <div className={style.divStyle}>
                                 <h1 className={`${style.h1Style} invisible`}>ffj</h1>
                                 {!loading ?

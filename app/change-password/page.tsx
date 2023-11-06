@@ -61,7 +61,6 @@ export default function MyProfile() {
                 if (error.response.data && error.response.data.errors) {
                     // If there are validation errors returned by the server
                     const errorMessages = error.response.data.errors.map((err: any) => err.path);        
-                    
                     // You can display each error message to the user
                     errorMessages.forEach((errorMsg: string) => {
                       toast(`${errorMsg} is invalid. Please! enter valid value`, { type: 'error' });
