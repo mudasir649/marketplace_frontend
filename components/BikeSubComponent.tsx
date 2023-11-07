@@ -497,7 +497,14 @@ export default function BikeSubComponent({ type }: any) {
                     </div>
                     <div className=' container mx-auto flex flex-col mb-7'>
                         <div className='flex flex-row space-x-2 mt-5'>
-                            <h1>{translatedBikeSub}</h1>
+                            <h1>
+                            {type === 'Bicycles' ? t('allCategories.Bicycles') :
+ type === 'E-scooter' ? t('allCategories.E-scooter') :
+ type === 'E-bikes' ? t('allCategories.E-bikes') :
+ type === 'Motorcycle' ? t('allCategories.Motorcycle') :
+ ''}
+
+                            </h1>
                             <ArrowForwardIos className='mt-[5px]' style={{ fontSize: "14px" }} />
                             <h1 className='text-[#FF0000] underline'>
                                 <Link href="/post-ad">

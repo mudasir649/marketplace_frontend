@@ -405,7 +405,7 @@ export default function VehicleSubComponent({ type }: any) {
           <div className=" container mx-auto flex flex-col mb-7">
             <div className="flex flex-row space-x-2 mt-5">
               <h1>
-              {type === 'Bussess' ? t('allCategories.Bussess') :
+              {type === 'Busses' ? t('allCategories.Busses') :
  type === 'Construction Machines' ? t('allCategories.Construction Machines') :
  type === 'Vans' ? t('allCategories.Vans') :
  type === 'Trucks' ? t('allCategories.Trucks') :
