@@ -103,108 +103,7 @@ export default function AutosComponent() {
     },
   ];
 
-  const formType = [
-    {
-      name: t("allCategories.0"),
-      name1: "Autos",
-    },
-    {
-      name: t("allCategories.1"),
-      name1: "Bicycles",
-    },
-    {
-      name: t("allCategories.2"),
-      name1: "E-scooter",
-    },
-    {
-      name: t("allCategories.3"),
-      name1: "E-bikes",
-    },
-    {
-      name: t("allCategories.4"),
-      name1: "Motorcycle",
-    },
-    {
-      name: t("allCategories.5"),
-      name1: "Boats",
-    },
-    {
-      name: t("allCategories.6"),
-      name1: "Busses",
-    },
-    {
-      name: t("allCategories.7"),
-      name1: "Construction Machines",
-    },
-    {
-      name: t("allCategories.8"),
-      name1: "Drones",
-    },
-    {
-      name: t("allCategories.9"),
-      name1: "Others",
-    },
-    {
-      name: t("allCategories.10"),
-      name1: "Trailers",
-    },
-    {
-      name: t("allCategories.11"),
-      name1: "Trucks",
-    },
-    {
-      name: t("allCategories.12"),
-      name1: "Vans",
-    },
-    {
-      name: t("allCategories.13"),
-      name1: "Autos Parts",
-    },
-    {
-      name: t("allCategories.14"),
-      name1: "Bikes Parts",
-    },
-    {
-      name: t("allCategories.15"),
-      name1: "Boat Parts",
-    },
-    {
-      name: t("allCategories.16"),
-      name1: "Busses Parts",
-    },
-    {
-      name: t("allCategories.17"),
-      name1: "Construction Machine Parts",
-    },
-    {
-      name: t("allCategories.18"),
-      name1: "Drones Parts",
-    },
-    {
-      name: t("allCategories.19"),
-      name1: "Other Parts",
-    },
-    {
-      name: t("allCategories.20"),
-      name1: "Trailers Parts",
-    },
-    {
-      name: t("allCategories.21"),
-      name1: "Trucks Parts",
-    },
-    {
-      name: t("allCategories.22"),
-      name1: "Vans Parts",
-    },
-  ];
-
-  const allCat = (type: string) => {
-    for (const item of formType) {
-      if (item.name1 === type) {
-        return item.name;
-      }
-    }
-  };
+ 
 
   const [images, setImages] = useState<any>([]);
   const [loading, setLoading] = useState<Boolean>(false);
@@ -535,7 +434,7 @@ export default function AutosComponent() {
           <div className=" container mx-auto flex flex-col mb-7">
             <div className="flex flex-row space-x-2 mt-5">
               <h1>
-              {allCat(type as any)}
+              {t('allCategories.Autos')}
               </h1>
               <ArrowForwardIos
                 className="mt-[5px]"

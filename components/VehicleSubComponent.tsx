@@ -372,22 +372,6 @@ export default function VehicleSubComponent({ type }: any) {
 
  
 
-  type VehicleSub = "Busses" | "Construction Machines" | "Trailers" | "Trucks" | "Vans";
-
-  const VehicleSubTranslated: {
-    [key in VehicleSub]: string;
-  } = {
-    Busses: t('allCategories.Busses') as string,
-    "Construction Machines": t('allCategories.Construction Machines') as string,
-    Trailers: t('allCategories.Trailers') as string,
-    Trucks: t('allCategories.Trucks') as string,
-    Vans: t('allCategories.Vans') as string,
-  };
-  
-  console.log('Translations:', VehicleSubTranslated);
-  
-  const translatedVehicleSub = VehicleSubTranslated["Busses"];
-  console.log('Selected Translation:', translatedVehicleSub);
   
    
   return (
