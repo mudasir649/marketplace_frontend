@@ -471,6 +471,7 @@ export default function BikeSubComponent({ type }: any) {
             router.push('/')
         }
     }, [router, userData]);
+
     type BikeSub = "Bicycles" | "E-Scooter" | "E-bikes" | "Motorcycle";
 
     const BikeSubTranslated: {

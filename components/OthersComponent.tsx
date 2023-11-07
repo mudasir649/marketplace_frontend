@@ -414,7 +414,8 @@ export default function OthersComponent({ type }: any) {
           </div>
           <div className=" container mx-auto flex flex-col mb-7">
             <div className="flex flex-row space-x-2 mt-5">
-              <h1>{allCat(type)}</h1>
+              <h1>{t("allCategories.Others")}
+                </h1>
               <ArrowForwardIos
                 className="mt-[5px]"
                 style={{ fontSize: "14px" }}
