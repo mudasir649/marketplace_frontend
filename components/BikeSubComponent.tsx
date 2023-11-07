@@ -332,7 +332,8 @@ export default function BikeSubComponent({ type }: any) {
           }
         }
       }
-    
+
+
     
     
     const [data, setData] = useState<IData>({
@@ -470,6 +471,21 @@ export default function BikeSubComponent({ type }: any) {
             router.push('/')
         }
     }, [router, userData]);
+    type BikeSub = "Bicycles" | "E-Scooter" | "E-bikes" | "Motorcycle";
+
+    const BikeSubTranslated: {
+      [key in BikeSub]: string;
+    } = {
+      Bicycles: t('allCategories.Bicycles'),
+      "E-Scooter": t('allCategories.E-Scooter'),
+      "E-bikes": t('allCategories.E-bikes'),
+      Motorcycle: t('allCategories.Motorcycle')
+    };
+    
+    const translatedBikeSub = BikeSubTranslated["Bicycles"]; // Use type assertion here
+    
+
+
 
     return (
         <Home>
@@ -480,7 +496,7 @@ export default function BikeSubComponent({ type }: any) {
                     </div>
                     <div className=' container mx-auto flex flex-col mb-7'>
                         <div className='flex flex-row space-x-2 mt-5'>
-                            <h1>{allCat(type)}</h1>
+                            <h1>{translatedBikeSub}</h1>
                             <ArrowForwardIos className='mt-[5px]' style={{ fontSize: "14px" }} />
                             <h1 className='text-[#FF0000] underline'>
                                 <Link href="/post-ad">
