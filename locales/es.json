@@ -63,6 +63,11 @@
     "Piezas de camiones",
     "Piezas de furgonetas"
     ],
+    "chat": {
+      "inbox": "Bandeja de entrada",
+      "noChatSelected": "Ningún chat seleccionado"
+    },
+    
     "allCategories": {
       "Autos": "Automóviles",
       "Bicycles": "Bicicletas",

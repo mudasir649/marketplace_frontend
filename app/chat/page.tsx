@@ -10,6 +10,9 @@ import { ArrowBackIos, CameraAlt, CameraAltOutlined, Cancel, DeleteForever } fro
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { get, getDatabase, onValue, push, ref, set } from 'firebase/database';
+    
+import { useTranslation } from 'react-i18next';
+
 import {
     getStorage,
     ref as storageRef,
@@ -38,6 +41,8 @@ interface NewMessages {
 }
 
 function Chat() {
+    const { t } = useTranslation(); // Initialize the translation hook
+
     const { userInfo } = useSelector((state: any) => state.auth);
     const { roomsData } = useSelector((state: any) => state.app);
     const userId = userInfo?.data?.userDetails?._id;
@@ -56,6 +61,7 @@ function Chat() {
     const router = useRouter();
     const messageContainerRef = useRef<HTMLDivElement | null>(null);
     const [smallScreen, setSmallScreen] = useState<Boolean>(false);
+    
 
     const { width, height } = useWindowDimensions();
 
@@ -477,7 +483,7 @@ function Chat() {
                                         <div className='flex justify-center bg-white border border-gray-300 rounded-lg w-full'>
                                             <div className='w-[500px] border-r-2 border-gray-300'>
                                                 <h1 className='uppercase text-2xl font-semibold p-3 border-b-2'>
-                                                    Inbox
+                                                    {t('chat.inbox')}
                                                 </h1>
                                                 {roomsData && [...roomsData].map((data: any, i: any) => (
                                                     chatData[data] && (
@@ -518,7 +524,7 @@ function Chat() {
                                             </div>
                                             <div className='w-full ease-out duration-500'>
                                                 {Object.keys(selected).length <= 0 ? <div className='h-[400px]'>
-                                                    <h1 className='border rounded-md border-red-500 mx-3 mt-52 p-3'>No chat selected</h1>
+                                                    <h1 className='border rounded-md border-red-500 mx-3 mt-52 p-3'>{t('chat.noChatSelected')}</h1>
                                                 </div> :
                                                     <>
                                                         <div className='m-5 flex flex-row space-x-4'>

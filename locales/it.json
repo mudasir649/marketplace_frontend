@@ -63,6 +63,11 @@
   "Ricambi per camion",
   "Ricambi per furgoni"
   ],
+  "chat": {
+    "inbox": "Posta in arrivo",
+    "noChatSelected": "Nessuna chat selezionata"
+  },
+  
   "allCategories": {
     "Autos": "Auto",
     "Bicycles": "Biciclette",

@@ -64,6 +64,11 @@
       "Lkwteile",
       "Lieferwagenteile"
       ],
+      "chat": {
+        "inbox": "Posteingang",
+        "noChatSelected": "Kein Chat ausgewählt"
+      }
+      ,
       "allCategories": {
         "Autos": "Autos",
         "Bicycles": "Motorräder",

@@ -65,6 +65,11 @@
         "Trucks Parts",
         "Vans Parts"
       ],
+      "chat": 
+      {
+        "inbox": "Inbox",
+        "noChatSelected": "No Chat Selected"
+      },
        "allCategories":{
         "Autos": "Autos",
         "Bicycles": "Bicycles",

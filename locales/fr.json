@@ -89,7 +89,13 @@
     "Trucks Parts": "Pièces pour camions",
     "Vans Parts": "Pièces pour fourgonnettes"
   }
-  , "autosComponent": {
+  , 
+  "chat": {
+    "inbox": "Boîte de réception",
+    "noChatSelected": "Aucune discussion sélectionnée"
+  },
+  
+  "autosComponent": {
     
     "subCategory": "Sous-catégorie",
     "heading1": "Sélectionner une catégorie",
