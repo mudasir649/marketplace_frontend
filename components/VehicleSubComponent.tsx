@@ -410,8 +410,7 @@ export default function VehicleSubComponent({ type }: any) {
  type === 'Vans' ? t('allCategories.Vans') :
  type === 'Trucks' ? t('allCategories.Trucks') :
  type === 'Trailers' ? t('allCategories.Trailers') :
- ''}
-  
+ ''}  
               </h1>
               <ArrowForwardIos
                 className="mt-[5px]"
