@@ -424,11 +424,19 @@
       "Contacto",
       "Blog"
     ],
+    
     "list4": [
       "Preguntas frecuentes",
+       "faq"
+     ,
       "Política de privacidad",
-      "Términos y condiciones"
-    ], 
+       "privacy-policy"
+    ,
+     "Términos y condiciones",
+     "terms-and-condition"
+     
+   ] ,
+
     "faq": {
       "pageTitle": "Preguntas Frecuentes",
       "title1": "¿CÓMO PUBLICO UN ANUNCIO?",

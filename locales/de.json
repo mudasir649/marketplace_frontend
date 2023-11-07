@@ -379,7 +379,7 @@
   }  ,
 
   "TermsAndConditions": {
-    "title": "Allgemeine Geschäftsbedingungen",
+    "title": "Bedingungen und Konditionen",
     "intro": "Bevor Sie den Eidcarosse-Mobil-App-Service nutzen, ist es wichtig, dass Sie diese Allgemeinen Geschäftsbedingungen sorgfältig durchlesen und ihnen zustimmen. Ihre Zustimmung zu diesen Bedingungen ist erforderlich, um die App zu nutzen. Lesen Sie die Allgemeinen Geschäftsbedingungen sorgfältig durch, bevor Sie den Service nutzen.",
     
     "title1": "Allgemeines",
@@ -447,11 +447,16 @@
     ],
     "list4": [
       "FAQ",
-      "Häufig gestellte Fragen",
+       "faq"
+     ,
       "Datenschutzrichtlinie",
-      "Nutzungsbedingungen"
-    ]
+       "privacy-policy"
     ,
+     "Bedingungen und Konditionen"
+     ,
+     "terms-and-condition"
+     
+   ] ,
 
     
       "faq": {

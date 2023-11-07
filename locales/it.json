@@ -406,12 +406,18 @@
       "Contatti",
       "Blog"
     ],
-    "list4": [
-      "Domande frequenti",
-      "Informativa sulla privacy",
-      "Termini e condizioni"
-    ]
+  
+  "list4": [
+    "Domande frequenti",
+     "faq"
+   ,
+    "Informativa sulla privacy",
+     "privacy-policy"
   ,
+   "Termini e condizioni",
+   "terms-and-condition"
+   
+ ] ,
   
     "faq": {
       

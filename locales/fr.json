@@ -341,13 +341,19 @@
       "Contact",
       "Blog"
     ],
-    "list4": [
-      "FAQ",
-      "Politique de confidentialité",
-      "Conditions d'utilisation"
-    ]
-  ,
   
+  "list4": [
+    "FAQ",
+     "faq"
+   ,
+    "Politique de confidentialité",
+     "privacy-policy"
+  ,
+   "Conditions d'utilisation",
+   "terms-and-condition"
+   
+ ] ,
+
     "faq": {
       
       "title1": "COMMENT PUIS-JE POSTER UNE ANNONCE ?",
