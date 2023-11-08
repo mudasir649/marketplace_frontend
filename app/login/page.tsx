@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react'
 import Home from '@/components/Home';
 import Login from '@/components/Login';
-import productData from '@/utils/data';
 import Product from '@/components/Product';
 import { useSelector } from "react-redux"
 import { useRouter } from 'next/navigation';
