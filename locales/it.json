@@ -67,30 +67,37 @@
   "Ricambi per camion",
   "Ricambi per furgoni"
   ],
-  "allCategories": [
-    "Auto",
-    "Moto",
-    "Barche",
-    "Autobus",
-    "Macchine per la costruzione",
-    "Droni",
-    "Altri",
-    "Ricambi",
-    "Rimorchi",
-    "Camion",
-    "Furgoni",
-    "Ricambi per auto",
-    "Ricambi per biciclette",
-    "Ricambi per barche",
-    "Ricambi per autobus",
-    "Ricambi per macchine da costruzione",
-    "Ricambi per droni",
-    "Altri ricambi",
-    "Ricambi per rimorchi",
-    "Ricambi per camion",
-    "Ricambi per furgoni"
-  ],
-  "autosComponent": {
+  "chat": {
+    "inbox": "Posta in arrivo",
+    "noChatSelected": "Nessuna chat selezionata"
+  },
+  
+  "allCategories": {
+    "Autos": "Auto",
+    "Bicycles": "Biciclette",
+    "E-scooter": "Monopattini elettrici",
+    "E-bikes": "Biciclette elettriche",
+    "Motorcycle": "Motociclette",
+    "Boats": "Barche",
+    "Busses": "Autobus",
+    "Construction Machines": "Macchine edili",
+    "Drones": "Droni",
+    "Others": "Altri",
+    "Trailers": "Rimorchi",
+    "Trucks": "Camion",
+    "Vans": "Furgoni",
+    "Autos Parts": "Ricambi auto",
+    "Bikes Parts": "Ricambi biciclette",
+    "Boat Parts": "Ricambi barche",
+    "Busses Parts": "Ricambi autobus",
+    "Construction Machines Parts": "Ricambi macchine edili",
+    "Drones Parts": "Ricambi droni",
+    "Other Parts": "Altri ricambi",
+    "Trailers Parts": "Ricambi rimorchi",
+    "Trucks Parts": "Ricambi camion",
+    "Vans Parts": "Ricambi furgoni"
+  }
+  , "autosComponent": {
     "subCategory": "Sottocategoria",
     "heading1": "Seleziona la categoria",
     "changeCategory": "Cambia categoria",
@@ -410,12 +417,18 @@
       "Contatti",
       "Blog"
     ],
-    "list4": [
-      "Domande frequenti",
-      "Informativa sulla privacy",
-      "Termini e condizioni"
-    ]
+  
+  "list4": [
+    "Domande frequenti",
+     "faq"
+   ,
+    "Informativa sulla privacy",
+     "privacy-policy"
   ,
+   "Termini e condizioni",
+   "terms-and-condition"
+   
+ ] ,
   
     "faq": {
       

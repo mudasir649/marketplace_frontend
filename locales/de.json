@@ -44,7 +44,7 @@
     } , 
     "categories": [
       "Autos",
-      "Fahrräder",
+      "Motorräder",
       "Boote",
       "Busse",
       "Baumaschinen",
@@ -52,8 +52,8 @@
       "Andere",
       "Ersatzteile",
       "Anhänger",
-      "Lastwagen",
-      "Lieferwagen"
+      "Lkw",
+      "Nutzfahrzeuge"
     ], 
     "categoriesParts": [
       "Autoteile",
@@ -64,33 +64,40 @@
       "Drohnenteile",
       "Andere Ersatzteile",
       "Anhängerteile",
-      "Lastwagenteile",
+      "Lkwteile",
       "Lieferwagenteile"
       ],
-      "allCategories": [
-        "Autos",
-        "Fahrräder",
-        "Boote",
-        "Busse",
-        "Baumaschinen",
-        "Drohnen",
-        "Andere",
-        "Ersatzteile",
-        "Anhänger",
-        "Lastwagen",
-        "Lieferwagen",
-        "Autoteile",
-        "Fahrradteile",
-        "Bootsteile",
-        "Bussteile",
-        "Baumaschinen-Ersatzteile",
-        "Drohnenteile",
-        "Andere Ersatzteile",
-        "Anhängerteile",
-        "Lastwagenteile",
-        "Lieferwagenteile"
-      ],
-    "autosComponent": {
+      "chat": {
+        "inbox": "Posteingang",
+        "noChatSelected": "Kein Chat ausgewählt"
+      }
+      ,
+      "allCategories": {
+        "Autos": "Autos",
+        "Bicycles": "Motorräder",
+        "E-scooter": "E-Scooter",
+        "E-bikes": "E-Bikes",
+        "Motorcycle": "Motorräder",
+        "Boats": "Boote",
+        "Busses": "Busse",
+        "Construction Machines": "Baumaschinen",
+        "Drones": "Drohnen",
+        "Others": "Andere",
+        "Trailers": "Anhänger",
+        "Trucks": "Lkw",
+        "Vans": "Nutzfahrzeuge",
+        "Autos Parts": "Autoersatzteile",
+        "Bikes Parts": "Fahrradersatzteile",
+        "Boat Parts": "Bootersatzteile",
+        "Busses Parts": "Busserersatzteile",
+        "Construction Machines Parts": "Baumaschinenersatzteile",
+        "Drones Parts": "Drohnenersatzteile",
+        "Other Parts": "Andere Ersatzteile",
+        "Trailers Parts": "Anhängerersatzteile",
+        "Trucks Parts": "Lastwagenersatzteile",
+        "Vans Parts": "Lieferwagenersatzteile"
+      }
+       , "autosComponent": {
       
       "heading1": "Kategorie auswählen",
       "changeCategory": "Kategorie ändern",
@@ -333,7 +340,7 @@
     "category": "Kategorie",
     "subCategory": "Unterkategorie",
     "required": "* Erforderlich",
-    "bikes": "Fahrräder",
+    "bikes": "Motorräder",
     "parts": "Ersatzteile",
     "selectSubCategory": "Unterkategorie auswählen"
   }
@@ -382,7 +389,7 @@
   }  ,
 
   "TermsAndConditions": {
-    "title": "Allgemeine Geschäftsbedingungen",
+    "title": "Bedingungen und Konditionen",
     "intro": "Bevor Sie den Eidcarosse-Mobil-App-Service nutzen, ist es wichtig, dass Sie diese Allgemeinen Geschäftsbedingungen sorgfältig durchlesen und ihnen zustimmen. Ihre Zustimmung zu diesen Bedingungen ist erforderlich, um die App zu nutzen. Lesen Sie die Allgemeinen Geschäftsbedingungen sorgfältig durch, bevor Sie den Service nutzen.",
     
     "title1": "Allgemeines",
@@ -450,11 +457,16 @@
     ],
     "list4": [
       "FAQ",
-      "Häufig gestellte Fragen",
+       "faq"
+     ,
       "Datenschutzrichtlinie",
-      "Nutzungsbedingungen"
-    ]
+       "privacy-policy"
     ,
+     "Bedingungen und Konditionen"
+     ,
+     "terms-and-condition"
+     
+   ] ,
 
     
       "faq": {
@@ -498,7 +510,7 @@
         "description3": "Geben Sie eine klare und detaillierte Beschreibung Ihres Produkts an. Stellen Sie sicher, dass Sie die richtigen Informationen zu Ihren Artikeln hinzugefügt haben."
       } , 
       "subList": [
-        "Fahrräder",
+        "Motoräder",
         "Scooter",
         "E-Bikes",
         "Motorrad"

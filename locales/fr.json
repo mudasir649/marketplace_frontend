@@ -68,29 +68,37 @@
   "Pièces pour camions",
   "Pièces pour fourgonnettes"
   ],
-  "allCategories": [
-    "Autos",
-    "Biciclette",
-    "Bateaux",
-    "Autobus",
-    "Machines de construction",
-    "Drones",
-    "Autres",
-    "Pièces",
-    "Remorques",
-    "Camions",
-    "Fourgonnettes",
-    "Pièces pour voitures",
-    "Pièces pour vélos",
-    "Pièces pour bateaux",
-    "Pièces pour bus",
-    "Pièces pour engins de construction",
-    "Pièces pour drones",
-    "Autres pièces",
-    "Pièces pour remorques",
-    "Pièces pour camions",
-    "Pièces pour fourgonnettes"
-  ],
+  "allCategories": {
+    "Autos": "Automobiles",
+    "Bicycles": "Vélos",
+    "E-scooter": "Trottinettes électriques",
+    "E-bikes": "Vélos électriques",
+    "Motorcycle": "Motocyclettes",
+    "Boats": "Bateaux",
+    "Busses": "Autobus",
+    "Construction Machines": "Machines de construction",
+    "Drones": "Drones",
+    "Others": "Autres",
+    "Trailers": "Remorques",
+    "Trucks": "Camions",
+    "Vans": "Fourgonnettes",
+    "Autos Parts": "Pièces pour automobiles",
+    "Bikes Parts": "Pièces pour vélos",
+    "Boat Parts": "Pièces pour bateaux",
+    "Busses Parts": "Pièces pour autobus",
+    "Construction Machines Parts": "Pièces pour machines de construction",
+    "Drones Parts": "Pièces pour drones",
+    "Other Parts": "Autres pièces",
+    "Trailers Parts": "Pièces pour remorques",
+    "Trucks Parts": "Pièces pour camions",
+    "Vans Parts": "Pièces pour fourgonnettes"
+  }
+  , 
+  "chat": {
+    "inbox": "Boîte de réception",
+    "noChatSelected": "Aucune discussion sélectionnée"
+  },
+  
   "autosComponent": {
     
     "subCategory": "Sous-catégorie",
@@ -345,13 +353,19 @@
       "Contact",
       "Blog"
     ],
-    "list4": [
-      "FAQ",
-      "Politique de confidentialité",
-      "Conditions d'utilisation"
-    ]
-  ,
   
+  "list4": [
+    "FAQ",
+     "faq"
+   ,
+    "Politique de confidentialité",
+     "privacy-policy"
+  ,
+   "Conditions d'utilisation",
+   "terms-and-condition"
+   
+ ] ,
+
     "faq": {
       
       "title1": "COMMENT PUIS-JE POSTER UNE ANNONCE ?",

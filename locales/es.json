@@ -67,30 +67,37 @@
     "Piezas de camiones",
     "Piezas de furgonetas"
     ],
-  "allCategories": [
-    "Autos",
-    "Motos",
-    "Barcos",
-    "Autobuses",
-    "Maquinaria de construcción",
-    "Drones",
-    "Otros",
-    "Piezas",
-    "Remolques",
-    "Camiones",
-    "Furgonetas",
-    "Piezas de automóviles",
-    "Piezas de bicicletas",
-    "Piezas de barcos",
-    "Piezas de autobuses",
-    "Piezas de maquinaria de construcción",
-    "Piezas de drones",
-    "Otras piezas",
-    "Piezas de remolques",
-    "Piezas de camiones",
-    "Piezas de furgonetas"
-  ],
-  "bodyShape": {
+    "chat": {
+      "inbox": "Bandeja de entrada",
+      "noChatSelected": "Ningún chat seleccionado"
+    },
+    
+    "allCategories": {
+      "Autos": "Automóviles",
+      "Bicycles": "Bicicletas",
+      "E-scooter": "Patinetes eléctricos",
+      "E-bikes": "Bicicletas eléctricas",
+      "Motorcycle": "Motocicletas",
+      "Boats": "Barcos",
+      "Busses": "Autobuses",
+      "Construction Machines": "Máquinas de construcción",
+      "Drones": "Drones",
+      "Others": "Otros",
+      "Trailers": "Remolques",
+      "Trucks": "Camiones",
+      "Vans": "Furgonetas",
+      "Autos Parts": "Piezas de automóviles",
+      "Bikes Parts": "Piezas de bicicletas",
+      "Boat Parts": "Piezas de barcos",
+      "Busses Parts": "Piezas de autobuses",
+      "Construction Machines Parts": "Piezas de máquinas de construcción",
+      "Drones Parts": "Piezas de drones",
+      "Other Parts": "Piezas de otros",
+      "Trailers Parts": "Piezas de remolques",
+      "Trucks Parts": "Piezas de camiones",
+      "Vans Parts": "Piezas de furgonetas"
+    },
+     "bodyShape": {
     "Convertible": "Convertible",
     "Compact": "Compacto",
     "Coupe": "Coupé",
@@ -428,11 +435,19 @@
       "Contacto",
       "Blog"
     ],
+    
     "list4": [
       "Preguntas frecuentes",
+       "faq"
+     ,
       "Política de privacidad",
-      "Términos y condiciones"
-    ], 
+       "privacy-policy"
+    ,
+     "Términos y condiciones",
+     "terms-and-condition"
+     
+   ] ,
+
     "faq": {
       "pageTitle": "Preguntas Frecuentes",
       "title1": "¿CÓMO PUBLICO UN ANUNCIO?",

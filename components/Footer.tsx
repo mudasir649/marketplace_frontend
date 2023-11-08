@@ -4,6 +4,7 @@ import { setProductData, setProductsCount, setShowContact } from '@/store/appSli
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next'; 
+import BackToTop from './BackToTop';
 
 interface IList {
   name: String,
@@ -134,6 +135,9 @@ const list4 = [
                 <li className='mb-3' key={i} onClick={() => router.push(`${lst.value}`)}>{lst.name}</li>
               ))}
             </ul>
+          </div>
+          <div>
+            <BackToTop />
           </div>
         </div>
       </div>
