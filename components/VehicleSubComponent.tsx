@@ -24,9 +24,7 @@ import {
   kilometers,
   priceList,
 } from "@/utils/dataVariables";
-import { carsList } from "@/utils/carsList";
 import "../app/post-ad/post-ad.css";
-import { bikesList } from "@/utils/bikesList";
 import { useSelector } from "react-redux";
 import locateAddress from "@/utils/GoogleLocation";
 import { useTranslation } from "react-i18next";

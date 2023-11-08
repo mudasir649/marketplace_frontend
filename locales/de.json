@@ -23,7 +23,10 @@
     "notAMember": "Noch kein Mitglied?",
     "createAccount": "Registrieren"
   } , 
-  
+  "forgot-password": {
+    "forgotPassword": "Passwort vergessen",
+    "description": "¿Olvidaste tu contraseña? Por favor, introduce tu nombre de usuario o dirección de correo electrónico. Recibirás un enlace por correo electrónico para crear una nueva contraseña."
+  },
     "categorySelection": {
       "category": "Kategorie",
       "allCategories": "Alle Kategorien",

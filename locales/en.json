@@ -23,8 +23,11 @@
       "loginButton": "Login",
       "notAMember": "Not a member?",
       "createAccount": "Create Account"
-    } , 
-    
+    } ,
+    "forgot-password": {
+      "forgotPassword": "forgot password",
+      "description":"Lost your password? Please enter your username or email address. You will receive a link to create a new password via email."
+    },
       "categorySelection": {
         "category": "Category",
         "allCategories": "All Categories",
