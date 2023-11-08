@@ -49,7 +49,8 @@ interface InitialStateInterface {
     minPrice: any | null;
     maxPrice: any | null;
     prodId: string[];
-    closeAll: Boolean
+    closeAll: Boolean;
+    email: string
 }
 
 
@@ -77,7 +78,8 @@ const initialState: InitialStateInterface = {
     minPrice: null || '',
     maxPrice: null || '',
     prodId: getProdIdInitialState(),
-    closeAll: false
+    closeAll: false,
+    email: '',
 }
 
 
@@ -160,6 +162,9 @@ const appSlice = createSlice({
         },
         setCloseAll: (state, actions) => {
             state.closeAll = actions.payload;
+        },
+        setEmail: (state, actions) => {
+            state.email = actions.payload;
         }
     }
 });
@@ -174,6 +179,8 @@ export const { refreshPage, setFilterData,
                 setProductUserId, setRoomsData, 
                 setLanguage, setShowContact, 
                 setCondition, setBrand, 
-                setMinPrice, setMaxPrice, setProdId, setCloseAll } = appSlice.actions;
+                setMinPrice, setMaxPrice, 
+                setProdId, setCloseAll, 
+                setEmail} = appSlice.actions;
 
 export default appSlice.reducer;

@@ -23,6 +23,10 @@
     "notAMember": "¿No eres miembro?",
     "createAccount": "Crear cuenta"
   },
+  "forgot-password": {
+    "forgotPassword": "Olvidé la contraseña",
+    "description": "¿Olvidaste tu contraseña? Por favor, introduce tu nombre de usuario o dirección de correo electrónico. Recibirás un enlace por correo electrónico para crear una nueva contraseña."
+  },
   "categorySelection": {
     "category": "Categoría",
     "allCategories": "Todas las categorías",

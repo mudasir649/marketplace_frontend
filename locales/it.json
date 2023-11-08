@@ -23,6 +23,10 @@
     "notAMember": "Non sei ancora un membro?",
     "createAccount": "Crea Account"
   },
+  "forgot-password": {
+    "forgotPassword": "Password dimenticata",
+    "description": "Hai perso la tua password? Per favore, inserisci il tuo nome utente o il tuo indirizzo e-mail. Riceverai un link via e-mail per creare una nuova password."
+  },
   "categorySelection": {
     "category": "Categoria",
     "allCategories": "Tutte le categorie",

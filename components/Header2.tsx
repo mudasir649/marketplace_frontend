@@ -284,7 +284,7 @@ export default function Header2() {
                         <section className="">
                           <Add className="text-md border bg-[#FF0000] border-[#FF0000] rounded-full text-white" />
                         </section>
-                        <section className="capitalize text-lg font-semibold text-left line-clamp-1 whitespace-nowrap">
+                        <section className="capitalize text-lg font-semibold text-left line-clamp-1">
                           {t("header.postYourAd")}
                         </section>
                       </button>
@@ -369,7 +369,6 @@ export default function Header2() {
                   <Link href="/login">
                     <button
                       className="border border-[#FF0000] bg-[#FF0000] hover:bg-white hover:border-white text-white hover:text-[#FF0000] drop-shadow-lg rounded-lg p-3 flex flex-row space-x-1"
-                      onClick={() => setNavbar(true)}
                     >
                       <section className="">
                         <Login className="text-md rounded-full" />

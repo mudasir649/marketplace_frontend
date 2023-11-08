@@ -102,6 +102,15 @@ export default function LoginPage() {
             </div>
             <div className='flex justify-center'>
               <h1>
+                <Link href='/forgot-password'>
+                  <span className='text-[#FF0000] cursor-pointer hover:text-red-800'>
+                    Forgot Password
+                  </span>
+                </Link>
+              </h1>
+            </div>
+            <div className='flex justify-center'>
+              <h1>
                 {t('login.notAMember')}
                 <Link href='/signup'>
                   <span className='text-[#FF0000] cursor-pointer hover:text-red-800'>

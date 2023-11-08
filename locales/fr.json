@@ -23,6 +23,10 @@
     "notAMember": "Pas encore de compte ?",
     "createAccount": "Créer un compte"
   },
+  "forgot-password": {
+    "forgotPassword": "Mot de passe oublié",
+    "description": "Mot de passe perdu ? Veuillez entrer votre nom d'utilisateur ou votre adresse e-mail. Vous recevrez un lien par e-mail pour créer un nouveau mot de passe."
+  },
   "categorySelection": {
     "category": "Catégorie",
     "allCategories": "Toutes les catégories",
