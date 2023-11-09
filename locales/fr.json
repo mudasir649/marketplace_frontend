@@ -25,7 +25,12 @@
   },
   "forgot-password": {
     "forgotPassword": "Mot de passe oublié",
-    "description": "Mot de passe perdu ? Veuillez entrer votre nom d'utilisateur ou votre adresse e-mail. Vous recevrez un lien par e-mail pour créer un nouveau mot de passe."
+    "description": "Mot de passe perdu ? Veuillez entrer votre nom d'utilisateur ou votre adresse e-mail. Vous recevrez un lien par e-mail pour créer un nouveau mot de passe.",
+    "resetPassword": "Réinitialiser le mot de passe",
+    "codeToReset": "Saisissez le code pour réinitialiser le mot de passe",
+    "updatePassword": "Mettre à jour mon mot de passe",
+    "resendCode": "Renvoyer le code",
+    "formToReset": "Formulaire de réinitialisation de mot de passe"
   },
   "categorySelection": {
     "category": "Catégorie",

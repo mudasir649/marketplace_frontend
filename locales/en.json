@@ -26,7 +26,12 @@
     } ,
     "forgot-password": {
       "forgotPassword": "forgot password",
-      "description":"Lost your password? Please enter your username or email address. You will receive a link to create a new password via email."
+      "description":"Lost your password? Please enter your username or email address. You will receive a link to create a new password via email.",
+      "resetPassword": "Reset Password",
+      "codeToReset": "Enter code to reset password",
+      "updatePassword": "Update my password",
+      "resendCode": "Resend Code",
+      "formToReset": "Form to reset password"
     },
       "categorySelection": {
         "category": "Category",

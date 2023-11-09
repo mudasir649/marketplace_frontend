@@ -25,7 +25,12 @@
   },
   "forgot-password": {
     "forgotPassword": "Password dimenticata",
-    "description": "Hai perso la tua password? Per favore, inserisci il tuo nome utente o il tuo indirizzo e-mail. Riceverai un link via e-mail per creare una nuova password."
+    "description": "Hai perso la tua password? Per favore, inserisci il tuo nome utente o il tuo indirizzo e-mail. Riceverai un link via e-mail per creare una nuova password.",
+    "resetPassword": "Reimposta password",
+    "codeToReset":  "Inserisci il codice per reimpostare la password",
+    "updatePassword":  "Aggiorna la mia password",
+    "resendCode": "Rispedisci codice",
+    "formToReset":"Modulo per reimpostare la password"
   },
   "categorySelection": {
     "category": "Categoria",

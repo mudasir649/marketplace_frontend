@@ -25,7 +25,12 @@
   },
   "forgot-password": {
     "forgotPassword": "Olvidé la contraseña",
-    "description": "¿Olvidaste tu contraseña? Por favor, introduce tu nombre de usuario o dirección de correo electrónico. Recibirás un enlace por correo electrónico para crear una nueva contraseña."
+    "description": "¿Olvidaste tu contraseña? Por favor, introduce tu nombre de usuario o dirección de correo electrónico. Recibirás un enlace por correo electrónico para crear una nueva contraseña.",
+    "resetPassword": "Restablecer contraseña",
+    "codeToReset":  "Ingrese el código para restablecer la contraseña",
+    "updatePassword": "Actualizar mi contraseña",
+    "resendCode": "Reenviar código",
+    "formToReset": "Formulario para restablecer la contraseña"
   },
   "categorySelection": {
     "category": "Categoría",

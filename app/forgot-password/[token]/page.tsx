@@ -1,12 +1,15 @@
-'use client';
+"use client";
 import Home from "@/components/Home";
 import { PlaylistAdd } from "@mui/icons-material";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import { useLoginMutation } from "@/store/userApiSlice";
+import { setCredentials } from "@/store/authSlice";
+import { useTranslation } from "react-i18next";
 
 interface IData {
   email: string;
@@ -17,11 +20,16 @@ interface IData {
 
 export default function Page() {
 
+  const { t } = useTranslation();
+  const [login, { isLoading }] = useLoginMutation();
   const { email } = useSelector((state: any) => state.app);
   const { token } = useParams();
   const router = useRouter();
+  const dispatch = useDispatch();
   const [isVerified, setIsVerified] = useState<Boolean>(false);
+  const [isTimerOver, setIsTimerOver] = useState<Boolean>(false);
   const [codeVerified, setCodeVerified] = useState<Boolean>(false);
+  const [loading, setLoading] = useState<Boolean>(false);
   const [code, setCode] = useState<string>("");
   const [data, setData] = useState<IData>({
     email: email,
@@ -29,7 +37,6 @@ export default function Page() {
     confirmPassword: "",
     token: token,
   });
-  const [isTimerOver, setIsTimerOver] = useState<Boolean>(false);
 
   const emptyToken = useCallback(async () => {
     const res = await axios.get(
@@ -37,7 +44,7 @@ export default function Page() {
     );
     console.log(res);
   }, [token]);
-  
+
   const resetTimer: any = async () => {
     setIsTimerOver(true);
     emptyToken();
@@ -76,49 +83,56 @@ export default function Page() {
     }
   };
 
-    const resetPassword = async (e: any) => {
-    if (data.password === data.confirmPassword) {
-      try {
-        const res = await axios.post(
-          `${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/reset-password`,
-          data
-        );
-        if (res.status === 200) {
-          toast(res.data?.message);
-          router.push('/')
-        }
-      } catch (error: any) {
-        if (error.response.data && error.response.data.message) {
-          toast(`${error.response.data.message}`, { type: "error" });
-        } else {
-          // Handle other types of errors
-          toast("An error occurred. Please try again later.", {
-            type: "error",
-          });
-        }
+  const redirectLogin = async () => {
+    const { password, email } = data;
+    try {
+      const res = await login({ email, password }).unwrap();
+      dispatch(setCredentials({ ...res }));
+      router.push('/')
+    } catch (error: any) {
+      console.log(error);
+    }
+  }
+
+  const resetPassword = async (e: any) => {
+    e.preventDefault();
+    setLoading(true);
+    const { password, confirmPassword } = data;
+    if (password === confirmPassword) {
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/reset-password`,
+        data
+      );
+      if (res.status === 200) {
+        toast(res.data?.message);
+        router.push('/login')
+        // await redirectLogin();
       }
     }
+    setLoading(false);
   };
 
-  const resendCode = async() => {
+  const resendCode = async () => {
     try {
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/forgot-password`, { email });
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/forgot-password`,
+        { email }
+      );
       const token = res.data?.data;
-      
-      if(res.status === 200){                
-          router.push(`/forgot-password/${token}`)
+
+      if (res.status === 200) {
+        router.push(`/forgot-password/${token}`);
       }
-  } catch (error: any) {
-      toast(error.response.data.message)
-      
-  }
-}
+    } catch (error: any) {
+      toast(error.response.data.message);
+    }
+  };
 
   const handleData = (e: any) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  if(isVerified === true){    
+  if (isVerified === true) {
     return (
       <Home>
         <div className="container mx-auto my-10">
@@ -127,7 +141,7 @@ export default function Page() {
               <h1 className="space-x-3 border-b-2 pb-3">
                 <PlaylistAdd className="text-[#FF0000] mt-[-4px]" />
                 <span className="text-lg font-semibold capitalize">
-                  Form to reset password
+                  {t(`forgot-password.formToReset`)}
                 </span>
               </h1>
               <h1 className="text-md pt-5"></h1>
@@ -157,15 +171,19 @@ export default function Page() {
                       onChange={(e) => handleData(e)}
                     />
                   </div>
+                  {isLoading ? 
+                    <div className="spinner mt-8 w-10 h-10"></div>
+                  :
                   <button className="bg-[#FF0000] text-white hover-bg-white border-2 border-[#FF0000] hover-text-black p-2 mt-4 font-semibold rounded-sm">
-                    Update my password
+                    {t('forgot-password.updatePassword')}
                   </button>
+  }
                 </form>
               ) : (
                 <>
                   <form method="POST" onSubmit={verifyCode}>
                     <h1 className="text-md font-bold mt-5">
-                      Enter code to reset password:
+                    {t('forgot-password.codeToReset')}
                     </h1>
                     <input
                       type="text"
@@ -173,18 +191,18 @@ export default function Page() {
                       className="w-full border border-md border-gray-300 hover-border-[#FF0000] focus-outline-[#FF0000] p-2 mt-3"
                       onChange={(e) => setCode(e.target.value)}
                     />
-                    {!isTimerOver ? (
-                      <button className="bg-[#FF0000] text-white hover-bg-white border-2 border-[#FF0000] hover-text-black p-2 mt-4 font-semibold rounded-sm">
-                        Reset Password
-                      </button>
-                    ) : (
-                      <button
-                        className="bg-[#FF0000] text-white hover-bg-white border-2 border-[#FF0000] hover-text-black p-2 mt-4 font-semibold rounded-sm"
-                        onClick={resendCode}
-                        >
-                        Resend Code
-                      </button>
-                    )}
+                        {!isTimerOver ? (
+                          <button className="bg-[#FF0000] text-white hover-bg-white border-2 border-[#FF0000] hover-text-black p-2 mt-4 font-semibold rounded-sm">
+                            {t('forgot-password.resetPassword')}
+                          </button>
+                        ) : (
+                          <button
+                            className="bg-[#FF0000] text-white hover-bg-white border-2 border-[#FF0000] hover-text-black p-2 mt-4 font-semibold rounded-sm"
+                            onClick={resendCode}
+                          >
+                            {t('forgot-password.resendCode')}
+                          </button>
+                        )}
                     <div className="flex justify-center text-center">
                       <CountdownCircleTimer
                         isPlaying
@@ -207,29 +225,3 @@ export default function Page() {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
