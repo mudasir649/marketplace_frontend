@@ -379,6 +379,7 @@ export default function PartsComponent({ type }: any) {
               <div className="mt-5 w-full mb-5">
                 {/* eslint-disable-next-line jsx-a11y/alt-text */}
                 <h1 className="space-x-3 border-b-2 pb-3">
+                  {/* eslint-disable-next-line jsx-a11y/alt-text */}
                   <Image className="text-[#FF0000] mt-[-4px]" />
                   <span className="text-lg font-bold">
                     {t("autosComponent.images")}
