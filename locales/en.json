@@ -73,6 +73,13 @@
         "Trucks Parts",
         "Vans Parts"
       ],
+      "sortByList": [
+        "Latest",
+        "A to Z (title)",
+        "Z to A (title)",
+        "Price (low to high)",
+        "Price (high to low)"
+      ],
       "chat": 
       {
         "inbox": "Inbox",

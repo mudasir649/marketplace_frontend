@@ -79,11 +79,6 @@ export default function CategoryList({ setCategory, setExpand }: any) {
           name1: "Drone Parts",
         },
         {
-          logo: <DataSaverOn />,
-          name: t("categoriesParts.6"),
-          name1: "Other Parts",
-        },
-        {
           logo: <RvHookup />,
           name: t("categoriesParts.7"),
           name1: "Trailer Parts",
@@ -97,6 +92,12 @@ export default function CategoryList({ setCategory, setExpand }: any) {
           logo: <AirportShuttle />,
           name: t("categoriesParts.9"),
           name1: "Van Parts",
+        },
+        
+        {
+          logo: <DataSaverOn />,
+          name: t("categoriesParts.6"),
+          name1: "Other Parts",
         },
       ];
 
@@ -165,9 +166,6 @@ export default function CategoryList({ setCategory, setExpand }: any) {
         <li onClick={() => handleClick("Drones")} className={liStyle}>
           <Flight /> {t("categories.5")}
         </li>
-        <li onClick={() => handleClick("Others")} className={liStyle}>
-        <DataSaverOn /> {t("categories.6")}
-        </li>
         <li className={`dropdow`}>
           <h1 className={liStyle}>
             {" "}
@@ -197,6 +195,10 @@ export default function CategoryList({ setCategory, setExpand }: any) {
         <li onClick={() => handleClick("Trailers")} className={liStyle}>
           <AirportShuttle /> {t("categories.10")}
         </li>
+        <li onClick={() => handleClick("Others")} className={liStyle}>
+        <DataSaverOn /> {t("categories.6")}
+        </li>
+        
       </ul>
     </div>
   );

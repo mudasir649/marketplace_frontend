@@ -38,10 +38,6 @@ export default function PostAd() {
             name1: "Drones",
         },
         {
-            name: t('categories.6'),
-            name1: "Others",
-        },
-        {
             name: t('categories.7'),
             name1: "Parts",
         },
@@ -57,6 +53,10 @@ export default function PostAd() {
             name: t('categories.10'),
             name1: "Vans",
         },
+        {
+            name: t('categories.6'),
+            name1: "Others",
+        }
     ];
     const subList = [
         {
