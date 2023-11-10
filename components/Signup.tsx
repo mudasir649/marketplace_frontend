@@ -5,12 +5,11 @@ import React, { useState } from 'react';
 import googleLogo from "../public/assets/google_logo.png";
 import signLogo from "../public/assets/signLogo.png";
 import { toast } from "react-toastify";
-import { useRegisterMutation } from '@/store/userApiSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCredentials } from '@/store/authSlice';
+import { setEmail } from '@/store/appSlice';
 import { useRouter } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
-
+import axios from 'axios';
 
 export default function Signup() {
   const { t } = useTranslation();
@@ -18,14 +17,12 @@ export default function Signup() {
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [userName, setUserName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
+  const [email, setEmail1] = useState<string>("");
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const router = useRouter();
   const dispatch = useDispatch();
-  const { userInfo } = useSelector((state: any) => state.auth);
-  const [registerUser, { isLoading }] = useRegisterMutation()
-
+  const [loading, setLoading] = useState<Boolean>(false);
 
   const checkEmail = (email: string) => {
     const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -33,23 +30,12 @@ export default function Signup() {
     return validEmail;
   }
 
-  const checkPassword = (password: string) => {
-    const regex = /^.{8,}$/;
-    const validPasswrd = regex.test(password);
-    return validPasswrd;
-  }
-
-
   const submitHandler = async (e: any) => {
     e.preventDefault();
+    setLoading(true);
     if (!userName) {
       toast("Please! enter user name. username cannot be empty.");
-    }
-    if (!email) {
-      toast("Please! enter email. email cannot be empty.");
-    }
-    if (!password) {
-      toast("Please! enter user name. password cannot be empty.");
+      return;
     }
     if (email) {
       const isValid = checkEmail(email);
@@ -57,49 +43,37 @@ export default function Signup() {
         return;
       }
     }
-    if (password) {
-      const isValid = checkPassword(password);
-      if (!isValid) {
-        return;
-      }
+    const data = {
+      firstName,
+      lastName,
+      userName,
+      email,
+      password,
+      phoneNumber
     }
-    // try {
-    //   const res = await registerUser({ firstName, lastName, userName, email, password, phoneNumber }).unwrap();    
-    //   dispatch(setCredentials({ ...res }));
-    //   router.push('/')
-    // } catch (error: any) {
-    //   toast(error?.data?.message);
-    // }
     try {
-      const res = await registerUser({
-        firstName,
-        lastName,
-        userName,
-        email,
-        password,
-        phoneNumber
-      }).unwrap();
-      
-      dispatch(setCredentials({ ...res }));
-      router.push('/');
-    } catch (error: any) {
-      if (error.data && error.data.errors) {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/register`, data);
+      console.log(res);
+      if(res.data?.success === true){
+        dispatch(setEmail(email));      
+        router.push(`/verify-account/${res.data?.data?.token}`);
+      }
+    } catch (error: any) {      
+      if (error.response.data && error.response.data.errors) {
         // If there are validation errors returned by the server
-        const errorMessages = error.data.errors.map((err: any) => err.path);        
-        
+        const errorMessages = error.response.data.errors.map((err: any) => err.path);        
         // You can display each error message to the user
         errorMessages.forEach((errorMsg: string) => {
           toast(`${errorMsg} is invalid. Please! enter valid value`, { type: 'error' });
         });
-      } else if (error.data && error.data.message) {
-        // If there is a general error message
-        toast(`${error.data.message}`, { type: 'error' });
+      }else if(error.response.data && error.response.data.message){
+        toast(`${error.response.data.message}`, { type: 'error' });
       } else {
         // Handle other types of errors
-        toast('An error occurred. Please try again.', { type: 'error' });
+        toast('An error occurred. Please try again later.', { type: 'error' });
       }
     }
-    
+    setLoading(false);
   }
 
 
@@ -182,7 +156,7 @@ export default function Signup() {
                 placeholder={t("signup.emailPlaceholder")}
                 name='email'
                 value={email}
-                onChange={(e: any) => setEmail(e.target.value)}
+                onChange={(e: any) => setEmail1(e.target.value)}
               />
             </div>
             {/* Password */}
@@ -198,7 +172,7 @@ export default function Signup() {
               />
             </div>
             <div className='flex justify-center font-bold'>
-              {!isLoading ? (
+              {!loading ? (
                 <button className='border border-red-400 bg-gradient-to-r from-red-300 to-[#e52320] 
             hover:border-[#e52320] hover:from-red-600 hover:to-red-600 rounded-lg w-40 
             p-1 space-x-2 text-white' onClick={(e: any) => submitHandler(e)}>

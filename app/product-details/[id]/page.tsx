@@ -87,7 +87,7 @@ function ProductDetails() {
     };
     addView();
     fetchData();
-  }, [id, refresh]);
+  }, [id, refresh, router]);
 
   const [currentImage, setCurrentImage] = useState(0);
 

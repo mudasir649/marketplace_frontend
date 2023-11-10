@@ -7,9 +7,10 @@ import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
 import Image from 'next/image';
 import axios from 'axios';
+import dynamic from 'next/dynamic';
 
 
-export default function SignupPage() {
+function SignupPage() {
     const router = useRouter()
 
     const [featuredAds, setFeaturedAds] = useState<any>([]);
@@ -58,3 +59,5 @@ export default function SignupPage() {
         </Home>
     )
 }
+
+export default dynamic(() => Promise.resolve(SignupPage), { ssr: false });
