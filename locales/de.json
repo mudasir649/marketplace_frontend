@@ -61,16 +61,16 @@
       "Nutzfahrzeuge"
     ], 
     "categoriesParts": [
-      "Autoteile",
-      "Fahrradteile",
-      "Bootsteile",
-      "Bussteile",
-      "Baumaschinen-Ersatzteile",
-      "Drohnenteile",
+      "Autos",
+      "Fahrrader",
+      "Boote",
+      "Busse",
+      "Baumaschinen",
+      "Drohnen",
       "Andere Ersatzteile",
-      "Anhängerteile",
-      "Lkwteile",
-      "Lieferwagenteile"
+      "Anhänger",
+      "Lkw",
+      "Nutzfahrzeuge"
       ],
       "chat": {
         "inbox": "Posteingang",
