@@ -196,13 +196,6 @@ export default function AdvanceSearch({
       quantity: 32,
     },
     {
-      logo: <DataSaverOn />,
-      name: t("categories.6"),
-      name1: "Others",
-
-      quantity: 23,
-    },
-    {
       logo: <BuildCircle />,
       name: t("categories.7"),
       name1: "Parts",
@@ -226,6 +219,14 @@ export default function AdvanceSearch({
       name1: "Vans",
       quantity: 9,
     },
+    
+    {
+      logo: <DataSaverOn />,
+      name: t("categories.6"),
+      name1: "Others",
+
+      quantity: 23,
+    }
   ];
 
   const subList = [
@@ -283,11 +284,6 @@ export default function AdvanceSearch({
       name1: "Drones Parts",
     },
     {
-      logo: <DataSaverOn />,
-      name: t("categoriesParts.6"),
-      name1: "Other Parts",
-    },
-    {
       logo: <RvHookup />,
       name: t("categoriesParts.7"),
       name1: "Trailers Parts",
@@ -301,6 +297,11 @@ export default function AdvanceSearch({
       logo: <AirportShuttle />,
       name: t("categoriesParts.9"),
       name1: "Vans Parts",
+    },
+    {
+      logo: <DataSaverOn />,
+      name: t("categoriesParts.6"),
+      name1: "Other Parts",
     },
   ];
 
