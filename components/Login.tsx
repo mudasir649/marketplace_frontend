@@ -10,13 +10,13 @@ import { setCredentials } from "../store/authSlice"
 import { useLoginMutation } from '@/store/userApiSlice';
 import { useRouter } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
-import { setProdId } from '@/store/appSlice';
+import { setEmail, setProdId } from '@/store/appSlice';
 
 
 export default function LoginPage() {
   const { t } = useTranslation(); // Initialize the translation hook
 
-  const [email, setEmail] = useState<string>("");
+  const [email, setEmail1] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const dispatch = useDispatch();
   const router = useRouter();
@@ -33,8 +33,10 @@ export default function LoginPage() {
       const res = await login({ email, password }).unwrap();
       dispatch(setCredentials({ ...res }));
       router.push('/')
-    } catch (error: any) {
+    } catch (error: any) {      
+      dispatch(setEmail(email))
       toast(error?.data?.message);
+      router.push(`verify-account/${error.data?.data}`)
     }
   }
 
@@ -73,7 +75,7 @@ export default function LoginPage() {
               className="focus:outline-none w-96 p-1 overflow-hidden bg-transparent focus:bg-transparent"
               name='email'
               value={email}
-              onChange={(e: any) => setEmail(e.target.value)}
+              onChange={(e: any) => setEmail1(e.target.value)}
             />
             </div>
             <div className='flex flex-row border border-gray-200 hover:border-[#e52320] rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>

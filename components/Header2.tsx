@@ -42,8 +42,9 @@ export default function Header2() {
   const [navbar, setNavbar] = useState<Boolean>(false);
   const [open, isOpen] = useState<Boolean>(false);
   const router = useRouter();
-  const { userInfo } = useSelector((state: any) => state.auth);
+  const { userInfo } = useSelector((state: any) => state.auth);  
   const userId = userInfo?.data?.userDetails?._id;
+  
   const {
     showShare,
     showSellNow,

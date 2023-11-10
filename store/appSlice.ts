@@ -24,6 +24,11 @@ const getChatRoomData = () => {
     return chatRoom;
 }
 
+const getEmail = () => {
+    const getEmail = typeof window !== 'undefined' ? localStorage.getItem('email') : null;
+    const email = getEmail ? getEmail : null;
+}
+
 
 interface InitialStateInterface {
     refresh: number;
@@ -50,7 +55,7 @@ interface InitialStateInterface {
     maxPrice: any | null;
     prodId: string[];
     closeAll: Boolean;
-    email: string
+    email: any | null
 }
 
 
@@ -79,7 +84,7 @@ const initialState: InitialStateInterface = {
     maxPrice: null || '',
     prodId: getProdIdInitialState(),
     closeAll: false,
-    email: '',
+    email: getEmail(),
 }
 
 
@@ -165,6 +170,7 @@ const appSlice = createSlice({
         },
         setEmail: (state, actions) => {
             state.email = actions.payload;
+            localStorage.setItem('email', actions.payload);
         }
     }
 });

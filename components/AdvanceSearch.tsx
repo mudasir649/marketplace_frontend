@@ -40,10 +40,8 @@ import {
   setMinPrice,
   setPage,
   setProdId,
-  setProductData,
   setProductId,
   setProductUserId,
-  setProductsCount,
   setShowShare,
   setSortBy,
   setType,
@@ -85,13 +83,9 @@ export default function AdvanceSearch({
 }: any) {
   // Redux hooks
   const { t } = useTranslation(); // Initialize the translation hook  
-
-  console.log(subCategory);
   
-
-  const { page, address, title } = useSelector((state: any) => state.app);
+  const { page, address, title, type1 } = useSelector((state: any) => state.app);
   const [googleLocation, setGoogleLocation] = useState<any>();
-  const [fav, setFav] = useState<Boolean>(false);
   const [loading, setLoading] = useState<Boolean>(false);
   const [showLocation, setShowLocation] = useState<Boolean>(false);
   const [address1, setAddress1] = useState<string>("");
@@ -299,6 +293,9 @@ export default function AdvanceSearch({
     router.push(`/advance-search/${value}`);
   };
 
+  console.log(type1);
+  
+
   const handleFilterData = (e: any) => {
     setFiltersData({ ...filtersData, [e.target.name]: e.target.value });
   };
@@ -333,7 +330,7 @@ export default function AdvanceSearch({
     } else {
       try {
         const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${category}&condition=${condition}&brand=${brand}&minPrice=${minPrice}&maxPrice=${maxPrice}`
+          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address1}&category=${category}&condition=${condition}&brand=${brand}&minPrice=${minPrice}&maxPrice=${maxPrice}`
         );
         setProductData(res.data?.data?.ad);
         setProductsCount(res.data?.data?.totalAds);
@@ -531,7 +528,7 @@ export default function AdvanceSearch({
           </div>
              <div className="flex flex-col w-full space-y-1">
           <div className="flex flex-row p-3 border-2 rounded-sm h-[50px] bg-white">
-            <LocationOn className="text-gray-800" />
+            <LocationOn className="text-[#FF0000]" />
             <input
               type="text"
               placeholder={t("placeholderAddress")}

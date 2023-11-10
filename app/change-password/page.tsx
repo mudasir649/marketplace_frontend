@@ -55,9 +55,7 @@ export default function MyProfile() {
                 if(res?.status === 200){
                     toast(res.data?.message);
                 }
-            } catch (error: any) {
-                console.log(error);
-                
+            } catch (error: any) {                
                 if (error.response.data && error.response.data.errors) {
                     // If there are validation errors returned by the server
                     const errorMessages = error.response.data.errors.map((err: any) => err.path);        
