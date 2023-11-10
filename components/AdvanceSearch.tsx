@@ -625,7 +625,7 @@ export default function AdvanceSearch({
                   name="brand"
                   onChange={(e: any) => dispatch(setBrand(e.target.value))}
                 >
-                  <option value="option1">Select Brand</option>
+                  <option value="option1">{t("autosComponent.selectBrand")}</option>
                   {brands?.make.map((brand: any, i: number) => (
                     <option value={brand} key={i}>
                       {brand}
@@ -647,7 +647,7 @@ export default function AdvanceSearch({
                 name="maxPrice"
                 value={maxPrice}
                 className={inputStyle}
-                placeholder={t("categorySelection.maxPrice")}
+                placeholder={t("categorySelection.minPrice")}
                 onChange={(e: any) => dispatch(setMaxPrice(e.target.value))}
               />
               <input
@@ -655,7 +655,7 @@ export default function AdvanceSearch({
                 className={inputStyle}
                 name="minPrice"
                 value={minPrice}
-                placeholder={t("categorySelection.minPrice")}
+                placeholder={t("categorySelection.maxPrice")}
                 onChange={(e: any) => dispatch(setMinPrice(e.target.value))}
               />
             </div>
