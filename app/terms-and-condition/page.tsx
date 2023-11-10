@@ -1,6 +1,5 @@
 "use client";
 import Home from '@/components/Home'
-import TermConditions from '@/utils/termscondition'
 import dynamic from 'next/dynamic'
 import React from 'react'
 import { useTranslation } from 'react-i18next'; 

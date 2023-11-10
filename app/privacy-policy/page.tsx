@@ -1,6 +1,5 @@
 "use client";
 import Home from '@/components/Home'
-import privacyPolicy from '@/utils/privacypolicy'
 import React from 'react'
 import { useTranslation } from 'react-i18next'; 
 
