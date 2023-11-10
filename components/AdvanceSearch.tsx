@@ -32,7 +32,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { usePathname, useRouter } from "next/navigation";
-import { sortByList } from "@/utils/dataVariables";
 import {
   setBrand,
   setCondition,
@@ -305,6 +304,14 @@ export default function AdvanceSearch({
     },
   ];
 
+  const sortByList = [
+    t("sortByList.0"),
+    t("sortByList.1"),
+    t("sortByList.2"),
+    t("sortByList.3"),
+    t("sortByList.4"),
+  ];
+  
   useEffect(() => {
     Aos.init();
   }, []);

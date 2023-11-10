@@ -218,6 +218,13 @@
   }
 
 ,
+"sortByList": [
+  "Neueste",
+  "A bis Z (Titel)",
+  "Z bis A (Titel)",
+  "Preis (niedrig bis hoch)",
+  "Preis (hoch bis niedrig)"
+],
 
   
     "banner": {

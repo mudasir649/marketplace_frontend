@@ -73,6 +73,13 @@
   "Pièces pour camions",
   "Pièces pour fourgonnettes"
   ],
+  "sortByList": [
+    "Plus récent",
+    "A à Z (titre)",
+    "Z à A (titre)",
+    "Prix (du plus bas au plus élevé)",
+    "Prix (du plus élevé au plus bas)"
+  ],
   "allCategories": {
     "Autos": "Automobiles",
     "Bicycles": "Vélos",

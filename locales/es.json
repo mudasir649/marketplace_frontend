@@ -76,6 +76,13 @@
       "inbox": "Bandeja de entrada",
       "noChatSelected": "Ningún chat seleccionado"
     },
+    "sortByList": [
+      "Más reciente",
+      "A a Z (título)",
+      "Z a A (título)",
+      "Precio (de bajo a alto)",
+      "Precio (de alto a bajo)"
+    ],
     
     "allCategories": {
       "Autos": "Automóviles",

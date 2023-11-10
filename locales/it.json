@@ -76,6 +76,13 @@
     "inbox": "Posta in arrivo",
     "noChatSelected": "Nessuna chat selezionata"
   },
+  "sortByList": [
+    "Ultimi",
+    "A a Z (titolo)",
+    "Z a A (titolo)",
+    "Prezzo (basso ad alto)",
+    "Prezzo (alto a basso)"
+  ],
   
   "allCategories": {
     "Autos": "Auto",
