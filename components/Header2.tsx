@@ -14,6 +14,7 @@ import {
   AdminPanelSettings,
   Cancel,
   ManageAccounts,
+  QuestionAnswer,
 } from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useTranslation } from "react-i18next";
@@ -154,7 +155,7 @@ export default function Header2() {
     <>
       {navbar && (
         <div
-          className="h-full w-96 absolute z-10 bg-white mt-[-16px]"
+          className="h-full w-96 absolute z-20 bg-white mt-[-40px]"
           data-aos="fade-right"
         >
           <ul className="flex flex-col space-y-5 uppercase m-7">
@@ -180,7 +181,7 @@ export default function Header2() {
                 className={navbarLiStyle}
                 onClick={() => router.push("/chat")}
               >
-                <ChatBubbleOutline className="text-3xl -mt-1" />
+                <QuestionAnswer className="text-3xl -mt-1" />
               </li>
             )}
             {userInfo !== null && (
@@ -265,7 +266,7 @@ export default function Header2() {
                 className="cursor-pointer hover:text-[#FF0000]"
                 onClick={() => router.push("/chat")}
               >
-                <ChatBubbleOutline />
+                <QuestionAnswer />
               </li>
             </ul>
             <ul
@@ -281,11 +282,11 @@ export default function Header2() {
                 ) : (
                   <>
                     <Link href="/post-ad">
-                      <button className="border border-white hover:border-[#FF0000] bg-white hover:bg-[#FF0000] hover:text-white drop-shadow-lg rounded-lg p-3 flex flex-row space-x-3">
+                      <button className="w-auto border border-white hover:border-[#FF0000] bg-white hover:bg-[#FF0000] hover:text-white drop-shadow-lg rounded-lg p-2 flex flex-row justify-center space-x-3">
                         <section className="">
                           <Add className="text-md border bg-[#FF0000] border-[#FF0000] rounded-full text-white" />
                         </section>
-                        <section className="capitalize text-lg font-semibold text-left line-clamp-1">
+                        <section className="capitalize text-lg font-semibold whitespace-nowrap">
                           {t("header.postYourAd")}
                         </section>
                       </button>
@@ -369,12 +370,12 @@ export default function Header2() {
                 ) : (
                   <Link href="/login">
                     <button
-                      className="border border-[#FF0000] bg-[#FF0000] hover:bg-white hover:border-white text-white hover:text-[#FF0000] drop-shadow-lg rounded-lg p-3 flex flex-row space-x-1"
+                      className="border border-[#FF0000] bg-[#FF0000] hover:bg-white hover:border-white text-white hover:text-[#FF0000] drop-shadow-lg rounded-lg p-2 flex flex-row space-x-1"
                     >
                       <section className="">
                         <Login className="text-md rounded-full" />
                       </section>
-                      <section className="capitalize text-lg line-clamp-1 mt-[0.5px] font-semibold">
+                      <section className="capitalize text-lg whitespace-nowrap truncate w-auto mt-[0.5px] font-semibold">
                         {t("header.login")}
                       </section>
                     </button>

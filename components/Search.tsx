@@ -95,11 +95,40 @@ export default function SearchPage() {
 
   return (
     <div className="">
+      {/* <form
+        method="POST"
+        className={`grid grid-cols-1 mt-[-20px] md:mt-10 md:grid-cols-3 lg:grid-cols-3 h-auto p-5 ml-0 md:ml-10 border-none rounded-md screen-1`}
+        ref={dropdownRef}
+      > */}
       <form
         method="POST"
-        className={`grid grid-cols-1 mt-[-20px] md:mt-10 md:grid-cols-3 lg:grid-cols-3 h-auto p-5 ml-0 md:ml-40 gap-2 border-none rounded-md screen-1`}
+        className={`flex flex-row w-full h-auto p-5 ml-0 md:ml-10 border-none rounded-md screen-1 mt-8`}
         ref={dropdownRef}
       >
+        <div className="w-[900px]">
+        <div className="flex flex-row p-2 border-t-2 border-b-2 border-l-2 border-[#FF0000] rounded-lg h-[40px] bg-white w-full">
+            <Search className="text-gray-800" />
+            <input
+              type="text"
+              placeholder={t("placeholderKeyword")}
+              name="name"
+              className="focus:outline-none w-full pl-2 overflow-hidden"
+              value={title}
+              onChange={(e: any) => setTitle(e.target.value)}
+              onKeyUp={(e: any) => handleTitle(e)}
+            />
+          </div>
+        </div>
+        <div className="">
+        <button
+          className="flex flex-row justify-center 
+            cursor-pointer w-full lg:w-20 p-1 border-none
+              border-b-[#FF0000] rounded-tr-md rounded-br-md bg-[#FF0000] h-[40px] ml-[-8px]"
+          onClick={(e) => searchFilter(e)}
+        >
+          <Search fontSize="large" className="text-white" />
+        </button>
+        </div>
         {/* <div className="flex flex-col w-full space-y-1">
           <div className="flex flex-row p-4 border-2 border-[#FF0000] rounded-lg h-[60px] bg-white">
             <LocationOn className="text-gray-800" />
@@ -133,8 +162,8 @@ export default function SearchPage() {
             </div>
           )}
         </div> */}
-        <div className="flex flex-col w-full space-y-1 col-span-2">
-          <div className="flex flex-row p-4 border-2 border-[#FF0000] rounded-lg h-[60px] bg-white">
+        {/* <div className="flex flex-col w-full space-y-1 col-span-2">
+          <div className="flex flex-row p-2 border-t-2 border-b-2 border-l-2 border-[#FF0000] rounded-lg h-[40px] bg-white w-[900px]">
             <Search className="text-gray-800" />
             <input
               type="text"
@@ -146,7 +175,7 @@ export default function SearchPage() {
               onKeyUp={(e: any) => handleTitle(e)}
             />
           </div>
-          {/* {showTitle && (
+          {showTitle && (
             <div className="w-full flex flex-col  border-2 border-[#FF0000] rounded-md z-20 bg-white p-2 mt-3">
               {showTitle ? (
                 <ul className="h-52 overflow-y-scroll">
@@ -164,16 +193,16 @@ export default function SearchPage() {
                 ""
               )}
             </div>
-          )} */}
-        </div>
-        <button
+          )}
+        </div> */}
+        {/* <button
           className="flex flex-row justify-center 
-            cursor-pointer w-full ml-[3px] lg:w-52 p-3 border-none 
-              border-[#FF0000] rounded-md bg-[#FF0000] "
+            cursor-pointer w-full lg:w-20 p-1 border-none
+              border-b-[#FF0000] rounded-tr-md rounded-br-md bg-[#FF0000] h-[40px]"
           onClick={(e) => searchFilter(e)}
         >
           <Search fontSize="large" className="text-white" />
-        </button>
+        </button> */}
       </form>
     </div>
   );

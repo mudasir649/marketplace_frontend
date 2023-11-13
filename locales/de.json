@@ -42,7 +42,7 @@
 
   "categories": [
     "Autos",
-    "Motorräder",
+    "Fahrräder",
     "Boote",
     "Busse",
     "Baumaschinen",
@@ -106,9 +106,9 @@
     "color": "Farbe",
     "condition": "Zustand",
     "price": "Preisart",
-    "model": "typ",
+    "model": "Typ",
     "selectBrand": "Marke auswählen",
-    "selectModel": "typ auswählen",
+    "selectModel": "Typ auswählen",
     "brand": "Marke",
     "bodyShape": "Aufbau",
     "year": "Jahr ",
@@ -257,37 +257,38 @@
     "copyright": "Urheberrecht © 2023 Eidcarosse. Alle Rechte vorbehalten." , 
     
       "header": {
-        "home": "Startseite",
+        "home": "Home",
         "advanceSearch": "Erweiterte Suche",
         "contactUs": "Kontaktiere uns",
         "listDown": "Dropdown-Liste",
         "chat": "Chat",
         "adminPanelSettings": "Admin Panel Einstellungen",
-        "postYourAd":"Inserat aufgeben",
+        "postYourAd":"Verkaufen",
         "hello": "Hallo",
         "myProfile": "Mein Profil",
         "myAds": "Meine Inserate",
         "favourites": "Favoriten",
         "logout": "Abmelden",
         "changePassword": "Passwort ändern",
-        "login": "Anmelden"
+        "login": "Anmeldung"
       } , 
       "labels": {
         "fullName": "Vollständiger Name",
         "phoneNo": "Telefonnummer",
         "email": "E-Mail-Adresse",
         "make": "Hersteller",
-        "model": "typ",
+        "model": "Typ",
         "year": "Jahr",
         "description": "Beschreibung" , 
-        "upload": "Bild hochladen"
+        "upload": "Bild hochladen",
+        "forgotPassword": "Passwort vergessen"
       },
       "placeholders": {
         "fullName": "Max Mustermann",
         "phoneNo": "01234-56789",
         "email": "max@example.com",
         "make": "Hersteller",
-        "model": "typ",
+        "model": "Typ",
         "year": "Jahr",
         "description": "Geben Sie eine Beschreibung ein..."
       },
@@ -326,7 +327,7 @@
     "phone_number": "Telefonnummer",
     "email_address": "E-Mail-Adresse",
     "make": "Marke",
-    "model": "typ",
+    "model": "Typ",
     "year": "Jahr",
     "upload_image": "Bild hochladen",
     "description": "Beschreibung",
@@ -513,10 +514,10 @@
         "description3": "Geben Sie eine klare und detaillierte Beschreibung Ihres Produkts an. Stellen Sie sicher, dass Sie die richtigen Informationen zu Ihren Artikeln hinzugefügt haben."
       } , 
       "subList": [
-        "Motoräder",
+        "Fahrräder",
         "Scooter",
         "E-Bikes",
-        "Motorrad"
+        "Motoräder"
       ]
     , 
     
@@ -525,7 +526,7 @@
         "contactForPrice": "Kontaktieren Sie für den Preis",
         "Condition": "Zustand",
         "Brand": "Marke",
-        "Model": "typ",
+        "Model": "Typ",
         "Year": "Jahr",
         "BodyShape": "Aufbau",
         "Gearbox": "Getriebe",

@@ -106,7 +106,7 @@ export default function LoginPage() {
               <h1>
                 <Link href='/forgot-password'>
                   <span className='text-[#FF0000] cursor-pointer hover:text-red-800'>
-                    Forgot Password
+                    {t('labels.forgotPassword')}
                   </span>
                 </Link>
               </h1>

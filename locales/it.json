@@ -190,7 +190,7 @@
     "listDown": "Elenco dei componenti",
     "chat": "Chat",
     "adminPanelSettings": "Impostazioni del pannello di amministrazione",
-    "postYourAd": "Pubblica il tuo annuncio",
+    "postYourAd": "Vendere",
     "hello": "Ciao",
     "myProfile": "Il mio profilo",
     "myAds": "I miei annunci",
@@ -207,7 +207,8 @@
     "model": "Modello",
     "year": "Anno",
     "description": "Descrizione",
-    "upload": "Carica immagine"
+    "upload": "Carica immagine",
+    "forgotPassword": "assword dimenticata"
   },
   "placeholders": {
     "fullName": "Mario Rossi",

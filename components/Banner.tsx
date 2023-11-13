@@ -95,23 +95,23 @@ export default function Banner() {
             <div className=' text-lg font-semibold flex space-x-5 lg:space-x-8'>
               <h1 className='line-clamp-1'>{t('banner.topCategories')}</h1>
               <section className='cursor-pointer flex space-x-2' onClick={() => handleCat('Autos')}>
-                <Image
+                {/* <Image
                 src='/assets/car_2.png'
                 alt='car'
                 width={100}
                 height={100}
                 className='h-8 w-8'
-                /> 
+                />  */}
                 <h1>{t('banner.autos')}</h1>
               </section>
               <section className='cursor-pointer flex space-x-2' onClick={() => handleCat('Parts')}>
-              <Image
+              {/* <Image
                 src='/assets/brake.png'
                 alt='car'
                 width={100}
                 height={100}
                 className='h-8 w-8'
-                /> 
+                />  */}
                 <h1>{t('banner.parts')}</h1>
               </section>
             </div>

@@ -295,7 +295,6 @@ export default function OthersComponent({ type }: any) {
     }
   }, [router, userData]);
 
- 
   return (
     <Home>
       <div className="container mx-auto mt-10">
@@ -310,8 +309,7 @@ export default function OthersComponent({ type }: any) {
           </div>
           <div className=" container mx-auto flex flex-col mb-7">
             <div className="flex flex-row space-x-2 mt-5">
-              <h1>{t("allCategories.Others")}
-                </h1>
+              <h1>{t("allCategories.Others")}</h1>
               <ArrowForwardIos
                 className="mt-[5px]"
                 style={{ fontSize: "14px" }}
@@ -470,7 +468,7 @@ export default function OthersComponent({ type }: any) {
               <div className="mt-5 w-full mb-5">
                 {/* eslint-disable-next-line jsx-a11y/alt-text */}
                 <h1 className="space-x-3 border-b-2 pb-3">
-                   {/* eslint-disable-next-line jsx-a11y/alt-text */}
+                  {/* eslint-disable-next-line jsx-a11y/alt-text */}
                   <Image className="text-[#FF0000] mt-[-4px]" />
                   <span className="text-lg font-bold">
                     {t("autosComponent.images")}
@@ -485,10 +483,11 @@ export default function OthersComponent({ type }: any) {
                     required
                     name="image"
                     id="fileInput"
-                    accept="images/*"
+                    accept="image/png, image/jpeg"
                     multiple
                     onChange={(e: any) => handleImage(e)}
                   />
+
                   <div className="bg-red-300 mt-4 p-2 border-none rounded-sm italic">
                     <ul className="italic text-sm space-y-2">
                       <li>{t("autosComponent.imageSizeInfo")}</li>

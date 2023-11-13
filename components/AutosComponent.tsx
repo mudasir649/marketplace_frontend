@@ -78,7 +78,8 @@ export default function AutosComponent() {
   const { t } = useTranslation(); // Initialize the translation hook
 
   const { userInfo } = useSelector((state: any) => state.auth);
-  const userData = userInfo === null ? userInfo : userInfo?.data?.userDetails?._id;
+  const userData =
+    userInfo === null ? userInfo : userInfo?.data?.userDetails?._id;
   const email = userInfo?.data?.userDetails?.email;
   const phone = userInfo?.data?.userDetails?.phoneNumber;
   const { type } = useParams();
@@ -102,8 +103,6 @@ export default function AutosComponent() {
       value: "recondition",
     },
   ];
-
- 
 
   const [images, setImages] = useState<any>([]);
   const [loading, setLoading] = useState<Boolean>(false);
@@ -371,15 +370,18 @@ export default function AutosComponent() {
         router.push("/my-ads");
       }
     } catch (error: any) {
-      if(error.response.data && error.response.data.errors){
-        const errorMessages = error.response.data.errors.map((err: any) => err.path);
+      if (error.response.data && error.response.data.errors) {
+        const errorMessages = error.response.data.errors.map(
+          (err: any) => err.path
+        );
 
         errorMessages.forEach((errorMessage: any) => {
-          toast(`${errorMessage} is invalid. Please enter valid value.`, { type: 'error' })
-        })
-
-      }else{
-        toast(`An error occured. Please! try again.`, { type: 'error' })
+          toast(`${errorMessage} is invalid. Please enter valid value.`, {
+            type: "error",
+          });
+        });
+      } else {
+        toast(`An error occured. Please! try again.`, { type: "error" });
       }
     }
     setLoading(false);
@@ -433,9 +435,7 @@ export default function AutosComponent() {
           </div>
           <div className=" container mx-auto flex flex-col mb-7">
             <div className="flex flex-row space-x-2 mt-5">
-              <h1>
-              {t('allCategories.Autos')}
-              </h1>
+              <h1>{t("allCategories.Autos")}</h1>
               <ArrowForwardIos
                 className="mt-[5px]"
                 style={{ fontSize: "14px" }}
@@ -556,7 +556,7 @@ export default function AutosComponent() {
                       {t("autosComponent.selectBrand")}
                     </option>
                     {brands?.make?.map((brand: any, i: number) => (
-                      <option value={brand} key={i}>
+                      <option value={brand} key={i} className="capitalize">
                         {brand}
                       </option>
                     ))}
@@ -752,10 +752,11 @@ export default function AutosComponent() {
                     required
                     name="image"
                     id="fileInput"
-                    accept="images/*"
+                    accept="image/png, image/jpeg"
                     multiple
                     onChange={(e: any) => handleImage(e)}
                   />
+
                   <div className="bg-red-300 mt-4 p-2 border-none rounded-sm italic">
                     <ul className="italic text-sm space-y-2">
                       <li>{t("autosComponent.imageSizeInfo")}</li>
@@ -925,31 +926,29 @@ export default function AutosComponent() {
                     </p>
                   </div>
                 </div>
-              ) : howContact == 'email' ? 
-              <div className={style.divStyle}>
+              ) : howContact == "email" ? (
+                <div className={style.divStyle}>
                   <h1 className={style.h1Style}>
                     {t("autosComponent.email")}{" "}
                     <span className="text-[#FF0000]">*</span>
                   </h1>
                   <div className="flex flex-col w-full">
-                    <p className="text-black text-sm mt-1 font-bold">
-                      {email}
-                    </p>
+                    <p className="text-black text-sm mt-1 font-bold">{email}</p>
                   </div>
                 </div>
-              : howContact === 'phone' ? 
-              <div className={style.divStyle}>
+              ) : howContact === "phone" ? (
+                <div className={style.divStyle}>
                   <h1 className={style.h1Style}>
                     {t("autosComponent.phone")}{" "}
                     <span className="text-[#FF0000]">*</span>
                   </h1>
                   <div className="flex flex-col w-full">
-                    <p className="text-black text-sm mt-1 font-bold">
-                      {phone}
-                    </p>
+                    <p className="text-black text-sm mt-1 font-bold">{phone}</p>
                   </div>
                 </div>
-              : ""}
+              ) : (
+                ""
+              )}
               <div className={style.divStyle}>
                 <h1 className={`${style.h1Style} invisible`}>ffj</h1>
                 {!loading ? (
