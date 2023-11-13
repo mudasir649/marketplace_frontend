@@ -57,7 +57,7 @@ interface IData {
 }
 
 export default function PartsComponent({ type }: any) {
-  
+  console.log(type);
 
   const { t } = useTranslation();
   const conditionList = [
@@ -77,7 +77,6 @@ export default function PartsComponent({ type }: any) {
       value: "recondition",
     },
   ];
-
 
   const { userInfo } = useSelector((state: any) => state.auth);
   const userData =
@@ -244,18 +243,27 @@ export default function PartsComponent({ type }: any) {
           <div className=" container mx-auto flex flex-col mb-7">
             <div className="flex flex-row space-x-2 mt-5">
               <h1>
-              {type === 'Autos Parts' ? t('allCategories.Autos Parts') :
- type === 'Bikes Parts' ? t('allCategories.Bikes Parts') :
- type === 'Boat Parts' ? t('allCategories.Boat Parts') :
- type === 'Busses Parts' ? t('allCategories.Busses Parts') :
- type === 'Construction Machines Parts' ? t('allCategories.Construction Machines Parts') :
- type === 'Drones Parts' ? t('allCategories.Drones Parts') :
- type === 'Other Parts' ? t('allCategories.Other Parts') :
- type === 'Trailers Parts' ? t('allCategories.Trailers Parts') :
- type === 'Trucks Parts' ? t('allCategories.Trucks Parts') :
- type === 'Vans Parts' ? t('allCategories.Vans Parts') :
- ''}
-
+                {type === "Auto Parts"
+                  ? t("allCategories.Autos Parts")
+                  : type === "Bikes Parts"
+                  ? t("allCategories.Bikes Parts")
+                  : type === "Boat Parts"
+                  ? t("allCategories.Boat Parts")
+                  : type === "Busses Parts"
+                  ? t("allCategories.Busses Parts")
+                  : type === "Construction Machines Parts"
+                  ? t("allCategories.Construction Machines Parts")
+                  : type === "Drones Parts"
+                  ? t("allCategories.Drones Parts")
+                  : type === "Other Parts"
+                  ? t("allCategories.Other Parts")
+                  : type === "Trailers Parts"
+                  ? t("allCategories.Trailers Parts")
+                  : type === "Trucks Parts"
+                  ? t("allCategories.Trucks Parts")
+                  : type === "Vans Parts"
+                  ? t("allCategories.Vans Parts")
+                  : ""}
               </h1>
               <ArrowForwardIos
                 className="mt-[5px]"
@@ -394,10 +402,11 @@ export default function PartsComponent({ type }: any) {
                     required
                     name="image"
                     id="fileInput"
-                    accept="images/*"
+                    accept="image/png, image/jpeg"
                     multiple
                     onChange={(e: any) => handleImage(e)}
                   />
+
                   <div className="bg-red-300 mt-4 p-2 border-none rounded-sm italic">
                     <ul className="italic text-sm space-y-2">
                       <li>{t("autosComponent.imageSizeInfo")}</li>

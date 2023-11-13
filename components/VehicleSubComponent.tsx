@@ -13,12 +13,11 @@ import {
 } from "@mui/icons-material";
 import axios from "axios";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import {
   axelType,
-  conditionList,
   fuelType,
   howContactList,
   kilometers,
@@ -45,13 +44,10 @@ interface IData {
   userId: any;
   title: any;
   price: any;
-  minPrice: any;
-  maxPrice: any;
   brand: any;
   model: any;
   description: any;
   videoUrl: any;
-  webSite: any;
   address: any;
   feature_list: any;
   howToContact: any;
@@ -63,12 +59,7 @@ interface IData {
   bodyShape: any;
   gearBox: any;
   fuelType: any;
-  exteriorColor: any;
-  interiorColor: any;
-  engineCapacity: any;
-  cylinder: any;
   km: any;
-  axeltype: any;
   latitude: any;
   longitude: any;
 }
@@ -83,9 +74,7 @@ export default function VehicleSubComponent({ type }: any) {
   const phone = userInfo?.data?.userDetails?.phoneNumber;
   const [open, isOpen] = useState<Boolean>(false);
   const [openSub, isOpenSub] = useState<Boolean>(false);
-  const [openBrand, isOpenBrand] = useState<Boolean>(false);
   const [openSubModel, isOpenSubModel] = useState<Boolean>(false);
-  const [openModel, isOpenModel] = useState<Boolean>(false);
   const [openSubBrand, isOpenSubBrand] = useState<Boolean>(false);
   const [images, setImages] = useState<any>([]);
   const [loading, setLoading] = useState<Boolean>(false);
@@ -114,13 +103,10 @@ export default function VehicleSubComponent({ type }: any) {
     userId: id,
     title: null || "",
     price: null || "",
-    minPrice: null || "",
-    maxPrice: null || "",
     brand: null || "",
     model: null || "",
     description: null || "",
     videoUrl: null || "",
-    webSite: null || "",
     address: null || "",
     feature_list: null || "",
     howToContact: "Whatsapp",
@@ -132,12 +118,7 @@ export default function VehicleSubComponent({ type }: any) {
     bodyShape: null || "",
     gearBox: null || "",
     fuelType: null || "",
-    exteriorColor: null || "",
-    interiorColor: null || "",
-    engineCapacity: null || "",
-    cylinder: null || "",
     km: null || "",
-    axeltype: null || "",
     latitude: null || "",
     longitude: null || "",
   });
@@ -279,99 +260,6 @@ export default function VehicleSubComponent({ type }: any) {
     },
   ];
 
-  const interiorColor = [
-    {
-      name: t("interiorColor.name1"),
-    },
-    {
-      name: t("interiorColor.name2"),
-    },
-    {
-      name: t("interiorColor.name3"),
-    },
-    {
-      name: t("interiorColor.name4"),
-    },
-    {
-      name: t("interiorColor.name5"),
-    },
-    {
-      name: t("interiorColor.name6"),
-    },
-    {
-      name: t("interiorColor.name7"),
-    },
-    {
-      name: t("interiorColor.name8"),
-    },
-    {
-      name: t("interiorColor.name9"),
-    },
-  ];
-
-  const gearBox = [
-    {
-      name: t("gearBox.name1"),
-    },
-    {
-      name: t("gearBox.name2"),
-    },
-    {
-      name: t("gearBox.name3"),
-    },
-  ];
-  const exteriorColor = [
-    {
-      name: t("color.name1"),
-    },
-    {
-      name: t("color.name2"),
-    },
-    {
-      name: t("color.name3"),
-    },
-    {
-      name: t("color.name4"),
-    },
-    {
-      name: t("color.name5"),
-    },
-    {
-      name: t("color.name6"),
-    },
-    {
-      name: t("color.name7"),
-    },
-    {
-      name: t("color.name8"),
-    },
-    {
-      name: t("color.name9"),
-    },
-    {
-      name: t("color.name10"),
-    },
-    {
-      name: t("color.name11"),
-    },
-    {
-      name: t("color.name12"),
-    },
-    {
-      name: t("color.name13"),
-    },
-    {
-      name: t("color.name14"),
-    },
-  ];
-
- 
-  
-
- 
-
-  
-   
   return (
     <Home>
       <div className="container mx-auto mt-10">
@@ -387,12 +275,17 @@ export default function VehicleSubComponent({ type }: any) {
           <div className=" container mx-auto flex flex-col mb-7">
             <div className="flex flex-row space-x-2 mt-5">
               <h1>
-              {type === 'Busses' ? t('allCategories.Busses') :
- type === 'Construction Machines' ? t('allCategories.Construction Machines') :
- type === 'Vans' ? t('allCategories.Vans') :
- type === 'Trucks' ? t('allCategories.Trucks') :
- type === 'Trailers' ? t('allCategories.Trailers') :
- ''}  
+                {type === "Busses"
+                  ? t("allCategories.Busses")
+                  : type === "Construction Machines"
+                  ? t("allCategories.Construction Machines")
+                  : type === "Vans"
+                  ? t("allCategories.Vans")
+                  : type === "Trucks"
+                  ? t("allCategories.Trucks")
+                  : type === "Trailers"
+                  ? t("allCategories.Trailers")
+                  : ""}
               </h1>
               <ArrowForwardIos
                 className="mt-[5px]"
@@ -635,7 +528,7 @@ export default function VehicleSubComponent({ type }: any) {
                   </h1>
                   <select
                     className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
-                    name="model"
+                    name="km"
                     onChange={(e: any) => handleInput(e)}
                   >
                     <option>Select Kilometers</option>
@@ -700,7 +593,7 @@ export default function VehicleSubComponent({ type }: any) {
                     required
                     name="image"
                     id="fileInput"
-                    accept="images/*"
+                    accept="image/png, image/jpeg"
                     multiple
                     onChange={(e: any) => handleImage(e)}
                   />

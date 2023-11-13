@@ -198,19 +198,19 @@
 
   "copyright": "Copyright © 2023 Eidcarosse. Tous droits réservés.",
   "header": {
-    "home": "Accueil",
+    "home": "Home",
     "advanceSearch": "Recherche avancée",
     "contactUs": "Contactez-nous",
     "listDown": "Composant de liste",
     "chat": "Chat",
     "adminPanelSettings": "Paramètres du panneau d'administration",
-    "postYourAd": "Publiez votre annonce",
+    "postYourAd": "Vendre",
     "hello": "Bonjour",
     "myProfile": "Mon profil",
     "myAds": "Mes annonces",
     "favourites": "Favoris",
     "logout": "Déconnexion",
-    "login": "Se connecter",
+    "login": "Connexion",
     "changePassword": "Changer le mot de passe"
   },
   "labels": {
@@ -221,7 +221,8 @@
     "model": "Modèle",
     "year": "Année",
     "description": "Description",
-    "upload": "Télécharger une image"
+    "upload": "Télécharger une image",
+    "forgotPassword": "Mot de passe oublié"
   },
   "placeholders": {
     "fullName": "John Doe",

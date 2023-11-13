@@ -20,6 +20,7 @@ import {
   RvHookup,
   TwoWheeler,
 } from "@mui/icons-material";
+import Image from "next/image";
 
 export default function CategoryList({ setCategory, setExpand }: any) {
     const { t } = useTranslation(); // Initialize the translation hook
@@ -41,7 +42,7 @@ export default function CategoryList({ setCategory, setExpand }: any) {
           name1: "E-Bikes",
         },
         {
-          logo: <DirectionsBike />,
+          logo: <TwoWheeler />,
           name: t("subList.3"),
           name1: "Motorcycles",
         },
@@ -74,7 +75,7 @@ export default function CategoryList({ setCategory, setExpand }: any) {
           name1: "Construction Machine Parts",
         },
         {
-          logo: <Flight />,
+          logo: <Image className="h-7 w-7" src="/assets/drone.png" alt="droneIcon" width={100} height={100} />,
           name: t("categoriesParts.5"),
           name1: "Drone Parts",
         },
@@ -105,9 +106,11 @@ export default function CategoryList({ setCategory, setExpand }: any) {
   const dispatch = useDispatch();
 
   const liStyle =
-    "hover:text-[#FF0000] border-b border-gray-200 whitespace-nowrap";
+    "border-b border-gray-200 whitespace-nowrap flex flex-row space-x-1";
     const categoryliStyle =
-    "flex space-x-2 hover:text-[#FF0000] border-b border-gray-200 whitespace-nowrap";
+    "flex space-x-2 border-b border-gray-200 whitespace-nowrap";
+
+    const h1Style = "hover:text-[#FF0000]";
 
   const router = useRouter();
   const handleClick = async (value: any) => {
@@ -129,12 +132,12 @@ export default function CategoryList({ setCategory, setExpand }: any) {
       <ul className="text-gray-500 space-y-1 cursor-pointer dropdow-menu z-10">
         <li onClick={() => handleClick("Autos")} className={liStyle}>
           {" "}
-          <DirectionsCar /> {t("categories.0")}
+          <h1> <DirectionsCar /></h1> <h1 className={h1Style}> {t("categories.0")}</h1>
         </li>
         <li className={`dropdow`}>
           <h1 onClick={() => handleClick("Bikes")} className={liStyle}>
             {" "}
-            <DirectionsBike /> {t("categories.1")}
+            <h1> <DirectionsBike /> </h1> <h1 className={h1Style}>{t("categories.1")}</h1> 
           </h1>
           <div className="absolute hidden ml-[220px] mt-[-30px] bg-white w-auto h-auto p-2 border-none rounded-sm dropdow-menu">
             <ul className="block">
@@ -145,31 +148,32 @@ export default function CategoryList({ setCategory, setExpand }: any) {
                   key={i}
                 >
                       <h1>{list?.logo}</h1>
-                      <h1>{list.name}</h1>
+                      <h1 className={h1Style}>{list.name}</h1>
                 </li>
               ))}
             </ul>
           </div>
         </li>
         <li onClick={() => handleClick("Boats")} className={liStyle}>
-          <DirectionsBoat /> {t("categories.2")}
+          <h1><DirectionsBoat /></h1> <h1 className={h1Style}>{t("categories.2")}</h1>
         </li>
         <li onClick={() => handleClick("Busses")} className={liStyle}>
-          <DirectionsBus /> {t("categories.3")}
+          <h1><DirectionsBus /></h1> <h1 className={h1Style}>{t("categories.3")}</h1>
         </li>
         <li
           onClick={() => handleClick("Construction Machines")}
           className={liStyle}
         >
-          <PrecisionManufacturing /> {t("categories.4")}
+          <h1><PrecisionManufacturing /></h1> <h1 className={h1Style}>{t("categories.4")}</h1>
         </li>
         <li onClick={() => handleClick("Drones")} className={liStyle}>
-          <Flight /> {t("categories.5")}
+          <h1><Image className="h-7 w-7" src="/assets/drone.png" alt="droneIcon" width={100} height={100} /></h1>
+          <h1 className={h1Style}>{t("categories.5")}</h1>
         </li>
         <li className={`dropdow`}>
           <h1 className={liStyle}>
             {" "}
-            <BuildCircle /> {t("categories.7")}
+            <h1><BuildCircle /></h1> <h1 className={h1Style}>{t("categories.7")}</h1>
           </h1>
           <div className="absolute hidden ml-[220px] mt-[-30px] bg-white w-auto h-auto p-2 border-none rounded-sm dropdow-menu">
             <ul className="block">
@@ -180,25 +184,24 @@ export default function CategoryList({ setCategory, setExpand }: any) {
                   key={i}
                 >
                     <h1>{list?.logo}</h1>
-                    <h1>{list.name}</h1>
+                    <h1 className={h1Style}>{list.name}</h1>
                 </li>
               ))}
             </ul>
           </div>
         </li>
+        <li onClick={() => handleClick("Trailers")} className={liStyle}>
+          <h1> <RvHookup /></h1> <h1 className={h1Style}>{t("categories.8")}</h1>
+        </li>
         <li onClick={() => handleClick("Trucks")} className={liStyle}>
-          <RvHookup /> {t("categories.8")}
+          <h1><FireTruck /></h1> <h1 className={h1Style}>{t("categories.9")}</h1>
         </li>
         <li onClick={() => handleClick("Vans")} className={liStyle}>
-          <FireTruck /> {t("categories.9")}
-        </li>
-        <li onClick={() => handleClick("Trailers")} className={liStyle}>
-          <AirportShuttle /> {t("categories.10")}
+          <h1><AirportShuttle /></h1> <h1 className={h1Style}>{t("categories.10")}</h1>
         </li>
         <li onClick={() => handleClick("Others")} className={liStyle}>
-        <DataSaverOn /> {t("categories.6")}
+          <h1><DataSaverOn /></h1> <h1 className={h1Style}>{t("categories.6")}</h1>
         </li>
-        
       </ul>
     </div>
   );

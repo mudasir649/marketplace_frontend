@@ -19,8 +19,8 @@ interface IList1 {
 export default function Footer() {
   const { t } = useTranslation(); // Initialize the translation hook
 
-  const headingStyle = 'capitalize text-xl font-bold text-white mb-5';
-  const ulStyle = 'text-gray-300 mb-5';
+  const headingStyle = 'capitalize text-xl font-bold mb-5';
+  const ulStyle = 'text-gray-500 mb-5';
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -66,12 +66,14 @@ const list3 = [
   {
     name: t('list3.1'),
   },
-  {
-    name: t('list3.2'),
-  },
+  
 ];
 
 const list4 = [
+  {
+    name: t('list3.2'),
+    value: t('list3.2')
+  },
   {
     name: t('list4.0'),
     value: "faq",
@@ -102,9 +104,22 @@ const list4 = [
 
   return (
     <footer>
-      <div className='bg-gray-900'>
-        <div className='flex flex-col lg:flex-row container mx-auto lg:space-x-20 lg:p-20 p-10'>
-          <div>
+      <div className='bg-white border-t-2'>
+        <div className='flex flex-col container mx-auto'>
+          <div className='flex flex-col md:flex-row space-x-0 md:space-x-8 mt-2'>
+              {list2?.map((lst: IList, i: number) => (
+                <h1 className='mb-3 text-sm cursor-pointer text-[#007AB7] hover:text-[#FF0000]' key={i} onClick={() => router.push('/how-to-sell-fast')}>{lst.name}</h1>
+              ))}
+              {list3?.map((lst: IList, i: number) => (
+                <h1 className='mb-3 text-sm cursor-pointer text-[#007AB7] hover:text-[#FF0000]' key={i} onClick={() => handleFooter(lst.name)}>{lst.name}</h1>
+              ))}
+          </div>
+            <div className='flex flex-col md:flex-row space-x-0 md:space-x-8'>
+              {list4?.map((lst: IList1, i: number) => (
+                <h1 className='mb-3 text-sm cursor-pointer text-[#007AB7] hover:text-[#FF0000]' key={i} onClick={() => router.push(`${lst.value}`)}>{lst.name}</h1>
+              ))}
+            </div>
+          {/* <div>
             <h1 className={headingStyle}>{t('footer.popularCategories')}</h1>
             <ul className={`${ulStyle} cursor-pointer`}>
               {list1?.map((lst: IList, i: number) => (
@@ -135,13 +150,13 @@ const list4 = [
                 <li className='mb-3' key={i} onClick={() => router.push(`${lst.value}`)}>{lst.name}</li>
               ))}
             </ul>
-          </div>
+          </div> */}
           <div>
             <BackToTop />
           </div>
         </div>
       </div>
-      <div className='bg-black py-8 text-center text-white'>
+      <div className='text-right bg-white'>
         <div className='container mx-auto'>
         {t('copyright')}
          </div>

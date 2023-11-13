@@ -42,7 +42,6 @@ interface IData {
   model: any;
   description: any;
   videoUrl: any;
-  webSite: any;
   address: any;
   feature_list: any;
   howToContact: any;
@@ -92,7 +91,6 @@ export default function SpecialCatComponent({ type }: any) {
     model: null || "",
     description: null || "",
     videoUrl: null || "",
-    webSite: null || "",
     address: null || "",
     feature_list: null || "",
     howToContact: "Whatsapp",
@@ -221,7 +219,6 @@ export default function SpecialCatComponent({ type }: any) {
     },
   ];
 
- 
   return (
     <Home>
       <div className="container mx-auto mt-10">
@@ -237,9 +234,13 @@ export default function SpecialCatComponent({ type }: any) {
           <div className=" container mx-auto flex flex-col mb-7">
             <div className="flex flex-row space-x-2 mt-5">
               <h1>
-              {type === 'Boats' ? t('allCategories.Boats') : type === 'Drones' ? t('allCategories.Drones') : ''}
+                {type === "Boats"
+                  ? t("allCategories.Boats")
+                  : type === "Drones"
+                  ? t("allCategories.Drones")
+                  : ""}
               </h1>
-   
+
               <ArrowForwardIos
                 className="mt-[5px]"
                 style={{ fontSize: "14px" }}
@@ -442,7 +443,7 @@ export default function SpecialCatComponent({ type }: any) {
                   </h1>
                   <select
                     className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
-                    name="model"
+                    name="km"
                     onChange={(e: any) => handleInput(e)}
                   >
                     <option>Select Kilometers</option>
@@ -499,10 +500,11 @@ export default function SpecialCatComponent({ type }: any) {
                     required
                     name="image"
                     id="fileInput"
-                    accept="images/*"
+                    accept="image/png, image/jpeg"
                     multiple
                     onChange={(e: any) => handleImage(e)}
                   />
+
                   <div className="bg-red-300 mt-4 p-2 border-none rounded-sm italic">
                     <ul className="italic text-sm space-y-2">
                       <li>{t("autosComponent.imageSizeInfo")}</li>

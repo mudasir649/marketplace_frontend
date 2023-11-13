@@ -42,7 +42,7 @@
 
   "categories": [
     "Autos",
-    "Motorräder",
+    "Fahrräder",
     "Boote",
     "Busse",
     "Baumaschinen",
@@ -257,20 +257,20 @@
     "copyright": "Urheberrecht © 2023 Eidcarosse. Alle Rechte vorbehalten." , 
     
       "header": {
-        "home": "Startseite",
+        "home": "Home",
         "advanceSearch": "Erweiterte Suche",
         "contactUs": "Kontaktiere uns",
         "listDown": "Dropdown-Liste",
         "chat": "Chat",
         "adminPanelSettings": "Admin Panel Einstellungen",
-        "postYourAd":"Inserat aufgeben",
+        "postYourAd":"Verkaufen",
         "hello": "Hallo",
         "myProfile": "Mein Profil",
         "myAds": "Meine Inserate",
         "favourites": "Favoriten",
         "logout": "Abmelden",
         "changePassword": "Passwort ändern",
-        "login": "Anmelden"
+        "login": "Anmeldung"
       } , 
       "labels": {
         "fullName": "Vollständiger Name",
@@ -281,7 +281,8 @@
       ,
         "year": "Jahr",
         "description": "Beschreibung" , 
-        "upload": "Bild hochladen"
+        "upload": "Bild hochladen",
+        "forgotPassword": "Passwort vergessen"
       },
       "placeholders": {
         "fullName": "Max Mustermann",
@@ -514,10 +515,10 @@
         "description3": "Geben Sie eine klare und detaillierte Beschreibung Ihres Produkts an. Stellen Sie sicher, dass Sie die richtigen Informationen zu Ihren Artikeln hinzugefügt haben."
       } , 
       "subList": [
-        "Motoräder",
+        "Fahrräder",
         "Scooter",
         "E-Bikes",
-        "Motorrad"
+        "Motoräder"
       ]
     , 
     

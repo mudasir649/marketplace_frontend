@@ -276,7 +276,7 @@
           "listDown": "List Down Component",
           "chat": "Chat",
           "adminPanelSettings": "Admin Panel Settings",
-          "postYourAd": "Post your ads",
+          "postYourAd": "Sell",
           "hello": "Hello",
           "myProfile": "My Profile",
           "myAds": "My Ads",
@@ -293,7 +293,8 @@
           "model": "Model",
           "year": "Year",
           "description": "Description" , 
-          "upload": "Upload Image"
+          "upload": "Upload Image",
+          "forgotPassword": "Forgot Password"
         },
         "placeholders": {
           "fullName": "John Doe",

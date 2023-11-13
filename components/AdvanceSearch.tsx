@@ -239,7 +239,7 @@ export default function AdvanceSearch({
       name1: "E-Bikes",
     },
     {
-      logo: <DirectionsBike />,
+      logo: <TwoWheeler />,
       name: t("subList.3"),
       name1: "Motorcycles",
     },
@@ -551,7 +551,7 @@ export default function AdvanceSearch({
               ))}
             </ul>
           </div>
-             <div className="flex flex-col w-full space-y-1">
+            <div className="flex flex-col w-full space-y-1">
           <div className="flex flex-row p-3 border-2 rounded-sm h-[50px] bg-white">
             <LocationOn className="text-[#FF0000]" />
             <input

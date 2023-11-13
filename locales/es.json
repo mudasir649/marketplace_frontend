@@ -207,13 +207,13 @@
   },
   "copyright": "Derechos de autor © 2023 Eidcarosse. Todos los derechos reservados.",
   "header": {
-    "home": "Inicio",
+    "home": "Home",
     "advanceSearch": "Búsqueda avanzada",
     "contactUs": "Contáctanos",
     "listDown": "Componente de lista",
     "chat": "Chat",
     "adminPanelSettings": "Configuración del panel de administración",
-    "postYourAd": "Publica tu anuncio",
+    "postYourAd": "Vender",
     "hello": "Hola",
     "myProfile": "Mi perfil",
     "myAds": "Mis anuncios",
@@ -296,7 +296,8 @@
     "model": "Modelo",
     "year": "Año",
     "description": "Descripción",
-    "upload": "Subir imagen"
+    "upload": "Subir imagen",
+    "forgotPassword": "Olvidé mi contraseña"
   },
   "placeholders": {
     "fullName": "Juan Pérez",
