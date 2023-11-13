@@ -220,10 +220,10 @@
 ,
 "sortByList": [
   "Neueste",
-  "A bis Z (Titel)",
+  "A biz Z (Titel)",
   "Z bis A (Titel)",
-  "Preis (niedrig bis hoch)",
-  "Preis (hoch bis niedrig)"
+  "Gunstigste (low to high)",
+  "Teuerste (high to low)"
 ],
 
   
