@@ -93,40 +93,40 @@ export default function BuyNow() {
                 </div>
                 <form>
                     <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-600">{t('full_name')}</label>
+                        <label className="block text-sm font-medium text-gray-600">{t('repairNow.full_name')}</label>
                         <input
                             type="text"
                             id="fullName"
                             name="fullName"
                             value={data.fullName}
                             className="w-full border py-2 px-3 focus:outline-none focus:border-red-600"
-                            placeholder={t('full_name')}
+                            placeholder={t('repairNow.full_name')}
                             required
                             onChange={(e) => handleInput(e)}
                         />
                     </div>
                     <div className="flex space-x-4 mb-4">
                         <div className="w-1/2">
-                            <label className="block text-sm font-medium text-gray-600">{t('phone_number')}</label>
+                            <label className="block text-sm font-medium text-gray-600">{t('repairNow.phone_number')}</label>
                             <input
                                 type="tel"
                                 id="phoneNo"
                                 name="phoneNo"
                                 className="w-full border py-2 px-3 focus:outline-none focus:border-red-600"
-                                placeholder={t('phone_number')}
+                                placeholder={t('repairNow.phone_number')}
                                 required
                                 value={data.phoneNo}
                                 onChange={(e) => handleInput(e)}
                             />
                         </div>
                         <div className="w-1/2">
-                            <label className="block text-sm font-medium text-gray-600">{t('email_address')}</label>
+                            <label className="block text-sm font-medium text-gray-600">{t('repairNow.email_address')}</label>
                             <input
                                 type="email"
                                 id="email"
                                 name="email"
                                 className="w-full border py-2 px-3 focus:outline-none focus:border-red-600"
-                                placeholder={t('email_address')}
+                                placeholder={t('repairNow.email_address')}
                                 value={data.email}
                                 required
                                 onChange={(e) => handleInput(e)}
@@ -136,39 +136,39 @@ export default function BuyNow() {
 
                     <div className="flex space-x-4 mb-4">
                         <div className="w-1/3">
-                            <label className="block text-sm font-medium text-gray-600">{t('make')}</label>
+                            <label className="block text-sm font-medium text-gray-600">{t('repairNow.make')}</label>
                             <input
                                 type="text"
                                 id="make"
                                 name="make"
                                 className="w-full border py-2 px-3 focus:outline-none focus:border-red-600"
-                                placeholder={t('make')}
+                                placeholder={t('repairNow.make')}
                                 value={data.make}
                                 onChange={(e) => handleInput(e)}
                                 required
                             />
                         </div>
                         <div className="w-1/3">
-                            <label className="block text-sm font-medium text-gray-600">{t('model')}</label>
+                            <label className="block text-sm font-medium text-gray-600">{t('repairNow.model')}</label>
                             <input
                                 type="text"
                                 id="model"
                                 name="model"
                                 className="w-full border py-2 px-3 focus:outline-none focus:border-red-600"
-                                placeholder={t('model')}
+                                placeholder={t('repairNow.model')}
                                 value={data.model}
                                 onChange={(e) => handleInput(e)}
                                 required
                             />
                         </div>
                         <div className="w-1/3">
-                            <label className="block text-sm font-medium text-gray-600">{t('year')}</label>
+                            <label className="block text-sm font-medium text-gray-600">{t('repairNow.year')}</label>
                             <input
                                 type="text"
                                 id="year"
                                 name="year"
                                 className="w-full border py-2 px-3 focus:outline-none focus:border-red-600"
-                                placeholder={t('year')}
+                                placeholder={t('repairNow.year')}
                                 value={data.year}
                                 onChange={(e) => handleInput(e)}
                                 required
@@ -177,7 +177,7 @@ export default function BuyNow() {
                     </div>
 
                     <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-600">{t('upload_image')}</label>
+                        <label className="block text-sm font-medium text-gray-600">{t('repairNow.upload_image')}</label>
                         <input
                             type="file"
                             id="fileInput"
@@ -203,12 +203,12 @@ export default function BuyNow() {
                     }
 
                     <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-600">{t('description')}</label>
+                        <label className="block text-sm font-medium text-gray-600">{t('repairNow.description')}</label>
                         <textarea
                             id="description"
                             name="description"
                             className="w-full border py-2 px-3 focus:outline-none focus:border-red-600"
-                            placeholder={t('description')}
+                            placeholder={t('repairNow.description')}
                             value={data.description}
                             onChange={(e) => handleInput(e)}
                             required
@@ -216,7 +216,7 @@ export default function BuyNow() {
                     </div>
 
                     <div className="mt-4 mb-10">
-                        <button type="submit" className="bg-[#FF0000] text-white px-4 py-2 hover:bg-red-800 focus:outline-none focus:bg-red-700" onClick={(e: any) => handleSubmit(e)}>{t('submit')}</button>
+                        <button type="submit" className="bg-[#FF0000] text-white px-4 py-2 hover:bg-red-800 focus:outline-none focus:bg-red-700" onClick={(e: any) => handleSubmit(e)}>{t('repairNow.submit')}</button>
                     </div>
                 </form>
             </div>
