@@ -110,7 +110,7 @@ export default function SellNow() {
                             id="fullName"
                             name="fullName"
                             className="w-full border py-2 px-3 focus:outline-none focus:border-red-600"
-                            placeholder={t('placeholders.name')}
+                            placeholder={t('placeholders.fullName')}
                             value={data.fullName}
                             required
                             onChange={(e) => handleInput(e)}
