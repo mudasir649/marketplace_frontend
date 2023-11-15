@@ -428,6 +428,7 @@
       "product": {
         "subCategory":"Sous-catégorie",
         "contactForPrice": "Contact",
+        "disabled": "Désactivé",
         "Condition": "État",
         "Brand": "Marque",
         "Model": "Modèle",

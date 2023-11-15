@@ -492,6 +492,7 @@
           "product": {
             "subCategory":"Sottocategoria",
             "contactForPrice": "Contatto",
+            "disabled": "Disabilitato",
             "color": "Colore",
               "axleCount": "Numero di Assi",
               "selectAxleCount": "Seleziona Numero di Assi",            

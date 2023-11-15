@@ -23,7 +23,7 @@ import {
   howContactList,
   interiorColor,
   kilometers,
-  priceList,
+  
 } from "@/utils/dataVariables";
 import "../app/post-ad/post-ad.css";
 import { useSelector } from "react-redux";
@@ -101,6 +101,18 @@ export default function AutosComponent() {
       id: 3,
       name: t("condition.recondition"),
       value: "recondition",
+    },
+  ];
+  const priceList = [
+    {
+      id: "1",
+      name: t('product.Price'),
+      value: "price",
+    },
+    {
+      id: "3",
+      name: t('product.disabled'),
+      value: "disabled",
     },
   ];
 

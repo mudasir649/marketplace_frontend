@@ -508,6 +508,7 @@
         
           "product": {
             "subCategory":"Subcategoría",
+            "disabled": "Deshabilitado",
             "contactForPrice": "Contacto",
             "Condition": "Condición",
             "Brand": "Marca",
