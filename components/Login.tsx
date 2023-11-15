@@ -113,7 +113,7 @@ export default function LoginPage() {
             </div>
             <div className='flex justify-center'>
               <h1>
-                {t('login.notAMember')}
+                {t('login.notAMember')}{" "}
                 <Link href='/signup'>
                   <span className='text-[#FF0000] cursor-pointer hover:text-red-800'>
                     {t('login.createAccount')}
