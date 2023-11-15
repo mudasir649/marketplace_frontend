@@ -287,7 +287,17 @@ const ConditionTranslated : {
                     </div>
                     <div className="flex flex-row gap-2 text-gray-600">
                       <Category className="text-[#FF0000]" />
-                      <h1 className="text-black">{product?.category}</h1>
+                      <h1 className="text-black">  {product.category === "Autos" && t('categories.0')}
+    {product.category === "Bikes" && t('categories.1')}
+    {product.category === "Boats" && t('categories.2')}
+    {product.category === "Busses" && t('categories.3')}
+    {product.category === "Construction Machines" && t('categories.4')}
+    {product.category === "Drones" && t('categories.5')}
+    {product.category === "Others" && t('categories.6')}
+    {product.category === "Parts" && t('categories.7')}
+    {product.category === "Trailers" && t('categories.8')}
+    {product.category === "Trucks" && t('categories.9')}
+    {product.category === "Vans" && t('categories.10')}</h1>
                     </div>
                     <div className="flex flex-row gap-2 text-gray-600">
                       <Place className="text-[#FF0000]" />
@@ -337,8 +347,32 @@ const ConditionTranslated : {
                           <span className={overviewStyle}>
                             {t("product.subCategory")}:{" "}
                           </span>{" "}
-                          {product?.subCategory}
-                        </li>
+                          
+                          {product.subCategory === "Autos" && t('allCategories.Autos')}
+    {product.subCategory === "Bicycles" && t('allCategories.Bicycles')}
+    {product.subCategory === "E-scooter" && t('allCategories.E-scooter')}
+    {product.subCategory === "E-bikes" && t('allCategories.E-bikes')}
+    {product.subCategory === "Motorcycle" && t('allCategories.Motorcycle')}
+    {product.subCategory === "Boats" && t('allCategories.Boats')}
+    {product.subCategory === "Busses" && t('allCategories.Busses')}
+    {product.subCategory === "Construction Machines" && t('allCategories.Construction Machines')}
+    {product.subCategory === "Drones" && t('allCategories.Drones')}
+    {product.subCategory === "Others" && t('allCategories.Others')}
+    {product.subCategory === "Trailers" && t('allCategories.Trailers')}
+    {product.subCategory === "Trucks" && t('allCategories.Trucks')}
+    {product.subCategory === "Vans" && t('allCategories.Vans')}
+    {product.subCategory === "Autos Parts" && t('allCategories.Autos Parts')}
+    {product.subCategory === "Bikes Parts" && t('allCategories.Bikes Parts')}
+    {product.subCategory === "Boat Parts" && t('allCategories.Boat Parts')}
+    {product.subCategory === "Busses Parts" && t('allCategories.Busses Parts')}
+    {product.subCategory === "Construction Machines Parts" && t('allCategories.Construction Machines Parts')}
+    {product.subCategory === "Drones Parts" && t('allCategories.Drones Parts')}
+    {product.subCategory === "Other Parts" && t('allCategories.Other Parts')}
+    {product.subCategory === "Trailers Parts" && t('allCategories.Trailers Parts')}
+    {product.subCategory === "Trucks Parts" && t('allCategories.Trucks Parts')}
+    {product.subCategory === "Vans Parts" && t('allCategories.Vans Parts')}
+  
+  </li>
                       )}
                       {!product?.condition ? (
                         ""

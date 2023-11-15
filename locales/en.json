@@ -48,7 +48,7 @@
         "maxPrice": "Max Price",
         "minPrice": "Min Price"
       } , 
-      "categories": [
+       "categories": [
         "Autos",
         "Bikes",
         "Boats",

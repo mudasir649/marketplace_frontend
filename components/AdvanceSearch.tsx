@@ -752,8 +752,17 @@ export default function AdvanceSearch({
                               </h2>
                             </Link>
                             <h1 className="bg-[#FF0000] text-center text-white w-16 h-8 p-1 border-none rounded-xl">
-                              {product?.category}
-                            </h1>
+                            {product.category === "Autos" && t('categories.0')}
+    {product.category === "Bikes" && t('categories.1')}
+    {product.category === "Boats" && t('categories.2')}
+    {product.category === "Busses" && t('categories.3')}
+    {product.category === "Construction Machines" && t('categories.4')}
+    {product.category === "Drones" && t('categories.5')}
+    {product.category === "Others" && t('categories.6')}
+    {product.category === "Parts" && t('categories.7')}
+    {product.category === "Trailers" && t('categories.8')}
+    {product.category === "Trucks" && t('categories.9')}
+    {product.category === "Vans" && t('categories.10')} </h1>
                           </div>
                           <div className="mt-3 space-y-1">
                             {product?.price ? (

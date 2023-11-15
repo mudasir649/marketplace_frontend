@@ -87,10 +87,10 @@ export const howContactList = [
     name: "Viber",
   },
   {
-    name: "email",
+    name: "Email",
   },
   {
-    name: "phone"
+    name: "Phone"
   }
 ];
 
