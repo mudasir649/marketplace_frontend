@@ -10,7 +10,7 @@ export default function SellRepairComponent() {
   const { t } = useTranslation();
   const bothDivsStyle = "border rounded-md lg:w-[450px] hover:shadow-md hover:shadow-[#e52320] w-auto h-64 text-center p-5 space-y-3";
   const h1Style = "cursor-pointer text-2xl font-semibold hover:text-[#FF0000]";
-  const btnStyle = "h-10 w-40 bg-[#FF0000] text-white p-2";
+  const btnStyle = "h-10 w-40 bg-[#FF0000] hover:bg-red-700 text-white p-2";
 
   const { width, height } = useWindowDimensions();
 
