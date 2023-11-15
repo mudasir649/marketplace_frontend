@@ -245,7 +245,7 @@ export default function Product({ product, url }: any) {
           <div className="flex flex-ro justify-between space-x-4 text-gray-600 w-full h-10 mb-10 border-t-2 pt-4 px-1">
             {pathname == "/my-ads" ? (
               <div className="flex flex-row space-x-2">
-                <EditNote className="text-4xl text-yellow-500" />
+                <EditNote className="text-4xl text-yellow-500" onClick={() =>  router.push(`/edit-ad/${product?._id}`)} />
                 <Delete
                   className="text-3xl text-red-500"
                   onClick={() => deleteAd(product?._id)}

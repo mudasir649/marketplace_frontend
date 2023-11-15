@@ -41,7 +41,7 @@ function ForgotPassword() {
 
       return (
         <Home>
-          <div className="container mx-auto my-10">
+          <div className="container mx-auto my-10 mb-36">
             <div className="bg-white p-4">
               <div className="container mx-auto">
                 <h1 className="space-x-3 border-b-2 pb-3">
