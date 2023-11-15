@@ -55,16 +55,16 @@
   ], 
 
   "categoriesParts": [
-    "Autoteile",
-    "Fahrradteile",
-    "Bootsteile",
-    "Bussteile",
+    "Autos",
+    "Fahrrader",
+    "Boote",
+    "Busse",
     "Baumaschinen-Ersatzteile",
-    "Drohnenteile",
-    "Andere Ersatzteile",
-    "Anhängerteile",
-    "Lkwteile",
-    "Lieferwagenteile"
+    "Drohnen",
+    "Andere",
+    "Anhänger",
+    "Lkw",
+    "Nutzfahrzeuge"
   ],
   "chat": {
     "inbox": "Posteingang",
