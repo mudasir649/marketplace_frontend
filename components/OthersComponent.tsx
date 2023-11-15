@@ -21,7 +21,7 @@ import {
   gearBox,
   howContactList,
   interiorColor,
-  priceList,
+  
 } from "@/utils/dataVariables";
 import "../app/post-ad/post-ad.css";
 import { useSelector } from "react-redux";
@@ -96,6 +96,19 @@ export default function OthersComponent({ type }: any) {
       value: "recondition",
     },
   ];
+  const priceList = [
+    {
+      id: "1",
+      name: t('product.Price'),
+      value: "price",
+    },
+    {
+      id: "3",
+      name: t('product.disabled'),
+      value: "disabled",
+    },
+  ];
+
   const exteriorColor = [
     {
       name: t("color.name1"),

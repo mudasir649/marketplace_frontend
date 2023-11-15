@@ -15,7 +15,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { howContactList, kilometers, priceList } from "@/utils/dataVariables";
+import { howContactList, kilometers } from "@/utils/dataVariables";
 import "../app/post-ad/post-ad.css";
 import { useSelector } from "react-redux";
 import locateAddress from "@/utils/GoogleLocation";
@@ -218,6 +218,19 @@ export default function SpecialCatComponent({ type }: any) {
       value: "recondition",
     },
   ];
+  const priceList = [
+    {
+      id: "1",
+      name: t('product.Price'),
+      value: "price",
+    },
+    {
+      id: "3",
+      name: t('product.disabled'),
+      value: "disabled",
+    },
+  ];
+
 
   return (
     <Home>
