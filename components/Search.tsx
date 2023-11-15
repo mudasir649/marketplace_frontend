@@ -102,7 +102,7 @@ export default function SearchPage() {
       > */}
       <form
         method="POST"
-        className={`flex flex-row w-full h-auto p-5 ml-0 md:ml-10 border-none rounded-md screen-1 mt-8`}
+        className={`flex flex-row w-full h-auto p-5 ml-0 md:ml-10 border-none rounded-md screen-1 mt-16`}
         ref={dropdownRef}
       >
         <div className="w-[900px]">
@@ -123,7 +123,7 @@ export default function SearchPage() {
         <button
           className="flex flex-row justify-center 
             cursor-pointer w-full lg:w-20 p-1 border-none
-              border-b-[#FF0000] rounded-tr-md rounded-br-md bg-[#FF0000] h-[40px] ml-[-8px]"
+              border-b-[#FF0000] rounded-tr-md rounded-br-md bg-[#FF0000] hover:bg-red-700 h-[40px] ml-[-8px]"
           onClick={(e) => searchFilter(e)}
         >
           <Search fontSize="large" className="text-white" />
