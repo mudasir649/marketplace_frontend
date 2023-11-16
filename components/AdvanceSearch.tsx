@@ -21,7 +21,8 @@ import {
   RvHookup,
   TwoWheeler,
   Share,
-  LocationOn
+  LocationOn,
+  Pin,
 } from "@mui/icons-material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Aos from "aos";
@@ -81,9 +82,11 @@ export default function AdvanceSearch({
   checkType,
 }: any) {
   // Redux hooks
-  const { t } = useTranslation(); // Initialize the translation hook  
-  
-  const { page, address, title, type1 } = useSelector((state: any) => state.app);
+  const { t } = useTranslation(); // Initialize the translation hook
+
+  const { page, address, title, type1 } = useSelector(
+    (state: any) => state.app
+  );
   const [googleLocation, setGoogleLocation] = useState<any>();
   const [loading, setLoading] = useState<Boolean>(false);
   const [showLocation, setShowLocation] = useState<Boolean>(false);
@@ -212,14 +215,14 @@ export default function AdvanceSearch({
       name1: "Vans",
       quantity: 9,
     },
-    
+
     {
       logo: <DataSaverOn />,
       name: t("categories.6"),
       name1: "Others",
 
       quantity: 23,
-    }
+    },
   ];
 
   const subList = [
@@ -305,7 +308,7 @@ export default function AdvanceSearch({
     t("sortByList.3"),
     t("sortByList.4"),
   ];
-  
+
   useEffect(() => {
     Aos.init();
   }, []);
@@ -319,7 +322,6 @@ export default function AdvanceSearch({
   };
 
   console.log(type1);
-  
 
   const handleFilterData = (e: any) => {
     setFiltersData({ ...filtersData, [e.target.name]: e.target.value });
@@ -481,7 +483,6 @@ export default function AdvanceSearch({
       return "Parts";
     }
   };
-  
 
   return (
     <div>
@@ -541,7 +542,7 @@ export default function AdvanceSearch({
                         key={i}
                         onClick={() => handleSearch(list?.name1)}
                       >
-                        {list?.logo} {list.name} 
+                        {list?.logo} {list.name}
                         {category == list?.name1 && productsCount !== 0
                           ? `(${productsCount})`
                           : ""}
@@ -551,39 +552,43 @@ export default function AdvanceSearch({
               ))}
             </ul>
           </div>
-            <div className="flex flex-col w-full space-y-1">
-          <div className="flex flex-row p-3 border-2 rounded-sm h-[50px] bg-white">
-            <LocationOn className="text-[#FF0000]" />
-            <input
-              type="text"
-              placeholder={t("placeholderAddress")}
-              name="address"
-              value={address1}
-              onChange={(e: any) => setAddress1(e.target.value)}
-              className="focus:outline-none pl-2 w-96 overflow-hidden bg-transparent"
-              onKeyUp={(e: any) => checkPlace(e)}
-            />
-          </div>
-          {showLocation && address && (
-            <div className={`flex flex-row p-2 border-2 border-[#FF0000] h-52 rounded-lg lg:p-2 bg-white overflow-y-scroll ${newWidth <= 1024 ? '' : 'absolute top-[202px] z-20 w-[320px]'}`}>
-              {showLocation ? (
-                <ul className="w-full">
-                  {googleLocation?.map((location: any, i: number) => (
-                    <li
-                      className="border-b"
-                      key={i}
-                      onClick={() => saveLocation(location?.description)}
-                    >
-                      {location.description}
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                ""
-              )}
+          <div className="flex flex-col w-full space-y-1">
+            <div className="flex flex-row p-3 border-2 rounded-sm h-[50px] bg-white">
+              <LocationOn className="text-[#FF0000]" />
+              <input
+                type="text"
+                placeholder={t("placeholderAddress")}
+                name="address"
+                value={address1}
+                onChange={(e: any) => setAddress1(e.target.value)}
+                className="focus:outline-none pl-2 w-96 overflow-hidden bg-transparent"
+                onKeyUp={(e: any) => checkPlace(e)}
+              />
             </div>
-          )}
-        </div>
+            {showLocation && address && (
+              <div
+                className={`flex flex-row p-2 border-2 border-[#FF0000] h-52 rounded-lg lg:p-2 bg-white overflow-y-scroll ${
+                  newWidth <= 1024 ? "" : "absolute top-[202px] z-20 w-[320px]"
+                }`}
+              >
+                {showLocation ? (
+                  <ul className="w-full">
+                    {googleLocation?.map((location: any, i: number) => (
+                      <li
+                        className="border-b"
+                        key={i}
+                        onClick={() => saveLocation(location?.description)}
+                      >
+                        {location.description}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  ""
+                )}
+              </div>
+            )}
+          </div>
           {category && (
             <>
               <div className="border-b flex flex-row justify-between p-2 mb-4">
@@ -622,7 +627,9 @@ export default function AdvanceSearch({
                   name="brand"
                   onChange={(e: any) => dispatch(setBrand(e.target.value))}
                 >
-                  <option value="option1">{t("autosComponent.selectBrand")}</option>
+                  <option value="option1">
+                    {t("autosComponent.selectBrand")}
+                  </option>
                   {brands?.make.map((brand: any, i: number) => (
                     <option value={brand} key={i}>
                       {brand}
@@ -747,30 +754,100 @@ export default function AdvanceSearch({
                         <div className="w-full col-span-2 p-2">
                           <div className="flex flex-row justify-between">
                             <Link href={`/product-details/${product?._id}`}>
+                              <h1 className="text-gray-600 w-auto h-8 mt-2 ml-[-2px] text-[13px]">
+                                {product.category === "Autos" && (
+                                  <div className="space-x-1">
+                                    <DirectionsCar style={{fontSize: "20px"}} />
+                                    <span>{t("categories.0")}</span>
+                                  </div>
+                                )}
+                                {product.category === "Bikes" && (
+                                  <div className="space-x-2">
+                                    <TwoWheeler style={{fontSize: "20px"}} />
+                                    <span>{t("categories.1")}</span>
+                                  </div>
+                                )}
+                                {product.category === "Boats" &&
+                                <div className="space-x-2">
+                                  <DirectionsBoat style={{fontSize: "20px"}} />
+                                  <span>{t("categories.2")}</span>
+                                </div>
+                              }
+                                {product.category === "Busses" &&
+                                <div className="space-x-2">
+                                  <DirectionsBus style={{fontSize: "20px"}} />
+                                  <span>{t("categories.3")}</span>
+                                </div>
+                                }
+                                {product.category === "Construction Machines" &&
+                                <div className="space-x-2">
+                                  <PrecisionManufacturing style={{fontSize: "20px"}} />
+                                  <span>{t("categories.4")}</span>
+                                </div>
+                                  }
+                                {product.category === "Drones" &&
+                                <div className="space-x-2 flex flex-row">
+                                  <Image className="h-5 w-5" src="/assets/drone.png" alt="droneIcon" width={100} height={100} />
+                                  <span>{t("categories.5")}</span>
+                                </div>
+}
+                                {product.category === "Others" &&
+                                <div className="space-x-1">
+                                  <DataSaverOn style={{fontSize: "20px"}} />
+                                  <span>{t("categories.6")}</span>
+                                </div>}
+                                {product.category === "Parts" &&
+                                <div className="space-x-1">
+                                  <BuildCircle style={{fontSize: "20px"}} />
+                                  <span>{t("categories.7")}</span>
+                                </div>
+                                }
+                                {product.category === "Trailers" &&
+                                <div className="space-x-1">
+                                  <RvHookup style={{fontSize: "20px"}} />
+                                  <span>{t("categories.8")}</span>
+                                </div>}
+                                {product.category === "Trucks" &&
+                                <div className="space-x-1">
+                                  <FireTruck style={{fontSize: "20px"}} />
+                                  <span>{t("categories.9")}</span>
+                                </div>
+                                }
+                                {product.category === "Vans" &&
+                                <div className="space-x-1">
+                                  <AirportShuttle style={{fontSize: "20px"}} />
+                                  <span>{t("categories.10")}</span>
+                                </div>
+                                  }
+                              </h1>
                               <h2 className=" text-[22px] line-clamp-1 text-black font-bold cursor-pointer hover:text-[#FF0000]">
                                 {product?.title}
                               </h2>
                             </Link>
-                            <h1 className="bg-[#FF0000] text-center text-white w-16 h-8 p-1 border-none rounded-xl">
-                            {product.category === "Autos" && t('categories.0')}
-    {product.category === "Bikes" && t('categories.1')}
-    {product.category === "Boats" && t('categories.2')}
-    {product.category === "Busses" && t('categories.3')}
-    {product.category === "Construction Machines" && t('categories.4')}
-    {product.category === "Drones" && t('categories.5')}
-    {product.category === "Others" && t('categories.6')}
-    {product.category === "Parts" && t('categories.7')}
-    {product.category === "Trailers" && t('categories.8')}
-    {product.category === "Trucks" && t('categories.9')}
-    {product.category === "Vans" && t('categories.10')} </h1>
+                            <div className="space-x-3">
+                              <Favorite
+                                className={`${
+                                  findProductId(product?._id)
+                                    ? "text-[#FF0000]"
+                                    : "text-gray-300"
+                                } cursor-pointer`}
+                                onClick={() => adFavorite(product?._id)}
+                                style={{ fontSize: "20px" }}
+                              />
+                              <Share
+                                onClick={() => handleShare(product?._id)}
+                                className="cursor-pointer text-gray-400"
+                                style={{ fontSize: "20px" }}
+                              />
+                            </div>
                           </div>
                           <div className="mt-3 space-y-1">
                             {product?.price ? (
                               <>
-                                <h1 className="text-[17px] text-[#FF0000] font-semibold">
+                                <h1 className="text-[20px] text-[#FF0000] font-bold">
                                   CHF {addInvertedComma(product?.price)}
                                 </h1>
-                                <h1 className="text-[12px] text-gray-400 font-semibold">
+                                <h1 className="text-[12px] text-gray-400 font-bold">
                                   EURO {addInvertedComma(product?.price * 2)}
                                 </h1>
                               </>
@@ -782,14 +859,11 @@ export default function AdvanceSearch({
                               </>
                             )}
                           </div>
-                          <div className="flex flex-row justify-between mt-5">
-                            <h1 className="lg:w-[410px] truncate">
-                              {product?.address}
-                            </h1>
-                            <h1 className="text-sm w-auto line-clamp-1 mr-[10px] lg:mr-0">
+                          <div className="flex flex-row mt-5 w-full">
+                            <div className="text-sm w-full line-clamp-1 mr-[10px] lg:mr-0">
                               {showDate(product?.createdAt) < 2 ? (
                                 <>
-                                  <div className="bg-green-600 text-white rounded-full px-3 text-center">
+                                  <div className="bg-green-600 text-white rounded-full px-3 text-center w-16">
                                     {"new"}
                                   </div>
                                 </>
@@ -803,40 +877,28 @@ export default function AdvanceSearch({
                                       )} days ago`}
                                 </div>
                               )}
-                            </h1>
-                          </div>
-                          <div
-                            className={`flex justify-between space-x-4 mt-3 text-gray-600 h-10 border-t-2 pt-2 w-full`}
-                          >
-                            <div className="space-x-4 mt-1">
-                            <Share
-                                onClick={() => handleShare(product?._id)}
-                                className="cursor-pointer text-gray-400 mt-[-5px]"
+                            </div>
+                            <div className="w-full flex justify-end space-x-2">
+                              <Chat
+                                className="cursor-pointer text-gray-400"
+                                style={{ fontSize: "20px" }}
+                                onClick={() => handleChat(product)}
+                              />
+                              <RemoveRedEye
+                                className="text-gray-500 mt-[-1px]"
                                 style={{ fontSize: "20px" }}
                               />
-                              {userInfo !== null && (
-                                <>
-                                  {product?.userId === userId ? '' : <Chat
-                                    className="cursor-pointer mt-[-1.5px] text-gray-400"
-                                    style={{ fontSize: "20px" }}
-                                    onClick={() => handleChat(product)}
-                                  />
-                              }
-                                  <Favorite
-                                    className={`${
-                                      findProductId(product?._id)
-                                        ? "text-[#FF0000]"
-                                        : "text-gray-300"
-                                    } mt-[-5px] cursor-pointer`}
-                                    onClick={() => adFavorite(product?._id)}
-                                    style={{ fontSize: "20px" }}
-                                  />
-                                </>
-                              )}
+                              <h1 className="text-[13px]">{product?.views}</h1>
                             </div>
-                            <div className="flex flex-row space-x-3">
-                              <RemoveRedEye className="text-gray-500 " />
-                              <h1>{product?.views}</h1>
+                          </div>
+                          <div
+                            className={`flex mt-2 text-gray-600 h-10 border-t-2 pt-2 w-full`}
+                          >
+                            <div className="w-full truncate flex flex-row">
+                              <LocationOn style={{ fontSize: "20px" }} />
+                              <h1 className="text-[13px]">
+                                {product?.address}
+                              </h1>
                             </div>
                           </div>
                         </div>
