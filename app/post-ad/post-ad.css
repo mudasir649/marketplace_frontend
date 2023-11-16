@@ -19,3 +19,12 @@
     transform: translateY(-20px);
     transition: var(--speed) ease;
 }
+.container {
+  flex-grow: 1; /* Grow to fill available space */
+}
+
+.box-container {
+  min-height: 47vh; /* Ensure at least 100% of the viewport height */
+  display: flex;
+  flex-direction: column;
+}

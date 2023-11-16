@@ -10,6 +10,7 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 import BackToTop from "./BackToTop";
 
+
 interface IList {
   name: String;
   value: String;
@@ -111,7 +112,8 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bottom-20">
+    
+    <footer className="bottom-20 flex-shrink-0">
       <div className="bg-white border-t-2">
         <div className="flex flex-col container mx-auto">
           <div className="flex flex-col md:flex-row space-x-0 md:space-x-8 mt-2">
