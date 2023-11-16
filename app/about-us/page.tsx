@@ -8,7 +8,6 @@ function Page() {
 
     return (
         <div>
-            <Home>
                 <div className='container mx-auto mb-10 mt-10'>
                     <div className='border-none rounded-sm bg-white p-8'>
                         <h1 className='text-[50px] text-gray-800 mb-6 font-semibold'>
@@ -50,7 +49,6 @@ function Page() {
                         </p>
                     </div>
                 </div>
-            </Home>
         </div>
     );
 }

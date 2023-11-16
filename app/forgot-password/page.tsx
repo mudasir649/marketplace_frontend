@@ -40,7 +40,7 @@ function ForgotPassword() {
     }
 
       return (
-        <Home>
+        <>
           <div className="container mx-auto my-10 mb-36">
             <div className="bg-white p-4">
               <div className="container mx-auto">
@@ -63,7 +63,7 @@ function ForgotPassword() {
             </div>
             </div>
         </div>
-        </Home>
+        </>
       );
     }
 

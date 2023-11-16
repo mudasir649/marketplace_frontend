@@ -27,9 +27,7 @@ function Page() {
 
     return (
         <div>
-            <Home>
                 <AdvanceSearch productData={productData} setProductData={setProductData} productsCount={productsCount} setProductsCount={setProductsCount} />
-            </Home>
         </div>
     )
 }

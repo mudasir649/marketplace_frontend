@@ -324,7 +324,6 @@ function Chat() {
     if (userInfo !== null) {
         return (
             <div>
-                <Home>
                     <div className='flex justify-center mb-20'>
                         {loading ?
                             <div className="flex justify-center mt-8">
@@ -626,7 +625,6 @@ function Chat() {
                             </>
                         }
                     </div >
-                </Home >
             </div >
         )
     }

@@ -8,7 +8,7 @@ export default function Page() {
 
     return (
         <div>
-             <Home>
+             <>
                 <div className='container mx-auto mt-10'>
                     <div className='border-none rounded-sm bg-white mb-10 h-full p-8'>
                         <div className=''>
@@ -75,7 +75,7 @@ export default function Page() {
                         </div>
                     </div>
                 </div>
-            </Home>
+            </>
         </div>
     );
 }

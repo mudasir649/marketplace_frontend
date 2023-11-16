@@ -154,7 +154,7 @@ export default function PostAd() {
 
     if (userInfo !== null) {
         return (
-            <Home>
+            <>
                 <div className='container mx-auto mb-20 mt-10'>
                     <div className='border-none box-container bg-white rounded-sm h-full p-3'>
                         <div className='container mx-auto'>
@@ -202,7 +202,7 @@ export default function PostAd() {
                         </div>
                     </div>
                 </div>
-            </Home>
+            </>
         )
     }
 }

@@ -134,7 +134,6 @@ export default function Page() {
 
   if (isVerified === true) {
     return (
-      <Home>
         <div className="container mx-auto my-10">
           <div className="bg-white p-4">
             <div className="container mx-auto">
@@ -221,7 +220,6 @@ export default function Page() {
             </div>
           </div>
         </div>
-      </Home>
     );
   }
 }

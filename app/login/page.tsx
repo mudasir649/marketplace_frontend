@@ -10,10 +10,7 @@ import Image from 'next/image';
 
 
 export default function LoginPage() {
-    const router = useRouter();
     const [featuredAds, setFeaturedAds] = useState<any>([]);
-
-    const { userInfo } = useSelector((state: any) => state.auth);
 
     useEffect(() => {
         Login
@@ -39,22 +36,18 @@ export default function LoginPage() {
     }
 
     return (
-        <Home>
-            {/* <div className='fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm'> */}
             <div className=''>
-                <section className='mb-20'>
+                <><section className='mb-20'>
                     <div className='container mx-auto mt-20'>
                         <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-14'>
                             {featuredAds?.map((product: any, i: any) => {
                                 return (
                                     <Product product={product} key={i} url="login" />
-                                )
+                                );
                             })}
                         </div>
                     </div>
-                </section>
-                <Login />
+                </section><Login /></>
             </div>
-        </Home>
     )
 }

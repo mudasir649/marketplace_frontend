@@ -41,7 +41,7 @@ function SignupPage() {
 
 
     return (
-        <Home>
+        <>
             <div className='overflow-y-scroll:hidden'>
                 <section className='mb-20'>
                     <div className='container mx-auto mt-20 '>
@@ -56,7 +56,7 @@ function SignupPage() {
                 </section>
                 <Signup />
             </div>
-        </Home>
+        </>
     )
 }
 

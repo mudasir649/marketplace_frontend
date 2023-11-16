@@ -5,7 +5,6 @@ import Link from 'next/link';
 
 const Custom404 = () => {
   return (
-    <Home>
     <div className='text-center my-10'>
       <h1 className='text-lg md:text-2xl font-bold'>Page Not Found!</h1>
       <h1 className='text-lg md:text-2xl font-bold my-3'>Sorry, the page you are looking for does not exist.</h1>
@@ -24,7 +23,6 @@ const Custom404 = () => {
       </Link>
       </div>
     </div>
-    </Home>
   );
 };
 

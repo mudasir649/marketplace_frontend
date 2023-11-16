@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Provider } from "react-redux";
 import store from '@/store/store';
 import { Inter } from 'next/font/google'
+import Home from '@/components/Home';
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -23,15 +24,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-       {/* <NextSeo 
-      title="Eidcarosse"
-      description="Welcome to Eidcarosse - No.1 Autos Buy and Sell Marketplace. Explore a diverse range of autos, connect with Swiss buyers and sellers"
-      /> */}
       <body className={`${inter.className}`}>
-        <Provider store={store}>
-          <ToastContainer autoClose={5000} />
+        <Home>
           {children}
-        </Provider>
+        </Home>
       </body>
     </html>
   )
