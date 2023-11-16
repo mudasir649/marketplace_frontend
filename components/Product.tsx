@@ -1,20 +1,30 @@
 import {
   AccessTime,
+  AirportShuttle,
   ArrowBackIos,
   ArrowForward,
   ArrowForwardIos,
   ArrowForwardIosOutlined,
+  BuildCircle,
   Chat,
+  DataSaverOn,
   Delete,
+  DirectionsBoat,
+  DirectionsBus,
+  DirectionsCar,
   EditNote,
   Favorite,
+  FireTruck,
   KeyboardArrowLeft,
   KeyboardArrowRight,
   LocationOn,
   Phone,
   PhoneIphone,
+  PrecisionManufacturing,
   RemoveRedEye,
+  RvHookup,
   Share,
+  TwoWheeler,
 } from "@mui/icons-material";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -37,6 +47,7 @@ import addInvertedComma from "@/utils/addInvertedComma";
 import showDate from "@/utils/showDate";
 import { useTranslation } from "react-i18next";
 import "./product.css";
+import Image from "next/image";
 
 export default function Product({ product, url }: any) {
   const { refresh } = useSelector((state: any) => state.app);
@@ -205,47 +216,109 @@ export default function Product({ product, url }: any) {
                   </>
                 )}
               </section>
-              <section className="flex flex-row space-x-1">
-                <AccessTime
-                  className="text-gray-400"
-                  style={{ fontSize: "22px" }}
-                />
-                <h1 className="text-sm w-16 truncate">
-                  {showDate(product?.createdAt) <= 2 ? (
-                    <div className="bg-green-600 text-white rounded-full px-3 text-center">
-                      {t("condition.new")}
-                    </div>
-                  ) : (
-                    <div className="text-[12px] mt-[0.5px]">
-                      {Number.isNaN(showDate(product?.createdAt))
-                        ? "0 days ago"
-                        : `${showDate(product?.createdAt)} days ago`}
-                    </div>
-                  )}
-                </h1>
+              <section className="flex flex-row">
+                {product?.userId === userId ? '' : 
+              <Favorite
+                    className={`${
+                      checkFavAds() ? "text-[#FF0000]" : "text-gray-300"
+                    } cursor-pointer`}
+                    onClick={() => adFavorite()}
+                  />
+}
               </section>
             </div>
-            <div className="space-y-3 mt-5">
-              <h1 className="text-xl font-semibold text-black w-52 truncate">
+            <div className="justify-between mt-5">
+            <section className="text-gray-600 w-auto h-8 mt-2 ml-[-2px] text-[13px]">
+                                {product.category === "Autos" && (
+                                  <div className="space-x-1">
+                                    <DirectionsCar style={{fontSize: "20px"}} />
+                                    <span>{t("categories.0")}</span>
+                                  </div>
+                                )}
+                                {product.category === "Bikes" && (
+                                  <div className="space-x-2">
+                                    <TwoWheeler style={{fontSize: "20px"}} />
+                                    <span>{t("categories.1")}</span>
+                                  </div>
+                                )}
+                                {product.category === "Boats" &&
+                                <div className="space-x-2">
+                                  <DirectionsBoat style={{fontSize: "20px"}} />
+                                  <span>{t("categories.2")}</span>
+                                </div>
+                              }
+                                {product.category === "Busses" &&
+                                <div className="space-x-2">
+                                  <DirectionsBus style={{fontSize: "20px"}} />
+                                  <span>{t("categories.3")}</span>
+                                </div>
+                                }
+                                {product.category === "Construction Machines" &&
+                                <div className="space-x-2">
+                                  <PrecisionManufacturing style={{fontSize: "20px"}} />
+                                  <span>{t("categories.4")}</span>
+                                </div>
+                                  }
+                                {product.category === "Drones" &&
+                                <div className="space-x-2 flex flex-row">
+                                  <Image className="h-5 w-5" src="/assets/drone.png" alt="droneIcon" width={100} height={100} />
+                                  <span>{t("categories.5")}</span>
+                                </div>
+}
+                                {product.category === "Others" &&
+                                <div className="space-x-1">
+                                  <DataSaverOn style={{fontSize: "20px"}} />
+                                  <span>{t("categories.6")}</span>
+                                </div>}
+                                {product.category === "Parts" &&
+                                <div className="space-x-1">
+                                  <BuildCircle style={{fontSize: "20px"}} />
+                                  <span>{t("categories.7")}</span>
+                                </div>
+                                }
+                                {product.category === "Trailers" &&
+                                <div className="space-x-1">
+                                  <RvHookup style={{fontSize: "20px"}} />
+                                  <span>{t("categories.8")}</span>
+                                </div>}
+                                {product.category === "Trucks" &&
+                                <div className="space-x-1">
+                                  <FireTruck style={{fontSize: "20px"}} />
+                                  <span>{t("categories.9")}</span>
+                                </div>
+                                }
+                                {product.category === "Vans" &&
+                                <div className="space-x-1">
+                                  <AirportShuttle style={{fontSize: "20px"}} />
+                                  <span>{t("categories.10")}</span>
+                                </div>
+                                  }
+            </section>
+              <section className="text-xl font-semibold text-black w-full truncate">
                 {product?.title}
-              </h1>
-              <section className="flex flex-row space-x-1 w-52 truncate">
-                <LocationOn
-                  className="text-gray-400"
-                  style={{ fontSize: "20px" }}
-                />
-                <h1 className="mt-[-1px] text-sm line-clamp-1">
-                  {product?.address}
-                </h1>
               </section>
             </div>
           </div>
         </Link>
-        <div className="mx-5">
-          <div className="flex flex-ro justify-between space-x-4 text-gray-600 w-full h-10 mb-10 border-t-2 pt-4 px-1">
-            {pathname == "/my-ads" ? (
+        <div className="mx-5 mb-12">
+          <div className="text-gray-600 w-full h-10 border-t-2 pt-2 space-x-1">
+            <div className="flex">
+             <LocationOn
+                  className="text-gray-400"
+                  style={{ fontSize: "18px" }}
+                />
+                <h1 className="mt-[-1px] text-[13px] line-clamp-1">
+                  {product?.address}
+                </h1>
+            </div>
+          <div className="flex flex-row justify-between mt-3">
+            <div>
+              {pathname == "/my-ads" ? (
               <div className="flex flex-row space-x-2">
-                <EditNote className="text-4xl text-yellow-500" onClick={() =>  router.push(`/edit-ad/${product?._id}`)} />
+                <EditNote
+                  className="text-4xl text-yellow-500"
+                  onClick={() => router.push(`/edit-ad/${product?._id}`)}
+                />
                 <Delete
                   className="text-3xl text-red-500"
                   onClick={() => deleteAd(product?._id)}
@@ -253,37 +326,33 @@ export default function Product({ product, url }: any) {
               </div>
             ) : (
               <>
-                <div className="space-x-3 w-52">
+                <div className="space-x-3">
                   <Share
                     onClick={() => handleShare()}
-                    className="cursor-pointer"
-                    style={{ fontSize: "20px" }}
-                  />
+                    className="cursor-pointer text-gray-500"
+                    style={{ fontSize: "18px" }}
+                    />
                   {product.userId === userId ? (
                     ""
                   ) : (
                     <Chat
-                      style={{ fontSize: "20px" }}
-                      onClick={() => handleChat()}
+                    className="text-gray-500"
+                    style={{ fontSize: "18px" }}
+                    onClick={() => handleChat()}
                     />
                   )}
-                  <Favorite
-                    className={`${
-                      checkFavAds() ? "text-[#FF0000]" : "text-gray-300"
-                    } cursor-pointer`}
-                    onClick={() => adFavorite()}
-                    style={{ fontSize: "20px" }}
-                  />
-                </div>
-                <div className="flex flex-row space-x-1 mt-1">
-                  <RemoveRedEye
-                    className="text-gray-500"
-                    style={{ fontSize: "20px" }}
-                  />
-                  <h1 className="text-sm">{product?.views}</h1>
                 </div>
               </>
             )}
+            </div>
+            <div className="flex space-x-1 mt-1">
+            <RemoveRedEye
+                    className="text-gray-500"
+                    style={{ fontSize: "20px" }}
+                  />
+                  <h1 className="flex-grow text-[13px]">{product?.views} Views</h1>
+            </div>
+            </div>
           </div>
         </div>
       </div>

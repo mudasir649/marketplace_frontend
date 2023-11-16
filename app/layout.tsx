@@ -1,20 +1,18 @@
 'use client'
 import './globals.css'
-import type { Metadata } from 'next'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Provider } from "react-redux";
 import store from '@/store/store';
 import { Inter } from 'next/font/google'
-import Head from 'next/head';
 
 
 const inter = Inter({ subsets: ['latin'] })
 
-const metadata: Metadata = {
-  title: 'Eidcarosse',
-  description: 'Welcome to Eidcarosse - No.1 Autos Buy and Sell Marketplace. Explore a diverse range of autos, connect with Swiss buyers and sellers',
-}
+// export const metadata: Metadata = {
+//   title: 'Eidcarosse',
+//   description: 'Welcome to Eidcarosse - No.1 Autos Buy and Sell Marketplace. Explore a diverse range of autos, connect with Swiss buyers and sellers',
+// }
 
 
 
@@ -25,10 +23,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Head>
-        <link rel="icon" href="/favicon.ico" sizes='any' />
-        <title>Eidcarosse.ch</title>
-      </Head>
+       {/* <NextSeo 
+      title="Eidcarosse"
+      description="Welcome to Eidcarosse - No.1 Autos Buy and Sell Marketplace. Explore a diverse range of autos, connect with Swiss buyers and sellers"
+      /> */}
       <body className={`${inter.className}`}>
         <Provider store={store}>
           <ToastContainer autoClose={5000} />
