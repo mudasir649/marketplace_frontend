@@ -1,8 +1,6 @@
 'use client';
-import useWindowDimensions from '@/utils/useWindowDimensions';
 import React from 'react'
 import Product from './Product';
-import { AccessTime, Chat, Favorite, LocationOn, RemoveRedEye, Share } from '@mui/icons-material';
 
 export default function ProductList({ productList }: any) {
 
