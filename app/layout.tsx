@@ -24,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning={true}>
+    <html lang="en">
       <Head>
         <link rel="icon" href="/favicon.ico" sizes='any' />
         <title>Eidcarosse.ch</title>
