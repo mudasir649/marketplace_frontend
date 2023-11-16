@@ -8,10 +8,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import { useTranslation } from "react-i18next";
-import Head from "next/head";
-import { NextSeo } from 'next-seo'
+import dynamic from "next/dynamic";
 
 function MainPage() {
   const { t } = useTranslation(); // Initialize the translation hook
@@ -20,49 +18,24 @@ function MainPage() {
   const [topAds, setTopAds] = useState<any>();
 
   const { width, height } = useWindowDimensions();
-  const newWidth = width || 0;
-  const newHeight = height || 0;
 
   useEffect(() => {
     const fetchFeaturedData = async () => {
-      try {
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/fetchFeatured`);
-        setFeaturedAds(res?.data?.data);
-
-        // Dynamically update metadata here
-        document.title = 'Eidcarosse';
-        document.querySelector('meta[name="description"]')?.setAttribute('content', 'Your dynamic description here');
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
+      const res = await axios(
+        `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/fetchFeatured`
+      );
+      setFeaturedAds(res?.data?.data);
     };
-
     fetchFeaturedData();
+    // const fetchTopData = async () => {
+    //   const res = await axios(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/fetchTopAds`);
+    //   setTopAds(res?.data?.data);
+    // }
+    // fetchTopData();
   }, []);
-
-  // useEffect(() => {
-  //   const fetchFeaturedData = async () => {
-  //     const res = await axios(
-  //       `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/fetchFeatured`
-  //     );
-  //     setFeaturedAds(res?.data?.data);
-  //   };
-  //   fetchFeaturedData();
-  //   // const fetchTopData = async () => {
-  //   //   const res = await axios(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/fetchTopAds`);
-  //   //   setTopAds(res?.data?.data);
-  //   // }
-  //   // fetchTopData();
-  // }, []);
 
   return (
     <div className="">
-        <Head>
-          {/* The title and meta tags will be dynamically updated after fetching data */}
-          {/* <title>Eidcarosse.ch</title>
-          <meta name="description" content="Welcome to Eidcarosse - No.1 Autos Buy and Sell Marketplace. Explore a diverse range of autos, connect with Swiss buyers and sellers" /> */}
-        </Head>
-      <Home>
         {/* <TopProducts>
           <ProductList productList={topAds} />
         </TopProducts>
@@ -103,7 +76,6 @@ function MainPage() {
             </div>
           </>
         )}
-      </Home>
     </div>
   );
 }

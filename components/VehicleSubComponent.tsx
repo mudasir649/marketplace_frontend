@@ -273,7 +273,7 @@ export default function VehicleSubComponent({ type }: any) {
   ];
 
   return (
-    <Home>
+    <>
       <div className="container mx-auto mt-10">
         <div className="border-none rounded-sm bg-white mb-10 h-full p-3">
           <div className="container mx-auto">
@@ -819,6 +819,6 @@ export default function VehicleSubComponent({ type }: any) {
           </div>
         </div>
       </div>
-    </Home>
+    </>
   );
 }

@@ -226,7 +226,7 @@ const ConditionTranslated : {
 
   return (
     <>
-      <Home>
+      <>
         {!product ? (
           <div className="flex justify-center mt-5">
             <Image
@@ -623,7 +623,7 @@ const ConditionTranslated : {
             </div>
           </div>
         )}
-      </Home>
+      </>
     </>
   );
 }

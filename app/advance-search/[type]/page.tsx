@@ -80,7 +80,7 @@ function Page() {
 
   return (
     <div>
-      <Home>
+      <>
         <AdvanceSearch
           productData={productData}
           productsCount={productsCount}
@@ -90,7 +90,7 @@ function Page() {
           setProductsCount={setProductsCount}
           subCategory={subCategory}
         />
-      </Home>
+      </>
     </div>
   );
 }

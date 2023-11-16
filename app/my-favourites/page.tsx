@@ -37,7 +37,7 @@ export default function Favorite() {
   }, [userId, userInfo, favAds, router]);
 
   return (
-    <Home>
+    <>
       {!favAds ? (
         <div className="flex justify-center mt-5">
           <Image
@@ -55,6 +55,6 @@ export default function Favorite() {
           <ProductList productList={favAds} />
         </div>
       )}
-    </Home>
+    </>
   );
 }

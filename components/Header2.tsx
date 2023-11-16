@@ -35,8 +35,9 @@ import { off, onDisconnect, onValue, ref, update } from "firebase/database";
 import { db } from "@/utils/firebase-config";
 import useWindowDimensions from "@/utils/useWindowDimensions";
 import { typeMap } from "@/utils/dataVariables";
+import dynamic from "next/dynamic";
 
-export default function Header2() {
+function Header2() {
   const [logoutApiCall, { isLoading }] = useLogoutMutation();
   const dispatch = useDispatch();
   const { t } = useTranslation(); // Initialize the translation hook
@@ -157,6 +158,7 @@ export default function Header2() {
         <div
           className="h-full w-96 absolute z-20 bg-white mt-[-40px]"
           data-aos="fade-right"
+          ref={dropdownRef}
         >
           <ul className="flex flex-col space-y-5 uppercase m-7">
             <li className={navbarLiStyle}>
@@ -172,9 +174,6 @@ export default function Header2() {
             </li>
             <li className={navbarLiStyle} onClick={handleContact}>
               {t("header.contactUs")}
-            </li>
-            <li>
-              <ListDownComponent />
             </li>
             {userInfo !== null && (
               <li
@@ -200,6 +199,20 @@ export default function Header2() {
               </Link>
             </li>
             <li>
+            <Link href="/login">
+                    <button
+                      className="border border-[#FF0000] bg-[#FF0000] hover:bg-white hover:border-white text-white hover:text-[#FF0000] drop-shadow-lg rounded-lg p-2 flex flex-row space-x-1"
+                    >
+                      <section className="">
+                        <Login className="text-md rounded-full" />
+                      </section>
+                      <section className="capitalize text-lg whitespace-nowrap truncate w-auto mt-[0.5px] font-semibold">
+                        {t("header.login")}
+                      </section>
+                    </button>
+                  </Link>
+            </li>
+            <li>
               <Cancel
                 className="hover:text-[#FF0000] cursor-pointer"
                 onClick={() => setNavbar(false)}
@@ -221,7 +234,15 @@ export default function Header2() {
         <div className="container mx-auto flex space-x-10 mt-8">
           <div className="w-96">
             <Link href="/">
-              {newWidth <= 1024 ? (
+            <Image
+                  src="/assets/eidcarosse_website_logo.png"
+                  alt="eidcarosse_logo"
+                  width={150}
+                  height={150}
+                  className={`w-full h-20 cursor-pointer mt-[-8px]`}
+                  onClick={() => router.push("/")}
+                />
+              {/* {newWidth <= 1024 ? (
                 <Image
                   src="/assets/icon_copy.png"
                   alt="logo"
@@ -238,7 +259,7 @@ export default function Header2() {
                   className={`w-full h-20 cursor-pointer mt-[-8px]`}
                   onClick={() => router.push("/")}
                 />
-              )}
+              )} */}
             </Link>
           </div>
 
@@ -276,9 +297,10 @@ export default function Header2() {
             >
               <li>
                 {newWidth <= 1024 ? (
-                  <button onClick={() => setNavbar(!navbar)}>
+               <button onClick={() => setNavbar(!navbar)}>
                     <MenuIcon className="text-[#FF0000]" />
                   </button>
+                
                 ) : (
                   <>
                     <Link href="/post-ad">
@@ -367,7 +389,9 @@ export default function Header2() {
                       </ul>
                     </div>
                   </div>
-                ) : (
+                ) :
+                <>
+                  {newWidth <= 1024 ? '' : 
                   <Link href="/login">
                     <button
                       className="border border-[#FF0000] bg-[#FF0000] hover:bg-white hover:border-white text-white hover:text-[#FF0000] drop-shadow-lg rounded-lg p-2 flex flex-row space-x-1"
@@ -380,7 +404,9 @@ export default function Header2() {
                       </section>
                     </button>
                   </Link>
-                )}
+                  }
+                </> 
+                }
               </li>
             </ul>
           </div>
@@ -394,3 +420,5 @@ export default function Header2() {
     </>
   );
 }
+
+export default dynamic(() => Promise.resolve(Header2), { ssr: false });

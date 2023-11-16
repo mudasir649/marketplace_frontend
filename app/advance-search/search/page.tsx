@@ -32,14 +32,12 @@ function Page() {
 
   return (
     <>
-      <Home>
         <AdvanceSearch
           setProductData={setProductData}
           setProductsCount={setProductsCount}
           productData={productData}
           productsCount={productsCount}
         />
-      </Home>
     </>
   );
 }

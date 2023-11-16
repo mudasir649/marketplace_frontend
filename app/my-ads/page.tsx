@@ -35,7 +35,7 @@ export default function MyAds() {
 
 
     return (
-        <Home>
+        <>
             {!userAds ? 
             <div className="flex justify-center mt-5">
             <Image
@@ -53,6 +53,6 @@ export default function MyAds() {
                 <ProductList productList={userAds} />
             </div>
 }
-        </Home>
+        </>
     )
 }

@@ -121,7 +121,7 @@ export default function MyProfile() {
 
 
     return (
-        <Home>
+        <>
             <div className='container mx-auto mb-20 mt-10'>
                 <ToastContainer />
                 <div className='border-none rounded-sm bg-white h-full p-3'>
@@ -218,6 +218,6 @@ export default function MyProfile() {
                     </div>
                 </div>
             </div>
-        </Home>
+        </>
     )
 }

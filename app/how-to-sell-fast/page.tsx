@@ -39,7 +39,7 @@ export default function Page() {
 
     return (
         <div>
-            <Home>
+            <>
                 <div className='container mx-auto mt-10 mb-10'>
                     <div className='border-none rounded-sm bg-white p-8'>
                         <h1 className='text-center text-3xl md:text-[50px] text-gray-800 uppercase mt-10'>{t('sell.sellPage')}</h1>
@@ -72,7 +72,7 @@ export default function Page() {
                         ))}
                     </div>
                 </div>
-            </Home >
+            </>
         </div >
     )
 }
