@@ -459,7 +459,20 @@ export default function AdvanceSearch({
   const findProductId = (productId: any) => {
     return prodId.some((item: any) => item._id === productId);
   };
-
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+  // const scrollToTop = () => {
+  //   const scrollStep = -window.scrollY / 60; // Adjust the division factor for speed
+  
+  //   const scrollInterval = setInterval(() => {
+  //     if (window.scrollY !== 0) {
+  //       window.scrollBy(0, scrollStep);
+  //     } else {
+  //       clearInterval(scrollInterval);
+  //     }
+  //   }, 15); // Adjust the interval for smoother animation
+  // };
   const checkSubCategory = () => {
     if (
       subCategory === "Bicycles" ||
@@ -864,7 +877,7 @@ export default function AdvanceSearch({
                               {showDate(product?.createdAt) < 2 ? (
                                 <>
                                   <div className="bg-green-600 text-white rounded-full px-3 text-center w-16">
-                                    {"new"}
+                                    {t('condition.new')}
                                   </div>
                                 </>
                               ) : (
@@ -918,14 +931,15 @@ export default function AdvanceSearch({
                   <div className="flex flex-row space-x-4">
                     {pagination().map((li: any, i: number) => (
                       <button
-                        className={`${
-                          page === li &&
-                          "bg-[#e52320] w-6 md:w-8 text-white text-[12px] border-none rounded-sm"
-                        } pt-[2px] text-[12px] md:text-lg`}
-                        key={i}
-                        onClick={() => dispatch(setPage(li))}
-
-                      >
+                      className={`${
+                        page === li && "bg-[#e52320] w-6 md:w-8 text-white text-[12px] border-none rounded-sm"
+                      } pt-[2px] text-[12px] md:text-lg`}
+                      key={i}
+                      onClick={() => {
+                        dispatch(setPage(li));
+                        scrollToTop(); // Call the scrollToTop function here
+                      }}
+                    >
                         {li}
                       </button>
                     ))}
