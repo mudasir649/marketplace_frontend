@@ -328,7 +328,7 @@ const ConditionTranslated : {
                   </div>
                 </div>
                 {product?.description !== "" && (
-                  <div className="border-t-2 space-y-8 mt-2">
+                  <div className="border-t-2 space-y-2 mt-2">
                     <h1 className="text-xl font-bold mt-5">
                       <span className="relative">
                         <span>{t('autosComponent.description')}</span>

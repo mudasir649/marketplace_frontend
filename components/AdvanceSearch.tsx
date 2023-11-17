@@ -333,7 +333,7 @@ export default function AdvanceSearch({
     newWidth < 370
       ? "text-[#FF0000] text-[10px] cursor-pointer"
       : "text-[#FF0000] text-[15px] md:text-xl cursor-pointer";
-  const btnStyle = `font-semibold hover:text-[#FF0000] text-gray-500`;
+  const btnStyle = `font-semibold hover:bg-gray-200 w-10 hover:text-[#FF0000] text-gray-500`;
   const btnStyle1 = `font-semibold border border-red-400 bg-[#FF0000] text-white hover:bg-white hover:text-[#FF0000] p-2 h-10 w-full`;
   const spanStyle =
     newWidth < 370
@@ -925,7 +925,6 @@ export default function AdvanceSearch({
                   <button className={btnStyle} onClick={previousHandle}>
                     <KeyboardDoubleArrowLeft className={logoStyle} />
                     <span className={spanStyle}>
-                      {t("categorySelection.previous")}
                     </span>
                   </button>
                   <div className="flex flex-row space-x-4">
@@ -946,7 +945,6 @@ export default function AdvanceSearch({
                   </div>
                   <button className={btnStyle} onClick={nextHandle}>
                     <span className={spanStyle}>
-                      {t("categorySelection.next")}
                     </span>
                     <KeyboardDoubleArrowRight className={logoStyle} />
                   </button>
