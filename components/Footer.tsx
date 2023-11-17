@@ -98,13 +98,14 @@ export default function Footer() {
 
   return (
     
-    <footer className="w-full bottom-0">
-      <div className="bg-white border-t-2">
-        <div className="flex flex-row md:flex-col container mx-auto">
-          <div className="flex flex-col md:flex-row space-x-0 md:space-x-8 mt-2">
+   <footer className="w-full bottom-0 bg-white border-t-2">
+      <div className="container mx-auto flex flex-col md:flex-row md:justify-between md:items-center px-4 py-4">
+        {/* Mobile View */}
+        <div className="md:hidden mb-4">
+          <div className="flex flex-col space-y-2">
             {list2?.map((lst: IList, i: number) => (
               <h1
-                className="mb-3 text-sm cursor-pointer text-[#007AB7] hover:text-[#FF0000]"
+                className="text-sm cursor-pointer text-[#007AB7] hover:text-[#FF0000]"
                 key={i}
                 onClick={() => router.push("/how-to-sell-fast")}
               >
@@ -113,7 +114,7 @@ export default function Footer() {
             ))}
             {list3?.map((lst: IList, i: number) => (
               <h1
-                className="mb-3 text-sm cursor-pointer text-[#007AB7] hover:text-[#FF0000]"
+                className="text-sm cursor-pointer text-[#007AB7] hover:text-[#FF0000]"
                 key={i}
                 onClick={() => handleFooter(lst.value)}
               >
@@ -121,27 +122,65 @@ export default function Footer() {
               </h1>
             ))}
           </div>
-          <div className="flex flex-col md:flex-row mt-2 md:mt-0 justify-between">
-            <div className="flex flex-col md:flex-row justify-between space-x-0 md:space-x-8">
+          <div className="flex flex-col space-y-2">
             {list4?.map((lst: IList1, i: number) => (
               <h1
-                className="mb-3 text-sm cursor-pointer text-[#007AB7] hover:text-[#FF0000]"
+                className="text-sm cursor-pointer text-[#007AB7] hover:text-[#FF0000]"
                 key={i}
                 onClick={() => router.push(`${lst.value}`)}
               >
                 {lst.name}
               </h1>
             ))}
-            </div>
-            <div className="text-right text-[#007AB7] bg-white">
-              <div className="container mx-auto">{t("copyright")}</div>
-            </div>
-          </div>
-          <div>
-            <BackToTop />
           </div>
         </div>
+
+        {/* Desktop View */}
+        <div className="hidden md:flex flex-col md:flex-row md:space-y-0 md:space-x-8">
+          <div className="flex flex-col space-y-2">
+            {list2?.map((lst: IList, i: number) => (
+              <h1
+                className="text-sm cursor-pointer text-[#007AB7] hover:text-[#FF0000]"
+                key={i}
+                onClick={() => router.push("/how-to-sell-fast")}
+              >
+                {lst.name}
+              </h1>
+            ))}
+            {list3?.map((lst: IList, i: number) => (
+              <h1
+                className="text-sm cursor-pointer text-[#007AB7] hover:text-[#FF0000]"
+                key={i}
+                onClick={() => handleFooter(lst.value)}
+              >
+                {lst.name}
+              </h1>
+            ))}
+          </div>
+          <div className="flex flex-col space-y-2">
+            {list4?.map((lst: IList1, i: number) => (
+              <h1
+                className="text-sm cursor-pointer text-[#007AB7] hover:text-[#FF0000]"
+                key={i}
+                onClick={() => router.push(`${lst.value}`)}
+              >
+                {lst.name}
+              </h1>
+            ))}
+          </div>
+        </div>
+
+        {/* Common Section */}
+        <div className="md:text-right text-[black]">
+          <div className="container mx-auto md:inline-block">
+            {t("copyright")}
+          </div>
+        </div>
+
+        {/* Back to Top */}
+        <div className="md:ml-auto">
+          <BackToTop />
+        </div>
       </div>
-    </footer>
-  );
+    </footer>);
 }
