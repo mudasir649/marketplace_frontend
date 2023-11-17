@@ -279,9 +279,8 @@
   "random": {
     "myAdsListing": "Ma Liste d'Annonces",
     "myFavouriteListings": "Mes Annonces Préférées",
-    
     "latestAds": "Dernières annonces",
-    "seeAllAds": "Voir toutes les annonces"
+    "seeAllAds": "Voir tout"
   },
   "postAd": {
     "selectCategory": "Sélectionner une catégorie",
