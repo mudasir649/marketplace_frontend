@@ -161,7 +161,9 @@
         "color": "Color",
         "selectSubCategory":"Select Sub Category" , 
         "axleCount": "Axle Count",
-        "selectAxleCount": "Select Axle Count"
+        "selectAxleCount": "Select Axle Count",
+        "selectKilometer": "Select Kilometers",
+        "selectColor": "Select Color"
       } , 
       "color": {
         "name1": "Beige",
@@ -613,11 +615,10 @@
         "Kilometers": "Kilometers",
         "EngineCapacity": "Engine Capacity",
         "Cylinders": "Cylinders",
-        "Exterior": "Exterior",
+        "ExteriorColor": "Exterior Color",
         "videoUrl": "Video URL",
         "disabled": "Disabled",
-
-        "Interior": "Interior",
+        "InteriorColor": "Interior Color",
         "Price": "Price",
         "Euro": "Euro",
         "Views": "Views",

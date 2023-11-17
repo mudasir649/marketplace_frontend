@@ -96,21 +96,6 @@ export default function Footer() {
     },
   ];
 
-  const handleCat = async (value: any) => {
-    try {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${value}`
-      );
-      if (res.status == 200) {
-        dispatch(setProductData(res.data?.data?.ad));
-        dispatch(setProductsCount(res.data?.data?.totalAds));
-        router.push(`/advance-search/${value}`);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     
     <footer className="w-full bottom-0">
@@ -136,7 +121,7 @@ export default function Footer() {
               </h1>
             ))}
           </div>
-          <div className="flex flex-col md:flex-row justify-between">
+          <div className="flex flex-col md:flex-row mt-2 md:mt-0 justify-between">
             <div className="flex flex-col md:flex-row justify-between space-x-0 md:space-x-8">
             {list4?.map((lst: IList1, i: number) => (
               <h1

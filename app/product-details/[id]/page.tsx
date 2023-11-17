@@ -89,8 +89,6 @@ function ProductDetails() {
     fetchData();
   }, [id, refresh, router]);
 
-  const [currentImage, setCurrentImage] = useState(0);
-
   const [contact, setContact] = React.useState(false);
 
   useEffect(() => {
@@ -101,33 +99,7 @@ function ProductDetails() {
     setContact(!contact);
   };
 
-  const overviewStyle = "text-md font-bold whitespace-nowrap";
-  const listStyle = "border-t border-gray-400 py-3 w-52";
   const listStyle2 = "text-sm text-gray-500";
-
-  const { width, height } = useWindowDimensions();
-
-  const newWidth = width || 0;
-  const newHeight = height || 0;
-
-  const handleEmail = (email: string) => {
-    if (!clicked) {
-      window.location.href = `mailto:${email}`;
-      setClicked(true);
-    }
-  };
-
-  const nextSlide = () => {
-    setCurrentImage((prevSlide) => (prevSlide + 1) % product?.images.length);
-    setSlide(slide + 1);
-  };
-
-  const prevSlide = () => {
-    setCurrentImage((prevSlide) =>
-      prevSlide === 0 ? product?.images.length - 1 : prevSlide - 1
-    );
-    setSlide(slide + 1);
-  };
 
   const adFavorite = async (productId: any) => {
     if (userInfo === null) {
@@ -339,150 +311,19 @@ const ConditionTranslated : {
                         <span className="absolute bottom-0 left-0 w-8 h-1 bg-[#FF0000] top-7"></span>
                       </span>
                     </h1>
-                    <ul className="grid grid-cols-3 mt-5 gap-3 mb-5">
-                      {!product?.subCategory ? (
-                        ""
-                      ) : (
-                        <li>
-                          <span className={overviewStyle}>
-                            {t("product.subCategory")}:{" "}
-                          </span>{" "}
-                          
-                          {product.subCategory === "Autos" && t('allCategories.Autos')}
-    {product.subCategory === "Bicycles" && t('allCategories.Bicycles')}
-    {product.subCategory === "E-scooter" && t('allCategories.E-scooter')}
-    {product.subCategory === "E-bikes" && t('allCategories.E-bikes')}
-    {product.subCategory === "Motorcycle" && t('allCategories.Motorcycle')}
-    {product.subCategory === "Boats" && t('allCategories.Boats')}
-    {product.subCategory === "Busses" && t('allCategories.Busses')}
-    {product.subCategory === "Construction Machines" && t('allCategories.Construction Machines')}
-    {product.subCategory === "Drones" && t('allCategories.Drones')}
-    {product.subCategory === "Others" && t('allCategories.Others')}
-    {product.subCategory === "Trailers" && t('allCategories.Trailers')}
-    {product.subCategory === "Trucks" && t('allCategories.Trucks')}
-    {product.subCategory === "Vans" && t('allCategories.Vans')}
-    {product.subCategory === "Autos Parts" && t('allCategories.Autos Parts')}
-    {product.subCategory === "Bikes Parts" && t('allCategories.Bikes Parts')}
-    {product.subCategory === "Boat Parts" && t('allCategories.Boat Parts')}
-    {product.subCategory === "Busses Parts" && t('allCategories.Busses Parts')}
-    {product.subCategory === "Construction Machines Parts" && t('allCategories.Construction Machines Parts')}
-    {product.subCategory === "Drones Parts" && t('allCategories.Drones Parts')}
-    {product.subCategory === "Other Parts" && t('allCategories.Other Parts')}
-    {product.subCategory === "Trailers Parts" && t('allCategories.Trailers Parts')}
-    {product.subCategory === "Trucks Parts" && t('allCategories.Trucks Parts')}
-    {product.subCategory === "Vans Parts" && t('allCategories.Vans Parts')}
-  
-  </li>
-                      )}
-                      {!product?.condition ? (
-                        ""
-                      ) : (
-                        <li>
-                          <span className={overviewStyle}>
-                            {t("product.Condition")}:{" "}
-                          </span>{" "}
-                         {translatedCondition}
-                        </li>
-                      )}
-                      {!product?.brand ? (
-                        ""
-                      ) : (
-                        <li>
-                          <span className={overviewStyle}>
-                            {t("product.Brand")}:{" "}
-                          </span>{" "}
-                          {product?.brand}
-                        </li>
-                      )}
-                      {!product?.model ? (
-                        ""
-                      ) : (
-                        <li>
-                          <span className={overviewStyle}>
-                            {t("product.Model")}:{" "}
-                          </span>{" "}
-                          {product?.model}
-                        </li>
-                      )}
-                      {!product?.year ? (
-                        ""
-                      ) : (
-                        <li>
-                          <span className={overviewStyle}>
-                            {t("product.Year")}:{" "}
-                          </span>{" "}
-                          {product?.year}
-                        </li>
-                      )}
-                      {!product?.bodyShape ? (
-                        ""
-                      ) : (
-                        <li>
-                          <span className={overviewStyle}>
-                            {t("product.BodyShape")}:{" "}
-                          </span>{" "}
-                          {product?.bodyShape}
-                        </li>
-                      )}
-                      {!product?.gearBox ? (
-                        ""
-                      ) : (
-                        <li>
-                        <span className={overviewStyle}>
-                          {t("product.Gearbox")}:{" "}
-                        </span>{" "}
-                        {gearboxTranslations[product?.gearBox as 'Automatic' | 'Manual' | 'Semi-Automatic']}
-                      </li>
-                      )}
-                      {!product?.fuelType ? (
-                        ""
-                      ) : (
-                        <li>
-                          <span className={overviewStyle}>
-                            {t("product.FuelType")}:{" "}
-                          </span>{" "}
-                          {product?.fuelType}
-                        </li>
-                      )}
-                      {!product?.km ? (
-                        ""
-                      ) : (
-                        <li>
-                          <span className={overviewStyle}>
-                            {t("product.Kilometers")}:{" "}
-                          </span>{" "}
-                          {product?.km}
-                        </li>
-                      )}
-                      {!product?.engineCapacity ? (
-                        ""
-                      ) : (
-                        <li>
-                          <span className={overviewStyle}>
-                            {t("product.EngineCapacity")}:{" "}
-                          </span>{" "}
-                          {product?.engineCapacity}
-                        </li>
-                      )}
-                      {!product?.extriorColor ? (
-                        ""
-                      ) : (
-                        <li>
-                          <span className={overviewStyle}>
-                            {t("product.interiorColor")}:{" "}
-                          </span>{" "}
-                          {product?.exteriorColor}
-                        </li>
-                      )}
-                      {product?.category == "Autos" && (
-                    <li>
-                    <span className={overviewStyle}>
-                      {t("product.Interior")}:{" "}
-                    </span>{" "}
-                    {translatedInteriorColor}
-                  </li>
-
-                      )}
+                    <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-5 gap-5">
+                      {!product?.subCategory ? '' : <h1><span className="font-bold">{t("product.subCategory")}: </span> {product?.subCategory}</h1> }
+                      {!product?.condition ? '' : <h1><span className="font-bold">{t("product.Condition")}: </span> {translatedCondition}</h1> }
+                      {!product?.brand ? '' : <h1><span className="font-bold">{t("product.Brand")}: </span> {product?.brand}</h1> }
+                      {!product?.model ? '' : <h1><span className="font-bold">{t("product.Model")}: </span> {product?.model}</h1> }
+                      {!product?.year ? '' : <h1><span className="font-bold">{t("product.Year")}: </span> {product?.year}</h1> }
+                      {!product?.bodyShape ? '' : <h1><span className="font-bold">{t("product.BodyShape")}: </span> {product?.bodyShape}</h1> }
+                      {!product?.fuelType ? '' : <h1><span className="font-bold">{t("product.FuelType")}: </span> {product?.fuelType}</h1> }
+                      {!product?.km ? '' : <h1><span className="font-bold">{t("product.Kilometers")}: </span> {product?.km}</h1> }
+                      {!product?.gearBox ? '' : <h1><span className="font-bold">{t("product.Gearbox")}: </span> {gearboxTranslations[product?.gearBox as 'Automatic' | 'Manual' | 'Semi-Automatic']}</h1> }
+                      {!product?.engineCapacity ? '' : <h1><span className="font-bold">{t("product.EngineCapacity")}: </span> {product?.engineCapacity}</h1> }
+                      {!product?.interiorColor ? '' : <h1><span className="font-bold">{t("product.InteriorColor")}: </span> {translatedInteriorColor}</h1> }
+                      {!product?.exteriorColor ? '' : <h1><span className="font-bold">{t("product.ExteriorColor")}: </span> {translatedInteriorColor}</h1> }
                     </ul>
                   </div>
                 </div>
@@ -501,25 +342,15 @@ const ConditionTranslated : {
                 )}
                 <section className="space-y-1 mt-3">
                   {product?.videoUrl && (
-                    <div className="flex flex-row space-x-2">
-                      <span className={`${overviewStyle}`}>
+                    <h1 className="flex whitespace-nowrap gap-1">
+                      <span className="font-bold">
                         {" "}
                         <InsertLink className="text-[#FF0000] mt-[-4px]" />{" "}
                         {t('autosComponent.videoURL')}:{" "}
                       </span>
-                        {product?.videoUrl}
-                    </div>
+                      <span className="w-auto truncate">{product?.videoUrl}</span>
+                    </h1>
                   )}
-                  {/* {product?.website && (
-                    <div className="flex flex-row space-x-2">
-                      <span className={`${overviewStyle}`}>
-                        {" "}
-                        <Language className="text-[#FF0000] mt-[-4px]" />{" "}
-                        Website:{" "}
-                      </span>
-                        {product?.website}
-                    </div>
-                  )} */}
                 </section>
               </div>
             </div>

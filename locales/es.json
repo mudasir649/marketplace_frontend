@@ -176,7 +176,9 @@
     "submit": "Enviar",
     "websitePlaceholder": "ejemplo: https://ejemplo.com",
     "titleCharacterLimit": "Límite de caracteres 25",
-    "priceCHF": "Precio [CHF]"
+    "priceCHF": "Precio [CHF]",
+    "selectKilometer": "Seleccionar kilómetros",
+    "selectColor": "Seleccionar tipo de color"
   },
   "banner": {
     "seeAllCategories": "las categorías",
@@ -520,8 +522,8 @@
             "Kilometers": "Kilómetros",
             "EngineCapacity": "Capacidad del motor",
             "Cylinders": "Cilindros",
-            "Exterior": "Exterior",
-            "Interior": "Interior",
+            "ExteriorColor": "Exterior Color",
+            "InteriorColor": "Interior Color",
             "Price": "Precio",
             "videoUrl": "URL del video",
             "Euro": "Euro",

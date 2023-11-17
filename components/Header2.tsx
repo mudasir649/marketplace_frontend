@@ -34,7 +34,7 @@ import { setRoomsData, setShowContact } from "@/store/appSlice";
 import { off, onDisconnect, onValue, ref, update } from "firebase/database";
 import { db } from "@/utils/firebase-config";
 import useWindowDimensions from "@/utils/useWindowDimensions";
-import { typeMap } from "@/utils/dataVariables";
+import { routeName, typeMap } from "@/utils/dataVariables";
 import dynamic from "next/dynamic";
 
 function Header2() {
@@ -54,14 +54,15 @@ function Header2() {
     showDeleteAd,
     type1,
     showContact,
+    prodId
   } = useSelector((state: any) => state.app);
   const userData = userInfo?.data?.userDetails;
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const pathname = usePathname();
-
-  const checkType = typeMap[type1] || type1;
+  const checkType = routeName.includes(pathname);
   const { width, height } = useWindowDimensions();
   const newWidth = width || 0;
+  
 
   useEffect(() => {
     if (userInfo && userId) {
@@ -298,12 +299,7 @@ function Header2() {
         </div>
       )}
       <header
-        className={`${
-          pathname !== "/" &&
-          pathname !== `/advance-search` &&
-          pathname !== `/advance-search/search` &&
-          pathname !== `/advance-search/${checkType}`
-            ? "shadow-md h-28 border-b-[3px] border-[#FF0000]"
+        className={`${ checkType ? "shadow-md h-28 border-b-[3px] border-[#FF0000]"
             : ""
         }`}
       >
