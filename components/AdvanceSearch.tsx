@@ -820,7 +820,7 @@ export default function AdvanceSearch({
                                 </div>
                                   }
                               </h1>
-                              <h2 className=" text-[22px] line-clamp-1 text-black font-bold cursor-pointer hover:text-[#FF0000]">
+                              <h2 className=" text-[16px] line-clamp-1 text-black font-bold cursor-pointer hover:text-[#FF0000]">
                                 {product?.title}
                               </h2>
                             </Link>
@@ -924,6 +924,7 @@ export default function AdvanceSearch({
                         } pt-[2px] text-[12px] md:text-lg`}
                         key={i}
                         onClick={() => dispatch(setPage(li))}
+
                       >
                         {li}
                       </button>

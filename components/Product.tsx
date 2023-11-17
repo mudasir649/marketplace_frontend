@@ -294,7 +294,7 @@ export default function Product({ product, url }: any) {
                                 </div>
                                   }
             </section>
-              <section className="text-xl font-semibold text-black w-full truncate">
+              <section className="text-lg font-semibold text-black w-full truncate">
                 {product?.title}
               </section>
             </div>

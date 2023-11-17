@@ -137,7 +137,7 @@ export default function CategoryList({ setCategory, setExpand }: any) {
         <li className={`dropdow`}>
           <h1 onClick={() => handleClick("Bikes")} className={liStyle}>
             {" "}
-            <h1> <DirectionsBike /> </h1> <h1 className={h1Style}>{t("categories.1")}</h1> 
+            <h1> <TwoWheeler /> </h1> <h1 className={h1Style}>{t("categories.1")}</h1> 
           </h1>
           <div className="absolute hidden ml-[220px] mt-[-30px] bg-white w-auto h-auto p-2 border-none rounded-sm dropdow-menu">
             <ul className="block">
