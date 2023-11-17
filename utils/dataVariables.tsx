@@ -537,6 +537,21 @@ export const subCategoryMap: { [key: string]: string } = {
   "Vans%20Parts": "Van Parts",
 };
 
+
+export const type1Map: { [key: string]: string } = {
+  "Construction%20Machines": "Construction Machines",
+  "Autos%20Parts": "Autos Parts",
+  "Bikes%20Parts": "Bikes Parts",
+  "Boat%20Parts": "Boat Parts",
+  "Busses%20Parts": "Busses Parts",
+  "Construction%20Machines%20Parts": "Construction Machines Parts",
+  "Drones%20Parts": "Drones Parts",
+  "Other%20Parts": "Other Parts",
+  "Trailers%20Parts": "Trailers Parts",
+  "Trucks%20Parts": "Trucks Parts",
+  "Vans%20Parts": "Vans Parts",
+}
+
 export const validTypes = [
   "Bikes",
   "Parts",
