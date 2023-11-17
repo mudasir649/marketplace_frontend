@@ -96,21 +96,6 @@ export default function Footer() {
     },
   ];
 
-  const handleCat = async (value: any) => {
-    try {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${value}`
-      );
-      if (res.status == 200) {
-        dispatch(setProductData(res.data?.data?.ad));
-        dispatch(setProductsCount(res.data?.data?.totalAds));
-        router.push(`/advance-search/${value}`);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     
     <footer className="w-full bottom-0">
