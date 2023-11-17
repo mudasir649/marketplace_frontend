@@ -161,7 +161,9 @@
     "submit": "Soumettre",
     "websitePlaceholder": "par exemple https://exemple.com",
     "titleCharacterLimit": "Limite de caractères : 25",
-    "priceCHF": "Prix [CHF]"
+    "priceCHF": "Prix [CHF]",
+    "selectKilometer": "Sélectionner des kilomètres",
+    "selectColor": "Sélectionner le type de couleur"
   },
   "banner": {
     "seeAllCategories": "Voir toutes les catégories",
@@ -439,11 +441,10 @@
         "Kilometers": "Kilométrage",
         "EngineCapacity": "Cylindrée",
         "Cylinders": "Cylindres",
-        "Exterior": "Extérieur",
-        "Interior": "Intérieur",
+        "ExteriorColor": "Extérieur",
+        "InteriorColor": "Intérieur",
         "Price": "Prix",
         "videoUrl": "URL de la vidéo" , 
-
         "Euro": "Euro",
         "Views": "Vues",
         "Favorite": "Favori",

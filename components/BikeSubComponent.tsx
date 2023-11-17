@@ -123,86 +123,58 @@ export default function BikeSubComponent({ type }: any) {
   const bikeExteriorColor = [
     {
       name: t("color.name1"),
-    },
-    {
-      name: t("color.name2"),
-    },
-    {
-      name: t("color.name3"),
-    },
-    {
-      name: t("color.name4"),
-    },
-    {
-      name: t("color.name5"),
-    },
-    {
-      name: t("color.name6"),
-    },
-    {
-      name: t("color.name7"),
-    },
-    {
-      name: t("color.name8"),
-    },
-    {
-      name: t("color.name9"),
-    },
-    {
-      name: t("color.name10"),
-    },
-    {
-      name: t("color.name11"),
-    },
-    {
-      name: t("color.name12"),
-    },
-    {
-      name: t("color.name13"),
-    },
-    {
-      name: t("color.name14"),
-    },
-    {
       value: t("color.value1"),
     },
     {
+      name: t("color.name2"),
       value: t("color.value2"),
     },
     {
+      name: t("color.name3"),
       value: t("color.value3"),
     },
     {
+      name: t("color.name4"),
       value: t("color.value4"),
     },
     {
+      name: t("color.name5"),
       value: t("color.value5"),
     },
     {
+      name: t("color.name6"),
       value: t("color.value6"),
     },
     {
+      name: t("color.name7"),
       value: t("color.value7"),
     },
     {
+      name: t("color.name8"),
       value: t("color.value8"),
     },
     {
+      name: t("color.name9"),
       value: t("color.value9"),
     },
     {
+      name: t("color.name10"),
       value: t("color.value10"),
     },
     {
+      name: t("color.name11"),
       value: t("color.value11"),
     },
     {
+      name: t("color.name12"),
       value: t("color.value12"),
     },
     {
+      name: t("color.name13"),
       value: t("color.value13"),
     },
     {
+      name: t("color.name14"),
       value: t("color.value14"),
     },
   ];
@@ -718,7 +690,7 @@ export default function BikeSubComponent({ type }: any) {
                     name="model"
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option>Select Kilometers</option>
+                    <option>{t('autosComponent.selectKilometer')}</option>
                     {kilometers.map((kms: any, i: number) => (
                       <option value={kms.name} key={i}>
                         {kms.name}
@@ -756,7 +728,7 @@ export default function BikeSubComponent({ type }: any) {
                     name="exteriorColor"
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option value="option1">Select Color Type</option>
+                    <option value="option1">{t("autosComponent.selectColor")}</option>
                     {bikeExteriorColor?.map((color: any, i: number) => (
                       <option value={color.value} key={i}>
                         {color.name}

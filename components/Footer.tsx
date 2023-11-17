@@ -136,7 +136,7 @@ export default function Footer() {
               </h1>
             ))}
           </div>
-          <div className="flex flex-col md:flex-row justify-between">
+          <div className="flex flex-col md:flex-row mt-2 md:mt-0 justify-between">
             <div className="flex flex-col md:flex-row justify-between space-x-0 md:space-x-8">
             {list4?.map((lst: IList1, i: number) => (
               <h1

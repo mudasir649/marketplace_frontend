@@ -146,7 +146,9 @@
     "websitePlaceholder": "z.B. https://beispiel.com",
     "priceCHF": "Fixpreis[CHF]"  ,
     "subCategory": "Unterkategorie",
-    "selectSubCategory": "Unterkategorie auswählen"
+    "selectSubCategory": "Unterkategorie auswählen",
+    "selectKilometer": "Kilometer auswählen",
+    "selectColor": "Farbtyp auswählen"
   } , 
   
     "color": {
@@ -536,9 +538,8 @@
         "EngineCapacity": "Hubraum",
         "Cylinders": "Zylinder",
         "disabled": "Deaktiviert",
-        
-        "Exterior": "Außenansicht",
-        "Interior": "Innenraum",
+        "ExteriorColor": "Außenansicht",
+        "InteriorColor": "Innenraum",
         "Price": "Preis",
         "Euro": "Euro",
         "videoUrl": "Video URL",
