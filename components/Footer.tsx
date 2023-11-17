@@ -113,9 +113,9 @@ export default function Footer() {
 
   return (
     
-    <footer className="bottom-20 flex-shrink-0">
+    <footer className="w-full bottom-0">
       <div className="bg-white border-t-2">
-        <div className="flex flex-col container mx-auto">
+        <div className="flex flex-row md:flex-col container mx-auto">
           <div className="flex flex-col md:flex-row space-x-0 md:space-x-8 mt-2">
             {list2?.map((lst: IList, i: number) => (
               <h1
@@ -152,38 +152,6 @@ export default function Footer() {
               <div className="container mx-auto">{t("copyright")}</div>
             </div>
           </div>
-          {/* <div>
-            <h1 className={headingStyle}>{t('footer.popularCategories')}</h1>
-            <ul className={`${ulStyle} cursor-pointer`}>
-              {list1?.map((lst: IList, i: number) => (
-                <li className='mb-3' key={i} onClick={() => handleCat(lst.name)}>{lst.name}</li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h1 className={headingStyle}>{t('footer.howToSellFast')}</h1>
-            <ul className={`${ulStyle} cursor-pointer`}>
-              {list2?.map((lst: IList, i: number) => (
-                <li className='mb-3' key={i} onClick={() => router.push('/how-to-sell-fast')}>{lst.name}</li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h1 className={headingStyle}>{t('footer.information')}</h1>
-            <ul className={`${ulStyle} cursor-pointer`}>
-              {list3?.map((lst: IList, i: number) => (
-                <li className='mb-3' key={i} onClick={() => handleFooter(lst.name)}>{lst.name}</li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h1 className={headingStyle}>{t('footer.helpSupport')}</h1>
-            <ul className={`${ulStyle} cursor-pointer`}>
-              {list4?.map((lst: IList1, i: number) => (
-                <li className='mb-3' key={i} onClick={() => router.push(`${lst.value}`)}>{lst.name}</li>
-              ))}
-            </ul>
-          </div> */}
           <div>
             <BackToTop />
           </div>

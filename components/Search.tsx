@@ -102,7 +102,7 @@ export default function SearchPage() {
       > */}
       <form
         method="POST"
-        className={`flex flex-row w-full h-auto p-5 ml-0 md:ml-10 border-none rounded-md screen-1 mt-16`}
+        className={`flex flex-row w-full h-auto p-5 ml-0 md:ml-10 border-none rounded-md screen-1`}
         ref={dropdownRef}
       >
         <div className="w-[900px]">

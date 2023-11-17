@@ -109,6 +109,11 @@ function Header2() {
     setNavbar(false);
   };
 
+  const handleAdvanceSearch = () => {
+    router.push("/advance-search")
+    setNavbar(false);
+  }
+
   const handleOutsideClick = useCallback((event: MouseEvent) => {
     if (
       dropdownRef.current &&
@@ -147,6 +152,7 @@ function Header2() {
       await logoutApiCall({}).unwrap();
       dispatch(logout(null));
       router.push("/");
+      setNavbar(false)
     } catch (error: any) {
       toast(error?.data?.message);
     }
@@ -156,7 +162,7 @@ function Header2() {
     <>
       {navbar && (
         <div
-          className="h-full w-96 absolute z-20 bg-white mt-[-40px]"
+          className="h-full w-full absolute z-20 bg-white mt-[-40px]"
           data-aos="fade-right"
           ref={dropdownRef}
         >
@@ -168,14 +174,16 @@ function Header2() {
             </li>
             <li
               className={navbarLiStyle}
-              onClick={() => router.push("/advance-search")}
+              onClick={() => handleAdvanceSearch()}
             >
               {t("header.advanceSearch")}
             </li>
             <li className={navbarLiStyle} onClick={handleContact}>
               {t("header.contactUs")}
             </li>
-            {userInfo !== null && (
+            <li className="text-black">
+                <ListDownComponent />
+              </li>            {userInfo !== null && (
               <li
                 className={navbarLiStyle}
                 onClick={() => router.push("/chat")}
@@ -183,14 +191,11 @@ function Header2() {
                 <QuestionAnswer className="text-3xl -mt-1" />
               </li>
             )}
-            {userInfo !== null && (
-              <li className={navbarLiStyle}>
-                <AdminPanelSettings className="text-3xl -mt-1" />
-              </li>
-            )}
             <li className="cursor-pointer">
               <Link href="/post-ad">
-                <button className="flex flex-row space-x-2 p-3 border border-gray-300 rounded-lg hover:bg-[#FF0000] hover:border-[#FF0000] hover:text-white">
+                <button className="flex flex-row space-x-2 p-3 border border-gray-300 rounded-lg hover:bg-[#FF0000] hover:border-[#FF0000] hover:text-white"
+                onClick={() => setNavbar(false)}
+                >
                   <Add className="text-md border border-[#e52320] rounded-full bg-[#FF0000] text-white" />
                   <span className="capitalize text-md font-semibold">
                     {t("header.postYourAd")}
@@ -198,10 +203,11 @@ function Header2() {
                 </button>
               </Link>
             </li>
-            <li>
+            {userInfo === null ?  <li>
             <Link href="/login">
                     <button
                       className="border border-[#FF0000] bg-[#FF0000] hover:bg-white hover:border-white text-white hover:text-[#FF0000] drop-shadow-lg rounded-lg p-2 flex flex-row space-x-1"
+                      onClick={() => setNavbar(false)}
                     >
                       <section className="">
                         <Login className="text-md rounded-full" />
@@ -211,7 +217,77 @@ function Header2() {
                       </section>
                     </button>
                   </Link>
-            </li>
+            </li> : 
+            <><li>
+                <Link href="/my-profile">
+                  <button
+                    className="flex flex-row space-x-2 p-3 border border-gray-300 rounded-lg hover:bg-[#FF0000] hover:border-[#FF0000] hover:text-white"
+                    onClick={() => setNavbar(false)}
+                  >
+                    <section className="">
+                      <Person />
+                    </section>
+                    <section className="capitalize text-lg whitespace-nowrap truncate w-auto mt-[0.5px] font-semibold">
+                      {t("header.myProfile")}
+                    </section>
+                  </button>
+                </Link>
+              </li><li>
+                  <Link href="/my-ads">
+                    <button
+                      className="flex flex-row space-x-2 p-3 border border-gray-300 rounded-lg hover:bg-[#FF0000] hover:border-[#FF0000] hover:text-white"
+                      onClick={() => setNavbar(false)}
+                    >
+                      <section className="">
+                        <FormatListNumbered />
+                      </section>
+                      <section className="capitalize text-lg whitespace-nowrap truncate w-auto mt-[0.5px] font-semibold">
+                        {t("header.myAds")}
+                      </section>
+                    </button>
+                  </Link>
+                </li><li>
+                  <Link href="/my-favourites">
+                    <button
+                      className="flex flex-row space-x-2 p-3 border border-gray-300 rounded-lg hover:bg-[#FF0000] hover:border-[#FF0000] hover:text-white"
+                      onClick={() => setNavbar(false)}
+                    >
+                      <section className="">
+                        <Favorite />
+                      </section>
+                      <section className="capitalize text-lg whitespace-nowrap truncate w-auto mt-[0.5px] font-semibold">
+                      {t("header.favourites")}
+                      </section>
+                    </button>
+                  </Link>
+                </li><li>
+                  <Link href="/change-password">
+                    <button
+                      className="flex flex-row space-x-2 p-3 border border-gray-300 rounded-lg hover:bg-[#FF0000] hover:border-[#FF0000] hover:text-white"
+                      onClick={() => setNavbar(false)}
+                    >
+                      <section className="">
+                        <ManageAccounts />
+                      </section>
+                      <section className="capitalize text-lg whitespace-nowrap truncate w-auto mt-[0.5px] font-semibold">
+                        {t("header.changePassword")}
+                      </section>
+                    </button>
+                  </Link>
+                </li><li>
+                  <button
+                    className="flex flex-row space-x-2 p-3 border border-gray-300 rounded-lg hover:bg-[#FF0000] hover:border-[#FF0000] hover:text-white"
+                    onClick={() => logoutHandler()}
+                  >
+                    <section className="">
+                      <Logout />
+                    </section>
+                    <section className="capitalize text-lg whitespace-nowrap truncate w-auto mt-[0.5px] font-semibold">
+                      {t("header.logout")}
+                    </section>
+                  </button>
+                </li></>
+}
             <li>
               <Cancel
                 className="hover:text-[#FF0000] cursor-pointer"
@@ -232,7 +308,7 @@ function Header2() {
         }`}
       >
         <div className="container mx-auto flex space-x-10 mt-8">
-          <div className="w-96">
+          <div className="w-[900px] md:w-96">
             <Link href="/">
             <Image
                   src="/assets/eidcarosse_website_logo.png"
@@ -242,27 +318,8 @@ function Header2() {
                   className={`w-full h-20 cursor-pointer mt-[-8px]`}
                   onClick={() => router.push("/")}
                 />
-              {/* {newWidth <= 1024 ? (
-                <Image
-                  src="/assets/icon_copy.png"
-                  alt="logo"
-                  width={100}
-                  height={100}
-                  className={`w-auto h-20 cursor-pointer mt-[-8px]`}
-                />
-              ) : (
-                <Image
-                  src="/assets/eidcarosse_website_logo.png"
-                  alt="eidcarosse_logo"
-                  width={150}
-                  height={150}
-                  className={`w-full h-20 cursor-pointer mt-[-8px]`}
-                  onClick={() => router.push("/")}
-                />
-              )} */}
             </Link>
           </div>
-
           <div className="w-full flex justify-between">
             <ul className="flex flex-row text-md space-x-7 menu p-6">
               <li className={navbarLiStyle} onClick={() => router.push("/")}>
@@ -297,10 +354,9 @@ function Header2() {
             >
               <li>
                 {newWidth <= 1024 ? (
-               <button onClick={() => setNavbar(!navbar)}>
+                  <button onClick={() => setNavbar(!navbar)}>
                     <MenuIcon className="text-[#FF0000]" />
                   </button>
-                
                 ) : (
                   <>
                     <Link href="/post-ad">
@@ -316,6 +372,7 @@ function Header2() {
                   </>
                 )}
               </li>
+              {newWidth <= 1024 ? '' : 
               <li>
                 {userInfo !== null ? (
                   <div className="mt-[-4px]" ref={dropdownRef}>
@@ -390,8 +447,6 @@ function Header2() {
                     </div>
                   </div>
                 ) :
-                <>
-                  {newWidth <= 1024 ? '' : 
                   <Link href="/login">
                     <button
                       className="border border-[#FF0000] bg-[#FF0000] hover:bg-white hover:border-white text-white hover:text-[#FF0000] drop-shadow-lg rounded-lg p-2 flex flex-row space-x-1"
@@ -404,10 +459,9 @@ function Header2() {
                       </section>
                     </button>
                   </Link>
-                  }
-                </> 
                 }
               </li>
+              }
             </ul>
           </div>
           {!showContact ? "" : <ContactUs />}
