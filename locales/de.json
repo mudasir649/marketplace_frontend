@@ -218,17 +218,20 @@
       "value8": "Orange",
       "value9": "Other"
   }
-
 ,
 "sortByList": [
   "Neueste",
+  "Alt",
   "A biz Z (Titel)",
   "Z bis A (Titel)",
   "Günstigste",
   "Teuerste"
 ],
-
-  
+"passwordSettings": [
+  "Altes Passwort",
+  "Neues Passwort",
+  "Passwort bestätigen"
+],
     "banner": {
       "seeAllCategories": "Alle Kategorien",
       "topCategories": "Top-Kategorien:",
@@ -537,7 +540,7 @@
         "Kilometers": "Kilometerstand",
         "EngineCapacity": "Hubraum",
         "Cylinders": "Zylinder",
-        "disabled": "Deaktiviert",
+        "disabled": "Auf Anfrage",
         "ExteriorColor": "Außenansicht",
         "InteriorColor": "Innenraum",
         "Price": "Preis",

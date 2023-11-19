@@ -1,5 +1,4 @@
 "use client";
-import Home from "../components/Home";
 import useWindowDimensions from "@/utils/useWindowDimensions";
 import { East } from "@mui/icons-material";
 import SellRepairComponent from "@/components/SellRepairComponent";

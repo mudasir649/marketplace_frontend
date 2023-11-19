@@ -81,11 +81,11 @@ export default function Banner() {
     <div className='container mx-auto mt-5'>
         <div className='grid grid-cols-2 md:grid-cols-3'>
           <div className='flex flex-col w-52' ref={dropdownRef}>
-            <div className={`flex flex-row justify-between border border-gray-200 rounded-full h-14 w-48 hover:border-red-500 
-              bg-white px-5 py-4 capitalize text-sm focus:border-red-800 focus:shadown-lg font-semibold`} onClick={() => categoryHandle()}>
+            <div className={`flex flex-row justify-between border border-gray-200 rounded-full h-14 w-60 hover:border-red-500 
+              bg-white px-8 py-4 capitalize text-sm focus:border-red-800 focus:shadown-lg font-semibold`} onClick={() => categoryHandle()}>
               <h1 className='whitespace-nowrap'>  {t('banner.seeAllCategories')}
               </h1>
-              <KeyboardArrowDown className={`logo ${isExpand ? 'active': 'inactive'} h-5 w-5 text-[#FF0000] mt-[-1px]`} />
+              <KeyboardArrowDown className={`logo ${isExpand ? 'active': 'inactive'} h-5 w-5 text-[#FF0000] -mt-[1.5px]`} />
             </div>
             {isExpand && <div className='h-auto p-2 w-auto lg:w-60 z-30 absolute bg-white border rounded-md mt-16' data-aos="fade-up">
               <CategoryList setCategory={setCategory} setExpand={setIsExpand} />

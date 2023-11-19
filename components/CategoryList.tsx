@@ -15,7 +15,6 @@ import {
   ElectricBike,
   ElectricScooter,
   FireTruck,
-  Flight,
   PrecisionManufacturing,
   RvHookup,
   TwoWheeler,
@@ -170,6 +169,15 @@ export default function CategoryList({ setCategory, setExpand }: any) {
           <h1><Image className="h-7 w-7" src="/assets/drone.png" alt="droneIcon" width={100} height={100} /></h1>
           <h1 className={h1Style}>{t("categories.5")}</h1>
         </li>
+        <li onClick={() => handleClick("Trailers")} className={liStyle}>
+          <h1> <RvHookup /></h1> <h1 className={h1Style}>{t("categories.8")}</h1>
+        </li>
+        <li onClick={() => handleClick("Trucks")} className={liStyle}>
+          <h1><FireTruck /></h1> <h1 className={h1Style}>{t("categories.9")}</h1>
+        </li>
+        <li onClick={() => handleClick("Vans")} className={liStyle}>
+          <h1><AirportShuttle /></h1> <h1 className={h1Style}>{t("categories.10")}</h1>
+        </li>
         <li className={`dropdow`}>
           <h1 className={liStyle}>
             {" "}
@@ -189,15 +197,6 @@ export default function CategoryList({ setCategory, setExpand }: any) {
               ))}
             </ul>
           </div>
-        </li>
-        <li onClick={() => handleClick("Trailers")} className={liStyle}>
-          <h1> <RvHookup /></h1> <h1 className={h1Style}>{t("categories.8")}</h1>
-        </li>
-        <li onClick={() => handleClick("Trucks")} className={liStyle}>
-          <h1><FireTruck /></h1> <h1 className={h1Style}>{t("categories.9")}</h1>
-        </li>
-        <li onClick={() => handleClick("Vans")} className={liStyle}>
-          <h1><AirportShuttle /></h1> <h1 className={h1Style}>{t("categories.10")}</h1>
         </li>
         <li onClick={() => handleClick("Others")} className={liStyle}>
           <h1><DataSaverOn /></h1> <h1 className={h1Style}>{t("categories.6")}</h1>

@@ -38,10 +38,6 @@ export default function PostAd() {
             name1: "Drones",
         },
         {
-            name: t('categories.7'),
-            name1: "Parts",
-        },
-        {
             name: t('categories.8'),
             name1: "Trailers",
         },
@@ -52,6 +48,10 @@ export default function PostAd() {
         {
             name: t('categories.10'),
             name1: "Vans",
+        },
+        {
+            name: t('categories.7'),
+            name1: "Parts",
         },
         {
             name: t('categories.6'),

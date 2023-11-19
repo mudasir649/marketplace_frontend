@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
+import { useTranslation } from 'react-i18next';
 
 
 interface IData {
@@ -19,7 +20,8 @@ export default function MyProfile() {
     const router = useRouter();
     const { userInfo } = useSelector((state: any) => state.auth);
     const userId = userInfo?.data?.userDetails?._id;
-    const { refresh } = useSelector((state: any) => state.app);
+
+    const { t } = useTranslation();
 
     useEffect(() => {
         if (userInfo === null) {
@@ -83,21 +85,21 @@ export default function MyProfile() {
                 <div className='border-none rounded-sm bg-white h-full p-3'>
                     <div className='container mx-0 mt-6 lg:mx-20 w-auto'>
                         <div className={style.divStyle}>
-                            <h1 className={style.h1Style}>Old Password</h1>
+                            <h1 className={style.h1Style}>{t('passwordSettings.0')}</h1>
                             <input type="password" className={style.inputStyle}
                                 name='oldPassword'
                                 value={data?.oldPassword}
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
                         <div className={style.divStyle}>
-                            <h1 className={style.h1Style}>New Password</h1>
+                            <h1 className={style.h1Style}>{t('passwordSettings.1')}</h1>
                             <input type="password" className={style.inputStyle}
                                 name='newPassword'
                                 value={data?.newPassword}
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
                         <div className={style.divStyle}>
-                            <h1 className={style.h1Style}>Confirm Password</h1>
+                            <h1 className={style.h1Style}>{t('passwordSettings.2')}</h1>
                             <input type="password" className={style.inputStyle}
                                 name='confirmPassword'
                                 value={data?.confirmPassword}
