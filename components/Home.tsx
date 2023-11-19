@@ -1,18 +1,14 @@
 'use client';
 import React from 'react'
-import Banner from './Banner'
-import Footer from './Footer'
 import I18nProvider from './i18Provider';
-import Header2 from './Header2';
-import { usePathname } from 'next/navigation';
-import { Provider, useSelector } from 'react-redux';
-import { typeMap } from '@/utils/dataVariables';
+import { Provider } from 'react-redux';
 import store from '@/store/store';
 import AppComponent from './AppComponent';
 import { ToastContainer } from 'react-toastify';
+import dynamic from 'next/dynamic';
 
 
-export default function Home({ children }: any) {
+function Home({ children }: any) {
   return (
     <Provider store={store}>
           <ToastContainer autoClose={5000} />
@@ -24,3 +20,4 @@ export default function Home({ children }: any) {
     </Provider>
   )
 }
+export default dynamic(() => Promise.resolve(Home), { ssr: false });

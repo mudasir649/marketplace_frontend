@@ -78,12 +78,17 @@
     },
     "sortByList": [
       "Más reciente",
+      "Viejo",
       "A a Z (título)",
       "Z a A (título)",
       "Precio (de bajo a alto)",
       "Precio (de alto a bajo)"
     ],
-    
+    "passwordSettings": [
+      "Contraseña antigua",
+      "Nueva contraseña",
+      "Confirmar contraseña"
+    ],
     "allCategories": {
       "Autos": "Automóviles",
       "Bicycles": "Bicicletas",

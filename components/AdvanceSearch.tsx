@@ -192,12 +192,6 @@ export default function AdvanceSearch({
       quantity: 32,
     },
     {
-      logo: <BuildCircle />,
-      name: t("categories.7"),
-      name1: "Parts",
-      quantity: 0,
-    },
-    {
       logo: <RvHookup />,
       name: t("categories.8"),
       name1: "Trailers",
@@ -215,7 +209,12 @@ export default function AdvanceSearch({
       name1: "Vans",
       quantity: 9,
     },
-
+    {
+      logo: <BuildCircle />,
+      name: t("categories.7"),
+      name1: "Parts",
+      quantity: 0,
+    },
     {
       logo: <DataSaverOn />,
       name: t("categories.6"),
@@ -302,11 +301,30 @@ export default function AdvanceSearch({
   ];
 
   const sortByList = [
-    t("sortByList.0"),
-    t("sortByList.1"),
-    t("sortByList.2"),
-    t("sortByList.3"),
-    t("sortByList.4"),
+    {
+      name: t("sortByList.0"),
+      value: "Latest"
+    },
+    {
+    name: t("sortByList.1"),
+    value: "Old"
+    },
+    {
+      name: t("sortByList.4"), 
+      value: "Price (low to high)"
+    },
+    {
+      name: t("sortByList.4"),
+      value: "Price (high to low)"
+    },
+    {
+      name: t("sortByList.2"),
+      value: "A to Z (title)"
+    },
+    {
+      name: t("sortByList.3"), 
+      value: "Z to A (title)"
+    },
   ];
 
   useEffect(() => {
@@ -333,7 +351,7 @@ export default function AdvanceSearch({
     newWidth < 370
       ? "text-[#FF0000] text-[10px] cursor-pointer"
       : "text-[#FF0000] text-[15px] md:text-xl cursor-pointer";
-  const btnStyle = `font-semibold hover:bg-gray-200 w-10 hover:text-[#FF0000] text-gray-500`;
+  const btnStyle = `font-semibold hover:bg-gray-200 w-10 hover:text-[#FF0000] text-gray-500 ease-in duration-500`;
   const btnStyle1 = `font-semibold border border-red-400 bg-[#FF0000] text-white hover:bg-white hover:text-[#FF0000] p-2 h-10 w-full`;
   const spanStyle =
     newWidth < 370
@@ -372,19 +390,34 @@ export default function AdvanceSearch({
 
   const handleSortBy = async (e: any) => {
     const { value } = e.target;
+    let res;
     dispatch(setSortBy(value));
     setSortByLoading(true);
-    try {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${category}&sortBy=${value}`
-      );
-      console.log(res.data?.data.ad);
-      setProductData(res.data?.data?.ad);
-      setProductsCount(res.data?.data?.totalAds);
-      setSortByLoading(false);
-    } catch (error) {
-      setSortByLoading(false);
-      console.log(error);
+    let subValue;    
+    if(category === "Motorcycles" || category === "Bicycles" || category === "E-scooter" ||category === "E-bikes"){
+      try {
+        res = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=Bikes&subCategory=${category}&sortBy=${value}`
+        );
+        setProductData(res.data?.data?.ad);
+        setProductsCount(res.data?.data?.totalAds);
+        setSortByLoading(false);
+      } catch (error) {
+        setSortByLoading(false);
+        console.log(error);
+      }
+    }else{
+      try {
+        res = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${category}&sortBy=${value}`
+        );
+        setProductData(res.data?.data?.ad);
+        setProductsCount(res.data?.data?.totalAds);
+        setSortByLoading(false);
+      } catch (error) {
+        setSortByLoading(false);
+        console.log(error);
+      }
     }
     setSortByLoading(false);
   };
@@ -551,7 +584,7 @@ export default function AdvanceSearch({
                       <li
                         className={`${
                           category === list?.name1 ? "text-[#FF0000]" : ""
-                        } ml-10 cursor-pointer whitespace-nowrap`}
+                        } ml-10 cursor-pointer whitespace-nowrap w-auto truncate`}
                         key={i}
                         onClick={() => handleSearch(list?.name1)}
                       >
@@ -727,8 +760,8 @@ export default function AdvanceSearch({
                         onChange={(e: any) => handleSortBy(e)}
                       >
                         {sortByList.map((list: any, i: number) => (
-                          <option className="my-1" value={list} key={i}>
-                            {list}
+                          <option className="my-1" value={list.value} key={i}>
+                            {list.name}
                           </option>
                         ))}
                       </select>
@@ -750,7 +783,7 @@ export default function AdvanceSearch({
                   <>
                     {productData?.map((product: any, i: number) => (
                       <div
-                        className="grid grid-cols-3 h-auto mb-5 bg-white"
+                        className="grid grid-cols-3 h-auto mb-5 bg-white hover:shadow-md hover:shadow-red-400"
                         key={i}
                       >
                         <Link href={`/product-details/${product?._id}`}>

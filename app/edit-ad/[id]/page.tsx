@@ -686,7 +686,7 @@ function EditComponent() {
                     name="km"
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option>Select Kilometers</option>
+                    <option>{t("autosComponent.selectKilometer")}</option>
                     {kilometers.map((kms: any, i: number) => (
                       <option value={kms.name} key={i}>
                         {kms.name}

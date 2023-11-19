@@ -44,7 +44,6 @@ import {
 } from "@/store/appSlice";
 import { setShowShare } from "@/store/appSlice";
 import addInvertedComma from "@/utils/addInvertedComma";
-import showDate from "@/utils/showDate";
 import { useTranslation } from "react-i18next";
 import "./product.css";
 import Image from "next/image";
@@ -350,7 +349,7 @@ export default function Product({ product, url }: any) {
                     className="text-gray-500"
                     style={{ fontSize: "20px" }}
                   />
-                  <h1 className="flex-grow text-[13px]">{product?.views} Views</h1>
+                  <h1 className="flex-grow text-[13px]">{product?.views}</h1>
             </div>
             </div>
           </div>
