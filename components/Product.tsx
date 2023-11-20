@@ -196,7 +196,7 @@ export default function Product({ product, url }: any) {
             </button>
           </div>
         )}
-        <Link href={`/product-details/${product?._id}`}>
+        
           <div className="px-6 py-4 max-w-full">
             <div className="w-auto overflow-hidden flex flex-row justify-between">
               <section className="overflow-hidden">
@@ -226,6 +226,7 @@ export default function Product({ product, url }: any) {
 }
               </section>
             </div>
+            <Link href={`/product-details/${product?._id}`}>
             <div className="justify-between mt-5">
             <section className="text-gray-600 w-auto h-8 mt-2 ml-[-2px] text-[13px]">
                                 {product.category === "Autos" && (
@@ -297,8 +298,8 @@ export default function Product({ product, url }: any) {
                 {product?.title}
               </section>
             </div>
-          </div>
         </Link>
+          </div>
         <div className="mx-5 mb-12">
           <div className="text-gray-600 w-full h-10 border-t-2 pt-2 space-x-1">
             <div className="flex">

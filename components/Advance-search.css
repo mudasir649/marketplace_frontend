@@ -1,0 +1,9 @@
+.messageArea{
+    overflow: auto;
+    scrollbar-width: none;    
+}
+
+.messageArea::-webkit-scrollbar {
+    overflow: auto;
+    display: none;
+}

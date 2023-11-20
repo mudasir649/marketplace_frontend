@@ -23,9 +23,7 @@ import {
   WhatsApp,
 } from "@mui/icons-material";
 import MapContainer from "@/components/MapContainer";
-import Home from "@/components/Home";
 import AOS from "aos";
-import useWindowDimensions from "@/utils/useWindowDimensions";
 import axios  from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import "./productDetails.css";
@@ -197,7 +195,7 @@ const ConditionTranslated : {
   }
 
   return (
-    <>
+    <div className="">
       <>
         {!product ? (
           <div className="flex justify-center mt-5">
@@ -455,7 +453,7 @@ const ConditionTranslated : {
           </div>
         )}
       </>
-    </>
+    </div>
   );
 }
 

@@ -72,7 +72,7 @@ export default function SellRepairComponent() {
           </div>
         </div>
       </div>
-      <div className="container mx-auto flex p-5">
+      {/* <div className="container mx-auto flex p-5">
         <div className="flex w-full">
             {newWidth <= 1024 ? '' :
             <div className="w-[500px]">
@@ -109,7 +109,7 @@ export default function SellRepairComponent() {
                 </div>
             </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
