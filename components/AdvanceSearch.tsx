@@ -48,9 +48,10 @@ import {
 } from "@/store/appSlice";
 import addInvertedComma from "@/utils/addInvertedComma";
 import ProductList from "./ProductList";
-import { faClock, faMessage } from "@fortawesome/free-solid-svg-icons";
+import { faClock } from "@fortawesome/free-solid-svg-icons";
 import showDate from "@/utils/showDate";
 import { useTranslation } from "react-i18next";
+import "./Advance-search.css";
 
 interface IList {
   logo: any;
@@ -535,7 +536,7 @@ export default function AdvanceSearch({
 
   return (
     <div>
-      <div className="container mx-auto flex flex-col lg:flex-row mt-5 lg:mt-10 space-y-3 lg:space-y-0 lg:space-x-3 w-full mb-[500px]">
+      <div className="container mx-auto flex flex-col lg:flex-row mt-5 lg:mt-10 space-y-3 lg:space-y-0 lg:space-x-3 w-full mb-[200px]">
         <div
           className="bg-white shadow-lg border rounded-sm w-full lg:w-[300px] h-full p-2"
           data-aos="fade-right"
@@ -743,7 +744,7 @@ export default function AdvanceSearch({
         ) : (
           <>
             {productData?.length > 0 ? (
-              <div className="flex flex-col w-full h-full">
+              <div className="flex flex-col w-full">
                 <div
                   className="flex flex-col md:flex-row justify-between bg-white border border-[#e52320] mb-3 p-2 pl-5"
                   data-aos="fade-left"
@@ -783,10 +784,10 @@ export default function AdvanceSearch({
                 ) : newWidth <= 550 ? (
                   <ProductList productList={productData} />
                 ) : (
-                  <>
+                  <div className="messageArea h-[950px]">
                     {productData?.map((product: any, i: number) => (
                       <div
-                        className="grid grid-cols-3 h-auto mb-5 bg-white hover:shadow-md hover:shadow-red-400"
+                        className="grid grid-cols-3 h-auto mb-5 hover:border hover:border-red-600 bg-white hover:shadow-md hover:shadow-red-400 transition-transform transform"
                         key={i}
                       >
                         <Link href={`/product-details/${product?._id}`}>
@@ -953,10 +954,10 @@ export default function AdvanceSearch({
                         </div>
                       </div>
                     ))}
-                  </>
+                  </div>
                 )}
                 <div
-                  className={`flex flex-row justify-between bg-white h-12 border border-[#e52320] rounded-sm px-5 py-2`}
+                  className={`flex flex-row justify-between bg-white h-12 border border-[#e52320] rounded-sm px-5 py-2 mt-2`}
                 >
                   <button className={btnStyle} onClick={previousHandle}>
                     <KeyboardDoubleArrowLeft className={logoStyle} />

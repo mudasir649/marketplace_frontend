@@ -6,16 +6,25 @@ import store from '@/store/store';
 import AppComponent from './AppComponent';
 import { ToastContainer } from 'react-toastify';
 import dynamic from 'next/dynamic';
+import Header2 from './Header2';
+import Banner from './Banner';
+import Footer from './Footer';
+import { usePathname } from 'next/navigation';
+import { routeName } from '@/utils/dataVariables';
 
 
 function Home({ children }: any) {
+  const pathname = usePathname();  
+  const checkType = routeName.includes(pathname);
+
   return (
     <Provider store={store}>
           <ToastContainer autoClose={5000} />
       <I18nProvider>
-      <AppComponent>
-        {children}
-      </AppComponent>
+      <Header2 />
+      {!checkType ? <Banner /> : ''}
+      {children}
+      <Footer />
       </I18nProvider>
     </Provider>
   )
