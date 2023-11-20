@@ -9,7 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import BackToTop from "./BackToTop";
-
+import { Facebook, Instagram, Twitter } from "@mui/icons-material";
+import Image from "next/image";
 
 interface IList {
   name: String;
@@ -54,26 +55,26 @@ export default function Footer() {
   const list2 = [
     {
       name: t("list2.0"),
-      value: ''
+      value: "",
     },
     {
       name: t("list2.1"),
-      value: ''
+      value: "",
     },
     {
       name: t("list2.2"),
-      value: ''
+      value: "",
     },
   ];
 
   const list3 = [
     {
       name: t("list3.0"),
-      value: 'About Eidcarosse'
+      value: "About Eidcarosse",
     },
     {
       name: t("list3.1"),
-      value: 'Contact'
+      value: "Contact",
     },
   ];
 
@@ -97,11 +98,97 @@ export default function Footer() {
   ];
 
   return (
-    
-   <footer className="w-full bottom-0 bg-white border-t-2">
+    <footer className="w-full bottom-0 mt-8">
+      <div className="flex flex-col lg:flex-row gap-4 container mx-auto py-4 border-t-2 border-b-2">
+        <div className="flex flex-col space-y-3 md:space-y-0 md:flex-row w-auto">
+          <div className="flex">
+          {list2.map((list: IList, i: number) => (
+            <h1
+              className="text-sm cursor-pointer text-[#007AB7] hover:text-[#FF0000] px-3"
+              key={i}
+              onClick={() => router.push("/how-to-sell-fast")}
+            >
+              {list.name}
+            </h1>
+          ))}
+          {list3?.map((lst: IList, i: number) => (
+            <h1
+              className="text-sm cursor-pointer text-[#007AB7] hover:text-[#FF0000] px-3"
+              key={i}
+              onClick={() => handleFooter(lst.value)}
+            >
+              {lst.name}
+            </h1>
+          ))}
+          </div>
+          <div className="flex">
+          {list4?.map((lst: IList, i: number) => (
+            <h1
+              className="text-sm cursor-pointer text-[#007AB7] hover:text-[#FF0000] px-3"
+              key={i}
+              onClick={() => handleFooter(lst.value)}
+            >
+              {lst.name}
+            </h1>
+          ))}
+          </div>
+        </div>
+        <div className="flex gap-5">
+          <Image
+            className="h-6 w-6"
+            src="/assets/facebook 1.png"
+            alt="facebook"
+            width={50}
+            height={50}
+          />
+          <Image
+            className="h-6 w-6"
+            src="/assets/instagram 1.png"
+            alt="facebook"
+            width={50}
+            height={50}
+          />
+          <Image
+            className="h-6 w-6"
+            src="/assets/twitter 1.png"
+            alt="facebook"
+            width={50}
+            height={50}
+          />
+        </div>
+      </div>
+      <div className="text-center text-[black] my-2">
+        <div className="container mx-auto md:inline-block">
+          {t("copyright")}
+        </div>
+      </div>
+    </footer>
+  );
+  return (
+    <footer className="w-full bottom-0 bg-white border-t-2">
       <div className="container mx-auto flex flex-col md:flex-row md:justify-between md:items-center px-4 py-4">
-        {/* Mobile View */}
-        <div className="md:hidden mb-4">
+        <div className="bg-red-500 w-full">
+          {list2.map((list: IList, i: number) => (
+            <h1
+              className="text-sm cursor-pointer text-[#007AB7] hover:text-[#FF0000]"
+              key={i}
+              onClick={() => router.push("/how-to-sell-fast")}
+            >
+              {list.name}
+            </h1>
+          ))}
+          {list3?.map((lst: IList, i: number) => (
+            <h1
+              className="text-sm cursor-pointer text-[#007AB7] hover:text-[#FF0000]"
+              key={i}
+              onClick={() => handleFooter(lst.value)}
+            >
+              {lst.name}
+            </h1>
+          ))}
+        </div>
+        <div className="bg-blue-500 w-full">div 3</div>
+        {/* <div className="md:hidden mb-4">
           <div className="flex flex-col space-y-2">
             {list2?.map((lst: IList, i: number) => (
               <h1
@@ -134,8 +221,6 @@ export default function Footer() {
             ))}
           </div>
         </div>
-
-        {/* Desktop View */}
         <div className="hidden md:flex flex-col md:flex-row md:space-y-0 md:space-x-8">
           <div className="flex flex-col space-y-2">
             {list2?.map((lst: IList, i: number) => (
@@ -168,19 +253,19 @@ export default function Footer() {
               </h1>
             ))}
           </div>
-        </div>
+        </div> */}
 
-        {/* Common Section */}
-        <div className="md:text-right text-[black]">
+        {/* <div className="md:text-right text-[black]">
           <div className="container mx-auto md:inline-block">
             {t("copyright")}
           </div>
-        </div>
+        </div> */}
 
         {/* Back to Top */}
         <div className="md:ml-auto">
           <BackToTop />
         </div>
       </div>
-    </footer>);
+    </footer>
+  );
 }
