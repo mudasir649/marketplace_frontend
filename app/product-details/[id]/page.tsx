@@ -40,11 +40,6 @@ import { useTranslation } from "react-i18next";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 
-interface AdFavoriteData {
-  userId: string;
-  adId: string;
-  favorite: Boolean;
-}
 
 function ProductDetails() {
   const { t } = useTranslation(); // Initialize the translation hook
@@ -56,14 +51,9 @@ function ProductDetails() {
   const userId = userInfo?.data?.userDetails?._id;
 
   const { refresh } = useSelector((state: any) => state.app);
-  const [fav, setFav] = useState<Boolean>(false);
-  const [clicked, setClicked] = useState(false);
-  const userData = userInfo?.data?.userDetails;
   const router = useRouter();
   const dispatch = useDispatch();
   const [prodId, setProdId] = useState<any>([]);
-
-  const [slide, setSlide] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {

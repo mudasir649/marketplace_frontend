@@ -131,7 +131,7 @@ function Header2() {
     };
   }, [handleOutsideClick]);
 
-  const navbarLiStyle = "cursor-pointer hover:text-[#FF0000] whitespace-nowrap";
+  const navbarLiStyle = "cursor-pointer hover:text-[#FF0000] whitespace-nowrap text-[15px]";
 
   const DropdownItem = ({ logo, text, href }: any) => {
     return (
@@ -333,14 +333,14 @@ function Header2() {
               >
                 {t("header.contactUs")}
               </li>
-              <li className="text-black">
+              <li className="text-black text-[13px]">
                 <ListDownComponent />
               </li>
               <li
                 className="cursor-pointer hover:text-[#FF0000]"
                 onClick={() => router.push("/chat")}
               >
-                <QuestionAnswer />
+                <QuestionAnswer style={{fontSize: "20px"}} />
               </li>
             </ul>
             <ul
@@ -360,7 +360,7 @@ function Header2() {
                         <section className="">
                           <Add className="text-md border bg-[#FF0000] border-[#FF0000] rounded-full text-white" />
                         </section>
-                        <section className="capitalize text-lg font-semibold whitespace-nowrap">
+                        <section className="capitalize text-[15px] font-semibold whitespace-nowrap mt-[2px]">
                           {t("header.postYourAd")}
                         </section>
                       </button>
