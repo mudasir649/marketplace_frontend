@@ -121,13 +121,6 @@ export default function AdvanceSearch({
     return paginationList;
   };
 
-  const previousHandle = () => {
-    if (page !== 1) {
-      dispatch(setPage(page - 1));
-    } else {
-      return;
-    }
-  };
   const conditionList = [
     {
       id: 1,
@@ -149,6 +142,7 @@ export default function AdvanceSearch({
   const nextHandle = () => {
     if (page !== pagination().length) {
       dispatch(setPage(page + 1));
+      scrollToTop();
     } else {
       return;
     }
@@ -527,6 +521,15 @@ export default function AdvanceSearch({
       subCategory === "Van Parts"
     ) {
       return "Parts";
+    }
+  };
+  
+  const previousHandle = () => {
+    if (page !== 1) {
+      dispatch(setPage(page - 1));
+      scrollToTop();
+    } else {
+      return;
     }
   };
 
