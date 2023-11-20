@@ -163,7 +163,7 @@ export default function AdvanceSearch({
       quantity: 23,
     },
     {
-      logo: <DirectionsBike />,
+      logo: <TwoWheeler />,
       name: t("categories.1"),
       name1: "Bikes",
       quantity: 12,
@@ -227,9 +227,9 @@ export default function AdvanceSearch({
 
   const subList = [
     {
-      logo: <DirectionsBike />,
-      name: t("subList.0"),
-      name1: "Bicycles",
+      logo: <TwoWheeler />,
+      name: t("subList.3"),
+      name1: "Motorcycles",
     },
     {
       logo: <ElectricScooter />,
@@ -242,9 +242,9 @@ export default function AdvanceSearch({
       name1: "E-Bikes",
     },
     {
-      logo: <TwoWheeler />,
-      name: t("subList.3"),
-      name1: "Motorcycles",
+      logo: <DirectionsBike />,
+      name: t("subList.0"),
+      name1: "Bicycles",
     },
   ];
 
@@ -887,7 +887,7 @@ export default function AdvanceSearch({
                                 style={{ fontSize: "20px" }}
                               />
                             </div>
-                          </div>
+                          </div> 
                           <div className="mt-3 space-y-1">
                             {product?.price ? (
                               <>
@@ -911,7 +911,7 @@ export default function AdvanceSearch({
                               {showDate(product?.createdAt) < 2 ? (
                                 <>
                                   <div className="bg-green-600 text-white rounded-full px-3 text-center w-16">
-                                    {t('condition.new')}
+                                    {t('co.new')}
                                   </div>
                                 </>
                               ) : (
