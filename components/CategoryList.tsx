@@ -26,11 +26,12 @@ export default function CategoryList({ setCategory, setExpand }: any) {
     const { t } = useTranslation(); // Initialize the translation hook
 
     const subList = [
-        {
-          logo: <DirectionsBike />,
-          name: t("subList.0"),
-          name1: "Bicycles",
-        },
+      {
+        logo: <TwoWheeler />,
+        name: t("subList.3"),
+        name1: "Motorcycles",
+      },  
+      
         {
           logo: <ElectricScooter />,
           name: t("subList.1"),
@@ -40,12 +41,12 @@ export default function CategoryList({ setCategory, setExpand }: any) {
           logo: <ElectricBike />,
           name: t("subList.2"),
           name1: "E-Bikes",
+        },{
+          logo: <DirectionsBike />,
+          name: t("subList.0"),
+          name1: "Bicycles",
         },
-        {
-          logo: <TwoWheeler />,
-          name: t("subList.3"),
-          name1: "Motorcycles",
-        },
+        
       ];
     
       const partsSubList = [
