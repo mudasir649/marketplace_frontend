@@ -395,7 +395,7 @@ function Header2() {
                       }`}
                     >
                       <div className="border-b-2 pb-2 w-full">
-                        <h1 className="text-md text-gray-700">Hello,</h1>
+                        <h1 className="text-md text-gray-700">{t('header.hello')},</h1>
                         <h4 className="text-lg font-semibold hover:text-[#FF0000] text-gray-700 cursor-pointer">
                           {userData?.firstName} {userData?.lastName}
                         </h4>

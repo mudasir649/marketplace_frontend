@@ -247,7 +247,7 @@
       "repairButton": "klicken Sie hier"
     } , 
     "deleteAd": {
-      "title": "Sind Sie sicher, dass Sie diese Anzeige löschen möchten?",
+      "title": "Sind Sie sicher, dass Sie dieses Inserat löschen möchten?",
       "cancel": "Abbrechen",
       "delete": "Löschen"
     } , 
@@ -268,7 +268,7 @@
         "listDown": "Dropdown-Liste",
         "chat": "Chat",
         "adminPanelSettings": "Admin Panel Einstellungen",
-        "postYourAd":"Verkaufen",
+        "postYourAd":"Inserat aufgeben",
         "hello": "Hallo",
         "myProfile": "Mein Profil",
         "myAds": "Meine Inserate",
