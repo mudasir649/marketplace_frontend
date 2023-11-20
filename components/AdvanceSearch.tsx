@@ -226,9 +226,9 @@ export default function AdvanceSearch({
 
   const subList = [
     {
-      logo: <DirectionsBike />,
-      name: t("subList.0"),
-      name1: "Bicycles",
+      logo: <TwoWheeler />,
+      name: t("subList.3"),
+      name1: "Motorcycles",
     },
     {
       logo: <ElectricScooter />,
@@ -241,9 +241,9 @@ export default function AdvanceSearch({
       name1: "E-Bikes",
     },
     {
-      logo: <TwoWheeler />,
-      name: t("subList.3"),
-      name1: "Motorcycles",
+      logo: <DirectionsBike />,
+      name: t("subList.0"),
+      name1: "Bicycles",
     },
   ];
 
