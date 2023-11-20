@@ -51,7 +51,7 @@ import ProductList from "./ProductList";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 import showDate from "@/utils/showDate";
 import { useTranslation } from "react-i18next";
-import "./advance-search.css";
+import "./Advance-search.css";
 
 interface IList {
   logo: any;
