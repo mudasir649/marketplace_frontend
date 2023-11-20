@@ -75,10 +75,16 @@
   ],
   "sortByList": [
     "Plus récent",
+    "Vieux",
     "A à Z (titre)",
     "Z à A (titre)",
     "Prix (du plus bas au plus élevé)",
     "Prix (du plus élevé au plus bas)"
+  ],
+  "passwordSettings": [
+    "Ancien mot de passe",
+    "Nouveau mot de passe",
+    "Confirmer le mot de passe"
   ],
   "allCategories": {
     "Autos": "Automobiles",
@@ -166,7 +172,7 @@
     "selectColor": "Sélectionner le type de couleur"
   },
   "banner": {
-    "seeAllCategories": "Voir toutes les catégories",
+    "seeAllCategories": "Voir les catégories",
     "topCategories": "Catégories populaires :",
     "autos": "Autos",
     "parts": "Pièces"
@@ -279,9 +285,8 @@
   "random": {
     "myAdsListing": "Ma Liste d'Annonces",
     "myFavouriteListings": "Mes Annonces Préférées",
-    
     "latestAds": "Dernières annonces",
-    "seeAllAds": "Voir toutes les annonces"
+    "seeAllAds": "Voir tout"
   },
   "postAd": {
     "selectCategory": "Sélectionner une catégorie",

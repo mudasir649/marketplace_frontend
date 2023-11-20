@@ -75,10 +75,16 @@
       ],
       "sortByList": [
         "Latest",
+        "Old",
         "A to Z (title)",
         "Z to A (title)",
         "Price (low to high)",
         "Price (high to low)"
+      ],
+      "passwordSettings": [
+        "Old Password",
+        "New Password",
+        "Confirm Password"
       ],
       "chat": 
       {
@@ -354,7 +360,7 @@
     "myFavouriteListings": "My Favourite Listings",
     
     "latestAds": "Latest Ads",
-  "seeAllAds": "See all Ads"
+  "seeAllAds": "See All"
   } , 
   "postAd": {
     
