@@ -14,9 +14,6 @@ function MainPage() {
   const { t } = useTranslation(); // Initialize the translation hook
 
   const [featuredAds, setFeaturedAds] = useState<any>();
-  const [topAds, setTopAds] = useState<any>();
-
-  const { width, height } = useWindowDimensions();
 
   useEffect(() => {
     const fetchFeaturedData = async () => {
