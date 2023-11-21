@@ -519,7 +519,7 @@
           "Double decker": "Autobús de dos pisos",
           "Kombi bus": "Autobús kombi",
           "Minibus": "Microbús",
-          "Other": "Otro",
+          "Others": "Otros",
           "Regional transit bus": "Autobús de tránsito regional",
           "Asphalt mixing plant": "Planta de mezcla de asfalto",
     "Backhoe Loader": "Cargadora retroexcavadora",
@@ -592,7 +592,26 @@
     "Tipper- three-way": "Volquete trilateral",
     "Tipping Trailer / Dumper": "Volquete basculante / Volquete",
     "Vending trailer": "Remolque expendedora",
-    "Work platform": "Plataforma de trabajo"
+    "Work platform": "Plataforma de trabajo",
+    "Bodies / cranes": "Carrocerías / Gruas",
+    "Jumbo": "Jumbo",
+    "Other special bodies": "Otras carrocerías especiales",
+    "Road maintenance": "Mantenimiento de carreteras",
+    
+    "Tipper- lift-off": "Volquete - Desmontable",
+    "Tipper- roll-off": "Volquete - Roll-off",
+    "Truck + Trailer": "Camión + Remolque",
+    "Truck crane": "Camión grúa",
+    "Wrecker": "Grúa de remolque" ,
+    "Armored Truck": "Furgón blindado",
+    "Double cabin": "Doble cabina",
+    "Flatbed van": "Furgón de plataforma",
+    "Mobile Shop/ Food Truck": "Tienda móvil / Camión de comida",
+    "Panel van": "Furgón con panel",
+    "Pick-up": "Camioneta",
+    "Refrigerated truck": "Camión refrigerado",
+    "Station wagon/van": "Familiar / Furgón",
+    "Van - high roof": "Furgón - Techo alto"
         },
 
         "fuelType": {
