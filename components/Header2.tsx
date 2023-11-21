@@ -163,7 +163,7 @@ function Header2() {
     <>
       {navbar && (
         <div
-          className="h-full w-full absolute z-20 bg-white mt-[-40px]"
+          className="h-[900px] w-full absolute z-20 bg-white mt-[-40px]"
           data-aos="fade-right"
           ref={dropdownRef}
         >
@@ -183,7 +183,7 @@ function Header2() {
               {t("header.contactUs")}
             </li>
             <li className="text-black">
-                <ListDownComponent />
+                <ListDownComponent setNavbar={setNavbar} />
               </li>            {userInfo !== null && (
               <li
                 className={navbarLiStyle}
@@ -311,7 +311,7 @@ function Header2() {
                   alt="eidcarosse_logo"
                   width={150}
                   height={150}
-                  className={`w-full h-20 cursor-pointer mt-[-8px]`}
+                  className={`w-auto h-14 cursor-pointer mt-1`}
                   onClick={() => router.push("/")}
                 />
             </Link>
@@ -351,7 +351,7 @@ function Header2() {
               <li>
                 {newWidth <= 1024 ? (
                   <button onClick={() => setNavbar(!navbar)}>
-                    <MenuIcon className="text-[#FF0000]" />
+                    <MenuIcon className="text-[#FF0000] mt-1" />
                   </button>
                 ) : (
                   <>
