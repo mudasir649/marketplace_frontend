@@ -602,7 +602,16 @@
     "Tipper- roll-off": "Volquete - Roll-off",
     "Truck + Trailer": "Camión + Remolque",
     "Truck crane": "Camión grúa",
-    "Wrecker": "Grúa de remolque"
+    "Wrecker": "Grúa de remolque" ,
+    "Armored Truck": "Furgón blindado",
+    "Double cabin": "Doble cabina",
+    "Flatbed van": "Furgón de plataforma",
+    "Mobile Shop/ Food Truck": "Tienda móvil / Camión de comida",
+    "Panel van": "Furgón con panel",
+    "Pick-up": "Camioneta",
+    "Refrigerated truck": "Camión refrigerado",
+    "Station wagon/van": "Familiar / Furgón",
+    "Van - high roof": "Furgón - Techo alto"
         },
 
         "fuelType": {

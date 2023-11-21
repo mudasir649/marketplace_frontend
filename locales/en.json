@@ -208,7 +208,7 @@
         "Double decker": "Double decker",
         "Kombi bus": "Kombi bus",
         "Minibus": "Minibus",
-        "Other": "Other",
+        "Others": "Others",
         "Regional transit bus": "Regional transit bus",
         "Asphalt mixing plant": "Asphalt mixing plant",
         "Backhoe Loader": "Backhoe Loader",
@@ -290,7 +290,16 @@
     "Tipper- roll-off": "Tipper- roll-off",
     "Truck + Trailer": "Truck + Trailer",
     "Truck crane": "Truck crane",
-    "Wrecker": "Wrecker"
+    "Wrecker": "Wrecker" ,
+    "Armored Truck": "Armored Truck",
+    "Double cabin": "Double cabin",
+    "Flatbed van": "Flatbed van",
+    "Mobile Shop/ Food Truck": "Mobile Shop/ Food Truck",
+    "Panel van": "Panel van",
+    "Pick-up": "Pick-up",
+    "Refrigerated truck": "Refrigerated truck",
+    "Station wagon/van": "Station wagon/van",
+    "Van - high roof": "Van - high roof"
       },
 
       "fuelType": {
