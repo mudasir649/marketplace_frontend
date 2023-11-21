@@ -314,7 +314,7 @@ const ConditionTranslated : {
                       </span>
                     </h1>
                     <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-5 gap-5">
-                      {!product?.subCategory ? '' : <h1><span className="font-bold">{t("product.subCategory")}: </span> {product?.subCategory}</h1> }
+                      {!product?.subCategory ? '' : <h1><span className="font-bold">{t("product.subCategory")}: </span> {t(`subCategoryOptions.${product.subCategory}`)}</h1> }
                       {!product?.condition ? '' : <h1><span className="font-bold">{t("product.Condition")}: </span> {translatedCondition}</h1> }
                       {!product?.brand ? '' : <h1><span className="font-bold">{t("product.Brand")}: </span> {product?.brand}</h1> }
                       {!product?.model ? '' : <h1><span className="font-bold">{t("product.Model")}: </span> {product?.model}</h1> }
