@@ -54,14 +54,9 @@ export default function MainPage() {
                   {t("random.latestAds")}
                 </h1>
                 <Link href="/advance-search">
-                  <span className="capitalize text-lg font-bold mt-[5px] mr-[-5px]">
+                  <span className="capitalize text-lg font-bold mt-[5px] mr-[-5px] whitespace-nowrap">
                     {" "}
                     {t("random.seeAllAds")}
-                    <East
-                      className="text-[#FF0000]"
-                      data-aos="fade-right"
-                      style={{ fontSize: "20px" }}
-                    />{" "}
                   </span>
                 </Link>
               </div>
