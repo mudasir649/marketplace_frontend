@@ -914,7 +914,7 @@ export default function AdvanceSearch({
                               {showDate(product?.createdAt) < 2 ? (
                                 <>
                                   <div className="bg-green-600 text-white rounded-full px-3 text-center w-16">
-                                    {t('co.new')}
+                                    {t('condition.new')}
                                   </div>
                                 </>
                               ) : (
