@@ -231,14 +231,28 @@ const ConditionTranslated : {
                     </h1>
                   </div>
                 ) : (
-                  <div className="bg-[#FF0000] space-y-2 rounded-lg rounded-tr-[700px] rounded-br-[700px] w-40 p-2 h-16 md:w-64 md:h-auto">
-                    <h1 className="text-white text-sm md:text-3xl font-bold">
-                      CHF {addInvertedComma(product?.price * 1)}
-                    </h1>
-                    <h1 className="text-gray-300 text-sm md:text-xl font-semibold">
-                      Euro {addInvertedComma(product?.price * 2)}
-                    </h1>
-                  </div>
+                  // <div className="bg-[#FF0000] space-y-2 rounded-lg rounded-tr-[700px] rounded-br-[700px] w-40 p-2 h-16 md:w-64 md:h-auto">
+                  //   <h1 className="text-white text-sm md:text-3xl font-bold">
+                  //     CHF {addInvertedComma(product?.price * 1)}
+                  //   </h1>
+                  //   <h1 className="text-gray-300 text-sm md:text-xl font-semibold">
+                  //     Euro {addInvertedComma(product?.price * 2)}
+                  //   </h1>
+                  // </div>
+                  <>
+                         {/* <div className="bg-[#FF0000] space-y-2 rounded-lg rounded-tr-[700px] rounded-br-[700px] w-40 p-2 h-16 md:w-64 md:h-auto">
+                           <h1 className="text-white text-sm md:text-3xl font-bold">
+                             CHF {addInvertedComma(product?.price * 1)}
+                          </h1>
+                          <h1 className="text-gray-300 text-sm md:text-xl font-semibold">
+                            Euro {addInvertedComma(product?.price * 2)}
+                           </h1>
+                         </div> */}
+                        <h1 className="text-[#FF0000] text-sm md:text-3xl font-bold">
+                          CHF {addInvertedComma(product?.price * 1)}
+                        </h1><h1 className="text-gray-500 text-sm md:text-xl font-semibold">
+                          Euro {addInvertedComma(product?.price * 2)}
+                        </h1></>
                 )}
                 <div className="flex flex-col md:flex-row justify-between my-6">
                   <div className="space-y-4 mb-5 md:mb-0">
