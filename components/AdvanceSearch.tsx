@@ -385,6 +385,7 @@ export default function AdvanceSearch({
 
   const handleSortBy = async (e: any) => {
     const { value } = e.target;
+    alert("thth")
     let res;
     dispatch(setSortBy(value));
     setSortByLoading(true);

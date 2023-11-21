@@ -52,12 +52,12 @@ export default function CategoryList({ setCategory, setExpand }: any) {
         {
           logo: <DirectionsCar />,
           name: t("categoriesParts.0"),
-          name1: "Auto Parts",
+          name1: "Autos Parts",
         },
         {
           logo: <TwoWheeler />,
           name: t("categoriesParts.1"),
-          name1: "Bike Parts",
+          name1: "Bikes Parts",
         },
         {
           logo: <DirectionsBoat />,
@@ -67,43 +67,39 @@ export default function CategoryList({ setCategory, setExpand }: any) {
         {
           logo: <DirectionsBus />,
           name: t("categoriesParts.3"),
-          name1: "Bus Parts",
+          name1: "Busses Parts",
         },
         {
           logo: <PrecisionManufacturing />,
           name: t("categoriesParts.4"),
-          name1: "Construction Machine Parts",
+          name1: "Construction Machines Parts",
         },
         {
           logo: <Image className="h-7 w-7" src="/assets/drone.png" alt="droneIcon" width={100} height={100} />,
           name: t("categoriesParts.5"),
-          name1: "Drone Parts",
+          name1: "Drones Parts",
         },
         {
           logo: <RvHookup />,
           name: t("categoriesParts.7"),
-          name1: "Trailer Parts",
+          name1: "Trailers Parts",
         },
         {
           logo: <FireTruck />,
           name: t("categoriesParts.8"),
-          name1: "Truck Parts",
+          name1: "Trucks Parts",
         },
         {
           logo: <AirportShuttle />,
           name: t("categoriesParts.9"),
-          name1: "Van Parts",
+          name1: "Vans Parts",
         },
-        
         {
           logo: <DataSaverOn />,
           name: t("categoriesParts.6"),
           name1: "Other Parts",
         },
       ];
-
-  const { page } = useSelector((state: any) => state.app);
-  const dispatch = useDispatch();
 
   const liStyle =
     "border-b border-gray-200 whitespace-nowrap flex flex-row space-x-1";
@@ -113,20 +109,14 @@ export default function CategoryList({ setCategory, setExpand }: any) {
     const h1Style = "hover:text-[#FF0000]";
 
   const router = useRouter();
-  const handleClick = async (value: any) => {
-    // setCategory(value);
 
-    try {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${value}`
-      );
-      dispatch(setProductData(res.data?.data.ad));
-      dispatch(setProductsCount(res.data?.data.totalAds));
-      router.push(`/advance-search/${value}`);
-    } catch (error) {}
+  const handleClick = async (value: any) => {
+    setCategory(value);
     router.push(`/advance-search/${value}`);
     setExpand(false);
   };
+
+
   return (
     <div>
       <ul className="text-gray-500 space-y-1 cursor-pointer dropdow-menu z-10">
@@ -180,7 +170,7 @@ export default function CategoryList({ setCategory, setExpand }: any) {
           <h1><AirportShuttle /></h1> <h1 className={h1Style}>{t("categories.10")}</h1>
         </li>
         <li className={`dropdow`}>
-          <h1 className={liStyle}>
+          <h1 onClick={() => handleClick("Parts")} className={liStyle}>
             {" "}
             <h1><BuildCircle /></h1> <h1 className={h1Style}>{t("categories.7")}</h1>
           </h1>

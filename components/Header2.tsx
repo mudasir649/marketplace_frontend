@@ -10,8 +10,6 @@ import {
   Logout,
   Person,
   Favorite,
-  ChatBubbleOutline,
-  AdminPanelSettings,
   Cancel,
   ManageAccounts,
   QuestionAnswer,
@@ -25,8 +23,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "@/store/authSlice";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import ContactUs from "./ContactUs";
-import ShareLink from "./ShareLink";
 import SellNow from "./SellNow";
 import DeleteAd from "./DeleteAd";
 import RepairNow from "./RepairNow";
@@ -52,9 +48,6 @@ function Header2() {
     showSellNow,
     showRepairNow,
     showDeleteAd,
-    type1,
-    showContact,
-    prodId
   } = useSelector((state: any) => state.app);
   const userData = userInfo?.data?.userDetails;
   const dropdownRef = useRef<HTMLDivElement | null>(null);
@@ -106,7 +99,7 @@ function Header2() {
   }, [userInfo, userId, dispatch]);
 
   const handleContact = () => {
-    dispatch(setShowContact(true));
+    router.push('/contact-us')
     setNavbar(false);
   };
 
@@ -460,8 +453,6 @@ function Header2() {
               }
             </ul>
           </div>
-          {!showContact ? "" : <ContactUs />}
-          {showShare && <ShareLink />}
           {showSellNow && <SellNow />}
           {showRepairNow && <RepairNow />}
           {showDeleteAd && <DeleteAd />}

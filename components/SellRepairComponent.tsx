@@ -1,10 +1,9 @@
-import { setShowRepairNow, setShowSellNow } from "@/store/appSlice";
-import { DirectionsCar, Handyman } from "@mui/icons-material";
 import Image from "next/image";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import useWindowDimensions from "@/utils/useWindowDimensions";
+import { useRouter } from "next/navigation";
 
 export default function SellRepairComponent() {
   const { t } = useTranslation();
@@ -12,13 +11,9 @@ export default function SellRepairComponent() {
   const h1Style = "cursor-pointer text-2xl font-semibold hover:text-[#FF0000]";
   const btnStyle = "h-10 w-40 bg-[#FF0000] hover:bg-red-700 text-white p-2";
 
-  const { width, height } = useWindowDimensions();
-
-    const newWidth = width || 0;
-    const newHeight = height || 0;
-
-
   const dispatch = useDispatch();
+
+  const router = useRouter();
 
   return (
     <div className="-mb-4">
@@ -42,7 +37,7 @@ export default function SellRepairComponent() {
             </h1>
             <button
               className={btnStyle}
-              onClick={() => dispatch(setShowSellNow(true))}
+              onClick={() => router.push('/sell-now')}
             >
               {t("sellRepairComponent.sellButton")}
             </button>
@@ -65,7 +60,7 @@ export default function SellRepairComponent() {
             </h1>
             <button
               className={btnStyle}
-              onClick={() => dispatch(setShowRepairNow(true))}
+              onClick={() => router.push('/repair-now')}
             >
               {t("sellRepairComponent.repairButton")}
             </button>

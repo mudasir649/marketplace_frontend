@@ -64,7 +64,7 @@ export default function Page() {
                                                 width={300}
                                             />
                                         </section>
-                                        <p className='mb-10 text-lg mt-3'>{data.description}</p>
+                                        <p className='mb-10 mt-3'>{data.description}</p>
                                     </div>
                                     :
                                     ''}

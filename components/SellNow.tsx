@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux'
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next'; 
+import { useRouter } from 'next/navigation';
 
 
 interface IData {
@@ -24,8 +25,10 @@ export default function SellNow() {
 
     const dispatch = useDispatch();
 
+    const router = useRouter();
+
     const handleSellNow = () => {
-        dispatch(setShowSellNow(false))
+        router.push('/');
     }
 
     const [images, setImages] = useState<any>([]);
