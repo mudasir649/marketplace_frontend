@@ -319,8 +319,8 @@ const ConditionTranslated : {
                       {!product?.brand ? '' : <h1><span className="font-bold">{t("product.Brand")}: </span> {product?.brand}</h1> }
                       {!product?.model ? '' : <h1><span className="font-bold">{t("product.Model")}: </span> {product?.model}</h1> }
                       {!product?.year ? '' : <h1><span className="font-bold">{t("product.Year")}: </span> {product?.year}</h1> }
-                      {!product?.bodyShape ? '' : <h1><span className="font-bold">{t("product.BodyShape")}: </span> {product?.bodyShape}</h1> }
-                      {!product?.fuelType ? '' : <h1><span className="font-bold">{t("product.FuelType")}: </span> {product?.fuelType}</h1> }
+                      {!product?.bodyShape ? '' : <h1><span className="font-bold">{t("product.BodyShape")}: </span> {t(`bodyShape.${product.bodyShape}`)}</h1> }
+                      {!product?.fuelType ? '' : <h1><span className="font-bold">{t("product.FuelType")}: </span> {t(`fuelType.${product.fuelType}`)}</h1> }
                       {!product?.km ? '' : <h1><span className="font-bold">{t("product.Kilometers")}: </span> {product?.km}</h1> }
                       {!product?.gearBox ? '' : <h1><span className="font-bold">{t("product.Gearbox")}: </span> {gearboxTranslations[product?.gearBox as 'Automatic' | 'Manual' | 'Semi-Automatic']}</h1> }
                       {!product?.engineCapacity ? '' : <h1><span className="font-bold">{t("product.EngineCapacity")}: </span> {product?.engineCapacity}</h1> }
