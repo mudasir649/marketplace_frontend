@@ -334,7 +334,7 @@ function Header2() {
                 {t("header.contactUs")}
               </li>
               <li className="text-black text-[13px]">
-                <ListDownComponent />
+              <ListDownComponent setNavbar={setNavbar} />
               </li>
               <li
                 className="cursor-pointer hover:text-[#FF0000]"
