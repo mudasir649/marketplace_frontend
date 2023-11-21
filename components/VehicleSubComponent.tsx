@@ -18,7 +18,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import {
   axelType,
-  fuelType,
+ 
   howContactList,
   kilometers,
 
@@ -271,6 +271,49 @@ export default function VehicleSubComponent({ type }: any) {
       value: "disabled",
     },
   ];
+  const fuelType = [
+    {
+      name: t('fuelType.Gasoline'),
+      value: 'Gasoline',
+    },
+    {
+      name: t('fuelType.Diesel'),
+      value: 'Diesel',
+    },
+    {
+      name: t('fuelType.Ethanol'),
+      value: 'Ethanol',
+    },
+    {
+      name: t('fuelType.Electric'),
+      value: 'Electric',
+    },
+    {
+      name: t('fuelType.Hydrogen'),
+      value: 'Hydrogen',
+    },
+    {
+      name: t('fuelType.LPG'),
+      value: 'LPG',
+    },
+    {
+      name: t('fuelType.CNG'),
+      value: 'CNG',
+    },
+    {
+      name: t('fuelType.Hybrid (Electric/Gasoline)'),
+      value: 'Hybrid (Electric/Gasoline)',
+    },
+    {
+      name: t('fuelType.Hybrid (Electric/Diesel)'),
+      value: 'Hybrid (Electric/Diesel)',
+    },
+    {
+      name: t('fuelType.Others'),
+      value: 'Others',
+    },
+  ];
+  
 
   return (
     <>
@@ -410,31 +453,28 @@ export default function VehicleSubComponent({ type }: any) {
                   <span className="text-[#FF0000]">*</span>
                 </h1>
                 <select
-                  className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
-                  name="subCategory"
-                  onChange={(e: any) => handleInput(e)}
-                >
-                  <option value="option1">
-                    {t("autosComponent.selectSubCategory")}
-                  </option>
-                  {subCategory?.map(
-                    (list: any, i: number) =>
-                      list?.category?.map((cat: any, i: number) => (
-                        <option
-                          className={`hover:bg-red-500 hover:text-white 
-                                        ml-1 mb-1 ${
-                                          list.length - 1 == i
-                                            ? ""
-                                            : " border-b-2"
-                                        }`}
-                          key={i}
-                          value={cat}
-                        >
-                          {cat}
-                        </option>
-                      ))
-                  )}
-                </select>
+  className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+  name="subCategory"
+  onChange={(e: any) => handleInput(e)}
+>
+  <option value="option1">
+    {t("autosComponent.selectSubCategory")}
+  </option>
+  {subCategory?.map((list: any, i: number) =>
+    list?.category?.map((cat: any, j: number) => (
+      <option
+        className={`hover:bg-red-500 hover:text-white 
+                    ml-1 mb-1 ${
+                      list.length - 1 === j ? "" : " border-b-2"
+                    }`}
+        key={j}
+        value={cat}
+      >
+        {t(`subCategoryOptions.${cat}`)}
+      </option>
+    ))
+  )}
+</select>
               </div>
               {data?.subCategory && (
                 <div className={style.divStyle}>

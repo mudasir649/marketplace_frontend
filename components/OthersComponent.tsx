@@ -17,7 +17,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import {
   bodyShape,
-  fuelType,
+
   gearBox,
   howContactList,
   interiorColor,
@@ -96,6 +96,49 @@ export default function OthersComponent({ type }: any) {
       value: "recondition",
     },
   ];
+  const fuelType = [
+    {
+      name: t('fuelType.Gasoline'),
+      value: 'Gasoline',
+    },
+    {
+      name: t('fuelType.Diesel'),
+      value: 'Diesel',
+    },
+    {
+      name: t('fuelType.Ethanol'),
+      value: 'Ethanol',
+    },
+    {
+      name: t('fuelType.Electric'),
+      value: 'Electric',
+    },
+    {
+      name: t('fuelType.Hydrogen'),
+      value: 'Hydrogen',
+    },
+    {
+      name: t('fuelType.LPG'),
+      value: 'LPG',
+    },
+    {
+      name: t('fuelType.CNG'),
+      value: 'CNG',
+    },
+    {
+      name: t('fuelType.Hybrid (Electric/Gasoline)'),
+      value: 'Hybrid (Electric/Gasoline)',
+    },
+    {
+      name: t('fuelType.Hybrid (Electric/Diesel)'),
+      value: 'Hybrid (Electric/Diesel)',
+    },
+    {
+      name: t('fuelType.Others'),
+      value: 'Others',
+    },
+  ];
+  
   const priceList = [
     {
       id: "1",
