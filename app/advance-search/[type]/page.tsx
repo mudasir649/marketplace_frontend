@@ -19,6 +19,9 @@ function Page() {
   const [productData, setProductData] = useState<any>();
   const [productsCount, setProductsCount] = useState<any>(0);
   const [brands, setBrands] = useState<string>("");
+
+  console.log(type);
+  
   
   const subCategory = subCategoryMap[type as string] || "";
 

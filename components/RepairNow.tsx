@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next'; 
+import { useRouter } from 'next/navigation';
 
 
 interface IData {
@@ -21,7 +22,8 @@ interface IData {
 export default function BuyNow() {
     const { t } = useTranslation(); // Initialize the translation hook
 
-    const dispatch = useDispatch();
+    const router = useRouter();
+
 
     const [images, setImages] = useState<any>([]);
     const [loading, setLoading] = useState<Boolean>(false);
@@ -56,7 +58,7 @@ export default function BuyNow() {
     };
 
     const handleRepairNow = () => {
-        dispatch(setShowRepairNow(false))
+        router.push('/')
     }
 
     const handleSubmit = async (e: any) => {
