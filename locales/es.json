@@ -512,6 +512,17 @@
           "Bicicletas eléctricas",
           "Motocicleta"
         ] , 
+        "subCategoryOptions": {
+          "Articulated bus": "Autobús articulado",
+          "City bus": "Autobús urbano",
+          "Coach": "Autocar",
+          "Double decker": "Autobús de dos pisos",
+          "Kombi bus": "Autobús kombi",
+          "Minibus": "Microbús",
+          "Other": "Otro",
+          "Regional transit bus": "Autobús de tránsito regional"
+        },
+        
         "fuelType": {
           "Gasoline": "Gasolina",
           "Diesel": "Diésel",

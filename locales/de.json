@@ -219,6 +219,17 @@
       "value9": "Other"
   }
 ,
+"subCategoryOptions": {
+  "Articulated bus": "Gelenkbus",
+  "City bus": "Stadtbus",
+  "Coach": "Reisebus",
+  "Double decker": "Doppeldecker",
+  "Kombi bus": "Kombibus",
+  "Minibus": "Minibus",
+  "Other": "Andere",
+  "Regional transit bus": "Regionaler Linienbus"
+},
+
 "fuelType": {
   "Gasoline": "Benzin",
   "Diesel": "Diesel",

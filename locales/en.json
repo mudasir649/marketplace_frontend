@@ -201,7 +201,17 @@
         "value13": "White",
         "value14": "Other"
       },
-      
+      "subCategoryOptions": {
+        "Articulated bus": "Articulated bus",
+        "City bus": "City bus",
+        "Coach": "Coach",
+        "Double decker": "Double decker",
+        "Kombi bus": "Kombi bus",
+        "Minibus": "Minibus",
+        "Other": "Other",
+        "Regional transit bus": "Regional transit bus"
+      },
+
       "fuelType": {
         "Gasoline": "Gasoline",
         "Diesel": "Diesel",

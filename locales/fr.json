@@ -431,6 +431,16 @@
       "Vélos électriques",
       "Moto"
     ] ,
+    "subCategoryOptions": {
+      "Articulated bus": "Autobus articulé",
+      "City bus": "Autobus urbain",
+      "Coach": "Autocar",
+      "Double decker": "Autobus à impériale",
+      "Kombi bus": "Autobus Kombi",
+      "Minibus": "Minibus",
+      "Other": "Autre",
+      "Regional transit bus": "Autobus de transport régional"
+    },
     "fuelType": {
       "Gasoline": "Essence",
       "Diesel": "Diesel",

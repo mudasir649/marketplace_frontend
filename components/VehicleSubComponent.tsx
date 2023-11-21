@@ -453,31 +453,28 @@ export default function VehicleSubComponent({ type }: any) {
                   <span className="text-[#FF0000]">*</span>
                 </h1>
                 <select
-                  className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
-                  name="subCategory"
-                  onChange={(e: any) => handleInput(e)}
-                >
-                  <option value="option1">
-                    {t("autosComponent.selectSubCategory")}
-                  </option>
-                  {subCategory?.map(
-                    (list: any, i: number) =>
-                      list?.category?.map((cat: any, i: number) => (
-                        <option
-                          className={`hover:bg-red-500 hover:text-white 
-                                        ml-1 mb-1 ${
-                                          list.length - 1 == i
-                                            ? ""
-                                            : " border-b-2"
-                                        }`}
-                          key={i}
-                          value={cat}
-                        >
-                          {cat}
-                        </option>
-                      ))
-                  )}
-                </select>
+  className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+  name="subCategory"
+  onChange={(e: any) => handleInput(e)}
+>
+  <option value="option1">
+    {t("autosComponent.selectSubCategory")}
+  </option>
+  {subCategory?.map((list: any, i: number) =>
+    list?.category?.map((cat: any, j: number) => (
+      <option
+        className={`hover:bg-red-500 hover:text-white 
+                    ml-1 mb-1 ${
+                      list.length - 1 === j ? "" : " border-b-2"
+                    }`}
+        key={j}
+        value={cat}
+      >
+        {t(`subCategoryOptions.${cat}`)}
+      </option>
+    ))
+  )}
+</select>
               </div>
               {data?.subCategory && (
                 <div className={style.divStyle}>
