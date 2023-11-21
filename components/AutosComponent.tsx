@@ -211,10 +211,7 @@ export default function AutosComponent() {
       name: t("color.name11"),
       value: t("color.value11"),
     },
-    {
-      name: t("color.name12"),
-      value: t("color.value12"),
-    },
+    
     {
       name: t("color.name13"),
       value: t("color.value13"),
