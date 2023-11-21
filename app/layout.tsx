@@ -1,11 +1,7 @@
 import "./globals.css";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Provider } from "react-redux";
-import store from "@/store/store";
 import { Inter } from "next/font/google";
 import Home from "@/components/Home";
-import AppComponent from "@/components/AppComponent";
 
 const inter = Inter({ subsets: ["latin"] });
 
