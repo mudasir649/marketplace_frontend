@@ -430,7 +430,19 @@
       "Trottinette électrique",
       "Vélos électriques",
       "Moto"
-    ] , 
+    ] ,
+    "fuelType": {
+      "Gasoline": "Essence",
+      "Diesel": "Diesel",
+      "Ethanol": "Éthanol",
+      "Electric": "Électrique",
+      "Hydrogen": "Hydrogène",
+      "LPG": "GPL",
+      "CNG": "GNV",
+      "Hybrid (Electric/Gasoline)": "Hybride (Électrique/Essence)",
+      "Hybrid (Electric/Diesel)": "Hybride (Électrique/Diesel)",
+      "Others": "Autre"
+    }, 
     
       "product": {
         "subCategory":"Sous-catégorie",

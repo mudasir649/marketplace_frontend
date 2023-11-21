@@ -512,6 +512,18 @@
           "Bicicletas eléctricas",
           "Motocicleta"
         ] , 
+        "fuelType": {
+          "Gasoline": "Gasolina",
+          "Diesel": "Diésel",
+          "Ethanol": "Etanol",
+          "Electric": "Eléctrico",
+          "Hydrogen": "Hidrógeno",
+          "LPG": "GLP",
+          "CNG": "GNC",
+          "Hybrid (Electric/Gasoline)": "Híbrido (Eléctrico/Gasolina)",
+          "Hybrid (Electric/Diesel)": "Híbrido (Eléctrico/Diésel)",
+          "Others": "Otros"
+        },
         
           "product": {
             "subCategory":"Subcategoría",

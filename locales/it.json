@@ -495,6 +495,18 @@
           "Biciclette elettriche",
           "Motociclette"
         ] , 
+        "fuelType": {
+          "Gasoline": "Benzina",
+          "Diesel": "Diesel",
+          "Ethanol": "Etanolo",
+          "Electric": "Elettrico",
+          "Hydrogen": "Idrogeno",
+          "LPG": "GPL",
+          "CNG": "Metano",
+          "Hybrid (Electric/Gasoline)": "Ibrido (Elettrico/Benzina)",
+          "Hybrid (Electric/Diesel)": "Ibrido (Elettrico/Diesel)",
+          "Others": "Altro"
+        },
         
           "product": {
             "subCategory":"Sottocategoria",

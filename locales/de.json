@@ -219,6 +219,18 @@
       "value9": "Other"
   }
 ,
+"fuelType": {
+  "Gasoline": "Benzin",
+  "Diesel": "Diesel",
+  "Ethanol": "Ethanol",
+  "Electric": "Elektrisch",
+  "Hydrogen": "Wasserstoff",
+  "LPG": "Autogas",
+  "CNG": "Erdgas",
+  "Hybrid (Electric/Gasoline)": "Hybrid (Elektrisch/Benzin)",
+  "Hybrid (Electric/Diesel)": "Hybrid (Elektrisch/Diesel)",
+  "Others": "Andere"
+},
 "sortByList": [
   "Neueste",
   "Alt",

@@ -201,6 +201,19 @@
         "value13": "White",
         "value14": "Other"
       },
+      
+      "fuelType": {
+        "Gasoline": "Gasoline",
+        "Diesel": "Diesel",
+        "Ethanol": "Ethanol",
+        "Electric": "Electric",
+        "Hydrogen": "Hydrogen",
+        "LPG": "LPG",
+        "CNG": "CNG",
+        "Hybrid (Electric/Gasoline)": "Hybrid (Electric/Gasoline)",
+        "Hybrid (Electric/Diesel)": "Hybrid (Electric/Diesel)",
+        "Others": "Others"
+      },
 
       "condition" : {
         "new": "New",

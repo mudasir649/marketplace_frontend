@@ -18,7 +18,7 @@ import { toast } from "react-toastify";
 import {
   bodyShape,
   exteriorColor,
-  fuelType,
+
   gearBox,
   howContactList,
   interiorColor,
@@ -115,8 +115,49 @@ export default function AutosComponent() {
       value: "disabled",
     },
   ];
-
-  const [images, setImages] = useState<any>([]);
+  const fuelType = [
+    {
+      name: t('fuelType.Gasoline'),
+      value: 'Gasoline',
+    },
+    {
+      name: t('fuelType.Diesel'),
+      value: 'Diesel',
+    },
+    {
+      name: t('fuelType.Ethanol'),
+      value: 'Ethanol',
+    },
+    {
+      name: t('fuelType.Electric'),
+      value: 'Electric',
+    },
+    {
+      name: t('fuelType.Hydrogen'),
+      value: 'Hydrogen',
+    },
+    {
+      name: t('fuelType.LPG'),
+      value: 'LPG',
+    },
+    {
+      name: t('fuelType.CNG'),
+      value: 'CNG',
+    },
+    {
+      name: t('fuelType.Hybrid (Electric/Gasoline)'),
+      value: 'Hybrid (Electric/Gasoline)',
+    },
+    {
+      name: t('fuelType.Hybrid (Electric/Diesel)'),
+      value: 'Hybrid (Electric/Diesel)',
+    },
+    {
+      name: t('fuelType.Others'),
+      value: 'Others',
+    },
+  ];
+   const [images, setImages] = useState<any>([]);
   const [loading, setLoading] = useState<Boolean>(false);
   const [priceListValue, setPriceListValue] = useState<string>("price");
   const [models, setModels] = useState<any>([]);
