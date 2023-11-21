@@ -2,7 +2,7 @@ import { ArrowDropDown, KeyboardArrowDown } from '@mui/icons-material'
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import i18n from 'i18next';
 
-export default function ListDownComponent() {
+export default function ListDownComponent({setNavbar}: any) {
     const [language, setLanguage] = useState<string>(i18n.language); // Initialize with the current language
     const [showList, setShowList] = useState<Boolean>(false);
     const dropdownRef = useRef<HTMLDivElement | null>(null);
@@ -25,6 +25,7 @@ export default function ListDownComponent() {
     const handleLanguage = (value: string, value2: string) => {
         setLanguage(value2);
         setShowList(false);
+        setNavbar(false)
         i18n.changeLanguage(value);
     }
 
