@@ -10,7 +10,7 @@ import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import dynamic from "next/dynamic";
 
-function MainPage() {
+export default function MainPage() {
   const { t } = useTranslation(); // Initialize the translation hook
 
   const [featuredAds, setFeaturedAds] = useState<any>();
@@ -76,4 +76,4 @@ function MainPage() {
   );
 }
 
-export default dynamic(() => Promise.resolve(MainPage), { ssr: false });
+// export default dynamic(() => Promise.resolve(MainPage), { ssr: false });
