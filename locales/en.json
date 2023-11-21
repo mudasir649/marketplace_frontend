@@ -280,7 +280,17 @@
         "Working platform (other)": "Working platform (other)",
         "Working platform (scissor lift)": "Working platform (scissor lift)",
         "Working platform (self-propelled)": "Working platform (self-propelled)",
-        "Working platform (special)": "Working platform (special)"
+        "Working platform (special)": "Working platform (special)",
+    "Bodies / cranes": "Bodies / cranes",
+    "Jumbo": "Jumbo",
+    "Other special bodies": "Other special bodies",
+    "Road maintenance": "Road maintenance",
+    
+    "Tipper- lift-off": "Tipper- lift-off",
+    "Tipper- roll-off": "Tipper- roll-off",
+    "Truck + Trailer": "Truck + Trailer",
+    "Truck crane": "Truck crane",
+    "Wrecker": "Wrecker"
       },
 
       "fuelType": {

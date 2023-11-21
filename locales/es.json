@@ -592,7 +592,17 @@
     "Tipper- three-way": "Volquete trilateral",
     "Tipping Trailer / Dumper": "Volquete basculante / Volquete",
     "Vending trailer": "Remolque expendedora",
-    "Work platform": "Plataforma de trabajo"
+    "Work platform": "Plataforma de trabajo",
+    "Bodies / cranes": "Carrocerías / Gruas",
+    "Jumbo": "Jumbo",
+    "Other special bodies": "Otras carrocerías especiales",
+    "Road maintenance": "Mantenimiento de carreteras",
+    
+    "Tipper- lift-off": "Volquete - Desmontable",
+    "Tipper- roll-off": "Volquete - Roll-off",
+    "Truck + Trailer": "Camión + Remolque",
+    "Truck crane": "Camión grúa",
+    "Wrecker": "Grúa de remolque"
         },
 
         "fuelType": {
