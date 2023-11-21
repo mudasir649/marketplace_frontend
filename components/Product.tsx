@@ -1,10 +1,5 @@
 import {
-  AccessTime,
   AirportShuttle,
-  ArrowBackIos,
-  ArrowForward,
-  ArrowForwardIos,
-  ArrowForwardIosOutlined,
   BuildCircle,
   Chat,
   DataSaverOn,
@@ -18,8 +13,6 @@ import {
   KeyboardArrowLeft,
   KeyboardArrowRight,
   LocationOn,
-  Phone,
-  PhoneIphone,
   PrecisionManufacturing,
   RemoveRedEye,
   RvHookup,
@@ -28,7 +21,7 @@ import {
 } from "@mui/icons-material";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import AOS, { refresh } from "aos";
+import AOS from "aos";
 import "aos/dist/aos.css";
 import { usePathname } from "next/navigation";
 import "./ImageSlider.css";
@@ -47,6 +40,8 @@ import addInvertedComma from "@/utils/addInvertedComma";
 import { useTranslation } from "react-i18next";
 import "./product.css";
 import Image from "next/image";
+import { toast } from "react-toastify";
+import Swal from 'sweetalert2';
 
 export default function Product({ product, url }: any) {
   const { refresh } = useSelector((state: any) => state.app);
@@ -107,9 +102,16 @@ export default function Product({ product, url }: any) {
       }
     }
   };
+
+
   const handleShare = () => {
-    dispatch(setShowShare(true));
-    dispatch(setProductId(product?._id));
+    let linkToCopy = `${process.env.NEXT_PUBLIC_LINK_URI}/product-details/${product?._id}`;
+    try {
+      navigator.clipboard.writeText(linkToCopy);
+      toast('Link Copied!');
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
+    }
   };
 
   const handleChat = async () => {
