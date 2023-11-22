@@ -29,7 +29,6 @@ export default function ListDownComponent({setNavbar}: any) {
         i18n.changeLanguage(value);
     }
 
-    // Update the selected language in state when i18next language changes
     useEffect(() => {
         setLanguage(i18n.language);
     }, []);
