@@ -6,8 +6,8 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'How to Sell Fast: Tips and Strategies for Quick Sales',
-  description: 'Learn effective tips and strategies on how to sell fast. Discover proven techniques to boost your sales and attract buyers quickly.',
+  title: 'Wie man schnell verkauft: Tipps und Strategien für schnelle Verkäufe',
+  description: 'Erfahren Sie effektive Tipps und Strategien, wie Sie schnell verkaufen können. Entdecken Sie bewährte Techniken, um Ihre Verkäufe zu steigern und schnell Käufer anzuziehen.',
 }
 
 

@@ -1,14 +1,12 @@
 import '../globals.css'
 import 'react-toastify/dist/ReactToastify.css';
 import { Inter } from 'next/font/google'
-import Home from '@/components/Home';
-
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'My Profile: Manage Your Personal Information',
-  description: `Access and manage your profile information. Update personal details, customize preferences, and view your activity history on our platform.`,
+  title: 'Mein Profil: Verwalten Sie Ihre persönlichen Informationen',
+  description: `Greifen Sie auf Ihr Profil zu und verwalten Sie die Informationen. Aktualisieren Sie persönliche Details, passen Sie Einstellungen an und sehen Sie Ihre Aktivitätshistorie auf unserer Plattform ein.`,
 }
 
 

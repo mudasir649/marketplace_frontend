@@ -3,7 +3,7 @@ import Home from '@/components/Home';
 import { useTranslation } from 'react-i18next'; 
 
 import { AddCircle, RemoveCircle } from '@mui/icons-material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function Page() {
     const { t } = useTranslation(); // Initialize the translation hook

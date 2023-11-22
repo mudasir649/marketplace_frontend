@@ -782,13 +782,13 @@ export default function AdvanceSearch({
                       height={200}
                     />
                   </div>
-                ) : newWidth <= 550 ? (
+                ) : newWidth <= 688 ? (
                   <ProductList productList={productData} />
                 ) : (
                   <div className="messageArea h-[950px]">
                     {productData?.map((product: any, i: number) => (
                       <div
-                        className="grid grid-cols-3 h-auto mb-5 hover:border hover:border-red-600 bg-white hover:shadow-md hover:shadow-red-400 transition-transform transform"
+                        className="grid grid-cols-3 h-auto mb-5 hover:border hover:border-red-600 bg-white hover:shadow-md hover:shadow-red-400"
                         key={i}
                       >
                         <Link href={`/product-details/${product?._id}`}>

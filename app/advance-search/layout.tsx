@@ -1,14 +1,12 @@
 import '../globals.css'
 import 'react-toastify/dist/ReactToastify.css';
 import { Inter } from 'next/font/google'
-import Home from '@/components/Home';
-
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Advanced Search: Find the Perfect Ads - Bikes, Vans, Cars, and More',
-  description: `Explore a wide range of ads using our Advanced Search. Filter ads by category, including Bikes, Vans, Cars, and more. Refine your search with price conditions to find the perfect items.`,
+  title: 'Erweiterte Suche: Finden Sie die perfekten Anzeigen - Fahrräder, Lieferwagen, Autos und mehr',
+  description: `Entdecken Sie eine Vielzahl von Anzeigen mit unserer erweiterten Suche. Filtern Sie Anzeigen nach Kategorie, einschließlich Fahrräder, Lieferwagen, Autos und mehr. Verfeinern Sie Ihre Suche mit Preisbedingungen, um die perfekten Artikel zu finden.`,
 }
 
 
