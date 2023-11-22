@@ -2,6 +2,7 @@ import '../globals.css'
 import 'react-toastify/dist/ReactToastify.css';
 import { Inter } from 'next/font/google'
 
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -17,6 +18,6 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <section className={`${inter.className} mx-16`}>{children}</section>
+    <section className={`${inter.className} mx-0 lg:mx-16`}>{children}</section>
   )
 }
