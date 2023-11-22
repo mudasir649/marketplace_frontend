@@ -10,7 +10,7 @@
     border: none;
     cursor: pointer;
     transition: transform 0.3s ease; /* Apply the same transition to the buttons */
-    color: red;
+    color: #E5241F;
   }
   
   .prev-button:hover,
