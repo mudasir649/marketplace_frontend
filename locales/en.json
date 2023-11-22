@@ -312,7 +312,8 @@
         "CNG": "CNG",
         "Hybrid (Electric/Gasoline)": "Hybrid (Electric/Gasoline)",
         "Hybrid (Electric/Diesel)": "Hybrid (Electric/Diesel)",
-        "Others": "Others"
+        "Others": "Others",
+        "Petrol": "Petrol"
       },
 
       "condition" : {

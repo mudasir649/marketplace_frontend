@@ -59,8 +59,8 @@ export default function ContactUs() {
                                 height={100}
                             />
                         </div>
-                        <h1 className='flex justify-center text-2xl font-bold'>  {t('contactPage.contactUs')}
-</h1>
+                        <h1 className='flex justify-center text-2xl font-bold'>  {t('contactPage.contactUs')}</h1>
+                        
                         <form className='space-y-4' onSubmit={(e: any) => handleSubmit(e)} method='post'>
                             <div className='flex flex-row border border-gray-200 hover:border-[#FF0000] focus:border-[#FF0000]
                                     cursor-pointer rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>

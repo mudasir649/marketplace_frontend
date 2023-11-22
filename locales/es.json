@@ -616,6 +616,7 @@
 
         "fuelType": {
           "Gasoline": "Gasolina",
+          "Petrol": "Petrol",
           "Diesel": "Diésel",
           "Ethanol": "Etanol",
           "Electric": "Eléctrico",
