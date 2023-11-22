@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { setShowContact } from '@/store/appSlice';
 import { useTranslation } from 'react-i18next'; 
+import { useRouter } from 'next/navigation';
 
 interface IData {
     email: string,
@@ -25,7 +26,7 @@ export default function ContactUs() {
         message: ''
     });
 
-    const dispatch = useDispatch();
+    const router = useRouter();
 
     const handleData = (e: any) => {
         setData({ ...data, [e.target.name]: e.target.value });
@@ -44,7 +45,7 @@ export default function ContactUs() {
         <div className={`fixed inset-0 flex justify-center items-center bg-opacity-100 backdrop-blur-sm z-10 overflow-y-scroll`}>
             <div className='container mx-10 w-[800px] h-auto mt-12 bg-white shadow-3xl border rounded-lg'>
                 <div className='flex justify-end'>
-                    <button className='text-white text-xl lg:mr-[-30px]' onClick={() => dispatch(setShowContact(false))}>
+                    <button className='text-white text-xl lg:mr-[-30px]' onClick={() => router.push('/')}>
                         <Cancel className='text-[#FF0000]' />
                     </button>
                 </div>

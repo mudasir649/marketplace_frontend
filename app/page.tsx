@@ -23,19 +23,10 @@ export default function MainPage() {
       setFeaturedAds(res?.data?.data);
     };
     fetchFeaturedData();
-    // const fetchTopData = async () => {
-    //   const res = await axios(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/fetchTopAds`);
-    //   setTopAds(res?.data?.data);
-    // }
-    // fetchTopData();
   }, []);
 
   return (
     <div className="">
-        {/* <TopProducts>
-          <ProductList productList={topAds} />
-        </TopProducts>
-        <FooterBanner /> */}
         {!featuredAds ? (
           <div className="flex justify-center mt-8">
           <Image
@@ -70,5 +61,3 @@ export default function MainPage() {
     </div>
   );
 }
-
-// export default dynamic(() => Promise.resolve(MainPage), { ssr: false });
