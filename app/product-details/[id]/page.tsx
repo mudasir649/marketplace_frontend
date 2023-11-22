@@ -27,6 +27,8 @@ import AOS from "aos";
 import axios  from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import "./productDetails.css";
+import { Helmet } from 'react-helmet';
+
 
 import formatDateTime from "@/utils/checkTime";
 import {
@@ -39,6 +41,7 @@ import addInvertedComma from "@/utils/addInvertedComma";
 import { useTranslation } from "react-i18next";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
+import Head from "next/head";
 
 
 function ProductDetails() {
@@ -178,14 +181,27 @@ const ConditionTranslated : {
       router.push("/login");
     }
   };
-  console.log(product?.images);
 
   const redirectLogin: any = () => {
      router.push('/login')
   }
+  
+  
 
   return (
     <div className="">
+     <Helmet>
+        <title>{`${product?.title}`}</title>
+        <meta name="description" content={`${product?.name}`} />
+        
+        {/* Add an image to the metadata */}
+        <meta property="og:image" content={product?.images[0]} />
+        {/* Optional: Add more Open Graph tags for better social media sharing */}
+        <meta property="og:title" content={`Product Details: ${product?.description}`} />
+        <meta property="og:description" content={`Details for ${product?.description}`} />
+
+        {/* Add more meta tags as needed */}
+      </Helmet>
       <>
         {!product ? (
           <div className="flex justify-center mt-5">

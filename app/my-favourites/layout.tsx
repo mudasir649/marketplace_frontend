@@ -1,14 +1,12 @@
 import '../globals.css'
 import 'react-toastify/dist/ReactToastify.css';
 import { Inter } from 'next/font/google'
-import Home from '@/components/Home';
-
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'My Favorites: Curate Your Preferred Content',
-  description: `Explore and manage your favorite items in one place. Curate a collection of preferred content, products, or services for easy access and personalized recommendations.`,
+  title: 'Meine Favoriten: Gestalten Sie Ihre bevorzugten Inhalte',
+  description: `Erkunden und verwalten Sie Ihre Lieblingsartikel an einem Ort. Stellen Sie eine Sammlung bevorzugter Inhalte, Produkte oder Dienstleistungen zusammen, um einfachen Zugriff und personalisierte Empfehlungen zu erhalten.`,
 }
 
 

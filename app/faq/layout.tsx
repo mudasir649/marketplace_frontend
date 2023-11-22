@@ -6,8 +6,8 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Frequently Asked Questions (FAQ): Your Answers to Common Queries.',
-  description: 'Explore our Frequently Asked Questions (FAQ) section for answers to common queries. Find solutions to your problems and get a better understanding of our products/services.',
+  title: 'Frequently Asked Questions (FAQ): Ihre Antworten auf häufig gestellte Fragen.',
+  description: 'Erkunden Sie unseren Abschnitt mit häufig gestellten Fragen (FAQ) für Antworten auf gängige Anfragen. Finden Sie Lösungen für Ihre Probleme und erhalten Sie ein besseres Verständnis unserer Produkte/Dienstleistungen.',
 }
 
 

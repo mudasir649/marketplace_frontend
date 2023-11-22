@@ -6,8 +6,8 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Contact Us: Get in Touch with Our Team.',
-  description: `Contact us for inquiries, support, or any questions you may have. Reach our team easily and get the assistance you need. We're here to help!.`,
+  title: 'Kontaktiere uns: Kommuniziere mit unserem Team',
+  description: `Kontaktieren Sie uns für Anfragen, Unterstützung oder Fragen, die Sie haben könnten. Erreichen Sie unser Team einfach und erhalten Sie die Hilfe, die Sie benötigen. Wir sind hier, um zu helfen!`,
 }
 
 

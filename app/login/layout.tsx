@@ -1,14 +1,12 @@
 import '../globals.css'
 import 'react-toastify/dist/ReactToastify.css';
 import { Inter } from 'next/font/google'
-import Home from '@/components/Home';
-
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Login: Access Your Account',
-  description: 'Log in to your account to access personalized features. Securely sign in and manage your account information.',
+  title: 'Anmelden: Zugriff auf Ihr Konto',
+  description: 'Melden Sie sich in Ihrem Konto an, um auf personalisierte Funktionen zuzugreifen. Melden Sie sich sicher an und verwalten Sie Ihre Kontoinformationen.',
 }
 
 

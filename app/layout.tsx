@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "Eidcarosse",
   description:
-    "Welcome to Eidcarosse - No.1 Autos Buy and Sell Marketplace. Explore a diverse range of autos, connect with Swiss buyers and sellers",
+    "Willkommen bei Eidcarosse - dem Marktplatz Nr. 1 für den Kauf und Verkauf von Autos. Entdecken Sie eine vielfältige Auswahl an Fahrzeugen und treten Sie mit Schweizer Käufern und Verkäufern in Kontakt.",
 };
 
 export default function RootLayout({

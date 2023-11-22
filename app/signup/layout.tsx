@@ -1,14 +1,12 @@
 import '../globals.css'
 import 'react-toastify/dist/ReactToastify.css';
 import { Inter } from 'next/font/google'
-import Home from '@/components/Home';
-
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Sign Up: Create Your Account Today',
-  description: `Sign up and create your account today. Join our community and access exclusive features. It's quick, easy, and secure!`,
+  title: 'Anmelden: Erstellen Sie noch heute Ihr Konto.',
+  description: `Registrieren Sie sich noch heute und erstellen Sie Ihr Konto. Treten Sie unserer Community bei und nutzen Sie exklusive Funktionen. Es geht schnell, einfach und sicher!`,
 }
 
 
