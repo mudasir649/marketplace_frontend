@@ -18,6 +18,6 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <section className={`${inter.className} mx-16`}>{children}</section>
+    <section className={`${inter.className} mx-0 lg:mx-16`}>{children}</section>
   )
 }
