@@ -533,6 +533,7 @@
     },
     "fuelType": {
       "Gasoline": "Essence",
+      "Petrol": "Petrol",
       "Diesel": "Diesel",
       "Ethanol": "Éthanol",
       "Electric": "Électrique",

@@ -330,7 +330,8 @@
   "CNG": "Erdgas",
   "Hybrid (Electric/Gasoline)": "Hybrid (Elektrisch/Benzin)",
   "Hybrid (Electric/Diesel)": "Hybrid (Elektrisch/Diesel)",
-  "Others": "Andere"
+  "Others": "Andere" ,
+  "Petrol": "Petrol"
 },
 "sortByList": [
   "Neueste",
