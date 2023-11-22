@@ -47,6 +47,7 @@ module.exports = {
       'signup',
       'terms-and-condition',
       'verify-account',
+      'index',
       // Add other pages as needed
     ];
 
