@@ -48,7 +48,7 @@ module.exports = {
       'terms-and-condition',
       'verify-account',
       'index',
-      // Add other pages as needed
+     
     ];
 
     return pages.map((page) => ({
