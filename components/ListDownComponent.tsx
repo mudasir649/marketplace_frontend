@@ -29,12 +29,10 @@ export default function ListDownComponent({ setNavbar }: any) {
       setNavbar(false);
       i18n.changeLanguage(value);
   
-      // Store the selected language in local storage
       localStorage.setItem('language', value);
     };
   
     useEffect(() => {
-      // Initialize with the language from local storage, if available
       const storedLanguage = localStorage.getItem('language');
       if (storedLanguage) {
         setLanguage(storedLanguage);
