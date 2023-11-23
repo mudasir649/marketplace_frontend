@@ -989,7 +989,9 @@ export default function AdvanceSearch({
         ))}
       </div>
       <button className={btnStyle} onClick={nextHandle}>
-        <span className={spanStyle}></span>
+        <span className={spanStyle}>
+          
+        </span>
         <KeyboardDoubleArrowRight className={logoStyle} />
       </button>
     </>
