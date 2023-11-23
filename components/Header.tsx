@@ -138,7 +138,7 @@ export default function Header() {
             <li className={navbarLiStyle} onClick={() => handleAdvanceSearch('all')}>
               {t('header.advanceSearch')}
             </li>
-            <li className={navbarLiStyle} onClick={handleContact}>{t('header.contactUs')}</li>
+            <li className={navbarLiStyle} onClick={handleContact}>{t('header.contactUs')} usman</li>
             <li>
               <ListDownComponent />
             </li>

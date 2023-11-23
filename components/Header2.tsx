@@ -164,10 +164,10 @@ function Header2() {
               </Link>
             </li>
             <li className={navbarLiStyle} onClick={() => handleAdvanceSearch()}>
-              {t("header.advanceSearch")}
+              {t("header.advanceSearch")} 
             </li>
             <li className={navbarLiStyle} onClick={handleContact}>
-              {t("header.contactUs")}
+              {t("header.contactUs")} usman
             </li>
             <li className="text-black">
               <ListDownComponent setNavbar={setNavbar} />
@@ -328,7 +328,7 @@ function Header2() {
                   {t("header.advanceSearch")}
                 </li>
               </Link>
-              <Link href="/">
+              <Link href="/contact-us">
                 <li className={navbarLiStyle}>{t("header.contactUs")}</li>
               </Link>
               <li className="text-black text-[13px]">
