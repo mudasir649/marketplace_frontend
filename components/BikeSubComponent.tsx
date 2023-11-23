@@ -16,15 +16,14 @@ import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import {
-  
   bikeBodyShape,
-  howContactList,
-  kilometers,
-  
+  kilometers,  
 } from "@/utils/dataVariables";
 import "../app/post-ad/post-ad.css";
 import { useSelector } from "react-redux";
 import locateAddress from "@/utils/GoogleLocation";
+import Switch from "react-switch";
+
 
 import { useTranslation } from "react-i18next";
 const style = {
@@ -89,6 +88,11 @@ export default function BikeSubComponent({ type }: any) {
   let router = useRouter();
   const id = userData;
   const { t } = useTranslation(); // Initialize the translation hook
+  const [whatsappChecked, setWhatsappChecked] = useState<boolean>(false);
+  const [viberChecked, setViberChecked] = useState<boolean>(false);
+  const [phoneChecked, setPhoneChecked] = useState<boolean>(false);
+  const [emailChecked, setEmailChecked] = useState<boolean>(false);
+
 
   const conditionList = [
     {
@@ -408,6 +412,21 @@ export default function BikeSubComponent({ type }: any) {
   };
 
   const translatedBikeSub = BikeSubTranslated["Bicycles"]; // Use type assertion here
+
+  const handleChange = (newChecked: boolean, type: any) => {
+    if (type === "whatsapp") {
+      setWhatsappChecked(newChecked);
+    } else if (type === "viber") {
+      setViberChecked(newChecked);
+    } else if (type === "phone") {
+      setPhoneChecked(newChecked);
+    } else if (type === "email") {
+      setEmailChecked(newChecked);
+    } else {
+      return;
+    }
+  };
+
 
   return (
     <>
@@ -914,104 +933,76 @@ export default function BikeSubComponent({ type }: any) {
               </div>
               <div className={style.divStyle}>
                 <h1 className={style.h1Style}>
-                  {t("autosComponent.howToContact")}
+                  Whatspp
                 </h1>
                 <div
-                  className="flex flex-col hover:border-red-500 w-full rounded-sm h-10"
-                  onClick={() => isOpenSub(!openSub)}
+                  className="flex flex-row w-full h-8"
                 >
-                  <div className="flex flex-row border border-gray-300">
-                    <h1 className="w-full p-2">{howContact} </h1>
-                    <div className={`p-1 pl-2 text-gray-600 w-10`}>
-                      <ExpandMore
-                        className={`logo ${open ? "hidden" : "visible"} ${
-                          openSub ? "active" : "inactive"
-                        }`}
-                      />
-                    </div>
-                  </div>
-                  <div
-                    className={`menu-item flex flex-row border bg-white border-gray-300 
-    w-full rounded-sm p-1 ${openSub ? "active" : "inactive"}`}
-                  >
-                    <ul className="w-full max-h-96 overflow-y-auto">
-                      {howContactList?.map((list: any, i: number) => (
-                        <li
-                          className={`hover:bg-red-500 hover:text-white 
-                ml-1 mb-1 ${list.length - 1 == i ? "" : " border-b-2"}`}
-                          key={i}
-                          onClick={() => handleHowContact(list?.name)}
-                        >
-                          {list?.name}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <Switch
+                    onChange={() => handleChange(!whatsappChecked, "whatsapp")}
+                    checked={whatsappChecked}
+                    offColor="#888"
+                    onColor="#FF0000"
+                    height={28}
+                    className="h-20"
+                  />
                 </div>
               </div>
-              {howContact == "Whatsapp" ? (
-                <div className={style.divStyle}>
-                  <h1 className={style.h1Style}>
-                    {t("autosComponent.whatsapp")}{" "}
-                    <span className="text-[#FF0000]">*</span>
-                  </h1>
-                  <div className="flex flex-col w-full">
-                    <input
-                      type="text"
-                      className={style.inputStyle}
-                      required
-                      name="whatsapp"
-                      value={data.whatsapp}
-                      onChange={(e: any) => handleInput(e)}
-                    />
-                    <p className="text-gray-400 text-sm mt-1">
-                      {t("autosComponent.whatsapp")} +41xxxxxxxxxx
-                    </p>
-                  </div>
+              {whatsappChecked && '+93485858589595'}
+              <div className={style.divStyle}>
+                <h1 className={style.h1Style}>
+                  Viber
+                </h1>
+                <div
+                  className="flex flex-row w-full h-8"
+                >
+                  <Switch
+                    onChange={() => handleChange(!viberChecked, "viber")}
+                    checked={viberChecked}
+                    offColor="#888"
+                    onColor="#FF0000"
+                    height={28}
+                    className="h-20"
+                  /> 
                 </div>
-              ) : howContact == "Viber" ? (
-                <div className={style.divStyle}>
-                  <h1 className={style.h1Style}>
-                    {t("autosComponent.viber")}{" "}
-                    <span className="text-[#FF0000]">*</span>
-                  </h1>
-                  <div className="flex flex-col w-full">
-                    <input
-                      type="text"
-                      className={style.inputStyle}
-                      required
-                      name="viber"
-                      value={data.viber}
-                      onChange={(e: any) => handleInput(e)}
-                    />
-                    <p className="text-gray-400 text-sm mt-1">
-                      {t("autosComponent.viber")} +41xxxxxxxxxx
-                    </p>
-                  </div>
+              </div>
+              {viberChecked && '+93485858589595'}
+              <div className={style.divStyle}>
+                <h1 className={style.h1Style}>
+                  Email
+                </h1>
+                <div
+                  className="flex flex-row w-full h-8"
+                >
+                  <Switch
+                    onChange={() => handleChange(!emailChecked, "email")}
+                    checked={emailChecked}
+                    offColor="#888"
+                    onColor="#FF0000"
+                    height={28}
+                    className="h-20"
+                  />
                 </div>
-              ) : howContact == "email" ? (
-                <div className={style.divStyle}>
-                  <h1 className={style.h1Style}>
-                    {t("autosComponent.email")}{" "}
-                    <span className="text-[#FF0000]">*</span>
-                  </h1>
-                  <div className="flex flex-col w-full">
-                    <p className="text-black text-sm mt-1 font-bold">{email}</p>
-                  </div>
+              </div>
+              {emailChecked && email}
+              <div className={style.divStyle}>
+                <h1 className={style.h1Style}>
+                  Phone
+                </h1>
+                <div
+                  className="flex flex-row w-full h-8"
+                >
+                  <Switch
+                    onChange={() => handleChange(!phoneChecked, "phone")}
+                    checked={phoneChecked}
+                    offColor="#888"
+                    onColor="#FF0000"
+                    height={28}
+                    className="h-20"
+                  />
                 </div>
-              ) : howContact === "phone" ? (
-                <div className={style.divStyle}>
-                  <h1 className={style.h1Style}>
-                    {t("autosComponent.phone")}{" "}
-                    <span className="text-[#FF0000]">*</span>
-                  </h1>
-                  <div className="flex flex-col w-full">
-                    <p className="text-black text-sm mt-1 font-bold">{phone}</p>
-                  </div>
-                </div>
-              ) : (
-                ""
-              )}
+              </div>
+              {phoneChecked && phone}
               <div className={style.divStyle}>
                 <h1 className={`${style.h1Style} invisible`}>ffj</h1>
                 {!loading ? (
