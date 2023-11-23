@@ -33,18 +33,15 @@ import {
   setProdId,
   setProductId,
   setProductUserId,
-  setShowDeleteAd,
 } from "@/store/appSlice";
-import { setShowShare } from "@/store/appSlice";
 import addInvertedComma from "@/utils/addInvertedComma";
 import { useTranslation } from "react-i18next";
 import "./product.css";
 import Image from "next/image";
 import { toast } from "react-toastify";
-import Swal from 'sweetalert2';
 
 export default function Product({ product, url }: any) {
-  const { refresh } = useSelector((state: any) => state.app);
+  const { refresh, roomsData } = useSelector((state: any) => state.app);
   const { t } = useTranslation(); // Initialize the translation hook
 
   const pathname = usePathname();
@@ -59,12 +56,11 @@ export default function Product({ product, url }: any) {
   useEffect(() => {
     AOS.init();
   }, [product]);
-  const editAd = (id: any) => {
-    console.log(id);
-  };
+
   const deleteAd = async (id: any) => {
-    dispatch(setProductId(id));
-    dispatch(setShowDeleteAd(true));
+    // dispatch(setProductId(id));
+    // dispatch(setShowDeleteAd(true));
+    console.log(product?.chatIds);
   };
   const [currentSlide, setCurrentSlide] = useState(0);
   const nextSlide = () => {

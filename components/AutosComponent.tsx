@@ -1,5 +1,4 @@
 "use client";
-import Home from "@/components/Home";
 import {
   ArrowForwardIos,
   Cancel,
@@ -15,20 +14,12 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import {
-  bodyShape,
-  exteriorColor,
-
-  gearBox,
-  howContactList,
-  interiorColor,
-  kilometers,
-  
-} from "@/utils/dataVariables";
+import { kilometers } from "@/utils/dataVariables";
 import "../app/post-ad/post-ad.css";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import "./autos.css";
+import Switch from "react-switch";
 
 import locateAddress from "@/utils/GoogleLocation";
 
@@ -83,8 +74,10 @@ export default function AutosComponent() {
   const email = userInfo?.data?.userDetails?.email;
   const phone = userInfo?.data?.userDetails?.phoneNumber;
   const { type } = useParams();
-  const [open, isOpen] = useState<Boolean>(false);
-  const [openSub, isOpenSub] = useState<Boolean>(false);
+  const [whatsappChecked, setWhatsappChecked] = useState<boolean>(false);
+  const [viberChecked, setViberChecked] = useState<boolean>(false);
+  const [phoneChecked, setPhoneChecked] = useState<boolean>(false);
+  const [emailChecked, setEmailChecked] = useState<boolean>(false);
 
   const conditionList = [
     {
@@ -106,58 +99,58 @@ export default function AutosComponent() {
   const priceList = [
     {
       id: "1",
-      name: t('product.Price'),
+      name: t("product.Price"),
       value: "price",
     },
     {
       id: "3",
-      name: t('product.disabled'),
+      name: t("product.disabled"),
       value: "disabled",
     },
   ];
   const fuelType = [
     {
-      name: t('fuelType.Gasoline'),
-      value: 'Gasoline',
+      name: t("fuelType.Gasoline"),
+      value: "Gasoline",
     },
     {
-      name: t('fuelType.Diesel'),
-      value: 'Diesel',
+      name: t("fuelType.Diesel"),
+      value: "Diesel",
     },
     {
-      name: t('fuelType.Ethanol'),
-      value: 'Ethanol',
+      name: t("fuelType.Ethanol"),
+      value: "Ethanol",
     },
     {
-      name: t('fuelType.Electric'),
-      value: 'Electric',
+      name: t("fuelType.Electric"),
+      value: "Electric",
     },
     {
-      name: t('fuelType.Hydrogen'),
-      value: 'Hydrogen',
+      name: t("fuelType.Hydrogen"),
+      value: "Hydrogen",
     },
     {
-      name: t('fuelType.LPG'),
-      value: 'LPG',
+      name: t("fuelType.LPG"),
+      value: "LPG",
     },
     {
-      name: t('fuelType.CNG'),
-      value: 'CNG',
+      name: t("fuelType.CNG"),
+      value: "CNG",
     },
     {
-      name: t('fuelType.Hybrid (Electric/Gasoline)'),
-      value: 'Hybrid (Electric/Gasoline)',
+      name: t("fuelType.Hybrid (Electric/Gasoline)"),
+      value: "Hybrid (Electric/Gasoline)",
     },
     {
-      name: t('fuelType.Hybrid (Electric/Diesel)'),
-      value: 'Hybrid (Electric/Diesel)',
+      name: t("fuelType.Hybrid (Electric/Diesel)"),
+      value: "Hybrid (Electric/Diesel)",
     },
     {
-      name: t('fuelType.Others'),
-      value: 'Others',
+      name: t("fuelType.Others"),
+      value: "Others",
     },
   ];
-   const [images, setImages] = useState<any>([]);
+  const [images, setImages] = useState<any>([]);
   const [loading, setLoading] = useState<Boolean>(false);
   const [priceListValue, setPriceListValue] = useState<string>("price");
   const [models, setModels] = useState<any>([]);
@@ -211,7 +204,7 @@ export default function AutosComponent() {
       name: t("color.name11"),
       value: t("color.value11"),
     },
-    
+
     {
       name: t("color.name13"),
       value: t("color.value13"),
@@ -469,6 +462,20 @@ export default function AutosComponent() {
       router.push("/");
     }
   }, [router, userData]);
+
+  const handleChange = (newChecked: boolean, type: any) => {
+    if (type === "whatsapp") {
+      setWhatsappChecked(newChecked);
+    } else if (type === "viber") {
+      setViberChecked(newChecked);
+    } else if (type === "phone") {
+      setPhoneChecked(newChecked);
+    } else if (type === "email") {
+      setEmailChecked(newChecked);
+    } else {
+      return;
+    }
+  };
 
   return (
     <>
@@ -901,104 +908,76 @@ export default function AutosComponent() {
               </div>
               <div className={style.divStyle}>
                 <h1 className={style.h1Style}>
-                  {t("autosComponent.howToContact")}
+                  Whatspp
                 </h1>
                 <div
-                  className="flex flex-col hover:border-red-500 w-full rounded-sm h-10"
-                  onClick={() => isOpenSub(!openSub)}
+                  className="flex flex-row w-full h-8"
                 >
-                  <div className="flex flex-row border border-gray-300">
-                    <h1 className="w-full p-2">{howContact} </h1>
-                    <div className={`p-1 pl-2 text-gray-600 w-10`}>
-                      <ExpandMore
-                        className={`logo ${open ? "hidden" : "visible"} ${
-                          openSub ? "active" : "inactive"
-                        }`}
-                      />
-                    </div>
-                  </div>
-                  <div
-                    className={`menu-item flex flex-row border bg-white border-gray-300 
-    w-full rounded-sm p-1 ${openSub ? "active" : "inactive"}`}
-                  >
-                    <ul className="w-full max-h-96 overflow-y-auto">
-                      {howContactList?.map((list: any, i: number) => (
-                        <li
-                          className={`hover:bg-red-500 hover:text-white 
-                ml-1 mb-1 ${list.length - 1 == i ? "" : " border-b-2"}`}
-                          key={i}
-                          onClick={() => handleHowContact(list?.name)}
-                        >
-                          {list?.name}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <Switch
+                    onChange={() => handleChange(!whatsappChecked, "whatsapp")}
+                    checked={whatsappChecked}
+                    offColor="#888"
+                    onColor="#FF0000"
+                    height={28}
+                    className="h-20"
+                  />
                 </div>
               </div>
-              {howContact == "Whatsapp" ? (
-                <div className={style.divStyle}>
-                  <h1 className={style.h1Style}>
-                    {t("autosComponent.whatsapp")}{" "}
-                    <span className="text-[#FF0000]">*</span>
-                  </h1>
-                  <div className="flex flex-col w-full">
-                    <input
-                      type="text"
-                      className={style.inputStyle}
-                      required
-                      name="whatsapp"
-                      value={data.whatsapp}
-                      onChange={(e: any) => handleInput(e)}
-                    />
-                    <p className="text-gray-400 text-sm mt-1">
-                      {t("autosComponent.whatsapp")} +41xxxxxxxxxx
-                    </p>
-                  </div>
+              {whatsappChecked && '+93485858589595'}
+              <div className={style.divStyle}>
+                <h1 className={style.h1Style}>
+                  Viber
+                </h1>
+                <div
+                  className="flex flex-row w-full h-8"
+                >
+                  <Switch
+                    onChange={() => handleChange(!viberChecked, "viber")}
+                    checked={viberChecked}
+                    offColor="#888"
+                    onColor="#FF0000"
+                    height={28}
+                    className="h-20"
+                  /> 
                 </div>
-              ) : howContact == "Viber" ? (
-                <div className={style.divStyle}>
-                  <h1 className={style.h1Style}>
-                    {t("autosComponent.viber")}{" "}
-                    <span className="text-[#FF0000]">*</span>
-                  </h1>
-                  <div className="flex flex-col w-full">
-                    <input
-                      type="text"
-                      className={style.inputStyle}
-                      required
-                      name="viber"
-                      value={data.viber}
-                      onChange={(e: any) => handleInput(e)}
-                    />
-                    <p className="text-gray-400 text-sm mt-1">
-                      {t("autosComponent.viber")} +41xxxxxxxxxx
-                    </p>
-                  </div>
+              </div>
+              {viberChecked && '+93485858589595'}
+              <div className={style.divStyle}>
+                <h1 className={style.h1Style}>
+                  Email
+                </h1>
+                <div
+                  className="flex flex-row w-full h-8"
+                >
+                  <Switch
+                    onChange={() => handleChange(!emailChecked, "email")}
+                    checked={emailChecked}
+                    offColor="#888"
+                    onColor="#FF0000"
+                    height={28}
+                    className="h-20"
+                  />
                 </div>
-              ) : howContact == "email" ? (
-                <div className={style.divStyle}>
-                  <h1 className={style.h1Style}>
-                    {t("autosComponent.email")}{" "}
-                    <span className="text-[#FF0000]">*</span>
-                  </h1>
-                  <div className="flex flex-col w-full">
-                    <p className="text-black text-sm mt-1 font-bold">{email}</p>
-                  </div>
+              </div>
+              {emailChecked && email}
+              <div className={style.divStyle}>
+                <h1 className={style.h1Style}>
+                  Phone
+                </h1>
+                <div
+                  className="flex flex-row w-full h-8"
+                >
+                  <Switch
+                    onChange={() => handleChange(!phoneChecked, "phone")}
+                    checked={phoneChecked}
+                    offColor="#888"
+                    onColor="#FF0000"
+                    height={28}
+                    className="h-20"
+                  />
                 </div>
-              ) : howContact === "phone" ? (
-                <div className={style.divStyle}>
-                  <h1 className={style.h1Style}>
-                    {t("autosComponent.phone")}{" "}
-                    <span className="text-[#FF0000]">*</span>
-                  </h1>
-                  <div className="flex flex-col w-full">
-                    <p className="text-black text-sm mt-1 font-bold">{phone}</p>
-                  </div>
-                </div>
-              ) : (
-                ""
-              )}
+              </div>
+              {phoneChecked && phone}
               <div className={style.divStyle}>
                 <h1 className={`${style.h1Style} invisible`}>ffj</h1>
                 {!loading ? (

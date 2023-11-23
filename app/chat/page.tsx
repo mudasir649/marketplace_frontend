@@ -20,10 +20,8 @@ import {
     getDownloadURL,
 } from "@firebase/storage";
 import "./chat.css";
-import Home from '@/components/Home';
 import moment from "moment";
 import dynamic from 'next/dynamic';
-import { NextFetchEvent } from 'next/server';
 import useWindowDimensions from '@/utils/useWindowDimensions';
 
 interface Message {
@@ -95,8 +93,7 @@ function Chat() {
                 const lastMessageTimestamp = roomData?.messages
                     ? (Object.values(roomData.messages).slice(-1)[0] as Message).timestamp
                     : null;
-                const lastReadTimestamp = roomData?.lastRead?.[userId];
-
+                const lastReadTimestamp = roomData?.lastRead?.[userId];                
                 if (lastMessageTimestamp && (!lastReadTimestamp || lastMessageTimestamp > lastReadTimestamp)) {
                     unread.push(roomId)
                 }
@@ -105,7 +102,7 @@ function Chat() {
         }
 
         checkUnreadMessage();
-    }, [roomsData, userId]);
+    }, [roomsData, userId, newMessages]);
 
     useEffect(() => {
         const fetchChatData = async () => {
@@ -175,7 +172,8 @@ function Chat() {
         await set(lastReadRef, Date.now());
 
         // 3. update the local unreadRooms state.
-        setUnreadRooms((prevState: any) => prevState.filter((id: any) => id !== roomId))
+        const newRoomData = unreadRooms.filter((item: any) => item !== roomId); 
+        setUnreadRooms(newRoomData)
     }
 
     const handleImageRemove = (index: any) => {
@@ -187,6 +185,28 @@ function Chat() {
         updatedImages.splice(index, 1);
         setImage(updatedImages)
     }
+
+    const updateRoomPositionForUser = async (userId: any, roomIdToUpdate: any) => {
+        // Reference to the user's rooms in Firebase
+        const userRoomsRef = ref(db, `users/${userId}/rooms`);
+
+        // Fetch the user's rooms
+        const snapshot = await get(userRoomsRef);
+        if (snapshot.exists()) {
+            let userRoomsList = snapshot.val();
+
+            // Filter out the roomIdToUpdate
+            userRoomsList = userRoomsList.filter(
+                (roomId: any) => roomId !== roomIdToUpdate
+            );
+
+            // Move the roomId to the top of the list
+            userRoomsList.unshift(roomIdToUpdate);
+
+            // Update the rooms list in Firebase
+            await set(userRoomsRef, userRoomsList);
+        }
+    };
 
 
     const handleMessage = async (e: any) => {
@@ -233,6 +253,10 @@ function Chat() {
                         images: imageUrls,
                         timestamps: Date.now()
                     });
+
+                    const otherUserId = selected.otherUser._id; // Assuming you have the otherUser's data in 'selected'
+                    await updateRoomPositionForUser(userId, selected.roomId);
+                    await updateRoomPositionForUser(otherUserId, selected.roomId);
                 }
 
                 // // Clear the selected images after sending
@@ -289,36 +313,13 @@ function Chat() {
         }
     }
 
-    const deleteMessage = async (roomId: any) => {
-        const userMessageRef = ref(db, `RoomLists/${userId}/rooms`);
-        try {
-            // fetch the current user's room
-            const snapshot = await get(userMessageRef);
-            if (snapshot.exists()) {
-                let userRoomList = snapshot.val();
-
-                // filter message using roomId
-                userRoomList = userRoomList.filter((roomID: any) => roomID !== roomId);
-
-                //update the room list
-                await set(userMessageRef, userRoomList);
-
-                console.log(`chat with roomId: ${roomId} is deleted successfully.`);
-            } else {
-                console.log('user rooms not found.');
-            }
-            setNewMessages([])
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
     const handleInput = (e: any) => {
         if (e.key === 'Enter' && e.shiftKey) {
             e.preventDefault();
             setMessage((prevMsg: string) => prevMsg + '\n');
         }
     }
+    
 
 
     if (userInfo !== null) {
@@ -346,7 +347,7 @@ function Chat() {
                                                     {roomsData && [...roomsData].map((data: any, i: any) => (
                                                         chatData[data] && (
                                                             <div
-                                                                className='flex flex-row space-x-2 border-b-2 m-3 py-2'
+                                                                className={'flex flex-row space-x-2 border-b-2 m-3 py-2'}
                                                                 key={i}
                                                                 onClick={() => handleChatRoom(data)}
                                                             >
@@ -366,8 +367,9 @@ function Chat() {
                                                                     </section>
                                                                     <h1 className='text-sm font-bold line-clamp-1'>{chatData[data].product?.data?.title}</h1>
                                                                     <section className='flex flex-row justify-between'>
+                                                                        <h1>{`${unreadRooms.includes(data) ? '': 'fkjfj' }`}</h1>
                                                                         {/* <h1 className='text-sm line-clamp-1'>{chatRoomData[data].otherUser.email}</h1> */}
-                                                                        <h1 className='text-sm w-20 truncate'>
+                                                                        <h1 className={`text-sm w-20 truncate`}>
                                                                             {newMessages[data]
                                                                                 ? (Object.keys((newMessages as NewMessages)[data]).pop() && (newMessages as NewMessages)[data][Object.keys((newMessages as NewMessages)[data]).pop() as string]?.text)
                                                                                 :
@@ -487,7 +489,7 @@ function Chat() {
                                                 {roomsData && [...roomsData].map((data: any, i: any) => (
                                                     chatData[data] && (
                                                         <div
-                                                            className='flex flex-row space-x-2 border-b-2 m-3 py-2'
+                                                            className={`${unreadRooms.includes(data) ? 'bg-gray-100 opacity-40' : ''} flex flex-row space-x-2 border-b-2 m-3 py-2`}
                                                             key={i}
                                                             onClick={() => handleChatRoom(data)}
                                                         >
@@ -508,7 +510,7 @@ function Chat() {
                                                                 <h1 className='text-sm font-bold line-clamp-1'>{chatData[data].product?.data?.title}</h1>
                                                                 <section className='flex flex-row justify-between'>
                                                                     {/* <h1 className='text-sm line-clamp-1'>{chatRoomData[data].otherUser.email}</h1> */}
-                                                                    <h1 className='text-sm w-20 truncate'>
+                                                                    <h1 className={`text-sm w-20 truncate`}>
                                                                         {newMessages[data]
                                                                             ? (Object.keys((newMessages as NewMessages)[data]).pop() && (newMessages as NewMessages)[data][Object.keys((newMessages as NewMessages)[data]).pop() as string]?.text)
                                                                             :
