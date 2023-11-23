@@ -115,13 +115,19 @@ export default function AdvanceSearch({
 
   const pagination = () => {
     let paginationList: any = [];
-    let totalPages = Math.ceil(productsCount / 10);
-    for (let i = 1; i <= totalPages; i++) {
-      paginationList.push(i);
+    let productsPerPage = 9; // Set the number of products per page
+    let totalPages = Math.ceil(productsCount / productsPerPage);
+  
+    // Only add pages to paginationList if there is more than one page
+    if (totalPages > 1) {
+      for (let i = 1; i <= totalPages; i++) {
+        paginationList.push(i);
+      }
     }
+  
     return paginationList;
   };
-
+  
   const conditionList = [
     {
       id: 1,
@@ -802,6 +808,7 @@ export default function AdvanceSearch({
                             </div>
                           </div>
                         </Link>
+                        
                         <div className="w-full col-span-2 p-2">
                           <div className="flex flex-row justify-between">
                             <Link href={`/product-details/${product?._id}`}>
@@ -957,37 +964,39 @@ export default function AdvanceSearch({
                     ))}
                   </div>
                 )}
-                <div
-                  className={`flex flex-row justify-between bg-white h-12 border border-[#e52320] rounded-sm px-5 py-2 mt-2`}
-                >
-                  <button className={btnStyle} onClick={previousHandle}>
-                    <KeyboardDoubleArrowLeft className={logoStyle} />
-                    <span className={spanStyle}>
-                    </span>
-                  </button>
-                  <div className="flex flex-row space-x-4">
-                    {pagination().map((li: any, i: number) => (
-                      <button
-                      className={`${
-                        page === li && "bg-[#e52320] w-6 md:w-8 text-white text-[12px] border-none rounded-sm"
-                      } pt-[2px] text-[12px] md:text-lg`}
-                      key={i}
-                      onClick={() => {
-                        dispatch(setPage(li));
-                        scrollToTop(); // Call the scrollToTop function here
-                      }}
-                    >
-                        {li}
-                      </button>
-                    ))}
-                  </div>
-                  <button className={btnStyle} onClick={nextHandle}>
-                    <span className={spanStyle}>
-                    </span>
-                    <KeyboardDoubleArrowRight className={logoStyle} />
-                  </button>
-                </div>
-              </div>
+                {pagination().length > 1 && (
+  
+               <div className={`flex flex-row justify-between bg-white h-12 border border-[#e52320] rounded-sm px-5 py-2 mt-2`}>
+    <>
+      <button className={btnStyle} onClick={previousHandle}>
+        <KeyboardDoubleArrowLeft className={logoStyle} />
+        <span className={spanStyle}></span>
+      </button>
+      <div className="flex flex-row space-x-4">
+        {pagination().map((li: any, i: number) => (
+          <button
+            className={`${
+              page === li && "bg-[#e52320] w-6 md:w-8 text-white text-[12px] border-none rounded-sm"
+            } pt-[2px] text-[12px] md:text-lg`}
+            key={i}
+            onClick={() => {
+              dispatch(setPage(li));
+              scrollToTop(); // Call the scrollToTop function here
+            }}
+          >
+            {li}
+          </button>
+        ))}
+      </div>
+      <button className={btnStyle} onClick={nextHandle}>
+        <span className={spanStyle}></span>
+        <KeyboardDoubleArrowRight className={logoStyle} />
+      </button>
+    </>
+ 
+</div>
+ )}
+</div>
             ) : !productData ? (
               <div className="flex justify-center w-full h-full">
                 <Image
