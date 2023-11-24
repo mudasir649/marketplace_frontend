@@ -1,4 +1,4 @@
-import '@/globlas.css'
+import '../globals.css'
 import 'react-toastify/dist/ReactToastify.css';
 import { Inter } from 'next/font/google'
 
@@ -6,8 +6,8 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Wie man schnell verkauft: Tipps und Strategien für schnelle Verkäufe',
-  description: 'Erfahren Sie effektive Tipps und Strategien, wie Sie schnell verkaufen können. Entdecken Sie bewährte Techniken, um Ihre Verkäufe zu steigern und schnell Käufer anzuziehen.',
+  title: 'Passwort ändern: Aktualisieren Sie Ihr Kontopasswort sicher',
+  description: `Ändern Sie Ihr Kontopasswort sicher. Schützen Sie Ihr Konto, indem Sie Ihr Passwort regelmäßig aktualisieren. Befolgen Sie unsere einfachen Schritte, um die Sicherheit Ihres Kontos zu gewährleisten.`,
 }
 
 

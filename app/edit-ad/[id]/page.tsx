@@ -481,7 +481,6 @@ function EditComponent() {
                     value={data.title}
                     placeholder={productData?.title}
                     onChange={(e: any) => handleInput(e)}
-                    required
                   />
                   <p className="text-gray-300 italic">
                     {t("autosComponent.titleCharacterLimit")}
@@ -527,7 +526,6 @@ function EditComponent() {
                       value={data.price}
                       placeholder={productData?.price}
                       onChange={(e: any) => handleInput(e)}
-                      required
                     />
                   </div>
                 </div>
@@ -778,7 +776,6 @@ function EditComponent() {
                   <input
                     type="file"
                     className={`${style.inputStyle} p-1`}
-                    required
                     name="image"
                     id="fileInput"
                     accept="image/png, image/jpeg"
@@ -853,7 +850,6 @@ function EditComponent() {
                 </h1>
                 <div className="flex flex-col w-full">
                   <input
-                    required
                     className={style.inputStyle}
                     type="text"
                     placeholder={productData?.address}
@@ -925,7 +921,6 @@ function EditComponent() {
                     <input
                       type="text"
                       className={style.inputStyle}
-                      required
                       name="whatsapp"
                       value={data.whatsapp}
                       placeholder={productData?.whatsapp}
@@ -946,7 +941,6 @@ function EditComponent() {
                     <input
                       type="text"
                       className={style.inputStyle}
-                      required
                       name="viber"
                       value={data.viber}
                       onChange={(e: any) => handleInput(e)}
