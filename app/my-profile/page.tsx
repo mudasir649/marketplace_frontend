@@ -16,7 +16,9 @@ import { useTranslation } from 'react-i18next';
 interface IData {
     firstName: string,
     lastName: string,
-    phoneNumber: any,
+    phoneNumber: string,
+    whatsapp: string,
+    viber: string
 }
 
 
@@ -40,6 +42,8 @@ export default function MyProfile() {
         firstName: '',
         lastName: '',
         phoneNumber: '',
+        whatsapp: '',
+        viber: '',
     });
     const [showImage, setShowImage] = useState<Boolean>(false)
     const [image1, setImage1] = useState<string>('');
@@ -141,11 +145,11 @@ export default function MyProfile() {
                     </div>
                     {userData?.image && <div className='flex justify-center mt-4'>
                         <input type="file" className='mt-20 mx-5'
-                            accept='/*'
+                            accept="image/png, image/jpeg"
                             ref={fileInputRef1}
                             style={{ display: 'none' }}
                             onChange={(e: any) => handleImage1(e)} />
-                        <button className='h-10 w-auto bg-[#FF0000] text-white font-semibold p-2' onClick={() => handleLogo1()}>{t('myProfile.buttons.uploadPicture')}</button>
+                        <button className='h-10 w-auto bg-[#FF0000] hover:bg-red-700 text-white font-semibold p-2' onClick={() => handleLogo1()}>{t('myProfile.buttons.uploadPicture')}</button>
                     </div>
                     }
                     <div className='container mx-0 mt-6 lg:mx-20 w-auto'>
@@ -161,24 +165,6 @@ export default function MyProfile() {
                                 <h1 className='text-md mt-[0.5px] pl-0 md:pl-[52px]'>{userData?.email}</h1>
                             </div>
                         </div>
-                        {/* <div className='flex flex-col md:flex-row space-x-0 md:space-x-20 space-y-1 md:space-y-0 mb-6'>
-                            <h1 className='text-md font-bold'>First Name</h1>
-                            <div>
-                                <h1 className='text-md mt-[0.5px] pl-0 md:pl-[54px]'>{userData?.firstName}</h1>
-                            </div>
-                        </div>
-                        <div className='flex flex-col md:flex-row space-x-0 md:space-x-20 space-y-1 md:space-y-0 mb-6'>
-                            <h1 className='text-md font-bold'>Last Name</h1>
-                            <div>
-                                <h1 className='text-md mt-[0.5px] pl-0 md:pl-[54px]'>{userData?.lastName}</h1>
-                            </div>
-                        </div>
-                        <div className='flex flex-col md:flex-row space-x-0 md:space-x-20 space-y-1 md:space-y-0 mb-6'>
-                            <h1 className='text-md font-bold'>Phone</h1>
-                            <div>
-                                <h1 className='text-md mt-[0.5px] pl-0 md:pl-[54px]'>{userData?.phone}</h1>
-                            </div>
-                        </div> */}
                         <div className={style.divStyle}>
                             <h1 className={style.h1Style}>{t('myProfile.labels.firstName')}</h1>
                             <input type="text" className={style.inputStyle}
@@ -203,8 +189,22 @@ export default function MyProfile() {
                                 value={data?.phoneNumber}
                                 onChange={(e: any) => handleInput(e)} />
                         </div>
-
-
+                        <div className={style.divStyle}>
+                            <h1 className={style.h1Style}>Whatsapp</h1>
+                            <input type="text" className={style.inputStyle}
+                                name='whatsapp'
+                                placeholder={userData?.whatsapp}
+                                value={data?.whatsapp}
+                                onChange={(e: any) => handleInput(e)} />
+                        </div>
+                        <div className={style.divStyle}>
+                            <h1 className={style.h1Style}>Viber</h1>
+                            <input type="text" className={style.inputStyle}
+                                name='viber'
+                                placeholder={userData?.viber}
+                                value={data?.viber}
+                                onChange={(e: any) => handleInput(e)} />
+                        </div>
                         <div className={style.divStyle}>
                             <h1 className={`${style.h1Style} invisible`}>{t('myProfile.labels.submit')}</h1>
                             {loading ?

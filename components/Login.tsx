@@ -11,6 +11,7 @@ import { useLoginMutation } from '@/store/userApiSlice';
 import { useRouter } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
 import { setEmail, setProdId } from '@/store/appSlice';
+import "./Advance-search.css"
 
 
 export default function LoginPage() {
@@ -36,7 +37,7 @@ export default function LoginPage() {
     } catch (error: any) {      
       dispatch(setEmail(email))
       toast(error?.data?.message);
-      router.push(`verify-account/${error.data?.data}`)
+      // router.push(`verify-account/${error.data?.data}`)
     }
   }
 
@@ -47,8 +48,8 @@ export default function LoginPage() {
   }, [userInfo, dispatch])
 
   return (
-    <div className={`fixed inset-0 flex justify-center items-center bg-opacity-100 backdrop-blur-sm`}>
-      <div className='container mx-10 w-[800px] h-[600px] bg-white shadow-3xl border rounded-lg'>
+    <div className={`messageArea fixed inset-0 flex justify-center items-center bg-opacity-100 backdrop-blur-sm h-auto`}>
+      <div className='container mx-10 w-[800px] h-auto bg-white shadow-3xl border rounded-lg pb-5'>
         <div className='flex justify-end'>
           <Link href="/">
             <button className='text-white text-xl lg:mr-[-30px]'>

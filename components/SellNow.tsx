@@ -189,7 +189,7 @@ export default function SellNow() {
                             id="fileInput"
                             name="image"
                             className="w-full border py-2 px-3 focus:outline-none focus:border-red-600"
-                            accept="image/*"
+                            accept="image/png, image/jpeg"
                             multiple
                             required
                             onChange={(e) => handleImage(e)}

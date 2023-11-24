@@ -97,8 +97,8 @@ export default function PartsComponent({ type }: any) {
     userInfo === null ? userInfo : userInfo?.data?.userDetails?._id;
   const email = userInfo?.data?.userDetails?.email;
   const phone = userInfo?.data?.userDetails?.phoneNumber;
-  const [open, isOpen] = useState<Boolean>(false);
-  const [openSub, isOpenSub] = useState<Boolean>(false);
+  const whatsapp = userInfo?.data?.userDetails?.whatsapp;
+  const viber = userInfo?.data?.userDetails?.viber;
   const [images, setImages] = useState<any>([]);
   const [loading, setLoading] = useState<Boolean>(false);
   const [priceListValue, setPriceListValue] = useState<string>("price");
@@ -550,7 +550,22 @@ export default function PartsComponent({ type }: any) {
                   />
                 </div>
               </div>
-              {whatsappChecked && '+93485858589595'}
+              {whatsappChecked && <>
+                  <div
+                    className={`${style.divStyle} transform ease-linear duration-500`}
+                  >
+                    <h1 className={`${style.h1Style} invisible`}>whatsapp</h1>
+                    <div className="flex flex-row space-x-10 w-full">
+                      <input
+                        className={style.inputStyle}
+                        placeholder={data?.whatsapp}
+                        name="whatsapp"
+                        value={data?.whatsapp}
+                        onChange={(e) => handleInput(e)}
+                      />
+                    </div>
+                  </div>
+                </>}
               <div className={style.divStyle}>
                 <h1 className={style.h1Style}>
                   Viber
@@ -568,43 +583,23 @@ export default function PartsComponent({ type }: any) {
                   /> 
                 </div>
               </div>
-              {viberChecked && '+93485858589595'}
-              <div className={style.divStyle}>
-                <h1 className={style.h1Style}>
-                  Email
-                </h1>
-                <div
-                  className="flex flex-row w-full h-8"
-                >
-                  <Switch
-                    onChange={() => handleChange(!emailChecked, "email")}
-                    checked={emailChecked}
-                    offColor="#888"
-                    onColor="#FF0000"
-                    height={28}
-                    className="h-20"
-                  />
-                </div>
-              </div>
-              {emailChecked && email}
-              <div className={style.divStyle}>
-                <h1 className={style.h1Style}>
-                  Phone
-                </h1>
-                <div
-                  className="flex flex-row w-full h-8"
-                >
-                  <Switch
-                    onChange={() => handleChange(!phoneChecked, "phone")}
-                    checked={phoneChecked}
-                    offColor="#888"
-                    onColor="#FF0000"
-                    height={28}
-                    className="h-20"
-                  />
-                </div>
-              </div>
-              {phoneChecked && phone}
+              {viberChecked && 
+               <>
+               <div
+                 className={`${style.divStyle} transform ease-linear duration-200`}
+               >
+                 <h1 className={`${style.h1Style} invisible`}>viber</h1>
+                 <div className="flex flex-row space-x-10 w-full">
+                   <input
+                     className={style.inputStyle}
+                     placeholder={data?.viber}
+                     name="viber"
+                     value={data?.viber}
+                     onChange={(e) => handleInput(e)}
+                   />
+                 </div>
+               </div>
+             </>}
               <div className={style.divStyle}>
                 <h1 className={`${style.h1Style} invisible`}>ffj</h1>
                 {!loading ? (
