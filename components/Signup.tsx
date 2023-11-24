@@ -10,6 +10,7 @@ import { setEmail } from '@/store/appSlice';
 import { useRouter } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
+import "./Advance-search.css"
 
 export default function Signup() {
   const { t } = useTranslation();
@@ -79,7 +80,7 @@ export default function Signup() {
 
 
   return (
-    <div className={`fixed inset-0 flex justify-center items-center bg-sopacity-100 backdrop-blur-sm overflow-y-scroll`}>
+    <div className={`messageArea fixed inset-0 flex justify-center items-center bg-opacity-100 backdrop-blur-sm overflow-y-scroll pt-10`}>
       <div className='container mx-10 w-[800px] h-auto bg-white shadow-3xl border rounded-lg mt-32 mb-10'>
         <div className='flex justify-end'>
           <Link href="/">

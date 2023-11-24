@@ -409,35 +409,35 @@ const ConditionTranslated : {
                     )}
                     {contact ?  (
                       userInfo ? 
-                      <div className="bg-gray-100 text-black border border-gray-100 flex justify-center transition ease-out duration-200">
-                        <span className="absolute end-28 mt-1">
-                          <Cancel
+                      <div className="bg-gray-100 text-black border border-gray-100 flex flex-col justify-center translate-y-0 transition ease-linear duration-200 ">
+                        <div className="flex justify-end">
+                        <Cancel
                             className="text-red-500"
                             onClick={() => setContact(false)}
                           />
-                        </span>
-                        <ul className="space-y-3 py-3 mt-3">
-                          {product?.viber && (
-                            <li className="space-x-3">
+                        </div>
+                        <div className="mx-auto space-y-2 mb-2">
+                        {product?.viber && (
+                            <h1 className="space-x-3">
                               <PhoneInTalk className="text-white border bg-purple-500 border-purple-500 rounded-lg mr-3" />{" "}
                               {product?.viber}
-                            </li>
+                            </h1>
                           )}
                           {product?.whatsapp && (
-                            <li>
+                            <h1>
                               {" "}
                               <WhatsApp className="text-green-500 mr-3" />{" "}
                               {product?.whatsapp}
-                            </li>
+                            </h1>
                           )}
-                          {product?.userId?.phoneNumber && (
-                            <li>
+                          {product?.phone && (
+                            <h1>
                               {" "}
                               <Phone className="text-[#FF0000] mt-[-1px] mr-3" />{" "}
                               {product?.userId?.phoneNumber}
-                            </li>
+                            </h1>
                           )}
-                        </ul>
+                        </div>
                       </div>
                       :
                       redirectLogin()

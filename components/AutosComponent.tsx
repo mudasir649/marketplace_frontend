@@ -3,7 +3,7 @@ import {
   ArrowForwardIos,
   Cancel,
   Description,
-  ExpandMore,
+  Edit,
   Image,
   InsertLink,
   Person,
@@ -11,7 +11,7 @@ import {
 } from "@mui/icons-material";
 import axios from "axios";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { kilometers } from "@/utils/dataVariables";
@@ -61,6 +61,7 @@ interface IData {
   engineCapacity: any;
   cylinder: any;
   km: any;
+  phone: Boolean,
   latitude: any;
   longitude: any;
 }
@@ -73,11 +74,11 @@ export default function AutosComponent() {
     userInfo === null ? userInfo : userInfo?.data?.userDetails?._id;
   const email = userInfo?.data?.userDetails?.email;
   const phone = userInfo?.data?.userDetails?.phoneNumber;
-  const { type } = useParams();
+  const whatsapp = userInfo?.data?.userDetails?.whatsapp;
+  const viber = userInfo?.data?.userDetails?.viber;
   const [whatsappChecked, setWhatsappChecked] = useState<boolean>(false);
   const [viberChecked, setViberChecked] = useState<boolean>(false);
   const [phoneChecked, setPhoneChecked] = useState<boolean>(false);
-  const [emailChecked, setEmailChecked] = useState<boolean>(false);
 
   const conditionList = [
     {
@@ -313,6 +314,7 @@ export default function AutosComponent() {
     userId: id,
     title: null || "",
     price: null || "",
+    phone: phoneChecked,
     minPrice: null || "",
     maxPrice: null || "",
     brand: null || "",
@@ -324,8 +326,8 @@ export default function AutosComponent() {
     feature_list: null || "",
     howToContact: "Whatsapp",
     condition: null || "",
-    whatsapp: null || "",
-    viber: null || "",
+    whatsapp: whatsapp,
+    viber: viber,
     email: null || "",
     year: null || "",
     bodyShape: null || "",
@@ -354,6 +356,11 @@ export default function AutosComponent() {
   const handleInput = (e: any) => {
     setData({ ...data, [e.target.name]: e.target.value });
     if (e.target.name == "brand") fetchBrand(e.target.value);
+
+    console.log(data.whatsapp);
+    console.log(data.viber);
+    
+    
   };
 
   const fetchBrand = async (model: any) => {
@@ -468,11 +475,15 @@ export default function AutosComponent() {
       setWhatsappChecked(newChecked);
     } else if (type === "viber") {
       setViberChecked(newChecked);
-    } else if (type === "phone") {
+    }
+    else if (type === "phone") {
       setPhoneChecked(newChecked);
-    } else if (type === "email") {
-      setEmailChecked(newChecked);
-    } else {
+      setData({...data, ["phone"]: !phoneChecked})
+    } 
+    // else if (type === "email") {
+    //   setEmailChecked(newChecked);
+    // }
+    else {
       return;
     }
   };
@@ -907,12 +918,8 @@ export default function AutosComponent() {
                 </div>
               </div>
               <div className={style.divStyle}>
-                <h1 className={style.h1Style}>
-                  Whatspp
-                </h1>
-                <div
-                  className="flex flex-row w-full h-8"
-                >
+                <h1 className={style.h1Style}>Whatspp</h1>
+                <div className="flex flex-row w-full h-8">
                   <Switch
                     onChange={() => handleChange(!whatsappChecked, "whatsapp")}
                     checked={whatsappChecked}
@@ -923,14 +930,27 @@ export default function AutosComponent() {
                   />
                 </div>
               </div>
-              {whatsappChecked && '+93485858589595'}
+              {whatsappChecked && (
+                <>
+                  <div
+                    className={`${style.divStyle} transform ease-linear duration-500`}
+                  >
+                    <h1 className={`${style.h1Style} invisible`}>whatsapp</h1>
+                    <div className="flex flex-row space-x-10 w-full">
+                      <input
+                        className={style.inputStyle}
+                        placeholder={data?.whatsapp}
+                        name="whatsapp"
+                        value={data?.whatsapp}
+                        onChange={(e) => handleInput(e)}
+                      />
+                    </div>
+                  </div>
+                </>
+              )}
               <div className={style.divStyle}>
-                <h1 className={style.h1Style}>
-                  Viber
-                </h1>
-                <div
-                  className="flex flex-row w-full h-8"
-                >
+                <h1 className={style.h1Style}>Viber</h1>
+                <div className="flex flex-row w-full h-8">
                   <Switch
                     onChange={() => handleChange(!viberChecked, "viber")}
                     checked={viberChecked}
@@ -938,35 +958,30 @@ export default function AutosComponent() {
                     onColor="#FF0000"
                     height={28}
                     className="h-20"
-                  /> 
-                </div>
-              </div>
-              {viberChecked && '+93485858589595'}
-              <div className={style.divStyle}>
-                <h1 className={style.h1Style}>
-                  Email
-                </h1>
-                <div
-                  className="flex flex-row w-full h-8"
-                >
-                  <Switch
-                    onChange={() => handleChange(!emailChecked, "email")}
-                    checked={emailChecked}
-                    offColor="#888"
-                    onColor="#FF0000"
-                    height={28}
-                    className="h-20"
                   />
                 </div>
               </div>
-              {emailChecked && email}
+              {viberChecked && (
+                <>
+                  <div
+                    className={`${style.divStyle} transform ease-linear duration-200`}
+                  >
+                    <h1 className={`${style.h1Style} invisible`}>viber</h1>
+                    <div className="flex flex-row space-x-10 w-full">
+                      <input
+                        className={style.inputStyle}
+                        placeholder={data?.viber}
+                        name="viber"
+                        value={data?.viber}
+                        onChange={(e) => handleInput(e)}
+                      />
+                    </div>
+                  </div>
+                </>
+              )}
               <div className={style.divStyle}>
-                <h1 className={style.h1Style}>
-                  Phone
-                </h1>
-                <div
-                  className="flex flex-row w-full h-8"
-                >
+                <h1 className={style.h1Style}>Phone</h1>
+                <div className="flex flex-row w-full h-8">
                   <Switch
                     onChange={() => handleChange(!phoneChecked, "phone")}
                     checked={phoneChecked}
@@ -977,7 +992,7 @@ export default function AutosComponent() {
                   />
                 </div>
               </div>
-              {phoneChecked && phone}
+              {phoneChecked && <div className={style.divStyle}>{ 'User will see phone number.'}</div>}
               <div className={style.divStyle}>
                 <h1 className={`${style.h1Style} invisible`}>ffj</h1>
                 {!loading ? (
