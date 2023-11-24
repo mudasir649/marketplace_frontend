@@ -51,6 +51,8 @@ interface InitialStateInterface {
     showContact: boolean;
     condition: string | null;
     brand: string | null;
+    model: string | null;
+    year: string | null;
     minPrice: any | null;
     maxPrice: any | null;
     prodId: string[];
@@ -80,6 +82,8 @@ const initialState: InitialStateInterface = {
     showContact: false,
     condition: null || '',
     brand: null || '',
+    model: null || '',
+    year: null || '',
     minPrice: null || '',
     maxPrice: null || '',
     prodId: getProdIdInitialState(),
@@ -140,6 +144,8 @@ const appSlice = createSlice({
             state.address = actions.payload;
         },
         setRoomsData: (state, actions) => {
+
+            
             state.roomsData = actions.payload;
             localStorage.setItem('roomsData', JSON.stringify(actions.payload));
         },
@@ -154,6 +160,12 @@ const appSlice = createSlice({
         },
         setBrand: (state, actions) => {
             state.brand = actions.payload;
+        },
+        setModel: (state, actions) => {
+            state.model = actions.payload;
+        },
+        setYear: (state, actions) => {
+            state.year = actions.payload;
         },
         setMaxPrice: (state, actions) => {
             state.maxPrice = actions.payload;
@@ -184,7 +196,7 @@ export const { refreshPage, setFilterData,
                 setReduxTitle, setReduxAddress, 
                 setProductUserId, setRoomsData, 
                 setLanguage, setShowContact, 
-                setCondition, setBrand, 
+                setCondition, setBrand,setYear, setModel,
                 setMinPrice, setMaxPrice, 
                 setProdId, setCloseAll, 
                 setEmail} = appSlice.actions;

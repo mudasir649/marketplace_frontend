@@ -136,6 +136,9 @@
     "heading1": "Seleccionar Categoría",
       "color": "Color"
 ,
+
+"selectMileage": "Seleccionar kilometraje",
+"enterYear": "Ingresar año del producto",
 "axleCount": "Número de Ejes",
 "selectAxleCount": "Seleccionar Número de Ejes",    
     "changeCategory": "Cambiar categoría",

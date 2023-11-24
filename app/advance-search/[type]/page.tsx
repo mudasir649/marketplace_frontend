@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
+
 import AdvanceSearch from "@/components/AdvanceSearch";
 import Home from "@/components/Home";
 import { setType } from "@/store/appSlice";
@@ -12,13 +13,16 @@ import { useDispatch, useSelector } from "react-redux";
 
 function Page() {
   const { type } = useParams();
-  const { page, condition, brand, minPrice, maxPrice, sortBy } = useSelector(
+  const { page, condition, brand, year, model , minPrice, maxPrice, sortBy } = useSelector(
     (state: any) => state.app
   );
   const dispatch = useDispatch();
   const [productData, setProductData] = useState<any>();
   const [productsCount, setProductsCount] = useState<any>(0);
   const [brands, setBrands] = useState<string>("");
+  const [years, setYears] = useState<string>("");
+  const [models, setModels] = useState<string>("");
+  
 
   console.log(type);
   
@@ -39,9 +43,17 @@ function Page() {
         );
         setBrands(res.data?.data);
       };
+      const fetchModels = async () => {
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findModels/${checkType}/${brand}`
+        );
+        console.log(res.data?.data?.model);
+        
+        setModels(res.data?.data);
+      };
       const endpoint = subCategory
-      ? `/ad?page=${page}&subCategory=${subCategory}&sortBy=${sortBy}&condition=${condition}&brand=${brand}&minPrice=${minPrice}&mxPrice=${maxPrice}`
-      : `/ad?page=${page}&category=${checkType}&sortBy=${sortBy}&condition=${condition}&brand=${brand}&minPrice=${minPrice}&mxPrice=${maxPrice}`;
+      ? `/ad?page=${page}&subCategory=${subCategory}&sortBy=${sortBy}&condition=${condition}&brand=${brand}&model=${model}&year=${year}&minPrice=${minPrice}&mxPrice=${maxPrice}`
+      : `/ad?page=${page}&category=${checkType}&sortBy=${sortBy}&condition=${condition}&brand=${brand}&year=${year}&minPrice=${minPrice}&mxPrice=${maxPrice}`;
 
       const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}${endpoint}`);
       const data = res.data?.data;
@@ -49,37 +61,14 @@ function Page() {
       setProductData(data?.ad);
       setProductsCount(data?.totalAds);
       dispatch(setType(checkType));
+      fetchModels();
 
       if(!subCategory && !validTypes.includes(checkType as string)){
         fetchBrands();
       }
     }
       fetchData();
-    // if (!subCategory) {
-    //   const fetchData = async () => {
-    //     const res = await axios.get(
-    //       `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${checkType}&sortBy=${sortBy}&condition=${condition}&brand=${brand}&minPrice=${minPrice}&mxPrice=${maxPrice}`
-    //     );
-    //     setProductData(res.data?.data?.ad);
-    //     setProductsCount(res.data?.data?.totalAds);
-    //     dispatch(setType(checkType));
-    //     if (!validTypes.includes(checkType as string)) {
-    //       fetchBrands();
-    //     }
-    //   };
-    //   fetchData();
-    // } else {
-    //   const fetchData = async () => {
-    //     const res = await axios.get(
-    //       `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&subCategory=${subCategory}&sortBy=${sortBy}&condition=${condition}&brand=${brand}&minPrice=${minPrice}&mxPrice=${maxPrice}`
-    //     );
-    //     setProductData(res.data?.data.ad);
-    //     setProductsCount(res.data?.data.totalAds);
-    //     dispatch(setType(checkType));
-    //   };
-    //   fetchData();
-    // }
-  }, [page, checkType, dispatch]);
+  }, [page, checkType, dispatch, brand]);
 
   return (
     <div>
@@ -88,6 +77,8 @@ function Page() {
           productData={productData}
           productsCount={productsCount}
           brands={brands}
+          years ={years}
+          models={models}
           category={checkType}
           setProductData={setProductData}
           setProductsCount={setProductsCount}

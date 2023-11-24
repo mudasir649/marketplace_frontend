@@ -38,6 +38,7 @@
         "allCategories": "All Categories",
         "condition": "Condition",
         "brand": "Brand",
+        "selectMileage": "Select Mileage",
         "priceRange": "Price Range",
         "applyFilter": "Apply Filter",
         "clearFilter": "Clear Filter",
@@ -169,7 +170,8 @@
         "axleCount": "Axle Count",
         "selectAxleCount": "Select Axle Count",
         "selectKilometer": "Select Kilometers",
-        "selectColor": "Select Color"
+        "selectColor": "Select Color" , 
+        "enterYear": "Enter Product Year"
       } , 
       "color": {
         "name1": "Beige",

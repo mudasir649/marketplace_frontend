@@ -139,6 +139,8 @@
     "viber": "Viber-Nr. ",
     "whatsapp": "WhatsApp-Nr. ",
     "email": "Email",
+    
+    "selectMileage": "Kilometerstand auswählen",
     "phone": "Telefon",
     "submit": "Aufgeben" , 
     "website": "Website",
@@ -148,7 +150,8 @@
     "subCategory": "Unterkategorie",
     "selectSubCategory": "Unterkategorie auswählen",
     "selectKilometer": "Kilometer auswählen",
-    "selectColor": "Farbtyp auswählen"
+    "selectColor": "Farbtyp auswählen",
+    "enterYear": "Jahr des Produkts eingeben"
   } , 
   
     "color": {

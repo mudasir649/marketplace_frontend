@@ -35,6 +35,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { usePathname, useRouter } from "next/navigation";
 import {
   setBrand,
+  setModel,
   setCondition,
   setMaxPrice,
   setMinPrice,
@@ -45,6 +46,7 @@ import {
   setShowShare,
   setSortBy,
   setType,
+  setYear,
 } from "@/store/appSlice";
 import addInvertedComma from "@/utils/addInvertedComma";
 import ProductList from "./ProductList";
@@ -63,6 +65,8 @@ interface IList {
 interface IFilterSearch {
   condition: string;
   brand: string;
+  model: string;
+  year: string;
   minPrice: any;
   maxPrice: any;
 }
@@ -80,6 +84,8 @@ export default function AdvanceSearch({
   category,
   subCategory,
   brands,
+  models,
+  years,
   checkType,
 }: any) {
   // Redux hooks
@@ -96,7 +102,7 @@ export default function AdvanceSearch({
   const pathname = usePathname();
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state: any) => state.auth);
-  const { condition, brand, minPrice, maxPrice, prodId } = useSelector(
+  const { condition, brand,year ,model , minPrice, maxPrice, prodId } = useSelector(
     (state: any) => state.app
   );
   const userId = userInfo?.data?.userDetails?._id;
@@ -108,6 +114,8 @@ export default function AdvanceSearch({
   const [filtersData, setFiltersData] = useState<IFilterSearch>({
     condition: null || "",
     brand: null || "",
+    model: null || "",
+    year: null || "",
     minPrice: null || "",
     maxPrice: null || "",
   });
@@ -336,6 +344,10 @@ export default function AdvanceSearch({
     dispatch(setPage(1));
     dispatch(setCondition(""));
     dispatch(setBrand(""));
+    dispatch(setModel(""));
+    
+    dispatch(setYear(""));
+    
     dispatch(setType(value));
     router.push(`/advance-search/${value}`);
   };
@@ -376,7 +388,7 @@ export default function AdvanceSearch({
     } else {
       try {
         const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address1}&category=${category}&condition=${condition}&brand=${brand}&minPrice=${minPrice}&maxPrice=${maxPrice}`
+          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address1}&category=${category}&condition=${condition}&brand=${brand}&model=${model}&year=${year}&minPrice=${minPrice}&maxPrice=${maxPrice}`
         );
         setProductData(res.data?.data?.ad);
         setProductsCount(res.data?.data?.totalAds);
@@ -696,6 +708,124 @@ export default function AdvanceSearch({
               </div>
             </>
           )}
+          {brands && (
+            <>
+              <div className="border-b flex flex-row justify-between p-2 mb-4">
+                <h1 className="text-lg font-bold">
+                  {t("autosComponent.model")}
+                </h1>
+              </div>
+              <div>
+                <select
+                  className="block mb-4 appearance-none w-full bg-white border rounded-sm border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+                  name="model"
+                  onChange={(e: any) => dispatch(setModel(e.target.value))}
+                >
+                  <option value="option1">
+                    {t("autosComponent.selectModel")}
+                  </option>
+                  {models[0]?.model.map((model: any, i: number) => (
+                    <option value={model} key={i}>
+                      {model}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </>
+          )}
+          {brands && (
+            <>
+              <div className="border-b flex flex-row justify-between p-2 mb-4">
+                <h1 className="text-lg font-bold">
+                  {t("autosComponent.kilometers")}
+                </h1>
+              </div>
+              <div>
+                <select
+                  className="block mb-4 appearance-none w-full bg-white border rounded-sm border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+                  name="mileage"
+                  onChange={(e: any) => dispatch(setModel(e.target.value))}
+                >
+                  <option value="option1">
+                    {t("autosComponent.selectMileage")}
+                  </option>
+                  {models[0]?.model.map((model: any, i: number) => (
+                    <option value={model} key={i}>
+                      {model}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </>
+          )}
+          {brands && (
+            <>
+              <div className="border-b flex flex-row justify-between p-2 mb-4">
+                <h1 className="text-lg font-bold">
+                  {t("autosComponent.bodyShape")}
+                </h1>
+              </div>
+              <div>
+                <select
+                  className="block mb-4 appearance-none w-full bg-white border rounded-sm border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+                  name="mileage"
+                  onChange={(e: any) => dispatch(setModel(e.target.value))}
+                >
+                  <option value="option1">
+                    {t("autosComponent.bodyShape")}
+                  </option>
+                  {models[0]?.model.map((model: any, i: number) => (
+                    <option value={model} key={i}>
+                      {model}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </>
+          )}
+          {brands && (
+            <>
+              <div className="border-b flex flex-row justify-between p-2 mb-4">
+                <h1 className="text-lg font-bold">
+                  {t("autosComponent.gearBox")}
+                </h1>
+              </div>
+              <div>
+                <select
+                  className="block mb-4 appearance-none w-full bg-white border rounded-sm border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+                  name="gearBox"
+                  onChange={(e: any) => dispatch(setModel(e.target.value))}
+                >
+                  <option value="option1">
+                    {t("autosComponent.gearBox")}
+                  </option>
+                  {models[0]?.model.map((model: any, i: number) => (
+                    <option value={model} key={i}>
+                      {model}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </>
+          )}
+          {brands && (
+            <>
+              <div className="border-b flex flex-row justify-between p-2 mb-4">
+                <h1 className="text-lg font-bold">
+                  {t("autosComponent.year")}
+                </h1>
+              </div>
+              <div>
+                <input
+                  className="block mb-4 appearance-none w-full bg-white border rounded-sm border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+                  name="year"
+                  placeholder={t("autosComponent.enterYear")}
+                  onChange={(e: any) => dispatch(setYear(e.target.value))}
+                />
+                  
+              </div>
+            </>
+          )}
           <div className="border-b flex flex-row justify-between p-2">
             <h1 className="text-lg font-bold">
               {t("categorySelection.priceRange")}
@@ -990,7 +1120,7 @@ export default function AdvanceSearch({
       </div>
       <button className={btnStyle} onClick={nextHandle}>
         <span className={spanStyle}>
-          
+
         </span>
         <KeyboardDoubleArrowRight className={logoStyle} />
       </button>

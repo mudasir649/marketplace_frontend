@@ -120,6 +120,9 @@
   "autosComponent": {
     
     "subCategory": "Sous-catégorie",
+    "enterYear": "Entrer l'année du produit",
+    
+    "selectMileage": "Sélectionner le kilométrage",
     "heading1": "Sélectionner une catégorie",
     "changeCategory": "Changer de catégorie",
     "color": "Couleur",

@@ -116,7 +116,10 @@
   }
   , "autosComponent": {
     "subCategory": "Sottocategoria",
+    
+    "selectMileage": "Seleziona chilometraggio",
     "heading1": "Seleziona la categoria",
+    "enterYear": "Inserisci anno del prodotto",
     "changeCategory": "Cambia categoria",
     "productInfo": "Informazioni sul prodotto",
     "title": "Titolo",
