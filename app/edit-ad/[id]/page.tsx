@@ -1,7 +1,5 @@
 "use client";
-import Home from "@/components/Home";
 import {
-  ArrowForwardIos,
   Cancel,
   Description,
   ExpandMore,
@@ -11,17 +9,12 @@ import {
   PlaylistAdd,
 } from "@mui/icons-material";
 import axios from "axios";
-import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import {
-  bodyShape,
-  exteriorColor,
   fuelType,
-  gearBox,
   howContactList,
-  interiorColor,
   kilometers,
   priceList,
 } from "@/utils/dataVariables";
@@ -87,6 +80,7 @@ function EditComponent() {
   const [open, isOpen] = useState<Boolean>(false);
   const [openSub, isOpenSub] = useState<Boolean>(false);
   const [productData, setProductData] = useState<any>();
+  const [count, setCount] = useState<number>(0);
   let router = useRouter();
 
   
@@ -105,7 +99,7 @@ function EditComponent() {
 
   useEffect(() => {
     fetchData()
-  }, [fetchData]);
+  }, [fetchData, count]);
   
   const conditionList = [
     {
@@ -364,8 +358,31 @@ function EditComponent() {
     setImages(updatedImages);
   };
 
+  const removeImage = async (index: string) => {
+    try {
+      const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/removeImage/${adId?.id}?imageUrl=${index}`);
+      if(res.status === 200){
+        setCount(count + 1);
+      }
+    } catch (error) {
+      toast('Unable to remove image.');
+    }
+  }
+
+  const checkObjectEmpty = (obj: any) => {
+    for (const key in obj) {
+      if (obj[key].trim() !== ''){
+        return false;
+      }
+      return true;
+    }
+  }
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    if(images.length === 0 && checkObjectEmpty(data) === false){
+      return;
+    }
     setLoading(true);
     const formData = new FormData();
 
@@ -621,8 +638,8 @@ function EditComponent() {
                     name="bodyShape"
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option value="option1">
-                      {t("autosComponent.selectBodyShape")}
+                    <option>
+                      {productData?.bodyShape}
                     </option>
                     {bodyShape?.map((body: any, i: number) => (
                       <option value={body.value} key={i}>
@@ -642,8 +659,8 @@ function EditComponent() {
                     name="gearBox"
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option value="option1">
-                      {t("autosComponent.selectGearBox")}
+                    <option>
+                      {productData?.gearBox}
                     </option>
                     {gearBox.map((gear: any, i: number) => (
                       <option value={gear?.value} key={i}>
@@ -663,8 +680,8 @@ function EditComponent() {
                     name="fuelType"
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option value="option1">
-                      {t("autosComponent.selectFuelType")}
+                    <option>
+                      {productData?.fuelType}
                     </option>
                     {fuelType.map((fuel: any, i: number) => (
                       <option value={fuel?.value} key={i}>
@@ -684,7 +701,9 @@ function EditComponent() {
                     name="km"
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option>{t("autosComponent.selectKilometer")}</option>
+                    <option>
+                      {productData?.km}
+                    </option>
                     {kilometers.map((kms: any, i: number) => (
                       <option value={kms.name} key={i}>
                         {kms.name}
@@ -703,8 +722,8 @@ function EditComponent() {
                     name="exteriorColor"
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option value="option1">
-                      {t("autosComponent.selectExteriorColor")}
+                    <option>
+                      {productData?.exteriorColor}
                     </option>
                     {exteriorColor.map((color: any, i: number) => (
                       <option value={color?.value} key={i}>
@@ -724,8 +743,8 @@ function EditComponent() {
                     name="interiorColor"
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option value="option1">
-                      {t("autosComponent.selectInteriorColor")}
+                    <option>
+                      {productData?.interiorColor}
                     </option>
                     {interiorColor.map((color: any, i: number) => (
                       <option value={color?.value} key={i}>
@@ -760,10 +779,14 @@ function EditComponent() {
               </div>
               {<div className="flex flex-row space-x-4">
                   {productData?.images?.map((image: any, i: any) => (
-                    <div key={i} className="image-item">
+                    <div key={i} className="flex-wrap w-auto">
+                      <Cancel
+                        className="text-[#FF0000] z-20 absolute ml-44 cursor-pointer"
+                        onClick={() => removeImage(image)}
+                      />
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        className="h-32 w-32"
+                        className="h-36 w-60"
                         src={image}
                         alt={`Image ${i}`}
                       />
@@ -787,16 +810,16 @@ function EditComponent() {
               ) : (
                 <div className="flex flex-row space-x-4 mt-5">
                   {images?.map((image: any, i: any) => (
-                    <div key={i} className="image-item">
+                    <div key={i} className="flex-wrap w-auto">
+                      <Cancel
+                        className="text-[#FF0000] z-20 absolute ml-44 cursor-pointer"
+                        onClick={() => handleImageRemove(i)}
+                      />
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        className="h-32 w-32"
+                        className="h-36 w-60"
                         src={URL.createObjectURL(image)}
                         alt={`Image ${i}`}
-                      />
-                      <Cancel
-                        className="absolute mt-[-128px] ml-24 text-[#FF0000]"
-                        onClick={() => handleImageRemove(i)}
                       />
                     </div>
                   ))}
