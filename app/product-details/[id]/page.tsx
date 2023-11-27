@@ -109,8 +109,6 @@ function ProductDetails() {
       }
     }
   };
-  type Condition = "New" | "Used" | "Recondition";
-  const Condition: Condition = product?.Condition || "Recondition";
 
   type InteriorColor = "Beige" | "Black" | "Grey" | "White" | "Brown" | "Red" | "Yellow" | "Orange" | "Other";
   const interiorColor: InteriorColor = product?.interiorColor || "Other";
@@ -129,19 +127,10 @@ function ProductDetails() {
     Other: t('interiorColor.name9'),
   };
   
-const ConditionTranslated : {
-  [key in Condition]: string;
-} = {
-  New : t('condition.new'),
-  Used : t('condition.used'),
-  Recondition : t('condition.recondition'),
-  
-};
 
 
   const translatedInteriorColor = interiorColorTranslations[interiorColor];
-  const translatedCondition =ConditionTranslated[Condition];
-
+  
   const gearboxTranslations: {
     Automatic: string;
     Manual: string;
