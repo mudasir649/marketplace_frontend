@@ -57,6 +57,7 @@ interface IData {
   km: any;
   latitude: any;
   longitude: any;
+  phone: boolean
 }
 
 export default function VehicleSubComponent({ type }: any) {
@@ -69,8 +70,6 @@ export default function VehicleSubComponent({ type }: any) {
   const phone = userInfo?.data?.userDetails?.phoneNumber;
   const whatsapp = userInfo?.data?.userDetails?.whatsapp;
   const viber = userInfo?.data?.userDetails?.viber;
-  const [openSubModel, isOpenSubModel] = useState<Boolean>(false);
-  const [openSubBrand, isOpenSubBrand] = useState<Boolean>(false);
   const [images, setImages] = useState<any>([]);
   const [loading, setLoading] = useState<Boolean>(false);
   const [priceListValue, setPriceListValue] = useState<string>("price");
@@ -84,23 +83,7 @@ export default function VehicleSubComponent({ type }: any) {
   const [whatsappChecked, setWhatsappChecked] = useState<boolean>(false);
   const [viberChecked, setViberChecked] = useState<boolean>(false);
   const [phoneChecked, setPhoneChecked] = useState<boolean>(false);
-  const [emailChecked, setEmailChecked] = useState<boolean>(false);
-
-  const handleChange = (newChecked: boolean, type: any) => {
-    if (type === "whatsapp") {
-      setWhatsappChecked(newChecked);
-    } else if (type === "viber") {
-      setViberChecked(newChecked);
-    } else if (type === "phone") {
-      setPhoneChecked(newChecked);
-    } else if (type === "email") {
-      setEmailChecked(newChecked);
-    } else {
-      return;
-    }
-  };
-
-
+  
   const [data, setData] = useState<IData>({
     category:
       type == "Busses"
@@ -136,8 +119,27 @@ export default function VehicleSubComponent({ type }: any) {
     km: null || "",
     latitude: null || "",
     longitude: null || "",
+    phone: phoneChecked
   });
-  const [howContact, setHowContact] = useState<string>("Whatsapp");
+
+  const handleChange = (newChecked: boolean, type: any) => {
+    if (type === "whatsapp") {
+      setWhatsappChecked(newChecked);
+      if(newChecked === true) setData({...data, ["whatsapp"]: whatsapp});
+      else setData({...data, ["whatsapp"]: ""});
+    } else if (type === "viber") {
+      setViberChecked(newChecked);
+      if(newChecked === true) setData({...data, ["viber"]: viber});
+      else setData({...data, ["viber"]: ""});
+    }
+    else if (type === "phone") {
+      setPhoneChecked(newChecked);
+      setData({...data, ["phone"]: !phoneChecked})
+    } 
+    else {
+      return;
+    }
+  };
 
   useEffect(() => {
     const fetchCategory = async () => {
@@ -164,17 +166,7 @@ export default function VehicleSubComponent({ type }: any) {
   };
 
   const handleBrand = (value: any) => {
-    isOpenSubBrand(false);
     setData({ ...data, ["brand"]: value });
-  };
-
-  const handleModel = (value: any) => {
-    isOpenSubModel(false);
-    setData({ ...data, ["model"]: value });
-  };
-
-  const handleHowContact = (value: any) => {
-    setHowContact(value);
   };
 
   const handleImage = (e: any) => {
@@ -756,77 +748,93 @@ export default function VehicleSubComponent({ type }: any) {
                   )}
                 </div>
               </div>
-              
               <div className={style.divStyle}>
-                <h1 className={style.h1Style}>
-                  Whatspp
-                </h1>
-                <div
-                  className="flex flex-row w-full h-8"
-                >
+                <h1 className={`${style.h1Style} invisible`}>Whatspp</h1>
+                <div className="flex flex-row w-full h-8 justify-between">
+                <h1 className="font-semibold text-[#7B66FF] mt-1">Show my What`s app number</h1>
                   <Switch
                     onChange={() => handleChange(!whatsappChecked, "whatsapp")}
                     checked={whatsappChecked}
                     offColor="#888"
-                    onColor="#FF0000"
+                    onColor="#7B66FF"
                     height={28}
                     className="h-20"
                   />
                 </div>
               </div>
-              {whatsappChecked && 
-              <>
-              <div
-                className={`${style.divStyle} transform ease-linear duration-500`}
-              >
-                <h1 className={`${style.h1Style} invisible`}>whatsapp</h1>
-                <div className="flex flex-row space-x-10 w-full">
-                  <input
-                    className={style.inputStyle}
-                    placeholder={data?.whatsapp}
-                    name="whatsapp"
-                    value={data?.whatsapp}
-                    onChange={(e) => handleInput(e)}
-                  />
-                </div>
-              </div>
-            </>
-              }
+              {whatsappChecked && (
+                <>
+                  <div
+                    className={`${style.divStyle} transform ease-linear duration-500`}
+                  >
+                    <h1 className={`${style.h1Style} invisible`}>whatsapp</h1>
+                    <div className="flex flex-row space-x-10 w-full">
+                      <input
+                        className={style.inputStyle}
+                        placeholder={data?.whatsapp}
+                        name="whatsapp"
+                        value={data?.whatsapp}
+                        onChange={(e) => handleInput(e)}
+                      />
+                    </div>
+                  </div>
+                </>
+              )}
               <div className={style.divStyle}>
-                <h1 className={style.h1Style}>
-                  Viber
-                </h1>
-                <div
-                  className="flex flex-row w-full h-8"
-                >
+                <h1 className={`${style.h1Style} invisible`}>Viber</h1>
+                <div className="flex flex-row w-full h-8 justify-between">
+                <h1 className="font-semibold text-[#7B66FF] mt-1">Show my Viber number</h1>
                   <Switch
                     onChange={() => handleChange(!viberChecked, "viber")}
                     checked={viberChecked}
                     offColor="#888"
-                    onColor="#FF0000"
+                    onColor="#7B66FF"
                     height={28}
                     className="h-20"
-                  /> 
-                </div>
-              </div>
-              {viberChecked && 
-              <>
-              <div
-                className={`${style.divStyle} transform ease-linear duration-200`}
-              >
-                <h1 className={`${style.h1Style} invisible`}>viber</h1>
-                <div className="flex flex-row space-x-10 w-full">
-                  <input
-                    className={style.inputStyle}
-                    placeholder={data?.viber}
-                    name="viber"
-                    value={data?.viber}
-                    onChange={(e) => handleInput(e)}
                   />
                 </div>
               </div>
-            </>
-              }
+              {viberChecked && (
+                <>
+                  <div
+                    className={`${style.divStyle} transform ease-linear duration-200`}
+                  >
+                    <h1 className={`${style.h1Style} invisible`}>viber</h1>
+                    <div className="flex flex-row space-x-10 w-full">
+                      <input
+                        className={style.inputStyle}
+                        placeholder={data?.viber}
+                        name="viber"
+                        value={data?.viber}
+                        onChange={(e) => handleInput(e)}
+                      />
+                    </div>
+                  </div>
+                </>
+              )}
+              <div className={style.divStyle}>
+                <h1 className={`${style.h1Style} invisible`}>Phone</h1>
+                <div className="flex flex-row w-full h-8 justify-between">
+                  <h1 className="font-semibold text-[#7B66FF] mt-1">Show my Phone number</h1>
+                  <Switch
+                    onChange={() => handleChange(!phoneChecked, "phone")}
+                    checked={phoneChecked}
+                    offColor="#888"
+                    onColor="#7B66FF"
+                    height={28}
+                    className="h-20"
+                  />
+                </div>
+              </div>
+              {phoneChecked && 
+              <div
+              className={`${style.divStyle} transform ease-linear duration-500`}
+            >
+              <h1 className={`${style.h1Style} invisible`}>phone</h1>
+              <div className="flex flex-row space-x-10 w-full">
+                <h1 className="font-bold text-[#FF0000]">{phone}</h1>
+              </div>
+              </div>}
               <div className={style.divStyle}>
                 <h1 className={`${style.h1Style} invisible`}>ffj</h1>
                 {!loading ? (

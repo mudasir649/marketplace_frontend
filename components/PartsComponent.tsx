@@ -56,6 +56,7 @@ interface IData {
   year: any;
   latitude: any;
   longitude: any;
+  phone: boolean
 }
 
 export default function PartsComponent({ type }: any) {
@@ -111,20 +112,6 @@ export default function PartsComponent({ type }: any) {
   const [phoneChecked, setPhoneChecked] = useState<boolean>(false);
   const [emailChecked, setEmailChecked] = useState<boolean>(false);
 
-  const handleChange = (newChecked: boolean, type: any) => {
-    if (type === "whatsapp") {
-      setWhatsappChecked(newChecked);
-    } else if (type === "viber") {
-      setViberChecked(newChecked);
-    } else if (type === "phone") {
-      setPhoneChecked(newChecked);
-    } else if (type === "email") {
-      setEmailChecked(newChecked);
-    } else {
-      return;
-    }
-  };
-  
 
   const [data, setData] = useState<IData>({
     category: "Parts",
@@ -170,16 +157,32 @@ export default function PartsComponent({ type }: any) {
     year: null || "",
     latitude: null || "",
     longitude: null || "",
+    phone: phoneChecked
   });
-  const [howContact, setHowContact] = useState<string>("Whatsapp");
+
+  const handleChange = (newChecked: boolean, type: any) => {
+    if (type === "whatsapp") {
+      setWhatsappChecked(newChecked);
+      if(newChecked === true) setData({...data, ["whatsapp"]: whatsapp});
+      else setData({...data, ["whatsapp"]: ""});
+    } else if (type === "viber") {
+      setViberChecked(newChecked);
+      if(newChecked === true) setData({...data, ["viber"]: viber});
+      else setData({...data, ["viber"]: ""});
+    }
+    else if (type === "phone") {
+      setPhoneChecked(newChecked);
+      setData({...data, ["phone"]: !phoneChecked})
+    } 
+    else {
+      return;
+    }
+  };
 
   const handleInput = (e: any) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  const handleHowContact = (value: any) => {
-    setHowContact(value);
-  };
 
   const handleImage = (e: any) => {
     const files = e.target.files;
@@ -534,23 +537,21 @@ export default function PartsComponent({ type }: any) {
                 </div>
               </div>
               <div className={style.divStyle}>
-                <h1 className={style.h1Style}>
-                  Whatspp
-                </h1>
-                <div
-                  className="flex flex-row w-full h-8"
-                >
+                <h1 className={`${style.h1Style} invisible`}>Whatspp</h1>
+                <div className="flex flex-row w-full h-8 justify-between">
+                <h1 className="font-semibold text-[#7B66FF] mt-1">Show my What`s app number</h1>
                   <Switch
                     onChange={() => handleChange(!whatsappChecked, "whatsapp")}
                     checked={whatsappChecked}
                     offColor="#888"
-                    onColor="#FF0000"
+                    onColor="#7B66FF"
                     height={28}
                     className="h-20"
                   />
                 </div>
               </div>
-              {whatsappChecked && <>
+              {whatsappChecked && (
+                <>
                   <div
                     className={`${style.divStyle} transform ease-linear duration-500`}
                   >
@@ -565,41 +566,63 @@ export default function PartsComponent({ type }: any) {
                       />
                     </div>
                   </div>
-                </>}
+                </>
+              )}
               <div className={style.divStyle}>
-                <h1 className={style.h1Style}>
-                  Viber
-                </h1>
-                <div
-                  className="flex flex-row w-full h-8"
-                >
+                <h1 className={`${style.h1Style} invisible`}>Viber</h1>
+                <div className="flex flex-row w-full h-8 justify-between">
+                <h1 className="font-semibold text-[#7B66FF] mt-1">Show my Viber number</h1>
                   <Switch
                     onChange={() => handleChange(!viberChecked, "viber")}
                     checked={viberChecked}
                     offColor="#888"
-                    onColor="#FF0000"
+                    onColor="#7B66FF"
                     height={28}
                     className="h-20"
-                  /> 
+                  />
                 </div>
               </div>
-              {viberChecked && 
-               <>
-               <div
-                 className={`${style.divStyle} transform ease-linear duration-200`}
-               >
-                 <h1 className={`${style.h1Style} invisible`}>viber</h1>
-                 <div className="flex flex-row space-x-10 w-full">
-                   <input
-                     className={style.inputStyle}
-                     placeholder={data?.viber}
-                     name="viber"
-                     value={data?.viber}
-                     onChange={(e) => handleInput(e)}
-                   />
-                 </div>
-               </div>
-             </>}
+              {viberChecked && (
+                <>
+                  <div
+                    className={`${style.divStyle} transform ease-linear duration-200`}
+                  >
+                    <h1 className={`${style.h1Style} invisible`}>viber</h1>
+                    <div className="flex flex-row space-x-10 w-full">
+                      <input
+                        className={style.inputStyle}
+                        placeholder={data?.viber}
+                        name="viber"
+                        value={data?.viber}
+                        onChange={(e) => handleInput(e)}
+                      />
+                    </div>
+                  </div>
+                </>
+              )}
+              <div className={style.divStyle}>
+                <h1 className={`${style.h1Style} invisible`}>Phone</h1>
+                <div className="flex flex-row w-full h-8 justify-between">
+                  <h1 className="font-semibold text-[#7B66FF] mt-1">Show my Phone number</h1>
+                  <Switch
+                    onChange={() => handleChange(!phoneChecked, "phone")}
+                    checked={phoneChecked}
+                    offColor="#888"
+                    onColor="#7B66FF"
+                    height={28}
+                    className="h-20"
+                  />
+                </div>
+              </div>
+              {phoneChecked && 
+              <div
+              className={`${style.divStyle} transform ease-linear duration-500`}
+            >
+              <h1 className={`${style.h1Style} invisible`}>phone</h1>
+              <div className="flex flex-row space-x-10 w-full">
+                <h1 className="font-bold text-[#FF0000]">{phone}</h1>
+              </div>
+              </div>}
               <div className={style.divStyle}>
                 <h1 className={`${style.h1Style} invisible`}>ffj</h1>
                 {!loading ? (
