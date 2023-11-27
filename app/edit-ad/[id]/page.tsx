@@ -370,22 +370,22 @@ function EditComponent() {
   }
 
   const checkObjectEmpty = (obj: any) => {
-    for (const key in obj) {
-      if (obj[key].trim() !== ''){
-        return false;
+    for (const key in obj) {      
+      if (obj[key].trim() === ""){
+        return true;
       }
-      return true;
     }
+    return false;
   }
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    if(images.length === 0 && checkObjectEmpty(data) === false){
-      return;
-    }
     setLoading(true);
-    const formData = new FormData();
-
+    let newData;
+    if(checkObjectEmpty(data) === false){
+      return;
+    }else if(images.length !== 0){
+      const formData = new FormData();
     for (let i = 0; i < images.length; i++) {
       formData.append("file", images[i]);
     }
@@ -395,14 +395,17 @@ function EditComponent() {
         formData.append(key, data[key as keyof IData]);
       }
     }
+    newData = formData;
+  }else{
+    newData = data
+  }
     try {
-      const newData = await axios.patch(
+      const res = await axios.patch(
         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/edit-ad/${adId?.id}`,
-        formData
+        newData
       );
-      if (newData.status == 200) {
-        toast(newData.data?.message);
-        // toast(newData?.data);
+      if (res.status == 200) {
+        toast(res.data?.message);
         setLoading(false);
         router.push("/my-ads");
       }
@@ -777,13 +780,14 @@ function EditComponent() {
                   </span>
                 </h1>
               </div>
-              {<div className="flex flex-row space-x-4">
+              {<div className="flex flex-row flex-wrap gap-4">
                   {productData?.images?.map((image: any, i: any) => (
                     <div key={i} className="flex-wrap w-auto">
                       <Cancel
-                        className="text-[#FF0000] z-20 absolute ml-44 cursor-pointer"
+                        className={`text-[#FF0000] z-20 absolute cursor-pointer ml-[215px]`}
                         onClick={() => removeImage(image)}
                       />
+                      {/* <h1 className="mt-5">{i}</h1> */}
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         className="h-36 w-60"
@@ -808,11 +812,11 @@ function EditComponent() {
                   {!images ? (
                 ""
               ) : (
-                <div className="flex flex-row space-x-4 mt-5">
+                <div className="flex flex-row flex-wrap gap-4 mt-4">
                   {images?.map((image: any, i: any) => (
                     <div key={i} className="flex-wrap w-auto">
                       <Cancel
-                        className="text-[#FF0000] z-20 absolute ml-44 cursor-pointer"
+                        className="text-[#FF0000] z-20 absolute cursor-pointer ml-[215px]"
                         onClick={() => handleImageRemove(i)}
                       />
                       {/* eslint-disable-next-line @next/next/no-img-element */}
