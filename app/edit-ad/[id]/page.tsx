@@ -2,7 +2,6 @@
 import {
   Cancel,
   Description,
-  ExpandMore,
   Image,
   InsertLink,
   Person,
@@ -14,7 +13,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import {
   fuelType,
-  howContactList,
   kilometers,
   priceList,
 } from "@/utils/dataVariables";
@@ -22,9 +20,10 @@ import "@/app/post-ad/post-ad.css";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import "@/components/autos.css";
-
 import locateAddress from "@/utils/GoogleLocation";
 import dynamic from "next/dynamic";
+import Switch from "react-switch";
+
 
 const style = {
   inputStyle:
@@ -66,21 +65,55 @@ interface IData {
   km: any;
   latitude: any;
   longitude: any;
+  phone: boolean;
+  images: any;
 }
 
 function EditComponent() {
-  const { t } = useTranslation(); // Initialize the translation hook
 
   const { userInfo } = useSelector((state: any) => state.auth);
+  const { t } = useTranslation(); // Initialize the translation hook
   const userData =
     userInfo === null ? userInfo : userInfo?.data?.userDetails?._id;
-  const email = userInfo?.data?.userDetails?.email;
+  const id = userData;
+
+  const [data, setData] = useState<IData>({
+    category: "Autos",
+    userId: id,
+    title: null || "",
+    images: null,
+    price: null || "",
+    minPrice: null || "",
+    maxPrice: null || "",
+    brand: null || "",
+    model: null || "",
+    description: null || "",
+    videoUrl: null || "",
+    website: null || "",
+    address: null || "",
+    feature_list: null || "",
+    howToContact: "Whatsapp",
+    condition: null || "",
+    whatsapp: null || "",
+    viber: null || "",
+    email: null || "",
+    year: null || "",
+    bodyShape: null || "",
+    gearBox: null || "",
+    fuelType: null || "",
+    exteriorColor: null || "",
+    interiorColor: null || "",
+    engineCapacity: null || "",
+    cylinder: null || "",
+    km: null || "",
+    latitude: null || "",
+    longitude: null || "",
+    phone: false
+  });
+
   const phone = userInfo?.data?.userDetails?.phoneNumber;
-  const { type } = useParams();
-  const [open, isOpen] = useState<Boolean>(false);
-  const [openSub, isOpenSub] = useState<Boolean>(false);
   const [productData, setProductData] = useState<any>();
-  const [count, setCount] = useState<number>(0);
+  let [productImages, setProductImages] = useState<any>(); 
   let router = useRouter();
 
   
@@ -90,6 +123,8 @@ function EditComponent() {
     try {
         const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/getSpecific/${adId?.id}`);
         setProductData(res.data?.data);
+        setProductImages(res?.data.data?.images);
+        setData({...data, ['images']: res?.data.data?.images})
     } catch (error: any) {
         if(error.response.status === 400){
             router.push('/')
@@ -99,7 +134,7 @@ function EditComponent() {
 
   useEffect(() => {
     fetchData()
-  }, [fetchData, count]);
+  }, [fetchData]);
   
   const conditionList = [
     {
@@ -126,7 +161,13 @@ function EditComponent() {
   const [brands, setBrands] = useState<any>([]);
   const [googleLocation, setGoogleLocation] = useState<any>(null);
   const [showLocation, setShowLocation] = useState<Boolean>(false);
-  const id = userData;
+  const [whatsappChecked, setWhatsappChecked] = useState<boolean>(false);
+  const [viberChecked, setViberChecked] = useState<boolean>(false);
+  const [phoneChecked, setPhoneChecked] = useState<boolean>(false);
+  const whatsapp = userInfo?.data?.userDetails?.whatsapp;
+  const viber = userInfo?.data?.userDetails?.viber;
+  
+
   const exteriorColor = [
     {
       name: t("color.name1"),
@@ -279,48 +320,106 @@ function EditComponent() {
     },
   ];
 
-  const [data, setData] = useState<IData>({
-    category: "Autos",
-    userId: id,
-    title: null || "",
-    price: null || "",
-    minPrice: null || "",
-    maxPrice: null || "",
-    brand: null || "",
-    model: null || "",
-    description: null || "",
-    videoUrl: null || "",
-    website: null || "",
-    address: null || "",
-    feature_list: null || "",
-    howToContact: "Whatsapp",
-    condition: null || "",
-    whatsapp: null || "",
-    viber: null || "",
-    email: null || "",
-    year: null || "",
-    bodyShape: null || "",
-    gearBox: null || "",
-    fuelType: null || "",
-    exteriorColor: null || "",
-    interiorColor: null || "",
-    engineCapacity: null || "",
-    cylinder: null || "",
-    km: null || "",
-    latitude: null || "",
-    longitude: null || "",
-  });
-  const [howContact, setHowContact] = useState<string>("Whatsapp");
 
   useEffect(() => {
-    const fetchBrand = async () => {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Autos`
-      );
-      setBrands(res.data?.data);
-    };
-    fetchBrand();
-  }, []);
+    if(productData?.category === "Autos"){
+      const fetchBrand = async () => {
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Autos`
+        );
+        setBrands(res.data?.data);
+      };
+      fetchBrand();
+    }else if(productData?.category === "Busses"){
+      const fetchBrand = async () => {
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Busses`
+        );
+        setBrands(res.data?.data);
+      };
+      fetchBrand();
+    }else if(productData?.category === "Vans"){
+      const fetchBrand = async () => {
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Vans`
+        );
+        setBrands(res.data?.data);
+      };
+      fetchBrand();
+    }else if(productData?.category === "Trucks"){
+      const fetchBrand = async () => {
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Trucks`
+        );
+        setBrands(res.data?.data);
+      };
+      fetchBrand();
+    }else if(productData?.category === "Trailers"){
+      const fetchBrand = async () => {
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Trailers`
+        );
+        setBrands(res.data?.data);
+      };
+      fetchBrand();
+    }else if(productData?.category === "Boats"){
+      const fetchBrand = async () => {
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Boats`
+        );
+        setBrands(res.data?.data);
+      };
+      fetchBrand();
+    }else if(productData?.category === "Drones"){
+      const fetchBrand = async () => {
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Drones`
+        );
+        setBrands(res.data?.data);
+      };
+      fetchBrand();
+    }else if(productData?.category === "Contruction Machines"){
+      const fetchBrand = async () => {
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Contruction Machines`
+        );
+        setBrands(res.data?.data);
+      };
+      fetchBrand();
+    }else if(productData?.subCategory === "Motorcycle"){
+      const fetchBrand = async () => {
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Motorcycle`
+        );
+        setBrands(res.data?.data);
+      };
+      fetchBrand();
+    }else if(productData?.subCategory === "Bicycles"){
+      const fetchBrand = async () => {
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Bicycles`
+        );
+        setBrands(res.data?.data);
+      };
+      fetchBrand();
+    }else if(productData?.subCategory === "E-scooter"){
+      const fetchBrand = async () => {
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/E-scooter`
+        );
+        setBrands(res.data?.data);
+      };
+      fetchBrand();
+    }else if(productData?.subCategory === "E-bikes"){
+      const fetchBrand = async () => {
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/E-bikes`
+        );
+        setBrands(res.data?.data);
+      };
+      fetchBrand();
+    }
+  }, [productData]);
 
   const handleInput = (e: any) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -338,9 +437,6 @@ function EditComponent() {
     }
   };
 
-  const handleHowContact = (value: any) => {
-    setHowContact(value);
-  };
 
   const handleImage = (e: any) => {
     const files = e.target.files;
@@ -359,14 +455,9 @@ function EditComponent() {
   };
 
   const removeImage = async (index: string) => {
-    try {
-      const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/removeImage/${adId?.id}?imageUrl=${index}`);
-      if(res.status === 200){
-        setCount(count + 1);
-      }
-    } catch (error) {
-      toast('Unable to remove image.');
-    }
+    const newArr = productImages.filter((img: string) => img !== index);
+    setProductImages(newArr);
+    setData({...data, ['images']: newArr});
   }
 
   const checkObjectEmpty = (obj: any) => {
@@ -380,6 +471,8 @@ function EditComponent() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    console.log(data);
+    // return;
     setLoading(true);
     let newData;
     if(checkObjectEmpty(data) === false){
@@ -397,7 +490,7 @@ function EditComponent() {
     }
     newData = formData;
   }else{
-    newData = data
+    newData = data;
   }
     try {
       const res = await axios.patch(
@@ -459,6 +552,25 @@ function EditComponent() {
       router.push("/");
     }
   }, [router, userData]);
+
+  const handleChange = (newChecked: boolean, type: any) => {
+    if (type === "whatsapp") {
+      setWhatsappChecked(newChecked);
+      if(newChecked === true) setData({...data, ["whatsapp"]: whatsapp});
+      else setData({...data, ["whatsapp"]: ""});
+    } else if (type === "viber") {
+      setViberChecked(newChecked);
+      if(newChecked === true) setData({...data, ["viber"]: viber});
+      else setData({...data, ["viber"]: ""});
+    }
+    else if (type === "phone") {
+      setPhoneChecked(newChecked);
+      setData({...data, ["phone"]: !phoneChecked})
+    } 
+    else {
+      return;
+    }
+  };
   
 
   return (
@@ -781,7 +893,7 @@ function EditComponent() {
                 </h1>
               </div>
               {<div className="flex flex-row flex-wrap gap-4">
-                  {productData?.images?.map((image: any, i: any) => (
+                  {productImages?.map((image: any, i: any) => (
                     <div key={i} className="flex-wrap w-auto">
                       <Cancel
                         className={`text-[#FF0000] z-20 absolute cursor-pointer ml-[215px]`}
@@ -902,104 +1014,92 @@ function EditComponent() {
                 </div>
               </div>
               <div className={style.divStyle}>
-                <h1 className={style.h1Style}>
-                  {t("autosComponent.howToContact")}
-                </h1>
-                <div
-                  className="flex flex-col hover:border-red-500 w-full rounded-sm h-10"
-                  onClick={() => isOpenSub(!openSub)}
-                >
-                  <div className="flex flex-row border border-gray-300">
-                    <h1 className="w-full p-2">{howContact} </h1>
-                    <div className={`p-1 pl-2 text-gray-600 w-10`}>
-                      <ExpandMore
-                        className={`logo ${open ? "hidden" : "visible"} ${
-                          openSub ? "active" : "inactive"
-                        }`}
+                <h1 className={`${style.h1Style} invisible`}>Whatspp</h1>
+                <div className="flex flex-row w-full h-8 justify-between">
+                <h1 className="font-semibold text-[#7B66FF] mt-1">Show my What`s app number</h1>
+                  <Switch
+                    onChange={() => handleChange(!whatsappChecked, "whatsapp")}
+                    checked={whatsappChecked}
+                    offColor="#888"
+                    onColor="#7B66FF"
+                    height={28}
+                    className="h-20"
+                  />
+                </div>
+              </div>
+              {whatsappChecked && (
+                <>
+                  <div
+                    className={`${style.divStyle} transform ease-linear duration-500`}
+                  >
+                    <h1 className={`${style.h1Style} invisible`}>whatsapp</h1>
+                    <div className="flex flex-row space-x-10 w-full">
+                      <input
+                        className={style.inputStyle}
+                        placeholder={data?.whatsapp}
+                        name="whatsapp"
+                        value={data?.whatsapp}
+                        onChange={(e) => handleInput(e)}
                       />
                     </div>
                   </div>
-                  <div
-                    className={`menu-item flex flex-row border bg-white border-gray-300 
-    w-full rounded-sm p-1 ${openSub ? "active" : "inactive"}`}
-                  >
-                    <ul className="w-full max-h-96 overflow-y-auto">
-                      {howContactList?.map((list: any, i: number) => (
-                        <li
-                          className={`hover:bg-red-500 hover:text-white 
-                ml-1 mb-1 ${list.length - 1 == i ? "" : " border-b-2"}`}
-                          key={i}
-                          onClick={() => handleHowContact(list?.name)}
-                        >
-                          {list?.name}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                </>
+              )}
+              <div className={style.divStyle}>
+                <h1 className={`${style.h1Style} invisible`}>Viber</h1>
+                <div className="flex flex-row w-full h-8 justify-between">
+                <h1 className="font-semibold text-[#7B66FF] mt-1">Show my Viber number</h1>
+                  <Switch
+                    onChange={() => handleChange(!viberChecked, "viber")}
+                    checked={viberChecked}
+                    offColor="#888"
+                    onColor="#7B66FF"
+                    height={28}
+                    className="h-20"
+                  />
                 </div>
               </div>
-              {howContact == "Whatsapp" || productData?.whatsapp ? (
-                <div className={style.divStyle}>
-                  <h1 className={style.h1Style}>
-                    {t("autosComponent.whatsapp")}{" "}
-                    <span className="text-[#FF0000]">*</span>
-                  </h1>
-                  <div className="flex flex-col w-full">
-                    <input
-                      type="text"
-                      className={style.inputStyle}
-                      name="whatsapp"
-                      value={data.whatsapp}
-                      placeholder={productData?.whatsapp}
-                      onChange={(e: any) => handleInput(e)}
-                    />
-                    <p className="text-gray-400 text-sm mt-1">
-                      {t("autosComponent.whatsapp")} +41xxxxxxxxxx
-                    </p>
+              {viberChecked && (
+                <>
+                  <div
+                    className={`${style.divStyle} transform ease-linear duration-200`}
+                  >
+                    <h1 className={`${style.h1Style} invisible`}>viber</h1>
+                    <div className="flex flex-row space-x-10 w-full">
+                      <input
+                        className={style.inputStyle}
+                        placeholder={data?.viber}
+                        name="viber"
+                        value={data?.viber}
+                        onChange={(e) => handleInput(e)}
+                      />
+                    </div>
                   </div>
-                </div>
-              ) : howContact == "Viber" ? (
-                <div className={style.divStyle}>
-                  <h1 className={style.h1Style}>
-                    {t("autosComponent.viber")}{" "}
-                    <span className="text-[#FF0000]">*</span>
-                  </h1>
-                  <div className="flex flex-col w-full">
-                    <input
-                      type="text"
-                      className={style.inputStyle}
-                      name="viber"
-                      value={data.viber}
-                      onChange={(e: any) => handleInput(e)}
-                    />
-                    <p className="text-gray-400 text-sm mt-1">
-                      {t("autosComponent.viber")} +41xxxxxxxxxx
-                    </p>
-                  </div>
-                </div>
-              ) : howContact == "email" ? (
-                <div className={style.divStyle}>
-                  <h1 className={style.h1Style}>
-                    {t("autosComponent.email")}{" "}
-                    <span className="text-[#FF0000]">*</span>
-                  </h1>
-                  <div className="flex flex-col w-full">
-                    <p className="text-black text-sm mt-1 font-bold">{email}</p>
-                  </div>
-                </div>
-              ) : howContact === "phone" ? (
-                <div className={style.divStyle}>
-                  <h1 className={style.h1Style}>
-                    {t("autosComponent.phone")}{" "}
-                    <span className="text-[#FF0000]">*</span>
-                  </h1>
-                  <div className="flex flex-col w-full">
-                    <p className="text-black text-sm mt-1 font-bold">{phone}</p>
-                  </div>
-                </div>
-              ) : (
-                ""
+                </>
               )}
+              <div className={style.divStyle}>
+                <h1 className={`${style.h1Style} invisible`}>Phone</h1>
+                <div className="flex flex-row w-full h-8 justify-between">
+                  <h1 className="font-semibold text-[#7B66FF] mt-1">Show my Phone number</h1>
+                  <Switch
+                    onChange={() => handleChange(!phoneChecked, "phone")}
+                    checked={phoneChecked}
+                    offColor="#888"
+                    onColor="#7B66FF"
+                    height={28}
+                    className="h-20"
+                  />
+                </div>
+              </div>
+              {phoneChecked && 
+              <div
+              className={`${style.divStyle} transform ease-linear duration-500`}
+            >
+              <h1 className={`${style.h1Style} invisible`}>phone</h1>
+              <div className="flex flex-row space-x-10 w-full">
+                <h1 className="font-bold text-[#FF0000]">{phone}</h1>
+              </div>
+              </div>}
               <div className={style.divStyle}>
                 <h1 className={`${style.h1Style} invisible`}>ffj</h1>
                 {!loading ? (

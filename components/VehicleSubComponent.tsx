@@ -16,7 +16,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { axelType, howContactList, kilometers } from "@/utils/dataVariables";
+import { axelType, kilometers } from "@/utils/dataVariables";
 import "../app/post-ad/post-ad.css";
 import { useSelector } from "react-redux";
 import locateAddress from "@/utils/GoogleLocation";
