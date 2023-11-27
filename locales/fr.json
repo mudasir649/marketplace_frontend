@@ -613,6 +613,10 @@
 ,    
 
   "gearBox": {
+    "Automatic": "Automatique",
+      "Manual": "Manuel",
+      "Semi-automatic": "Semi-automatique",
+      
       "name1": "Automatique",
       "name2": "Manuel",
       "name3": "Semi-automatique",
