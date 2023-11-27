@@ -187,6 +187,10 @@
 ,
 
   "gearBox": {
+    "Automatic": "Automatisch",
+      "Manual": "Manuell",
+      "Semi-automatic": "Halbautomatisch",
+      
       "name1": "Automatisch",
       "name2": "Manuell",
       "name3": "Halbautomatisch",
