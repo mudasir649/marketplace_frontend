@@ -131,15 +131,7 @@ function ProductDetails() {
 
   const translatedInteriorColor = interiorColorTranslations[interiorColor];
   
-  const gearboxTranslations: {
-    Automatic: string;
-    Manual: string;
-    "Semi-Automatic": string;
-  } = {
-    Automatic: t("gearBox.name1"),
-    Manual: t("gearBox.name2"),
-    "Semi-Automatic": t("gearBox.name3"),
-  };
+  
 
   const findProductId = (productId: any) => {
     return prodId.includes(productId);
