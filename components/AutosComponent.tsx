@@ -3,7 +3,6 @@ import {
   ArrowForwardIos,
   Cancel,
   Description,
-  Edit,
   Image,
   InsertLink,
   Person,
@@ -326,8 +325,8 @@ export default function AutosComponent() {
     feature_list: null || "",
     howToContact: "Whatsapp",
     condition: null || "",
-    whatsapp: whatsapp,
-    viber: viber,
+    whatsapp: null || "",
+    viber: null || "",
     email: null || "",
     year: null || "",
     bodyShape: null || "",
@@ -341,7 +340,6 @@ export default function AutosComponent() {
     latitude: null || "",
     longitude: null || "",
   });
-  const [howContact, setHowContact] = useState<string>("Whatsapp");
 
   useEffect(() => {
     const fetchBrand = async () => {
@@ -356,11 +354,6 @@ export default function AutosComponent() {
   const handleInput = (e: any) => {
     setData({ ...data, [e.target.name]: e.target.value });
     if (e.target.name == "brand") fetchBrand(e.target.value);
-
-    console.log(data.whatsapp);
-    console.log(data.viber);
-    
-    
   };
 
   const fetchBrand = async (model: any) => {
@@ -372,10 +365,6 @@ export default function AutosComponent() {
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const handleHowContact = (value: any) => {
-    setHowContact(value);
   };
 
   const handleImage = (e: any) => {
@@ -473,16 +462,17 @@ export default function AutosComponent() {
   const handleChange = (newChecked: boolean, type: any) => {
     if (type === "whatsapp") {
       setWhatsappChecked(newChecked);
+      if(newChecked === true) setData({...data, ["whatsapp"]: whatsapp});
+      else setData({...data, ["whatsapp"]: ""});
     } else if (type === "viber") {
       setViberChecked(newChecked);
+      if(newChecked === true) setData({...data, ["viber"]: viber});
+      else setData({...data, ["viber"]: ""});
     }
     else if (type === "phone") {
       setPhoneChecked(newChecked);
       setData({...data, ["phone"]: !phoneChecked})
     } 
-    // else if (type === "email") {
-    //   setEmailChecked(newChecked);
-    // }
     else {
       return;
     }
@@ -838,18 +828,18 @@ export default function AutosComponent() {
               {!images ? (
                 ""
               ) : (
-                <div className="flex flex-row space-x-4">
+                <div className="flex flex-row flex-wrap gap-4">
                   {images?.map((image: any, i: any) => (
-                    <div key={i} className="image-item">
+                    <div key={i} className="flex-wrap w-auto">
+                      <Cancel
+                        className="text-[#FF0000] z-20 absolute cursor-pointer ml-[215px]"
+                        onClick={() => handleImageRemove(i)}
+                      />
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        className="h-32 w-32"
+                        className="h-36 w-60"
                         src={URL.createObjectURL(image)}
                         alt={`Image ${i}`}
-                      />
-                      <Cancel
-                        className="absolute mt-[-128px] ml-24 text-[#FF0000]"
-                        onClick={() => handleImageRemove(i)}
                       />
                     </div>
                   ))}
@@ -918,13 +908,14 @@ export default function AutosComponent() {
                 </div>
               </div>
               <div className={style.divStyle}>
-                <h1 className={style.h1Style}>Whatspp</h1>
-                <div className="flex flex-row w-full h-8">
+                <h1 className={`${style.h1Style} invisible`}>Whatspp</h1>
+                <div className="flex flex-row w-full h-8 justify-between">
+                <h1 className="font-semibold text-[#7B66FF] mt-1">Show my What`s app number</h1>
                   <Switch
                     onChange={() => handleChange(!whatsappChecked, "whatsapp")}
                     checked={whatsappChecked}
                     offColor="#888"
-                    onColor="#FF0000"
+                    onColor="#7B66FF"
                     height={28}
                     className="h-20"
                   />
@@ -949,13 +940,14 @@ export default function AutosComponent() {
                 </>
               )}
               <div className={style.divStyle}>
-                <h1 className={style.h1Style}>Viber</h1>
-                <div className="flex flex-row w-full h-8">
+                <h1 className={`${style.h1Style} invisible`}>Viber</h1>
+                <div className="flex flex-row w-full h-8 justify-between">
+                <h1 className="font-semibold text-[#7B66FF] mt-1">Show my Viber number</h1>
                   <Switch
                     onChange={() => handleChange(!viberChecked, "viber")}
                     checked={viberChecked}
                     offColor="#888"
-                    onColor="#FF0000"
+                    onColor="#7B66FF"
                     height={28}
                     className="h-20"
                   />
@@ -980,19 +972,28 @@ export default function AutosComponent() {
                 </>
               )}
               <div className={style.divStyle}>
-                <h1 className={style.h1Style}>Phone</h1>
-                <div className="flex flex-row w-full h-8">
+                <h1 className={`${style.h1Style} invisible`}>Phone</h1>
+                <div className="flex flex-row w-full h-8 justify-between">
+                  <h1 className="font-semibold text-[#7B66FF] mt-1">Show my Phone number</h1>
                   <Switch
                     onChange={() => handleChange(!phoneChecked, "phone")}
                     checked={phoneChecked}
                     offColor="#888"
-                    onColor="#FF0000"
+                    onColor="#7B66FF"
                     height={28}
                     className="h-20"
                   />
                 </div>
               </div>
-              {phoneChecked && <div className={style.divStyle}>{ 'User will see phone number.'}</div>}
+              {phoneChecked && 
+              <div
+              className={`${style.divStyle} transform ease-linear duration-500`}
+            >
+              <h1 className={`${style.h1Style} invisible`}>phone</h1>
+              <div className="flex flex-row space-x-10 w-full">
+                <h1 className="font-bold text-[#FF0000]">{phone}</h1>
+              </div>
+            </div>}
               <div className={style.divStyle}>
                 <h1 className={`${style.h1Style} invisible`}>ffj</h1>
                 {!loading ? (

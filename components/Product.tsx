@@ -33,6 +33,7 @@ import {
   setProdId,
   setProductId,
   setProductUserId,
+  setShowDeleteAd,
 } from "@/store/appSlice";
 import addInvertedComma from "@/utils/addInvertedComma";
 import { useTranslation } from "react-i18next";
@@ -58,9 +59,9 @@ export default function Product({ product, url }: any) {
   }, [product]);
 
   const deleteAd = async (id: any) => {
-    // dispatch(setProductId(id));
-    // dispatch(setShowDeleteAd(true));
-    console.log(product?.chatIds);
+    dispatch(setProductId(id));
+    dispatch(setShowDeleteAd(true));
+    // console.log(product?.chatIds);
   };
   const [currentSlide, setCurrentSlide] = useState(0);
   const nextSlide = () => {
