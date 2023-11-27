@@ -993,7 +993,7 @@ export default function AutosComponent() {
               <div className="flex flex-row space-x-10 w-full">
                 <h1 className="font-bold text-[#FF0000]">{phone}</h1>
               </div>
-            </div>}
+              </div>}
               <div className={style.divStyle}>
                 <h1 className={`${style.h1Style} invisible`}>ffj</h1>
                 {!loading ? (

@@ -96,12 +96,13 @@ export default function Footer() {
       value: "terms-and-condition",
     },
   ];
+  
 
   return (
     <footer className="w-full bottom-0 mt-8">
       {newWidth <= 460 ? 
       <>
-      <div className="flex flex-col lg:flex-row gap-4 container mx-auto py-4 border-t-2 border-b-2">
+      <div className="flex flex-col lg:flex-row gap-4 container mx-auto py-4 border-t-2 border-b-2 bg-red-500">
         <div className="flex">
           <div className="w-full">
             {list2?.map((lst: IList, i: number) => (
@@ -164,7 +165,7 @@ export default function Footer() {
         <div className="flex flex-wrap whitespace-nowrap">
         {list2.map((list: IList, i: number) => (
             <h1
-              className="text-sm cursor-pointer text-[#007AB7] hover:text-[#FF0000] px-3"
+              className="text-sm cursor-pointer text-[#007AB7] hover:text-[#FF0000] px-3 mb-2"
               key={i}
               onClick={() => handleFooter(list.value)}
             >
@@ -173,7 +174,7 @@ export default function Footer() {
           ))}
           {list4?.map((lst: IList, i: number) => (
             <h1
-              className="text-sm cursor-pointer text-[#007AB7] hover:text-[#FF0000] px-3"
+              className="text-sm cursor-pointer text-[#007AB7] hover:text-[#FF0000] px-3 mb-2"
               key={i}
               onClick={() => handleFooter(lst.value)}
             >

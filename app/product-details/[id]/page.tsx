@@ -318,7 +318,7 @@ function ProductDetails() {
                       {!product?.year ? '' : <h1><span className="font-bold">{t("product.Year")}: </span> {product?.year}</h1> }
                       {!product?.bodyShape ? '' : <h1><span className="font-bold">{t("product.BodyShape")}: </span> {t(`bodyShape.${product.bodyShape}`)}</h1> }
                       {!product?.fuelType ? '' : <h1><span className="font-bold">{t("product.FuelType")}: </span> {t(`fuelType.${product.fuelType}`)}</h1> }
-                      {!product?.km ? '' : <h1><span className="font-bold">{t("product.Kilometers")}: </span> {product?.km}</h1> }
+                      {!product?.km ? '' : <h1 className="line-clamp-1"><span className="font-bold">{t("product.Kilometers")}: </span> {product?.km}</h1> }
                       {!product?.gearBox ? '' : <h1><span className="font-bold">{t("product.Gearbox")}: </span> {t(`gearBox.${product.gearBox}`)}</h1> }
                       {!product?.engineCapacity ? '' : <h1><span className="font-bold">{t("product.EngineCapacity")}: </span> {product?.engineCapacity}</h1> }
                       {!product?.interiorColor ? '' : <h1><span className="font-bold">{t("product.InteriorColor")}: </span> {translatedInteriorColor}</h1> }
@@ -370,13 +370,18 @@ function ProductDetails() {
                       width={100}
                       height={100}
                     />
-                    <h1 className="mt-5 text-lg font-semibold">
+                    <div>
+                    <h1 className="mt-2 text-lg font-semibold">
                       {product?.userId?.firstName +
                         " " +
                         product?.userId?.lastName}{" "}
                     </h1>
+                    <h1 className="text-sm">Member Since {new Date(product?.createdAt).toLocaleString('en-us', { month: "short", year: "numeric" })}</h1>
+                    </div>
                   </div>
                   <div className="space-y-3 mt-7">
+                    {product?.whatsapp || product?.viber || product?.phone ? 
+                    <>
                     {!contact && (
                       <div
                         className="border bg-gray-800 text-md font-semibold text-white p-2 rounded-md cursor-pointer"
@@ -387,7 +392,7 @@ function ProductDetails() {
                           <span>{t("product.ContactSeller")}</span>
                         </div>
                       </div>
-                    )}
+                    )} 
                     {contact ?  (
                       userInfo ? 
                       <div className="bg-gray-100 text-black border border-gray-100 flex flex-col justify-center translate-y-0 transition ease-linear duration-200 ">
@@ -423,6 +428,9 @@ function ProductDetails() {
                       :
                       redirectLogin()
                     ) : ''}
+                    </>
+                    : ''}
+                    
                     {userId === product?.userId?._id ? (
                       ""
                     ) : (
