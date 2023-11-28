@@ -37,6 +37,7 @@ const style = {
 
 interface IData {
   category: any;
+  subCategory: any
   userId: any;
   title: any;
   price: any;
@@ -79,6 +80,7 @@ function EditComponent() {
 
   const [data, setData] = useState<IData>({
     category: "Autos",
+    subCategory: null || "",
     userId: id,
     title: null || "",
     images: null,
@@ -113,6 +115,7 @@ function EditComponent() {
 
   const phone = userInfo?.data?.userDetails?.phoneNumber;
   const [productData, setProductData] = useState<any>();
+  const [productSubCat, setProductSubCat] = useState<string>("")
   let [productImages, setProductImages] = useState<any>(); 
   let router = useRouter();
 
@@ -124,7 +127,8 @@ function EditComponent() {
         const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/getSpecific/${adId?.id}`);
         setProductData(res.data?.data);
         setProductImages(res?.data.data?.images);
-        setData({...data, ['images']: res?.data.data?.images})
+        setData({...data, ['images']: res?.data.data?.images});
+        setProductSubCat(res.data?.data?.category)
     } catch (error: any) {
         if(error.response.status === 400){
             router.push('/')
@@ -164,9 +168,19 @@ function EditComponent() {
   const [whatsappChecked, setWhatsappChecked] = useState<boolean>(false);
   const [viberChecked, setViberChecked] = useState<boolean>(false);
   const [phoneChecked, setPhoneChecked] = useState<boolean>(false);
+  const [subCategory, setSubCategory] = useState<any>([]);
   const whatsapp = userInfo?.data?.userDetails?.whatsapp;
   const viber = userInfo?.data?.userDetails?.viber;
   
+
+  const productSubCategory = [
+    "Construction Machines",
+    "Busses",
+    "Trailers",
+    "Vans",
+    "Trucks"
+  ]
+
 
   const exteriorColor = [
     {
@@ -320,6 +334,18 @@ function EditComponent() {
     },
   ];
 
+
+  useEffect(() => {
+    const fetchCategory = async () => {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleSubCategory/${productSubCat}`
+      );
+      setSubCategory(res.data?.data);
+    };
+    fetchCategory();
+  }, [productSubCat]);
+  
+  
 
   useEffect(() => {
     if(productData?.category === "Autos"){
@@ -573,6 +599,29 @@ function EditComponent() {
   };
   
 
+  const axelType = [
+    {
+      name: "1",
+    },
+    {
+      name: "2",
+    },
+    {
+      name: "3",
+    },
+    {
+      name: ">3",
+    },
+  ];
+
+  
+  const handleChecked = (value: string) => {
+    if(value === productData?.condition){
+      return true;
+    }
+    return false;
+  }
+
   return (
     <>
       <div className="container mx-auto mt-10">
@@ -674,6 +723,7 @@ function EditComponent() {
                     {conditionList?.map((list: any, i: number) => (
                       <li key={i}>
                         <input
+                        checked={handleChecked(list?.value)}
                           type="radio"
                           name="condition"
                           value={list?.value}
@@ -685,6 +735,36 @@ function EditComponent() {
                   </ul>
                 </div>
               </div>
+              {productSubCategory.includes("Vans") && 
+              <div className={style.divStyle}>
+              <h1 className={style.h1Style}>
+                {t("autosComponent.subCategory")}{" "}
+                <span className="text-[#FF0000]">*</span>
+              </h1>
+              <select
+                className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+                name="subCategory"
+                onChange={(e: any) => handleInput(e)}
+              >
+                <option value="option1">
+                  {productData?.subCategory}
+                </option>
+                {subCategory?.map(
+                  (list: any, i: number) =>
+                    list?.category?.map((cat: any, j: number) => (
+                      <option
+                        className={`hover:bg-red-500 hover:text-white 
+                  ml-1 mb-1 ${list.length - 1 === j ? "" : " border-b-2"}`}
+                        key={j}
+                        value={cat}
+                      >
+                        {t(`subCategoryOptions.${cat}`)}
+                      </option>
+                    ))
+                )}
+              </select>
+            </div>
+              }
               <div className={style.divStyle}>
                 <h1 className={style.h1Style}>
                   {t("autosComponent.brand")}{" "}
@@ -697,7 +777,7 @@ function EditComponent() {
                     onChange={(e: any) => handleInput(e)}
                   >
                     <option value="option1">
-                      {t("autosComponent.selectBrand")}
+                      {productData?.brand}
                     </option>
                     {brands?.make?.map((brand: any, i: number) => (
                       <option value={brand} key={i} className="capitalize">
@@ -711,8 +791,8 @@ function EditComponent() {
                   </div>
                 </div>
               </div>
-              {data?.brand && (
-                <div className={style.divStyle}>
+              {productData?.model &&
+              <div className={style.divStyle}>
                   <h1 className={style.h1Style}>{t("autosComponent.model")}</h1>
                   <select
                     className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
@@ -720,7 +800,7 @@ function EditComponent() {
                     onChange={(e: any) => handleInput(e)}
                   >
                     <option value="option1">
-                      {t("autosComponent.selectModel")}
+                      {productData?.model}
                     </option>
                     {models[0]?.model?.map((model: any, i: number) => (
                       <option value={model} key={i}>
@@ -728,8 +808,8 @@ function EditComponent() {
                       </option>
                     ))}
                   </select>
-                </div>
-              )}
+              </div>
+              }
               <div className={style.divStyle}>
                 <h1 className={style.h1Style}>{t("autosComponent.year")}</h1>
                 <div className="flex flex-col w-full">
@@ -869,6 +949,26 @@ function EditComponent() {
                   </select>
                 </div>
               )}
+              {productData?.axeltype && <div className={style.divStyle}>
+                  <h1 className={style.h1Style}>
+                    {t("autosComponent.axleCount")}{" "}
+                    <span className="text-[#FF0000]">*</span>
+                  </h1>
+                  <select
+                    className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+                    name="axeltype"
+                    onChange={(e: any) => handleInput(e)}
+                  >
+                    <option value="option1">
+                      {productData?.axeltype}
+                    </option>
+                    {axelType?.map((axel: any, i: number) => (
+                      <option value={axel.name} key={i}>
+                        {axel.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>}
               <div className={style.divStyle}>
                 <h1 className={style.h1Style}>
                   {t("autosComponent.description")}

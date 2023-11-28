@@ -251,7 +251,7 @@ function Chat() {
                     set(newMessageRef, {
                         senderId: userId,
                         images: imageUrls,
-                        timestamps: Date.now()
+                        timestamp: Date.now()
                     });
 
                     const otherUserId = selected.otherUser._id; // Assuming you have the otherUser's data in 'selected'
