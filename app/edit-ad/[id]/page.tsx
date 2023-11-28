@@ -88,7 +88,7 @@ function EditComponent() {
     subCategory: null || "",
     userId: id,
     title: null || "",
-    images: null,
+    images: [],
     price: null || "",
     minPrice: null || "",
     maxPrice: null || "",
