@@ -708,7 +708,7 @@ export default function AdvanceSearch({
               </div>
             </>
           )}
-          {brands && (
+          {brands !== "" && (
             <>
               <div className="border-b flex flex-row justify-between p-2 mb-4">
                 <h1 className="text-lg font-bold">

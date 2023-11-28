@@ -34,6 +34,9 @@ function Page() {
   
   const checkType = type1Map[type as string] || type;
 
+  console.log(brand);
+  
+
   useEffect(() => {
 
     const fetchData = async () => {
@@ -43,14 +46,17 @@ function Page() {
         );
         setBrands(res.data?.data);
       };
-      const fetchModels = async () => {
-        const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findModels/${checkType}/${brand}`
-        );
-        console.log(res.data?.data?.model);
-        
-        setModels(res.data?.data);
-      };
+      if(brand !== ""){
+        const fetchModels = async () => {
+          const res = await axios.get(
+            `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findModels/${checkType}/${brand}`
+          );
+          console.log(res.data?.data?.model);
+          
+          setModels(res.data?.data);
+        };
+        fetchModels();
+      }
       const endpoint = subCategory
       ? `/ad?page=${page}&subCategory=${subCategory}&sortBy=${sortBy}&condition=${condition}&brand=${brand}&model=${model}&year=${year}&minPrice=${minPrice}&mxPrice=${maxPrice}`
       : `/ad?page=${page}&category=${checkType}&sortBy=${sortBy}&condition=${condition}&brand=${brand}&year=${year}&minPrice=${minPrice}&mxPrice=${maxPrice}`;
@@ -61,8 +67,6 @@ function Page() {
       setProductData(data?.ad);
       setProductsCount(data?.totalAds);
       dispatch(setType(checkType));
-      fetchModels();
-
       if(!subCategory && !validTypes.includes(checkType as string)){
         fetchBrands();
       }
