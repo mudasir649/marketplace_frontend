@@ -716,11 +716,6 @@ export default function AdvanceSearch({
                 </h1>
               </div>
               {/* <div>
-                <select
-                  className="block mb-4 appearance-none w-full bg-white border rounded-sm border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
-                  name="model"
-                  onChange={(e: any) => dispatch(setModel(e.target.value))}
-                >
                   <option value="option1">
                     {t("autosComponent.selectModel")}
                   </option>
