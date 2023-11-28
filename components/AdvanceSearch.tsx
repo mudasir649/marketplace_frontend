@@ -715,8 +715,7 @@ export default function AdvanceSearch({
                   {t("autosComponent.model")}
                 </h1>
               </div>
-              {}
-            </>
+              </>
           )}
           {brands && (
             <>
