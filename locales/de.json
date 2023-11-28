@@ -227,6 +227,10 @@
   }
 ,
 "subCategoryOptions": {
+  "E-bikes": "E-Bikes",
+    "E-scooter": "E-Scooter",
+    "Bicycles": "Fahrräder",
+    "Motorcycle": "Motorrad",
   "Articulated bus": "Gelenkbus",
   "City bus": "Stadtbus",
   "Coach": "Reisebus",

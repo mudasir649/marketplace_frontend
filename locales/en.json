@@ -301,7 +301,11 @@
     "Pick-up": "Pick-up",
     "Refrigerated truck": "Refrigerated truck",
     "Station wagon/van": "Station wagon/van",
-    "Van - high roof": "Van - high roof"
+    "Van - high roof": "Van - high roof",
+    "E-bikes": "E-bikes",
+    "E-scooter":"E-scooter",
+    "Bicycles":"Bicycles",
+    "Motorcycle":"Motorcycle"
       },
 
       "fuelType": {

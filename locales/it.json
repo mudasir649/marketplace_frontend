@@ -503,6 +503,10 @@
           "Motociclette"
         ] ,
         "subCategoryOptions": {
+          "E-bikes": "Biciclette elettriche",
+    "E-scooter": "Monopattini elettrici",
+    "Bicycles": "Biciclette",
+    "Motorcycle": "Motocicletta",
           "Articulated bus": "Autobus articolato",
           "City bus": "Autobus urbano",
           "Coach": "Pullman",

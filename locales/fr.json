@@ -437,6 +437,10 @@
     "subCategoryOptions": {
       "Articulated bus": "Autobus articulé",
       "City bus": "Autobus urbain",
+      "E-bikes": "Vélos électriques",
+    "E-scooter": "Trottinettes électriques",
+    "Bicycles": "Vélos",
+    "Motorcycle": "Motocyclette",
       "Coach": "Autocar",
       "Double decker": "Autobus à impériale",
       "Kombi bus": "Autobus Kombi",

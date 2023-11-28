@@ -520,6 +520,10 @@
           "Motocicleta"
         ] , 
         "subCategoryOptions": {
+          "E-bikes": "Bicicletas eléctricas",
+    "E-scooter": "Patinetes eléctricos",
+    "Bicycles": "Bicicletas",
+    "Motorcycle": "Motocicleta",
           "Articulated bus": "Autobús articulado",
           "City bus": "Autobús urbano",
           "Coach": "Autocar",
