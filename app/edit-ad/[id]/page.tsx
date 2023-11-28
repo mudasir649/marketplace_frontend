@@ -70,6 +70,11 @@ interface IData {
   images: any;
 }
 
+
+function isNullOrNullOrEmpty(value: any) {
+  return value === null || value === undefined || value === "";
+}
+
 function EditComponent() {
 
   const { userInfo } = useSelector((state: any) => state.auth);
@@ -117,6 +122,9 @@ function EditComponent() {
   const [productData, setProductData] = useState<any>();
   const [productSubCat, setProductSubCat] = useState<string>("")
   let [productImages, setProductImages] = useState<any>(); 
+  const [whatsappChecked, setWhatsappChecked] = useState<boolean>(false);
+  const [viberChecked, setViberChecked] = useState<boolean>(false);
+  const [phoneChecked, setPhoneChecked] = useState<boolean>(false);
   let router = useRouter();
 
   
@@ -128,7 +136,10 @@ function EditComponent() {
         setProductData(res.data?.data);
         setProductImages(res?.data.data?.images);
         setData({...data, ['images']: res?.data.data?.images});
-        setProductSubCat(res.data?.data?.category)
+        setProductSubCat(res.data?.data?.category);
+        if(!isNullOrNullOrEmpty(res?.data?.data?.whatsapp)) {setWhatsappChecked(true)};
+        if(res?.data?.data?.phone === true) setPhoneChecked(true);
+        if(!isNullOrNullOrEmpty(res.data?.data?.viber)) {setViberChecked(true)};
     } catch (error: any) {
         if(error.response.status === 400){
             router.push('/')
@@ -165,9 +176,6 @@ function EditComponent() {
   const [brands, setBrands] = useState<any>([]);
   const [googleLocation, setGoogleLocation] = useState<any>(null);
   const [showLocation, setShowLocation] = useState<Boolean>(false);
-  const [whatsappChecked, setWhatsappChecked] = useState<boolean>(false);
-  const [viberChecked, setViberChecked] = useState<boolean>(false);
-  const [phoneChecked, setPhoneChecked] = useState<boolean>(false);
   const [subCategory, setSubCategory] = useState<any>([]);
   const whatsapp = userInfo?.data?.userDetails?.whatsapp;
   const viber = userInfo?.data?.userDetails?.viber;
@@ -498,7 +506,7 @@ function EditComponent() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     console.log(data);
-    // return;
+    return;
     setLoading(true);
     let newData;
     if(checkObjectEmpty(data) === false){
@@ -622,6 +630,8 @@ function EditComponent() {
     return false;
   }
 
+  
+
   return (
     <>
       <div className="container mx-auto mt-10">
@@ -735,7 +745,7 @@ function EditComponent() {
                   </ul>
                 </div>
               </div>
-              {productSubCategory.includes("Vans") && 
+              {productSubCategory.includes(productSubCat) && 
               <div className={style.divStyle}>
               <h1 className={style.h1Style}>
                 {t("autosComponent.subCategory")}{" "}
@@ -1136,7 +1146,7 @@ function EditComponent() {
                     <div className="flex flex-row space-x-10 w-full">
                       <input
                         className={style.inputStyle}
-                        placeholder={data?.whatsapp}
+                        placeholder={productData?.whatsapp}
                         name="whatsapp"
                         value={data?.whatsapp}
                         onChange={(e) => handleInput(e)}
@@ -1168,7 +1178,7 @@ function EditComponent() {
                     <div className="flex flex-row space-x-10 w-full">
                       <input
                         className={style.inputStyle}
-                        placeholder={data?.viber}
+                        placeholder={productData?.viber}
                         name="viber"
                         value={data?.viber}
                         onChange={(e) => handleInput(e)}
