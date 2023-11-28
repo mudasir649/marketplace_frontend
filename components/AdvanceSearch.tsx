@@ -715,17 +715,7 @@ export default function AdvanceSearch({
                   {t("autosComponent.model")}
                 </h1>
               </div>
-              {/* <div>
-                  <option value="option1">
-                    {t("autosComponent.selectModel")}
-                  </option>
-                  {models[0]?.model.map((model: any, i: number) => (
-                    <option value={model} key={i}>
-                      {model}
-                    </option>
-                  ))}
-                </select>
-              </div> */}
+              {}
             </>
           )}
           {brands && (
