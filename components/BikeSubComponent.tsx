@@ -1,10 +1,8 @@
 "use client";
-import Home from "@/components/Home";
 import {
   ArrowForwardIos,
   Cancel,
   Description,
-  ExpandMore,
   Image,
   InsertLink,
   Person,
@@ -12,7 +10,7 @@ import {
 } from "@mui/icons-material";
 import axios from "axios";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import {
@@ -74,11 +72,9 @@ export default function BikeSubComponent({ type }: any) {
   const { userInfo } = useSelector((state: any) => state.auth);
   const userData =
     userInfo === null ? userInfo : userInfo?.data?.userDetails?._id;
-  const email = userInfo?.data?.userDetails?.email;
   const phone = userInfo?.data?.userDetails?.phoneNumber;
   const whatsapp = userInfo?.data?.userDetails?.whatsapp;
   const viber = userInfo?.data?.userDetails?.viber;
-  const [openSubModel, isOpenSubModel] = useState<Boolean>(false);
   const [images, setImages] = useState<any>([]);
   const [loading, setLoading] = useState<Boolean>(false);
   const [priceListValue, setPriceListValue] = useState<string>("price");
@@ -301,10 +297,6 @@ export default function BikeSubComponent({ type }: any) {
     }
   };
 
-  const handleModel = (value: any) => {
-    isOpenSubModel(false);
-    setData({ ...data, ["model"]: value });
-  };
 
   const fetchBrand = async (model: any) => {
     try {

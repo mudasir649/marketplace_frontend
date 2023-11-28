@@ -61,7 +61,6 @@ export default function OthersComponent({ type }: any) {
   const { userInfo } = useSelector((state: any) => state.auth);
   const userData =
     userInfo === null ? userInfo : userInfo?.data?.userDetails?._id;
-  const email = userInfo?.data?.userDetails?.email;
   const phone = userInfo?.data?.userDetails?.phoneNumber;
   const whatsapp = userInfo?.data?.userDetails?.whatsapp;
   const viber = userInfo?.data?.userDetails?.viber;
@@ -94,48 +93,6 @@ export default function OthersComponent({ type }: any) {
       value: "recondition",
     },
   ];
-  const fuelType = [
-    {
-      name: t('fuelType.Gasoline'),
-      value: 'Gasoline',
-    },
-    {
-      name: t('fuelType.Diesel'),
-      value: 'Diesel',
-    },
-    {
-      name: t('fuelType.Ethanol'),
-      value: 'Ethanol',
-    },
-    {
-      name: t('fuelType.Electric'),
-      value: 'Electric',
-    },
-    {
-      name: t('fuelType.Hydrogen'),
-      value: 'Hydrogen',
-    },
-    {
-      name: t('fuelType.LPG'),
-      value: 'LPG',
-    },
-    {
-      name: t('fuelType.CNG'),
-      value: 'CNG',
-    },
-    {
-      name: t('fuelType.Hybrid (Electric/Gasoline)'),
-      value: 'Hybrid (Electric/Gasoline)',
-    },
-    {
-      name: t('fuelType.Hybrid (Electric/Diesel)'),
-      value: 'Hybrid (Electric/Diesel)',
-    },
-    {
-      name: t('fuelType.Others'),
-      value: 'Others',
-    },
-  ];
   
   const priceList = [
     {
@@ -150,91 +107,6 @@ export default function OthersComponent({ type }: any) {
     },
   ];
 
-  const exteriorColor = [
-    {
-      name: t("color.name1"),
-    },
-    {
-      name: t("color.name2"),
-    },
-    {
-      name: t("color.name3"),
-    },
-    {
-      name: t("color.name4"),
-    },
-    {
-      name: t("color.name5"),
-    },
-    {
-      name: t("color.name6"),
-    },
-    {
-      name: t("color.name7"),
-    },
-    {
-      name: t("color.name8"),
-    },
-    {
-      name: t("color.name9"),
-    },
-    {
-      name: t("color.name10"),
-    },
-    {
-      name: t("color.name11"),
-    },
-    {
-      name: t("color.name12"),
-    },
-    {
-      name: t("color.name13"),
-    },
-    {
-      name: t("color.name14"),
-    },
-  ];
-
-  const interiorColor = [
-    {
-      name: t("interiorColor.name1"),
-    },
-    {
-      name: t("interiorColor.name2"),
-    },
-    {
-      name: t("interiorColor.name3"),
-    },
-    {
-      name: t("interiorColor.name4"),
-    },
-    {
-      name: t("interiorColor.name5"),
-    },
-    {
-      name: t("interiorColor.name6"),
-    },
-    {
-      name: t("interiorColor.name7"),
-    },
-    {
-      name: t("interiorColor.name8"),
-    },
-    {
-      name: t("interiorColor.name9"),
-    },
-  ];
-  const gearBox = [
-    {
-      name: t("gearBox.name1"),
-    },
-    {
-      name: t("gearBox.name2"),
-    },
-    {
-      name: t("gearBox.name3"),
-    },
-  ];
 
   const [data, setData] = useState<IData>({
     category: "Others",
