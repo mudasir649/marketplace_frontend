@@ -715,7 +715,7 @@ export default function AdvanceSearch({
                   {t("autosComponent.model")}
                 </h1>
               </div>
-              <div>
+              {/* <div>
                 <select
                   className="block mb-4 appearance-none w-full bg-white border rounded-sm border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
                   name="model"
@@ -730,7 +730,7 @@ export default function AdvanceSearch({
                     </option>
                   ))}
                 </select>
-              </div>
+              </div> */}
             </>
           )}
           {brands && (

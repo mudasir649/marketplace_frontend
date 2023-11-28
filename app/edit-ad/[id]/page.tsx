@@ -88,7 +88,7 @@ function EditComponent() {
     subCategory: null || "",
     userId: id,
     title: null || "",
-    images: null,
+    images: [],
     price: null || "",
     minPrice: null || "",
     maxPrice: null || "",
@@ -506,7 +506,6 @@ function EditComponent() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     console.log(data);
-    return;
     setLoading(true);
     let newData;
     if(checkObjectEmpty(data) === false){
