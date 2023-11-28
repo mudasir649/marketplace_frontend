@@ -506,7 +506,6 @@ function EditComponent() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     console.log(data);
-    return;
     setLoading(true);
     let newData;
     if(checkObjectEmpty(data) === false){
