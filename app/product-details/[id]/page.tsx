@@ -320,6 +320,7 @@ function ProductDetails() {
                       {!product?.fuelType ? '' : <h1><span className="font-bold">{t("product.FuelType")}: </span> {t(`fuelType.${product.fuelType}`)}</h1> }
                       {!product?.km ? '' : <h1 className="line-clamp-1"><span className="font-bold">{t("product.Kilometers")}: </span> {product?.km}</h1> }
                       {!product?.gearBox ? '' : <h1><span className="font-bold">{t("product.Gearbox")}: </span> {t(`gearBox.${product.gearBox}`)}</h1> }
+                      {!product?.axeltype ? '' : <h1><span className="font-bold">Axel Type: </span>{product?.axeltype}</h1> }
                       {!product?.engineCapacity ? '' : <h1><span className="font-bold">{t("product.EngineCapacity")}: </span> {product?.engineCapacity}</h1> }
                       {!product?.interiorColor ? '' : <h1><span className="font-bold">{t("product.InteriorColor")}: </span> {translatedInteriorColor}</h1> }
                       {!product?.exteriorColor ? '' : <h1><span className="font-bold">{t("product.ExteriorColor")}: </span> {translatedInteriorColor}</h1> }

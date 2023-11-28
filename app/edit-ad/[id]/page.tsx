@@ -84,7 +84,7 @@ function EditComponent() {
   const id = userData;
 
   const [data, setData] = useState<IData>({
-    category: "Autos",
+    category: null || "",
     subCategory: null || "",
     userId: id,
     title: null || "",
@@ -135,7 +135,7 @@ function EditComponent() {
         const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/getSpecific/${adId?.id}`);
         setProductData(res.data?.data);
         setProductImages(res?.data.data?.images);
-        setData({...data, ['images']: res?.data.data?.images});
+        setData({...data, ['images']: res?.data.data?.images, ['category']: res.data?.data?.category});
         setProductSubCat(res.data?.data?.category);
         if(!isNullOrNullOrEmpty(res?.data?.data?.whatsapp)) {setWhatsappChecked(true)};
         if(res?.data?.data?.phone === true) setPhoneChecked(true);
@@ -506,6 +506,7 @@ function EditComponent() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     console.log(data);
+    return;
     setLoading(true);
     let newData;
     if(checkObjectEmpty(data) === false){
@@ -629,6 +630,11 @@ function EditComponent() {
     return false;
   }
 
+  const handlePrice = (value: string) => {
+    setPriceListValue(value);
+    setData({...data, ['price']: ""});
+  }
+
   
 
   return (
@@ -694,7 +700,7 @@ function EditComponent() {
                           id={list.id}
                           name={list.name}
                           value={list?.value}
-                          onChange={() => setPriceListValue(list?.value)}
+                          onChange={() => handlePrice(list?.value)}
                         />{" "}
                         {list?.name}
                       </li>
