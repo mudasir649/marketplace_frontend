@@ -590,7 +590,6 @@ export default function SpecialCatComponent({ type }: any) {
                     name="videoUrl"
                     value={data.videoUrl}
                     onChange={(e: any) => handleInput(e)}
-                    required
                   />
                   <p className="text-gray-300 text-sm mt-1">
                     E.g. https://www.youtube.com/watch?v=RiXdDGk_XCU,
