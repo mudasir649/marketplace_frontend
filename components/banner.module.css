@@ -7,8 +7,5 @@
     background-position: center;
     padding-top: 4rem;
         
-    @media (max-width: 688px) {
-        min-height: 100px;
-        background-size: cover;
-    }
+   
 } */
