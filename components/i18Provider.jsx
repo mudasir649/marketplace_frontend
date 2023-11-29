@@ -1,4 +1,4 @@
-// I18nProvider.js
+
 import React from 'react';
 import { initReactI18next } from 'react-i18next';
 import i18n from 'i18next';
