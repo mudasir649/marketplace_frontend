@@ -1,6 +1,5 @@
 /*
-This page is about is about product details. In this page there is two divs one for showing product details and one for showing sellers 
-details. Both divs are named in comments
+This page is about is about product deta
 
 */
 "use client";
