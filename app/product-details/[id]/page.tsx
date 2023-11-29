@@ -1,5 +1,4 @@
 /*
-This page is about is about product deta
 
 */
 "use client";
