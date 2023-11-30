@@ -32,7 +32,7 @@ export default function SellRepairComponent() {
             <h1 className={`${h1Style} line-clamp-1`}>
               {t("sellRepairComponent.sellTitle")}
             </h1>
-            <h1 className="text-md line-clamp-1">
+            <h1 className="text-md text-sm">
               {t("sellRepairComponent.sellSubtitle")}
             </h1>
             <button
@@ -55,7 +55,7 @@ export default function SellRepairComponent() {
             <h1 className={`${h1Style} line-clamp-1`}>
               {t("sellRepairComponent.repairTitle")}
             </h1>
-            <h1 className="text-md line-clamp-1">
+            <h1 className="text-md text-sm">
               {t("sellRepairComponent.repairSubtitle")}
             </h1>
             <button

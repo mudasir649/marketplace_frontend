@@ -79,6 +79,7 @@ export default function SpecialCatComponent({ type }: any) {
   const [viberChecked, setViberChecked] = useState<boolean>(false);
   const [phoneChecked, setPhoneChecked] = useState<boolean>(false);
   const [emailChecked, setEmailChecked] = useState<boolean>(false);
+  const [formData, setFormData] = useState<any>();
 
   const [data, setData] = useState<IData>({
     category:
@@ -118,6 +119,13 @@ export default function SpecialCatComponent({ type }: any) {
       );
       setBrands(res.data?.data);
     };
+    const fetchAutosData = async () => {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/get-postAd-data?type=${type}`
+      );
+      setFormData(res.data?.data);
+    };
+    fetchAutosData();
     if (type == "Boats" || type == "Drones") fetchBrand();
   }, [type]);
 
@@ -370,7 +378,7 @@ export default function SpecialCatComponent({ type }: any) {
                 </h1>
                 <div className="flex flex-col w-full">
                   <ul className="space-y-1">
-                    {conditionList?.map((list: any, i: number) => (
+                    {formData?.conditionList?.map((list: any, i: number) => (
                       <li key={i}>
                         <input
                           type="radio"

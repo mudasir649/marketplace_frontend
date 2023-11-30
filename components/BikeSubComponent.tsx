@@ -88,6 +88,8 @@ export default function BikeSubComponent({ type }: any) {
   const [whatsappChecked, setWhatsappChecked] = useState<boolean>(false);
   const [viberChecked, setViberChecked] = useState<boolean>(false);
   const [phoneChecked, setPhoneChecked] = useState<boolean>(false);
+  const [formData, setFormData] = useState<any>();
+
 
 
   const conditionList = [
@@ -278,7 +280,6 @@ export default function BikeSubComponent({ type }: any) {
     longitude: null || "",
     phone: phoneChecked
   });
-  const [howContact, setHowContact] = useState<string>("Whatsapp");
 
   useEffect(() => {
     const fetchBrand = async () => {
@@ -287,6 +288,13 @@ export default function BikeSubComponent({ type }: any) {
       );
       setBrands(res.data?.data);
     };
+    const fetchAutosData = async () => {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/get-postAd-data?type=Motorcycles`
+      );
+      setFormData(res.data?.data);
+    };
+    fetchAutosData();
     fetchBrand();
   }, [type]);
 
@@ -309,9 +317,6 @@ export default function BikeSubComponent({ type }: any) {
     }
   };
 
-  const handleHowContact = (value: any) => {
-    setHowContact(value);
-  };
 
   const handleImage = (e: any) => {
     const files = e.target.files;
@@ -424,7 +429,7 @@ export default function BikeSubComponent({ type }: any) {
       return;
     }
   };
-
+  
 
   return (
     <>
@@ -573,7 +578,7 @@ export default function BikeSubComponent({ type }: any) {
                 </h1>
                 <div className="flex flex-col w-full">
                   <ul className="space-y-1">
-                    {conditionList?.map((list: any, i: number) => (
+                    {formData?.conditionList?.map((list: any, i: number) => (
                       <li key={i}>
                         <input
                           type="radio"
@@ -636,7 +641,7 @@ export default function BikeSubComponent({ type }: any) {
                   />
                 </div>
               </div>
-              {data?.brand && type == "Motorcycle" && (
+              {data?.brand && type == "Motorcycles" && (
                 <div className={style.divStyle}>
                   <h1 className={style.h1Style}>
                     {t("autosComponent.model")}{" "}
@@ -658,7 +663,7 @@ export default function BikeSubComponent({ type }: any) {
                   </select>
                 </div>
               )}
-              {data?.brand && type == "Motorcycle" && (
+              {data?.brand && type == "Motorcycles" && (
                 <div className={style.divStyle}>
                   <h1 className={style.h1Style}>
                     {t("autosComponent.year")}{" "}
@@ -676,7 +681,7 @@ export default function BikeSubComponent({ type }: any) {
                   </div>
                 </div>
               )}
-              {data?.brand && type == "Motorcycle" && (
+              {data?.brand && type == "Motorcycles" && (
                 <div className={style.divStyle}>
                   <h1 className={style.h1Style}>
                     {t("autosComponent.bodyShape")}
@@ -688,7 +693,7 @@ export default function BikeSubComponent({ type }: any) {
                     onChange={(e: any) => handleInput(e)}
                   >
                     <option>{t("autosComponent.selectBodyShape")} </option>
-                    {bikeBodyShape?.map((body: any, i: number) => (
+                    {formData?.bikeBodyShape?.map((body: any, i: number) => (
                       <option value={body.value} key={i}>
                         {body.name}
                       </option>
@@ -696,29 +701,7 @@ export default function BikeSubComponent({ type }: any) {
                   </select>
                 </div>
               )}
-              {data?.brand && type == "Motorcycle" && (
-                <div className={style.divStyle}>
-                  <h1 className={style.h1Style}>
-                    {t("autosComponent.gearBox")}{" "}
-                    <span className="text-[#FF0000]">*</span>
-                  </h1>
-                  <select
-                    className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
-                    name="gearBox"
-                    onChange={(e: any) => handleInput(e)}
-                  >
-                    <option value="option1">
-                      {t("autosComponent.selectGearBox")}
-                    </option>
-                    {gearBox?.map((gear: any, i: number) => (
-                      <option value={gear.value} key={i}>
-                        {gear.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              )}
-              {data?.brand && type == "Motorcycle" && (
+              {data?.brand && type == "Motorcycles" && (
                 <div className={style.divStyle}>
                   <h1 className={style.h1Style}>
                     {t("autosComponent.fuelType")}{" "}
@@ -732,7 +715,7 @@ export default function BikeSubComponent({ type }: any) {
                     <option value="option1">
                       {t("autosComponent.selectFuelType")}
                     </option>
-                    {BikeFuelType?.map((fuel: any, i: number) => (
+                    {formData?.BikeFuelType?.map((fuel: any, i: number) => (
                       <option value={fuel.value} key={i}>
                         {fuel.name}
                       </option>
@@ -740,7 +723,7 @@ export default function BikeSubComponent({ type }: any) {
                   </select>
                 </div>
               )}
-              {data?.brand && type == "Motorcycle" && (
+              {data?.brand && type == "Motorcycles" && (
                 <div className={style.divStyle}>
                   <h1 className={style.h1Style}>
                     {t("autosComponent.kilometers")}
@@ -751,7 +734,7 @@ export default function BikeSubComponent({ type }: any) {
                     onChange={(e: any) => handleInput(e)}
                   >
                     <option>{t('autosComponent.selectKilometer')}</option>
-                    {kilometers.map((kms: any, i: number) => (
+                    {formData?.kilometers.map((kms: any, i: number) => (
                       <option value={kms.name} key={i}>
                         {kms.name}
                       </option>
@@ -759,7 +742,7 @@ export default function BikeSubComponent({ type }: any) {
                   </select>
                 </div>
               )}
-              {data?.brand && type == "Motorcycle" && (
+              {data?.brand && type == "Motorcycles" && (
                 <div className={style.divStyle}>
                   <h1 className={style.h1Style}>
                     {t("autosComponent.engineCapacity")}{" "}
@@ -777,7 +760,7 @@ export default function BikeSubComponent({ type }: any) {
                   </div>
                 </div>
               )}
-              {data?.brand && type == "Motorcycle" && (
+              {data?.brand && type == "Motorcycles" && (
                 <div className={style.divStyle}>
                   <h1 className={style.h1Style}>
                     {t("autosComponent.color")}
@@ -789,7 +772,7 @@ export default function BikeSubComponent({ type }: any) {
                     onChange={(e: any) => handleInput(e)}
                   >
                     <option value="option1">{t("autosComponent.selectColor")}</option>
-                    {bikeExteriorColor?.map((color: any, i: number) => (
+                    {formData?.bikeColor?.map((color: any, i: number) => (
                       <option value={color.value} key={i}>
                         {color.name}
                       </option>

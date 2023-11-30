@@ -13,7 +13,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { kilometers } from "@/utils/dataVariables";
 import "../app/post-ad/post-ad.css";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
@@ -159,154 +158,7 @@ export default function AutosComponent() {
   const [formData, setFormData] = useState<any>();
   let router = useRouter();
   const id = userData;
-  const exteriorColor = [
-    {
-      name: t("color.name1"),
-      value: t("color.value1"),
-    },
-    {
-      name: t("color.name2"),
-      value: t("color.value2"),
-    },
-    {
-      name: t("color.name3"),
-      value: t("color.value3"),
-    },
-    {
-      name: t("color.name4"),
-      value: t("color.value4"),
-    },
-    {
-      name: t("color.name5"),
-      value: t("color.value5"),
-    },
-    {
-      name: t("color.name6"),
-      value: t("color.value6"),
-    },
-    {
-      name: t("color.name7"),
-      value: t("color.value7"),
-    },
-    {
-      name: t("color.name8"),
-      value: t("color.value8"),
-    },
-    {
-      name: t("color.name9"),
-      value: t("color.value9"),
-    },
-    {
-      name: t("color.name10"),
-      value: t("color.value10"),
-    },
-    {
-      name: t("color.name11"),
-      value: t("color.value11"),
-    },
 
-    {
-      name: t("color.name13"),
-      value: t("color.value13"),
-    },
-    {
-      name: t("color.name14"),
-      value: t("color.value14"),
-    },
-  ];
-
-  const interiorColor = [
-    {
-      name: t("interiorColor.name1"),
-      value: t("interiorColor.value1"),
-    },
-    {
-      name: t("interiorColor.name2"),
-      value: t("interiorColor.value2"),
-    },
-    {
-      name: t("interiorColor.name3"),
-      value: t("interiorColor.value3"),
-    },
-    {
-      name: t("interiorColor.name4"),
-      value: t("interiorColor.value4"),
-    },
-    {
-      name: t("interiorColor.name5"),
-      value: t("interiorColor.value5"),
-    },
-    {
-      name: t("interiorColor.name6"),
-      value: t("interiorColor.value6"),
-    },
-    {
-      name: t("interiorColor.name7"),
-      value: t("interiorColor.value7"),
-    },
-    {
-      name: t("interiorColor.name8"),
-      value: t("interiorColor.value8"),
-    },
-    {
-      name: t("interiorColor.name9"),
-      value: t("interiorColor.value9"),
-    },
-  ];
-
-  const bodyShape = [
-    {
-      name: t("bodyShape.Convertible"),
-      value: "Convertible",
-    },
-    {
-      name: t("bodyShape.Compact"),
-      value: "Compact",
-    },
-    {
-      name: t("bodyShape.Coupe"),
-      value: "Coupe",
-    },
-    {
-      name: t("bodyShape.suv"),
-      value: "SUV/Off-Road/Pick-up",
-    },
-    {
-      name: t("bodyShape.Station"),
-      value: "Station Wagon",
-    },
-    {
-      name: t("bodyShape.Sedan"),
-      value: "Sedan",
-    },
-    {
-      name: t("bodyShape.Van"),
-      value: "Van",
-    },
-    {
-      name: t("bodyShape.Transporter"),
-      value: "Transporter",
-    },
-    {
-      name: t("bodyShape.Other"),
-      value: "Other",
-    },
-  ];
-
-  const gearBox = [
-    {
-      name: t("gearBox.name1"),
-      value: t("gearBox.value1"),
-    },
-    {
-      name: t("gearBox.name2"),
-      value: t("gearBox.value2"),
-    },
-    {
-      name: t("gearBox.name3"),
-      value: t("gearBox.value3"),
-    },
-  ];
 
   const [data, setData] = useState<IData>({
     category: "Autos",
@@ -357,6 +209,9 @@ export default function AutosComponent() {
     fetchAutosData();
     fetchBrand();
   }, []);
+
+  console.log(formData);
+  
 
   const handleInput = (e: any) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -484,8 +339,6 @@ export default function AutosComponent() {
       return;
     }
   };
-
-  console.log(formData);
   
 
   return (
@@ -595,7 +448,7 @@ export default function AutosComponent() {
                 </h1>
                 <div className="flex flex-col w-full">
                   <ul className="space-y-1">
-                    {conditionList?.map((list: any, i: number) => (
+                    {formData?.conditionList?.map((list: any, i: number) => (
                       <li key={i}>
                         <input
                           type="radio"
@@ -679,7 +532,7 @@ export default function AutosComponent() {
                     <option value="option1">
                       {t("autosComponent.selectBodyShape")}
                     </option>
-                    {bodyShape?.map((body: any, i: number) => (
+                    {formData?.AutosBodyShape?.map((body: any, i: number) => (
                       <option value={body.value} key={i}>
                         {body.name}
                       </option>
@@ -700,7 +553,7 @@ export default function AutosComponent() {
                     <option value="option1">
                       {t("autosComponent.selectGearBox")}
                     </option>
-                    {gearBox.map((gear: any, i: number) => (
+                    {formData?.gearBox.map((gear: any, i: number) => (
                       <option value={gear?.value} key={i}>
                         {gear?.name}
                       </option>
@@ -721,7 +574,7 @@ export default function AutosComponent() {
                     <option value="option1">
                       {t("autosComponent.selectFuelType")}
                     </option>
-                    {fuelType.map((fuel: any, i: number) => (
+                    {formData?.fuelType.map((fuel: any, i: number) => (
                       <option value={fuel?.value} key={i}>
                         {fuel?.name}
                       </option>
@@ -740,7 +593,7 @@ export default function AutosComponent() {
                     onChange={(e: any) => handleInput(e)}
                   >
                     <option>{t("autosComponent.selectKilometer")}</option>
-                    {kilometers.map((kms: any, i: number) => (
+                    {formData?.kilometers.map((kms: any, i: number) => (
                       <option value={kms.name} key={i}>
                         {kms.name}
                       </option>
@@ -761,7 +614,7 @@ export default function AutosComponent() {
                     <option value="option1">
                       {t("autosComponent.selectExteriorColor")}
                     </option>
-                    {exteriorColor.map((color: any, i: number) => (
+                    {formData?.exteriorColor.map((color: any, i: number) => (
                       <option value={color?.value} key={i}>
                         {color?.name}
                       </option>
@@ -782,7 +635,7 @@ export default function AutosComponent() {
                     <option value="option1">
                       {t("autosComponent.selectInteriorColor")}
                     </option>
-                    {interiorColor.map((color: any, i: number) => (
+                    {formData?.interiorColor.map((color: any, i: number) => (
                       <option value={color?.value} key={i}>
                         {color?.name}
                       </option>
