@@ -57,7 +57,11 @@ interface InitialStateInterface {
     maxPrice: any | null;
     prodId: string[];
     closeAll: Boolean;
-    email: any | null
+    email: any | null,
+    km: any,
+    gearBox: any,
+    bodyShape: any,
+    fuelType: any
 }
 
 
@@ -88,6 +92,10 @@ const initialState: InitialStateInterface = {
     maxPrice: null || '',
     prodId: getProdIdInitialState(),
     closeAll: false,
+    gearBox: '',
+    km: '',
+    bodyShape: '',
+    fuelType: '',
     email: getEmail(),
 }
 
@@ -167,6 +175,18 @@ const appSlice = createSlice({
         setYear: (state, actions) => {
             state.year = actions.payload;
         },
+        setKm: (state, actions) => {
+            state.km = actions.payload;
+        },
+        setGearBox: (state, actions) => {
+            state.gearBox = actions.payload;
+        },
+        setBodyShape: (state, actions) => {
+            state.bodyShape = actions.payload;
+        },
+        setFuelType: (state, actions) => {
+            state.fuelType = actions.payload;
+        },
         setMaxPrice: (state, actions) => {
             state.maxPrice = actions.payload;
         },
@@ -196,7 +216,10 @@ export const { refreshPage, setFilterData,
                 setReduxTitle, setReduxAddress, 
                 setProductUserId, setRoomsData, 
                 setLanguage, setShowContact, 
-                setCondition, setBrand,setYear, setModel,
+                setCondition, setBrand,
+                setYear, setKm,
+                setModel, setGearBox,
+                setBodyShape, setFuelType,
                 setMinPrice, setMaxPrice, 
                 setProdId, setCloseAll, 
                 setEmail} = appSlice.actions;

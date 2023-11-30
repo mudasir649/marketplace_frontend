@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 function Page() {
   const { type } = useParams();
-  const { page, condition, brand, year, model , minPrice, maxPrice, sortBy } = useSelector(
+  const { page, condition, brand, year, model , minPrice, maxPrice, sortBy, km, bodyShape, gearBox, fuelType } = useSelector(
     (state: any) => state.app
   );
   const dispatch = useDispatch();
@@ -23,6 +23,9 @@ function Page() {
   const [years, setYears] = useState<string>("");
   const [models, setModels] = useState<string>("");
   
+  function isNullOrNullOrEmpty(value: any) {
+    return value === null || value === undefined || value === "";
+  }
 
   console.log(type);
   
@@ -46,20 +49,9 @@ function Page() {
         );
         setBrands(res.data?.data);
       };
-      if(brand !== ""){
-        const fetchModels = async () => {
-          const res = await axios.get(
-            `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findModels/${checkType}/${brand}`
-          );
-          console.log(res.data?.data?.model);
-          
-          setModels(res.data?.data);
-        };
-        fetchModels();
-      }
       const endpoint = subCategory
-      ? `/ad?page=${page}&subCategory=${subCategory}&sortBy=${sortBy}&condition=${condition}&brand=${brand}&model=${model}&year=${year}&minPrice=${minPrice}&mxPrice=${maxPrice}`
-      : `/ad?page=${page}&category=${checkType}&sortBy=${sortBy}&condition=${condition}&brand=${brand}&year=${year}&minPrice=${minPrice}&mxPrice=${maxPrice}`;
+      ? `/ad?page=${page}&subCategory=${subCategory}&sortBy=${sortBy}&condition=${condition}&brand=${brand}&model=${model}&year=${year}&minPrice=${minPrice}&maxPrice=${maxPrice}&km=${km}&bodyShape=${bodyShape}&gearBox=${gearBox}&fuelType=${fuelType}`
+      : `/ad?page=${page}&category=${checkType}&sortBy=${sortBy}&condition=${condition}&brand=${brand}&year=${year}&minPrice=${minPrice}&maxPrice=${maxPrice}&km=${km}&bodyShape=${bodyShape}&gearBox=${gearBox}&fuelType=${fuelType}`;
 
       const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}${endpoint}`);
       const data = res.data?.data;
@@ -72,7 +64,23 @@ function Page() {
       }
     }
       fetchData();
-  }, [page, checkType, dispatch, brand]);
+  }, [page, checkType, dispatch]);
+
+  useEffect(() => {
+    const fetchModels = async () => {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findModels/${checkType}/${brand}`
+      );
+      console.log(res.data?.data?.model);
+      
+      setModels(res.data?.data);
+    };
+    if((checkType === "Autos" || checkType === "Motorcycles")  && !isNullOrNullOrEmpty(brand)) {
+      fetchModels();
+    } else{
+      return;
+    }
+  }, [brand])
 
   return (
     <div>

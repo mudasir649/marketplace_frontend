@@ -47,6 +47,10 @@ import {
   setSortBy,
   setType,
   setYear,
+  setGearBox,
+  setBodyShape,
+  setKm,
+  setFuelType,
 } from "@/store/appSlice";
 import addInvertedComma from "@/utils/addInvertedComma";
 import ProductList from "./ProductList";
@@ -54,6 +58,15 @@ import { faClock } from "@fortawesome/free-solid-svg-icons";
 import showDate from "@/utils/showDate";
 import { useTranslation } from "react-i18next";
 import "./Advance-search.css";
+import {
+  IncludeKm,
+  bodyShape1,
+  brandInclude,
+  checkSubCategoryFilter,
+  fuelType1,
+  gearBox1,
+  kilometers,
+} from "@/utils/dataVariables";
 
 interface IList {
   logo: any;
@@ -99,12 +112,12 @@ export default function AdvanceSearch({
   const [showLocation, setShowLocation] = useState<Boolean>(false);
   const [address1, setAddress1] = useState<string>("");
   const [sortByLoading, setSortByLoading] = useState<Boolean>(false);
+  const [subCategory1, setSubCategory] = useState<any>([]);
   const pathname = usePathname();
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state: any) => state.auth);
-  const { condition, brand,year ,model , minPrice, maxPrice, prodId } = useSelector(
-    (state: any) => state.app
-  );
+  const { condition, brand, year, model, minPrice, maxPrice, prodId, km, bodyShape, fuelType, gearBox } =
+    useSelector((state: any) => state.app);
   const userId = userInfo?.data?.userDetails?._id;
 
   const { width, height } = useWindowDimensions();
@@ -125,17 +138,17 @@ export default function AdvanceSearch({
     let paginationList: any = [];
     let productsPerPage = 9; // Set the number of products per page
     let totalPages = Math.ceil(productsCount / productsPerPage);
-  
+
     // Only add pages to paginationList if there is more than one page
     if (totalPages > 1) {
       for (let i = 1; i <= totalPages; i++) {
         paginationList.push(i);
       }
     }
-  
+
     return paginationList;
   };
-  
+
   const conditionList = [
     {
       id: 1,
@@ -312,27 +325,27 @@ export default function AdvanceSearch({
   const sortByList = [
     {
       name: t("sortByList.0"),
-      value: "Latest"
+      value: "Latest",
     },
     {
-    name: t("sortByList.1"),
-    value: "Old"
-    },
-    {
-      name: t("sortByList.4"), 
-      value: "Price (low to high)"
+      name: t("sortByList.1"),
+      value: "Old",
     },
     {
       name: t("sortByList.4"),
-      value: "Price (high to low)"
+      value: "Price (low to high)",
+    },
+    {
+      name: t("sortByList.4"),
+      value: "Price (high to low)",
     },
     {
       name: t("sortByList.2"),
-      value: "A to Z (title)"
+      value: "A to Z (title)",
     },
     {
-      name: t("sortByList.3"), 
-      value: "Z to A (title)"
+      name: t("sortByList.3"),
+      value: "Z to A (title)",
     },
   ];
 
@@ -345,9 +358,9 @@ export default function AdvanceSearch({
     dispatch(setCondition(""));
     dispatch(setBrand(""));
     dispatch(setModel(""));
-    
+
     dispatch(setYear(""));
-    
+
     dispatch(setType(value));
     router.push(`/advance-search/${value}`);
   };
@@ -388,7 +401,7 @@ export default function AdvanceSearch({
     } else {
       try {
         const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address1}&category=${category}&condition=${condition}&brand=${brand}&model=${model}&year=${year}&minPrice=${minPrice}&maxPrice=${maxPrice}`
+          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address1}&category=${category}&condition=${condition}&brand=${brand}&model=${model}&year=${year}&minPrice=${minPrice}&maxPrice=${maxPrice}&km=${km}&bodyShape=${bodyShape}&gearBox=${gearBox}&fuelType=${fuelType}`
         );
         setProductData(res.data?.data?.ad);
         setProductsCount(res.data?.data?.totalAds);
@@ -403,12 +416,17 @@ export default function AdvanceSearch({
 
   const handleSortBy = async (e: any) => {
     const { value } = e.target;
-    alert("thth")
+    alert("thth");
     let res;
     dispatch(setSortBy(value));
     setSortByLoading(true);
-    let subValue;    
-    if(category === "Motorcycles" || category === "Bicycles" || category === "E-scooter" ||category === "E-bikes"){
+    let subValue;
+    if (
+      category === "Motorcycles" ||
+      category === "Bicycles" ||
+      category === "E-scooter" ||
+      category === "E-bikes"
+    ) {
       try {
         res = await axios.get(
           `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=Bikes&subCategory=${category}&sortBy=${value}`
@@ -420,7 +438,7 @@ export default function AdvanceSearch({
         setSortByLoading(false);
         console.log(error);
       }
-    }else{
+    } else {
       try {
         res = await axios.get(
           `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${category}&sortBy=${value}`
@@ -503,15 +521,27 @@ export default function AdvanceSearch({
     }
   }, [userId, dispatch, userInfo]);
 
+  useEffect(() => {
+    if (checkSubCategoryFilter.includes(type1)) {
+      const fetchCategory = async () => {
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleSubCategory/${type1}`
+        );
+        setSubCategory(res.data?.data);
+      };
+      fetchCategory();
+    }
+  }, [type1]);
+
   const findProductId = (productId: any) => {
     return prodId.some((item: any) => item._id === productId);
   };
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
   // const scrollToTop = () => {
   //   const scrollStep = -window.scrollY / 60; // Adjust the division factor for speed
-  
+
   //   const scrollInterval = setInterval(() => {
   //     if (window.scrollY !== 0) {
   //       window.scrollBy(0, scrollStep);
@@ -543,7 +573,7 @@ export default function AdvanceSearch({
       return "Parts";
     }
   };
-  
+
   const previousHandle = () => {
     if (page !== 1) {
       dispatch(setPage(page - 1));
@@ -683,7 +713,37 @@ export default function AdvanceSearch({
               </ul>
             </>
           )}
-          {brands && (
+          {/* {checkSubCategoryFilter.includes(type1) && (
+            <>
+              <div className="border-b flex flex-row justify-between p-2 mb-4">
+                <h1 className="text-lg font-bold">
+                  {t("autosComponent.subCategory")}
+                </h1>
+              </div>
+              <select
+                className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+                name="subCategory"
+              >
+                <option value="option1">
+                  {t("autosComponent.selectSubCategory")}
+                </option>
+                {subCategory1?.map(
+                  (list: any, i: number) =>
+                    list?.category?.map((cat: any, j: number) => (
+                      <option
+                        className={`hover:bg-red-500 hover:text-white 
+                    ml-1 mb-1 ${list.length - 1 === j ? "" : " border-b-2"}`}
+                        key={j}
+                        value={cat}
+                      >
+                        {t(`subCategoryOptions.${cat}`)}
+                      </option>
+                    ))
+                )}
+              </select>
+            </>
+          )} */}
+          {brandInclude.includes(type1) && (
             <>
               <div className="border-b flex flex-row justify-between p-2 mb-4">
                 <h1 className="text-lg font-bold">
@@ -699,7 +759,7 @@ export default function AdvanceSearch({
                   <option value="option1">
                     {t("autosComponent.selectBrand")}
                   </option>
-                  {brands?.make.map((brand: any, i: number) => (
+                  {brands?.make?.map((brand: any, i: number) => (
                     <option value={brand} key={i}>
                       {brand}
                     </option>
@@ -708,41 +768,29 @@ export default function AdvanceSearch({
               </div>
             </>
           )}
-          {brands !== "" && (
-            <>
-              <div className="border-b flex flex-row justify-between p-2 mb-4">
-                <h1 className="text-lg font-bold">
-                  {t("autosComponent.model")}
-                </h1>
-              </div>
-              </>
-          )}
-          {brands && (
-            <>
-              <div className="border-b flex flex-row justify-between p-2 mb-4">
-                <h1 className="text-lg font-bold">
-                  {t("autosComponent.kilometers")}
-                </h1>
-              </div>
-              <div>
-                <select
-                  className="block mb-4 appearance-none w-full bg-white border rounded-sm border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
-                  name="mileage"
-                  onChange={(e: any) => dispatch(setModel(e.target.value))}
-                >
-                  <option value="option1">
-                    {t("autosComponent.selectMileage")}
-                  </option>
-                  {models[0]?.model.map((model: any, i: number) => (
-                    <option value={model} key={i}>
-                      {model}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </>
-          )}
-          {brands && (
+{(type1 === "Motorcycles" || type1 === "Autos") && brand && models && models[0]?.model && (
+  <>
+    <div className="border-b flex flex-row justify-between p-2 mb-4">
+      <h1 className="text-lg font-bold">
+        {t("autosComponent.model")}
+      </h1>
+    </div>
+    <select
+      className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+      name="model"
+      onChange={(e: any) => dispatch(setModel(e.target.value))}
+    >
+      <option value="option1">{t("autosComponent.model")}</option>
+      {models[0].model.map((model: any, i: number) => (
+        <option value={model} key={i}>
+          {model}
+        </option>
+      ))}
+    </select>
+  </>
+)}
+
+           {brandInclude.includes(type1) && (
             <>
               <div className="border-b flex flex-row justify-between p-2 mb-4">
                 <h1 className="text-lg font-bold">
@@ -751,23 +799,92 @@ export default function AdvanceSearch({
               </div>
               <div>
                 <select
-                  className="block mb-4 appearance-none w-full bg-white border rounded-sm border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
-                  name="mileage"
-                  onChange={(e: any) => dispatch(setModel(e.target.value))}
+                  className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+                  name="km"
+                  onChange={(e: any) => dispatch(setBodyShape(e.target.value))}
                 >
-                  <option value="option1">
-                    {t("autosComponent.bodyShape")}
-                  </option>
-                  {models[0]?.model.map((model: any, i: number) => (
-                    <option value={model} key={i}>
-                      {model}
+                  <option>{t("autosComponent.selectBodyShape")}</option>
+                  {bodyShape1.map((kms: any, i: number) => (
+                    <option value={kms.name} key={i}>
+                      {kms.name}
                     </option>
                   ))}
                 </select>
               </div>
             </>
           )}
-          {brands && (
+          {IncludeKm.includes(type1) && (
+            <>
+              <div className="border-b flex flex-row justify-between p-2 mb-4">
+                <h1 className="text-lg font-bold">
+                  {t("autosComponent.kilometers")}
+                </h1>
+              </div>
+              <div>
+                <select
+                  className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+                  name="km"
+                  onChange={(e: any) => dispatch(setKm(e.target.value))}
+                >
+                  <option>{t("autosComponent.selectKilometer")}</option>
+                  {kilometers.map((kms: any, i: number) => (
+                    <option value={kms.name} key={i}>
+                      {kms.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </>
+          )}
+           {type1 === "Motorcycles"  && (
+            <>
+              <div className="border-b flex flex-row justify-between p-2 mb-4">
+                <h1 className="text-lg font-bold">
+                  {t("autosComponent.kilometers")}
+                </h1>
+              </div>
+              <div>
+                <select
+                  className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+                  name="km"
+                  onChange={(e: any) => dispatch(setKm(e.target.value))}
+                >
+                  <option>{t("autosComponent.selectKilometer")}</option>
+                  {kilometers.map((kms: any, i: number) => (
+                    <option value={kms.name} key={i}>
+                      {kms.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </>
+          )}
+          {(type1 == "Motorcycles" || type1 === "Autos" || type1 === "Busses") && (
+            <>
+              <div className="border-b flex flex-row justify-between p-2 mb-4">
+                <h1 className="text-lg font-bold">
+                  {t("autosComponent.selectFuelType")}
+                </h1>
+              </div>
+              <div>
+                <select
+                  className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+                  name="bodyShape"
+                  onChange={(e: any) => dispatch(setFuelType(e.target.value))}
+                >
+                  <option value="option1">
+                    {t("autosComponent.selectFuelType")}
+                  </option>
+                  {fuelType1?.map((body: any, i: number) => (
+                    <option value={body.value} key={i}>
+                      {body.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </>
+          )}
+          {type1 === "Autos" && (
             <>
               <div className="border-b flex flex-row justify-between p-2 mb-4">
                 <h1 className="text-lg font-bold">
@@ -776,23 +893,23 @@ export default function AdvanceSearch({
               </div>
               <div>
                 <select
-                  className="block mb-4 appearance-none w-full bg-white border rounded-sm border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+                  className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
                   name="gearBox"
-                  onChange={(e: any) => dispatch(setModel(e.target.value))}
+                  onChange={(e: any) => dispatch(setGearBox(e.target.value))}
                 >
                   <option value="option1">
-                    {t("autosComponent.gearBox")}
+                    {t("autosComponent.selectGearBox")}
                   </option>
-                  {models[0]?.model.map((model: any, i: number) => (
-                    <option value={model} key={i}>
-                      {model}
+                  {gearBox1.map((gear: any, i: number) => (
+                    <option value={gear?.value} key={i}>
+                      {gear?.name}
                     </option>
                   ))}
                 </select>
               </div>
             </>
           )}
-          {brands && (
+          {brand && (
             <>
               <div className="border-b flex flex-row justify-between p-2 mb-4">
                 <h1 className="text-lg font-bold">
@@ -806,7 +923,6 @@ export default function AdvanceSearch({
                   placeholder={t("autosComponent.enterYear")}
                   onChange={(e: any) => dispatch(setYear(e.target.value))}
                 />
-                  
               </div>
             </>
           )}
@@ -922,75 +1038,94 @@ export default function AdvanceSearch({
                             </div>
                           </div>
                         </Link>
-                        
+
                         <div className="w-full col-span-2 p-2">
                           <div className="flex flex-row justify-between">
                             <Link href={`/product-details/${product?._id}`}>
                               <h1 className="text-gray-600 w-auto h-8 mt-2 ml-[-2px] text-[13px]">
                                 {product.category === "Autos" && (
                                   <div className="space-x-1">
-                                    <DirectionsCar style={{fontSize: "20px"}} />
+                                    <DirectionsCar
+                                      style={{ fontSize: "20px" }}
+                                    />
                                     <span>{t("categories.0")}</span>
                                   </div>
                                 )}
                                 {product.category === "Bikes" && (
                                   <div className="space-x-2">
-                                    <TwoWheeler style={{fontSize: "20px"}} />
+                                    <TwoWheeler style={{ fontSize: "20px" }} />
                                     <span>{t("categories.1")}</span>
                                   </div>
                                 )}
-                                {product.category === "Boats" &&
-                                <div className="space-x-2">
-                                  <DirectionsBoat style={{fontSize: "20px"}} />
-                                  <span>{t("categories.2")}</span>
-                                </div>
-                              }
-                                {product.category === "Busses" &&
-                                <div className="space-x-2">
-                                  <DirectionsBus style={{fontSize: "20px"}} />
-                                  <span>{t("categories.3")}</span>
-                                </div>
-                                }
-                                {product.category === "Construction Machines" &&
-                                <div className="space-x-2">
-                                  <PrecisionManufacturing style={{fontSize: "20px"}} />
-                                  <span>{t("categories.4")}</span>
-                                </div>
-                                  }
-                                {product.category === "Drones" &&
-                                <div className="space-x-2 flex flex-row">
-                                  <Image className="h-5 w-5" src="/assets/drone.png" alt="droneIcon" width={100} height={100} />
-                                  <span>{t("categories.5")}</span>
-                                </div>
-}
-                                {product.category === "Others" &&
-                                <div className="space-x-1">
-                                  <DataSaverOn style={{fontSize: "20px"}} />
-                                  <span>{t("categories.6")}</span>
-                                </div>}
-                                {product.category === "Parts" &&
-                                <div className="space-x-1">
-                                  <BuildCircle style={{fontSize: "20px"}} />
-                                  <span>{t("categories.7")}</span>
-                                </div>
-                                }
-                                {product.category === "Trailers" &&
-                                <div className="space-x-1">
-                                  <RvHookup style={{fontSize: "20px"}} />
-                                  <span>{t("categories.8")}</span>
-                                </div>}
-                                {product.category === "Trucks" &&
-                                <div className="space-x-1">
-                                  <FireTruck style={{fontSize: "20px"}} />
-                                  <span>{t("categories.9")}</span>
-                                </div>
-                                }
-                                {product.category === "Vans" &&
-                                <div className="space-x-1">
-                                  <AirportShuttle style={{fontSize: "20px"}} />
-                                  <span>{t("categories.10")}</span>
-                                </div>
-                                  }
+                                {product.category === "Boats" && (
+                                  <div className="space-x-2">
+                                    <DirectionsBoat
+                                      style={{ fontSize: "20px" }}
+                                    />
+                                    <span>{t("categories.2")}</span>
+                                  </div>
+                                )}
+                                {product.category === "Busses" && (
+                                  <div className="space-x-2">
+                                    <DirectionsBus
+                                      style={{ fontSize: "20px" }}
+                                    />
+                                    <span>{t("categories.3")}</span>
+                                  </div>
+                                )}
+                                {product.category ===
+                                  "Construction Machines" && (
+                                  <div className="space-x-2">
+                                    <PrecisionManufacturing
+                                      style={{ fontSize: "20px" }}
+                                    />
+                                    <span>{t("categories.4")}</span>
+                                  </div>
+                                )}
+                                {product.category === "Drones" && (
+                                  <div className="space-x-2 flex flex-row">
+                                    <Image
+                                      className="h-5 w-5"
+                                      src="/assets/drone.png"
+                                      alt="droneIcon"
+                                      width={100}
+                                      height={100}
+                                    />
+                                    <span>{t("categories.5")}</span>
+                                  </div>
+                                )}
+                                {product.category === "Others" && (
+                                  <div className="space-x-1">
+                                    <DataSaverOn style={{ fontSize: "20px" }} />
+                                    <span>{t("categories.6")}</span>
+                                  </div>
+                                )}
+                                {product.category === "Parts" && (
+                                  <div className="space-x-1">
+                                    <BuildCircle style={{ fontSize: "20px" }} />
+                                    <span>{t("categories.7")}</span>
+                                  </div>
+                                )}
+                                {product.category === "Trailers" && (
+                                  <div className="space-x-1">
+                                    <RvHookup style={{ fontSize: "20px" }} />
+                                    <span>{t("categories.8")}</span>
+                                  </div>
+                                )}
+                                {product.category === "Trucks" && (
+                                  <div className="space-x-1">
+                                    <FireTruck style={{ fontSize: "20px" }} />
+                                    <span>{t("categories.9")}</span>
+                                  </div>
+                                )}
+                                {product.category === "Vans" && (
+                                  <div className="space-x-1">
+                                    <AirportShuttle
+                                      style={{ fontSize: "20px" }}
+                                    />
+                                    <span>{t("categories.10")}</span>
+                                  </div>
+                                )}
                               </h1>
                               <h2 className=" text-[16px] line-clamp-1 text-black font-bold cursor-pointer hover:text-[#FF0000]">
                                 {product?.title}
@@ -1012,7 +1147,7 @@ export default function AdvanceSearch({
                                 style={{ fontSize: "20px" }}
                               />
                             </div>
-                          </div> 
+                          </div>
                           <div className="mt-3 space-y-1">
                             {product?.price ? (
                               <>
@@ -1036,7 +1171,7 @@ export default function AdvanceSearch({
                               {showDate(product?.createdAt) < 2 ? (
                                 <>
                                   <div className="bg-green-600 text-white rounded-full px-3 text-center w-16">
-                                    {t('condition.new')}
+                                    {t("condition.new")}
                                   </div>
                                 </>
                               ) : (
@@ -1079,40 +1214,40 @@ export default function AdvanceSearch({
                   </div>
                 )}
                 {pagination().length > 1 && (
-  
-               <div className={`flex flex-row justify-between bg-white h-12 border border-[#e52320] rounded-sm px-5 py-2 mt-2`}>
-    <>
-      <button className={btnStyle} onClick={previousHandle}>
-        <KeyboardDoubleArrowLeft className={logoStyle} />
-        <span className={spanStyle}></span>
-      </button>
-      <div className="flex flex-row space-x-4">
-        {pagination().map((li: any, i: number) => (
-          <button
-            className={`${
-              page === li && "bg-[#e52320] w-6 md:w-8 text-white text-[12px] border-none rounded-sm"
-            } pt-[2px] text-[12px] md:text-lg`}
-            key={i}
-            onClick={() => {
-              dispatch(setPage(li));
-              scrollToTop(); // Call the scrollToTop function here
-            }}
-          >
-            {li}
-          </button>
-        ))}
-      </div>
-      <button className={btnStyle} onClick={nextHandle}>
-        <span className={spanStyle}>
-
-        </span>
-        <KeyboardDoubleArrowRight className={logoStyle} />
-      </button>
-    </>
- 
-</div>
- )}
-</div>
+                  <div
+                    className={`flex flex-row justify-between bg-white h-12 border border-[#e52320] rounded-sm px-5 py-2 mt-2`}
+                  >
+                    <>
+                      <button className={btnStyle} onClick={previousHandle}>
+                        <KeyboardDoubleArrowLeft className={logoStyle} />
+                        <span className={spanStyle}></span>
+                      </button>
+                      <div className="flex flex-row space-x-4">
+                        {pagination().map((li: any, i: number) => (
+                          <button
+                            className={`${
+                              page === li
+                                ? "bg-[#e52320] w-6 md:w-8 text-white text-[16px] border-none rounded-sm"
+                                : "pt-[2px] text-[12px] md:text-lg hover:bg-gray-200 transition duration-150 ease-linear p-2"
+                            }`}
+                            key={i}
+                            onClick={() => {
+                              dispatch(setPage(li));
+                              scrollToTop(); // Call the scrollToTop function here
+                            }}
+                          >
+                            {li}
+                          </button>
+                        ))}
+                      </div>
+                      <button className={btnStyle} onClick={nextHandle}>
+                        <span className={spanStyle}></span>
+                        <KeyboardDoubleArrowRight className={logoStyle} />
+                      </button>
+                    </>
+                  </div>
+                )}
+              </div>
             ) : !productData ? (
               <div className="flex justify-center w-full h-full">
                 <Image
