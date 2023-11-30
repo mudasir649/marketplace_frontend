@@ -129,7 +129,6 @@ function ProductDetails() {
   
 
 
-  const translatedInteriorColor = interiorColorTranslations[interiorColor];
   
   
 
@@ -322,8 +321,8 @@ function ProductDetails() {
                       {!product?.gearBox ? '' : <h1><span className="font-bold">{t("product.Gearbox")}: </span> {t(`gearBox.${product.gearBox}`)}</h1> }
                       {!product?.axeltype ? '' : <h1><span className="font-bold">Axel Type: </span>{product?.axeltype}</h1> }
                       {!product?.engineCapacity ? '' : <h1><span className="font-bold">{t("product.EngineCapacity")}: </span> {product?.engineCapacity}</h1> }
-                      {!product?.interiorColor ? '' : <h1><span className="font-bold">{t("product.InteriorColor")}: </span> {translatedInteriorColor}</h1> }
-                      {!product?.exteriorColor ? '' : <h1><span className="font-bold">{t("product.ExteriorColor")}: </span> {translatedInteriorColor}</h1> }
+                      {!product?.interiorColor ? '' : <h1><span className="font-bold">{t("product.InteriorColor")}: </span>{t(`interiorColor.${product.interiorColor}`)}</h1> }
+                      {!product?.exteriorColor ? '' : <h1><span className="font-bold">{t("product.ExteriorColor")}: </span> {t(`interiorColor.${product.exteriorColor}`)}</h1> }
                     </ul>
                   </div>
                 </div>

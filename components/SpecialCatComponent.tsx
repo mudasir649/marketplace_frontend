@@ -424,24 +424,6 @@ export default function SpecialCatComponent({ type }: any) {
                   </div>
                 </div>
               )}
-              {data?.brand && (
-                <div className={style.divStyle}>
-                  <h1 className={style.h1Style}>
-                    {t("autosComponent.model")}{" "}
-                    <span className="text-[#FF0000]">*</span>
-                  </h1>
-                  <div className="flex flex-col w-full">
-                    <input
-                      type="text"
-                      className={style.inputStyle}
-                      name="model"
-                      value={data.model}
-                      onChange={(e: any) => handleInput(e)}
-                      required
-                    />
-                  </div>
-                </div>
-              )}
               {type == "Others" && (
                 <div className={style.divStyle}>
                   <h1 className={style.h1Style}>
@@ -472,25 +454,6 @@ export default function SpecialCatComponent({ type }: any) {
                       onChange={(e: any) => handleInput(e)}
                     />
                   </div>
-                </div>
-              )}
-              {data?.brand && (
-                <div className={style.divStyle}>
-                  <h1 className={style.h1Style}>
-                    {t("autosComponent.kilometers")}
-                  </h1>
-                  <select
-                    className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
-                    name="km"
-                    onChange={(e: any) => handleInput(e)}
-                  >
-                    <option>{t("autosComponent.selectKilometer")}</option>
-                    {kilometers.map((kms: any, i: number) => (
-                      <option value={kms.name} key={i}>
-                        {kms.name}
-                      </option>
-                    ))}
-                  </select>
                 </div>
               )}
               {type == "Others" && (

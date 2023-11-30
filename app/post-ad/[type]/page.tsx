@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import AutosComponent from "@/components/AutosComponent";
 import { useSelector } from "react-redux";
@@ -15,6 +15,11 @@ export default function Addtype() {
   const userData =
     userInfo === null ? userInfo : userInfo?.data?.userDetails?._id;
   const router = useRouter();
+
+  const params = useSearchParams();
+
+  console.log(params);
+  
 
   const pathname = usePathname();
 

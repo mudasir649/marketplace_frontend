@@ -11,7 +11,7 @@ export const subList = [
     name: "E-bikes",
   },
   {
-    name: "Motorcycle",
+    name: "Motorcycles",
   },
 ];
 
@@ -94,7 +94,7 @@ export const howContactList = [
   }
 ];
 
-export const fuelType = [
+export const fuelType1 = [
   {
     name: "Gasoline",
     value: "Gasoline",
@@ -266,7 +266,7 @@ export const BikeFuelType = [
   },
 ];
 
-export const bodyShape = [
+export const bodyShape1 = [
   {
     name: "Convertible",
     value: "Convertible",
@@ -305,7 +305,7 @@ export const bodyShape = [
   },
 ];
 
-export const gearBox = [
+export const gearBox1 = [
   {
     name: "Automatic",
     value: "Automatic",
@@ -616,4 +616,46 @@ export const routeName = [
   "Trailers%20Parts",
   "Trucks%20Parts",
   "Vans%20Parts",
+]
+
+export const brandInclude = [
+  "Autos",
+  "Motorcycles",
+  "Bicycles",
+  "E-bikes",
+  "E-scooter",
+  "Vans",
+  "Trucks",
+  "Trailers",
+  "Drones",
+  "Boats",
+  "Busses",
+  "Construction Machines",
+];
+
+
+export const IncludeKm = [
+  "Autos",
+  "Motorcycles",
+  "Bicycles",
+  "E-bikes",
+  "E-scooter",
+  "Vans",
+  "Trucks",
+  "Trailers",
+  "Drones",
+  "Busses",
+  "Construction Machines",
+];
+
+
+
+
+
+export const checkSubCategoryFilter = [
+  "Busses",
+  "Construction Machines",
+  "Trailers",
+  "Trucks",
+  "Vans",
 ]

@@ -329,6 +329,16 @@
       },
 
       "interiorColor": {
+        
+        "Beige": "Beige",
+        "Black": "Black",
+        "Grey": "Grey",
+        "White": "White",
+        "Brown": "Brown",
+        "Red": "Red",
+        "Yellow": "Yellow",
+        "Orange": "Orange",
+        "Other": "Other",
         "name1": "Beige",
         "name2": "Black",
         "name3": "Grey",

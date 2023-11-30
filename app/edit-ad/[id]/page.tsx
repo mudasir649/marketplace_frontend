@@ -12,7 +12,7 @@ import { useParams, useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import {
-  fuelType,
+  fuelType1,
   kilometers,
   priceList,
 } from "@/utils/dataVariables";
@@ -892,7 +892,7 @@ function EditComponent() {
                     <option>
                       {productData?.fuelType}
                     </option>
-                    {fuelType.map((fuel: any, i: number) => (
+                    {fuelType1.map((fuel: any, i: number) => (
                       <option value={fuel?.value} key={i}>
                         {fuel?.name}
                       </option>
