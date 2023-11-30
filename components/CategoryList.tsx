@@ -138,8 +138,7 @@ export default function CategoryList({ setCategory, setExpand }: any) {
         {list?.map((lst: any, i: number) => (
           <><li key={i} className={`${lst?.name === 'Bikes' ? 'dropdown' : ''} 
           border-b border-gray-200 whitespace-nowrap flex flex-row space-x-2 hover:bg-gray-200 p-[1px]`}
-          onMouseEnter={() => setIsBikesHovered(true)}
-          onMouseLeave={() => setIsBikesHovered(false)}
+          onClick={() =>handleClick(lst?.name)}
           >
             <Image
               className="h-6 w-6"
@@ -148,22 +147,6 @@ export default function CategoryList({ setCategory, setExpand }: any) {
               width={100}
               height={100} />
             <h1 className="mt-[-1px]">{lst.name}</h1>
-            {lst?.name && isBikesHovered && 
-            <div className="ml-[220px] mt-[-30px] bg-red-500 w-auto h-auto p-2 border-none rounded-sm dropdow-menu">
-              <ul className="block">
-                {lst?.name?.subCategories?.map((list: any, i: number) => (
-                  <li
-                    className={categoryliStyle}
-                    onClick={() => handleClick(list.name)}
-                    key={i}
-                  >
-                    <h1>{list?.image}</h1>
-                    <h1 className={h1Style}>{list.name}</h1>
-                  </li>
-                ))}
-              </ul>
-            </div>
-}
           </li></>
         ))}
         {/* <li onClick={() => handleClick("Autos")} className={liStyle}>

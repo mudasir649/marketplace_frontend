@@ -77,6 +77,7 @@ export default function VehicleSubComponent({ type }: any) {
   const [subCategory, setSubCategory] = useState<any>([]);
   const [googleLocation, setGoogleLocation] = useState<any>(null);
   const [showLocation, setShowLocation] = useState<Boolean>(false);
+  const [formData, setFormData] = useState<any>();
   let router = useRouter();
   const id = userData;
 
@@ -148,6 +149,13 @@ export default function VehicleSubComponent({ type }: any) {
       );
       setSubCategory(res.data?.data);
     };
+    const fetchAutosData = async () => {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/get-postAd-data?type=${type}`
+      );
+      setFormData(res.data?.data);
+    };
+    fetchAutosData();
     fetchCategory();
   }, [type, data.category]);
 
@@ -321,6 +329,8 @@ export default function VehicleSubComponent({ type }: any) {
     },
   ];
 
+  console.log(formData)
+
   return (
     <>
       <div className="container mx-auto mt-10">
@@ -439,7 +449,7 @@ export default function VehicleSubComponent({ type }: any) {
                 </h1>
                 <div className="flex flex-col w-full">
                   <ul className="space-y-1">
-                    {conditionList?.map((list: any, i: number) => (
+                    {formData?.conditionList?.map((list: any, i: number) => (
                       <li key={i}>
                         <input
                           type="radio"
@@ -552,7 +562,7 @@ export default function VehicleSubComponent({ type }: any) {
                     <option value="option1">
                       {t("autosComponent.selectFuelType")}
                     </option>
-                    {fuelType?.map((fuel: any, i: number) => (
+                    {formData?.fuelType?.map((fuel: any, i: number) => (
                       <option value={fuel.value} key={i}>
                         {fuel.name}
                       </option>
@@ -589,7 +599,7 @@ export default function VehicleSubComponent({ type }: any) {
                     onChange={(e: any) => handleInput(e)}
                   >
                     <option>{t("autosComponent.selectKilometer")}</option>
-                    {kilometers.map((kms: any, i: number) => (
+                    {formData?.kilometers.map((kms: any, i: number) => (
                       <option value={kms.name} key={i}>
                         {kms.name}
                       </option>
@@ -611,7 +621,7 @@ export default function VehicleSubComponent({ type }: any) {
                     <option value="option1">
                       {t("autosComponent.selectAxleCount")}
                     </option>
-                    {axelType?.map((axel: any, i: number) => (
+                    {formData?.axelType?.map((axel: any, i: number) => (
                       <option value={axel.name} key={i}>
                         {axel.name}
                       </option>
