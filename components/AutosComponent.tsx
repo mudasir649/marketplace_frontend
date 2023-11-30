@@ -156,6 +156,7 @@ export default function AutosComponent() {
   const [brands, setBrands] = useState<any>([]);
   const [googleLocation, setGoogleLocation] = useState<any>(null);
   const [showLocation, setShowLocation] = useState<Boolean>(false);
+  const [formData, setFormData] = useState<any>();
   let router = useRouter();
   const id = userData;
   const exteriorColor = [
@@ -347,6 +348,13 @@ export default function AutosComponent() {
       );
       setBrands(res.data?.data);
     };
+    const fetchAutosData = async () => {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/get-postAd-data?type=Autos`
+      );
+      setFormData(res.data?.data);
+    };
+    fetchAutosData();
     fetchBrand();
   }, []);
 
@@ -476,6 +484,9 @@ export default function AutosComponent() {
       return;
     }
   };
+
+  console.log(formData);
+  
 
   return (
     <>

@@ -243,7 +243,7 @@ export default function BikeSubComponent({ type }: any) {
         ? "Motorcycle"
         : type == "Bicycles"
         ? "Bicycles"
-        : type == "E-scooter"
+        : type == "E-scooters"
         ? "E-scooter"
         : type == "E-bikes"
         ? "E-bikes"
@@ -443,11 +443,11 @@ export default function BikeSubComponent({ type }: any) {
               <h1>
                 {type === "Bicycles"
                   ? t("allCategories.Bicycles")
-                  : type === "E-scooter"
+                  : type === "E-scooters"
                   ? t("allCategories.E-scooter")
                   : type === "E-bikes"
                   ? t("allCategories.E-bikes")
-                  : type === "Motorcycle"
+                  : type === "Motorcycles"
                   ? t("allCategories.Motorcycle")
                   : ""}
               </h1>
