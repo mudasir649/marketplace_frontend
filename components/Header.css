@@ -1,11 +1,12 @@
 :root {
   --primary-bg: #242526;
-  --secondary-bg: #fff;
+  --secondary-bg: white;
   --primary-text-color: #555;
   --secondary-text-color: #cecece;
   --border-radius: 8px;
   --speed: 500ms;
 }
+
 
 .dropdown-menu.active{
   opacity: 1;
@@ -22,7 +23,7 @@
 }
 
 
-@media only screen and (max-width: 1024px) {
+/* @media only screen and (max-width: 1024px) {
     .menu{
       width: 100%;
       height: 100%;
@@ -33,4 +34,4 @@
       z-index: 100;
       display: none;
     }
-}
+} */

@@ -1,32 +1,209 @@
-import React from "react";
-import KeywordInputField from "./KeywordInputField";
-import { Search } from "@mui/icons-material"
+"use client";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import {
+  Category,
+  DirectionsCar,
+  LocationOn,
+  Search,
+  SearchOff,
+} from "@mui/icons-material";
 import useWindowDimensions from "@/utils/useWindowDimensions";
-
+import "./Search.css";
+import axios from "axios";
+import CategoryList from "./CategoryList";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setFilterData,
+  setProductData,
+  setProductsCount,
+  setReduxAddress,
+  setReduxTitle,
+} from "@/store/appSlice";
+import { usePathname, useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 export default function SearchPage() {
-
   const { width, height } = useWindowDimensions();
+
+  const pathname = usePathname();
 
   const newWidth = width || 0;
   const newHeight = height || 0;
+  const { t } = useTranslation();
+  const [googleLocation, setGoogleLocation] = useState<any>();
+  const [showLocation, setShowLocation] = useState<Boolean>(false);
+  const [showTitle, setShowTitle] = useState<Boolean>(false);
+  const [address, setAddress] = useState<string>("");
+  const [title, setTitle] = useState<string>("");
+  const [titleData, setTitleData] = useState<any>();
+  const dropdownRef = useRef<HTMLFormElement | null>(null);
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const { page, type } = useSelector((state: any) => state.app);
+
+  const checkPlace = async (e: any) => {
+    setShowLocation(true);
+    const res = await axios.get(
+      `${process.env.NEXT_PUBLIC_BACKEND_URI}/googleRoutes?address=${e.target.value}`
+    );
+    let predictions = res.data?.data.predictions;
+    setGoogleLocation(predictions);
+  };
+
+  const saveLocation = (value: any) => {
+    setAddress(value);
+    setShowLocation(false);
+  };
+
+  const handleTitle = async (e: any) => {
+    setShowTitle(true);
+    const res = await axios.get(
+      `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/search-title?searchTerm=${e.target.value}`
+    );
+    setTitleData(res.data?.data);
+  };
+
+  const saveTitle = async (value: any) => {
+    setTitle(value);
+    setShowTitle(false);
+  };
+
+  const searchFilter = async (e: any) => {
+    e.preventDefault();
+    dispatch(setReduxTitle(title));
+    dispatch(setReduxAddress(address));
+    router.push("/advance-search/search");
+  };
+
+  const handleOutsideClick = useCallback((event: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
+      setShowLocation(false);
+      setShowTitle(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, [handleOutsideClick]);
 
   return (
-    <div className={`px-[30px] py-6  
-      max-w-[1170px] mx-10 lg:mx-auto grid grid-cols-1 md:grid-cols-2 lg:flex 
-      lg:flex-row lg:justify-between gap-4 
-      lg:gap-x-3 lg:mt-10
-      lg:shadow-1 bg-white 
-      mb-10
-      lg:bg-white 
-      rounded-lg
-  `}>
-      <KeywordInputField logo='component1' text1='Location (any)' text2="Enter your location" />
-      <KeywordInputField logo='component2' text1='' text2="Select category" />
-      <KeywordInputField logo='component3' text2="Enter keyboard here" />
-      <button className="bg-[#e52320] hover:bg-red-700 
-        transition w-auto h-10 lg:w-60 lg:h-16 lg:px-2 lg:py-5  lg:max-w-[162px] rounded-lg">
-        <Search className="text-white text-3xl" />
-      </button>
+    <div className="">
+      {/* <form
+        method="POST"
+        className={`grid grid-cols-1 mt-[-20px] md:mt-10 md:grid-cols-3 lg:grid-cols-3 h-auto p-5 ml-0 md:ml-10 border-none rounded-md screen-1`}
+        ref={dropdownRef}
+      > */}
+      <form
+        method="POST"
+        className={`flex flex-row w-full h-auto p-5 ml-0 md:ml-10 border-none rounded-md screen-1`}
+        ref={dropdownRef}
+      >
+        <div className="w-[900px]">
+        <div className="flex flex-row p-2 border-t-2 border-b-2 border-l-2 border-[#FF0000] rounded-lg h-[40px] bg-white w-full">
+            <Search className="text-gray-800" />
+            <input
+              type="text"
+              placeholder={t("placeholderKeyword")}
+              name="name"
+              className="focus:outline-none w-full pl-2 overflow-hidden"
+              value={title}
+              onChange={(e: any) => setTitle(e.target.value)}
+              onKeyUp={(e: any) => handleTitle(e)}
+            />
+          </div>
+        </div>
+        <div className="">
+        <button
+          className="flex flex-row justify-center 
+            cursor-pointer w-full lg:w-20 p-1 border-none
+              border-b-[#FF0000] rounded-tr-md rounded-br-md bg-[#FF0000] hover:bg-red-700 h-[40px] ml-[-8px]"
+          onClick={(e) => searchFilter(e)}
+        >
+          <Search fontSize="large" className="text-white" />
+        </button>
+        </div>
+        {/* <div className="flex flex-col w-full space-y-1">
+          <div className="flex flex-row p-4 border-2 border-[#FF0000] rounded-lg h-[60px] bg-white">
+            <LocationOn className="text-gray-800" />
+            <input
+              type="text"
+              placeholder={t("placeholderAddress")}
+              name="address"
+              value={address}
+              onChange={(e: any) => setAddress(e.target.value)}
+              className="focus:outline-none pl-2 w-96 overflow-hidden bg-transparent"
+              onKeyUp={(e: any) => checkPlace(e)}
+            />
+          </div>
+          {showLocation && address && (
+            <div className={`flex flex-row p-2 border-2 border-[#FF0000] h-52 rounded-lg lg:p-2 bg-white overflow-y-scroll ${newWidth <= 1024 ? '' : 'absolute top-[202px] z-20 w-[320px]'}`}>
+              {showLocation ? (
+                <ul className="w-full">
+                  {googleLocation?.map((location: any, i: number) => (
+                    <li
+                      className="border-b"
+                      key={i}
+                      onClick={() => saveLocation(location?.description)}
+                    >
+                      {location.description}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                ""
+              )}
+            </div>
+          )}
+        </div> */}
+        {/* <div className="flex flex-col w-full space-y-1 col-span-2">
+          <div className="flex flex-row p-2 border-t-2 border-b-2 border-l-2 border-[#FF0000] rounded-lg h-[40px] bg-white w-[900px]">
+            <Search className="text-gray-800" />
+            <input
+              type="text"
+              placeholder={t("placeholderKeyword")}
+              name="name"
+              className="focus:outline-none w-full pl-2 overflow-hidden"
+              value={title}
+              onChange={(e: any) => setTitle(e.target.value)}
+              onKeyUp={(e: any) => handleTitle(e)}
+            />
+          </div>
+          {showTitle && (
+            <div className="w-full flex flex-col  border-2 border-[#FF0000] rounded-md z-20 bg-white p-2 mt-3">
+              {showTitle ? (
+                <ul className="h-52 overflow-y-scroll">
+                  {titleData?.map((title: any, i: number) => (
+                    <li
+                      className="border-b"
+                      key={i}
+                      onClick={() => saveTitle(title?.title)}
+                    >
+                      {title?.title}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                ""
+              )}
+            </div>
+          )}
+        </div> */}
+        {/* <button
+          className="flex flex-row justify-center 
+            cursor-pointer w-full lg:w-20 p-1 border-none
+              border-b-[#FF0000] rounded-tr-md rounded-br-md bg-[#FF0000] h-[40px]"
+          onClick={(e) => searchFilter(e)}
+        >
+          <Search fontSize="large" className="text-white" />
+        </button> */}
+      </form>
     </div>
   );
 }

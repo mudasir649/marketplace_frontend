@@ -1,30 +1,110 @@
-import { DirectionsCar, Handyman } from '@mui/icons-material';
-import React from 'react'
+import Image from "next/image";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
+import useWindowDimensions from "@/utils/useWindowDimensions";
+import { useRouter } from "next/navigation";
 
 export default function SellRepairComponent() {
+  const { t } = useTranslation();
+  const bothDivsStyle = "border rounded-md lg:w-[450px] hover:shadow-md hover:shadow-[#e52320] w-auto h-64 text-center p-5 space-y-3";
+  const h1Style = "cursor-pointer text-2xl font-semibold hover:text-[#FF0000]";
+  const btnStyle = "h-10 w-40 bg-[#FF0000] hover:bg-red-700 text-white p-2";
 
-    const bothDivsStyle = 'bg-white rounded-md lg:w-[450px] hover:shadow-md hover:shadow-[#e52320] w-auto h-64 text-center p-5 space-y-3';
-    const h1Style = 'cursor-pointer text-2xl font-semibold hover:text-[#e52320]';
-    const logoStyle = 'text-7xl border rounded-full p-1 hover:bg-[#e52320] hover:text-white hover:border-[#e52320]';
-    const btnStyle = 'h-10 w-40 bg-[#e52320] text-white p-2'
+  const dispatch = useDispatch();
 
+  const router = useRouter();
 
-    return (
-        <div className='container mx-auto mt-48 lg:mt-0'>
-            <div className='flex flex-col space-y-5 md:space-y-0 md:flex-row lg:justify-center lg:space-x-10'>
-                <div className={bothDivsStyle}>
-                    <DirectionsCar className={logoStyle} />
-                    <h1 className={h1Style}>Do you want to sell</h1>
-                    <h1 className='text-md'>Get a free quote for your vehicle</h1>
-                    <button className={btnStyle}>Click here</button>
+  return (
+    <div className="-mb-4">
+      <div className="container mx-auto flex justify-center p-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+          <div className={bothDivsStyle}>
+            <div className="flex justify-center">
+              <Image
+                src="/assets/carIcon.png"
+                alt="car logo"
+                height={80}
+                width={80}
+                className="cursor-pointer"
+              />
+            </div>
+            <h1 className={`${h1Style} line-clamp-1`}>
+              {t("sellRepairComponent.sellTitle")}
+            </h1>
+            <h1 className="text-md text-sm">
+              {t("sellRepairComponent.sellSubtitle")}
+            </h1>
+            <button
+              className={btnStyle}
+              onClick={() => router.push('/sell-now')}
+            >
+              {t("sellRepairComponent.sellButton")}
+            </button>
+          </div>
+          <div className={bothDivsStyle}>
+            <div className="flex justify-center">
+              <Image
+                src="/assets/repairIcon.png"
+                alt="car logo"
+                height={80}
+                width={80}
+                className="cursor-pointer"
+              />
+            </div>
+            <h1 className={`${h1Style} line-clamp-1`}>
+              {t("sellRepairComponent.repairTitle")}
+            </h1>
+            <h1 className="text-md text-sm">
+              {t("sellRepairComponent.repairSubtitle")}
+            </h1>
+            <button
+              className={btnStyle}
+              onClick={() => router.push('/repair-now')}
+            >
+              {t("sellRepairComponent.repairButton")}
+            </button>
+          </div>
+        </div>
+      </div>
+      {/* <div className="container mx-auto flex p-5">
+        <div className="flex w-full">
+            {newWidth <= 1024 ? '' :
+            <div className="w-[500px]">
+                <Image 
+            className="h-auto w-auto"
+            src='/assets/banner12.jpeg'
+            alt="banner"
+            width={300}
+            height={300}
+            />
+            </div>
+        }
+            <div className="w-full flex flex-col md:flex-row md:py-14 ml-5">
+                <div className="w-full">
+                    <h1 className="capitalize text-4xl font-bold">Download Our <span className="text-[#FF0000]">eidcarosse</span> App</h1>
+                    <p className="text-xl mt-3">Buy, sell and find just about anything using the app on your mobile.</p>
                 </div>
-                <div className={bothDivsStyle}>
-                    <Handyman className={logoStyle} />
-                    <h1 className={h1Style}>Request a repair quote</h1>
-                    <h1 className='text-md'>Get a location-based cost estimate to repair your car</h1>
-                    <button className={btnStyle}>Click here</button>
+                <div className="w-full p-0 pt-4 md:p-7">
+                    <h1 className="capitalize text-lg font-semibold">Get your app today</h1>
+                    <div className="flex space-x-5 mt-4">
+                        <Image 
+                        src='/assets/appstore.jpeg'
+                        alt="appstore"
+                        width={150}
+                        height={150}
+                        />
+                        <Image 
+                        src='/assets/playstore.png'
+                        alt="appstore"
+                        width={150}
+                        height={150}
+                        />
+                    </div>
                 </div>
             </div>
         </div>
-    )
+      </div> */}
+    </div>
+  );
 }

@@ -1,0 +1,24 @@
+.slide-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: transform 0.3s ease; /* Add a transition effect to smooth the slide */
+  }
+  
+  .prev-button,
+  .next-button {
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease; /* Apply the same transition to the buttons */
+    color: #E5241F;
+  }
+  
+  .prev-button:hover,
+  .next-button:hover {
+    transform: scale(1.1); /* Add a slight scale effect on hover for smoothness */
+  }
+  
+  .image-slider-container {
+    display: flex;
+  }
+  

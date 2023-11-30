@@ -1,24 +1,27 @@
-import './globals.css'
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import "./globals.css";
+import "react-toastify/dist/ReactToastify.css";
+import { Inter } from "next/font/google";
+import Home from "@/components/Home";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: 'Eidcarosse',
-  description: 'Welcome to Eidcarosse - No.1 Autos Buy and Sell Marketplace. Explore a diverse range of autos, connect with Swiss buyers and sellers',
-}
-
-
+export const metadata = {
+  title: "Eidcarosse",
+  description:
+    "Willkommen bei Eidcarosse - dem Marktplatz Nr. 1 für den Kauf und Verkauf von Autos. Entdecken Sie eine vielfältige Auswahl an Fahrzeugen und treten Sie mit Schweizer Käufern und Verkäufern in Kontakt.",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className}`}>{children}</body>
+      <body className={`${inter.className}`}>
+        {/* eslint-disable-next-line react/no-children-prop */}
+        <Home>{children}</Home>
+      </body>
     </html>
-  )
+  );
 }

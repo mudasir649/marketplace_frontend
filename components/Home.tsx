@@ -1,23 +1,32 @@
 'use client';
 import React from 'react'
-import Header from './Header'
-import Banner from './Banner'
-import Footer from './Footer'
-import useWindowDimensions from '@/utils/useWindowDimensions';
+import I18nProvider from './i18Provider';
+import { Provider } from 'react-redux';
+import store from '@/store/store';
+import AppComponent from './AppComponent';
+import { ToastContainer } from 'react-toastify';
+import dynamic from 'next/dynamic';
+import Header2 from './Header2';
+import Banner from './Banner';
+import Footer from './Footer';
+import { usePathname } from 'next/navigation';
+import { routeName } from '@/utils/dataVariables';
 
-export default function Home({ children }: any) {
-  const { width, height } = useWindowDimensions();
 
-  const newWidth = width || 0;
-  const newHeight = height || 0;
+function Home({ children }: any) {
+  const pathname = usePathname();  
+  const checkType = routeName.includes(pathname);
+
   return (
-    <div className=''>
-      <div className={`bg-gradient-to-t from-red-400 to-red-700 border-none rounded-br-[70px] rounded-bl-[70px] md:rounded-br-[120px] md:rounded-bl-[120px] `}>
-        <Header />
-        <Banner />
-      </div>
+    <Provider store={store}>
+          <ToastContainer autoClose={5000} />
+      <I18nProvider>
+      <Header2 />
+      {!checkType ? <Banner /> : ''}
       {children}
       <Footer />
-    </div>
+      </I18nProvider>
+    </Provider>
   )
 }
+export default dynamic(() => Promise.resolve(Home), { ssr: false });

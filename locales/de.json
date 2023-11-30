@@ -1,0 +1,727 @@
+{
+  "signup": {
+    "createAccount": "Registrieren",
+    "firstNamePlaceholder": " Vornamen ein",
+    "lastNamePlaceholder": " Nachnamen ein",
+    "phoneNumberPlaceholder": " Telefonnummer ein",
+    "usernamePlaceholder": " Benutzernamen ein",
+    "emailPlaceholder": " E-Mail-Adresse ein",
+    "passwordPlaceholder": " Passwort ein",
+    "registerButton": "Registrieren",
+    "or": "oder",
+    "continueWithGoogle": "Mit Google fortfahren",
+    "alreadyHaveAccount": "Haben Sie bereits ein Konto?",
+    "login": "Anmelden"
+  } , 
+  "login": {
+    "login": "Anmelden",
+    "continueWithGoogle": "Mit Google anmelden",
+    "or": "oder",
+    "yourEmailAddress": " E-Mail-Adresse",
+    "yourPassword": " Passwort",
+    "loginButton": "Anmelden",
+    "notAMember": "Noch kein Mitglied?",
+    "createAccount": "Registrieren"
+  } , 
+  
+  "categorySelection": {
+    "category": "Kategorie",
+    "allCategories": "Alle Kategorien",
+    "condition": "Zustand",
+    "brand": "Marke",
+    "priceRange": "Preis",
+    "applyFilter": "Filter anwenden",
+    "clearFilter": "Filter zurücksetzen",
+    "results": "Resultate",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "noRecordFound": "Keine Aufzeichnung gefunden...",
+    "maxPrice": "Höchstpreis",
+    "minPrice": "Mindestpreis"
+  } ,
+
+  "categories": [
+    "Autos",
+    "Motorräder",
+    "Boote",
+    "Busse",
+    "Baumaschinen",
+    "Drohnen",
+    "Andere",
+    "Ersatzteile",
+    "Anhänger",
+    "Lkw",
+    "Nutzfahrzeuge"
+  ], 
+
+  "categoriesParts": [
+    "Autos",
+    "Fahrrader",
+    "Boote",
+    "Busse",
+    "Baumaschinen-Ersatzteile",
+    "Drohnen",
+    "Andere Ersatzteile",
+    "Anhänger",
+    "Lkw",
+    "Nutzfahrzeuge"
+  ],
+  "chat": {
+    "inbox": "Posteingang",
+    "noChatSelected": "Kein Chat ausgewählt"
+  }  ,
+
+  "allCategories": {
+    "Autos": "Autos",
+    "Bicycles": "Motorräder",
+    "E-scooter": "E-Scooter",
+    "E-bikes": "E-Bikes",
+    "Motorcycle": "Motorräder",
+    "Boats": "Boote",
+    "Busses": "Busse",
+    "Construction Machines": "Baumaschinen",
+    "Drones": "Drohnen",
+    "Others": "Andere",
+    "Trailers": "Anhänger",
+    "Vans": "Nutzfahrzeuge",
+    "Trucks": "Lkw",
+    "Bikes Parts": "Fahrradersatzteile",
+    "Autos Parts": "Autoersatzteile",
+    "Busses Parts": "Busserersatzteile",
+    "Boat Parts": "Bootersatzteile",
+    "Drones Parts": "Drohnenersatzteile",
+    "Construction Machines Parts": "Baumaschinenersatzteile",
+    "Trailers Parts": "Anhängerersatzteile",
+    "Other Parts": "Andere Ersatzteile",
+    "Vans Parts": "Lieferwagenersatzteile",
+    "Trucks Parts": "Lastwagenersatzteile"
+  } ,
+  "autosComponent": {    
+    "changeCategory": "Kategorie ändern",
+    "heading1": "Kategorie auswählen",
+    "axleCount": "Achszahl",
+    "productInfo": " Informationen zum Produkt",
+    "selectAxleCount": "Achszahl auswählen",
+    "title": "Titel",
+    "color": "Farbe",
+    "condition": "Zustand",
+    "price": "Preisart",
+    "model": "Typ",
+    "selectBrand": "Marke auswählen",
+    "selectModel": "Typ auswählen",
+    "brand": "Marke",
+    "bodyShape": "Aufbau",
+    "year": "Jahr ",
+    "gearBox": "Getriebe",
+    "selectBodyShape": "Aufbau auswählen",
+    "fuelType": "Treibstoffart",
+    "selectGearBox": "Getriebe auswählen",
+    "kilometers": "Kilometerstand",
+    "selectFuelType": "Treibstoffart auswählen",
+    "cylinders": "Zylinder",
+    "engineCapacity": "Hubraum",
+    "selectExteriorColor": "Außenfarbe auswählen",
+    "exteriorColor": "Aussenfarbe",
+    "selectInteriorColor": "Innenfarbe auswählen",
+    "interiorColor": "Innenfarbe",
+    "images": "Bilder", 
+    "description": "Beschreibung",
+    "imageSizeInfo2": "Maximale Bildgröße beträgt 2 MB.",
+    "imageSizeInfo": "Empfohlene Bildgröße ist (870x493)px.",
+    "imageSizeInfo4": "Sie können bis zu 5 Bilder hochladen.",
+    "imageSizeInfo3": "Erlaubte Bildformate sind (png, jpg, jpeg, webp).",
+    "videoURLPlaceholder": "Nur YouTube oder Video-URL",
+    "videoURL": "Video URL",
+    "location": "Standort",
+    "contactDetails": "Kontaktdaten",
+    "howToContact": "Bevozugte Kontaktanfnahme ",
+    "enterAddress": "Wählen Sie einen Standort",
+    "viber": "Viber-Nr. ",
+    "whatsapp": "WhatsApp-Nr. ",
+    "email": "Email",
+    
+    "selectMileage": "Kilometerstand auswählen",
+    "phone": "Telefon",
+    "submit": "Aufgeben" , 
+    "website": "Website",
+    "titleCharacterLimit": "Zeichenbegrenzung 25",
+    "websitePlaceholder": "z.B. https://beispiel.com",
+    "priceCHF": "Fixpreis[CHF]"  ,
+    "subCategory": "Unterkategorie",
+    "selectSubCategory": "Unterkategorie auswählen",
+    "selectKilometer": "Kilometer auswählen",
+    "selectColor": "Farbtyp auswählen",
+    "enterYear": "Jahr des Produkts eingeben"
+  } , 
+  
+    "color": {
+        "name1": "Beige",
+        "name2": "Braun",
+        "name3": "Bronze",
+        "name4": "Gelb",
+        "name5": "Grün",
+        "name6": "Rot",
+        "name7": "Schwarz",
+        "name8": "Silber",
+        "name9": "Violett",
+        "name10": "Orange",
+        "name11": "Gold",
+        "name12": "Lackierung (Metall)",
+        "name13": "Weiß",
+        "name14": "Andere",
+        "value1": "Beige",
+        "value2": "Brown",
+        "value3": "Bronze",
+        "value4": "Yellow",
+        "value5": "Green",
+        "value6": "Red",
+        "value7": "Black",
+        "value8": "Silver",
+        "value9": "Violet",
+        "value10": "Orange",
+        "value11": "Gold",
+        "value12": "Paintwork (Metallic)",
+        "value13": "White",
+        "value14": "Other"
+    }
+,
+
+  "gearBox": {
+    "Automatic": "Automatisch",
+      "Manual": "Manuell",
+      "Semi-automatic": "Halbautomatisch",
+      
+      "name1": "Automatisch",
+      "name2": "Manuell",
+      "name3": "Halbautomatisch",
+      "value2":"Manual",
+      "value1":"Automatic",
+      "value3":"Semi-Automatic"
+  },
+  "condition": {
+    "new": "Neu",
+    "used": "Gebraucht",
+    "recondition": "Ab Platz"
+  }
+
+,
+  "interiorColor": {
+      "name1": "Beige",
+      "name2": "Schwarz",
+      "name3": "Grau",
+      "name4": "Weiß",
+      "name5": "Braun",
+      "name6": "Rot",
+      "name7": "Gelb",
+      "name8": "Orange",
+      "name9": "Andere",
+      "value1": "Beige",
+      "value2": "Black",
+      "value3": "Grey",
+      "value4": "White",
+      "value5": "Brown",
+      "value6": "Red",
+      "value7": "Yellow",
+      "value8": "Orange",
+      "value9": "Other"
+  }
+,
+"subCategoryOptions": {
+  "E-bikes": "E-Bikes",
+    "E-scooter": "E-Scooter",
+    "Bicycles": "Fahrräder",
+    "Motorcycle": "Motorrad",
+  "Articulated bus": "Gelenkbus",
+  "City bus": "Stadtbus",
+  "Coach": "Reisebus",
+  "Double decker": "Doppeldecker",
+  "Kombi bus": "Kombibus",
+  "Minibus": "Minibus",
+  "Others": "Anderes",
+  "Regional transit bus": "Regionaler Linienbus",
+  "Asphalt mixing plant": "Asphaltmischanlage",
+    "Backhoe Loader": "Baggerlader",
+    "Building crane": "Baukran",
+    "Cable excavator": "Kabelbagger",
+    "Cold Planers": "Kaltfräsen",
+    "Compact loader": "Kompaktlader",
+    "Compactor": "Verdichter",
+    "Compressor": "Kompressor",
+    "Concrete mixing plant": "Betonmischanlage",
+    "Concrete pump": "Betonpumpe",
+    "Crushing and/or screening plant": "Brech- und/oder Siebanlage",
+    "Demolition tools": "Abbruchwerkzeuge",
+    "Drill": "Bohrmaschine",
+    "Dumper": "Muldenkipper",
+    "Excavator - Backhoe loader": "Baggerlader",
+    "Generator": "Generator",
+    "Grader": "Planierer",
+    "Hydraulic Excavators": "Hydraulikbagger",
+    "Ladder/Scaffolding": "Leiter/Gerüst",
+    "Mini dumper": "Minikipper",
+    "Mobile excavator": "Mobilbagger",
+    "Beverage": "Getränke",
+    "Boat trailer": "Bootsanhänger",
+    "Box": "Kasten",
+    "Car trailer": "Autoanhänger",
+    "Car transport": "Auto-Transport",
+    "Cattle carrier": "Viehtransporter",
+    "Chassis": "Fahrgestell",
+    "Concrete mixer": "Betonmischer",
+    "Construction trailers": "Bauanhänger",
+    "Dumptruck": "Kipper",
+    "Flatbed + tarpaulin": "Pritsche + Plane",
+    "Flatbed open": "Offene Pritsche",
+    "Horse trailer": "Pferdeanhänger",
+    "Interchangeable body": "Wechselfahrgestell",
+    "Log transport": "Holztransporter",
+    "Lowbed": "Niederbett",
+    "Lowbed construction machinery": "Niederbett für Baumaschinen",
+    "MEGA": "MEGA",
+    "Motorcycle trailer": "Motorradanhänger",
+    "Bodies / cranes": "Aufbauten / Kräne",
+    "Jumbo": "Jumbo",
+    "Other special bodies": "Andere Spezialaufbauten",
+    "Road maintenance": "Straßenwartung",
+    "Armored Truck": "Geldtransporter",
+    "Double cabin": "Doppelkabine",
+    "Flatbed van": "Pritschenwagen",
+    "Mobile Shop/ Food Truck": "Verkaufswagen / Food Truck",
+    "Panel van": "Kastenwagen",
+    "Pick-up": "Pick-up",
+    "Refrigerated truck": "Kühltransporter",
+    "Station wagon/van": "Kombi / Lieferwagen",
+    "Van - high roof": "Lieferwagen - Hochdach",
+
+    "Tipper- lift-off": "Kipper - Absetzkipper",
+    "Tipper- roll-off": "Kipper - Abrollkipper",
+    "Truck + Trailer": "Lkw + Anhänger",
+    "Truck crane": "Lkw-Kran",
+    "Wrecker": "Abschleppwagen",
+
+    "Push-off Trailer": "Schiebeanhänger",
+    "Reefer/Isolated/Freeze": "Kühlanhänger",
+    "Silo": "Silofahrzeug",
+    "Spare Parts": "Ersatzteile",
+    "Special vehicles": "Spezialfahrzeuge",
+    "Standard": "Standard",
+    "Support trailer": "Unterstützungsanhänger",
+    "Tanker": "Tankwagen",
+    "Tipper": "Kippanhänger",
+    "Tipper- three-way": "Dreiseitenkipper",
+    "Tipping Trailer / Dumper": "Kippauflieger / Dumper",
+    "Vending trailer": "Verkaufsanhänger",
+    "Work platform": "Arbeitsplattform",
+    "Paver": "Straßenfertiger",
+    "Pile driver/puller": "Pfahlramme/Pfahlauszieher",
+    "Plate / rammer compactor": "Platten-/Stampfverdichter",
+    "Road reclaimer": "Straßenfräse",
+    "Roller": "Walze",
+    "Screed pump": "Estrichpumpe",
+    "Screening plant": "Siebanlage",
+    "Skid loader": "Kompaktlader",
+    "Telescopic loader": "Teleskoplader",
+    "Track loaders": "Raupenlader",
+    "Track type excavator": "Raupenbagger",
+    "Track-Type Tractors": "Raupentraktoren",
+    "Wheel loader": "Radlader",
+    "Working platform (other)": "Arbeitsbühne (andere)",
+    "Working platform (scissor lift)": "Arbeitsbühne (Scherenbühne)",
+    "Working platform (self-propelled)": "Arbeitsbühne (selbstfahrend)",
+    "Working platform (special)": "Arbeitsbühne (speziell)"
+},
+
+"fuelType": {
+  "Gasoline": "Benzin",
+  "Diesel": "Diesel",
+  "Ethanol": "Ethanol",
+  "Electric": "Elektrisch",
+  "Hydrogen": "Wasserstoff",
+  "LPG": "Autogas",
+  "CNG": "Erdgas",
+  "Hybrid (Electric/Gasoline)": "Hybrid (Elektrisch/Benzin)",
+  "Hybrid (Electric/Diesel)": "Hybrid (Elektrisch/Diesel)",
+  "Others": "Andere" ,
+  "Petrol": "Petrol"
+},
+"sortByList": [
+  "Neueste",
+  "Alt",
+  "A biz Z (Titel)",
+  "Z bis A (Titel)",
+  "Günstigste",
+  "Teuerste"
+],
+"passwordSettings": [
+  "Altes Passwort",
+  "Neues Passwort",
+  "Passwort bestätigen"
+],
+    "banner": {
+      "seeAllCategories": "Alle Kategorien",
+      "topCategories": "Top-Kategorien:",
+      "autos": "Autos",
+      "parts": "Ersatzteile"
+    } ,
+    "sellRepairComponent": {
+      "sellTitle": "Wollen Sie verkaufen",
+      "sellSubtitle": "Holen Sie sich jetzt ein kostenloses und unverbindliches Angebot für Ihr Fahrzeug",
+      "repairTitle": " Angebot für eine Reparatur anfordern",
+      "repairSubtitle": "Erhalten Sie einen ortsbezogenen Kostenvoranschlag für die Reparatur Ihres Autos",
+      "sellButton": "klicken Sie hier",
+      "repairButton": "klicken Sie hier"
+    } , 
+    "deleteAd": {
+      "title": "Sind Sie sicher, dass Sie dieses Inserate löschen möchten?",
+      "cancel": "Abbrechen",
+      "delete": "Löschen"
+    } , 
+    "footer": {
+      "popularCategories": "Beliebte Kategorien",
+      "howToSellFast": "Erfolgreich verkaufen",
+      "information": "Informationen",
+      "helpSupport": "Hilfe & Unterstützung",
+      "aboutEidcarosse": "Über Eidcarosse",
+      "contact": "Kontakt"
+    },
+    "copyright": "Urheberrecht © 2023 Eidcarosse. Alle Rechte vorbehalten." , 
+    
+      "header": {
+        "home": "Home",
+        "advanceSearch": "Erweiterte Suche",
+        "contactUs": "Kontaktiere uns",
+        "listDown": "Dropdown-Liste",
+        "chat": "Chat",
+        "adminPanelSettings": "Admin Panel Einstellungen",
+        "postYourAd":"Inserat aufgeben",
+        "hello": "Hallo",
+        "myProfile": "Mein Profil",
+        "myAds": "Meine Inserate",
+        "favourites": "Favoriten",
+        "logout": "Abmelden",
+        "changePassword": "Passwort ändern",
+        "login": "Anmeldung"
+      } , 
+      "labels": {
+        "fullName": "Vollständiger Name",
+        "phoneNo": "Telefonnummer",
+        "email": "E-Mail-Adresse",
+        "make": "Hersteller",
+        "model": "Typ"
+      ,
+        "year": "Jahr",
+        "description": "Beschreibung" , 
+        "upload": "Bild hochladen",
+        "forgotPassword": "Passwort vergessen"
+      },
+      "placeholders": {
+        "fullName": "Max Mustermann",
+        "phoneNo": "01234-56789",
+        "email": "max@example.com",
+        "make": "Hersteller",
+        "model": "Typ",
+        "year": "Jahr",
+        "description": "Geben Sie eine Beschreibung ein..."
+      },
+      "buttonText": "Absenden" , 
+      "topProducts": {
+        "title": "Top Inserts (German)",
+        "seeAllAds": "Alle Anzeigen ansehen"
+      } , 
+      "aboutUs": {
+        "title": "Über uns",
+        "description": "Eidcarosse ist ein umfassender Online-Marktplatz, der sich auf die Vermittlung des Kaufs und Verkaufs von Fahrzeugen spezialisiert hat. Mit einer benutzerfreundlichen Oberfläche und leistungsstarken Suchfunktionen verbindet Eidcarosse Personen, die nach Fahrzeugen suchen, mit Verkäufern, die eine umfangreiche Auswahl an Optionen anbieten. Egal, ob Sie auf der Suche nach einer schicken Limousine, einem leistungsstarken LKW, einem schicken Fahrrad oder einem anderen Fahrzeug sind, bietet Eidcarosse eine Plattform, die den gesamten Prozess vereinfacht."
+      },
+      "buyers": {
+        "title": "Käufer",
+        "description": [
+          "Für Käufer bietet Eidcarosse eine große Auswahl an Fahrzeugen von Privatverkäufern und Autohäusern, sodass Sie Zugang zu einer breiten Palette von Optionen haben, die Ihren Vorlieben und Ihrem Budget entsprechen.",
+          "Mit detaillierten Inseraten und umfassenden Informationen zu den Fahrzeugen, einschließlich Spezifikationen, Kilometerstand und Preisen, können Sie informierte Entscheidungen treffen und das perfekte Fahrzeug finden, das Ihren Anforderungen entspricht."
+        ]
+      },
+      "sellers": {
+        "title": "Verkäufer",
+        "description": [
+          "Für Verkäufer bietet Eidcarosse eine bequeme Plattform, um Ihre Fahrzeuge einem großen und vielfältigen Publikum potenzieller Käufer zu präsentieren.",
+          "Bieten Sie Ihr Fahrzeug mit ausführlichen Beschreibungen, hochwertigen Bildern und wettbewerbsfähigen Preisen an und treten Sie direkt mit interessierten Käufern in Kontakt.",
+          "Eidcarosse ermöglicht es Verkäufern, einen breiteren Markt zu erreichen und den Verkaufsprozess zu optimieren, um den richtigen Käufer für Ihr Fahrzeug zu finden."
+        ]
+      },
+      "pageDescription": [
+        "Eidcarosse legt Wert auf die Benutzererfahrung und gewährleistet einen sicheren und transparenten Transaktionsprozess. Die Plattform bietet Messaging-Funktionen, mit denen Käufer und Verkäufer direkt kommunizieren und Bedingungen verhandeln können. Darüber hinaus bietet Eidcarosse eine Reihe von Verifizierungs- und Sicherheitsfunktionen, um allen Benutzern ein gutes Gefühl zu geben.",
+        "Treten Sie noch heute Eidcarosse bei und entdecken Sie einen lebendigen Marktplatz, auf dem der Kauf und Verkauf von Fahrzeugen einfach gemacht wird. Erleben Sie die Bequemlichkeit, Transparenz und Effizienz von Eidcarosse, während Sie Ihre Reise zum Fahrzeugkauf oder -verkauf antreten. Egal, ob Sie ein Käufer sind, der nach seinem Traumfahrzeug sucht, oder ein Verkäufer, der den richtigen Käufer finden möchte, Eidcarosse ist Ihr Ziel für eine reibungslose und lohnende Erfahrung."
+      ] , 
+      "placeholderAddress": "Wählen Sie einen Standort",
+  "placeholderKeyword": "Wonach suchst du..." , 
+  "repairNow":  {
+    "full_name": "Vollständiger Name",
+    "phone_number": "Telefonnummer",
+    "email_address": "E-Mail-Adresse",
+    "make": "Marke",
+    "model": "Typ",
+    "year": "Jahr",
+    "upload_image": "Bild hochladen",
+    "description": "Beschreibung",
+    "submit": "Absenden"
+  } , 
+  "random": {
+    "myAdsListing": "Meine Inserate",
+    "myFavouriteListings": "Favoriten",
+    "latestAds": "Top Inserate",
+    "seeAllAds": "Alle Inserate"
+  } , 
+  "postAd": {
+    "selectCategory": "Kategorie auswählen",
+    "category": "Kategorie",
+    "subCategory": "Unterkategorie",
+    "required": "* Erforderlich",
+    "bikes": "Motorräder",
+    "parts": "Ersatzteile",
+    "selectSubCategory": "Unterkategorie auswählen"
+  }
+, 
+
+
+  "privacyPolicy": {
+    "heading": "Datenschutzrichtlinie",
+    "intro": "Die Ersteller der mobilen Anwendung Eidcarosse priorisieren und schätzen die Sicherheit und den Datenschutz der Informationen, die Sie über Eidcarosse mit uns teilen. Wir möchten, dass sich unsere Benutzer so komfortabel wie möglich bei der Verwendung unserer App fühlen. Wenn Sie uns Ihre Informationen anvertrauen, müssen Sie verstehen, wie wir sie sammeln, verwenden und aufbewahren. Wenn Sie Eidcarosse erwerben möchten, müssen Sie sich bei uns registrieren. Die Registrierung gibt uns Ihren Vornamen, Nachnamen, Ihre E-Mail-Adresse und Ihre Telefonnummer.",
+    "collectionAndUse": {
+      "heading": "Informationssammlung und -verwendung",
+      "text": "Wir können von Ihnen verlangen, uns bestimmte persönliche Informationen für ein besseres Nutzungserlebnis zur Verfügung zu stellen. Diese Informationen umfassen, sind jedoch nicht beschränkt auf Name und Adresse. Wenn Sie sich registrieren und uns Ihren Namen, Ihre Telefonnummer, Ihre E-Mail-Adresse, Ihren Benutzernamen und Ihr Passwort zur Verfügung stellen, werden wir Ihre Adressinformationen nicht speichern."
+    },
+    "personalInfo": {
+      "heading": "Persönliche Informationen",
+      "text": "Wenn Sie sich registrieren und uns Ihren Namen, Ihre Telefonnummer, Ihre E-Mail-Adresse, Ihren Benutzernamen und Ihr Passwort zur Verfügung stellen, werden wir Ihre Adressinformationen nicht speichern."
+    },
+    "retentionPeriod": {
+      "heading": "Wie lange werden persönliche Informationen aufbewahrt?",
+      "text": "Wenn Sie sich bei uns registrieren, werden Ihre persönlichen Informationen und Ihre E-Mail-Adresse zur Unterstützung in der Zukunft aufbewahrt. Diese Informationen bleiben bei uns gespeichert, bis Sie Ihre persönlichen Informationen löschen."
+    },
+    "dataUsage": {
+      "heading": "Was wir mit Ihren persönlichen Informationen nicht tun",
+      "text": "Wir werden Ihre privaten Informationen niemals offenlegen, teilen oder zur Vermarktung ihrer eigenen Dienste oder Produkte an andere Unternehmen weitergeben. Es ist auch gegen unsere Richtlinien, Ihre persönlichen Informationen an unbefugte Personen weiterzugeben."
+    },
+    "userRights": {
+      "heading": "Ihre Rechte über Ihre Daten",
+      "text": "Als registrierter Benutzer haben Sie das Recht, Ihre persönlichen Informationen zu bearbeiten. Sie können auch eine Datei Ihrer Informationen anfordern. Wenn Sie sich auf unserer Website anmelden, können Sie Ihre Daten auch löschen."
+    },
+    "cookies": {
+      "heading": "Cookies",
+      "text": "Cookies sind kleine Dateien mit geringen Datenmengen, die oft zur eindeutigen anonymen Identifizierung verwendet werden. Die Website, die Sie besuchen, sendet sie an Ihren Browser und speichert sie im internen Speicher Ihres Geräts. Obwohl unsere App oder unser Dienst keine Cookies explizit verwendet, kann sie Drittanbieter-Codes verwenden, die sie zur Datensammlung und Verbesserung ihrer Dienste nutzen. Sie werden benachrichtigt, wenn Cookies an Ihr Gerät gesendet werden, und haben die Möglichkeit, Cookies zu akzeptieren oder abzulehnen. Das Ablehnen von Cookies kann Sie jedoch daran hindern, auf einige Dienste zuzugreifen."
+    },
+    "security": {
+      "heading": "Unsere Sicherheitsmaßnahmen gegen Datenverletzungen",
+      "text": "Wir schätzen das Vertrauen, das Sie uns entgegengebracht haben, indem Sie uns Ihre persönlichen Informationen gegeben haben. Daher setzen wir branchenübliche Sicherheitsmittel und Technologien ein, um Ihre persönlichen Informationen vor unbefugter Offenlegung, Zugriff oder Verwendung zu schützen. Bitte geben Sie Ihr Registrierungspasswort und Ihren Benutzernamen nicht an unbefugte Personen weiter, um uns beim Schutz Ihrer Privatsphäre zu unterstützen. Obwohl keine Internetübertragungsmethode oder elektronische Speicherprozedur zu 100 % undurchlässig ist, lässt Eidcarosse nichts unversucht, um Ihre persönlichen Informationen zu schützen. Falls Ihre Informationen von unbefugten Personen abgerufen werden oder verloren gehen, werden wir Sie so schnell wie möglich darüber informieren."
+    },
+    "editData": {
+      "heading": "Wie Sie auf Ihre Daten zugreifen oder Ihre persönlichen Informationen bearbeiten können",
+      "text": "Wenn Sie sich mit Ihren Details auf unserer Website anmelden, stehen Ihnen alle Kontoinformationen zur Bearbeitung oder Löschung zur Verfügung. Wenn Sie keine E-Mail-Benachrichtigungen für die Eidcarosse-App erhalten möchten, melden Sie sich einfach ab oder senden Sie uns eine E-Mail, und wir löschen Ihre E-Mail oder Ihr Konto. Stellen Sie sicher, dass der Betreff Ihrer E-Mail 'Meinen Benutzernamen löschen' lautet."
+    },
+    "contact": {
+      "heading": "Kontaktiere uns",
+      "text": "Wenn Sie Anregungen oder Fragen  unserer Datenschutzrichtlinie haben, kontaktieren Sie uns bitte über den Link."
+    }
+  }  ,
+
+  "TermsAndConditions": {
+    "title": "Bedingungen und Konditionen",
+    "intro": "Bevor Sie den Eidcarosse-Mobil-App-Service nutzen, ist es wichtig, dass Sie diese Allgemeinen Geschäftsbedingungen sorgfältig durchlesen und ihnen zustimmen. Ihre Zustimmung zu diesen Bedingungen ist erforderlich, um die App zu nutzen. Lesen Sie die Allgemeinen Geschäftsbedingungen sorgfältig durch, bevor Sie den Service nutzen.",
+    
+    "title1": "Allgemeines",
+    "content1": "Eidcarosse macht Werbetreibende und Benutzer dafür verantwortlich, sicherzustellen, dass alle Inhalte, einschließlich Bilder, Videos, Grafiken und Texte, die auf der Plattform hochgeladen werden, den geltenden Gesetzen entsprechen. Für Ungenauigkeiten oder rechtliche Probleme, die aus dem geposteten Inhalt entstehen, ist Eidcarosse nicht verantwortlich. Sowohl Werbetreibende als auch Benutzer garantieren, dass ihre Inhalte keine Urheberrechte, geistigen Eigentumsrechte oder andere Rechte einer Person oder Einrichtung verletzen. Durch die Nutzung des Dienstes erklärt der Benutzer oder Werbetreibende, Eidcarosse von jeglichen Verpflichtungen, Ansprüchen oder Haftungen im Zusammenhang mit der Nutzung oder Unfähigkeit zur Nutzung der Plattform freizustellen. Darüber hinaus erklären sich Werbetreibende damit einverstanden, dass ihre Inhalte auf Partnerseiten von Eidcarosse angezeigt werden, unter den gleichen Bedingungen wie auf Eidcarosse selbst.",
+    
+    "title2": "Urheberrecht",
+    "content2": "Werbetreibende gewähren Eidcarosse eine unbefristete, gebührenfreie, nicht exklusive Lizenz und das Recht, die bereitgestellten Inhalte in jede Form, Technologie oder jedes Medium zu nutzen, zu ändern, zu reproduzieren, zu veröffentlichen, anzupassen, zu übersetzen, abgeleitete Werke zu erstellen, zu verteilen oder in diese einzuarbeiten, sei es derzeit bekannt oder in der Zukunft entwickelt.",
+    
+    "title3": "Wasserzeichen",
+    "content3": "Eidcarosse bringt Wasserzeichen auf alle Bilder an, um deren unbefugte Wiederverwendung für andere Zwecke ohne ausdrückliche Genehmigung des Werbetreibenden zu verhindern.",
+    
+    "title4": "Sicherheit und Bilder",
+    "content4": "Eidcarosse behält sich das Recht vor, die Titel beliebiger Inhalte in der App aus redaktionellen Gründen zu ändern.",
+    
+    "title5": "Persönlich",
+    "content5": "Eidcarosse behält sich das Recht vor, bei Verstoß gegen das Gesetz jeden Inhalt auf der App zu bearbeiten oder zu entfernen, um mit den Behörden zusammenzuarbeiten. Die Identität von Benutzern, Käufern oder Werbetreibenden kann beispielsweise durch einen Internetdienstanbieter (ISP) festgestellt werden. IP-Adressen können ebenfalls registriert werden, um die Einhaltung der Allgemeinen Geschäftsbedingungen zu gewährleisten.",
+    
+    "title6": "Cookies",
+    "content6": "Cookies sind kleine Dateien mit geringen Datenmengen, die oft zur eindeutigen anonymen Identifizierung verwendet werden. Die Website, die Sie besuchen, sendet sie an Ihren Browser und speichert sie im internen Speicher Ihres Geräts. Obwohl unsere App oder unser Dienst Cookies möglicherweise nicht explizit verwendet, können sie von Drittanbieter-Codes genutzt werden, um Informationen zu sammeln und ihre Dienste zu verbessern. Sie werden darüber informiert, wenn Cookies an Ihr Gerät gesendet werden, und haben die Möglichkeit, sie zu akzeptieren oder abzulehnen. Das Ablehnen von Cookies kann Sie jedoch daran hindern, auf einige Dienste zuzugreifen.",
+    
+    "title7": "Datenschutz",
+    "content7": "Eidcarosse sammelt Informationen von Benutzern, Käufern und Werbetreibenden. Durch die Nutzung von Eidcarosse willigt jeder Benutzer und Werbetreibende in die Erfassung und Nutzung dieser Informationen ein und autorisiert dies. Eidcarosse behält sich auch das Recht vor, diese Informationen an Unternehmensverbundene und andere Personen weiterzugeben, um Eidcarosse bei der Unterstützung, Verwaltung und Aufrechterhaltung, einschließlich Marketing, Forschung, Planung und Produktentwicklung, zu unterstützen.",
+    
+    "title8": "Cookies",
+    "content8": "Diese App kann Cookies verwenden, die cookie-fähige Geräte erfordern. Eine Cookie-Datei enthält Informationen wie eine zandomisierte Benutzer-ID, die die Website automatisch einem Besucher zuordnet, um die von ihm besuchten Seiten zu verfolgen. Cookies können keine Daten von Ihrer Festplatte lesen oder den Benutzer identifizieren.",
+    
+    "title9": "E-Mail-Adressen von Benutzern",
+    "content9": "Benutzer müssen gültige E-Mail-Adressen angeben, bevor sie Anzeigenlisten veröffentlichen dürfen. Die E-Mail-Adressen werden nicht öffentlich angezeigt. Benutzer dürfen jedoch über Eidcarosse E-Mails an andere Benutzer senden.",
+    
+    "title10": "Verfügbarkeit der Website",
+    "content10": "Eidcarosse garantiert keine ununterbrochene oder sichere Zugriffsmöglichkeit auf die App. Die App wird auf einer wie sie ist und wie verfügbar-Basis bereitgestellt.",
+    
+    "title11": "Haftungsausschluss",
+    "content11": "Eidcarosse übernimmt keinerlei Verantwortung für die Verwendung von Eidcarosse und lehnt jegliche Verantwortung für Ansprüche, Verletzungen, Schäden oder Haftungen jeglicher Art ab, die sich aus Fehlern auf Eidcarosse oder dem Inhalt ergeben, einschließlich, aber nicht beschränkt auf typografische Fehler und technische Fehler, b) auf Drittanbieter-Websites oder Inhalte, die direkt oder indirekt über Links in Eidcarosse abgerufen oder aufgerufen werden, c) auf die Nichtverfügbarkeit von Eidcarosse, d) auf die Verwendung von Eidcarosse oder des Inhalts, oder e) auf die Verwendung von Geräten (oder Software) im Zusammenhang mit Eidcarosse.",
+    
+    "title12": "Haftungsfreistellung",
+    "content12": "Werbetreibende und andere Benutzer stimmen zu, Eidcarosse und seine Mitarbeiter, Vertreter, Beamte und Direktoren von allen Ausgaben, Verlusten, Schäden und Kosten, einschließlich Anwaltsgebühren, freizustellen, die aus einer Verletzung dieser Nutzungsbedingungen (einschließlich fahrlässigen oder rechtswidrigen Verhaltens) resultieren.",
+    
+    "title13": "Änderungen",
+    "content13": "Eidcarosse behält sich das Recht vor, diese Nutzungsbedingungen zu ändern oder zu modifizieren. Solche Änderungen oder Modifikationen werden unverzüglich nach ihrer Veröffentlichung auf Eidcarosse wirksam. Sie sind verpflichtet, regelmäßig auf solche Änderungen zu überprüfen. Ihre fortgesetzte Nutzung von Eidcarosse gilt als Ihre Zustimmung zu den geänderten Nutzungsbedingungen.",
+    
+    "title14": "Anwendbares Recht",
+    "content14": "Eidcarosse wird nach den Gesetzen und Vorschriften des jeweiligen Landes betrieben."
+  }
+  , 
+   
+  "contactPage": {
+    "placeholderEmail": "Geben Sie Ihre E-Mail ein",
+    "placeholderSubject": "Betreff*",
+    "placeholderMessage": "Nachricht*",
+    "buttonSubmit": "Absenden",
+    "contactUs": "Kontaktiere uns"
+  } , 
+  
+  
+    "list2": [
+      "Kaufen und schnell verkaufen",
+      "Werben Sie für Ihre Anzeige",
+      "Bannerwerbung"
+    ],
+    "list3": [
+      "Über Eidcarosse",
+      "Kontakt",
+      "Blog"
+    ],
+    "list4": [
+      "FAQ",
+       "faq"
+     ,
+      "Datenschutzrichtlinie",
+       "privacy-policy"
+    ,
+     "Bedingungen und Konditionen"
+     ,
+     "terms-and-condition"
+     
+   ] ,
+
+    
+      "faq": {
+        
+      "pageTitle": "HÄUFIG GEFRAGT",
+        "title1": "WIE KANN ICH EIN INSERAT PUBLIZIEREN?",
+        "description1": "Sie können ganz einfach Ihre Anzeige schalten. Tippen Sie einfach auf das Pluszeichen (+), melden Sie sich an und geben Sie Ihre Anzeige mit den richtigen Daten auf. Sie erhalten eine Benachrichtigung, nachdem Sie Ihre Anzeige gesendet haben."
+        ,
+        "title2": "WIE KANN ICH MEINE INSERATE BEARBEITEN/LÖSCHEN?",
+        "description2": "Melden Sie sich einfach an und gehen Sie zu Konto => Meine Inserate. Dort erhalten Sie eine Liste Ihrer Anzeigen. Jede Anzeige verfügt über eine Löschoption."
+        ,
+        "title3": "WIE KANN ICH MEINE INSERATE BEARBEITEN?",
+        "description3": "Melden Sie sich einfach an und gehen Sie zu Konto => Meine Inserate. Dort erhalten Sie eine Liste Ihrer Anzeigen. Jede Anzeige verfügt über eine Bearbeitungsoption."
+        ,
+        "title4": "WIE LANGE BLEIBEN MEINE INSERATE AKTIV?",
+        "description4": "Es hängt von Ihren Einstellungen ab, wie viele Tage die Anzeige aktiv bleibt. Je nachdem, wie die Einstellungen sind, werden die Anzeigen sichtbar."
+        ,
+        "title5": "WIE VIEL INSERATE KANN ICH KOSTENLOS PUBLIZIEREN?",
+        "description5": "Es hängt von Ihren Einstellungen auf der Website ab. Verkäufer können eine bestimmte Anzahl kostenloser Anzeigen für eine bestimmte Anzahl von Tagen schalten."
+        ,
+        "title6": "WIE KANN ICH MEINE KONTOINFORMATIONEN BEARBEITEN?",
+        "description6": "Melden Sie sich an und gehen Sie zu Mein Konto. Dort erhalten Sie die Bearbeitungsoption für Ihre Kontoinformationen."
+        ,
+        "title7": "WIE STARTE ICH EINEN CHAT MIT JEMANDEM?",
+        "description7": "Gehen Sie zu den Details einer Anzeige. Dort finden Sie eine E-Mail-, Telefon- und Chat-Option. Tippen Sie einfach auf das Chat-Symbol und starten Sie Ihre Unterhaltung."
+        ,
+        "title8": "ERHALTE ICH ALS VERKÄUFER CHAT-BENACHRICHTIGUNGEN?",
+        "description8": "Ja. Für Chat-Anfragen oder E-Mails erhalten Verkäufer eine E-Mail-Benachrichtigung. Käufer erhalten für Chats die erste anfängliche Nachricht als E-Mail-Benachrichtigung."
+        }
+    ,
+    
+      "sell": {
+        "sellPage": "Schnell verkaufen",
+        "title1": "DEN RICHTIGEN PREIS FESTLEGEN",
+        "description1": "Der Preis ist ein wichtiger Faktor für Kunden, die den Artikel kaufen. Bevor Sie den Preis festlegen, sollten Sie ähnliche Anzeigen prüfen und einen angemessenen und wettbewerbsfähigen Preis festlegen."
+        ,
+        "title2": "VERWENDEN SIE TOLLE FOTOS",
+        "description2": "Verwenden Sie klare und aktuelle Fotos Ihres Produkts/Ihrer Produkte. Sie können mehrere Bilder aus verschiedenen Blickwinkeln verwenden, damit die Käufer eine klarere Vorstellung von Ihrem Artikel/Ihren Artikeln bekommen."
+        ,
+        "title3": "KLARE BESCHREIBUNG BEREITSTELLEN",
+        "description3": "Geben Sie eine klare und detaillierte Beschreibung Ihres Produkts an. Stellen Sie sicher, dass Sie die richtigen Informationen zu Ihren Artikeln hinzugefügt haben."
+      } , 
+      "subList": [
+        "Fahrräder",
+        "Scooter",
+        "E-Bikes",
+        "Motorräder"
+      ]
+    , 
+    
+      "product": {
+        "subCategory":"Unterkategorie",
+        "contactForPrice": "Auf Anfrage",
+        "Condition": "Zustand",
+        "Brand": "Marke",
+        "Model": "Typ",
+        "Year": "Jahr",
+        "BodyShape": "Aufbau",
+        "Gearbox": "Getriebe",
+        "FuelType": "Treibstoffart",
+        "Kilometers": "Kilometerstand",
+        "EngineCapacity": "Hubraum",
+        "Cylinders": "Zylinder",
+        "disabled": "Auf Anfrage",
+        "ExteriorColor": "Außenansicht",
+        "InteriorColor": "Innenraum",
+        "Price": "Preis",
+        "Euro": "Euro",
+        "videoUrl": "Video URL",
+        "Views": "Ansichten",
+        "Favorite": "Favorit",
+        "Share": "Teilen",
+        "Description": "Beschreibung",
+        "SellerInformation": "Angaben zum Verkaufer",
+        "ContactSeller": "Verkäufer kontaktieren",
+        "SendMessage": "Nachricht senden",
+        "Location": "Ort", 
+        "Overview": "Überblick"
+      } ,
+      "bodyShape": {
+        "Convertible": "Cabrio",
+        "Compact": "Kompakt",
+        "Coupe": "Coupé",
+        "SUV/Off-Road/Pick-up": "SUV/Off-Road/Pick-up",
+        "Station Wagon": "Kombi",
+        "Sedan": "Limousine",
+        "Van": "Van",
+        "Transporter": "Transporter",
+        "Other": "Sonstiges"
+      } ,
+      
+        "myProfile": {
+          "labels": {
+            "basicInformation": "Profil",
+            "username": "Benutzername",
+            "email": "E-Mail",
+            "firstName": "Vorname",
+            "lastName": "Nachname",
+            "phone": "Telefon",
+            "submit": "Speichern"
+          },
+          "buttons": {
+            "uploadPicture": "Bild hochladen"
+          },
+          "tooltips": {
+            "cancelImage": "Bild abbrechen"
+          },
+          "placeholders": {
+            "firstName": "Vorname",
+            "lastName": "Nachname",
+            "phoneNumber": "Telefonnummer"
+          },
+          "messages": {
+            "imageUploadSuccess": "Bild erfolgreich hochgeladen."
+          },
+          "errors": {
+            "imageUploadFailed": "Bild konnte nicht hochgeladen werden."
+          },
+          "loading": "Wird geladen..."
+        }
+      
+      
+}
