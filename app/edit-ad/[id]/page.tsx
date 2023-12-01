@@ -83,6 +83,7 @@ function EditComponent() {
     userInfo === null ? userInfo : userInfo?.data?.userDetails?._id;
   const id = userData;
   const [priceListValue, setPriceListValue] = useState<string>("price");
+  const [editCondition, setEditCondition] = useState<string>("");
 
 
   const [data, setData] = useState<IData>({
@@ -127,6 +128,7 @@ function EditComponent() {
   const [whatsappChecked, setWhatsappChecked] = useState<boolean>(false);
   const [viberChecked, setViberChecked] = useState<boolean>(false);
   const [phoneChecked, setPhoneChecked] = useState<boolean>(false);
+  const [priceDisabled, setPriceDisabled] = useState<boolean>(false);
   let router = useRouter();
 
   const adId = useParams();
@@ -136,15 +138,21 @@ function EditComponent() {
         const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/getSpecific/${adId?.id}`);
         setProductData(res.data?.data);
         setProductImages(res?.data.data?.images);
-        if(res.data?.data?.price !== "") setPriceListValue("");
-        setData({...data, ['images']: res?.data.data?.images, ['category']: res.data?.data?.category});
+        data.images = res.data?.data?.images
         setProductSubCat(res.data?.data?.category);
+        setEditCondition(res.data?.data?.condition);
         if(!isNullOrNullOrEmpty(res?.data?.data?.whatsapp)) {setWhatsappChecked(true)};
+        if(!isNullOrNullOrEmpty(res.data?.data?.viber)) {setViberChecked(true)};
         if(res?.data?.data?.phone === true) {
           setPhoneChecked(true);
           setData({...data, ['phone']: res?.data?.data?.phone })
         } 
-        if(!isNullOrNullOrEmpty(res.data?.data?.viber)) {setViberChecked(true)};
+        if(res.data?.data?.price === null) { 
+          setPriceListValue("");
+          setPriceDisabled(true); 
+        }else{
+          setPriceDisabled(false); 
+        }
     } catch (error: any) {
         if(error.response.status === 400){
             router.push('/')
@@ -475,6 +483,7 @@ function EditComponent() {
   const handleInput = (e: any) => {
     setData({ ...data, [e.target.name]: e.target.value });
     if (e.target.name == "brand") fetchBrand(e.target.value);
+    if(e.target.name === "condition") setEditCondition(e.target.value);
   };
 
   const fetchBrand = async (model: any) => {
@@ -526,6 +535,7 @@ function EditComponent() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     console.log(data);
+    // return;
     setLoading(true);
     let newData;
     if(checkObjectEmpty(data) === false){
@@ -643,6 +653,7 @@ function EditComponent() {
 
   
   const handleChecked = (value: string) => {
+    alert(value)
     if(value === productData?.condition){
       return true;
     }
@@ -651,6 +662,7 @@ function EditComponent() {
 
   const handlePrice = (value: string) => {
     setPriceListValue(value);
+    setPriceDisabled(!priceDisabled)
     setData({...data, ['price']: ""});
   }
   
@@ -711,7 +723,7 @@ function EditComponent() {
                   <ul className="flex flex-row space-x-2">
                   <li>
                         <input
-                          checked={productData?.price !== "" ? true: false}
+                          checked={priceDisabled === false ? true : false}
                           type="radio"
                           name="price"
                           onClick={() => handlePrice("price")}
@@ -720,16 +732,13 @@ function EditComponent() {
                   </li>
                   <li>
                         <input
-                          checked={productData?.price !== "" ? true: false}
+                          checked={priceDisabled === true ? true : false}
                           type="radio"
                           name="price"
                           onChange={() => handlePrice("")}
                         />{" "}
                           Disabled
                   </li>
-                    {/* {priceList?.map((list: any, i: any) => (
-                      
-                    ))} */}
                   </ul>
                 </div>
               </div>
@@ -760,18 +769,36 @@ function EditComponent() {
                 </h1>
                 <div className="flex flex-col w-full">
                   <ul className="space-y-1">
-                    {conditionList?.map((list: any, i: number) => (
-                      <li key={i}>
-                        <input
-                        checked={handleChecked(list?.value)}
-                          type="radio"
-                          name="condition"
-                          value={list?.value}
-                          onChange={(e: any) => handleInput(e)}
-                        />{" "}
-                        {list?.name}
-                      </li>
-                    ))}
+                  <li>
+                    <input
+                      checked={editCondition === "new" ? true : false}
+                      type="radio"
+                      name="condition"
+                      value="new"
+                      onChange={(e: any) => handleInput(e)}
+                    />{" "}
+                    {conditionList[0].name}
+                  </li>
+                  <li>
+                    <input
+                      checked={editCondition === "used" ? true : false}
+                      type="radio"
+                      name="condition"
+                      value="used"
+                      onChange={(e: any) => handleInput(e)}
+                    />{" "}
+                    {conditionList[1].name}
+                  </li>
+                  <li>
+                    <input
+                      checked={editCondition === "recondition" ? true : false}
+                      type="radio"
+                      name="condition"
+                      value="recondition"
+                      onChange={(e: any) => handleInput(e)}
+                    />{" "}
+                    {conditionList[2].name}
+                  </li>
                   </ul>
                 </div>
               </div>
