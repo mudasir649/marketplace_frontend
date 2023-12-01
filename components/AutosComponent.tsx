@@ -637,7 +637,7 @@ export default function AutosComponent() {
                     </option>
                     {formData?.interiorColor.map((color: any, i: number) => (
                       <option value={color?.value} key={i}>
-                        {color?.name}
+                        {t(`interiorColor.${color?.name}`)}
                       </option>
                     ))}
                   </select>

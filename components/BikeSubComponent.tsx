@@ -774,7 +774,7 @@ export default function BikeSubComponent({ type }: any) {
                     <option value="option1">{t("autosComponent.selectColor")}</option>
                     {formData?.bikeColor?.map((color: any, i: number) => (
                       <option value={color.value} key={i}>
-                        {color.name}
+                        {t(`interiorColor.${color?.name}`)}
                       </option>
                     ))}
                   </select>
