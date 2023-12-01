@@ -495,6 +495,7 @@ export default function AutosComponent() {
                     className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
                     name="model"
                     onChange={(e: any) => handleInput(e)}
+                    required
                   >
                     <option value="option1">
                       {t("autosComponent.selectModel")}
