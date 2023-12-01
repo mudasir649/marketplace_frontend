@@ -576,7 +576,7 @@ export default function AutosComponent() {
                     </option>
                     {formData?.fuelType.map((fuel: any, i: number) => (
                       <option value={fuel?.value} key={i}>
-                        {fuel?.name}
+                        {t(`fuelType.${fuel?.name}`)}
                       </option>
                     ))}
                   </select>
