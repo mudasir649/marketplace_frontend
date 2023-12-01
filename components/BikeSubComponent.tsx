@@ -695,7 +695,7 @@ export default function BikeSubComponent({ type }: any) {
                     <option>{t("autosComponent.selectBodyShape")} </option>
                     {formData?.bikeBodyShape?.map((body: any, i: number) => (
                       <option value={body.value} key={i}>
-                        {body.name}
+                        {t(`bodyShape.${body.name}`)}
                       </option>
                     ))}
                   </select>

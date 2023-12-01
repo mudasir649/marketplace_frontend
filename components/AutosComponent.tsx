@@ -534,7 +534,7 @@ export default function AutosComponent() {
                     </option>
                     {formData?.AutosBodyShape?.map((body: any, i: number) => (
                       <option value={body.value} key={i}>
-                        {body.name}
+                        {t(`bodyShape.${body.name}`)}
                       </option>
                     ))}
                   </select>
