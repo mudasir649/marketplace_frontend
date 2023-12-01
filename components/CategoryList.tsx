@@ -146,7 +146,8 @@ export default function CategoryList({ setCategory, setExpand }: any) {
               alt="image1"
               width={100}
               height={100} />
-            <h1 className="mt-[-1px]">{lst.name}</h1>
+            <h1 className="mt-[-1px]">
+            {t(`allCategories.${lst.name}`)}</h1>
           </li></>
         ))}
         {/* <li onClick={() => handleClick("Autos")} className={liStyle}>
