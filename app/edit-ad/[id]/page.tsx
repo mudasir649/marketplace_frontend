@@ -82,6 +82,8 @@ function EditComponent() {
   const userData =
     userInfo === null ? userInfo : userInfo?.data?.userDetails?._id;
   const id = userData;
+  const [priceListValue, setPriceListValue] = useState<string>("price");
+
 
   const [data, setData] = useState<IData>({
     category: null || "",
@@ -127,7 +129,6 @@ function EditComponent() {
   const [phoneChecked, setPhoneChecked] = useState<boolean>(false);
   let router = useRouter();
 
-  
   const adId = useParams();
 
   const fetchData = useCallback(async() => {
@@ -135,10 +136,14 @@ function EditComponent() {
         const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/getSpecific/${adId?.id}`);
         setProductData(res.data?.data);
         setProductImages(res?.data.data?.images);
+        if(res.data?.data?.price !== "") setPriceListValue("");
         setData({...data, ['images']: res?.data.data?.images, ['category']: res.data?.data?.category});
         setProductSubCat(res.data?.data?.category);
         if(!isNullOrNullOrEmpty(res?.data?.data?.whatsapp)) {setWhatsappChecked(true)};
-        if(res?.data?.data?.phone === true) setPhoneChecked(true);
+        if(res?.data?.data?.phone === true) {
+          setPhoneChecked(true);
+          setData({...data, ['phone']: res?.data?.data?.phone })
+        } 
         if(!isNullOrNullOrEmpty(res.data?.data?.viber)) {setViberChecked(true)};
     } catch (error: any) {
         if(error.response.status === 400){
@@ -146,6 +151,9 @@ function EditComponent() {
         }
     }
   }, [adId?.id, router]);
+
+  console.log(priceListValue);
+  
 
   useEffect(() => {
     fetchData()
@@ -171,7 +179,6 @@ function EditComponent() {
 
   const [images, setImages] = useState<any>([]);
   const [loading, setLoading] = useState<Boolean>(false);
-  const [priceListValue, setPriceListValue] = useState<string>("price");
   const [models, setModels] = useState<any>([]);
   const [brands, setBrands] = useState<any>([]);
   const [googleLocation, setGoogleLocation] = useState<any>(null);
@@ -353,107 +360,117 @@ function EditComponent() {
     fetchCategory();
   }, [productSubCat]);
   
-  
 
   useEffect(() => {
-    if(productData?.category === "Autos"){
-      const fetchBrand = async () => {
+        const fetchBrand = async () => {
         const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Autos`
+          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/${productData?.category}`
         );
         setBrands(res.data?.data);
       };
       fetchBrand();
-    }else if(productData?.category === "Busses"){
-      const fetchBrand = async () => {
-        const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Busses`
-        );
-        setBrands(res.data?.data);
-      };
-      fetchBrand();
-    }else if(productData?.category === "Vans"){
-      const fetchBrand = async () => {
-        const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Vans`
-        );
-        setBrands(res.data?.data);
-      };
-      fetchBrand();
-    }else if(productData?.category === "Trucks"){
-      const fetchBrand = async () => {
-        const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Trucks`
-        );
-        setBrands(res.data?.data);
-      };
-      fetchBrand();
-    }else if(productData?.category === "Trailers"){
-      const fetchBrand = async () => {
-        const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Trailers`
-        );
-        setBrands(res.data?.data);
-      };
-      fetchBrand();
-    }else if(productData?.category === "Boats"){
-      const fetchBrand = async () => {
-        const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Boats`
-        );
-        setBrands(res.data?.data);
-      };
-      fetchBrand();
-    }else if(productData?.category === "Drones"){
-      const fetchBrand = async () => {
-        const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Drones`
-        );
-        setBrands(res.data?.data);
-      };
-      fetchBrand();
-    }else if(productData?.category === "Contruction Machines"){
-      const fetchBrand = async () => {
-        const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Contruction Machines`
-        );
-        setBrands(res.data?.data);
-      };
-      fetchBrand();
-    }else if(productData?.subCategory === "Motorcycle"){
-      const fetchBrand = async () => {
-        const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Motorcycle`
-        );
-        setBrands(res.data?.data);
-      };
-      fetchBrand();
-    }else if(productData?.subCategory === "Bicycles"){
-      const fetchBrand = async () => {
-        const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Bicycles`
-        );
-        setBrands(res.data?.data);
-      };
-      fetchBrand();
-    }else if(productData?.subCategory === "E-scooter"){
-      const fetchBrand = async () => {
-        const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/E-scooter`
-        );
-        setBrands(res.data?.data);
-      };
-      fetchBrand();
-    }else if(productData?.subCategory === "E-bikes"){
-      const fetchBrand = async () => {
-        const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/E-bikes`
-        );
-        setBrands(res.data?.data);
-      };
-      fetchBrand();
-    }
-  }, [productData]);
+  }, [productData])
+  
+
+  // useEffect(() => {
+  //   if(productData?.category === "Autos"){
+  //     const fetchBrand = async () => {
+  //       const res = await axios.get(
+  //         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Autos`
+  //       );
+  //       setBrands(res.data?.data);
+  //     };
+  //     fetchBrand();
+  //   }else if(productData?.category === "Busses"){
+  //     const fetchBrand = async () => {
+  //       const res = await axios.get(
+  //         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Busses`
+  //       );
+  //       setBrands(res.data?.data);
+  //     };
+  //     fetchBrand();
+  //   }else if(productData?.category === "Vans"){
+  //     const fetchBrand = async () => {
+  //       const res = await axios.get(
+  //         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Vans`
+  //       );
+  //       setBrands(res.data?.data);
+  //     };
+  //     fetchBrand();
+  //   }else if(productData?.category === "Trucks"){
+  //     const fetchBrand = async () => {
+  //       const res = await axios.get(
+  //         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Trucks`
+  //       );
+  //       setBrands(res.data?.data);
+  //     };
+  //     fetchBrand();
+  //   }else if(productData?.category === "Trailers"){
+  //     const fetchBrand = async () => {
+  //       const res = await axios.get(
+  //         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Trailers`
+  //       );
+  //       setBrands(res.data?.data);
+  //     };
+  //     fetchBrand();
+  //   }else if(productData?.category === "Boats"){
+  //     const fetchBrand = async () => {
+  //       const res = await axios.get(
+  //         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Boats`
+  //       );
+  //       setBrands(res.data?.data);
+  //     };
+  //     fetchBrand();
+  //   }else if(productData?.category === "Drones"){
+  //     const fetchBrand = async () => {
+  //       const res = await axios.get(
+  //         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Drones`
+  //       );
+  //       setBrands(res.data?.data);
+  //     };
+  //     fetchBrand();
+  //   }else if(productData?.category === "Contruction Machines"){
+  //     const fetchBrand = async () => {
+  //       const res = await axios.get(
+  //         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/${productData?.category}`
+  //       );
+  //       setBrands(res.data?.data);
+  //     };
+  //     fetchBrand();
+  //   }else if(productData?.subCategory === "Motorcycle"){
+  //     const fetchBrand = async () => {
+  //       const res = await axios.get(
+  //         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Motorcycle`
+  //       );
+  //       setBrands(res.data?.data);
+  //     };
+  //     fetchBrand();
+  //   }else if(productData?.subCategory === "Bicycles"){
+  //     const fetchBrand = async () => {
+  //       const res = await axios.get(
+  //         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Bicycles`
+  //       );
+  //       setBrands(res.data?.data);
+  //     };
+  //     fetchBrand();
+  //   }else if(productData?.subCategory === "E-scooter"){
+  //     const fetchBrand = async () => {
+  //       const res = await axios.get(
+  //         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/E-scooter`
+  //       );
+  //       setBrands(res.data?.data);
+  //     };
+  //     fetchBrand();
+  //   }else if(productData?.subCategory === "E-bikes"){
+  //     const fetchBrand = async () => {
+  //       const res = await axios.get(
+  //         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/E-bikes`
+  //       );
+  //       setBrands(res.data?.data);
+  //     };
+  //     fetchBrand();
+  //   }
+  // }, [productData]);
 
   const handleInput = (e: any) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -470,6 +487,9 @@ function EditComponent() {
       console.log(error);
     }
   };
+
+  console.log(productData?.category);
+  
 
 
   const handleImage = (e: any) => {
@@ -633,7 +653,7 @@ function EditComponent() {
     setPriceListValue(value);
     setData({...data, ['price']: ""});
   }
-
+  
   
 
   return (
@@ -689,21 +709,27 @@ function EditComponent() {
                 </h1>
                 <div className="flex flex-col w-full">
                   <ul className="flex flex-row space-x-2">
-                    {priceList?.map((list: any, i: any) => (
-                      <li key={i}>
+                  <li>
                         <input
-                          checked={
-                            priceListValue === list?.value ? true : false
-                          }
+                          checked={productData?.price !== "" ? true: false}
                           type="radio"
-                          id={list.id}
-                          name={list.name}
-                          value={list?.value}
-                          onChange={() => handlePrice(list?.value)}
+                          name="price"
+                          onClick={() => handlePrice("price")}
                         />{" "}
-                        {list?.name}
-                      </li>
-                    ))}
+                          Price
+                  </li>
+                  <li>
+                        <input
+                          checked={productData?.price !== "" ? true: false}
+                          type="radio"
+                          name="price"
+                          onChange={() => handlePrice("")}
+                        />{" "}
+                          Disabled
+                  </li>
+                    {/* {priceList?.map((list: any, i: any) => (
+                      
+                    ))} */}
                   </ul>
                 </div>
               </div>
@@ -805,7 +831,7 @@ function EditComponent() {
                   </div>
                 </div>
               </div>
-              {productData?.model &&
+              {data?.brand !== "" && productData?.category === "Autos" &&
               <div className={style.divStyle}>
                   <h1 className={style.h1Style}>{t("autosComponent.model")}</h1>
                   <select
@@ -813,9 +839,6 @@ function EditComponent() {
                     name="model"
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option value="option1">
-                      {productData?.model}
-                    </option>
                     {models[0]?.model?.map((model: any, i: number) => (
                       <option value={model} key={i}>
                         {model}

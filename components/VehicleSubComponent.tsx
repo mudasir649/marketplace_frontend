@@ -41,6 +41,7 @@ interface IData {
   price: any;
   brand: any;
   model: any;
+  type: any,
   description: any;
   videoUrl: any;
   address: any;
@@ -104,6 +105,7 @@ export default function VehicleSubComponent({ type }: any) {
     price: null || "",
     brand: null || "",
     model: null || "",
+    type: null || "",
     description: null || "",
     videoUrl: null || "",
     address: null || "",
@@ -161,7 +163,7 @@ export default function VehicleSubComponent({ type }: any) {
 
   const handleInput = (e: any) => {
     setData({ ...data, [e.target.name]: e.target.value });
-    if (e.target.name == "subCategory") {
+    if (e.target.name == "type") {
       fetchBrand();
     }
   };
@@ -257,23 +259,6 @@ export default function VehicleSubComponent({ type }: any) {
     }
   }, [router, userData]);
 
-  const conditionList = [
-    {
-      id: 1,
-      name: t("condition.new"),
-      value: "new",
-    },
-    {
-      id: 2,
-      name: t("condition.used"),
-      value: "used",
-    },
-    {
-      id: 3,
-      name: t("condition.recondition"),
-      value: "recondition",
-    },
-  ];
   const priceList = [
     {
       id: "1",
@@ -286,50 +271,7 @@ export default function VehicleSubComponent({ type }: any) {
       value: "disabled",
     },
   ];
-  const fuelType = [
-    {
-      name: t("fuelType.Gasoline"),
-      value: "Gasoline",
-    },
-    {
-      name: t("fuelType.Diesel"),
-      value: "Diesel",
-    },
-    {
-      name: t("fuelType.Ethanol"),
-      value: "Ethanol",
-    },
-    {
-      name: t("fuelType.Electric"),
-      value: "Electric",
-    },
-    {
-      name: t("fuelType.Hydrogen"),
-      value: "Hydrogen",
-    },
-    {
-      name: t("fuelType.LPG"),
-      value: "LPG",
-    },
-    {
-      name: t("fuelType.CNG"),
-      value: "CNG",
-    },
-    {
-      name: t("fuelType.Hybrid (Electric/Gasoline)"),
-      value: "Hybrid (Electric/Gasoline)",
-    },
-    {
-      name: t("fuelType.Hybrid (Electric/Diesel)"),
-      value: "Hybrid (Electric/Diesel)",
-    },
-    {
-      name: t("fuelType.Others"),
-      value: "Others",
-    },
-  ];
 
-  console.log(formData)
 
   return (
     <>
@@ -470,7 +412,7 @@ export default function VehicleSubComponent({ type }: any) {
                 </h1>
                 <select
                   className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
-                  name="subCategory"
+                  name="type"
                   onChange={(e: any) => handleInput(e)}
                 >
                   <option value="option1">
@@ -491,7 +433,7 @@ export default function VehicleSubComponent({ type }: any) {
                   )}
                 </select>
               </div>
-              {data?.subCategory && (
+              {data?.type && (
                 <div className={style.divStyle}>
                   <h1 className={style.h1Style}>
                     {t("autosComponent.brand")}{" "}
@@ -530,7 +472,7 @@ export default function VehicleSubComponent({ type }: any) {
                   </select>
                 </div>
               )}
-              {data?.subCategory && (
+              {data?.type && (
                 <div className={style.divStyle}>
                   <h1 className={style.h1Style}>
                     {t("autosComponent.year")}{" "}
@@ -548,7 +490,7 @@ export default function VehicleSubComponent({ type }: any) {
                   </div>
                 </div>
               )}
-              {type == "Busses" && data?.subCategory && (
+              {type == "Busses" && data?.type && (
                 <div className={style.divStyle}>
                   <h1 className={style.h1Style}>
                     {t("autosComponent.fuelType")}{" "}
@@ -570,7 +512,7 @@ export default function VehicleSubComponent({ type }: any) {
                   </select>
                 </div>
               )}
-              {type == "Construction Machine" && data?.subCategory && (
+              {type == "Construction Machine" && data?.type && (
                 <div className={style.divStyle}>
                   <h1 className={style.h1Style}>
                     {t("autosComponent.model")}{" "}
@@ -588,7 +530,7 @@ export default function VehicleSubComponent({ type }: any) {
                   </div>
                 </div>
               )}
-              {data?.subCategory && (
+              {data?.type && (
                 <div className={style.divStyle}>
                   <h1 className={style.h1Style}>
                     {t("autosComponent.kilometers")}
@@ -607,7 +549,7 @@ export default function VehicleSubComponent({ type }: any) {
                   </select>
                 </div>
               )}
-              {type == "Busses" && data?.subCategory && (
+              {type == "Busses" && data?.type && (
                 <div className={style.divStyle}>
                   <h1 className={style.h1Style}>
                     {t("autosComponent.axleCount")}{" "}

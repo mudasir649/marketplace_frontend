@@ -14,12 +14,7 @@ export default function Addtype() {
   const { userInfo } = useSelector((state: any) => state.auth);
   const userData =
     userInfo === null ? userInfo : userInfo?.data?.userDetails?._id;
-  const router = useRouter();
-
-  const params = useSearchParams();
-
-  console.log(params);
-  
+  const router = useRouter();  
 
   const pathname = usePathname();
 
