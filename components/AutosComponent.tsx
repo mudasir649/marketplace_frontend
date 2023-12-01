@@ -555,7 +555,7 @@ export default function AutosComponent() {
                     </option>
                     {formData?.gearBox.map((gear: any, i: number) => (
                       <option value={gear?.value} key={i}>
-                        {gear?.name}
+                        {t(`gearBox.${gear?.name}`)}
                       </option>
                     ))}
                   </select>
