@@ -55,7 +55,7 @@ export default function SellRepairComponent() {
             <h1 className={`${h1Style} line-clamp-1`}>
               {t("sellRepairComponent.repairTitle")}
             </h1>
-            <h1 className="text-md text-sm">
+            <h1 className="text-md text-sm w-auto h-5 overflow-y-hidden">
               {t("sellRepairComponent.repairSubtitle")}
             </h1>
             <button
