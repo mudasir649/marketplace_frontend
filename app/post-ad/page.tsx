@@ -9,6 +9,7 @@ import axios from "axios";
 import Select from "react-select";
 
 export default function PostAd() {
+
   const { t } = useTranslation();
 
   const CustomOption = ({ innerProps, label, data }: any) => (
@@ -19,7 +20,8 @@ export default function PostAd() {
         alt="image"
         style={{ width: "20px", marginRight: "8px" }}
       />
-      <h1 className="-mt-1">{data.name}</h1>
+      <h1 className="-mt-1">
+      {t(`allCategories.${data.name}`)}</h1>
     </div>
   );
 
@@ -94,7 +96,7 @@ export default function PostAd() {
                 <div className="w-full flex">
                   <Select
                     className="w-full hover:outline-[#FF0000] focus:outline-[#FF0000]"
-                    defaultValue="Select..."
+                    defaultValue={t("postAd.selectCategory")}
                     options={list}
                     value={
                       category ? { value: category, label: category } : null

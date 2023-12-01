@@ -456,7 +456,7 @@ export default function AutosComponent() {
                           value={list?.value}
                           onChange={(e: any) => handleInput(e)}
                         />{" "}
-                        {list?.name}
+                        {t(`condition.${list?.name}`)}
                       </li>
                     ))}
                   </ul>
@@ -535,7 +535,7 @@ export default function AutosComponent() {
                     </option>
                     {formData?.AutosBodyShape?.map((body: any, i: number) => (
                       <option value={body.value} key={i}>
-                        {body.name}
+                        {t(`bodyShape.${body.name}`)}
                       </option>
                     ))}
                   </select>
@@ -556,7 +556,7 @@ export default function AutosComponent() {
                     </option>
                     {formData?.gearBox.map((gear: any, i: number) => (
                       <option value={gear?.value} key={i}>
-                        {gear?.name}
+                        {t(`gearBox.${gear?.name}`)}
                       </option>
                     ))}
                   </select>
@@ -577,7 +577,7 @@ export default function AutosComponent() {
                     </option>
                     {formData?.fuelType.map((fuel: any, i: number) => (
                       <option value={fuel?.value} key={i}>
-                        {fuel?.name}
+                        {t(`fuelType.${fuel?.name}`)}
                       </option>
                     ))}
                   </select>
@@ -617,7 +617,7 @@ export default function AutosComponent() {
                     </option>
                     {formData?.exteriorColor.map((color: any, i: number) => (
                       <option value={color?.value} key={i}>
-                        {color?.name}
+                        {t(`interiorColor.${color?.name}`)}
                       </option>
                     ))}
                   </select>
@@ -638,7 +638,7 @@ export default function AutosComponent() {
                     </option>
                     {formData?.interiorColor.map((color: any, i: number) => (
                       <option value={color?.value} key={i}>
-                        {color?.name}
+                        {t(`interiorColor.${color?.name}`)}
                       </option>
                     ))}
                   </select>

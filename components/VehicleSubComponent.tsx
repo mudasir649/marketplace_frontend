@@ -399,7 +399,7 @@ export default function VehicleSubComponent({ type }: any) {
                           value={list?.value}
                           onChange={(e: any) => handleInput(e)}
                         />{" "}
-                        {list?.name}
+                      {t(`condition.${list?.name}`)}
                       </li>
                     ))}
                   </ul>

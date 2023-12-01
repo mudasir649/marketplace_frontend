@@ -73,10 +73,12 @@
 
   "allCategories": {
     "Autos": "Autos",
-    "Bicycles": "Motorräder",
-    "E-scooter": "E-Scooter",
+    "Bicycles": "Fahrräder",
+    "E-scooters": "E-Scooters",
     "E-bikes": "E-Bikes",
-    "Motorcycle": "Motorräder",
+    "Bikes": "Motorrader",
+    "Parts":"Ersatzteile",
+    "Motorcycles": "Motorräder",
     "Boats": "Boote",
     "Busses": "Busse",
     "Construction Machines": "Baumaschinen",
@@ -94,7 +96,32 @@
     "Trailers Parts": "Anhängerersatzteile",
     "Other Parts": "Andere Ersatzteile",
     "Vans Parts": "Lieferwagenersatzteile",
-    "Trucks Parts": "Lastwagenersatzteile"
+    "Trucks Parts": "Lastwagenersatzteile",
+    "Auto": "Auto",
+  "Bicycle": "Fahrrad",
+  "E-scooter": "E-Scooter",
+  "E-bike": "E-Bike",
+  "Part": "Teil",
+  "Bike": "Fahrrad",
+  "Motorcycle": "Motorrad",
+  "Boat": "Boot",
+  "Bus": "Bus",
+  "Construction Machine": "Baumaschine",
+  "Drone": "Drohne",
+  "Other": "Andere",
+  "Trailer": "Anhänger",
+  "Truck": "Lastwagen",
+  "Van": "Lieferwagen",
+  "Auto Part": "Auto Teil",
+  "Bike Part": "Fahrrad Teil",
+  "Boat Part": "Boot Teil",
+  "Bus Part": "Bus Teil",
+  "Construction Machine Part": "Baumaschine Teil",
+  "Drone Part": "Drohne Teil",
+  "Other Part": "Andere Teil",
+  "Trailer Part": "Anhänger Teil",
+  "Truck Part": "Lastwagen Teil",
+  "Van Part": "Lieferwagen Teil"
   } ,
   "autosComponent": {    
     "changeCategory": "Kategorie ändern",
@@ -201,7 +228,10 @@
   "condition": {
     "new": "Neu",
     "used": "Gebraucht",
-    "recondition": "Ab Platz"
+    "recondition": "Ab Platz",
+    "New": "Neu",
+  "Used": "Gebraucht",
+  "Recondition": "Generalüberholt"
   }
 
 ,
@@ -223,14 +253,30 @@
       "value6": "Red",
       "value7": "Yellow",
       "value8": "Orange",
-      "value9": "Other"
+      "value9": "Other",
+      "Beige": "Beige",
+  "Black": "Schwarz",
+  "Grey": "Grau",
+  "White": "Weiß",
+  "Brown": "Braun",
+  "Red": "Rot",
+  "Yellow": "Gelb",
+  "Orange": "Orange",
+  "Other": "Andere",
+  "Blue": "Blau",
+  "Bronze": "Bronze",
+  "Green": "Grün",
+  "Silver": "Silber",
+  "Violet": "Violett",
+  "Gold": "Gold",
+  "Others":"Anderes"
   }
 ,
 "subCategoryOptions": {
   "E-bikes": "E-Bikes",
     "E-scooter": "E-Scooter",
     "Bicycles": "Fahrräder",
-    "Motorcycle": "Motorrad",
+    "Motorcycle": "Motorrader",
   "Articulated bus": "Gelenkbus",
   "City bus": "Stadtbus",
   "Coach": "Reisebus",
@@ -521,7 +567,21 @@
       "heading": "Kontaktiere uns",
       "text": "Wenn Sie Anregungen oder Fragen  unserer Datenschutzrichtlinie haben, kontaktieren Sie uns bitte über den Link."
     }
+
   }  ,
+  "category": {
+    "Autos": "Autos",
+    "Bikes": "Fahrräder",
+    "Boats": "Boote",
+    "Busses": "Busse",
+    "Construction Machines": "Baumaschinen",
+    "Drones": "Drohnen",
+    "Others": "Andere",
+    "Parts": "Teile",
+    "Trailers": "Anhänger",
+    "Trucks": "Lastwagen",
+    "Vans": "Lieferwagen"
+  },
 
   "TermsAndConditions": {
     "title": "Bedingungen und Konditionen",

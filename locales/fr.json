@@ -91,9 +91,11 @@
     "Bicycles": "Vélos",
     "E-scooter": "Trottinettes électriques",
     "E-bikes": "Vélos électriques",
-    "Motorcycle": "Motocyclettes",
+    "Bikes": "Vélos",
+    "Motorcycles": "Motocyclettes",
     "Boats": "Bateaux",
     "Busses": "Autobus",
+    "Parts":"Pièces",
     "Construction Machines": "Machines de construction",
     "Drones": "Drones",
     "Others": "Autres",
@@ -109,7 +111,32 @@
     "Other Parts": "Autres pièces",
     "Trailers Parts": "Pièces pour remorques",
     "Trucks Parts": "Pièces pour camions",
-    "Vans Parts": "Pièces pour fourgonnettes"
+    "Vans Parts": "Pièces pour fourgonnettes",
+    "Auto": "Auto",
+  "Bicycle": "Bicyclette",
+  "E-scooters": "E-scooters",
+  "E-bike": "E-bike",
+  "Part": "Partie",
+  "Bike": "Bicyclette",
+  "Motorcycle": "Motocyclette",
+  "Boat": "Bateau",
+  "Bus": "Bus",
+  "Construction Machine": "Machine de construction",
+  "Drone": "Drone",
+  "Other": "Autre",
+  "Trailer": "Remorque",
+  "Truck": "Camion",
+  "Van": "Fourgon",
+  "Auto Part": "Partie de voiture",
+  "Bike Part": "Partie de bicyclette",
+  "Boat Part": "Partie de bateau",
+  "Bus Part": "Partie de bus",
+  "Construction Machine Part": "Partie de machine de construction",
+  "Drone Part": "Partie de drone",
+  "Other Part": "Autre partie",
+  "Trailer Part": "Partie de remorque",
+  "Truck Part": "Partie de camion",
+  "Van Part": "Partie de fourgon"
   }
   , 
   "chat": {
@@ -204,7 +231,10 @@
   "condition": {
     "new": "Neuf",
     "used": "D'occasion",
-    "recondition": "Reconditionné"
+    "recondition": "Reconditionné",
+    "New": "Nouveau",
+  "Used": "D'occasion",
+  "Recondition": "Reconditionné"
   },
 
   "copyright": "Copyright © 2023 Eidcarosse. Tous droits réservés.",
@@ -434,6 +464,19 @@
       "Vélos électriques",
       "Moto"
     ] ,
+    "category": {
+      "Autos": "Autos",
+      "Bikes": "Vélos",
+      "Boats": "Bateaux",
+      "Busses": "Autobus",
+      "Construction Machines": "Machines de Construction",
+      "Drones": "Drones",
+      "Others": "Autres",
+      "Parts": "Pièces",
+      "Trailers": "Remorques",
+      "Trucks": "Camions",
+      "Vans": "Fourgons"
+    },
     "subCategoryOptions": {
       "Articulated bus": "Autobus articulé",
       "City bus": "Autobus urbain",
@@ -658,7 +701,23 @@
             "value11": "Gold",
             "value12": "Paintwork (Metallic)",
             "value13": "White",
-            "value14": "Other"
+            "value14": "Other",
+            "Beige": "Beige",
+  "Black": "Noir",
+  "Grey": "Gris",
+  "White": "Blanc",
+  "Brown": "Marron",
+  "Red": "Rouge",
+  "Yellow": "Jaune",
+  "Orange": "Orange",
+  "Other": "Autre",
+  "Blue": "Bleu",
+  "Bronze": "Bronze",
+  "Green": "Vert",
+  "Silver": "Argent",
+  "Violet": "Violet",
+  "Gold": "Or",
+  "Others":"Autres"
         }
     ,
     

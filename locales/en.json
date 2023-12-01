@@ -61,7 +61,21 @@
         "Trailers",
         "Trucks",
         "Vans"
+        
       ],
+      "category": {
+        "Autos": "Autos",
+  "Bikes": "Bikes",
+  "Boats": "Boats",
+  "Busses": "Busses",
+  "Construction Machines": "Construction Machines",
+  "Drones": "Drones",
+  "Others": "Others",
+  "Parts": "Parts",
+  "Trailers": "Trailers",
+  "Trucks": "Trucks",
+  "Vans": "Vans"
+      },
       "categoriesParts": [
         "Autos Parts",
         "Bikes Parts",
@@ -95,9 +109,11 @@
        "allCategories":{
         "Autos": "Autos",
         "Bicycles": "Bicycles",
-        "E-scooter": "E-scooter",
+        "E-scooters": "E-scooters",
         "E-bikes": "E-bikes",
-        "Motorcycle": "Motorcycle",
+        "Parts":"Parts",
+        "Bikes": "Bikes",
+        "Motorcycles": "Motorcycles",
         "Boats": "Boats",
         "Busses": "Busses",
         "Construction Machines": "Construction Machines",
@@ -115,7 +131,32 @@
         "Other Parts": "Other Parts",
         "Trailers Parts": "Trailers Parts",
         "Trucks Parts": "Trucks Parts",
-        "Vans Parts": "Vans Parts"
+        "Vans Parts": "Vans Parts",
+        "Auto": "Auto",
+  "Bicycle": "Bicycle",
+  "E-scooter": "E-scooter",
+  "E-bike": "E-bike",
+  "Part": "Part",
+  "Bike": "Bike",
+  "Motorcycle": "Motorcycle",
+  "Boat": "Boat",
+  "Bus": "Bus",
+  "Construction Machine": "Construction Machine",
+  "Drone": "Drone",
+  "Other": "Other",
+  "Trailer": "Trailer",
+  "Truck": "Truck",
+  "Van": "Van",
+  "Auto Part": "Auto Part",
+  "Bike Part": "Bike Part",
+  "Boat Part": "Boat Part",
+  "Bus Part": "Bus Part",
+  "Construction Machine Part": "Construction Machine Part",
+  "Drone Part": "Drone Part",
+  "Other Part": "Other Part",
+  "Trailer Part": "Trailer Part",
+  "Truck Part": "Truck Part",
+  "Van Part": "Van Part"
       },
 
       "autosComponent":{
@@ -325,7 +366,10 @@
       "condition" : {
         "new": "New",
         "used": "Used",
-        "recondition": "Recondition"
+        "recondition": "Recondition",
+        "New": "New",
+        "Used": "Used",
+        "Recondition": "Recondition"
       },
 
       "interiorColor": {
@@ -339,6 +383,13 @@
         "Yellow": "Yellow",
         "Orange": "Orange",
         "Other": "Other",
+        "Others": "Other",
+        "Blue": "Blue",
+        "Bronze":"Bronze",
+        "Green":"Green",
+        "Silver": "Silver",
+        "Violet": "Violet",
+        "Gold":"Gold",
         "name1": "Beige",
         "name2": "Black",
         "name3": "Grey",

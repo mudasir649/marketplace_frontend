@@ -92,11 +92,13 @@
   "allCategories": {
     "Autos": "Auto",
     "Bicycles": "Biciclette",
-    "E-scooter": "Monopattini elettrici",
+    "E-scooters": "Monopattini elettrici",
     "E-bikes": "Biciclette elettriche",
-    "Motorcycle": "Motociclette",
+    "Bikes":"Biciclette",
+    "Motorcycles": "Motociclette",
     "Boats": "Barche",
     "Busses": "Autobus",
+    "Parts":"Ricambi",
     "Construction Machines": "Macchine edili",
     "Drones": "Droni",
     "Others": "Altri",
@@ -112,7 +114,32 @@
     "Other Parts": "Altri ricambi",
     "Trailers Parts": "Ricambi rimorchi",
     "Trucks Parts": "Ricambi camion",
-    "Vans Parts": "Ricambi furgoni"
+    "Vans Parts": "Ricambi furgoni",
+    "Auto": "Auto",
+  "Bicycle": "Bicicletta",
+  "E-scooter": "E-scooter",
+  "E-bike": "E-bike",
+  "Part": "Parte",
+  "Bike": "Bicicletta",
+  "Motorcycle": "Motocicletta",
+  "Boat": "Barca",
+  "Bus": "Autobus",
+  "Construction Machine": "Macchina da costruzione",
+  "Drone": "Drone",
+  "Other": "Altro",
+  "Trailer": "Rimorchio",
+  "Truck": "Camion",
+  "Van": "Furgone",
+  "Auto Part": "Parte dell'auto",
+  "Bike Part": "Parte della bicicletta",
+  "Boat Part": "Parte della barca",
+  "Bus Part": "Parte dell'autobus",
+  "Construction Machine Part": "Parte della macchina da costruzione",
+  "Drone Part": "Parte del drone",
+  "Other Part": "Altra parte",
+  "Trailer Part": "Parte del rimorchio",
+  "Truck Part": "Parte del camion",
+  "Van Part": "Parte del furgone"
   }
   , "autosComponent": {
     "subCategory": "Sottocategoria",
@@ -338,14 +365,33 @@
         "value6": "Red",
         "value7": "Yellow",
         "value8": "Orange",
-        "value9": "Other"
+        "value9": "Other",
+        "Beige": "Beige",
+  "Black": "Nero",
+  "Grey": "Grigio",
+  "White": "Bianco",
+  "Brown": "Marrone",
+  "Red": "Rosso",
+  "Yellow": "Giallo",
+  "Orange": "Arancione",
+  "Other": "Altro",
+  "Blue": "Blu",
+  "Bronze": "Bronzo",
+  "Green": "Verde",
+  "Silver": "Argento",
+  "Violet": "Viola",
+  "Gold": "Oro",
+  "Others":"Altros"
     }
 
 ,
 "condition": {
   "new": "Nuovo",
   "used": "Usato",
-  "recondition": "Ricondizionato"
+  "recondition": "Ricondizionato",
+  "New": "Nuovo",
+  "Used": "Usato",
+  "Recondition": "Ricondizionato"
 },
 
   "gearBox": {
@@ -502,6 +548,19 @@
           "Biciclette elettriche",
           "Motociclette"
         ] ,
+        "category": {
+          "Autos": "Auto",
+          "Bikes": "Biciclette",
+          "Boats": "Barche",
+          "Busses": "Autobus",
+          "Construction Machines": "Macchine Edili",
+          "Drones": "Droni",
+          "Others": "Altri",
+          "Parts": "Ricambi",
+          "Trailers": "Rimorchi",
+          "Trucks": "Camion",
+          "Vans": "Furgoni"
+        },
         "subCategoryOptions": {
           "E-bikes": "Biciclette elettriche",
     "E-scooter": "Monopattini elettrici",

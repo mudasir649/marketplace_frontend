@@ -586,7 +586,7 @@ export default function BikeSubComponent({ type }: any) {
                           value={list?.name1}
                           onChange={(e: any) => handleInput(e)}
                         />{" "}
-                        {list?.name}
+                        {t(`condition.${list?.name}`)}
                       </li>
                     ))}
                   </ul>
@@ -695,7 +695,7 @@ export default function BikeSubComponent({ type }: any) {
                     <option>{t("autosComponent.selectBodyShape")} </option>
                     {formData?.bikeBodyShape?.map((body: any, i: number) => (
                       <option value={body.value} key={i}>
-                        {body.name}
+                        {t(`bodyShape.${body.name}`)}
                       </option>
                     ))}
                   </select>
@@ -774,7 +774,7 @@ export default function BikeSubComponent({ type }: any) {
                     <option value="option1">{t("autosComponent.selectColor")}</option>
                     {formData?.bikeColor?.map((color: any, i: number) => (
                       <option value={color.value} key={i}>
-                        {color.name}
+                        {t(`interiorColor.${color?.name}`)}
                       </option>
                     ))}
                   </select>

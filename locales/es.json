@@ -92,9 +92,11 @@
     "allCategories": {
       "Autos": "Automóviles",
       "Bicycles": "Bicicletas",
-      "E-scooter": "Patinetes eléctricos",
+      "E-scooters": "Patinetes eléctricos",
       "E-bikes": "Bicicletas eléctricas",
-      "Motorcycle": "Motocicletas",
+      "Bikes":"Bicicletas",
+      "Motorcycles": "Motocicletas",
+      "Parts":"Piezas",
       "Boats": "Barcos",
       "Busses": "Autobuses",
       "Construction Machines": "Máquinas de construcción",
@@ -112,7 +114,32 @@
       "Other Parts": "Piezas de otros",
       "Trailers Parts": "Piezas de remolques",
       "Trucks Parts": "Piezas de camiones",
-      "Vans Parts": "Piezas de furgonetas"
+      "Vans Parts": "Piezas de furgonetas",
+      "Auto": "Auto",
+      "Bicycle": "Bicicleta",
+      "E-scooter": "E-scooter",
+      "E-bike": "E-bike",
+      "Part": "Parte",
+      "Bike": "Bicicleta",
+      "Motorcycle": "Motocicleta",
+      "Boat": "Barco",
+      "Bus": "Autobús",
+      "Construction Machine": "Máquina de construcción",
+      "Drone": "Dron",
+      "Other": "Otro",
+      "Trailer": "Remolque",
+      "Truck": "Camión",
+      "Van": "Furgoneta",
+      "Auto Part": "Parte de auto",
+      "Bike Part": "Parte de bicicleta",
+      "Boat Part": "Parte de barco",
+      "Bus Part": "Parte de autobús",
+      "Construction Machine Part": "Parte de máquina de construcción",
+      "Drone Part": "Parte de dron",
+      "Other Part": "Otra parte",
+      "Trailer Part": "Parte de remolque",
+      "Truck Part": "Parte de camión",
+      "Van Part": "Parte de furgoneta"
     },
      "bodyShape": {
     "Convertible": "Convertible",
@@ -129,7 +156,10 @@
   "condition": {
     "new": "Nuevo",
     "used": "Usado",
-    "recondition": "Reacondicionado"
+    "recondition": "Reacondicionado","New": "Nuevo",
+    "Used": "Usado",
+    "Recondition": "Reacondicionado"
+
   },
   "autosComponent": {
     
@@ -298,7 +328,23 @@
       "value6": "Red",
       "value7": "Yellow",
       "value8": "Orange",
-      "value9": "Other"
+      "value9": "Other",
+      "Beige": "Beige",
+  "Black": "Negro",
+  "Grey": "Gris",
+  "White": "Blanco",
+  "Brown": "Marrón",
+  "Red": "Rojo",
+  "Yellow": "Amarillo",
+  "Orange": "Naranja",
+  "Other": "Otro",
+  "Blue": "Blu",
+  "Bronze": "Bronzo",
+  "Green": "Verde",
+  "Silver": "Argento",
+  "Violet": "Viola",
+  "Gold": "Oro",
+  "Others":"Otrose"
   }
 
 ,
@@ -519,6 +565,19 @@
           "Bicicletas eléctricas",
           "Motocicleta"
         ] , 
+        "category": {
+          "Autos": "Autos",
+          "Bikes": "Bicicletas",
+          "Boats": "Barcos",
+          "Busses": "Autobuses",
+          "Construction Machines": "Máquinas de Construcción",
+          "Drones": "Drones",
+          "Others": "Otros",
+          "Parts": "Piezas",
+          "Trailers": "Remolques",
+          "Trucks": "Camiones",
+          "Vans": "Furgonetas"
+        },
         "subCategoryOptions": {
           "E-bikes": "Bicicletas eléctrica",
     "E-scooter": "Patinetes eléctricos",
