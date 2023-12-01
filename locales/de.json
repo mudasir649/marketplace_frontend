@@ -203,7 +203,10 @@
   "condition": {
     "new": "Neu",
     "used": "Gebraucht",
-    "recondition": "Ab Platz"
+    "recondition": "Ab Platz",
+    "New": "Neu",
+  "Used": "Gebraucht",
+  "Recondition": "Generalüberholt"
   }
 
 ,

@@ -131,7 +131,10 @@
   "condition": {
     "new": "Nuevo",
     "used": "Usado",
-    "recondition": "Reacondicionado"
+    "recondition": "Reacondicionado","New": "Nuevo",
+    "Used": "Usado",
+    "Recondition": "Reacondicionado"
+    
   },
   "autosComponent": {
     

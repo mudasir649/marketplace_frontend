@@ -206,7 +206,10 @@
   "condition": {
     "new": "Neuf",
     "used": "D'occasion",
-    "recondition": "Reconditionné"
+    "recondition": "Reconditionné",
+    "New": "Nouveau",
+  "Used": "D'occasion",
+  "Recondition": "Reconditionné"
   },
 
   "copyright": "Copyright © 2023 Eidcarosse. Tous droits réservés.",

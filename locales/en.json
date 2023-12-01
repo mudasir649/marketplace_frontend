@@ -341,7 +341,10 @@
       "condition" : {
         "new": "New",
         "used": "Used",
-        "recondition": "Recondition"
+        "recondition": "Recondition",
+        "New": "New",
+        "Used": "Used",
+        "Recondition": "Recondition"
       },
 
       "interiorColor": {

@@ -586,7 +586,7 @@ export default function BikeSubComponent({ type }: any) {
                           value={list?.name1}
                           onChange={(e: any) => handleInput(e)}
                         />{" "}
-                        {list?.name}
+                        {t(`condition.${list?.name}`)}
                       </li>
                     ))}
                   </ul>

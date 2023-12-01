@@ -456,7 +456,7 @@ export default function AutosComponent() {
                           value={list?.value}
                           onChange={(e: any) => handleInput(e)}
                         />{" "}
-                        {list?.name}
+                        {t(`condition.${list?.name}`)}
                       </li>
                     ))}
                   </ul>

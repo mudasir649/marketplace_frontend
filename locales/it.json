@@ -347,7 +347,10 @@
 "condition": {
   "new": "Nuovo",
   "used": "Usato",
-  "recondition": "Ricondizionato"
+  "recondition": "Ricondizionato",
+  "New": "Nuovo",
+  "Used": "Usato",
+  "Recondition": "Ricondizionato"
 },
 
   "gearBox": {
