@@ -340,7 +340,22 @@
         "value6": "Red",
         "value7": "Yellow",
         "value8": "Orange",
-        "value9": "Other"
+        "value9": "Other",
+        "Beige": "Beige",
+  "Black": "Nero",
+  "Grey": "Grigio",
+  "White": "Bianco",
+  "Brown": "Marrone",
+  "Red": "Rosso",
+  "Yellow": "Giallo",
+  "Orange": "Arancione",
+  "Other": "Altro",
+  "Blue": "Blu",
+  "Bronze": "Bronzo",
+  "Green": "Verde",
+  "Silver": "Argento",
+  "Violet": "Viola",
+  "Gold": "Oro"
     }
 
 ,

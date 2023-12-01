@@ -228,7 +228,22 @@
       "value6": "Red",
       "value7": "Yellow",
       "value8": "Orange",
-      "value9": "Other"
+      "value9": "Other",
+      "Beige": "Beige",
+  "Black": "Schwarz",
+  "Grey": "Grau",
+  "White": "Weiß",
+  "Brown": "Braun",
+  "Red": "Rot",
+  "Yellow": "Gelb",
+  "Orange": "Orange",
+  "Other": "Andere",
+  "Blue": "Blau",
+  "Bronze": "Bronze",
+  "Green": "Grün",
+  "Silver": "Silber",
+  "Violet": "Violett",
+  "Gold": "Gold"
   }
 ,
 "subCategoryOptions": {

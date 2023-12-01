@@ -134,7 +134,7 @@
     "recondition": "Reacondicionado","New": "Nuevo",
     "Used": "Usado",
     "Recondition": "Reacondicionado"
-    
+
   },
   "autosComponent": {
     
@@ -303,7 +303,22 @@
       "value6": "Red",
       "value7": "Yellow",
       "value8": "Orange",
-      "value9": "Other"
+      "value9": "Other",
+      "Beige": "Beige",
+  "Black": "Negro",
+  "Grey": "Gris",
+  "White": "Blanco",
+  "Brown": "Marrón",
+  "Red": "Rojo",
+  "Yellow": "Amarillo",
+  "Orange": "Naranja",
+  "Other": "Otro",
+  "Blue": "Blu",
+  "Bronze": "Bronzo",
+  "Green": "Verde",
+  "Silver": "Argento",
+  "Violet": "Viola",
+  "Gold": "Oro"
   }
 
 ,

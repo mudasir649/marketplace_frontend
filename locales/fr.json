@@ -676,7 +676,22 @@
             "value11": "Gold",
             "value12": "Paintwork (Metallic)",
             "value13": "White",
-            "value14": "Other"
+            "value14": "Other",
+            "Beige": "Beige",
+  "Black": "Noir",
+  "Grey": "Gris",
+  "White": "Blanc",
+  "Brown": "Marron",
+  "Red": "Rouge",
+  "Yellow": "Jaune",
+  "Orange": "Orange",
+  "Other": "Autre",
+  "Blue": "Bleu",
+  "Bronze": "Bronze",
+  "Green": "Vert",
+  "Silver": "Argent",
+  "Violet": "Violet",
+  "Gold": "Or"
         }
     ,
     
