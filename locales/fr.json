@@ -434,6 +434,19 @@
       "Vélos électriques",
       "Moto"
     ] ,
+    "category": {
+      "Autos": "Autos",
+      "Bikes": "Vélos",
+      "Boats": "Bateaux",
+      "Busses": "Autobus",
+      "Construction Machines": "Machines de Construction",
+      "Drones": "Drones",
+      "Others": "Autres",
+      "Parts": "Pièces",
+      "Trailers": "Remorques",
+      "Trucks": "Camions",
+      "Vans": "Fourgons"
+    },
     "subCategoryOptions": {
       "Articulated bus": "Autobus articulé",
       "City bus": "Autobus urbain",

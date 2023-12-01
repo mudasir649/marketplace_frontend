@@ -521,7 +521,21 @@
       "heading": "Kontaktiere uns",
       "text": "Wenn Sie Anregungen oder Fragen  unserer Datenschutzrichtlinie haben, kontaktieren Sie uns bitte über den Link."
     }
+
   }  ,
+  "category": {
+    "Autos": "Autos",
+    "Bikes": "Fahrräder",
+    "Boats": "Boote",
+    "Busses": "Busse",
+    "Construction Machines": "Baumaschinen",
+    "Drones": "Drohnen",
+    "Others": "Andere",
+    "Parts": "Teile",
+    "Trailers": "Anhänger",
+    "Trucks": "Lastwagen",
+    "Vans": "Lieferwagen"
+  },
 
   "TermsAndConditions": {
     "title": "Bedingungen und Konditionen",

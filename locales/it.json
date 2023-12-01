@@ -502,6 +502,19 @@
           "Biciclette elettriche",
           "Motociclette"
         ] ,
+        "category": {
+          "Autos": "Auto",
+          "Bikes": "Biciclette",
+          "Boats": "Barche",
+          "Busses": "Autobus",
+          "Construction Machines": "Macchine Edili",
+          "Drones": "Droni",
+          "Others": "Altri",
+          "Parts": "Ricambi",
+          "Trailers": "Rimorchi",
+          "Trucks": "Camion",
+          "Vans": "Furgoni"
+        },
         "subCategoryOptions": {
           "E-bikes": "Biciclette elettriche",
     "E-scooter": "Monopattini elettrici",

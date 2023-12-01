@@ -519,6 +519,19 @@
           "Bicicletas eléctricas",
           "Motocicleta"
         ] , 
+        "category": {
+          "Autos": "Autos",
+          "Bikes": "Bicicletas",
+          "Boats": "Barcos",
+          "Busses": "Autobuses",
+          "Construction Machines": "Máquinas de Construcción",
+          "Drones": "Drones",
+          "Others": "Otros",
+          "Parts": "Piezas",
+          "Trailers": "Remolques",
+          "Trucks": "Camiones",
+          "Vans": "Furgonetas"
+        },
         "subCategoryOptions": {
           "E-bikes": "Bicicletas eléctrica",
     "E-scooter": "Patinetes eléctricos",

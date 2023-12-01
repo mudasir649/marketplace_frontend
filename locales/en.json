@@ -61,7 +61,21 @@
         "Trailers",
         "Trucks",
         "Vans"
+        
       ],
+      "category": {
+        "Autos": "Autos",
+  "Bikes": "Bikes",
+  "Boats": "Boats",
+  "Busses": "Busses",
+  "Construction Machines": "Construction Machines",
+  "Drones": "Drones",
+  "Others": "Others",
+  "Parts": "Parts",
+  "Trailers": "Trailers",
+  "Trucks": "Trucks",
+  "Vans": "Vans"
+      },
       "categoriesParts": [
         "Autos Parts",
         "Bikes Parts",
@@ -97,6 +111,7 @@
         "Bicycles": "Bicycles",
         "E-scooter": "E-scooter",
         "E-bikes": "E-bikes",
+        "Bikes": "Bikes",
         "Motorcycle": "Motorcycle",
         "Boats": "Boats",
         "Busses": "Busses",
