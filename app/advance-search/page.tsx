@@ -10,15 +10,20 @@ import { useDispatch, useSelector } from "react-redux";
 
 function Page() {
 
-    const { page } = useSelector((state: any) => state.app);
+    const { page, minPrice, maxPrice, address } = useSelector((state: any) => state.app);
     const dispatch = useDispatch();
     const [productData, setProductData] = useState<any>();
     const [productsCount, setProductsCount] = useState<number>(0);
 
+    alert("hhh")
+
+
+    const api = (address !== "" || minPrice !== "" || maxPrice !== "") ? `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address}&minPrice=${minPrice}&maxPrice=${maxPrice}` : `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}`
+
     useEffect(() => {
         const fetchData = async () => {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}`);
-            if (res.status == 200) {
+            const res = await axios.get(api);
+                if (res.status == 200) {
                 setProductData(res.data?.data.ad);
                 setProductsCount(res.data?.data.totalAds);
             }

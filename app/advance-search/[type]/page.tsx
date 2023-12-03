@@ -64,7 +64,7 @@ function Page() {
       }
     }
       fetchData();
-  }, [page, checkType, dispatch]);
+  }, [page, type, dispatch, subCategory]);
 
   useEffect(() => {
     const fetchModels = async () => {

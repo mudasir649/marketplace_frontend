@@ -43,7 +43,6 @@ import {
   setProdId,
   setProductId,
   setProductUserId,
-  setShowShare,
   setSortBy,
   setType,
   setYear,
@@ -51,6 +50,8 @@ import {
   setBodyShape,
   setKm,
   setFuelType,
+  setAxelCount,
+  setAddress,
 } from "@/store/appSlice";
 import addInvertedComma from "@/utils/addInvertedComma";
 import ProductList from "./ProductList";
@@ -60,13 +61,12 @@ import { useTranslation } from "react-i18next";
 import "./Advance-search.css";
 import {
   IncludeKm,
-  bodyShape1,
   brandInclude,
   checkSubCategoryFilter,
-  fuelType1,
   gearBox1,
   kilometers,
 } from "@/utils/dataVariables";
+import { toast } from "react-toastify";
 
 interface IList {
   logo: any;
@@ -110,9 +110,9 @@ export default function AdvanceSearch({
   const [googleLocation, setGoogleLocation] = useState<any>();
   const [loading, setLoading] = useState<Boolean>(false);
   const [showLocation, setShowLocation] = useState<Boolean>(false);
-  const [address1, setAddress1] = useState<string>("");
   const [sortByLoading, setSortByLoading] = useState<Boolean>(false);
   const [subCategory1, setSubCategory] = useState<any>([]);
+  const [fieldsData, setFieldsData] = useState<any>();
   const pathname = usePathname();
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state: any) => state.auth);
@@ -136,7 +136,7 @@ export default function AdvanceSearch({
 
   const pagination = () => {
     let paginationList: any = [];
-    let productsPerPage = 9; // Set the number of products per page
+    let productsPerPage = 10; // Set the number of products per page
     let totalPages = Math.ceil(productsCount / productsPerPage);
 
     // Only add pages to paginationList if there is more than one page
@@ -149,23 +149,27 @@ export default function AdvanceSearch({
     return paginationList;
   };
 
+  console.log(category);
+  
+
   const conditionList = [
     {
       id: 1,
       name: t("condition.new"),
-      value: "new",
+      value: fieldsData?.conditionList[0].value,
     },
     {
       id: 2,
       name: t("condition.used"),
-      value: "used",
+      value: fieldsData?.conditionList[1].value,
     },
     {
       id: 3,
       name: t("condition.recondition"),
-      value: "recondition",
+      value: fieldsData?.conditionList[2].value,
     },
   ];
+  
 
   const nextHandle = () => {
     if (page !== pagination().length) {
@@ -175,6 +179,20 @@ export default function AdvanceSearch({
       return;
     }
   };
+
+  useEffect(() => {
+    const fetchFieldsData =async () => {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/get-postAd-data?type=${category}`);
+      setFieldsData(res.data?.data);
+    }
+    fetchFieldsData();
+  }, [category]);
+
+  console.log(fieldsData);
+
+  const fuelTypes = fieldsData?.BikeFuelType ? fieldsData?.BikeFuelType : fieldsData?.fuelType;
+  const bodyShape1 = fieldsData?.AutosBodyShape ? fieldsData?.AutosBodyShape : fieldsData?.bikeBodyShape 
+  
 
   const categoryList = [
     {
@@ -329,7 +347,7 @@ export default function AdvanceSearch({
     },
     {
       name: t("sortByList.1"),
-      value: "Old",
+      value: "Oldest",
     },
     {
       name: t("sortByList.4"),
@@ -358,14 +376,10 @@ export default function AdvanceSearch({
     dispatch(setCondition(""));
     dispatch(setBrand(""));
     dispatch(setModel(""));
-
     dispatch(setYear(""));
-
     dispatch(setType(value));
     router.push(`/advance-search/${value}`);
   };
-
-  console.log(type1);
 
   const handleFilterData = (e: any) => {
     setFiltersData({ ...filtersData, [e.target.name]: e.target.value });
@@ -383,13 +397,15 @@ export default function AdvanceSearch({
     newWidth < 370
       ? "text-[10px] cursor-pointer font-bold"
       : "text-[12px] cursor-pointer font-bold";
+  
+    const api = category === "Motorcycles" || category === "Bicycles" || category === "E-bikes" || category === "E-scooters" ? `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address}&category=Bikes&subCategory=${category}&condition=${condition}&brand=${brand}&model=${model}&year=${year}&minPrice=${minPrice}&maxPrice=${maxPrice}&km=${km}&bodyShape=${bodyShape}&gearBox=${gearBox}&fuelType=${fuelType}`  : `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address}&category=${category}&condition=${condition}&brand=${brand}&model=${model}&year=${year}&minPrice=${minPrice}&maxPrice=${maxPrice}&km=${km}&bodyShape=${bodyShape}&gearBox=${gearBox}&fuelType=${fuelType}`
 
   async function applyFilter() {
     setLoading(true);
     if (pathname == "/advance-search/search" || pathname == "/advance-search") {
       try {
         const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address1}&title=${title}&minPrice=${minPrice}&maxPrice=${maxPrice}`
+          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address}&title=${title}&minPrice=${minPrice}&maxPrice=${maxPrice}`
         );
         setProductData(res.data?.data?.ad);
         setProductsCount(res.data?.data?.totalAds);
@@ -400,9 +416,7 @@ export default function AdvanceSearch({
       }
     } else {
       try {
-        const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address1}&category=${category}&condition=${condition}&brand=${brand}&model=${model}&year=${year}&minPrice=${minPrice}&maxPrice=${maxPrice}&km=${km}&bodyShape=${bodyShape}&gearBox=${gearBox}&fuelType=${fuelType}`
-        );
+        const res = await axios.get(api);
         setProductData(res.data?.data?.ad);
         setProductsCount(res.data?.data?.totalAds);
         setLoading(false);
@@ -416,7 +430,6 @@ export default function AdvanceSearch({
 
   const handleSortBy = async (e: any) => {
     const { value } = e.target;
-    alert("thth");
     let res;
     dispatch(setSortBy(value));
     setSortByLoading(true);
@@ -467,23 +480,14 @@ export default function AdvanceSearch({
     }
   };
 
-  const checkPlace = async (e: any) => {
-    setShowLocation(true);
-    const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_BACKEND_URI}/googleRoutes?address=${e.target.value}`
-    );
-    let predictions = res.data?.data.predictions;
-    setGoogleLocation(predictions);
-  };
-
-  const saveLocation = (value: any) => {
-    setAddress1(value);
-    setShowLocation(false);
-  };
-
   const handleShare = (productId: any) => {
-    dispatch(setShowShare(true));
-    dispatch(setProductId(productId));
+    let linkToCopy = `${process.env.NEXT_PUBLIC_LINK_URI}/product-details/${productId}`;
+      try {
+        navigator.clipboard.writeText(linkToCopy);
+        toast('Link Copied!');
+      } catch (err) {
+        console.error('Failed to copy text: ', err);
+      }
   };
 
   const handleChat = async (product: any) => {
@@ -555,7 +559,7 @@ export default function AdvanceSearch({
       subCategory === "Bicycles" ||
       subCategory === "E-scooter" ||
       subCategory === "E-bikes" ||
-      subCategory === "Motorcycle"
+      subCategory === "Motorcycles"
     ) {
       return "Bikes";
     } else if (
@@ -582,6 +586,25 @@ export default function AdvanceSearch({
       return;
     }
   };
+
+  const clearFilter =async () => {
+    dispatch(setAddress(""));
+    dispatch(setMaxPrice(""));
+    dispatch(setMinPrice(""));
+    dispatch(setBrand(""));
+    dispatch(setModel(""));
+    dispatch(setCondition(""));
+    dispatch(setPage(1));
+    dispatch(setSortBy(""));
+    dispatch(setType(""));
+    dispatch(setYear(""));
+    dispatch(setGearBox(""));
+    dispatch(setBodyShape(""));
+    dispatch(setKm(""));
+    dispatch(setFuelType(""));
+    dispatch(setAxelCount(""));
+    router.push("/advance-search")
+  }
 
   return (
     <div>
@@ -658,35 +681,11 @@ export default function AdvanceSearch({
                 type="text"
                 placeholder={t("placeholderAddress")}
                 name="address"
-                value={address1}
-                onChange={(e: any) => setAddress1(e.target.value)}
+                value={address}
+                onChange={(e: any) => dispatch(setAddress(e.target.value))}
                 className="focus:outline-none pl-2 w-96 overflow-hidden bg-transparent"
-                onKeyUp={(e: any) => checkPlace(e)}
               />
             </div>
-            {showLocation && address && (
-              <div
-                className={`flex flex-row p-2 border-2 border-[#FF0000] h-52 rounded-lg lg:p-2 bg-white overflow-y-scroll ${
-                  newWidth <= 1024 ? "" : "absolute top-[202px] z-20 w-[320px]"
-                }`}
-              >
-                {showLocation ? (
-                  <ul className="w-full">
-                    {googleLocation?.map((location: any, i: number) => (
-                      <li
-                        className="border-b"
-                        key={i}
-                        onClick={() => saveLocation(location?.description)}
-                      >
-                        {location.description}
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  ""
-                )}
-              </div>
-            )}
           </div>
           {category && (
             <>
@@ -790,7 +789,7 @@ export default function AdvanceSearch({
   </>
 )}
 
-           {brandInclude.includes(type1) && (
+           {(category === "Autos" || category === "Motorcycles") && (
             <>
               <div className="border-b flex flex-row justify-between p-2 mb-4">
                 <h1 className="text-lg font-bold">
@@ -804,9 +803,9 @@ export default function AdvanceSearch({
                   onChange={(e: any) => dispatch(setBodyShape(e.target.value))}
                 >
                   <option>{t("autosComponent.selectBodyShape")}</option>
-                  {bodyShape1.map((kms: any, i: number) => (
-                    <option value={kms.name} key={i}>
-                      {kms.name}
+                  {bodyShape1?.map((bd: any, i: number) => (
+                    <option value={bd.name} key={i}>
+                      {bd.name}
                     </option>
                   ))}
                 </select>
@@ -836,30 +835,7 @@ export default function AdvanceSearch({
               </div>
             </>
           )}
-           {type1 === "Motorcycles"  && (
-            <>
-              <div className="border-b flex flex-row justify-between p-2 mb-4">
-                <h1 className="text-lg font-bold">
-                  {t("autosComponent.kilometers")}
-                </h1>
-              </div>
-              <div>
-                <select
-                  className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
-                  name="km"
-                  onChange={(e: any) => dispatch(setKm(e.target.value))}
-                >
-                  <option>{t("autosComponent.selectKilometer")}</option>
-                  {kilometers.map((kms: any, i: number) => (
-                    <option value={kms.name} key={i}>
-                      {kms.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </>
-          )}
-          {(type1 == "Motorcycles" || type1 === "Autos" || type1 === "Busses") && (
+          {(category == "Motorcycles" || category === "Autos" || category === "Busses") && (
             <>
               <div className="border-b flex flex-row justify-between p-2 mb-4">
                 <h1 className="text-lg font-bold">
@@ -875,9 +851,9 @@ export default function AdvanceSearch({
                   <option value="option1">
                     {t("autosComponent.selectFuelType")}
                   </option>
-                  {fuelType1?.map((body: any, i: number) => (
-                    <option value={body.value} key={i}>
-                      {body.name}
+                  {fuelTypes?.map((ft: any, i: number) => (
+                    <option value={ft.value} key={i}>
+                      {ft.name}
                     </option>
                   ))}
                 </select>
@@ -926,6 +902,31 @@ export default function AdvanceSearch({
               </div>
             </>
           )}
+          {category === "Busses" && (
+            <>
+              <div className="border-b flex flex-row justify-between p-2 mb-4">
+                <h1 className="text-lg font-bold">
+                  {t("autosComponent.axleCount")}
+                </h1>
+              </div>
+              <div>
+                <select
+                  className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+                  name="axelCount"
+                  onChange={(e: any) => dispatch(setAxelCount(e.target.value))}
+                >
+                  <option value="option1">
+                    {t("autosComponent.selectAxleCount")}
+                  </option>
+                  {fieldsData?.axelType?.map((axel: any, i: number) => (
+                    <option value={axel?.value} key={i}>
+                      {axel?.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </>
+          )}
           <div className="border-b flex flex-row justify-between p-2">
             <h1 className="text-lg font-bold">
               {t("categorySelection.priceRange")}
@@ -955,13 +956,11 @@ export default function AdvanceSearch({
                 {t("categorySelection.applyFilter")}
               </button>
             </div>
-            {brands && (
+            {(brands || address || minPrice || maxPrice) && (
               <div className="h-auto w-full space-x-4">
                 <button
                   className={btnStyle1}
-                  onClick={() => {
-                    router.push("/advance-search");
-                  }}
+                  onClick={clearFilter}
                 >
                   {t("categorySelection.clearFilter")}
                 </button>
@@ -1010,14 +1009,14 @@ export default function AdvanceSearch({
                   )}
                 </div>
                 {sortByLoading ? (
-                  <div className="flex justify-center w-full h-full">
-                    <Image
-                      src="/assets/eidcarosse.gif"
-                      alt="eidcarosse_logo"
-                      width={200}
-                      height={200}
-                    />
-                  </div>
+                  <div className="flex justify-center w-full h-auto">
+                  <Image
+                    src="/assets/eidcarosse.gif"
+                    alt="eidcarosse_logo"
+                    width={200}
+                    height={200}
+                  />
+                </div>
                 ) : newWidth <= 688 ? (
                   <ProductList productList={productData} />
                 ) : (
