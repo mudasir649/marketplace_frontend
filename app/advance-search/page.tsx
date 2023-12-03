@@ -15,9 +15,6 @@ function Page() {
     const [productData, setProductData] = useState<any>();
     const [productsCount, setProductsCount] = useState<number>(0);
 
-    alert("hhh")
-
-
     const api = (address !== "" || minPrice !== "" || maxPrice !== "") ? `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address}&minPrice=${minPrice}&maxPrice=${maxPrice}` : `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}`
 
     useEffect(() => {
