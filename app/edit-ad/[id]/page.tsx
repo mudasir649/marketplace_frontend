@@ -138,7 +138,8 @@ function EditComponent() {
         const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/getSpecific/${adId?.id}`);
         setProductData(res.data?.data);
         setProductImages(res?.data.data?.images);
-        data.images = res.data?.data?.images
+        data.images = res.data?.data?.images;
+        data.price = res?.data?.data?.price;
         setProductSubCat(res.data?.data?.category);
         setEditCondition(res.data?.data?.condition);
         if(!isNullOrNullOrEmpty(res?.data?.data?.whatsapp)) {setWhatsappChecked(true)};
@@ -365,8 +366,8 @@ function EditComponent() {
       );
       setSubCategory(res.data?.data);
     };
-    fetchCategory();
-  }, [productSubCat]);
+    if(productData?.category === "Busses" || productData?.category === "Vans" || productData?.category === "Trailers" || productData?.category === "Trucks" || productData?.category === "Construction Machines")  fetchCategory();
+  }, [productSubCat, productData?.category]);
   
 
   useEffect(() => {
@@ -376,109 +377,9 @@ function EditComponent() {
         );
         setBrands(res.data?.data);
       };
-      fetchBrand();
+      if(productData?.category !== undefined)  fetchBrand();
   }, [productData])
   
-
-  // useEffect(() => {
-  //   if(productData?.category === "Autos"){
-  //     const fetchBrand = async () => {
-  //       const res = await axios.get(
-  //         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Autos`
-  //       );
-  //       setBrands(res.data?.data);
-  //     };
-  //     fetchBrand();
-  //   }else if(productData?.category === "Busses"){
-  //     const fetchBrand = async () => {
-  //       const res = await axios.get(
-  //         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Busses`
-  //       );
-  //       setBrands(res.data?.data);
-  //     };
-  //     fetchBrand();
-  //   }else if(productData?.category === "Vans"){
-  //     const fetchBrand = async () => {
-  //       const res = await axios.get(
-  //         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Vans`
-  //       );
-  //       setBrands(res.data?.data);
-  //     };
-  //     fetchBrand();
-  //   }else if(productData?.category === "Trucks"){
-  //     const fetchBrand = async () => {
-  //       const res = await axios.get(
-  //         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Trucks`
-  //       );
-  //       setBrands(res.data?.data);
-  //     };
-  //     fetchBrand();
-  //   }else if(productData?.category === "Trailers"){
-  //     const fetchBrand = async () => {
-  //       const res = await axios.get(
-  //         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Trailers`
-  //       );
-  //       setBrands(res.data?.data);
-  //     };
-  //     fetchBrand();
-  //   }else if(productData?.category === "Boats"){
-  //     const fetchBrand = async () => {
-  //       const res = await axios.get(
-  //         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Boats`
-  //       );
-  //       setBrands(res.data?.data);
-  //     };
-  //     fetchBrand();
-  //   }else if(productData?.category === "Drones"){
-  //     const fetchBrand = async () => {
-  //       const res = await axios.get(
-  //         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Drones`
-  //       );
-  //       setBrands(res.data?.data);
-  //     };
-  //     fetchBrand();
-  //   }else if(productData?.category === "Contruction Machines"){
-  //     const fetchBrand = async () => {
-  //       const res = await axios.get(
-  //         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/${productData?.category}`
-  //       );
-  //       setBrands(res.data?.data);
-  //     };
-  //     fetchBrand();
-  //   }else if(productData?.subCategory === "Motorcycle"){
-  //     const fetchBrand = async () => {
-  //       const res = await axios.get(
-  //         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Motorcycle`
-  //       );
-  //       setBrands(res.data?.data);
-  //     };
-  //     fetchBrand();
-  //   }else if(productData?.subCategory === "Bicycles"){
-  //     const fetchBrand = async () => {
-  //       const res = await axios.get(
-  //         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/Bicycles`
-  //       );
-  //       setBrands(res.data?.data);
-  //     };
-  //     fetchBrand();
-  //   }else if(productData?.subCategory === "E-scooter"){
-  //     const fetchBrand = async () => {
-  //       const res = await axios.get(
-  //         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/E-scooter`
-  //       );
-  //       setBrands(res.data?.data);
-  //     };
-  //     fetchBrand();
-  //   }else if(productData?.subCategory === "E-bikes"){
-  //     const fetchBrand = async () => {
-  //       const res = await axios.get(
-  //         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/E-bikes`
-  //       );
-  //       setBrands(res.data?.data);
-  //     };
-  //     fetchBrand();
-  //   }
-  // }, [productData]);
 
   const handleInput = (e: any) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -536,7 +437,7 @@ function EditComponent() {
     e.preventDefault();
     console.log(data);
     // return;
-    setLoading(true);
+    // setLoading(true);
     let newData;
     if(checkObjectEmpty(data) === false){
       return;
@@ -545,7 +446,6 @@ function EditComponent() {
     for (let i = 0; i < images.length; i++) {
       formData.append("file", images[i]);
     }
-
     for (const key in data) {
       if (data.hasOwnProperty(key)) {
         formData.append(key, data[key as keyof IData]);
@@ -583,6 +483,7 @@ function EditComponent() {
     setLoading(false);
   };
 
+  
   const checkPlace = async (e: any) => {
     setShowLocation(true);
     const res = await axios.get(
