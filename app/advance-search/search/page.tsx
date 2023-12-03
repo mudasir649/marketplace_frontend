@@ -13,6 +13,9 @@ function Page() {
   const [productsCount, setProductsCount] = useState<number>(0);
   const dispatch = useDispatch();
 
+  alert("hhh")
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {

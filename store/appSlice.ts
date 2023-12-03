@@ -61,7 +61,8 @@ interface InitialStateInterface {
     km: any,
     gearBox: any,
     bodyShape: any,
-    fuelType: any
+    fuelType: any,
+    axelCount: any
 }
 
 
@@ -95,6 +96,7 @@ const initialState: InitialStateInterface = {
     gearBox: '',
     km: '',
     bodyShape: '',
+    axelCount: '',
     fuelType: '',
     email: getEmail(),
 }
@@ -148,12 +150,10 @@ const appSlice = createSlice({
         setReduxTitle: (state, actions) => {
             state.title = actions.payload
         },
-        setReduxAddress: (state, actions) => {
+        setAddress: (state, actions) => {
             state.address = actions.payload;
         },
         setRoomsData: (state, actions) => {
-
-            
             state.roomsData = actions.payload;
             localStorage.setItem('roomsData', JSON.stringify(actions.payload));
         },
@@ -193,6 +193,9 @@ const appSlice = createSlice({
         setMinPrice: (state, actions) => {
             state.minPrice = actions.payload;
         },
+        setAxelCount: (state, actions) => {
+            state.axelCount = actions.payload;
+        },
         setProdId: (state, actions) => {
             state.prodId = actions.payload;
             localStorage.setItem('prodId', JSON.stringify(state.prodId));
@@ -213,7 +216,7 @@ export const { refreshPage, setFilterData,
                 setShowDeleteAd, setPage,
                 setProductData, setProductsCount, 
                 setSortBy, setType,
-                setReduxTitle, setReduxAddress, 
+                setReduxTitle, setAddress, 
                 setProductUserId, setRoomsData, 
                 setLanguage, setShowContact, 
                 setCondition, setBrand,
@@ -222,6 +225,6 @@ export const { refreshPage, setFilterData,
                 setBodyShape, setFuelType,
                 setMinPrice, setMaxPrice, 
                 setProdId, setCloseAll, 
-                setEmail} = appSlice.actions;
+                setEmail, setAxelCount} = appSlice.actions;
 
 export default appSlice.reducer;

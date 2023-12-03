@@ -90,7 +90,7 @@
       ],
       "sortByList": [
         "Latest",
-        "Old",
+        "Oldest",
         "A to Z (title)",
         "Z to A (title)",
         "Price (low to high)",
@@ -344,9 +344,9 @@
     "Station wagon/van": "Station wagon/van",
     "Van - high roof": "Van - high roof",
     "E-bikes": "E-bikes",
-    "E-scooter":"E-scooter",
+    "E-scooters":"E-scooter",
     "Bicycles":"Bicycles",
-    "Motorcycle":"Motorcycle"
+    "Motorcycles":"Motorcycle"
       },
 
       "fuelType": {

@@ -16,8 +16,8 @@ import {
   setFilterData,
   setProductData,
   setProductsCount,
-  setReduxAddress,
   setReduxTitle,
+  setAddress,
 } from "@/store/appSlice";
 import { usePathname, useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
@@ -32,7 +32,6 @@ export default function SearchPage() {
   const [googleLocation, setGoogleLocation] = useState<any>();
   const [showLocation, setShowLocation] = useState<Boolean>(false);
   const [showTitle, setShowTitle] = useState<Boolean>(false);
-  const [address, setAddress] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [titleData, setTitleData] = useState<any>();
   const dropdownRef = useRef<HTMLFormElement | null>(null);
@@ -50,10 +49,6 @@ export default function SearchPage() {
     setGoogleLocation(predictions);
   };
 
-  const saveLocation = (value: any) => {
-    setAddress(value);
-    setShowLocation(false);
-  };
 
   const handleTitle = async (e: any) => {
     setShowTitle(true);
@@ -71,7 +66,7 @@ export default function SearchPage() {
   const searchFilter = async (e: any) => {
     e.preventDefault();
     dispatch(setReduxTitle(title));
-    dispatch(setReduxAddress(address));
+    dispatch(setAddress(e.target));
     router.push("/advance-search/search");
   };
 

@@ -38,6 +38,7 @@ import { useTranslation } from "react-i18next";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import Head from "next/head";
+import { toast } from "react-toastify";
 
 
 function ProductDetails() {
@@ -133,8 +134,13 @@ function ProductDetails() {
   };
 
   const handleShare = (productId: string) => {
-    dispatch(setShowShare(true));
-    dispatch(setProductId(productId));
+    let linkToCopy = `${process.env.NEXT_PUBLIC_LINK_URI}/product-details/${product?._id}`;
+      try {
+        navigator.clipboard.writeText(linkToCopy);
+        toast('Link Copied!');
+      } catch (err) {
+        console.error('Failed to copy text: ', err);
+      }
   };
 
   const handleChat = async () => {
@@ -255,16 +261,16 @@ function ProductDetails() {
                     <div className="flex flex-row gap-2 text-gray-600">
                       <Category className="text-[#FF0000]" />
                       <h1 className="text-black">  {product.category === "Autos" && t('categories.0')}
-    {product.category === "Bikes" && t('categories.1')}
-    {product.category === "Boats" && t('categories.2')}
-    {product.category === "Busses" && t('categories.3')}
-    {product.category === "Construction Machines" && t('categories.4')}
-    {product.category === "Drones" && t('categories.5')}
-    {product.category === "Others" && t('categories.6')}
-    {product.category === "Parts" && t('categories.7')}
-    {product.category === "Trailers" && t('categories.8')}
-    {product.category === "Trucks" && t('categories.9')}
-    {product.category === "Vans" && t('categories.10')}</h1>
+                        {product.category === "Bikes" && t('categories.1')}
+                        {product.category === "Boats" && t('categories.2')}
+                        {product.category === "Busses" && t('categories.3')}
+                        {product.category === "Construction Machines" && t('categories.4')}
+                        {product.category === "Drones" && t('categories.5')}
+                        {product.category === "Others" && t('categories.6')}
+                        {product.category === "Parts" && t('categories.7')}
+                        {product.category === "Trailers" && t('categories.8')}
+                        {product.category === "Trucks" && t('categories.9')}
+                        {product.category === "Vans" && t('categories.10')}</h1>
                     </div>
                     <div className="flex flex-row gap-2 text-gray-600">
                       <Place className="text-[#FF0000]" />
@@ -292,7 +298,7 @@ function ProductDetails() {
                     />
                     <h1>
                       <Share
-                        className="text-gray-500"
+                        className="text-gray-500 cursor-pointer"
                         onClick={() => handleShare(product?._id)}
                       />
                     </h1>

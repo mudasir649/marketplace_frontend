@@ -40,6 +40,7 @@ export default function PostAd() {
   const [category, setCategory] = useState<string>("");
   const [list, setList] = useState<any>();
   const [subList, setSubList] = useState<any>();
+  const [subCategory, setSubCategory] = useState<string>("");
 
   const handleCategory = (value: any, subValue: any) => {
     setCategory(value);
@@ -55,8 +56,12 @@ export default function PostAd() {
   };
 
   const handleSubCategory = (value: any) => {
+    setSubCategory(value);
     router.push(`/post-ad/${value}`);
   };
+
+  console.log(subCategory);
+  
 
   useEffect(() => {
     const fetchList = async () => {
@@ -129,8 +134,8 @@ export default function PostAd() {
                         className="w-full"
                         options={subList}
                         value={
-                          category ? { value: category, label: category } : null
-                        }
+                          subCategory ? { value: subCategory, label: subCategory } : null
+                        }                        
                         onChange={(selectedOption: any) =>
                           handleSubCategory(
                             selectedOption.name,
