@@ -359,30 +359,6 @@ export default function OthersComponent({ type }: any) {
                 </div>
               </div>
               <div className={style.divStyle}>
-                <h1 className={style.h1Style}>{t("autosComponent.brand")}</h1>
-                <div className="flex flex-col w-full">
-                  <input
-                    type="text"
-                    className={style.inputStyle}
-                    name="brand"
-                    value={data.brand}
-                    onChange={(e: any) => handleInput(e)}
-                  />
-                </div>
-              </div>
-              <div className={style.divStyle}>
-                <h1 className={style.h1Style}>{t("autosComponent.model")}</h1>
-                <div className="flex flex-col w-full">
-                  <input
-                    type="text"
-                    className={style.inputStyle}
-                    name="model"
-                    value={data.model}
-                    onChange={(e: any) => handleInput(e)}
-                  />
-                </div>
-              </div>
-              <div className={style.divStyle}>
                 <h1 className={style.h1Style}>{t("autosComponent.year")}</h1>
                 <div className="flex flex-col w-full">
                   <input

@@ -525,8 +525,8 @@ export const subCategoryMap: { [key: string]: string } = {
   "E-Scooters": "E-scooter",
   "E-Bikes": "E-bikes",
   "Motorcycles": "Motorcycles",
-  "Autos%20Parts": "Auto Parts",
-  "Bikes%20Parts": "Bike Parts",
+  "Auto%20Parts": "Auto Parts",
+  "Bike%20Parts": "Bike Parts",
   "Boat%20Parts": "Boat Parts",
   "Busses%20Parts": "Bus Parts",
   "Construction%20Machines%20Parts": "Construction Machine Parts",
@@ -536,6 +536,26 @@ export const subCategoryMap: { [key: string]: string } = {
   "Trucks%20Parts": "Truck Parts",
   "Vans%20Parts": "Van Parts",
 };
+
+export const subBikeCategoryList: any = [
+  "Motorcycles",
+  "Bicycles",
+  "E-scooters",
+  "E-bikes",
+];
+
+export const subPartsCategoryList: any = [
+  "Auto Parts",
+  "Bike Parts",
+  "Boat Parts",
+  "Busses Parts",
+  "Construction Machines Parts",
+  "Drones Parts",
+  "Trailers Parts",
+  "Trucks Parts",
+  "Vans Parts",
+  "Other Parts"
+]
 
 
 export const type1Map: { [key: string]: string } = {

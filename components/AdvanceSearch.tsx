@@ -52,6 +52,7 @@ import {
   setFuelType,
   setAxelCount,
   setAddress,
+  refreshPage,
 } from "@/store/appSlice";
 import addInvertedComma from "@/utils/addInvertedComma";
 import ProductList from "./ProductList";
@@ -65,6 +66,8 @@ import {
   checkSubCategoryFilter,
   gearBox1,
   kilometers,
+  subBikeCategoryList,
+  subPartsCategoryList,
 } from "@/utils/dataVariables";
 import { toast } from "react-toastify";
 
@@ -98,6 +101,7 @@ export default function AdvanceSearch({
   subCategory,
   brands,
   models,
+  vehicleSubCategory,
   years,
   checkType,
 }: any) {
@@ -107,16 +111,13 @@ export default function AdvanceSearch({
   const { page, address, title, type1 } = useSelector(
     (state: any) => state.app
   );
-  const [googleLocation, setGoogleLocation] = useState<any>();
   const [loading, setLoading] = useState<Boolean>(false);
-  const [showLocation, setShowLocation] = useState<Boolean>(false);
   const [sortByLoading, setSortByLoading] = useState<Boolean>(false);
-  const [subCategory1, setSubCategory] = useState<any>([]);
   const [fieldsData, setFieldsData] = useState<any>();
   const pathname = usePathname();
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state: any) => state.auth);
-  const { condition, brand, year, model, minPrice, maxPrice, prodId, km, bodyShape, fuelType, gearBox } =
+  const { condition, brand, year, model, minPrice, maxPrice, prodId, km, bodyShape, fuelType, gearBox, refresh } =
     useSelector((state: any) => state.app);
   const userId = userInfo?.data?.userDetails?._id;
 
@@ -148,8 +149,6 @@ export default function AdvanceSearch({
 
     return paginationList;
   };
-
-  console.log(category);
   
 
   const conditionList = [
@@ -187,8 +186,6 @@ export default function AdvanceSearch({
     }
     fetchFieldsData();
   }, [category]);
-
-  console.log(fieldsData);
 
   const fuelTypes = fieldsData?.BikeFuelType ? fieldsData?.BikeFuelType : fieldsData?.fuelType;
   const bodyShape1 = fieldsData?.AutosBodyShape ? fieldsData?.AutosBodyShape : fieldsData?.bikeBodyShape 
@@ -273,12 +270,12 @@ export default function AdvanceSearch({
     {
       logo: <ElectricScooter />,
       name: t("subList.1"),
-      name1: "E-Scooters",
+      name1: "E-scooters",
     },
     {
       logo: <ElectricBike />,
       name: t("subList.2"),
-      name1: "E-Bikes",
+      name1: "E-bikes",
     },
     {
       logo: <DirectionsBike />,
@@ -291,12 +288,12 @@ export default function AdvanceSearch({
     {
       logo: <DirectionsCar />,
       name: t("categoriesParts.0"),
-      name1: "Autos Parts",
+      name1: "Auto Parts",
     },
     {
       logo: <TwoWheeler />,
       name: t("categoriesParts.1"),
-      name1: "Bikes Parts",
+      name1: "Bike Parts",
     },
     {
       logo: <DirectionsBoat />,
@@ -372,11 +369,21 @@ export default function AdvanceSearch({
   }, []);
 
   const handleSearch = async (value: any) => {
-    dispatch(setPage(1));
-    dispatch(setCondition(""));
+    dispatch(setAddress(""));
+    dispatch(setMaxPrice(""));
+    dispatch(setMinPrice(""));
     dispatch(setBrand(""));
     dispatch(setModel(""));
+    dispatch(setCondition(""));
+    dispatch(setPage(1));
+    dispatch(setSortBy(""));
+    dispatch(setType(""));
     dispatch(setYear(""));
+    dispatch(setGearBox(""));
+    dispatch(setBodyShape(""));
+    dispatch(setKm(""));
+    dispatch(setFuelType(""));
+    dispatch(setAxelCount(""));
     dispatch(setType(value));
     router.push(`/advance-search/${value}`);
   };
@@ -397,8 +404,18 @@ export default function AdvanceSearch({
     newWidth < 370
       ? "text-[10px] cursor-pointer font-bold"
       : "text-[12px] cursor-pointer font-bold";
-  
-    const api = category === "Motorcycles" || category === "Bicycles" || category === "E-bikes" || category === "E-scooters" ? `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address}&category=Bikes&subCategory=${category}&condition=${condition}&brand=${brand}&model=${model}&year=${year}&minPrice=${minPrice}&maxPrice=${maxPrice}&km=${km}&bodyShape=${bodyShape}&gearBox=${gearBox}&fuelType=${fuelType}`  : `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address}&category=${category}&condition=${condition}&brand=${brand}&model=${model}&year=${year}&minPrice=${minPrice}&maxPrice=${maxPrice}&km=${km}&bodyShape=${bodyShape}&gearBox=${gearBox}&fuelType=${fuelType}`
+
+    const baseApi = `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address}&condition=${condition}&brand=${brand}&model=${model}&year=${year}&minPrice=${minPrice}&maxPrice=${maxPrice}&km=${km}&bodyShape=${bodyShape}&gearBox=${gearBox}&fuelType=${fuelType}`;
+    let categoryApi: any;
+    
+
+    if(subBikeCategoryList.includes(category)){
+      categoryApi = `${baseApi}&category=Bikes&subCategory=${category}`
+    }else if(subPartsCategoryList.includes(subCategory)){
+      categoryApi = `${baseApi}&category=Parts&subCategory=${subCategory}`
+    }else{
+      categoryApi = `${baseApi}&category=${category}`
+    }
 
   async function applyFilter() {
     setLoading(true);
@@ -410,15 +427,17 @@ export default function AdvanceSearch({
         setProductData(res.data?.data?.ad);
         setProductsCount(res.data?.data?.totalAds);
         setLoading(false);
+        scrollToTop();
       } catch (error) {
         setLoading(false);
         console.log(error);
       }
     } else {
       try {
-        const res = await axios.get(api);
+        const res = await axios.get(categoryApi);
         setProductData(res.data?.data?.ad);
         setProductsCount(res.data?.data?.totalAds);
+        scrollToTop();
         setLoading(false);
       } catch (error) {
         setLoading(false);
@@ -437,7 +456,7 @@ export default function AdvanceSearch({
     if (
       category === "Motorcycles" ||
       category === "Bicycles" ||
-      category === "E-scooter" ||
+      category === "E-scooters" ||
       category === "E-bikes"
     ) {
       try {
@@ -466,8 +485,9 @@ export default function AdvanceSearch({
     }
     setSortByLoading(false);
   };
+  
 
-  const adFavorite = async (productId: any) => {
+  const adFavorite = async (productId: any, i: number) => {
     if (userInfo === null) {
       router.push("/login");
     } else {
@@ -475,10 +495,25 @@ export default function AdvanceSearch({
         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/setFavorite/${productId}/${userId}`
       );
       if (res.status == 201) {
-        dispatch(setProdId([...prodId, productId]));
+        dispatch(setProdId([...prodId, productData[i]]));
+        dispatch(refreshPage(refresh + 1));
+      } else {
+        if (pathname == "/my-favourites") {
+          dispatch(refreshPage(refresh + 1));
+          const newRecord = prodId?.filter((item: any) => {
+            return item._id !== productId;
+          });
+          dispatch(setProdId(newRecord));
+        } else {
+          const newRecord = prodId?.filter((item: any) => {
+            return item._id !== productId;
+          });
+          dispatch(setProdId(newRecord));
+        }
       }
     }
   };
+
 
   const handleShare = (productId: any) => {
     let linkToCopy = `${process.env.NEXT_PUBLIC_LINK_URI}/product-details/${productId}`;
@@ -493,10 +528,10 @@ export default function AdvanceSearch({
   const handleChat = async (product: any) => {
     if (userInfo !== null) {
       dispatch(setProductId(product?._id));
-      dispatch(setProductUserId(product?.userId));
+      dispatch(setProductUserId(product?.userId?._id));
       const data = {
         userId: userId,
-        productUserId: product?.userId,
+        productUserId: product?.userId._id,
         productId: product?._id,
       };
       const res = await axios.post(
@@ -509,6 +544,24 @@ export default function AdvanceSearch({
     } else {
       router.push("/login");
     }
+    // if (userInfo !== null) {
+    //   dispatch(setProductId(product?._id));
+    //   dispatch(setProductUserId(product?.userId));
+    //   const data = {
+    //     userId: userId,
+    //     productUserId: product?.userId,
+    //     productId: product?._id,
+    //   };
+    //   const res = await axios.post(
+    //     `${process.env.NEXT_PUBLIC_BACKEND_URI}/chatroom`,
+    //     data
+    //   );
+    //   if (res.status === 200) {
+    //     router.push("/chat");
+    //   }
+    // } else {
+    //   router.push("/login");
+    // }
   };
 
   useEffect(() => {
@@ -524,18 +577,6 @@ export default function AdvanceSearch({
       fetchAds();
     }
   }, [userId, dispatch, userInfo]);
-
-  useEffect(() => {
-    if (checkSubCategoryFilter.includes(type1)) {
-      const fetchCategory = async () => {
-        const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleSubCategory/${type1}`
-        );
-        setSubCategory(res.data?.data);
-      };
-      fetchCategory();
-    }
-  }, [type1]);
 
   const findProductId = (productId: any) => {
     return prodId.some((item: any) => item._id === productId);
@@ -557,7 +598,7 @@ export default function AdvanceSearch({
   const checkSubCategory = () => {
     if (
       subCategory === "Bicycles" ||
-      subCategory === "E-scooter" ||
+      subCategory === "E-scooters" ||
       subCategory === "E-bikes" ||
       subCategory === "Motorcycles"
     ) {
@@ -588,23 +629,31 @@ export default function AdvanceSearch({
   };
 
   const clearFilter =async () => {
-    dispatch(setAddress(""));
-    dispatch(setMaxPrice(""));
-    dispatch(setMinPrice(""));
-    dispatch(setBrand(""));
-    dispatch(setModel(""));
-    dispatch(setCondition(""));
-    dispatch(setPage(1));
-    dispatch(setSortBy(""));
-    dispatch(setType(""));
-    dispatch(setYear(""));
-    dispatch(setGearBox(""));
-    dispatch(setBodyShape(""));
-    dispatch(setKm(""));
-    dispatch(setFuelType(""));
-    dispatch(setAxelCount(""));
-    router.push("/advance-search")
+    if(category !== ""){
+      dispatch(refreshPage(refresh + 1));
+      dispatch(setAddress(""));
+      dispatch(setMaxPrice(""));
+      dispatch(setMinPrice(""));
+      dispatch(setBrand(""));
+      dispatch(setModel(""));
+      dispatch(setCondition(""));
+      dispatch(setPage(1));
+      dispatch(setSortBy(""));
+      dispatch(setType(""));
+      dispatch(setYear(""));
+      dispatch(setGearBox(""));
+      dispatch(setBodyShape(""));
+      dispatch(setKm(""));
+      dispatch(setFuelType(""));
+      dispatch(setAxelCount(""));
+      router.push(`/advance-search/${category}`);
+    }else{
+      return router.push(`/advance-search/${category}`);
+    }
   }
+
+  console.log(category);
+  
 
   return (
     <div>
@@ -659,7 +708,7 @@ export default function AdvanceSearch({
                     partsSubList?.map((list: any, i: number) => (
                       <li
                         className={`${
-                          category === list?.name1 ? "text-[#FF0000]" : ""
+                          subCategory === list?.name1 ? "text-[#FF0000]" : ""
                         } ml-10 cursor-pointer whitespace-nowrap w-auto truncate`}
                         key={i}
                         onClick={() => handleSearch(list?.name1)}
@@ -712,7 +761,7 @@ export default function AdvanceSearch({
               </ul>
             </>
           )}
-          {/* {checkSubCategoryFilter.includes(type1) && (
+          {checkSubCategoryFilter.includes(category) && (
             <>
               <div className="border-b flex flex-row justify-between p-2 mb-4">
                 <h1 className="text-lg font-bold">
@@ -726,7 +775,7 @@ export default function AdvanceSearch({
                 <option value="option1">
                   {t("autosComponent.selectSubCategory")}
                 </option>
-                {subCategory1?.map(
+                {vehicleSubCategory?.map(
                   (list: any, i: number) =>
                     list?.category?.map((cat: any, j: number) => (
                       <option
@@ -741,7 +790,7 @@ export default function AdvanceSearch({
                 )}
               </select>
             </>
-          )} */}
+          )}
           {brandInclude.includes(type1) && (
             <>
               <div className="border-b flex flex-row justify-between p-2 mb-4">
@@ -956,7 +1005,7 @@ export default function AdvanceSearch({
                 {t("categorySelection.applyFilter")}
               </button>
             </div>
-            {(brands || address || minPrice || maxPrice) && (
+            {(brands || address || minPrice || maxPrice || condition) && (
               <div className="h-auto w-full space-x-4">
                 <button
                   className={btnStyle1}
@@ -1130,6 +1179,7 @@ export default function AdvanceSearch({
                                 {product?.title}
                               </h2>
                             </Link>
+                            {product?.userId?._id === userId ? '' : 
                             <div className="space-x-3">
                               <Favorite
                                 className={`${
@@ -1137,7 +1187,7 @@ export default function AdvanceSearch({
                                     ? "text-[#FF0000]"
                                     : "text-gray-300"
                                 } cursor-pointer`}
-                                onClick={() => adFavorite(product?._id)}
+                                onClick={() => adFavorite(product?._id, i)}
                                 style={{ fontSize: "20px" }}
                               />
                               <Share
@@ -1146,6 +1196,7 @@ export default function AdvanceSearch({
                                 style={{ fontSize: "20px" }}
                               />
                             </div>
+}
                           </div>
                           <div className="mt-3 space-y-1">
                             {product?.price ? (
