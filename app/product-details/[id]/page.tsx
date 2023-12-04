@@ -165,8 +165,6 @@ function ProductDetails() {
     router.push("/login");
   };
 
-  console.log(product);
-
   return (
     <div className="">
       {/* <Helmet> */}
