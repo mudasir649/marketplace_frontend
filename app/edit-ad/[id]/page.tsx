@@ -1,10 +1,13 @@
 "use client";
 import {
+  BorderColor,
   Cancel,
   Description,
   Image,
   InsertLink,
   Person,
+  Phone,
+  PhoneIphone,
   PlaylistAdd,
 } from "@mui/icons-material";
 import axios from "axios";
@@ -23,6 +26,7 @@ import "@/components/autos.css";
 import locateAddress from "@/utils/GoogleLocation";
 import dynamic from "next/dynamic";
 import Switch from "react-switch";
+import { TextField } from "@mui/material";
 
 
 const style = {
@@ -1083,15 +1087,21 @@ function EditComponent() {
               <div className={style.divStyle}>
                 <h1 className={`${style.h1Style} invisible`}>Whatspp</h1>
                 <div className="flex flex-row w-full h-8 justify-between">
-                <h1 className="font-semibold text-[#7B66FF] mt-1">Show my What`s app number</h1>
-                  <Switch
+                <h1 className="font-semibold mt-1">Show my phone number in ads</h1>
+                </div>
+              </div>
+              <div className={style.divStyle}>
+                <h1 className={`${style.h1Style} invisible`}>Whatspp</h1>
+                <div className="flex flex-row w-full h-8 space-x-5">
+                <Switch
                     onChange={() => handleChange(!whatsappChecked, "whatsapp")}
                     checked={whatsappChecked}
                     offColor="#888"
-                    onColor="#7B66FF"
-                    height={28}
-                    className="h-20"
+                    onColor="#191919"
+                    height={20}
+                    className="h-10"
                   />
+                <h1 className="-mt-1 font-bold text-lg">Whatsapp</h1>
                 </div>
               </div>
               {whatsappChecked && (
@@ -1100,30 +1110,26 @@ function EditComponent() {
                     className={`${style.divStyle} transform ease-linear duration-500`}
                   >
                     <h1 className={`${style.h1Style} invisible`}>whatsapp</h1>
-                    <div className="flex flex-row space-x-10 w-full">
-                      <input
-                        className={style.inputStyle}
-                        placeholder={productData?.whatsapp}
-                        name="whatsapp"
-                        value={data?.whatsapp}
-                        onChange={(e) => handleInput(e)}
-                      />
+                    <div className="h-auto flex w-full border-b-2 p-2">
+                      <PhoneIphone className="text-gray-400" />
+                      <input type="text" className="w-full focus:outline-none" placeholder={productData?.whatsapp} name="whatsapp" value={data?.whatsapp} onChange={(e) => handleInput(e)} />
+                      <BorderColor className="text-gray-400" />
                     </div>
                   </div>
                 </>
               )}
               <div className={style.divStyle}>
                 <h1 className={`${style.h1Style} invisible`}>Viber</h1>
-                <div className="flex flex-row w-full h-8 justify-between">
-                <h1 className="font-semibold text-[#7B66FF] mt-1">Show my Viber number</h1>
-                  <Switch
+                <div className="flex flex-row w-full h-8 space-x-5">
+                <Switch
                     onChange={() => handleChange(!viberChecked, "viber")}
                     checked={viberChecked}
                     offColor="#888"
-                    onColor="#7B66FF"
-                    height={28}
-                    className="h-20"
+                    onColor="#191919"
+                    height={20}
+                    className="h-10"
                   />
+                <h1 className="-mt-1 font-bold text-lg">Viber</h1>
                 </div>
               </div>
               {viberChecked && (
@@ -1132,30 +1138,26 @@ function EditComponent() {
                     className={`${style.divStyle} transform ease-linear duration-200`}
                   >
                     <h1 className={`${style.h1Style} invisible`}>viber</h1>
-                    <div className="flex flex-row space-x-10 w-full">
-                      <input
-                        className={style.inputStyle}
-                        placeholder={productData?.viber}
-                        name="viber"
-                        value={data?.viber}
-                        onChange={(e) => handleInput(e)}
-                      />
+                    <div className="h-auto flex w-full border-b-2 p-2">
+                      <PhoneIphone className="text-gray-400" />
+                      <input type="text" className="w-full focus:outline-none" placeholder={productData?.viber} name="viber" value={data?.viber} onChange={(e) => handleInput(e)} />
+                      <BorderColor className="text-gray-400" />
                     </div>
-                  </div>
+              </div>
                 </>
               )}
               <div className={style.divStyle}>
                 <h1 className={`${style.h1Style} invisible`}>Phone</h1>
-                <div className="flex flex-row w-full h-8 justify-between">
-                  <h1 className="font-semibold text-[#7B66FF] mt-1">Show my Phone number</h1>
+                <div className="flex flex-row w-full h-8 space-x-5">
                   <Switch
                     onChange={() => handleChange(!phoneChecked, "phone")}
                     checked={phoneChecked}
                     offColor="#888"
-                    onColor="#7B66FF"
-                    height={28}
-                    className="h-20"
+                    onColor="#191919"
+                    height={20}
+                    className="h-10"
                   />
+                  <h1 className="-mt-1 font-bold text-lg">Phone</h1>
                 </div>
               </div>
               {phoneChecked && 
@@ -1163,10 +1165,12 @@ function EditComponent() {
               className={`${style.divStyle} transform ease-linear duration-500`}
             >
               <h1 className={`${style.h1Style} invisible`}>phone</h1>
-              <div className="flex flex-row space-x-10 w-full">
-                <h1 className="font-bold text-[#FF0000]">{phone}</h1>
+              <div className="h-auto flex w-full border-b-2 p-2">
+                <PhoneIphone className="text-gray-400" />
+                <h1 className="text-base text-gray-500">{phone}</h1>
               </div>
               </div>}
+              {/* <TextField className="w-full" id="standard-basic" label="Standard" variant="standard" />               */}
               <div className={style.divStyle}>
                 <h1 className={`${style.h1Style} invisible`}>ffj</h1>
                 {!loading ? (

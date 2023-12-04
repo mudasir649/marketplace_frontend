@@ -1,8 +1,7 @@
-'use client';
 import { setProductData, setProductsCount } from "@/store/appSlice";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import {
@@ -21,11 +20,6 @@ import {
   TwoWheeler,
 } from "@mui/icons-material";
 import Image from "next/image";
-
-const liStyle = "border-b border-gray-200 whitespace-nowrap flex flex-row space-x-2 hover:bg-gray-200 p-[1px]";
-const categoryliStyle = "flex space-x-2 border-b border-gray-200 whitespace-nowrap";
-
-const h1Style = "hover:text-[#FF0000]";
 
 export default function CategoryList({ setCategory, setExpand }: any) {
     const { t } = useTranslation(); // Initialize the translation hook
@@ -107,11 +101,14 @@ export default function CategoryList({ setCategory, setExpand }: any) {
         },
       ];
 
+  const liStyle =
+    "border-b border-gray-200 whitespace-nowrap flex flex-row space-x-1";
+    const categoryliStyle =
+    "flex space-x-2 border-b border-gray-200 whitespace-nowrap";
+
+    const h1Style = "hover:text-[#FF0000]";
+
   const router = useRouter();
-  const [list, setList] = useState<any>();
-  const [isBikesHovered, setIsBikesHovered] = useState(false);
-
-
 
   const handleClick = async (value: any) => {
     setCategory(value);
@@ -119,38 +116,11 @@ export default function CategoryList({ setCategory, setExpand }: any) {
     setExpand(false);
   };
 
-  useEffect(() => {
-    const fetchList = async () => {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/get-types-list`
-      );
-      if (res.status === 200) {
-        setList(res.data?.data);
-      }
-    };
-    fetchList();
-  }, []);
-
 
   return (
     <div>
       <ul className="text-gray-500 space-y-1 cursor-pointer dropdow-menu z-10">
-        {list?.map((lst: any, i: number) => (
-          <><li key={i} className={`${lst?.name === 'Bikes' ? 'dropdown' : ''} 
-          border-b border-gray-200 whitespace-nowrap flex flex-row space-x-2 hover:bg-gray-200 p-[1px]`}
-          onClick={() =>handleClick(lst?.name)}
-          >
-            <Image
-              className="h-6 w-6"
-              src={lst?.image}
-              alt="image1"
-              width={100}
-              height={100} />
-            <h1 className="mt-[-1px]">
-            {t(`allCategories.${lst.name}`)}</h1>
-          </li></>
-        ))}
-        {/* <li onClick={() => handleClick("Autos")} className={liStyle}>
+        <li onClick={() => handleClick("Autos")} className={liStyle}>
           {" "}
           <h1> <DirectionsCar /></h1> <h1 className={h1Style}> {t("categories.0")}</h1>
         </li>
@@ -221,7 +191,7 @@ export default function CategoryList({ setCategory, setExpand }: any) {
         </li>
         <li onClick={() => handleClick("Others")} className={liStyle}>
           <h1><DataSaverOn /></h1> <h1 className={h1Style}>{t("categories.6")}</h1>
-        </li> */}
+        </li>
       </ul>
     </div>
   );
