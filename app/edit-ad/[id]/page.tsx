@@ -140,6 +140,8 @@ function EditComponent() {
         setProductImages(res?.data.data?.images);
         data.images = res.data?.data?.images;
         data.price = res?.data?.data?.price;
+        data.whatsapp = res?.data?.data?.whatsapp;
+        data.viber = res?.data?.data?.viber;
         setProductSubCat(res.data?.data?.category);
         setEditCondition(res.data?.data?.condition);
         if(!isNullOrNullOrEmpty(res?.data?.data?.whatsapp)) {setWhatsappChecked(true)};
@@ -437,7 +439,7 @@ function EditComponent() {
     e.preventDefault();
     console.log(data);
     // return;
-    // setLoading(true);
+    setLoading(true);
     let newData;
     if(checkObjectEmpty(data) === false){
       return;
@@ -520,11 +522,11 @@ function EditComponent() {
   const handleChange = (newChecked: boolean, type: any) => {
     if (type === "whatsapp") {
       setWhatsappChecked(newChecked);
-      if(newChecked === true) setData({...data, ["whatsapp"]: whatsapp});
+      if(newChecked === true) setData({...data, ["whatsapp"]: productData?.whatsapp});
       else setData({...data, ["whatsapp"]: ""});
     } else if (type === "viber") {
       setViberChecked(newChecked);
-      if(newChecked === true) setData({...data, ["viber"]: viber});
+      if(newChecked === true) setData({...data, ["viber"]: productData?.viber});
       else setData({...data, ["viber"]: ""});
     }
     else if (type === "phone") {
