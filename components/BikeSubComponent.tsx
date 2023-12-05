@@ -337,8 +337,6 @@ export default function BikeSubComponent({ type }: any) {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log(data);
-    return;
     setLoading(true);
     const formData = new FormData();
 
