@@ -26,7 +26,7 @@ const getChatRoomData = () => {
 
 const getEmail = () => {
     const getEmail = typeof window !== 'undefined' ? localStorage.getItem('email') : null;
-    const email = getEmail ? getEmail : null;
+    return getEmail ? getEmail : null;
 }
 
 
@@ -62,7 +62,8 @@ interface InitialStateInterface {
     gearBox: any,
     bodyShape: any,
     fuelType: any,
-    axelCount: any
+    axelCount: any,
+    type: any
 }
 
 
@@ -98,6 +99,7 @@ const initialState: InitialStateInterface = {
     bodyShape: '',
     axelCount: '',
     fuelType: '',
+    type: '',
     email: getEmail(),
 }
 

@@ -8,6 +8,8 @@ import { useTranslation } from "react-i18next";
 import axios from "axios";
 import Select from "react-select";
 
+
+
 export default function PostAd() {
 
   const { t } = useTranslation();
@@ -59,8 +61,6 @@ export default function PostAd() {
     setSubCategory(value);
     router.push(`/post-ad/${value}`);
   };
-
-  console.log(subCategory);
   
 
   useEffect(() => {
@@ -141,7 +141,7 @@ export default function PostAd() {
                             selectedOption.name,
                           )
                         }
-                        isSearchable={false}
+                        // isSearchable={false}
                         components={{
                           Option: CustomOption,
                         }}

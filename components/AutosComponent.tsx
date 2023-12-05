@@ -20,7 +20,6 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import "./autos.css";
 import Switch from "react-switch";
-
 import locateAddress from "@/utils/GoogleLocation";
 
 const style = {
@@ -38,64 +37,31 @@ interface IData {
   userId: any;
   title: any;
   price: any;
-  minPrice: any;
-  maxPrice: any;
   brand: any;
   model: any;
   description: any;
   videoUrl: any;
-  website: any;
   address: any;
-  feature_list: any;
   howToContact: any;
   condition: any;
   whatsapp: any;
   viber: any;
-  email: any;
   year: any;
   bodyShape: any;
   gearBox: any;
   fuelType: any;
   exteriorColor: any;
   interiorColor: any;
-  engineCapacity: any;
-  cylinder: any;
   km: any;
   phone: Boolean,
   latitude: any;
   longitude: any;
 }
 
+
 export default function AutosComponent() {
   const { t } = useTranslation(); // Initialize the translation hook
 
-  const { userInfo } = useSelector((state: any) => state.auth);
-  const userData =
-    userInfo === null ? userInfo : userInfo?.data?.userDetails?._id;
-  const phone = userInfo?.data?.userDetails?.phoneNumber;
-  const whatsapp = userInfo?.data?.userDetails?.whatsapp;
-  const viber = userInfo?.data?.userDetails?.viber;
-  const [whatsappChecked, setWhatsappChecked] = useState<boolean>(false);
-  const [viberChecked, setViberChecked] = useState<boolean>(false);
-  const [phoneChecked, setPhoneChecked] = useState<boolean>(false);
-
-  const conditionList = [
-    {
-      id: 1,
-      name: t("condition.new"),
-      value: "new",
-    },
-    {
-      id: 2,
-      name: t("condition.used"),
-      value: "used",
-    },
-    {
-      id: 3,
-      name: t("condition.recondition"),
-      value: "recondition",
-    },
-  ];
   const priceList = [
     {
       id: "1",
@@ -108,48 +74,14 @@ export default function AutosComponent() {
       value: "disabled",
     },
   ];
-  const fuelType = [
-    {
-      name: t("fuelType.Gasoline"),
-      value: "Gasoline",
-    },
-    {
-      name: t("fuelType.Diesel"),
-      value: "Diesel",
-    },
-    {
-      name: t("fuelType.Ethanol"),
-      value: "Ethanol",
-    },
-    {
-      name: t("fuelType.Electric"),
-      value: "Electric",
-    },
-    {
-      name: t("fuelType.Hydrogen"),
-      value: "Hydrogen",
-    },
-    {
-      name: t("fuelType.LPG"),
-      value: "LPG",
-    },
-    {
-      name: t("fuelType.CNG"),
-      value: "CNG",
-    },
-    {
-      name: t("fuelType.Hybrid (Electric/Gasoline)"),
-      value: "Hybrid (Electric/Gasoline)",
-    },
-    {
-      name: t("fuelType.Hybrid (Electric/Diesel)"),
-      value: "Hybrid (Electric/Diesel)",
-    },
-    {
-      name: t("fuelType.Others"),
-      value: "Others",
-    },
-  ];
+  const { userInfo } = useSelector((state: any) => state.auth);
+  const userData = userInfo === null ? userInfo : userInfo?.data?.userDetails?._id;
+  const phone = userInfo?.data?.userDetails?.phoneNumber;
+  const whatsapp = userInfo?.data?.userDetails?.whatsapp;
+  const viber = userInfo?.data?.userDetails?.viber;
+  const [whatsappChecked, setWhatsappChecked] = useState<boolean>(false);
+  const [viberChecked, setViberChecked] = useState<boolean>(false);
+  const [phoneChecked, setPhoneChecked] = useState<boolean>(false);
   const [images, setImages] = useState<any>([]);
   const [loading, setLoading] = useState<Boolean>(false);
   const [priceListValue, setPriceListValue] = useState<string>("price");
@@ -160,40 +92,37 @@ export default function AutosComponent() {
   const [formData, setFormData] = useState<any>();
   let router = useRouter();
   const id = userData;
-
-
   const [data, setData] = useState<IData>({
     category: "Autos",
     userId: id,
     title: null || "",
     price: null || "",
     phone: phoneChecked,
-    minPrice: null || "",
-    maxPrice: null || "",
     brand: null || "",
     model: null || "",
     description: null || "",
     videoUrl: null || "",
-    website: null || "",
     address: null || "",
-    feature_list: null || "",
     howToContact: "Whatsapp",
     condition: null || "",
     whatsapp: null || "",
     viber: null || "",
-    email: null || "",
     year: null || "",
     bodyShape: null || "",
     gearBox: null || "",
     fuelType: null || "",
     exteriorColor: null || "",
     interiorColor: null || "",
-    engineCapacity: null || "",
-    cylinder: null || "",
     km: null || "",
     latitude: null || "",
     longitude: null || "",
   });
+
+  useEffect(() => {
+    if (userData === null) {
+      router.push("/");
+    }
+  }, [router, userData]);
 
   useEffect(() => {
     const fetchBrand = async () => {
@@ -211,8 +140,6 @@ export default function AutosComponent() {
     fetchAutosData();
     fetchBrand();
   }, []);
-
-  console.log(formData);
   
 
   const handleInput = (e: any) => {
@@ -316,12 +243,6 @@ export default function AutosComponent() {
   const handleLocation = (e: any) => {
     setData({ ...data, ["address"]: e.target.value });
   };
-
-  useEffect(() => {
-    if (userData === null) {
-      router.push("/");
-    }
-  }, [router, userData]);
 
   const handleChange = (newChecked: boolean, type: any) => {
     if (type === "whatsapp") {

@@ -522,19 +522,19 @@ export const typeMap : { [key: string]: string }  = {
 
 export const subCategoryMap: { [key: string]: string } = {
   "Bicycles": "Bicycles",
-  "E-Scooters": "E-scooter",
-  "E-Bikes": "E-bikes",
+  "E-scooters": "E-scooters",
+  "E-bikes": "E-bikes",
   "Motorcycles": "Motorcycles",
-  "Auto%20Parts": "Auto Parts",
-  "Bike%20Parts": "Bike Parts",
-  "Boat%20Parts": "Boat Parts",
-  "Busses%20Parts": "Bus Parts",
-  "Construction%20Machines%20Parts": "Construction Machine Parts",
-  "Drones%20Parts": "Drone Parts",
-  "Other%20Parts": "Other Parts",
-  "Trailers%20Parts": "Trailer Parts",
-  "Trucks%20Parts": "Truck Parts",
-  "Vans%20Parts": "Van Parts",
+  "Auto": "Auto",
+  "Bike": "Bike",
+  "Boat": "Boat",
+  "Buss": "Buss",
+  "Construction%20Machine": "Construction Machine",
+  "Drone": "Drone",
+  "Other": "Other",
+  "Trailer": "Trailer",
+  "Truck": "Truck",
+  "Van": "Van",
 };
 
 export const subBikeCategoryList: any = [
@@ -545,31 +545,21 @@ export const subBikeCategoryList: any = [
 ];
 
 export const subPartsCategoryList: any = [
-  "Auto Parts",
-  "Bike Parts",
-  "Boat Parts",
-  "Busses Parts",
-  "Construction Machines Parts",
-  "Drones Parts",
-  "Trailers Parts",
-  "Trucks Parts",
-  "Vans Parts",
-  "Other Parts"
+  "Auto",
+  "Bike",
+  "Boat",
+  "Buss",
+  "Construction Machine",
+  "Drone",
+  "Trailer",
+  "Truck",
+  "Van",
+  "Other"
 ]
 
 
 export const type1Map: { [key: string]: string } = {
-  "Construction%20Machines": "Construction Machines",
-  "Autos%20Parts": "Autos Parts",
-  "Bikes%20Parts": "Bikes Parts",
-  "Boat%20Parts": "Boat Parts",
-  "Busses%20Parts": "Busses Parts",
-  "Construction%20Machines%20Parts": "Construction Machines Parts",
-  "Drones%20Parts": "Drones Parts",
-  "Other%20Parts": "Other Parts",
-  "Trailers%20Parts": "Trailers Parts",
-  "Trucks%20Parts": "Trucks Parts",
-  "Vans%20Parts": "Vans Parts",
+  "Construction%20Machine": "Construction Machine",
 }
 
 export const validTypes = [
@@ -642,8 +632,8 @@ export const brandInclude = [
   "Autos",
   "Motorcycles",
   "Bicycles",
-  "E-Bikes",
-  "E-Scooters",
+  "E-bikes",
+  "E-scooters",
   "Vans",
   "Trucks",
   "Trailers",
@@ -668,14 +658,26 @@ export const IncludeKm = [
   "Construction Machines",
 ];
 
-
-
-
-
 export const checkSubCategoryFilter = [
   "Busses",
   "Construction Machines",
   "Trailers",
   "Trucks",
   "Vans",
+];
+
+export const dontBrands: any  = [
+  "Bikes",
+  "Parts",
+  "Auto",
+  "Bike",
+  "Boat",
+  "Buss",
+  "Construction Machine",
+  "Drone",
+  "Other",
+  "Trailer",
+  "Truck",
+  "Van",
+  "Others"
 ]

@@ -87,7 +87,7 @@ export default function Banner() {
               </h1>
               <KeyboardArrowDown className={`logo ${isExpand ? 'active': 'inactive'} h-5 w-5 text-[#FF0000] -mt-[1.5px]`} />
             </div>
-            {isExpand && <div className='h-auto p-2 w-auto lg:w-60 z-30 absolute bg-white border rounded-md mt-16' data-aos="fade-up">
+            {isExpand && <div className={`h-auto p-2 w-auto lg:w-60 z-30 absolute bg-white border rounded-md mt-16`} data-aos="fade-up">
               <CategoryList setCategory={setCategory} setExpand={setIsExpand} />
             </div>}
           </div>

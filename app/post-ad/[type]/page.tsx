@@ -1,7 +1,6 @@
 "use client";
-import Link from "next/link";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import React, { useEffect } from "react";
 import AutosComponent from "@/components/AutosComponent";
 import { useSelector } from "react-redux";
 import BikeSubComponent from "@/components/BikeSubComponent";
@@ -53,26 +52,26 @@ export default function Addtype() {
           <SpecialCatComponent type={"Drones"} />
         ) : pathname === "/post-ad/Others" ? (
           <OthersComponent type={"Others"} />
-        ) : pathname === "/post-ad/Auto%20Parts" ? (
-          <PartsComponent type={"Auto Parts"} />
-        ) : pathname === "/post-ad/Bike%20Parts" ? (
-          <PartsComponent type={"Bike Parts"} />
-        ) : pathname === "/post-ad/Boat%20Parts" ? (
-          <PartsComponent type={"Boat Parts"} />
-        ) : pathname === "/post-ad/Bus%20Parts" ? (
-          <PartsComponent type={"Bus Parts"} />
-        ) : pathname === "/post-ad/Construction%20Machine%20Parts" ? (
-          <PartsComponent type={"Construction Machine Parts"} />
-        ) : pathname === "/post-ad/Drone%20Parts" ? (
-          <PartsComponent type={"Drone Parts"} />
-        ) : pathname === "/post-ad/Other%20Parts" ? (
-          <PartsComponent type={"Other Parts"} />
-        ) : pathname === "/post-ad/Trailer%20Parts" ? (
-          <PartsComponent type={"Trailer Parts"} />
-        ) : pathname === "/post-ad/Truck%20Parts" ? (
-          <PartsComponent type={"Truck Parts"} />
-        ) : pathname === "/post-ad/Van%20Parts" ? (
-          <PartsComponent type={"Van Parts"} />
+        ) : pathname === "/post-ad/Auto" ? (
+          <PartsComponent type={"Auto"} />
+        ) : pathname === "/post-ad/Bike" ? (
+          <PartsComponent type={"Bike"} />
+        ) : pathname === "/post-ad/Boat" ? (
+          <PartsComponent type={"Boat"} />
+        ) : pathname === "/post-ad/Buss" ? (
+          <PartsComponent type={"Buss"} />
+        ) : pathname === "/post-ad/Construction%20Machine" ? (
+          <PartsComponent type={"Construction Machine"} />
+        ) : pathname === "/post-ad/Drone" ? (
+          <PartsComponent type={"Drone"} />
+        ) : pathname === "/post-ad/Other" ? (
+          <PartsComponent type={"Other"} />
+        ) : pathname === "/post-ad/Trailer" ? (
+          <PartsComponent type={"Trailer"} />
+        ) : pathname === "/post-ad/Truck" ? (
+          <PartsComponent type={"Truck"} />
+        ) : pathname === "/post-ad/Van" ? (
+          <PartsComponent type={"Van"} />
         ) : (
           ""
         )}

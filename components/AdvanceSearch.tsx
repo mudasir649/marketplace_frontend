@@ -288,52 +288,52 @@ export default function AdvanceSearch({
     {
       logo: <DirectionsCar />,
       name: t("categoriesParts.0"),
-      name1: "Auto Parts",
+      name1: "Auto",
     },
     {
       logo: <TwoWheeler />,
       name: t("categoriesParts.1"),
-      name1: "Bike Parts",
+      name1: "Bike",
     },
     {
       logo: <DirectionsBoat />,
       name: t("categoriesParts.2"),
-      name1: "Boat Parts",
+      name1: "Boat",
     },
     {
       logo: <DirectionsBus />,
       name: t("categoriesParts.3"),
-      name1: "Busses Parts",
+      name1: "Buss",
     },
     {
       logo: <PrecisionManufacturing />,
       name: t("categoriesParts.4"),
-      name1: "Construction Machines Parts",
+      name1: "Construction Machine",
     },
     {
       logo: <Flight />,
       name: t("categoriesParts.5"),
-      name1: "Drones Parts",
+      name1: "Drone",
     },
     {
       logo: <RvHookup />,
       name: t("categoriesParts.7"),
-      name1: "Trailers Parts",
+      name1: "Trailer",
     },
     {
       logo: <FireTruck />,
       name: t("categoriesParts.8"),
-      name1: "Trucks Parts",
+      name1: "Truck",
     },
     {
       logo: <AirportShuttle />,
       name: t("categoriesParts.9"),
-      name1: "Vans Parts",
+      name1: "Van",
     },
     {
       logo: <DataSaverOn />,
       name: t("categoriesParts.6"),
-      name1: "Other Parts",
+      name1: "Other",
     },
   ];
 
@@ -388,10 +388,6 @@ export default function AdvanceSearch({
     router.push(`/advance-search/${value}`);
   };
 
-  const handleFilterData = (e: any) => {
-    setFiltersData({ ...filtersData, [e.target.name]: e.target.value });
-  };
-
   const inputStyle =
     "border border-gray-300 hover:border-red-600 focus:outline-red-600 rounded-sm w-32 lg:w-32 h-10 p-2 cursor-pointer";
   const logoStyle =
@@ -406,16 +402,10 @@ export default function AdvanceSearch({
       : "text-[12px] cursor-pointer font-bold";
 
     const baseApi = `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address}&condition=${condition}&brand=${brand}&model=${model}&year=${year}&minPrice=${minPrice}&maxPrice=${maxPrice}&km=${km}&bodyShape=${bodyShape}&gearBox=${gearBox}&fuelType=${fuelType}`;
-    let categoryApi: any;
-    
+    let categoryApi: any = baseApi;
 
-    if(subBikeCategoryList.includes(category)){
-      categoryApi = `${baseApi}&category=Bikes&subCategory=${category}`
-    }else if(subPartsCategoryList.includes(subCategory)){
-      categoryApi = `${baseApi}&category=Parts&subCategory=${subCategory}`
-    }else{
-      categoryApi = `${baseApi}&category=${category}`
-    }
+    if(subBikeCategoryList.includes(category) || subPartsCategoryList.includes(category)) categoryApi += `&category=${subBikeCategoryList.includes(category) ? "Bikes" : "Parts"}&subCategory=${category}`
+    else categoryApi += `&category=${category}`;
 
   async function applyFilter() {
     setLoading(true);
@@ -452,36 +442,21 @@ export default function AdvanceSearch({
     let res;
     dispatch(setSortBy(value));
     setSortByLoading(true);
-    let subValue;
-    if (
-      category === "Motorcycles" ||
-      category === "Bicycles" ||
-      category === "E-scooters" ||
-      category === "E-bikes"
-    ) {
-      try {
-        res = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=Bikes&subCategory=${category}&sortBy=${value}`
-        );
-        setProductData(res.data?.data?.ad);
-        setProductsCount(res.data?.data?.totalAds);
-        setSortByLoading(false);
-      } catch (error) {
-        setSortByLoading(false);
-        console.log(error);
-      }
-    } else {
-      try {
-        res = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&category=${category}&sortBy=${value}`
-        );
-        setProductData(res.data?.data?.ad);
-        setProductsCount(res.data?.data?.totalAds);
-        setSortByLoading(false);
-      } catch (error) {
-        setSortByLoading(false);
-        console.log(error);
-      }
+    
+    let url = `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&sortBy=${value}`
+
+    if(subBikeCategoryList.includes(category)) url += `&category=Bikes&subCategory=${category}`;
+    else if(subPartsCategoryList.includes(category)) url += `&category=Parts&subCategory=${category}`;
+    else url += `&category=${category}`;
+
+    try {
+      res = await axios.get(url);
+      setProductData(res?.data?.data?.ad);
+      setProductsCount(res?.data?.data?.totalAds);
+    } catch (error) {
+      console.log(error);
+    }finally{
+      setSortByLoading(false)
     }
     setSortByLoading(false);
   };
@@ -544,24 +519,6 @@ export default function AdvanceSearch({
     } else {
       router.push("/login");
     }
-    // if (userInfo !== null) {
-    //   dispatch(setProductId(product?._id));
-    //   dispatch(setProductUserId(product?.userId));
-    //   const data = {
-    //     userId: userId,
-    //     productUserId: product?.userId,
-    //     productId: product?._id,
-    //   };
-    //   const res = await axios.post(
-    //     `${process.env.NEXT_PUBLIC_BACKEND_URI}/chatroom`,
-    //     data
-    //   );
-    //   if (res.status === 200) {
-    //     router.push("/chat");
-    //   }
-    // } else {
-    //   router.push("/login");
-    // }
   };
 
   useEffect(() => {
@@ -584,37 +541,14 @@ export default function AdvanceSearch({
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-  // const scrollToTop = () => {
-  //   const scrollStep = -window.scrollY / 60; // Adjust the division factor for speed
 
-  //   const scrollInterval = setInterval(() => {
-  //     if (window.scrollY !== 0) {
-  //       window.scrollBy(0, scrollStep);
-  //     } else {
-  //       clearInterval(scrollInterval);
-  //     }
-  //   }, 15); // Adjust the interval for smoother animation
-  // };
+  console.log(subCategory);
+  
+
   const checkSubCategory = () => {
-    if (
-      subCategory === "Bicycles" ||
-      subCategory === "E-scooters" ||
-      subCategory === "E-bikes" ||
-      subCategory === "Motorcycles"
-    ) {
+    if (subBikeCategoryList.includes(subCategory)) {
       return "Bikes";
-    } else if (
-      subCategory === "Auto Parts" ||
-      subCategory === "Bike Parts" ||
-      subCategory === "Boat Parts" ||
-      subCategory === "Drone Parts" ||
-      subCategory === "Bus Parts" ||
-      subCategory === "Construction Machine Parts" ||
-      subCategory === "Other Parts" ||
-      subCategory === "Trailer Parts" ||
-      subCategory === "Truck Parts" ||
-      subCategory === "Van Parts"
-    ) {
+    } else if (subPartsCategoryList.includes(subCategory)) {
       return "Parts";
     }
   };
@@ -652,7 +586,7 @@ export default function AdvanceSearch({
     }
   }
 
-  console.log(category);
+  
   
 
   return (
@@ -677,7 +611,7 @@ export default function AdvanceSearch({
                   <li
                     className={`${
                       category === list?.name1 ? "text-[#FF0000]" : ""
-                    } cursor-pointer`}
+                    } cursor-pointer hover:bg-gray-200 transition ease-in duration-200`}
                     onClick={() => handleSearch(list?.name1)}
                     key={i}
                   >
@@ -692,7 +626,7 @@ export default function AdvanceSearch({
                       <li
                         className={`${
                           category === list?.name1 ? "text-[#FF0000]" : ""
-                        } ml-10 cursor-pointer`}
+                        } ml-10 cursor-pointer hover:bg-gray-200 transition ease-in duration-200`}
                         key={i}
                         onClick={() => handleSearch(list?.name1)}
                       >
@@ -709,7 +643,7 @@ export default function AdvanceSearch({
                       <li
                         className={`${
                           subCategory === list?.name1 ? "text-[#FF0000]" : ""
-                        } ml-10 cursor-pointer whitespace-nowrap w-auto truncate`}
+                        } ml-10 cursor-pointer whitespace-nowrap w-auto truncate hover:bg-gray-200 transition ease-in duration-200`}
                         key={i}
                         onClick={() => handleSearch(list?.name1)}
                       >
@@ -770,7 +704,7 @@ export default function AdvanceSearch({
               </div>
               <select
                 className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
-                name="subCategory"
+                name="type"
               >
                 <option value="option1">
                   {t("autosComponent.selectSubCategory")}
@@ -874,7 +808,7 @@ export default function AdvanceSearch({
                   name="km"
                   onChange={(e: any) => dispatch(setKm(e.target.value))}
                 >
-                  <option>{t("autosComponent.selectKilometer")}</option>
+                  <option value="">{t("autosComponent.selectKilometer")}jj</option>
                   {kilometers.map((kms: any, i: number) => (
                     <option value={kms.name} key={i}>
                       {kms.name}

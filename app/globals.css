@@ -6,11 +6,26 @@
 
 :root {
   --speed: 500ms;
+  --speed2: 5000ms;
 }
 
 
 body{
   background-color: whitesmoke;
+}
+
+.categoryDropdown.active{
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: var(--speed2) ease;
+}
+
+.categoryDropdown.inactive{
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20px);
+  transition: var(--speed2) ease;
 }
 
 .logo.active{
