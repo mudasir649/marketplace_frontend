@@ -667,24 +667,6 @@ export default function BikeSubComponent({ type }: any) {
               {data?.brand && type == "Motorcycles" && (
                 <div className={style.divStyle}>
                   <h1 className={style.h1Style}>
-                    {t("autosComponent.year")}{" "}
-                    <span className="text-[#FF0000]">*</span>
-                  </h1>
-                  <div className="flex flex-col w-full">
-                    <input
-                      type="text"
-                      className={style.inputStyle}
-                      name="year"
-                      value={data.year}
-                      onChange={(e: any) => handleInput(e)}
-                      required
-                    />
-                  </div>
-                </div>
-              )}
-              {data?.brand && type == "Motorcycles" && (
-                <div className={style.divStyle}>
-                  <h1 className={style.h1Style}>
                     {t("autosComponent.bodyShape")}
                     <span className="text-[#FF0000]">*</span>
                   </h1>
@@ -741,24 +723,6 @@ export default function BikeSubComponent({ type }: any) {
                       </option>
                     ))}
                   </select>
-                </div>
-              )}
-              {data?.brand && type == "Motorcycles" && (
-                <div className={style.divStyle}>
-                  <h1 className={style.h1Style}>
-                    {t("autosComponent.engineCapacity")}{" "}
-                    <span className="text-[#FF0000]">*</span>
-                  </h1>
-                  <div className="flex flex-col w-full">
-                    <input
-                      type="text"
-                      className={style.inputStyle}
-                      name="engineCapacity"
-                      value={data.engineCapacity}
-                      onChange={(e: any) => handleInput(e)}
-                      required
-                    />
-                  </div>
                 </div>
               )}
               {data?.brand && type == "Motorcycles" && (
