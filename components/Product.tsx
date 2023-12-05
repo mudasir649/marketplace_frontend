@@ -200,7 +200,7 @@ export default function Product({ product, url }: any) {
             <div className="w-auto overflow-hidden flex flex-row justify-between">
               <section className="overflow-hidden">
                 {product?.price * 1 === 0 ? (
-                  <h1 className="bg-black text-white text-center pt-2 w-32 h-10 border-none rounded-lg text-[14px] font-semibold">
+                  <h1 className="bg-black text-white text-center pt-2 w-32 h-10 border-none rounded-lg text-[14px] font-semibold mb-[5px]">
                     {t("product.contactForPrice")}
                   </h1>
                 ) : (
