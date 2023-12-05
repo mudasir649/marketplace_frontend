@@ -1,8 +1,5 @@
-import { setProductData, setProductsCount } from "@/store/appSlice";
-import axios from "axios";
 import { useRouter } from "next/navigation";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import {
   AirportShuttle,
@@ -102,11 +99,9 @@ export default function CategoryList({ setCategory, setExpand }: any) {
       ];
 
   const liStyle =
-    "border-b border-gray-200 whitespace-nowrap flex flex-row space-x-1";
+    "border-b border-gray-200 whitespace-nowrap flex flex-row space-x-1 hover:bg-gray-200 p-1";
     const categoryliStyle =
-    "flex space-x-2 border-b border-gray-200 whitespace-nowrap";
-
-    const h1Style = "hover:text-[#FF0000]";
+    "flex space-x-2 border-b border-gray-200 whitespace-nowrap hover:bg-gray-200 p-1";
 
   const router = useRouter();
 
@@ -119,17 +114,17 @@ export default function CategoryList({ setCategory, setExpand }: any) {
 
   return (
     <div>
-      <ul className="text-gray-500 space-y-1 cursor-pointer dropdow-menu z-10">
+      <ul className="text-gray-500 space-y-1 cursor-pointer dropdow-menu-category z-10">
         <li onClick={() => handleClick("Autos")} className={liStyle}>
           {" "}
-          <h1> <DirectionsCar /></h1> <h1 className={h1Style}> {t("categories.0")}</h1>
+          <h1> <DirectionsCar /></h1> <h1> {t("categories.0")}</h1>
         </li>
         <li className={`dropdow`}>
           <h1 onClick={() => handleClick("Bikes")} className={liStyle}>
             {" "}
-            <h1> <TwoWheeler /> </h1> <h1 className={h1Style}>{t("categories.1")}</h1> 
+            <h1> <TwoWheeler /> </h1> <h1>{t("categories.1")}</h1> 
           </h1>
-          <div className="absolute hidden ml-[220px] mt-[-30px] bg-white w-auto h-auto p-2 border-none rounded-sm dropdow-menu">
+          <div className="absolute hidden ml-[220px] mt-[-30px] bg-white w-auto h-auto p-2 border-none rounded-sm dropdow-menu-category">
             <ul className="block">
               {subList?.map((list: any, i: number) => (
                 <li
@@ -138,43 +133,43 @@ export default function CategoryList({ setCategory, setExpand }: any) {
                   key={i}
                 >
                       <h1>{list?.logo}</h1>
-                      <h1 className={h1Style}>{list.name}</h1>
+                      <h1>{list.name}</h1>
                 </li>
               ))}
             </ul>
           </div>
         </li>
         <li onClick={() => handleClick("Boats")} className={liStyle}>
-          <h1><DirectionsBoat /></h1> <h1 className={h1Style}>{t("categories.2")}</h1>
+          <h1><DirectionsBoat /></h1> <h1>{t("categories.2")}</h1>
         </li>
         <li onClick={() => handleClick("Busses")} className={liStyle}>
-          <h1><DirectionsBus /></h1> <h1 className={h1Style}>{t("categories.3")}</h1>
+          <h1><DirectionsBus /></h1> <h1>{t("categories.3")}</h1>
         </li>
         <li
           onClick={() => handleClick("Construction Machines")}
           className={liStyle}
         >
-          <h1><PrecisionManufacturing /></h1> <h1 className={h1Style}>{t("categories.4")}</h1>
+          <h1><PrecisionManufacturing /></h1> <h1>{t("categories.4")}</h1>
         </li>
         <li onClick={() => handleClick("Drones")} className={liStyle}>
           <h1><Image className="h-7 w-7" src="/assets/drone.png" alt="droneIcon" width={100} height={100} /></h1>
-          <h1 className={h1Style}>{t("categories.5")}</h1>
+          <h1>{t("categories.5")}</h1>
         </li>
         <li onClick={() => handleClick("Trailers")} className={liStyle}>
-          <h1> <RvHookup /></h1> <h1 className={h1Style}>{t("categories.8")}</h1>
+          <h1> <RvHookup /></h1> <h1>{t("categories.8")}</h1>
         </li>
         <li onClick={() => handleClick("Trucks")} className={liStyle}>
-          <h1><FireTruck /></h1> <h1 className={h1Style}>{t("categories.9")}</h1>
+          <h1><FireTruck /></h1> <h1>{t("categories.9")}</h1>
         </li>
         <li onClick={() => handleClick("Vans")} className={liStyle}>
-          <h1><AirportShuttle /></h1> <h1 className={h1Style}>{t("categories.10")}</h1>
+          <h1><AirportShuttle /></h1> <h1>{t("categories.10")}</h1>
         </li>
         <li className={`dropdow`}>
           <h1 onClick={() => handleClick("Parts")} className={liStyle}>
             {" "}
-            <h1><BuildCircle /></h1> <h1 className={h1Style}>{t("categories.7")}</h1>
+            <h1><BuildCircle /></h1> <h1>{t("categories.7")}</h1>
           </h1>
-          <div className="absolute hidden ml-[220px] mt-[-30px] bg-white w-auto h-auto p-2 border-none rounded-sm dropdow-menu">
+          <div className="absolute hidden ml-[220px] mt-[-30px] bg-white w-auto h-auto p-2 border-none rounded-sm dropdow-menu-category">
             <ul className="block">
               {partsSubList?.map((list: any, i: number) => (
                 <li
@@ -183,14 +178,14 @@ export default function CategoryList({ setCategory, setExpand }: any) {
                   key={i}
                 >
                     <h1>{list?.logo}</h1>
-                    <h1 className={h1Style}>{list.name}</h1>
+                    <h1>{list.name}</h1>
                 </li>
               ))}
             </ul>
           </div>
         </li>
         <li onClick={() => handleClick("Others")} className={liStyle}>
-          <h1><DataSaverOn /></h1> <h1 className={h1Style}>{t("categories.6")}</h1>
+          <h1><DataSaverOn /></h1> <h1>{t("categories.6")}</h1>
         </li>
       </ul>
     </div>

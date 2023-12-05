@@ -117,28 +117,7 @@ export default function PartsComponent({ type }: any) {
 
   const [data, setData] = useState<IData>({
     category: "Parts",
-    subCategory:
-      type == "Auto Parts"
-        ? "Auto Parts"
-        : type == "Bike Parts"
-        ? "Bike Parts"
-        : type == "Boat Parts"
-        ? "Boat Parts"
-        : type == "Bus Parts"
-        ? "Bus Parts"
-        : type == "Construction Machine Parts"
-        ? "Construction Machine Parts"
-        : type == "Drone Parts"
-        ? "Drone Parts"
-        : type == "Other Parts"
-        ? "Other Parts"
-        : type == "Trailer Parts"
-        ? "Trailer Parts"
-        : type == "Trucks Parts"
-        ? "Trucks Parts"
-        : type == "Van Parts"
-        ? "Van Parts"
-        : "",
+    subCategory: type,
     userId: id,
     title: null || "",
     price: null || "",
@@ -281,27 +260,7 @@ export default function PartsComponent({ type }: any) {
           <div className=" container mx-auto flex flex-col mb-7">
             <div className="flex flex-row space-x-2 mt-5">
               <h1>
-                {type === "Auto Parts"
-                  ? t("allCategories.Autos Parts")
-                  : type === "Bikes Parts"
-                  ? t("allCategories.Bikes Parts")
-                  : type === "Boat Parts"
-                  ? t("allCategories.Boat Parts")
-                  : type === "Busses Parts"
-                  ? t("allCategories.Busses Parts")
-                  : type === "Construction Machines Parts"
-                  ? t("allCategories.Construction Machines Parts")
-                  : type === "Drones Parts"
-                  ? t("allCategories.Drones Parts")
-                  : type === "Other Parts"
-                  ? t("allCategories.Other Parts")
-                  : type === "Trailers Parts"
-                  ? t("allCategories.Trailers Parts")
-                  : type === "Trucks Parts"
-                  ? t("allCategories.Trucks Parts")
-                  : type === "Vans Parts"
-                  ? t("allCategories.Vans Parts")
-                  : ""}
+                {type}
               </h1>
               <ArrowForwardIos
                 className="mt-[5px]"

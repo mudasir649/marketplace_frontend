@@ -4,7 +4,7 @@
 import AdvanceSearch from "@/components/AdvanceSearch";
 import Home from "@/components/Home";
 import { setType } from "@/store/appSlice";
-import { checkSubCategoryFilter, subCategoryMap, type1Map, validTypes } from "@/utils/dataVariables";
+import { checkSubCategoryFilter, dontBrands, subCategoryMap, type1Map, validTypes } from "@/utils/dataVariables";
 import { refresh } from "aos";
 import axios from "axios";
 import dynamic from "next/dynamic";
@@ -29,11 +29,13 @@ function Page() {
   const [years, setYears] = useState<string>("");
   const [models, setModels] = useState<string>("");
   const subCategory = subCategoryMap[type as string] || "";
-  const checkType = type1Map[type as any] || type;
+  const checkType = type1Map[type as any] || type;  
 
+  console.log(type);
+  
+  
   let checkIncludeType: any = checkType;
   
-
   useEffect(() => {
 
     const fetchData = async () => {
@@ -55,18 +57,16 @@ function Page() {
       setProductData(data?.ad);
       setProductsCount(data?.totalAds);
       dispatch(setType(checkType));
-      fetchBrands();
+      if(dontBrands.includes(checkType) !== true)  fetchBrands();
     }
-      fetchData();
+    fetchData();
   }, [page, type, dispatch, subCategory, refresh]);
 
   useEffect(() => {
     const fetchModels = async () => {
       const res = await axios.get(
         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findModels/${checkType}/${brand}`
-      );
-      console.log(res.data?.data?.model);
-      
+      );      
       setModels(res.data?.data);
     };
     const fetchSubCategory = async () => {
