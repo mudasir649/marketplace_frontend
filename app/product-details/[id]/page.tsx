@@ -164,6 +164,7 @@ function ProductDetails() {
   const redirectLogin: any = () => {
     router.push("/login");
   };
+  
 
   return (
     <div className="">

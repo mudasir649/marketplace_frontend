@@ -38,16 +38,11 @@ interface IData {
   userId: any;
   title: any;
   price: any;
-  minPrice: any;
-  maxPrice: any;
   brand: any;
   model: any;
   description: any;
   videoUrl: any;
-  webSite: any;
   address: any;
-  feature_list: any;
-  howToContact: any;
   condition: any;
   whatsapp: any;
   viber: any;
@@ -118,16 +113,11 @@ export default function PartsComponent({ type }: any) {
     userId: id,
     title: null || "",
     price: null || "",
-    minPrice: null || "",
-    maxPrice: null || "",
     brand: null || "",
     model: null || "",
     description: null || "",
     videoUrl: null || "",
-    webSite: null || "",
     address: null || "",
-    feature_list: null || "",
-    howToContact: "Whatsapp",
     condition: null || "",
     whatsapp: null || "",
     viber: null || "",
@@ -286,7 +276,7 @@ export default function PartsComponent({ type }: any) {
                 </h1>
                 <div className="flex flex-col w-full">
                   <input
-                    type="text"
+                    type="number"
                     className={style.inputStyle}
                     name="title"
                     value={data.title}
@@ -331,7 +321,7 @@ export default function PartsComponent({ type }: any) {
                   </h1>
                   <div className="flex flex-col w-full">
                     <input
-                      type="text"
+                      type="number"
                       className={style.inputStyle}
                       name="price"
                       value={data.price}
@@ -522,7 +512,7 @@ export default function PartsComponent({ type }: any) {
                     <h1 className={`${style.h1Style} invisible`}>whatsapp</h1>
                     <div className="h-auto flex w-full border-b-2 p-2">
                       <PhoneIphone className="text-gray-400" />
-                      <input type="text" className="w-full focus:outline-none" placeholder={data?.whatsapp} name="whatsapp" value={data?.whatsapp} onChange={(e) => handleInput(e)} />
+                      <input type="number" className="w-full focus:outline-none" placeholder={data?.whatsapp} name="whatsapp" value={data?.whatsapp} onChange={(e) => handleInput(e)} />
                       <BorderColor className="text-gray-400" />
                     </div>
                   </div>
@@ -550,7 +540,7 @@ export default function PartsComponent({ type }: any) {
                     <h1 className={`${style.h1Style} invisible`}>viber</h1>
                     <div className="h-auto flex w-full border-b-2 p-2">
                       <PhoneIphone className="text-gray-400" />
-                      <input type="text" className="w-full focus:outline-none bg-transparent" placeholder={data?.viber} name="viber" value={data?.viber} onChange={(e) => handleInput(e)} />
+                      <input type="number" className="w-full focus:outline-none bg-transparent" placeholder={data?.viber} name="viber" value={data?.viber} onChange={(e) => handleInput(e)} />
                       <BorderColor className="text-gray-400" />
                     </div>
                   </div>
