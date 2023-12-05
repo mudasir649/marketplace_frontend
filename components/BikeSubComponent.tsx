@@ -310,7 +310,7 @@ export default function BikeSubComponent({ type }: any) {
   const fetchBrand = async (model: any) => {
     try {
       const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findModels/Motorcycle/${model}`
+        `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findModels/Motorcycles/${model}`
       );
       setModels(res.data?.data);
     } catch (error) {
@@ -529,41 +529,10 @@ export default function BikeSubComponent({ type }: any) {
                   </h1>
                   <div className="flex flex-col w-full">
                     <input
-                      type="text"
+                      type="number"
                       className={style.inputStyle}
                       name="price"
                       value={data.price}
-                      onChange={(e: any) => handleInput(e)}
-                      required
-                    />
-                  </div>
-                </div>
-              ) : priceListValue === "priceRange" ? (
-                <div className="flex flex-col md:flex-row my-5 space-y-2 md:space-y-0 md:space-x-2">
-                  <div className="w-full flex flex-row">
-                    <h1 className="text-md font-bold  w-80 lg:w-64 mt-1">
-                      {t("autosComponent.minPrice")} {`[CHF]`}
-                      <span className="text-[#FF0000]">*</span>
-                    </h1>
-                    <input
-                      type="text"
-                      className={style.inputStyle}
-                      name="minPrice"
-                      value={data?.minPrice}
-                      onChange={(e: any) => handleInput(e)}
-                      required
-                    />
-                  </div>
-                  <div className="w-full flex flex-row">
-                    <h1 className="text-md font-bold w-72 lg:w-64 mt-1">
-                      {t("autosComponent.maxPrice")} {`[CHF]`}
-                      <span className="text-[#FF0000]">*</span>
-                    </h1>
-                    <input
-                      type="text"
-                      className={style.inputStyle}
-                      name="maxPrice"
-                      value={data?.maxPrice}
                       onChange={(e: any) => handleInput(e)}
                       required
                     />
@@ -634,7 +603,7 @@ export default function BikeSubComponent({ type }: any) {
                 <h1 className={style.h1Style}>{t("autosComponent.year")}</h1>
                 <div className="flex flex-col w-full">
                   <input
-                    type="text"
+                    type="number"
                     className={style.inputStyle}
                     name="year"
                     value={data.year}
