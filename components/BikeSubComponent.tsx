@@ -90,8 +90,7 @@ export default function BikeSubComponent({ type }: any) {
   const [whatsappChecked, setWhatsappChecked] = useState<boolean>(false);
   const [viberChecked, setViberChecked] = useState<boolean>(false);
   const [phoneChecked, setPhoneChecked] = useState<boolean>(false);
-  const [formData, setFormData] = useState<any>();
-
+  const [formData, setFormData] = useState<any>();  
 
 
   const conditionList = [
@@ -248,7 +247,7 @@ export default function BikeSubComponent({ type }: any) {
         : type == "Bicycles"
         ? "Bicycles"
         : type == "E-scooters"
-        ? "E-scooter"
+        ? "E-scooters"
         : type == "E-bikes"
         ? "E-bikes"
         : "",
@@ -338,6 +337,8 @@ export default function BikeSubComponent({ type }: any) {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    console.log(data);
+    return;
     setLoading(true);
     const formData = new FormData();
 
@@ -451,7 +452,7 @@ export default function BikeSubComponent({ type }: any) {
                 {type === "Bicycles"
                   ? t("allCategories.Bicycles")
                   : type === "E-scooters"
-                  ? t("allCategories.E-scooter")
+                  ? t("allCategories.E-scooters")
                   : type === "E-bikes"
                   ? t("allCategories.E-bikes")
                   : type === "Motorcycles"
@@ -585,7 +586,7 @@ export default function BikeSubComponent({ type }: any) {
                         <input
                           type="radio"
                           name="condition"
-                          value={list?.name1}
+                          value={list?.value}
                           onChange={(e: any) => handleInput(e)}
                         />{" "}
                         {t(`condition.${list?.name}`)}
