@@ -1,5 +1,5 @@
 'use client';
-import Home from '@/components/Home';
+import Home from '@/app/Home';
 import { useTranslation } from 'react-i18next'; 
 
 import { AddCircle, RemoveCircle } from '@mui/icons-material';

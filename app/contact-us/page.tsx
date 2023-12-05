@@ -1,10 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import Home from '@/components/Home';
 import Login from '@/components/Login';
 import Product from '@/components/Product';
-import { useSelector } from "react-redux"
-import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import Image from 'next/image';
 import ContactUs from '@/components/ContactUs';

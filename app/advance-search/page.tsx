@@ -1,10 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
 import AdvanceSearch from "@/components/AdvanceSearch"
-import Home from "@/components/Home";
 import axios from "axios";
 import dynamic from "next/dynamic";
-import Head from "next/head";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 

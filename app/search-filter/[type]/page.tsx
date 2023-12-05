@@ -1,6 +1,6 @@
 'use client';
 import AdvanceSearch from '@/components/AdvanceSearch';
-import Home from '@/components/Home'
+import Home from '@/app/Home'
 import { setProductData, setProductsCount } from '@/store/appSlice';
 import axios from 'axios';
 import { useParams, usePathname } from 'next/navigation'

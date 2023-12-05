@@ -1,5 +1,4 @@
 "use client";
-import Home from "@/components/Home";
 import ProductList from "@/components/ProductList";
 import axios from "axios";
 import Image from "next/image";

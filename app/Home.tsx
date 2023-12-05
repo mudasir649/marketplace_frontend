@@ -1,14 +1,14 @@
 'use client';
 import React from 'react'
-import I18nProvider from './i18Provider';
+import I18nProvider from '../components/i18Provider';
 import { Provider } from 'react-redux';
 import store from '@/store/store';
-import AppComponent from './AppComponent';
+import AppComponent from '../components/AppComponent';
 import { ToastContainer } from 'react-toastify';
 import dynamic from 'next/dynamic';
-import Header2 from './Header2';
-import Banner from './Banner';
-import Footer from './Footer';
+import Header2 from '../components/Header2';
+import Banner from '../components/Banner';
+import Footer from '../components/Footer';
 import { usePathname } from 'next/navigation';
 import { routeName } from '@/utils/dataVariables';
 
