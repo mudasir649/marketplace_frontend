@@ -873,7 +873,7 @@ export default function BikeSubComponent({ type }: any) {
                     <h1 className={`${style.h1Style} invisible`}>whatsapp</h1>
                     <div className="h-auto flex w-full border-b-2 p-2">
                       <PhoneIphone className="text-gray-400" />
-                      <input type="text" className="w-full focus:outline-none" placeholder={data?.whatsapp} name="whatsapp" value={data?.whatsapp} onChange={(e) => handleInput(e)} />
+                      <input type="number" className="w-full focus:outline-none" placeholder={data?.whatsapp} name="whatsapp" value={data?.whatsapp} onChange={(e) => handleInput(e)} />
                       <BorderColor className="text-gray-400" />
                     </div>
                   </div>
@@ -901,7 +901,7 @@ export default function BikeSubComponent({ type }: any) {
                     <h1 className={`${style.h1Style} invisible`}>viber</h1>
                     <div className="h-auto flex w-full border-b-2 p-2">
                       <PhoneIphone className="text-gray-400" />
-                      <input type="text" className="w-full focus:outline-none bg-transparent" placeholder={data?.viber} name="viber" value={data?.viber} onChange={(e) => handleInput(e)} />
+                      <input type="number" className="w-full focus:outline-none bg-transparent" placeholder={data?.viber} name="viber" value={data?.viber} onChange={(e) => handleInput(e)} />
                       <BorderColor className="text-gray-400" />
                     </div>
                   </div>

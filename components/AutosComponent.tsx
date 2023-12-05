@@ -352,7 +352,7 @@ export default function AutosComponent() {
                   </h1>
                   <div className="flex flex-col w-full">
                     <input
-                      type="text"
+                      type="number"
                       className={style.inputStyle}
                       name="price"
                       value={data.price}
@@ -435,7 +435,7 @@ export default function AutosComponent() {
                 <h1 className={style.h1Style}>{t("autosComponent.year")}</h1>
                 <div className="flex flex-col w-full">
                   <input
-                    type="text"
+                    type="number"
                     className={style.inputStyle}
                     name="year"
                     value={data.year}
@@ -722,7 +722,7 @@ export default function AutosComponent() {
                     <h1 className={`${style.h1Style} invisible`}>whatsapp</h1>
                     <div className="h-auto flex w-full border-b-2 p-2">
                       <PhoneIphone className="text-gray-400" />
-                      <input type="text" className="w-full focus:outline-none" placeholder={data?.whatsapp} name="whatsapp" value={data?.whatsapp} onChange={(e) => handleInput(e)} />
+                      <input type="number" className="w-full focus:outline-none" placeholder={data?.whatsapp} name="whatsapp" value={data?.whatsapp} onChange={(e) => handleInput(e)} />
                       <BorderColor className="text-gray-400" />
                     </div>
                   </div>
@@ -750,7 +750,7 @@ export default function AutosComponent() {
                     <h1 className={`${style.h1Style} invisible`}>viber</h1>
                     <div className="h-auto flex w-full border-b-2 p-2">
                       <PhoneIphone className="text-gray-400" />
-                      <input type="text" className="w-full focus:outline-none bg-transparent" placeholder={data?.viber} name="viber" value={data?.viber} onChange={(e) => handleInput(e)} />
+                      <input type="number" className="w-full focus:outline-none bg-transparent" placeholder={data?.viber} name="viber" value={data?.viber} onChange={(e) => handleInput(e)} />
                       <BorderColor className="text-gray-400" />
                     </div>
                   </div>
