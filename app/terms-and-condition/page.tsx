@@ -1,5 +1,5 @@
 "use client";
-import Home from '@/components/Home'
+import Home from '@/app/Home'
 import dynamic from 'next/dynamic'
 import React from 'react'
 import { useTranslation } from 'react-i18next'; 

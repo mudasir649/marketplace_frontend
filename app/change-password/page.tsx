@@ -1,5 +1,4 @@
 'use client';
-import Home from '@/components/Home'
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';

@@ -1,7 +1,5 @@
 "use client";
 import AdvanceSearch from "@/components/AdvanceSearch";
-import Home from "@/components/Home";
-import { setProductData, setProductsCount } from "@/store/appSlice";
 import axios from "axios";
 import dynamic from "next/dynamic";
 import React, { useEffect, useState } from "react";

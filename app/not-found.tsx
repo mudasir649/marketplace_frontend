@@ -1,5 +1,5 @@
 // pages/404.js
-import Home from '@/components/Home';
+import Home from '@/app/Home';
 import Image from 'next/image';
 import Link from 'next/link';
 

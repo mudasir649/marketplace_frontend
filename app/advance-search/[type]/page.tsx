@@ -2,10 +2,8 @@
 "use client";
 
 import AdvanceSearch from "@/components/AdvanceSearch";
-import Home from "@/components/Home";
 import { setType } from "@/store/appSlice";
 import { checkSubCategoryFilter, dontBrands, subCategoryMap, type1Map, validTypes } from "@/utils/dataVariables";
-import { refresh } from "aos";
 import axios from "axios";
 import dynamic from "next/dynamic";
 import { useParams, usePathname } from "next/navigation";

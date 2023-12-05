@@ -521,7 +521,7 @@ function ProductDetails() {
                         </div>
                         {contact ? (
                           userInfo ? (
-                            <>
+                            <div className="transition ease-in-out duration-300 space-y-1">
                               {product?.whatsapp && (
                                 <div className="bg-gray-100 flex p-2 border-none rounded-tr-md rounded-tl-md">
                                   <WhatsApp className="text-green-500 mr-3" />
@@ -533,7 +533,7 @@ function ProductDetails() {
                                 </div>
                               )}
                               {product?.viber && (
-                                <div className="bg-gray-100 flex p-2">
+                                <div className={`bg-gray-100 flex p-2 ${!product?.whatsapp ? 'rounded-tr-md rounded-tl-md' : ''}`}>
                                   <PhoneInTalk className="text-white border bg-purple-500 border-purple-500 rounded-lg mr-3" />{" "}
                                   <div className="flex justify-center w-full">
                                     <h1 className="flex text-base font-bold">
@@ -542,17 +542,17 @@ function ProductDetails() {
                                   </div>
                                 </div>
                               )}
-                              {product?.phone && (
+                              {product?.phone === true && (
                                 <div className="bg-gray-100 flex p-2 border-none rounded-br-md rounded-bl-md">
                                   <Phone className="text-[#FF0000] mt-[-1px] mr-3" />
                                   <div className="flex justify-center w-full">
                                     <h1 className="flex text-base font-bold">
-                                      {product?.phone}
+                                      {product?.userId?.phoneNumber}
                                     </h1>
                                   </div>
                                 </div>
                               )}
-                            </>
+                            </div>
                           ) : (
                             redirectLogin()
                           )

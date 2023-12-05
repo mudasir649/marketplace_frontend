@@ -1,5 +1,4 @@
 "use client";
-import Home from "@/components/Home";
 import { setCredentials } from "@/store/authSlice";
 import { PlaylistAdd } from "@mui/icons-material";
 import axios from "axios";

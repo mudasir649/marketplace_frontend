@@ -1,5 +1,5 @@
 'use client';
-import Home from '@/components/Home';
+import Home from '@/app/Home';
 import { AddCircle, RemoveCircle } from '@mui/icons-material';
 import React, { useState } from 'react';
 import "./sell-fast.css";

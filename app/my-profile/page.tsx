@@ -1,5 +1,5 @@
 'use client';
-import Home from '@/components/Home'
+import Home from '@/app/Home'
 import { Cancel, Person } from '@mui/icons-material';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';

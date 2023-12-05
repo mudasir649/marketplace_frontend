@@ -1,5 +1,4 @@
 "use client";
-import Home from "@/components/Home";
 import { PlaylistAdd } from "@mui/icons-material";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
