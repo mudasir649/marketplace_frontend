@@ -71,6 +71,22 @@ interface IData {
 }
 
 export default function BikeSubComponent({ type }: any) {
+
+  const { t } = useTranslation(); // Initialize the translation hook
+
+  const priceList = [
+    {
+      id: "1",
+      name: t('product.Price'),
+      value: "price",
+    },
+    {
+      id: "3",
+      name: t('product.disabled'),
+      value: "disabled",
+    },
+  ];
+
   const { userInfo } = useSelector((state: any) => state.auth);
   const userData =
     userInfo === null ? userInfo : userInfo?.data?.userDetails?._id;
@@ -86,164 +102,15 @@ export default function BikeSubComponent({ type }: any) {
   const [showLocation, setShowLocation] = useState<Boolean>(false);
   let router = useRouter();
   const id = userData;
-  const { t } = useTranslation(); // Initialize the translation hook
   const [whatsappChecked, setWhatsappChecked] = useState<boolean>(false);
   const [viberChecked, setViberChecked] = useState<boolean>(false);
   const [phoneChecked, setPhoneChecked] = useState<boolean>(false);
   const [formData, setFormData] = useState<any>();  
-
-
-  const conditionList = [
-    {
-      id: 1,
-      name: t("condition.new"),
-      name1: "new",
-    },
-    {
-      id: 2,
-      name: t("condition.used"),
-      name1: "used",
-    },
-    {
-      id: 3,
-      name: t("condition.recondition"),
-      name1: "recondition",
-    },
-  ];
-  const priceList = [
-    {
-      id: "1",
-      name: t('product.Price'),
-      value: "price",
-    },
-    {
-      id: "3",
-      name: t('product.disabled'),
-      value: "disabled",
-    },
-  ];
-  const BikeFuelType = [
-    {
-      name: t('fuelType.Gasoline'),
-      value: 'Gasoline',
-    },
-    {
-      name: t('fuelType.Diesel'),
-      value: 'Diesel',
-    },
-    {
-      name: t('fuelType.Ethanol'),
-      value: 'Ethanol',
-    },
-    {
-      name: t('fuelType.Electric'),
-      value: 'Electric',
-    },
-    {
-      name: t('fuelType.Hydrogen'),
-      value: 'Hydrogen',
-    },
-    {
-      name: t('fuelType.LPG'),
-      value: 'LPG',
-    },
-    {
-      name: t('fuelType.CNG'),
-      value: 'CNG',
-    },
-    {
-      name: t('fuelType.Hybrid (Electric/Gasoline)'),
-      value: 'Hybrid (Electric/Gasoline)',
-    },
-    {
-      name: t('fuelType.Hybrid (Electric/Diesel)'),
-      value: 'Hybrid (Electric/Diesel)',
-    },
-    {
-      name: t('fuelType.Others'),
-      value: 'Others',
-    },
-  ];
-  
-
-  const bikeExteriorColor = [
-    {
-      name: t("color.name1"),
-      value: t("color.value1"),
-    },
-    {
-      name: t("color.name2"),
-      value: t("color.value2"),
-    },
-    {
-      name: t("color.name3"),
-      value: t("color.value3"),
-    },
-    {
-      name: t("color.name4"),
-      value: t("color.value4"),
-    },
-    {
-      name: t("color.name5"),
-      value: t("color.value5"),
-    },
-    {
-      name: t("color.name6"),
-      value: t("color.value6"),
-    },
-    {
-      name: t("color.name7"),
-      value: t("color.value7"),
-    },
-    {
-      name: t("color.name8"),
-      value: t("color.value8"),
-    },
-    {
-      name: t("color.name9"),
-      value: t("color.value9"),
-    },
-    {
-      name: t("color.name10"),
-      value: t("color.value10"),
-    },
-    {
-      name: t("color.name11"),
-      value: t("color.value11"),
-    },
-    {
-      name: t("color.name12"),
-      value: t("color.value12"),
-    },
-    {
-      name: t("color.name13"),
-      value: t("color.value13"),
-    },
-    {
-      name: t("color.name14"),
-      value: t("color.value14"),
-    },
-  ];
-  const gearBox = [
-    {
-      name: t("gearBox.name1"),
-      value: t("gearBox.value1"),
-    },
-    {
-      name: t("gearBox.name2"),
-      value: t("gearBox.value2"),
-    },
-    {
-      name: t("gearBox.name3"),
-      value: t("gearBox.value3"),
-    },
-  ];
-
   const [data, setData] = useState<IData>({
     category: "Bikes",
     subCategory:
-      type == "Motorcycle"
-        ? "Motorcycle"
+      type == "Motorcycles"
+        ? "Motorcycles"
         : type == "Bicycles"
         ? "Bicycles"
         : type == "E-scooters"
@@ -398,19 +265,6 @@ export default function BikeSubComponent({ type }: any) {
       router.push("/");
     }
   }, [router, userData]);
-
-  type BikeSub = "Bicycles" | "E-Scooter" | "E-bikes" | "Motorcycle";
-
-  const BikeSubTranslated: {
-    [key in BikeSub]: string;
-  } = {
-    Bicycles: t("allCategories.Bicycles"),
-    "E-Scooter": t("allCategories.E-Scooter"),
-    "E-bikes": t("allCategories.E-bikes"),
-    Motorcycle: t("allCategories.Motorcycle"),
-  };
-
-  const translatedBikeSub = BikeSubTranslated["Bicycles"]; // Use type assertion here
 
   const handleChange = (newChecked: boolean, type: any) => {
     if (type === "whatsapp") {
@@ -682,7 +536,7 @@ export default function BikeSubComponent({ type }: any) {
                   </h1>
                   <select
                     className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
-                    name="model"
+                    name="km"
                     onChange={(e: any) => handleInput(e)}
                   >
                     <option>{t('autosComponent.selectKilometer')}</option>

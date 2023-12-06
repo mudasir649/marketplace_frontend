@@ -276,7 +276,7 @@ export default function PartsComponent({ type }: any) {
                 </h1>
                 <div className="flex flex-col w-full">
                   <input
-                    type="number"
+                    type="text"
                     className={style.inputStyle}
                     name="title"
                     value={data.title}

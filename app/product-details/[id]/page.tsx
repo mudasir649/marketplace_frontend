@@ -166,6 +166,9 @@ function ProductDetails() {
   };
   
 
+  console.log(product);
+  
+
   return (
     <div className="">
       {/* <Helmet> */}
@@ -404,6 +407,16 @@ function ProductDetails() {
                             {t("product.Gearbox")}:{" "}
                           </span>{" "}
                           {t(`gearBox.${product.gearBox}`)}
+                        </h1>
+                      )}
+                      {!product?.type ? (
+                        ""
+                      ) : (
+                        <h1>
+                          <span className="font-bold">
+                            Type
+                          </span>{" "}
+                          {product.type}
                         </h1>
                       )}
                       {!product?.axeltype ? (
