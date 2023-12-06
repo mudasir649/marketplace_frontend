@@ -49,47 +49,47 @@ export default function CategoryList({ setCategory, setExpand }: any) {
         {
           logo: <DirectionsCar />,
           name: t("categoriesParts.0"),
-          name1: "Autos Parts",
+          name1: "Auto",
         },
         {
           logo: <TwoWheeler />,
           name: t("categoriesParts.1"),
-          name1: "Bikes Parts",
+          name1: "Bike",
         },
         {
           logo: <DirectionsBoat />,
           name: t("categoriesParts.2"),
-          name1: "Boat Parts",
+          name1: "Boat",
         },
         {
           logo: <DirectionsBus />,
           name: t("categoriesParts.3"),
-          name1: "Busses Parts",
+          name1: "Buss",
         },
         {
           logo: <PrecisionManufacturing />,
           name: t("categoriesParts.4"),
-          name1: "Construction Machines Parts",
+          name1: "Construction Machine",
         },
         {
           logo: <Image className="h-7 w-7" src="/assets/drone.png" alt="droneIcon" width={100} height={100} />,
           name: t("categoriesParts.5"),
-          name1: "Drones Parts",
+          name1: "Drone",
         },
         {
           logo: <RvHookup />,
           name: t("categoriesParts.7"),
-          name1: "Trailers Parts",
+          name1: "Trailer",
         },
         {
           logo: <FireTruck />,
           name: t("categoriesParts.8"),
-          name1: "Trucks Parts",
+          name1: "Truck",
         },
         {
           logo: <AirportShuttle />,
           name: t("categoriesParts.9"),
-          name1: "Vans Parts",
+          name1: "Van",
         },
         {
           logo: <DataSaverOn />,
@@ -124,7 +124,7 @@ export default function CategoryList({ setCategory, setExpand }: any) {
             {" "}
             <h1> <TwoWheeler /> </h1> <h1>{t("categories.1")}</h1> 
           </h1>
-          <div className="absolute hidden ml-[220px] mt-[-30px] bg-white w-auto h-auto p-2 border-none rounded-sm dropdow-menu-category">
+          <div className="absolute hidden ml-[220px] mt-[-30px] bg-white w-auto h-auto p-2 border-none rounded-sm dropdow-menu">
             <ul className="block">
               {subList?.map((list: any, i: number) => (
                 <li
@@ -169,7 +169,7 @@ export default function CategoryList({ setCategory, setExpand }: any) {
             {" "}
             <h1><BuildCircle /></h1> <h1>{t("categories.7")}</h1>
           </h1>
-          <div className="absolute hidden ml-[220px] mt-[-30px] bg-white w-auto h-auto p-2 border-none rounded-sm dropdow-menu-category">
+          <div className="absolute hidden ml-[220px] mt-[-30px] bg-white w-auto h-auto p-2 border-none rounded-sm dropdow-menu">
             <ul className="block">
               {partsSubList?.map((list: any, i: number) => (
                 <li

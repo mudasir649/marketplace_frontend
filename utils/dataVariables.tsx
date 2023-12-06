@@ -5,7 +5,7 @@ export const subList = [
     name: "Bicycles",
   },
   {
-    name: "E-scooter",
+    name: "E-scooters",
   },
   {
     name: "E-bikes",
@@ -17,34 +17,34 @@ export const subList = [
 
 export const partsSubList = [
   {
-    name: "Auto Parts",
+    name: "Auto",
   },
   {
-    name: "Bike Parts",
+    name: "Bike",
   },
   {
-    name: "Boat Parts",
+    name: "Boat",
   },
   {
-    name: "Bus Parts",
+    name: "Buss",
   },
   {
-    name: "Construction Machine Parts",
+    name: "Construction Machine",
   },
   {
-    name: "Drone Parts",
+    name: "Drone",
   },
   {
-    name: "Other Parts",
+    name: "Other",
   },
   {
-    name: "Trailer Parts",
+    name: "Trailer",
   },
   {
-    name: "Truck Parts",
+    name: "Truck",
   },
   {
-    name: "Van Parts",
+    name: "Van",
   },
 ];
 
@@ -531,7 +531,7 @@ export const subCategoryMap: { [key: string]: string } = {
   "Buss": "Buss",
   "Construction%20Machine": "Construction Machine",
   "Drone": "Drone",
-  "Other": "Other",
+  "Other%20Parts": "Other Parts",
   "Trailer": "Trailer",
   "Truck": "Truck",
   "Van": "Van",
@@ -554,7 +554,7 @@ export const subPartsCategoryList: any = [
   "Trailer",
   "Truck",
   "Van",
-  "Other"
+  "Other Parts"
 ]
 
 
@@ -679,5 +679,13 @@ export const dontBrands: any  = [
   "Trailer",
   "Truck",
   "Van",
+  "Other Parts",
   "Others"
-]
+];
+
+
+
+
+export const checkVehicleCategory = ["Bikes", "Parts"];
+
+

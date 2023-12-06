@@ -6,7 +6,6 @@ import {
   Image,
   InsertLink,
   Person,
-  Phone,
   PhoneIphone,
   PlaylistAdd,
 } from "@mui/icons-material";
@@ -15,9 +14,11 @@ import { useParams, useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import {
+  checkVehicleCategory,
   fuelType1,
   kilometers,
-  priceList,
+  partsSubList,
+  subList,
 } from "@/utils/dataVariables";
 import "@/app/post-ad/post-ad.css";
 import { useSelector } from "react-redux";
@@ -26,15 +27,13 @@ import "@/components/autos.css";
 import locateAddress from "@/utils/GoogleLocation";
 import dynamic from "next/dynamic";
 import Switch from "react-switch";
-import { TextField } from "@mui/material";
-
 
 const style = {
   inputStyle:
     "border border-gray-200 hover:border-red-500 focus:outline-red-500 w-full rounded-sm h-10 pl-3",
   divStyle:
     "flex flex-col md:flex-row space-x-0 md:space-x-10 space-y-1 md:space-y-0 mb-5 mt-5",
-  h1Style: "text-md font-bold w-40 mt-1",
+  h1Style: "text-md font-bold w-40 mt-1 flex-wrap whitespace-nowrap",
   areaStyle:
     "border border-gray-300 h-52 p-2 hover:border-red-600 focus:outline-red-600",
 };
@@ -199,8 +198,6 @@ function EditComponent() {
   const [googleLocation, setGoogleLocation] = useState<any>(null);
   const [showLocation, setShowLocation] = useState<Boolean>(false);
   const [subCategory, setSubCategory] = useState<any>([]);
-  const whatsapp = userInfo?.data?.userDetails?.whatsapp;
-  const viber = userInfo?.data?.userDetails?.viber;
   
 
   const productSubCategory = [
@@ -364,6 +361,8 @@ function EditComponent() {
     },
   ];
 
+  const categorySubList = productData?.category === "Bikes" ? subList : partsSubList;
+
 
   useEffect(() => {
     const fetchCategory = async () => {
@@ -375,16 +374,21 @@ function EditComponent() {
     if(productData?.category === "Busses" || productData?.category === "Vans" || productData?.category === "Trailers" || productData?.category === "Trucks" || productData?.category === "Construction Machines")  fetchCategory();
   }, [productSubCat, productData?.category]);
   
+  
+  let vehicleCategory = checkVehicleCategory.includes(productData?.category) ? productData?.subCategory : productData?.category;
+  
 
   useEffect(() => {
         const fetchBrand = async () => {
         const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/${productData?.category}`
+          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/${vehicleCategory}`
         );
         setBrands(res.data?.data);
       };
-      if(productData?.category !== undefined)  fetchBrand();
-  }, [productData])
+      if(vehicleCategory !== undefined) {
+        if(productData?.category !== "Parts" || productData?.category !== "Others") fetchBrand();
+      } 
+  }, [vehicleCategory, productData?.category])
   
 
   const handleInput = (e: any) => {
@@ -402,10 +406,7 @@ function EditComponent() {
     } catch (error) {
       console.log(error);
     }
-  };
-
-  console.log(productData?.category);
-  
+  };  
 
 
   const handleImage = (e: any) => {
@@ -442,7 +443,7 @@ function EditComponent() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     console.log(data);
-    // return;
+    return;
     setLoading(true);
     let newData;
     if(checkObjectEmpty(data) === false){
@@ -558,15 +559,6 @@ function EditComponent() {
     },
   ];
 
-  
-  const handleChecked = (value: string) => {
-    alert(value)
-    if(value === productData?.condition){
-      return true;
-    }
-    return false;
-  }
-
   const handlePrice = (value: string) => {
     setPriceListValue(value);
     setPriceDisabled(!priceDisabled)
@@ -602,6 +594,30 @@ function EditComponent() {
             </div>
 
             <form onSubmit={(e: any) => handleSubmit(e)}>
+            {checkVehicleCategory.includes(productData?.category) &&
+            <div className={style.divStyle}>
+                <h1 className={style.h1Style}>
+                  {t("autosComponent.subCategory")}
+                  <span className="text-[#FF0000]">*</span>
+                </h1>
+                <div className="flex flex-col w-full -ml-5">
+                <select
+                    className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+                    name="subCategory"
+                    onChange={(e: any) => handleInput(e)}
+                  >
+                    <option value="option1">
+                      {t(`allCategories.${productData?.subCategory}`)}
+                    </option>
+                    {categorySubList.map((list: any, i: number) => (
+                      <option value={list.name} key={i}>
+                        {t(`allCategories.${list.name}`)}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+            </div>
+}
               <div className={style.divStyle}>
                 <h1 className={style.h1Style}>
                   {t("autosComponent.title")}{" "}
@@ -759,10 +775,6 @@ function EditComponent() {
                       </option>
                     ))}
                   </select>
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                    {/* You can replace '▼' with any down arrow icon you prefer */}
-                    ▼
-                  </div>
                 </div>
               </div>
               {data?.brand !== "" && productData?.category === "Autos" &&
