@@ -1,6 +1,7 @@
 import {
   AirportShuttle,
   BuildCircle,
+  Cached,
   Chat,
   DataSaverOn,
   Delete,
@@ -14,6 +15,7 @@ import {
   KeyboardArrowRight,
   LocationOn,
   PrecisionManufacturing,
+  Refresh,
   RemoveRedEye,
   RvHookup,
   Share,
@@ -150,6 +152,18 @@ export default function Product({ product, url }: any) {
     return prodId.some((item: any) => item._id === product?._id);
   };
 
+  const refreshAd = async() => {
+    try {
+      const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/refreshAd/${product?._id}`);
+      if(res.status === 200){
+        toast("Ad Refreshed successfully.");
+        dispatch(refreshPage(refresh + 1));
+      }
+    } catch (error: any) {
+      toast("Wait for 15 seconds before refreshing again.");
+    }
+  }
+
   return (
     <div className="mb-3" data-aos="fade-up">
       <div className="image-slider group relative max-w-sm rounded-lg overflow-hidden shadow-lg bg-white m-2 cursor-pointer hover:shadow-md hover:shadow-[#e52320]">
@@ -209,7 +223,7 @@ export default function Product({ product, url }: any) {
                       CHF {addInvertedComma(product?.price * 1)}
                     </h2>
                     <h1 className="text-gray-400 font-semibold text-[13px] w-32 truncate">
-                      EURO {addInvertedComma(product?.price * 2)}
+                      EURO {addInvertedComma(product?.price * 1.06)}
                     </h1>
                   </>
                 )}
@@ -322,6 +336,7 @@ export default function Product({ product, url }: any) {
                   className="text-3xl text-red-500"
                   onClick={() => deleteAd(product?._id)}
                 />
+                <Cached className="text-3xl text-blue-600" onClick={() => refreshAd()}  />
               </div>
             ) : (
               <>

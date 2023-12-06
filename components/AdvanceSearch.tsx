@@ -348,7 +348,7 @@ export default function AdvanceSearch({
     {
       logo: <DataSaverOn />,
       name: t("categoriesParts.6"),
-      name1: "Other",
+      name1: "Other Parts",
     },
   ];
 
@@ -609,7 +609,7 @@ export default function AdvanceSearch({
     }
   };
 
-  console.log(vehicleType);
+  console.log(subCategory);
   
 
   return (
@@ -1169,7 +1169,7 @@ export default function AdvanceSearch({
                                   CHF {addInvertedComma(product?.price)}
                                 </h1>
                                 <h1 className="text-[12px] text-gray-400 font-bold">
-                                  EURO {addInvertedComma(product?.price * 2)}
+                                  EUR {addInvertedComma(product?.price * 1.06)}
                                 </h1>
                               </>
                             ) : (
@@ -1273,10 +1273,13 @@ export default function AdvanceSearch({
               </div>
             ) : (
               <div className="flex w-full justify-center">
-                <h1 className="text-xl font-bold">
-                  {" "}
-                  {t("categorySelection.noRecordFound")}
-                </h1>
+                <Image
+                className="h-96 w-96"
+                src="/assets/no_record.png"
+                alt="noRecordFound"
+                width={1200}
+                height={1200}
+                />
               </div>
             )}
           </>

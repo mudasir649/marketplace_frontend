@@ -77,16 +77,16 @@
   "Vans": "Vans"
       },
       "categoriesParts": [
-        "Autos Parts",
-        "Bikes Parts",
-        "Boat Parts",
-        "Busses Parts",
-        "Construction Machines Parts",
-        "Drones Parts",
+        "Auto",
+        "Bike",
+        "Boat",
+        "Buss",
+        "Construction Machine",
+        "Drone",
         "Other Parts",
-        "Trailers Parts",
-        "Trucks Parts",
-        "Vans Parts"
+        "Trailer",
+        "Truck",
+        "Van"
       ],
       "sortByList": [
         "Latest",
