@@ -53,6 +53,7 @@ import {
   setAxelCount,
   setAddress,
   refreshPage,
+  setVehicleType,
 } from "@/store/appSlice";
 import addInvertedComma from "@/utils/addInvertedComma";
 import ProductList from "./ProductList";
@@ -102,8 +103,6 @@ export default function AdvanceSearch({
   brands,
   models,
   vehicleSubCategory,
-  years,
-  checkType,
 }: any) {
   // Redux hooks
   const { t } = useTranslation(); // Initialize the translation hook
@@ -117,8 +116,21 @@ export default function AdvanceSearch({
   const pathname = usePathname();
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state: any) => state.auth);
-  const { condition, brand, year, model, minPrice, maxPrice, prodId, km, bodyShape, fuelType, gearBox, refresh } =
-    useSelector((state: any) => state.app);
+  const {
+    condition,
+    brand,
+    year,
+    model,
+    minPrice,
+    maxPrice,
+    prodId,
+    km,
+    bodyShape,
+    fuelType,
+    gearBox,
+    refresh,
+    vehicleType
+  } = useSelector((state: any) => state.app);
   const userId = userInfo?.data?.userDetails?._id;
 
   const { width, height } = useWindowDimensions();
@@ -149,7 +161,6 @@ export default function AdvanceSearch({
 
     return paginationList;
   };
-  
 
   const conditionList = [
     {
@@ -168,7 +179,6 @@ export default function AdvanceSearch({
       value: fieldsData?.conditionList[2].value,
     },
   ];
-  
 
   const nextHandle = () => {
     if (page !== pagination().length) {
@@ -180,16 +190,21 @@ export default function AdvanceSearch({
   };
 
   useEffect(() => {
-    const fetchFieldsData =async () => {
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/get-postAd-data?type=${category}`);
+    const fetchFieldsData = async () => {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/get-postAd-data?type=${category}`
+      );
       setFieldsData(res.data?.data);
-    }
+    };
     fetchFieldsData();
   }, [category]);
 
-  const fuelTypes = fieldsData?.BikeFuelType ? fieldsData?.BikeFuelType : fieldsData?.fuelType;
-  const bodyShape1 = fieldsData?.AutosBodyShape ? fieldsData?.AutosBodyShape : fieldsData?.bikeBodyShape 
-  
+  const fuelTypes = fieldsData?.BikeFuelType
+    ? fieldsData?.BikeFuelType
+    : fieldsData?.fuelType;
+  const bodyShape1 = fieldsData?.AutosBodyShape
+    ? fieldsData?.AutosBodyShape
+    : fieldsData?.bikeBodyShape;
 
   const categoryList = [
     {
@@ -401,11 +416,17 @@ export default function AdvanceSearch({
       ? "text-[10px] cursor-pointer font-bold"
       : "text-[12px] cursor-pointer font-bold";
 
-    const baseApi = `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address}&condition=${condition}&brand=${brand}&model=${model}&year=${year}&minPrice=${minPrice}&maxPrice=${maxPrice}&km=${km}&bodyShape=${bodyShape}&gearBox=${gearBox}&fuelType=${fuelType}`;
-    let categoryApi: any = baseApi;
+  const baseApi = `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address}&condition=${condition}&brand=${brand}&model=${model}&year=${year}&minPrice=${minPrice}&maxPrice=${maxPrice}&km=${km}&bodyShape=${bodyShape}&gearBox=${gearBox}&fuelType=${fuelType}&vehicleType=${vehicleType}`;
+  let categoryApi: any = baseApi;
 
-    if(subBikeCategoryList.includes(category) || subPartsCategoryList.includes(category)) categoryApi += `&category=${subBikeCategoryList.includes(category) ? "Bikes" : "Parts"}&subCategory=${category}`
-    else categoryApi += `&category=${category}`;
+  if (
+    subBikeCategoryList.includes(category) ||
+    subPartsCategoryList.includes(category)
+  )
+    categoryApi += `&category=${
+      subBikeCategoryList.includes(category) ? "Bikes" : "Parts"
+    }&subCategory=${category}`;
+  else categoryApi += `&category=${category}`;
 
   async function applyFilter() {
     setLoading(true);
@@ -442,11 +463,16 @@ export default function AdvanceSearch({
     let res;
     dispatch(setSortBy(value));
     setSortByLoading(true);
-    
-    let url = `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&sortBy=${value}`
 
-    if(subBikeCategoryList.includes(category)) url += `&category=Bikes&subCategory=${category}`;
-    else if(subPartsCategoryList.includes(category)) url += `&category=Parts&subCategory=${category}`;
+    let url = `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&sortBy=${value}`;
+
+    if (category === "Autos") url += `&address=${address}&condition=${condition}&brand=${brand}&model=${model}&year=${year}&minPrice=${minPrice}&maxPrice=${maxPrice}&km=${km}&bodyShape=${bodyShape}&gearBox=${gearBox}&fuelType=${fuelType}`
+    else if (subBikeCategoryList.includes(category)){
+      if(brand !== "") url += `&category=Bikes&subCategory=${category}&address=${address}&condition=${condition}&brand=${brand}&model=${model}&year=${year}&minPrice=${minPrice}&maxPrice=${maxPrice}&km=${km}&bodyShape=${bodyShape}&gearBox=${gearBox}&fuelType=${fuelType}`
+      else url += `&category=Bikes&subCategory=${category}`;
+    }
+    else if (subPartsCategoryList.includes(category))
+      url += `&category=Parts&subCategory=${category}`;
     else url += `&category=${category}`;
 
     try {
@@ -455,12 +481,11 @@ export default function AdvanceSearch({
       setProductsCount(res?.data?.data?.totalAds);
     } catch (error) {
       console.log(error);
-    }finally{
-      setSortByLoading(false)
+    } finally {
+      setSortByLoading(false);
     }
     setSortByLoading(false);
   };
-  
 
   const adFavorite = async (productId: any, i: number) => {
     if (userInfo === null) {
@@ -489,15 +514,14 @@ export default function AdvanceSearch({
     }
   };
 
-
   const handleShare = (productId: any) => {
     let linkToCopy = `${process.env.NEXT_PUBLIC_LINK_URI}/product-details/${productId}`;
-      try {
-        navigator.clipboard.writeText(linkToCopy);
-        toast('Link Copied!');
-      } catch (err) {
-        console.error('Failed to copy text: ', err);
-      }
+    try {
+      navigator.clipboard.writeText(linkToCopy);
+      toast("Link Copied!");
+    } catch (err) {
+      console.error("Failed to copy text: ", err);
+    }
   };
 
   const handleChat = async (product: any) => {
@@ -543,7 +567,6 @@ export default function AdvanceSearch({
   };
 
   console.log(subCategory);
-  
 
   const checkSubCategory = () => {
     if (subBikeCategoryList.includes(subCategory)) {
@@ -562,8 +585,8 @@ export default function AdvanceSearch({
     }
   };
 
-  const clearFilter =async () => {
-    if(category !== ""){
+  const clearFilter = async () => {
+    if (category !== "") {
       dispatch(refreshPage(refresh + 1));
       dispatch(setAddress(""));
       dispatch(setMaxPrice(""));
@@ -581,12 +604,12 @@ export default function AdvanceSearch({
       dispatch(setFuelType(""));
       dispatch(setAxelCount(""));
       router.push(`/advance-search/${category}`);
-    }else{
+    } else {
       return router.push(`/advance-search/${category}`);
     }
-  }
+  };
 
-  
+  console.log(vehicleType);
   
 
   return (
@@ -705,6 +728,7 @@ export default function AdvanceSearch({
               <select
                 className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
                 name="type"
+                onChange={(e) => dispatch(setVehicleType(e.target.value))}
               >
                 <option value="option1">
                   {t("autosComponent.selectSubCategory")}
@@ -750,29 +774,32 @@ export default function AdvanceSearch({
               </div>
             </>
           )}
-{(type1 === "Motorcycles" || type1 === "Autos") && brand && models && models[0]?.model && (
-  <>
-    <div className="border-b flex flex-row justify-between p-2 mb-4">
-      <h1 className="text-lg font-bold">
-        {t("autosComponent.model")}
-      </h1>
-    </div>
-    <select
-      className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
-      name="model"
-      onChange={(e: any) => dispatch(setModel(e.target.value))}
-    >
-      <option value="option1">{t("autosComponent.model")}</option>
-      {models[0].model.map((model: any, i: number) => (
-        <option value={model} key={i}>
-          {model}
-        </option>
-      ))}
-    </select>
-  </>
-)}
+          {(type1 === "Motorcycles" || type1 === "Autos") &&
+            brand &&
+            models &&
+            models[0]?.model && (
+              <>
+                <div className="border-b flex flex-row justify-between p-2 mb-4">
+                  <h1 className="text-lg font-bold">
+                    {t("autosComponent.model")}
+                  </h1>
+                </div>
+                <select
+                  className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+                  name="model"
+                  onChange={(e: any) => dispatch(setModel(e.target.value))}
+                >
+                  <option value="option1">{t("autosComponent.model")}</option>
+                  {models[0].model.map((model: any, i: number) => (
+                    <option value={model} key={i}>
+                      {model}
+                    </option>
+                  ))}
+                </select>
+              </>
+            )}
 
-           {(category === "Autos" || category === "Motorcycles") && (
+          {(category === "Autos" || category === "Motorcycles") && (
             <>
               <div className="border-b flex flex-row justify-between p-2 mb-4">
                 <h1 className="text-lg font-bold">
@@ -808,7 +835,9 @@ export default function AdvanceSearch({
                   name="km"
                   onChange={(e: any) => dispatch(setKm(e.target.value))}
                 >
-                  <option value="">{t("autosComponent.selectKilometer")}jj</option>
+                  <option value="">
+                    {t("autosComponent.selectKilometer")}
+                  </option>
                   {kilometers.map((kms: any, i: number) => (
                     <option value={kms.name} key={i}>
                       {kms.name}
@@ -818,7 +847,9 @@ export default function AdvanceSearch({
               </div>
             </>
           )}
-          {(category == "Motorcycles" || category === "Autos" || category === "Busses") && (
+          {(category == "Motorcycles" ||
+            category === "Autos" ||
+            category === "Busses") && (
             <>
               <div className="border-b flex flex-row justify-between p-2 mb-4">
                 <h1 className="text-lg font-bold">
@@ -941,10 +972,7 @@ export default function AdvanceSearch({
             </div>
             {(brands || address || minPrice || maxPrice || condition) && (
               <div className="h-auto w-full space-x-4">
-                <button
-                  className={btnStyle1}
-                  onClick={clearFilter}
-                >
+                <button className={btnStyle1} onClick={clearFilter}>
                   {t("categorySelection.clearFilter")}
                 </button>
               </div>
@@ -993,13 +1021,13 @@ export default function AdvanceSearch({
                 </div>
                 {sortByLoading ? (
                   <div className="flex justify-center w-full h-auto">
-                  <Image
-                    src="/assets/eidcarosse.gif"
-                    alt="eidcarosse_logo"
-                    width={200}
-                    height={200}
-                  />
-                </div>
+                    <Image
+                      src="/assets/eidcarosse.gif"
+                      alt="eidcarosse_logo"
+                      width={200}
+                      height={200}
+                    />
+                  </div>
                 ) : newWidth <= 688 ? (
                   <ProductList productList={productData} />
                 ) : (
@@ -1113,24 +1141,26 @@ export default function AdvanceSearch({
                                 {product?.title}
                               </h2>
                             </Link>
-                            {product?.userId?._id === userId ? '' : 
-                            <div className="space-x-3">
-                              <Favorite
-                                className={`${
-                                  findProductId(product?._id)
-                                    ? "text-[#FF0000]"
-                                    : "text-gray-300"
-                                } cursor-pointer`}
-                                onClick={() => adFavorite(product?._id, i)}
-                                style={{ fontSize: "20px" }}
-                              />
-                              <Share
-                                onClick={() => handleShare(product?._id)}
-                                className="cursor-pointer text-gray-400"
-                                style={{ fontSize: "20px" }}
-                              />
-                            </div>
-}
+                            {product?.userId?._id === userId ? (
+                              ""
+                            ) : (
+                              <div className="space-x-3">
+                                <Favorite
+                                  className={`${
+                                    findProductId(product?._id)
+                                      ? "text-[#FF0000]"
+                                      : "text-gray-300"
+                                  } cursor-pointer`}
+                                  onClick={() => adFavorite(product?._id, i)}
+                                  style={{ fontSize: "20px" }}
+                                />
+                                <Share
+                                  onClick={() => handleShare(product?._id)}
+                                  className="cursor-pointer text-gray-400"
+                                  style={{ fontSize: "20px" }}
+                                />
+                              </div>
+                            )}
                           </div>
                           <div className="mt-3 space-y-1">
                             {product?.price ? (

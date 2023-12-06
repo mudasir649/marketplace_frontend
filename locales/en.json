@@ -416,7 +416,26 @@
           "parts": "Parts"
         } , 
         "bodyShape": {
-
+          "Supersport":"Supersport",
+          "Sport Touring": "Sport Touring",
+          "Chopper/Cruiser": "Chopper/Cruiser",
+          "Touring Enduro": "Touring Enduro",
+          "Streetfighter": "Streetfighter",
+          "Enduro Bike": "Enduro Bike",
+          "Motocrosser": "Motocrosser",
+          "Sidecar": "Sidecar",
+          "Classic": "Classic",
+          "Three Wheeler": "Three Wheeler",
+          "Scooter": "Scooter",
+          "Moped": "Moped",
+          "Super Moto": "Super Moto",
+          "Minibike": "Minibike",
+          "Naked Bike": "Naked Bike",
+          "Quad": "Quad",
+          "Rally": "Rally",
+          "Trials Bike": "Trials Bike",
+          "Racing": "Racing",
+          "Tourer": "Tourer",
           "Convertible": "Convertible",
           "Compact": "Compact",
           "Coupe": "Coupe",
@@ -548,7 +567,6 @@
   "seeAllAds": "See All"
   } , 
   "postAd": {
-    
       "selectCategory": "Select Category",
       "category": "Category",
       "subCategory": "Sub Category",
