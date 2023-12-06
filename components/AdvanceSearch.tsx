@@ -466,7 +466,7 @@ export default function AdvanceSearch({
 
     let url = `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&sortBy=${value}`;
 
-    if (category === "Autos") url += `&address=${address}&condition=${condition}&brand=${brand}&model=${model}&year=${year}&minPrice=${minPrice}&maxPrice=${maxPrice}&km=${km}&bodyShape=${bodyShape}&gearBox=${gearBox}&fuelType=${fuelType}`
+    if (category === "Autos") url += `&category=${category}&address=${address}&condition=${condition}&brand=${brand}&model=${model}&year=${year}&minPrice=${minPrice}&maxPrice=${maxPrice}&km=${km}&bodyShape=${bodyShape}&gearBox=${gearBox}&fuelType=${fuelType}`
     else if (subBikeCategoryList.includes(category)){
       if(brand !== "") url += `&category=Bikes&subCategory=${category}&address=${address}&condition=${condition}&brand=${brand}&model=${model}&year=${year}&minPrice=${minPrice}&maxPrice=${maxPrice}&km=${km}&bodyShape=${bodyShape}&gearBox=${gearBox}&fuelType=${fuelType}`
       else url += `&category=Bikes&subCategory=${category}`;
