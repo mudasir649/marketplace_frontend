@@ -1,4 +1,4 @@
-import { Cancel, Https, LoginSharp, Mail } from '@mui/icons-material'
+import { Cancel, Https, LoginSharp, Mail, RemoveRedEye } from '@mui/icons-material'
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
@@ -19,6 +19,7 @@ export default function LoginPage() {
 
   const [email, setEmail1] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [passwordInputType, setPasswordInputType] = useState("password");
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -45,7 +46,13 @@ export default function LoginPage() {
     if (userInfo !== null) {
       dispatch(setProdId(userInfo?.data?.userDetails.favAdIds));
     }
-  }, [userInfo, dispatch])
+  }, [userInfo, dispatch]);
+
+  const showPassword = () => {
+    setPasswordInputType((prevState: any) =>
+      prevState === "password" ? "text" : "password"
+    );
+  };
 
   return (
     <div className={`messageArea fixed inset-0 flex justify-center items-center bg-opacity-100 backdrop-blur-sm h-auto`}>
@@ -83,12 +90,13 @@ export default function LoginPage() {
               <Https className='text-[#FF0000] ml-5' />
               <input
                 className="focus:outline-none w-96 p-1 overflow-hidden bg-transparent focus:bg-transparent"
-                type='password'
+                type={passwordInputType}
                 placeholder={t('login.yourPassword')}
                 name='password'
                 value={password}
                 onChange={(e: any) => setPassword(e.target.value)}
               />
+              <RemoveRedEye  className='hover:text-gray-400' style={{fontSize: '20px'}} onClick={showPassword} />
             </div>
             <div className='flex justify-center font-bold'>
               {!isLoading ? (

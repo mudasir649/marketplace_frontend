@@ -13,7 +13,7 @@ import { usePathname } from 'next/navigation';
 import { routeName } from '@/utils/dataVariables';
 
 
-function Home({ children }: any) {
+ function Home({ children }: any) {
   const pathname = usePathname();  
   const checkType = routeName.includes(pathname);
 
