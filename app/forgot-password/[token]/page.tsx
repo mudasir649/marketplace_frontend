@@ -1,8 +1,8 @@
 "use client";
-import { PlaylistAdd } from "@mui/icons-material";
+import { PlaylistAdd, RemoveRedEye } from "@mui/icons-material";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
@@ -25,9 +25,12 @@ export default function Page() {
   const { token } = useParams();
   const router = useRouter();
   const dispatch = useDispatch();
+  const [passwordInputType, setPasswordInputType] = useState('password');
+  const [confirmPasswordInputType, setConfirmPasswordInputType] = useState('password');
   const [isVerified, setIsVerified] = useState<Boolean>(false);
   const [isTimerOver, setIsTimerOver] = useState<Boolean>(false);
   const [codeVerified, setCodeVerified] = useState<Boolean>(false);
+  const passwordRef = useRef<HTMLInputElement | null>(null);
   const [loading, setLoading] = useState<Boolean>(false);
   const [code, setCode] = useState<string>("");
   const [data, setData] = useState<IData>({
@@ -131,6 +134,15 @@ export default function Page() {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
+  const showPassword = () => {
+    setPasswordInputType((prevState: any) => prevState === 'password' ? 'text' : 'password');
+  }
+
+
+  const showConfirmPassword = () => {
+    setConfirmPasswordInputType((prevType: any) => prevType === 'password' ? 'text' : 'password');
+  }
+
   if (isVerified === true) {
     return (
         <div className="container mx-auto my-10">
@@ -147,32 +159,43 @@ export default function Page() {
                 <form method="POST" onSubmit={resetPassword}>
                   <div>
                     <h1 className="text-md font-bold mt-5">Password:</h1>
+                    <div className="border border-md border-gray-300 hover:border-[#FF0000] focus:outline-[#FF0000] flex justify-between">
                     <input
-                      type="text"
+                      type={passwordInputType}
                       value={data.password}
                       name="password"
                       placeholder="Enter password"
-                      className="w-full border border-md border-gray-300 hover:border-[#FF0000] focus:outline-[#FF0000] p-2 mt-3"
+                      className="w-full focus:outline-none p-2"
+                      ref={passwordRef}
                       onChange={(e) => handleData(e)}
                     />
+                    <div className="bg-gray-200 hover:bg-gray-300 w-10 px-2 py-1 cursor-pointer" onClick={showPassword}>
+                      <RemoveRedEye className="" />
+                    </div>
+                    </div>
                   </div>
                   <div>
                     <h1 className="text-md font-bold mt-5">
                       Confirm Password:
                     </h1>
+                    <div className="border border-md border-gray-300 hover:border-[#FF0000] focus:outline-[#FF0000] flex justify-between">
                     <input
-                      type="text"
+                      type={confirmPasswordInputType}
                       value={data.confirmPassword}
                       name="confirmPassword"
                       placeholder="Enter confirm password"
-                      className="w-full border border-md border-gray-300 hover:border-[#FF0000] focus:outline-[#FF0000] p-2 mt-3"
+                      className="w-full focus:outline-none p-2"
                       onChange={(e) => handleData(e)}
                     />
+                    <div className="bg-gray-200 hover:bg-gray-300 w-10 px-2 py-1 cursor-pointer" onClick={showConfirmPassword}>
+                      <RemoveRedEye className="" />
+                    </div>
+                    </div>
                   </div>
                   {isLoading ? 
                     <div className="spinner mt-8 w-10 h-10"></div>
                   :
-                  <button className="bg-[#FF0000] text-white hover-bg-white border-2 border-[#FF0000] hover-text-black p-2 mt-4 font-semibold rounded-sm">
+                  <button className="bg-[#FF0000] text-white hover:bg-red-700 border-2 border-[#FF0000] hover-text-black p-2 mt-4 font-semibold rounded-sm">
                     {t('forgot-password.updatePassword')}
                   </button>
   }
@@ -190,12 +213,12 @@ export default function Page() {
                       onChange={(e) => setCode(e.target.value)}
                     />
                         {!isTimerOver ? (
-                          <button className="bg-[#FF0000] text-white hover-bg-white border-2 border-[#FF0000] hover-text-black p-2 mt-4 font-semibold rounded-sm">
+                          <button className="bg-[#FF0000] hover:bg-red-700 text-white hover-bg-white border-2 border-[#FF0000] hover-text-black p-2 mt-4 font-semibold rounded-sm">
                             {t('forgot-password.resetPassword')}
                           </button>
                         ) : (
                           <button
-                            className="bg-[#FF0000] text-white hover-bg-white border-2 border-[#FF0000] hover-text-black p-2 mt-4 font-semibold rounded-sm"
+                            className="bg-[#FF0000] hover:bg-red-700 text-white hover-bg-white border-2 border-[#FF0000] hover-text-black p-2 mt-4 font-semibold rounded-sm"
                             onClick={resendCode}
                           >
                             {t('forgot-password.resendCode')}

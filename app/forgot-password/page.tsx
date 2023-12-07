@@ -57,7 +57,7 @@ function ForgotPassword() {
                     Email:
                 </h1>
                 <input type="email" className="w-full border border-md border-gray-300 hover:border-[#FF0000] focus:outline-[#FF0000] p-2 mt-3" value={email} onChange={(e) => dispatch(setEmail(e.target.value))} />
-                <button className="bg-[#FF0000] text-white hover:bg-white border-2 border-[#FF0000] hover:text-black p-2 mt-4 font-semibold rounded-sm">{t('forgot-password.resetPassword')}</button>
+                <button className="bg-[#FF0000] text-white hover:bg-red-700 p-2 mt-4 font-semibold rounded-sm">{t('forgot-password.resetPassword')}</button>
                 </form>
             </div>
             </div>

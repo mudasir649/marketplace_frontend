@@ -354,7 +354,7 @@ function Header2() {
                 ) : (
                   <>
                     <Link href="/post-ad">
-                      <button className="w-auto border border-white hover:border-[#FF0000] bg-white hover:bg-[#FF0000] hover:text-white drop-shadow-lg rounded-lg p-2 flex flex-row justify-center space-x-3">
+                      <button className="w-auto border border-white hover:border-[#FF0000] bg-white hover:bg-[#FF0000] hover:text-white drop-shadow-lg rounded-lg p-2 flex flex-row justify-center space-x-3 transition duration-300">
                         <section className="">
                           <Add className="text-md border bg-[#FF0000] border-[#FF0000] rounded-full text-white" />
                         </section>
@@ -446,7 +446,7 @@ function Header2() {
                     </div>
                   ) : (
                     <Link href="/login">
-                      <button className="border border-[#FF0000] bg-[#FF0000] hover:bg-white hover:border-white text-white hover:text-[#FF0000] drop-shadow-lg rounded-lg p-2 flex flex-row space-x-1">
+                      <button className="border border-[#FF0000] bg-[#FF0000] hover:bg-white hover:border-white text-white hover:text-[#FF0000] drop-shadow-lg rounded-lg p-2 flex flex-row space-x-1 transition duration-150">
                         <section className="">
                           <Login className="text-md rounded-full" />
                         </section>

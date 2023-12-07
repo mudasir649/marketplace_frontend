@@ -1,6 +1,4 @@
 "use client";
-import useWindowDimensions from "@/utils/useWindowDimensions";
-import { East } from "@mui/icons-material";
 import SellRepairComponent from "@/components/SellRepairComponent";
 import ProductList from "@/components/ProductList";
 import { useEffect, useState } from "react";
@@ -10,7 +8,7 @@ import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import dynamic from "next/dynamic";
 
-export default function MainPage() {
+function MainPage() {
   const { t } = useTranslation(); // Initialize the translation hook
 
   const [featuredAds, setFeaturedAds] = useState<any>();
@@ -61,3 +59,5 @@ export default function MainPage() {
     </div>
   );
 }
+
+export default dynamic(() => Promise.resolve(MainPage), { ssr: false });

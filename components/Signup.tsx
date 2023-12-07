@@ -1,4 +1,4 @@
-import { AccountCircle, Badge, Cancel, Https, Mail, PersonAdd, Phone } from '@mui/icons-material'
+import { AccountCircle, Badge, Cancel, Https, Mail, PersonAdd, Phone, RemoveRedEye } from '@mui/icons-material'
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
@@ -20,6 +20,7 @@ export default function Signup() {
   const [userName, setUserName] = useState<string>("");
   const [email, setEmail1] = useState<string>("");
   const [phoneNumber, setPhoneNumber] = useState<string>("");
+  const [passwordInputType, setPasswordInputType] = useState("password");
   const [password, setPassword] = useState<string>("");
   const router = useRouter();
   const dispatch = useDispatch();
@@ -76,6 +77,12 @@ export default function Signup() {
     }
     setLoading(false);
   }
+
+  const showPassword = () => {
+    setPasswordInputType((prevState: any) =>
+      prevState === "password" ? "text" : "password"
+    );
+  };
 
 
 
@@ -165,12 +172,13 @@ export default function Signup() {
               <Https className='text-[#FF0000] ml-5' />
               <input required={true}
                 className="focus:outline-none w-96 p-1 overflow-hidden bg-transparent focus:bg-transparent"
-                type="password"
+                type={passwordInputType}
                 placeholder={t("signup.passwordPlaceholder")}
                 name='password'
                 value={password}
                 onChange={(e: any) => setPassword(e.target.value)}
               />
+              <RemoveRedEye  className='hover:text-gray-400' style={{fontSize: '20px'}} onClick={showPassword} />
             </div>
             <div className='flex justify-center font-bold'>
               {!loading ? (
