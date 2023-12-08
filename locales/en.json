@@ -31,7 +31,8 @@
       "codeToReset": "Enter code to reset password",
       "updatePassword": "Update my password",
       "resendCode": "Resend Code",
-      "formToReset": "Form to reset password"
+      "formToReset": "Form to reset password",
+      "verifyAccount": "verify Account"
     },
       "categorySelection": {
         "category": "Category",

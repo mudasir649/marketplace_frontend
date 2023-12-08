@@ -1,13 +1,13 @@
 'use client';
-import { setShowRepairNow } from '@/store/appSlice';
 import { Cancel } from '@mui/icons-material';
 import axios from 'axios';
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import signLogo from "../public/assets/signLogo.png";
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next'; 
 import { useRouter } from 'next/navigation';
-
+import Image from 'next/image';
+import './Advance-search.css';
 
 interface IData {
     fullName: any,
@@ -86,12 +86,20 @@ export default function BuyNow() {
     }
 
     return (
-        <div className={`fixed inset-0 flex justify-center items-center bg-opacity-100 backdrop-blur-sm z-10 overflow-y-scroll`}>
-            <div className='container mx-10 w-[800px] h-auto mt-12 bg-white shadow-3xl border rounded-md'>
+        <div className={`messageArea fixed inset-0 flex justify-center items-center bg-opacity-100 backdrop-blur-sm z-10 overflow-y-scroll`}>
+            <div className='container mx-10 w-[800px] h-auto mt-12 bg-white shadow-3xl border rounded-md mb-10'>
                 <div className='flex justify-end'>
                     <button className='text-white text-xl lg:mr-[-30px]' onClick={() => handleRepairNow()}>
                         <Cancel className='text-[#FF0000]' />
                     </button>
+                </div>
+                <div className='flex justify-center mb-10'>
+                    <Image
+                        src={signLogo}
+                        alt="logo"
+                        width={100}
+                        height={100}
+                    />
                 </div>
                 <form>
                     <div className="mb-4">
@@ -193,17 +201,17 @@ export default function BuyNow() {
                     </div>
 
                     {!images ? '' :
-                        <div className='flex flex-row space-x-4'>
+                        <div className='flex flex-row flex-wrap gap-4'>
                             {images?.map((image: any, i: any) => (
                                 <div key={i} className="image-item">
-                                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img className='h-32 w-32' src={URL.createObjectURL(image)} alt={`Image ${i}`} />
-                                    <Cancel className='absolute mt-[-128px] ml-24 text-[#FF0000]' onClick={() => handleImageRemove(i)} />
+                                    <div className='bg-green-500 flex flex-row-reverse'>
+                                        <Cancel className='absolute text-[#FF0000]' onClick={() => handleImageRemove(i)} />
+                                    </div>
+                                    <Image className='h-32 w-72' src={URL.createObjectURL(image)} alt={`Image ${i}`} width={100} height={100} />
                                 </div>
                             ))}
                         </div>
                     }
-
                     <div className="mb-4">
                         <label className="block text-sm font-medium text-gray-600">{t('repairNow.description')}</label>
                         <textarea
@@ -216,9 +224,8 @@ export default function BuyNow() {
                             required
                         ></textarea>
                     </div>
-
                     <div className="mt-4 mb-10">
-                        <button type="submit" className="bg-[#FF0000] text-white px-4 py-2 hover:bg-red-800 focus:outline-none focus:bg-red-700" onClick={(e: any) => handleSubmit(e)}>{t('repairNow.submit')}</button>
+                        <button type="submit" className="bg-[#FF0000] text-white font-semibold px-4 py-2 hover:bg-red-800 focus:outline-none focus:bg-red-700" onClick={(e: any) => handleSubmit(e)}>{t('repairNow.submit')}</button>
                     </div>
                 </form>
             </div>

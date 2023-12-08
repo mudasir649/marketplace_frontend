@@ -38,7 +38,7 @@ export default function LoginPage() {
     } catch (error: any) {      
       dispatch(setEmail(email))
       toast(error?.data?.message);
-      // router.push(`verify-account/${error.data?.data}`)
+      router.push(`verify-account/${error.data?.data}`)
     }
   }
 
@@ -70,11 +70,11 @@ export default function LoginPage() {
               <Image src={signLogo} alt="logo" width={100} height={100} />
             </div>
             <h1 className='flex justify-center text-2xl font-bold'>{t('login.login')}</h1>
-            <button className='border flex flex-row justify-center py-2 space-x-2 border-gray-200 rounded-md h-10 w-64 md:w-96'>
+            {/* <button className='border flex flex-row justify-center py-2 space-x-2 border-gray-200 rounded-md h-10 w-64 md:w-96'>
               <Image src={googleLogo} alt='google-logo' width={25} height={25} />
               <span className='text-md font-semibold'>{t('login.continueWithGoogle')}</span>
             </button>
-            <div className='flex justify-center font-bold'>{t('login.or')}</div>
+            <div className='flex justify-center font-bold'>{t('login.or')}</div> */}
             <div className='flex flex-row border border-gray-200 hover:border-[#e52320] cursor-pointer rounded-md h-10 w-64 md:w-96 space-x-4 p-2 bg-gray-100'>
               <Mail className='text-[#FF0000] ml-5' />
               <input
@@ -96,7 +96,7 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e: any) => setPassword(e.target.value)}
               />
-              <RemoveRedEye  className='hover:text-gray-400' style={{fontSize: '20px'}} onClick={showPassword} />
+              <RemoveRedEye  className={`${passwordInputType === "text" ? "text-gray-400" : ''} hover:text-gray-400`} style={{fontSize: '20px'}} onClick={showPassword} />
             </div>
             <div className='flex justify-center font-bold'>
               {!isLoading ? (

@@ -129,7 +129,7 @@ export default function MyProfile() {
                 className="bg-gray-200 hover:bg-gray-300 w-10 px-2 py-1 cursor-pointer"
                 onClick={showOldPassword}
               >
-                <RemoveRedEye className="" />
+                <RemoveRedEye className={`${passwordInputType === "text" ? "text-gray-400" : ''} hover:text-gray-400`} />
               </div>
             </div>
 
@@ -149,7 +149,7 @@ export default function MyProfile() {
                 className="bg-gray-200 hover:bg-gray-300 w-10 px-2 py-1 cursor-pointer"
                 onClick={showPassword}
               >
-                <RemoveRedEye className="" />
+                <RemoveRedEye className={`${passwordInputType === "text" ? "text-gray-400" : ''} hover:text-gray-400`} />
               </div>
             </div>
 {/* 
@@ -173,7 +173,7 @@ export default function MyProfile() {
                       onChange={(e) => handleInput(e)}
                     />
                     <div className="bg-gray-200 hover:bg-gray-300 w-10 px-2 py-1 cursor-pointer" onClick={showConfirmPassword}>
-                      <RemoveRedEye className="" />
+                      <RemoveRedEye className={`${passwordInputType === "text" ? "text-gray-400" : ''} hover:text-gray-400`} />
                     </div>
                     </div>
           </div>
