@@ -170,7 +170,7 @@ export default function Page() {
                       onChange={(e) => handleData(e)}
                     />
                     <div className="bg-gray-200 hover:bg-gray-300 w-10 px-2 py-1 cursor-pointer" onClick={showPassword}>
-                      <RemoveRedEye className="" />
+                      <RemoveRedEye className={`${passwordInputType === "text" ? "text-gray-400" : ''} hover:text-gray-400`} />
                     </div>
                     </div>
                   </div>
@@ -188,7 +188,7 @@ export default function Page() {
                       onChange={(e) => handleData(e)}
                     />
                     <div className="bg-gray-200 hover:bg-gray-300 w-10 px-2 py-1 cursor-pointer" onClick={showConfirmPassword}>
-                      <RemoveRedEye className="" />
+                      <RemoveRedEye className={`${passwordInputType === "text" ? "text-gray-400" : ''} hover:text-gray-400`} />
                     </div>
                     </div>
                   </div>
@@ -209,7 +209,7 @@ export default function Page() {
                     <input
                       type="text"
                       value={code}
-                      className="w-full border border-md border-gray-300 hover-border-[#FF0000] focus-outline-[#FF0000] p-2 mt-3"
+                      className="w-full border border-md border-gray-300 hover:border-[#FF0000] focus:outline-[#FF0000] p-2 mt-3"
                       onChange={(e) => setCode(e.target.value)}
                     />
                         {!isTimerOver ? (

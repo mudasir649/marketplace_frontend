@@ -27,6 +27,7 @@ import "@/components/autos.css";
 import locateAddress from "@/utils/GoogleLocation";
 import dynamic from "next/dynamic";
 import Switch from "react-switch";
+import NxtImage from "next/image";
 
 const style = {
   inputStyle:
@@ -442,8 +443,6 @@ function EditComponent() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log(data);
-    return;
     setLoading(true);
     let newData;
     if(checkObjectEmpty(data) === false){
@@ -1010,15 +1009,15 @@ function EditComponent() {
                 <div className="flex flex-row flex-wrap gap-4 mt-4">
                   {images?.map((image: any, i: any) => (
                     <div key={i} className="flex-wrap w-auto">
-                      <Cancel
-                        className="text-[#FF0000] z-20 absolute cursor-pointer ml-[215px]"
-                        onClick={() => handleImageRemove(i)}
-                      />
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
+                      <div className='flex flex-row-reverse'>
+                        <Cancel className='absolute text-[#FF0000]' onClick={() => handleImageRemove(i)} />
+                      </div>
+                      <NxtImage
                         className="h-36 w-60"
                         src={URL.createObjectURL(image)}
                         alt={`Image ${i}`}
+                        width={100}
+                        height={100}
                       />
                     </div>
                   ))}

@@ -121,7 +121,7 @@ export default function Page() {
                     placeholder="Enter verification code to verify account..."
                   />
                   <button className="bg-[#FF0000] text-white hover:bg-white border-2 border-[#FF0000] hover:text-black p-2 mt-4 font-semibold rounded-sm">
-                    {t("forgot-password.resetPassword")}
+                    {t("forgot-password.verifyAccount")}
                   </button>
                   <div className="flex justify-center text-center mt-10">
                     <CountdownCircleTimer

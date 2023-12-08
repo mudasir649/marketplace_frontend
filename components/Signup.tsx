@@ -178,7 +178,7 @@ export default function Signup() {
                 value={password}
                 onChange={(e: any) => setPassword(e.target.value)}
               />
-              <RemoveRedEye  className='hover:text-gray-400' style={{fontSize: '20px'}} onClick={showPassword} />
+              <RemoveRedEye  className={`${passwordInputType === "text" ? "text-gray-400" : ''} hover:text-gray-400`} style={{fontSize: '20px'}} onClick={showPassword} />
             </div>
             <div className='flex justify-center font-bold'>
               {!loading ? (
@@ -192,8 +192,7 @@ export default function Signup() {
                 <div className="spinner mt-8 w-10 h-10"></div>
               )}
             </div>
-            <div className='flex justify-center font-bold'>{t("signup.or")}</div>
-            {/* Continue with Google */}
+            {/* <div className='flex justify-center font-bold'>{t("signup.or")}</div>
             <button className='border flex flex-row justify-center py-2 space-x-2 border-gray-200 hover:bg-red-400 hover:text-white rounded-md h-10 w-64 md:w-96'>
               <Image
                 src={googleLogo}
@@ -202,7 +201,7 @@ export default function Signup() {
                 height={25}
               />
               <span className='text-md font-semibold '>{t("signup.continueWithGoogle")}</span>
-            </button>
+            </button> */}
             <div className='flex justify-center mb-20'>
               <h1>
                 {t("signup.alreadyHaveAccount")}
