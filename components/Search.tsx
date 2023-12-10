@@ -58,11 +58,6 @@ export default function SearchPage() {
     setTitleData(res.data?.data);
   };
 
-  const saveTitle = async (value: any) => {
-    setTitle(value);
-    setShowTitle(false);
-  };
-
   const searchFilter = async (e: any) => {
     e.preventDefault();
     dispatch(setReduxTitle(title));
@@ -90,11 +85,6 @@ export default function SearchPage() {
 
   return (
     <div className="">
-      {/* <form
-        method="POST"
-        className={`grid grid-cols-1 mt-[-20px] md:mt-10 md:grid-cols-3 lg:grid-cols-3 h-auto p-5 ml-0 md:ml-10 border-none rounded-md screen-1`}
-        ref={dropdownRef}
-      > */}
       <form
         method="POST"
         className={`flex flex-row w-full h-auto p-5 ml-0 md:ml-10 border-none rounded-md screen-1`}
@@ -111,6 +101,7 @@ export default function SearchPage() {
               value={title}
               onChange={(e: any) => setTitle(e.target.value)}
               onKeyUp={(e: any) => handleTitle(e)}
+              onKeyDown={() => dispatch(setReduxTitle(title))}
             />
           </div>
         </div>

@@ -84,6 +84,7 @@
     "Prezzo (basso ad alto)",
     "Prezzo (alto a basso)"
   ],
+  "selectVehicleCategory":"Selezionare....",
   "passwordSettings": [
     "Vecchia password",
     "Nuova password",
@@ -236,6 +237,11 @@
     "login": "Accedi",
     "changePassword": "Cambiare la password"
   },
+  "changePassword": {
+    "enterOld":  "Inserisci la vecchia password",
+    "enterNew":  "Inserisci la nuova password",
+    "enterConfirm": "Inserisci conferma password"
+  },
   "labels": {
     "fullName": "Nome completo",
     "phoneNo": "Numero di telefono",
@@ -312,7 +318,8 @@
     "required": "* Obbligatorio",
     "bikes": "Moto",
     "parts": "Ricambi",
-    "selectSubCategory": "Seleziona sottocategoria"
+    "selectSubCategory": "Seleziona sottocategoria",
+    "showNumber":  "Mostra il mio numero di telefono negli annunci"
   },
   "privacyPolicy": {
     "heading": "Informativa sulla privacy",

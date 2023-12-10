@@ -84,6 +84,7 @@
       "Precio (de bajo a alto)",
       "Precio (de alto a bajo)"
     ],
+    "selectVehicleCategory":"Seleccionar....",
     "passwordSettings": [
       "Contraseña antigua",
       "Nueva contraseña",
@@ -283,7 +284,11 @@
     "login": "Iniciar sesión",
     "changePassword": "Cambiar contraseña"
   },
-  
+  "changePassword": {
+    "enterOld": "Introducir la contraseña antigua",
+    "enterNew": "Introducir la nueva contraseña",
+    "enterConfirm": "Introducir la contraseña de confirmación"
+  },
     "color": {
         "name1": "Beige",
         "name2": "Marrón",
@@ -444,7 +449,8 @@
     "required": "* Requerido",
     "bikes": "Motos",
     "parts": "Piezas",
-    "selectSubCategory": "Selecciona una subcategoría"
+    "selectSubCategory": "Selecciona una subcategoría",
+    "showNumber": "Mostrar mi número de teléfono en anuncios"
   },
   "privacyPolicy": {
     "heading": "Política de privacidad",

@@ -102,6 +102,7 @@
         "New Password",
         "Confirm Password"
       ],
+      "selectVehicleCategory": "Select....",
       "chat": 
       {
         "inbox": "Inbox",
@@ -497,7 +498,12 @@
           "logout": "Logout",
           "changePassword": "Change Password",
           "login": "Login"
-        } , 
+        }, 
+        "changePassword": {
+          "enterOld": "Enter old password",
+          "enterNew": "Enter new password",
+          "enterConfirm": "Enter confirm password"
+        },
         "labels": {
           "fullName": "Full Name",
           "phoneNo": "Phone Number",
@@ -574,7 +580,8 @@
       "required": "* Required",
       "bikes": "Bikes",
       "parts": "Parts",
-      "selectSubCategory": "Select Sub Category"
+      "selectSubCategory": "Select Sub Category",
+      "showNumber":"Show my phone number in ads"
     
   }  ,
   

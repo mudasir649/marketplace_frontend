@@ -165,9 +165,10 @@ function ProductDetails() {
     router.push("/login");
   };
   
-
-  console.log(product);
   
+  function isNullOrNullOrEmpty(value: any) {
+    return value === null || value === undefined || value === "";
+  }
 
   return (
     <div className="">
@@ -319,7 +320,7 @@ function ProductDetails() {
                       </span>
                     </h1>
                     <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-5 gap-5">
-                      {!product?.subCategory ? (
+                      {!isNullOrNullOrEmpty(product?.subCategory) ? (
                         ""
                       ) : (
                         <h1>

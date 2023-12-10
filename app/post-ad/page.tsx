@@ -102,6 +102,7 @@ export default function PostAd() {
                   <Select
                     className="w-full hover:outline-[#FF0000] focus:outline-[#FF0000]"
                     defaultValue={t("postAd.selectCategory")}
+                    placeholder={t('selectVehicleCategory')}
                     options={list}
                     value={
                       category ? { value: category, label: category } : null

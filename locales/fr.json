@@ -81,6 +81,7 @@
     "Prix (du plus bas au plus élevé)",
     "Prix (du plus élevé au plus bas)"
   ],
+  "selectVehicleCategory":"Sélectionner....",
   "passwordSettings": [
     "Ancien mot de passe",
     "Nouveau mot de passe",
@@ -254,6 +255,11 @@
     "login": "Connexion",
     "changePassword": "Changer le mot de passe"
   },
+  "changePassword": {
+    "enterOld":  "Entrer l'ancien mot de passe",
+    "enterNew": "Entrer le nouveau mot de passe",
+    "enterConfirm": "Entrer le mot de passe de confirmation"
+  },
   "labels": {
     "fullName": "Nom complet",
     "phoneNo": "Numéro de téléphone",
@@ -328,7 +334,8 @@
     "required": "* Requis",
     "bikes": "Motos",
     "parts": "Pièces",
-    "selectSubCategory": "Sélectionner une sous-catégorie"
+    "selectSubCategory": "Sélectionner une sous-catégorie",
+    "showNumber": "Afficher mon numéro de téléphone dans les annonces"
   },
   "privacyPolicy": {
     "heading": "Politique de confidentialité",
