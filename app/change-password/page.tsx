@@ -121,7 +121,7 @@ export default function MyProfile() {
                 type={oldPasswordType}
                 value={data.oldPassword}
                 name="oldPassword"
-                placeholder="Enter old password"
+                placeholder={t("changePassword.enterOld")}
                 className="w-full focus:outline-none p-2"
                 onChange={(e) => handleInput(e)}
               />
@@ -141,7 +141,7 @@ export default function MyProfile() {
                 type={passwordInputType}
                 value={data.newPassword}
                 name="newPassword"
-                placeholder="Enter old password"
+                placeholder={t("changePassword.enterNew")}
                 className="w-full focus:outline-none p-2"
                 onChange={(e) => handleInput(e)}
               />
@@ -152,14 +152,6 @@ export default function MyProfile() {
                 <RemoveRedEye className={`${passwordInputType === "text" ? "text-gray-400" : ''} hover:text-gray-400`} />
               </div>
             </div>
-{/* 
-            <input
-              type="password"
-              className={style.inputStyle}
-              name="newPassword"
-              value={data?.newPassword}
-              onChange={(e: any) => handleInput(e)}
-            /> */}
           </div>
           <div className={style.divStyle}>
             <h1 className={style.h1Style}>{t("passwordSettings.2")}</h1>
@@ -168,7 +160,7 @@ export default function MyProfile() {
                       type={confirmPasswordInputType}
                       value={data.confirmPassword}
                       name="confirmPassword"
-                      placeholder="Enter confirm password"
+                      placeholder={t("changePassword.enterConfirm")}
                       className="w-full focus:outline-none p-2"
                       onChange={(e) => handleInput(e)}
                     />

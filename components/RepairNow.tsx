@@ -10,6 +10,7 @@ import Image from 'next/image';
 import './Advance-search.css';
 
 interface IData {
+    subject: any
     fullName: any,
     phoneNo: any,
     email: any,
@@ -28,6 +29,7 @@ export default function BuyNow() {
     const [images, setImages] = useState<any>([]);
     const [loading, setLoading] = useState<Boolean>(false);
     const [data, setData] = useState<IData>({
+        subject: 'This is email for Repair Now. ',
         fullName: '',
         phoneNo: '',
         email: '',
@@ -119,7 +121,7 @@ export default function BuyNow() {
                         <div className="w-1/2">
                             <label className="block text-sm font-medium text-gray-600">{t('repairNow.phone_number')}</label>
                             <input
-                                type="tel"
+                                type="number"
                                 id="phoneNo"
                                 name="phoneNo"
                                 className="w-full border py-2 px-3 focus:outline-none focus:border-red-600"
@@ -174,7 +176,7 @@ export default function BuyNow() {
                         <div className="w-1/3">
                             <label className="block text-sm font-medium text-gray-600">{t('repairNow.year')}</label>
                             <input
-                                type="text"
+                                type="number"
                                 id="year"
                                 name="year"
                                 className="w-full border py-2 px-3 focus:outline-none focus:border-red-600"

@@ -167,6 +167,10 @@ export default function OthersComponent({ type }: any) {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    if(images.length > 7){
+      toast("Sorry! you cannot upload more than 7 images.");
+      return
+    }
     setLoading(true);
     const formData = new FormData();
 
@@ -342,7 +346,7 @@ export default function OthersComponent({ type }: any) {
                           value={list?.value}
                           onChange={(e: any) => handleInput(e)}
                         />{" "}
-                        {t(`condition.${list?.name}`)}
+                        {t(`condition.${list?.value}`)}
                       </li>
                     ))}
                   </ul>
@@ -494,7 +498,7 @@ export default function OthersComponent({ type }: any) {
               <div className={style.divStyle}>
                 <h1 className={`${style.h1Style} invisible`}>Whatspp</h1>
                 <div className="flex flex-row w-full h-8 justify-between">
-                <h1 className="font-semibold mt-1">Show my phone number in ads</h1>
+                <h1 className="font-semibold mt-1">{t("postAd.showNumber")}</h1>
                 </div>
               </div>
               <div className={style.divStyle}>

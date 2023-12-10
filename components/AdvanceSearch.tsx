@@ -107,6 +107,9 @@ export default function AdvanceSearch({
   // Redux hooks
   const { t } = useTranslation(); // Initialize the translation hook
 
+  console.log(category);
+  
+
   const { page, address, title, type1 } = useSelector(
     (state: any) => state.app
   );
@@ -234,7 +237,7 @@ export default function AdvanceSearch({
     {
       logo: <PrecisionManufacturing />,
       name: t("categories.4"),
-      name1: "Construction Machines",
+      name1: "Construction%20Machines",
       quantity: 74,
     },
     {
@@ -1048,8 +1051,7 @@ export default function AdvanceSearch({
                             </div>
                           </div>
                         </Link>
-
-                        <div className="w-full col-span-2 p-2">
+                        <Link className="w-full col-span-2 p-2" href={`/product-details/${product?._id}`}>
                           <div className="flex flex-row justify-between">
                             <Link href={`/product-details/${product?._id}`}>
                               <h1 className="text-gray-600 w-auto h-8 mt-2 ml-[-2px] text-[13px]">
@@ -1222,7 +1224,7 @@ export default function AdvanceSearch({
                               </h1>
                             </div>
                           </div>
-                        </div>
+                        </Link>
                       </div>
                     ))}
                   </div>

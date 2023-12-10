@@ -16,7 +16,7 @@ function isNullOrNullOrEmpty(value: any) {
 
 function Page() {
   const { type } = useParams();
-  const { page, condition, brand, year, model , minPrice, maxPrice, sortBy, km, bodyShape, gearBox, fuelType, refresh } = useSelector(
+  const { page, condition, brand, year, model , minPrice, maxPrice, sortBy, km, bodyShape, gearBox, fuelType, refresh, title } = useSelector(
     (state: any) => state.app
   );
   const dispatch = useDispatch();
@@ -46,8 +46,8 @@ function Page() {
         setBrands(res.data?.data);
       };
       const endpoint = subCategory
-      ? `/ad?page=${page}&subCategory=${subCategory}&sortBy=${sortBy}&condition=${condition}&brand=${brand}&model=${model}&year=${year}&minPrice=${minPrice}&maxPrice=${maxPrice}&km=${km}&bodyShape=${bodyShape}&gearBox=${gearBox}&fuelType=${fuelType}`
-      : `/ad?page=${page}&category=${checkType}&sortBy=${sortBy}&condition=${condition}&brand=${brand}&year=${year}&minPrice=${minPrice}&maxPrice=${maxPrice}&km=${km}&bodyShape=${bodyShape}&gearBox=${gearBox}&fuelType=${fuelType}`;
+      ? `/ad?page=${page}&title=${title}&subCategory=${subCategory}&sortBy=${sortBy}&condition=${condition}&brand=${brand}&model=${model}&year=${year}&minPrice=${minPrice}&maxPrice=${maxPrice}&km=${km}&bodyShape=${bodyShape}&gearBox=${gearBox}&fuelType=${fuelType}`
+      : `/ad?page=${page}&title=${title}&category=${checkType}&sortBy=${sortBy}&condition=${condition}&brand=${brand}&year=${year}&minPrice=${minPrice}&maxPrice=${maxPrice}&km=${km}&bodyShape=${bodyShape}&gearBox=${gearBox}&fuelType=${fuelType}`;
 
       const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}${endpoint}`);
       const data = res.data?.data;
