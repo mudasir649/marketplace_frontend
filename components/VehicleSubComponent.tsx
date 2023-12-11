@@ -412,7 +412,7 @@ export default function VehicleSubComponent({ type }: any) {
               </div>
               <div className={style.divStyle}>
                 <h1 className={style.h1Style}>
-                  {t("autosComponent.subCategory")}{" "}
+                  {t("autosComponent.vehicleType")}{" "}
                   <span className="text-[#FF0000]">*</span>
                 </h1>
                 <select
@@ -421,7 +421,7 @@ export default function VehicleSubComponent({ type }: any) {
                   onChange={(e: any) => handleInput(e)}
                 >
                   <option value="option1">
-                    {t("autosComponent.selectSubCategory")}
+                    {t("autosComponent.selectVehicleType")}
                   </option>
                   {subCategory?.map(
                     (list: any, i: number) =>
@@ -511,7 +511,7 @@ export default function VehicleSubComponent({ type }: any) {
                     </option>
                     {formData?.fuelType?.map((fuel: any, i: number) => (
                       <option value={fuel.value} key={i}>
-                        {fuel.name}
+                        {t(`fuelType.${fuel?.name}`)}
                       </option>
                     ))}
                   </select>

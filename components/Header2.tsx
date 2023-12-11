@@ -26,7 +26,7 @@ import { toast } from "react-toastify";
 import SellNow from "./SellNow";
 import DeleteAd from "./DeleteAd";
 import RepairNow from "./RepairNow";
-import { setRoomsData, setShowContact } from "@/store/appSlice";
+import { setReduxTitle, setRoomsData, setShowContact } from "@/store/appSlice";
 import { off, onDisconnect, onValue, ref, update } from "firebase/database";
 import { db } from "@/utils/firebase-config";
 import useWindowDimensions from "@/utils/useWindowDimensions";
@@ -43,7 +43,7 @@ function Header2() {
   const { userInfo } = useSelector((state: any) => state.auth);
   const userId = userInfo?.data?.userDetails?._id;
 
-  const { showShare, showSellNow, showRepairNow, showDeleteAd } = useSelector(
+  const { showDeleteAd } = useSelector(
     (state: any) => state.app
   );
   const userData = userInfo?.data?.userDetails;
@@ -52,6 +52,10 @@ function Header2() {
   const checkType = routeName.includes(pathname);
   const { width, height } = useWindowDimensions();
   const newWidth = width || 0;
+
+  useEffect(() => {
+    dispatch(setReduxTitle(""))
+  }, [dispatch])
 
   useEffect(() => {
     if (userInfo && userId) {
@@ -316,20 +320,20 @@ function Header2() {
           <div className="w-full flex justify-between">
             <ul className="flex flex-row text-md space-x-7 menu p-6">
               <Link href="/">
-                <li className={navbarLiStyle} onClick={() => router.push("/")}>
+                <li className={navbarLiStyle} onClick={() => dispatch(setReduxTitle(""))}>
                   {t("header.home")}
                 </li>
               </Link>
               <Link href="/advance-search">
                 <li
                   className={navbarLiStyle}
-                  onClick={() => router.push("/advance-search")}
+                  onClick={() => dispatch(setReduxTitle(""))}
                 >
                   {t("header.advanceSearch")}
                 </li>
               </Link>
               <Link href="/contact-us">
-                <li className={navbarLiStyle}>{t("header.contactUs")}</li>
+                <li className={navbarLiStyle} onClick={() => dispatch(setReduxTitle(""))}>{t("header.contactUs")}</li>
               </Link>
               <li className="text-black text-[13px]">
                 <ListDownComponent setNavbar={setNavbar} />

@@ -213,8 +213,10 @@
         "axleCount": "Axle Count",
         "selectAxleCount": "Select Axle Count",
         "selectKilometer": "Select Kilometers",
-        "selectColor": "Select Color" , 
-        "enterYear": "Enter Product Year"
+        "selectColor": "Select Color", 
+        "enterYear": "Enter Product Year",
+        "vehicleType": "Vehicle Type",
+        "selectVehicleType": "Select vehicle type"
       } , 
       "color": {
         "name1": "Beige",

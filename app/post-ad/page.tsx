@@ -45,7 +45,7 @@ export default function PostAd() {
   const [subCategory, setSubCategory] = useState<string>("");
 
   const handleCategory = (value: any, subValue: any) => {
-    setCategory(value);
+    setCategory(t(`allCategories.${value}`));
     if (value == "Bikes") {
       setShowSub(true);
       setSubList(subValue);
@@ -58,7 +58,7 @@ export default function PostAd() {
   };
 
   const handleSubCategory = (value: any) => {
-    setSubCategory(value);
+    setSubCategory(t(`allCategories.${value}`));
     router.push(`/post-ad/${value}`);
   };
   
@@ -133,6 +133,8 @@ export default function PostAd() {
                     <div className="flex flex-row">
                       <Select
                         className="w-full"
+                        placeholder={t('selectVehicleCategory')}
+                        defaultValue={t("postAd.selectCategory")}
                         options={subList}
                         value={
                           subCategory ? { value: subCategory, label: subCategory } : null

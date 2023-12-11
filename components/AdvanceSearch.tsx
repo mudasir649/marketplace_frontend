@@ -725,7 +725,7 @@ export default function AdvanceSearch({
             <>
               <div className="border-b flex flex-row justify-between p-2 mb-4">
                 <h1 className="text-lg font-bold">
-                  {t("autosComponent.subCategory")}
+                  {t("autosComponent.vehicleType")}
                 </h1>
               </div>
               <select
