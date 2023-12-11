@@ -176,7 +176,6 @@
     "viber": "Viber-Nr. ",
     "whatsapp": "WhatsApp-Nr. ",
     "email": "Email",
-    
     "selectMileage": "Kilometerstand auswählen",
     "phone": "Telefon",
     "submit": "Aufgeben" , 
@@ -188,9 +187,10 @@
     "selectSubCategory": "Unterkategorie auswählen",
     "selectKilometer": "Kilometer auswählen",
     "selectColor": "Farbtyp auswählen",
-    "enterYear": "Jahr des Produkts eingeben"
-  } , 
-  
+    "enterYear": "Jahr des Produkts eingeben",
+    "vehicleType": "Fahrzeugtyp",
+    "selectVehicleType": "Fahrzeugkategorie auswählen"
+  }, 
     "color": {
         "name1": "Beige",
         "name2": "Braun",
@@ -279,7 +279,7 @@
   "Silver": "Silber",
   "Violet": "Violett",
   "Gold": "Gold",
-  "Others":"Anderes"
+  "Others":"Andere"
   }
 ,
 "subCategoryOptions": {

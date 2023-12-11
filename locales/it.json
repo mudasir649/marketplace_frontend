@@ -144,7 +144,6 @@
   }
   , "autosComponent": {
     "subCategory": "Sottocategoria",
-    
     "selectMileage": "Seleziona chilometraggio",
     "heading1": "Seleziona la categoria",
     "enterYear": "Inserisci anno del prodotto",
@@ -191,7 +190,9 @@
     "titleCharacterLimit": "Limite di caratteri 25",
     "priceCHF": "Prezzo [CHF]",
     "selectKilometer": "Seleziona chilometri",
-    "selectColor": "Seleziona tipo di colore"
+    "selectColor": "Seleziona tipo di colore",
+    "vehicleType": "Tipo di veicolo",
+    "selectVehicleType": "Seleziona la categoria del veicolo"
   },
   "banner": {
     "seeAllCategories": "Vedi tutte le categorie",

@@ -85,16 +85,6 @@ export default function Page() {
     }
   };
 
-  const redirectLogin = async () => {
-    const { password, email } = data;
-    try {
-      const res = await login({ email, password }).unwrap();
-      dispatch(setCredentials({ ...res }));
-      router.push('/')
-    } catch (error: any) {
-      console.log(error);
-    }
-  }
 
   const resetPassword = async (e: any) => {
     e.preventDefault();
@@ -108,7 +98,6 @@ export default function Page() {
       if (res.status === 200) {
         toast(res.data?.message);
         router.push('/login')
-        // await redirectLogin();
       }
     }
     setLoading(false);

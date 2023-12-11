@@ -640,7 +640,7 @@ export const brandInclude = [
   "Drones",
   "Boats",
   "Busses",
-  "Construction Machines",
+  "Construction%20Machines",
 ];
 
 
@@ -655,12 +655,12 @@ export const IncludeKm = [
   "Trailers",
   "Drones",
   "Busses",
-  "Construction Machines",
+  "Construction%20Machines",
 ];
 
 export const checkSubCategoryFilter = [
   "Busses",
-  "Construction Machines",
+  "Construction%20Machines",
   "Trailers",
   "Trucks",
   "Vans",

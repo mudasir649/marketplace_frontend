@@ -29,25 +29,18 @@ export default function SearchPage() {
   const newWidth = width || 0;
   const newHeight = height || 0;
   const { t } = useTranslation();
-  const [googleLocation, setGoogleLocation] = useState<any>();
   const [showLocation, setShowLocation] = useState<Boolean>(false);
   const [showTitle, setShowTitle] = useState<Boolean>(false);
-  const [title, setTitle] = useState<string>("");
   const [titleData, setTitleData] = useState<any>();
   const dropdownRef = useRef<HTMLFormElement | null>(null);
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const { page, type } = useSelector((state: any) => state.app);
+  const { title } = useSelector((state: any) => state.app);
 
-  const checkPlace = async (e: any) => {
-    setShowLocation(true);
-    const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_BACKEND_URI}/googleRoutes?address=${e.target.value}`
-    );
-    let predictions = res.data?.data.predictions;
-    setGoogleLocation(predictions);
-  };
+  console.log(title);
+  
+  
 
 
   const handleTitle = async (e: any) => {
@@ -61,7 +54,6 @@ export default function SearchPage() {
   const searchFilter = async (e: any) => {
     e.preventDefault();
     dispatch(setReduxTitle(title));
-    dispatch(setAddress(e.target));
     router.push("/advance-search/search");
   };
 
@@ -99,7 +91,7 @@ export default function SearchPage() {
               name="name"
               className="focus:outline-none w-full pl-2 overflow-hidden"
               value={title}
-              onChange={(e: any) => setTitle(e.target.value)}
+              onChange={(e: any) => dispatch(setReduxTitle(e.target.value))}
               onKeyUp={(e: any) => handleTitle(e)}
               onKeyDown={() => dispatch(setReduxTitle(title))}
             />

@@ -200,7 +200,9 @@
     "titleCharacterLimit": "Limite de caractères : 25",
     "priceCHF": "Prix [CHF]",
     "selectKilometer": "Sélectionner des kilomètres",
-    "selectColor": "Sélectionner le type de couleur"
+    "selectColor": "Sélectionner le type de couleur",
+    "vehicleType": "Type de véhicule",
+    "selectVehicleType": "Sélectionner la catégorie de véhicule"
   },
   "banner": {
     "seeAllCategories": "Voir les catégories",

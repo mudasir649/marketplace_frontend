@@ -231,23 +231,7 @@ function ProductDetails() {
                     </h1>
                   </div>
                 ) : (
-                  // <div className="bg-[#FF0000] space-y-2 rounded-lg rounded-tr-[700px] rounded-br-[700px] w-40 p-2 h-16 md:w-64 md:h-auto">
-                  //   <h1 className="text-white text-sm md:text-3xl font-bold">
-                  //     CHF {addInvertedComma(product?.price * 1)}
-                  //   </h1>
-                  //   <h1 className="text-gray-300 text-sm md:text-xl font-semibold">
-                  //     Euro {addInvertedComma(product?.price * 2)}
-                  //   </h1>
-                  // </div>
                   <>
-                    {/* <div className="bg-[#FF0000] space-y-2 rounded-lg rounded-tr-[700px] rounded-br-[700px] w-40 p-2 h-16 md:w-64 md:h-auto">
-                           <h1 className="text-white text-sm md:text-3xl font-bold">
-                             CHF {addInvertedComma(product?.price * 1)}
-                          </h1>
-                          <h1 className="text-gray-300 text-sm md:text-xl font-semibold">
-                            Euro {addInvertedComma(product?.price * 2)}
-                           </h1>
-                         </div> */}
                     <h1 className="text-[#FF0000] text-sm md:text-3xl font-bold">
                       CHF {addInvertedComma(product?.price * 1)}
                     </h1>
@@ -321,142 +305,152 @@ function ProductDetails() {
                     </h1>
                     <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-5 gap-5">
                       {!isNullOrNullOrEmpty(product?.subCategory) ? (
-                        ""
-                      ) : (
                         <h1>
-                          <span className="font-bold">
-                            {t("product.subCategory")}:{" "}
-                          </span>{" "}
-                          {t(`subCategoryOptions.${product.subCategory}`)}
-                        </h1>
-                      )}
-                      {!product?.condition ? (
-                        ""
+                        <span className="font-bold">
+                          {t("product.subCategory")}:{" "}
+                        </span>{" "}
+                        {t(`subCategoryOptions.${product.subCategory}`)}
+                      </h1>
                       ) : (
+                        ""
+                      )}
+                      {!isNullOrNullOrEmpty(product?.type) ? (
                         <h1>
-                          <span className="font-bold">
-                            {t("product.Condition")}:{" "}
-                          </span>
-                          {t(`condition.${product.condition}`)}{" "}
-                        </h1>
-                      )}
-                      {!product?.brand ? (
-                        ""
+                        <span className="font-bold">
+                          {t("autosComponent.vehicleType")}:{" "}
+                        </span>{" "}
+                        {t(`subCategoryOptions.${product?.type}`)}
+                      </h1>
                       ) : (
+                        ""
+                      )}
+                      {!isNullOrNullOrEmpty(product?.condition) ? (
                         <h1>
-                          <span className="font-bold">
-                            {t("product.Brand")}:{" "}
-                          </span>{" "}
-                          {product?.brand}
-                        </h1>
-                      )}
-                      {!product?.model ? (
-                        ""
+                        <span className="font-bold">
+                          {t("product.Condition")}:{" "}
+                        </span>
+                        {t(`condition.${product.condition}`)}{" "}
+                      </h1>
                       ) : (
+                        ""
+                      )}
+                      {!isNullOrNullOrEmpty(product?.brand) ? (
                         <h1>
-                          <span className="font-bold">
-                            {t("product.Model")}:{" "}
-                          </span>{" "}
-                          {product?.model}
-                        </h1>
-                      )}
-                      {!product?.year ? (
-                        ""
+                        <span className="font-bold">
+                          {t("product.Brand")}:{" "}
+                        </span>{" "}
+                        {product?.brand}
+                      </h1>
                       ) : (
+                        ""
+                      )}
+                      {!isNullOrNullOrEmpty(product?.model) ? (
                         <h1>
-                          <span className="font-bold">
-                            {t("product.Year")}:{" "}
-                          </span>{" "}
-                          {product?.year}
-                        </h1>
-                      )}
-                      {!product?.bodyShape ? (
-                        ""
+                        <span className="font-bold">
+                          {t("product.Model")}:{" "}
+                        </span>{" "}
+                        {product?.model}
+                      </h1>
                       ) : (
+                        ""
+                      )}
+                      {!isNullOrNullOrEmpty(product?.year) ? (
                         <h1>
-                          <span className="font-bold">
-                            {t("product.BodyShape")}:{" "}
-                          </span>{" "}
-                          {t(`bodyShape.${product.bodyShape}`)}
-                        </h1>
-                      )}
-                      {!product?.fuelType ? (
-                        ""
+                        <span className="font-bold">
+                          {t("product.Year")}:{" "}
+                        </span>{" "}
+                        {product?.year}
+                      </h1>
                       ) : (
+                        ""
+                      )}
+                      {!isNullOrNullOrEmpty(product?.bodyShape) ? (
                         <h1>
-                          <span className="font-bold">
-                            {t("product.FuelType")}:{" "}
-                          </span>{" "}
-                          {t(`fuelType.${product.fuelType}`)}
-                        </h1>
-                      )}
-                      {!product?.km ? (
-                        ""
+                        <span className="font-bold">
+                          {t("product.BodyShape")}:{" "}
+                        </span>{" "}
+                        {t(`bodyShape.${product.bodyShape}`)}
+                      </h1>
                       ) : (
+                        ""
+                      )}
+                      {!isNullOrNullOrEmpty(product?.fuelType) ? (
+                        <h1>
+                        <span className="font-bold">
+                          {t("product.FuelType")}:{" "}
+                        </span>{" "}
+                        {t(`fuelType.${product.fuelType}`)}
+                      </h1>
+                      ) : (
+                        ""
+                      )}
+                      {!isNullOrNullOrEmpty(product?.km) ? (
                         <h1 className="line-clamp-1">
-                          <span className="font-bold">
-                            {t("product.Kilometers")}:{" "}
-                          </span>{" "}
-                          {product?.km}
-                        </h1>
-                      )}
-                      {!product?.gearBox ? (
-                        ""
+                        <span className="font-bold">
+                          {t("product.Kilometers")}:{" "}
+                        </span>{" "}
+                        {product?.km}
+                      </h1>
                       ) : (
+                        ""
+                      )}
+                      {!isNullOrNullOrEmpty(product?.gearBox) ? (
                         <h1>
-                          <span className="font-bold">
-                            {t("product.Gearbox")}:{" "}
-                          </span>{" "}
-                          {t(`gearBox.${product.gearBox}`)}
-                        </h1>
-                      )}
-                      {!product?.type ? (
-                        ""
+                        <span className="font-bold">
+                          {t("product.Gearbox")}:{" "}
+                        </span>{" "}
+                        {t(`gearBox.${product.gearBox}`)}
+                      </h1>
                       ) : (
+                        ""
+                      )}
+                      {!isNullOrNullOrEmpty(product?.type) ? (
                         <h1>
-                          <span className="font-bold">
-                            Type
-                          </span>{" "}
-                          {product.type}
-                        </h1>
-                      )}
-                      {!product?.axeltype ? (
-                        ""
+                        <span className="font-bold">
+                          Type
+                        </span>{" "}
+                        {product.type}
+                      </h1>
                       ) : (
+                        ""
+                      )}
+                      {!isNullOrNullOrEmpty(product?.axeltype) ? (
                         <h1>
                           <span className="font-bold">Axel Type: </span>
                           {product?.axeltype}
                         </h1>
-                      )}
-                      {!product?.engineCapacity ? (
-                        ""
                       ) : (
-                        <h1>
-                          <span className="font-bold">
-                            {t("product.EngineCapacity")}:{" "}
-                          </span>{" "}
-                          {product?.engineCapacity}
-                        </h1>
-                      )}
-                      {!product?.interiorColor ? (
                         ""
-                      ) : (
-                        <h1>
-                          <span className="font-bold">
-                            {t("product.InteriorColor")}:{" "}
-                          </span>
-                          {t(`interiorColor.${product.interiorColor}`)}
-                        </h1>
                       )}
-                      {!product?.exteriorColor ? (
-                        ""
-                      ) : (
+                      {!isNullOrNullOrEmpty(product?.engineCapacity) ? (
                         <h1>
-                          <span className="font-bold">
-                            {t("product.ExteriorColor")}:{" "}
-                          </span>{" "}
-                          {t(`interiorColor.${product.exteriorColor}`)}
-                        </h1>
+                        <span className="font-bold">
+                          {t("product.EngineCapacity")}:{" "}
+                        </span>{" "}
+                        {product?.engineCapacity}
+                      </h1>
+                      ) : (
+                        ""
+                      )}
+                      {!isNullOrNullOrEmpty(product?.interiorColor) ? (
+                        <h1>
+                        <span className="font-bold">
+                          {t("product.InteriorColor")}:{" "}
+                        </span>
+                        {t(`interiorColor.${product.interiorColor}`)}
+                      </h1>
+                      ) : (
+                        ""
+                      )}
+                      {!isNullOrNullOrEmpty(product?.exteriorColor) ? (
+                        <h1>
+                        <span className="font-bold">
+                          {t("product.ExteriorColor")}:{" "}
+                        </span>{" "}
+                        {t(`interiorColor.${product.exteriorColor}`)}
+                      </h1>
+                      ) : (
+                        ""
                       )}
                     </ul>
                   </div>
