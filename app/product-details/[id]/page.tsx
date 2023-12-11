@@ -225,8 +225,8 @@ function ProductDetails() {
                 </div>
 
                 {product?.price * 1 === 0 ? (
-                  <div className="bg-black space-y-2 rounded-lg rounded-tr-[700px] rounded-br-[700px] w-40 p-2 h-16 md:w-64 md:h-auto">
-                    <h1 className="text-white text-sm md:text-3xl font-bold">
+                  <div className="">
+                    <h1 className="text-sm md:text-3xl font-bold">
                       {t("product.contactForPrice")}
                     </h1>
                   </div>

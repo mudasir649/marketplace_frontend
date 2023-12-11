@@ -1176,7 +1176,7 @@ export default function AdvanceSearch({
                               </>
                             ) : (
                               <>
-                                <h1 className="bg-black text-white text-center py-2 w-36 h-10 border-none rounded-lg text-[16px] font-semibold">
+                                <h1 className=" py-2 w-36 h-10 text-[20px] font-semibold">
                                   {t("product.contactForPrice")}
                                 </h1>
                               </>

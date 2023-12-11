@@ -188,7 +188,7 @@ export default function Page() {
                       onChange={(e) => handleData(e)}
                     />
                     <div className="bg-gray-200 hover:bg-gray-300 w-10 px-2 py-1 cursor-pointer" onClick={showConfirmPassword}>
-                      <RemoveRedEye className={`${passwordInputType === "text" ? "text-gray-400" : ''} hover:text-gray-400`} />
+                      <RemoveRedEye className={`${confirmPasswordInputType === "text" ? "text-gray-400" : ''} hover:text-gray-400`} />
                     </div>
                     </div>
                   </div>
@@ -203,6 +203,8 @@ export default function Page() {
               ) : (
                 <>
                   <form method="POST" onSubmit={verifyCode}>
+                    {!isTimerOver ? 
+                    <>
                     <h1 className="text-md font-bold mt-5">
                     {t('forgot-password.codeToReset')}
                     </h1>
@@ -212,18 +214,9 @@ export default function Page() {
                       className="w-full border border-md border-gray-300 hover:border-[#FF0000] focus:outline-[#FF0000] p-2 mt-3"
                       onChange={(e) => setCode(e.target.value)}
                     />
-                        {!isTimerOver ? (
-                          <button className="bg-[#FF0000] hover:bg-red-700 text-white hover-bg-white border-2 border-[#FF0000] hover-text-black p-2 mt-4 font-semibold rounded-sm">
+                    <button className="bg-[#FF0000] hover:bg-red-700 hover:border-red-700 text-white hover-bg-white border-2 border-[#FF0000] hover-text-black p-2 mt-4 font-semibold rounded-sm">
                             {t('forgot-password.resetPassword')}
-                          </button>
-                        ) : (
-                          <button
-                            className="bg-[#FF0000] hover:bg-red-700 text-white hover-bg-white border-2 border-[#FF0000] hover-text-black p-2 mt-4 font-semibold rounded-sm"
-                            onClick={resendCode}
-                          >
-                            {t('forgot-password.resendCode')}
-                          </button>
-                        )}
+                    </button>
                     <div className="flex justify-center text-center">
                       <CountdownCircleTimer
                         isPlaying
@@ -236,6 +229,14 @@ export default function Page() {
                         {({ remainingTime }) => remainingTime}
                       </CountdownCircleTimer>
                     </div>
+                    </> : <div className="flex justify-center">
+                    <button
+                            className="bg-[#FF0000] hover:bg-red-700 text-white hover-bg-white border-2 border-[#FF0000] hover:border-red-700 p-2 mt-4 font-semibold rounded-sm"
+                            onClick={resendCode}
+                          >
+                            {t('forgot-password.resendCode')}
+                          </button>
+                    </div>}
                   </form>
                 </>
               )}
