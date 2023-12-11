@@ -136,7 +136,7 @@ export default function Signup() {
               <Phone className='text-[#FF0000] ml-5' />
               <input required={true}
                 className="focus:outline-none w-96 p-1 overflow-hidden bg-transparent focus:bg-transparent"
-                type="text"
+                type="number"
                 placeholder={t("signup.phoneNumberPlaceholder")}
                 name='phoneNumber'
                 value={phoneNumber}

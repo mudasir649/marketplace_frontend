@@ -23,6 +23,16 @@
     "notAMember": "Noch kein Mitglied?",
     "createAccount": "Registrieren"
   } , 
+  "forgot-password": {
+    "forgotPassword": "Passwort vergessen",
+    "description": "Haben Sie Ihr Passwort vergessen? Bitte geben Sie Ihren Benutzernamen oder Ihre E-Mail-Adresse ein. Sie erhalten einen Link, um ein neues Passwort per E-Mail zu erstellen.",
+    "resetPassword": "Passwort zurücksetzen",
+    "codeToReset": "Code zum Zurücksetzen des Passworts eingeben",
+    "updatePassword": "Mein Passwort aktualisieren",
+    "resendCode": "Code erneut senden",
+    "formToReset": "Formular zum Zurücksetzen des Passworts",
+    "verifyAccount": "Account verifizieren"
+  },
   
   "categorySelection": {
     "category": "Kategorie",

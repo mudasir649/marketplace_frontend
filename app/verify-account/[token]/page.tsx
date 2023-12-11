@@ -75,7 +75,7 @@ export default function Page() {
   const resendCode = async () => {
     try {
       const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/forgot-password`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/resend-code`,
         { email }
       );
       const token = res.data?.data;
@@ -103,7 +103,7 @@ export default function Page() {
               {isTimerOver ? (
                 <div className="text-center">
                 <button
-                  className="bg-[#FF0000] text-white hover:bg-white border-2 border-[#FF0000] hover:text-black p-2 mt-4 font-semibold rounded-sm"
+                  className="bg-[#FF0000] text-white hover:bg-red-700 hover:border-red-700 border-2 border-[#FF0000] hover:text-black p-2 mt-4 font-semibold rounded-sm"
                   onClick={resendCode}
                 >
                   {t("forgot-password.resendCode")}

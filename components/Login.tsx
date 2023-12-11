@@ -38,7 +38,7 @@ export default function LoginPage() {
     } catch (error: any) {      
       dispatch(setEmail(email))
       toast(error?.data?.message);
-      router.push(`verify-account/${error.data?.data}`)
+      router.push(`verify-account/${error.data?.data?.token}`)
     }
   }
 
