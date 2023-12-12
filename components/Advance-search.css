@@ -3,7 +3,7 @@
     scrollbar-width: none;    
 }
 
-.messageArea::-webkit-scrollbar {
+/* .messageArea::-webkit-scrollbar {
     overflow: auto;
     display: none;
-}
+} */
