@@ -352,19 +352,19 @@ export default function AdvanceSearch({
       value: "Oldest",
     },
     {
-      name: t("sortByList.4"),
+      name: t("sortByList.2"),
       value: "Price (low to high)",
     },
     {
-      name: t("sortByList.4"),
+      name: t("sortByList.3"),
       value: "Price (high to low)",
     },
     {
-      name: t("sortByList.2"),
+      name: t("sortByList.4"),
       value: "A to Z (title)",
     },
     {
-      name: t("sortByList.3"),
+      name: t("sortByList.5"),
       value: "Z to A (title)",
     },
   ];
@@ -406,7 +406,7 @@ export default function AdvanceSearch({
       ? "text-[10px] cursor-pointer font-bold"
       : "text-[12px] cursor-pointer font-bold";
 
-  const baseApi = `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address}&condition=${condition}&brand=${brand}&model=${model}&year=${year}&minPrice=${minPrice}&maxPrice=${maxPrice}&km=${km}&bodyShape=${bodyShape}&gearBox=${gearBox}&fuelType=${fuelType}&vehicleType=${vehicleType}`;
+  const baseApi = `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&address=${address}&title=${title}&condition=${condition}&brand=${brand}&model=${model}&year=${year}&minPrice=${minPrice}&maxPrice=${maxPrice}&km=${km}&bodyShape=${bodyShape}&gearBox=${gearBox}&fuelType=${fuelType}&vehicleType=${vehicleType}`;
   let categoryApi: any = baseApi;
 
   if (

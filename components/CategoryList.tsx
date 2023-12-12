@@ -1,21 +1,6 @@
 'use client';
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
-import {
-  AirportShuttle,
-  BuildCircle,
-  DataSaverOn,
-  DirectionsBike,
-  DirectionsBoat,
-  DirectionsBus,
-  DirectionsCar,
-  ElectricBike,
-  ElectricScooter,
-  FireTruck,
-  PrecisionManufacturing,
-  RvHookup,
-  TwoWheeler,
-} from "@mui/icons-material";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 
@@ -121,7 +106,7 @@ export default function CategoryList({ setCategory, setExpand }: any) {
 
   return (
     <div>
-      <ul className="text-gray-500 space-y-1 cursor-pointer dropdow-menu-category z-10">
+      <ul className="text-gray-500 space-y-1 cursor-pointer dropdow-menu-category z-10 overflow-hidden">
         <li onClick={() => handleClick("Autos")} className={liStyle}>
           {" "}
           <Image className="h-6 w-6" src={vehicleList[0]?.image} alt="auto" width={100} height={100} /> <h1> {t("categories.0")}</h1>
@@ -131,7 +116,7 @@ export default function CategoryList({ setCategory, setExpand }: any) {
             {" "}
             <Image className="h-6 w-6" src={vehicleList[1]?.image} alt="auto" width={100} height={100} /> <h1>{t("categories.1")}</h1> 
           </h1>
-          <div className="absolute hidden ml-[220px] mt-[-30px] bg-white w-auto h-auto p-2 border-none rounded-sm dropdow-menu">
+          <div className="absolute hidden ml-[220px] mt-[-30px] bg-white w-auto h-auto p-2 border-none rounded-sm dropdow-menu overflow-hidden">
             <ul className="block">
               {subList?.map((list: any, i: number) => (
                 <li
@@ -176,7 +161,7 @@ export default function CategoryList({ setCategory, setExpand }: any) {
             {" "}
               <Image className="h-6 w-6" src={vehicleList[9]?.image} alt="droneIcon" width={100} height={100} /> <h1>{t("categories.7")}</h1>
           </h1>
-          <div className="absolute hidden ml-[220px] mt-[-30px] bg-white w-auto h-auto p-2 border-none rounded-sm dropdow-menu">
+          <div className="absolute hidden ml-[220px] mt-[-30px] bg-white w-auto h-auto p-2 border-none rounded-sm dropdow-menu overflow-hidden">
             <ul className="block w-52">
               {partsSubList?.map((list: any, i: number) => (
                 <li
