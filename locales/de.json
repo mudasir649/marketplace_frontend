@@ -284,9 +284,9 @@
 ,
 "subCategoryOptions": {
   "E-bikes": "E-Bikes",
-    "E-scooters": "E-Scooter",
-    "Bicycles": "Fahrräder",
-    "Motorcycles": "Motorrader",
+  "E-scooters": "E-Scooter",
+  "Bicycles": "Fahrräder",
+  "Motorcycles": "Motorrader",
   "Articulated bus": "Gelenkbus",
   "City bus": "Stadtbus",
   "Coach": "Reisebus",
@@ -348,13 +348,11 @@
     "Refrigerated truck": "Kühltransporter",
     "Station wagon/van": "Kombi / Lieferwagen",
     "Van - high roof": "Lieferwagen - Hochdach",
-
     "Tipper- lift-off": "Kipper - Absetzkipper",
     "Tipper- roll-off": "Kipper - Abrollkipper",
     "Truck + Trailer": "Lkw + Anhänger",
     "Truck crane": "Lkw-Kran",
     "Wrecker": "Abschleppwagen",
-
     "Push-off Trailer": "Schiebeanhänger",
     "Reefer/Isolated/Freeze": "Kühlanhänger",
     "Silo": "Silofahrzeug",
@@ -785,7 +783,7 @@
         "SUV/Off-Road/Pick-up": "SUV/Geländewagen/Pick-up",
         "Station Wagon": "Kombi",
         "Sedan": "Limousine",
-        "Van": "Transporter",
+        "Van": "Nutzfahrzeuge",
         "Transporter": "Transporter",
         "Other": "Sonstiges"
       } ,

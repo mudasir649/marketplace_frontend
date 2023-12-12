@@ -64,6 +64,7 @@ interface InitialStateInterface {
     fuelType: any,
     axelCount: any,
     type: any,
+    vehicleList: any,
     vehicleType: any
 }
 
@@ -101,6 +102,7 @@ const initialState: InitialStateInterface = {
     axelCount: '',
     fuelType: '',
     type: '',
+    vehicleList: [],
     vehicleType: '',
     email: getEmail(),
 }
@@ -203,6 +205,9 @@ const appSlice = createSlice({
         setVehicleType: (state, actions) => {
             state.vehicleType = actions.payload;
         },
+        setVehicleList: (state, actions) => {
+            state.vehicleList = actions.payload;
+        },
         setProdId: (state, actions) => {
             state.prodId = actions.payload;
             localStorage.setItem('prodId', JSON.stringify(state.prodId));
@@ -232,6 +237,7 @@ export const { refreshPage, setFilterData,
                 setBodyShape, setFuelType,
                 setMinPrice, setMaxPrice, 
                 setProdId, setCloseAll, 
-                setEmail, setAxelCount, setVehicleType} = appSlice.actions;
+                setEmail, setAxelCount, 
+                setVehicleType, setVehicleList} = appSlice.actions;
 
 export default appSlice.reducer;
