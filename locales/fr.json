@@ -76,11 +76,11 @@
   ],
   "sortByList": [
     "Plus récent",
-    "Vieux",
+    "Plus ancien",
+    "Prix (du bas vers le haut)",
+    "Prix (du haut vers le bas)",
     "A à Z (titre)",
-    "Z à A (titre)",
-    "Prix (du plus bas au plus élevé)",
-    "Prix (du plus élevé au plus bas)"
+    "Z à A (titre)"
   ],
   "selectVehicleCategory":"Sélectionner....",
   "passwordSettings": [
@@ -791,7 +791,8 @@
         "link": "Lien copié !",
         "adRefresh": "Annonce rafraîchie avec succès.",
         "15seconds": "Attendez 15 secondes avant de rafraîchir à nouveau.",
-        "validUsername": "S'il vous plaît ! saisissez un nom d'utilisateur. Le nom d'utilisateur ne peut pas être vide."
+        "validUsername": "S'il vous plaît ! saisissez un nom d'utilisateur. Le nom d'utilisateur ne peut pas être vide.",
+        "checkBrand": "S'il vous plaît ! sélectionnez une marque."
       }
     
     

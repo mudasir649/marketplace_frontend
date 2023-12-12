@@ -139,14 +139,6 @@ export default function AdvanceSearch({
   const newWidth = width || 0;
   const newHeight = height || 0;
 
-  const [filtersData, setFiltersData] = useState<IFilterSearch>({
-    condition: null || "",
-    brand: null || "",
-    model: null || "",
-    year: null || "",
-    minPrice: null || "",
-    maxPrice: null || "",
-  });
   const router = useRouter();
 
   const pagination = () => {
@@ -456,9 +448,9 @@ export default function AdvanceSearch({
 
     let url = `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad?page=${page}&sortBy=${value}`;
 
-    if (category === "Autos") url += `&category=${category}&address=${address}&condition=${condition}&brand=${brand}&model=${model}&year=${year}&minPrice=${minPrice}&maxPrice=${maxPrice}&km=${km}&bodyShape=${bodyShape}&gearBox=${gearBox}&fuelType=${fuelType}`
+    if (category === "Autos") url += `&category=${category}&address=${address}&title=${title}&condition=${condition}&brand=${brand}&model=${model}&year=${year}&minPrice=${minPrice}&maxPrice=${maxPrice}&km=${km}&bodyShape=${bodyShape}&gearBox=${gearBox}&fuelType=${fuelType}`
     else if (subBikeCategoryList.includes(category)){
-      if(brand !== "") url += `&category=Bikes&subCategory=${category}&address=${address}&condition=${condition}&brand=${brand}&model=${model}&year=${year}&minPrice=${minPrice}&maxPrice=${maxPrice}&km=${km}&bodyShape=${bodyShape}&gearBox=${gearBox}&fuelType=${fuelType}`
+      if(brand !== "") url += `&category=Bikes&subCategory=${category}&address=${address}&title=${title}&condition=${condition}&brand=${brand}&model=${model}&year=${year}&minPrice=${minPrice}&maxPrice=${maxPrice}&km=${km}&bodyShape=${bodyShape}&gearBox=${gearBox}&fuelType=${fuelType}`
       else url += `&category=Bikes&subCategory=${category}`;
     }
     else if (subPartsCategoryList.includes(category))
@@ -1038,7 +1030,7 @@ export default function AdvanceSearch({
                             </div>
                           </div>
                         </Link>
-                        <Link className="w-full col-span-2 p-2" href={`/product-details/${product?._id}`}>
+                        <div className="w-full col-span-2 p-2">
                           <div className="flex flex-row justify-between">
                             <Link href={`/product-details/${product?._id}`}>
                               <h1 className="text-gray-600 w-auto h-8 mt-2 ml-[-2px] text-[13px]">
@@ -1151,7 +1143,7 @@ export default function AdvanceSearch({
                               </div>
                             )}
                           </div>
-                          <div className="mt-3 space-y-1">
+                          <Link className="mt-3 space-y-1" href={`/product-details/${product?._id}`}>
                             {product?.price ? (
                               <>
                                 <h1 className="text-[20px] text-[#FF0000] font-bold">
@@ -1168,7 +1160,7 @@ export default function AdvanceSearch({
                                 </h1>
                               </>
                             )}
-                          </div>
+                          </Link>
                           <div className="flex flex-row mt-5 w-full">
                             <div className="text-sm w-full line-clamp-1 mr-[10px] lg:mr-0">
                               {showDate(product?.createdAt) < 2 ? (
@@ -1201,8 +1193,9 @@ export default function AdvanceSearch({
                               <h1 className="text-[13px]">{product?.views}</h1>
                             </div>
                           </div>
-                          <div
+                          <Link
                             className={`flex mt-2 text-gray-600 h-10 border-t-2 pt-2 w-full`}
+                            href={`/product-details/${product?._id}`}
                           >
                             <div className="w-full truncate flex flex-row">
                               <LocationOn style={{ fontSize: "20px" }} />
@@ -1210,8 +1203,8 @@ export default function AdvanceSearch({
                                 {product?.address}
                               </h1>
                             </div>
-                          </div>
-                        </Link>
+                          </Link>
+                        </div>
                       </div>
                     ))}
                   </div>

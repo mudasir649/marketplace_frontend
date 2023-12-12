@@ -79,11 +79,11 @@
     },
     "sortByList": [
       "Más reciente",
-      "Viejo",
+      "Más antiguo",
+      "Precio (bajo a alto)",
+      "Precio (alto a bajo)",
       "A a Z (título)",
-      "Z a A (título)",
-      "Precio (de bajo a alto)",
-      "Precio (de alto a bajo)"
+      "Z a A (título)"
     ],
     "selectVehicleCategory":"Seleccionar....",
     "passwordSettings": [
@@ -797,7 +797,8 @@
               "link": "¡Enlace copiado!",
               "adRefresh": "Anuncio actualizado exitosamente.",
               "15seconds": "Espera 15 segundos antes de volver a actualizar.",
-              "validUsername": "¡Por favor! ingresa un nombre de usuario. El nombre de usuario no puede estar vacío."
+              "validUsername": "¡Por favor! ingresa un nombre de usuario. El nombre de usuario no puede estar vacío.",
+              "checkBrand": "¡Por favor! selecciona una marca."
             }
           
 }

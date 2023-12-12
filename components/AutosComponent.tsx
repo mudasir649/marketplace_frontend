@@ -179,6 +179,9 @@ export default function AutosComponent() {
     if(images.length > 7){
       toast(t(`taost.imageUpload`));
       return
+    }else if(data.brand === (null || "")){
+      toast(t(`taost.selectBrand`));
+      return
     }
     setLoading(true);
     const formData = new FormData();
@@ -399,6 +402,7 @@ export default function AutosComponent() {
                     className="custom-select w-full block appearance-none bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
                     name="brand"
                     onChange={(e: any) => handleInput(e)}
+                    required
                   >
                     <option value="option1">
                       {t("autosComponent.selectBrand")}
