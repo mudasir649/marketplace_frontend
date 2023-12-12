@@ -93,10 +93,10 @@
       "sortByList": [
         "Latest",
         "Oldest",
-        "A to Z (title)",
-        "Z to A (title)",
         "Price (low to high)",
-        "Price (high to low)"
+        "Price (high to low)",
+        "A to Z (title)",
+        "Z to A (title)"
       ],
       "passwordSettings": [
         "Old Password",
