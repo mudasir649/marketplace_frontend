@@ -1,4 +1,5 @@
 {
+  "memberSince": "Mitglied seit",
   "signup": {
     "createAccount": "Registrieren",
     "firstNamePlaceholder": " Vornamen ein",
@@ -293,7 +294,7 @@
   "Double decker": "Doppeldecker",
   "Kombi Bus": "Kombibus",
   "Minibus": "Minibus",
-  "Others": "Anderes",
+  "Others": "Andere",
   "Regional transit bus": "Regionaler Linienbus",
   "Asphalt mixing plant": "Asphaltmischanlage",
     "Backhoe Loader": "Baggerlader",
@@ -317,6 +318,7 @@
     "Mini dumper": "Minikipper",
     "Mobile excavator": "Mobilbagger",
     "Beverage": "Getränke",
+    "Classic car": "Oldtimer",
     "Boat trailer": "Bootsanhänger",
     "Box": "Kasten",
     "Car trailer": "Autoanhänger",
@@ -787,7 +789,6 @@
         "Transporter": "Transporter",
         "Other": "Sonstiges"
       } ,
-      
         "myProfile": {
           "labels": {
             "basicInformation": "Profil",
@@ -816,7 +817,17 @@
             "imageUploadFailed": "Bild konnte nicht hochgeladen werden."
           },
           "loading": "Wird geladen..."
+        },
+        "taost": {
+          "imageUpload": "Entschuldigung! Du kannst nicht mehr als 7 Bilder hochladen.",
+          "addPost": "Erfolgreich hinzugefügt.",
+          "validValue": "ist ungültig. Bitte gib einen gültigen Wert ein.",
+          "err": "ist ungültig. Bitte gib einen gültigen Wert ein.",
+          "passAndConfirm": "Passwort und Bestätigungspasswort sind nicht identisch.",
+          "link": "Link kopiert!",
+          "AdRefersh": "Anzeige erfolgreich aktualisiert.",
+          "15seconds": "Warte 15 Sekunden, bevor du erneut aktualisierst.",
+          "validUsername": "Bitte gib einen Benutzernamen ein. Der Benutzername darf nicht leer sein."
         }
-      
       
 }

@@ -1,4 +1,5 @@
 {
+  "memberSince": "Miembro desde",
   "signup": {
     "createAccount": "Crear cuenta",
     "firstNamePlaceholder": "Ingresa tu nombre",
@@ -621,6 +622,7 @@
           "Others": "Otrose",
           "Regional transit bus": "Autobús de tránsito regional",
           "Asphalt mixing plant": "Planta de mezcla de asfalto",
+          "Classic car":  "Coche clásico",
     "Backhoe Loader": "Cargadora retroexcavadora",
     "Building crane": "Grua de construcción",
     "Cable excavator": "Excavadora de cable",
@@ -785,6 +787,17 @@
                 "imageUploadFailed": "Fallo al subir la imagen."
               },
               "loading": "Cargando..."
+            },
+            "taost": {
+              "imageUpload": "¡Lo siento! No puedes subir más de 7 imágenes.",
+              "addPost": "Añadido exitosamente.",
+              "validValue": "es inválido. Por favor, ingresa un valor válido.",
+              "err": "Se produjo un error. ¡Por favor, inténtalo de nuevo.",
+              "passAndConfirm": "La contraseña y la confirmación de la contraseña no son iguales.",
+              "link": "¡Enlace copiado!",
+              "AdRefersh": "Anuncio actualizado exitosamente.",
+              "15seconds": "Espera 15 segundos antes de volver a actualizar.",
+              "validUsername": "¡Por favor! ingresa un nombre de usuario. El nombre de usuario no puede estar vacío."
             }
           
 }

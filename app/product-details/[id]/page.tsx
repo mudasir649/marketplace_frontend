@@ -134,7 +134,7 @@ function ProductDetails() {
     let linkToCopy = `${process.env.NEXT_PUBLIC_LINK_URI}/product-details/${product?._id}`;
     try {
       navigator.clipboard.writeText(linkToCopy);
-      toast("Link Copied!");
+      toast(t(`taost.link`));
     } catch (err) {
       console.error("Failed to copy text: ", err);
     }
@@ -508,7 +508,7 @@ function ProductDetails() {
                           product?.userId?.lastName}{" "}
                       </h1>
                       <h1 className="text-sm">
-                        Member Since{" "}
+                        {t(`memberSince`) } {" "}
                         {new Date(product?.createdAt).toLocaleString("en-us", {
                           month: "short",
                           year: "numeric",

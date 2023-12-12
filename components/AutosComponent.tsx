@@ -177,7 +177,7 @@ export default function AutosComponent() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     if(images.length > 7){
-      toast("Sorry! you cannot upload more than 7 images.");
+      toast(t(`taost.imageUpload`));
       return
     }
     setLoading(true);
@@ -198,7 +198,7 @@ export default function AutosComponent() {
         formData
       );
       if (newData.status == 201) {
-        toast("Add posted successfully.");
+        toast(t(`taost.addPost`));
         toast(newData?.data);
         setLoading(false);
         router.push("/my-ads");
@@ -210,12 +210,12 @@ export default function AutosComponent() {
         );
 
         errorMessages.forEach((errorMessage: any) => {
-          toast(`${errorMessage} is invalid. Please enter valid value.`, {
+          toast(`${errorMessage} ${t(`taost.validValue`)}`, {
             type: "error",
           });
         });
       } else {
-        toast(`An error occured. Please! try again.`, { type: "error" });
+        toast(t(`taost.err`), { type: "error" });
       }
     }
     setLoading(false);

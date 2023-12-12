@@ -479,12 +479,12 @@ function EditComponent() {
         );
 
         errorMessages.forEach((errorMessage: any) => {
-          toast(`${errorMessage} is invalid. Please enter valid value.`, {
+          toast(`${errorMessage} ${t(`taost.validValue`)}`, {
             type: "error",
           });
         });
       } else {
-        toast(`An error occured. Please! try again.`, { type: "error" });
+        toast(t(`taost.err`), { type: "error" });
       }
     }
     setLoading(false);
@@ -582,7 +582,7 @@ function EditComponent() {
           </div>
           <div className=" container mx-auto flex flex-col mb-7">
             <div className="flex flex-row space-x-2 mt-5">
-                <h1 className="text-lg font-semibold">{t(`category.${ productData?.category}`)}</h1>
+                <h1 className="text-lg font-semibold">{productData?.category === undefined ? '' : t(`category.${ productData?.category}`)}</h1>
             </div>
             <div className="mt-5 w-full mb-5">
               <h1 className="space-x-3 border-b-2 pb-3">
@@ -733,11 +733,11 @@ function EditComponent() {
               </h1>
               <select
                 className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
-                name="subCategory"
+                name="type"
                 onChange={(e: any) => handleInput(e)}
               >
                 <option value="option1">
-                  {productData?.subCategory}
+                  {t(`subCategoryOptions.${productData?.type}`)}
                 </option>
                 {subCategory?.map(
                   (list: any, i: number) =>
@@ -755,6 +755,7 @@ function EditComponent() {
               </select>
             </div>
               }
+              {productData?.category !== ("Parts" || "Others") && 
               <div className={style.divStyle}>
                 <h1 className={style.h1Style}>
                   {t("autosComponent.brand")}{" "}
@@ -777,6 +778,7 @@ function EditComponent() {
                   </select>
                 </div>
               </div>
+                }
               {data?.brand !== "" && productData?.category === "Autos" &&
               <div className={style.divStyle}>
                   <h1 className={style.h1Style}>{t("autosComponent.model")}</h1>

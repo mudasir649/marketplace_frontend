@@ -36,7 +36,7 @@ export default function Signup() {
     e.preventDefault();
     setLoading(true);
     if (!userName) {
-      toast("Please! enter user name. username cannot be empty.");
+      toast(t(`taost.validUsername`));
       return;
     }
     if (email) {
@@ -66,13 +66,15 @@ export default function Signup() {
         const errorMessages = error.response.data.errors.map((err: any) => err.path);        
         // You can display each error message to the user
         errorMessages.forEach((errorMsg: string) => {
-          toast(`${errorMsg} is invalid. Please! enter valid value`, { type: 'error' });
+          toast(`${errorMsg} ${t(`taost.validValue`)}`, { type: 'error' });
         });
       }else if(error.response.data && error.response.data.message){
         toast(`${error.response.data.message}`, { type: 'error' });
       } else {
         // Handle other types of errors
-        toast('An error occurred. Please try again later.', { type: 'error' });
+        toast(t(`taost.err`), {
+          type: "error",
+        });
       }
     }
     setLoading(false);
