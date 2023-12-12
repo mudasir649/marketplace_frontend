@@ -912,7 +912,7 @@
             "err": "An error occured. Please! try again.",
             "passAndConfirm": "Password and Confirm Password is not same.",
             "link": "Link Copied!",
-            "AdRefersh": "Ad Refreshed successfully.",
+            "adRefresh": "Ad Refreshed successfully.",
             "15seconds": "Wait for 15 seconds before refreshing again.",
             "validUsername": "Please! enter user name. username cannot be empty."
           }

@@ -825,7 +825,7 @@
           "err": "ist ungültig. Bitte gib einen gültigen Wert ein.",
           "passAndConfirm": "Passwort und Bestätigungspasswort sind nicht identisch.",
           "link": "Link kopiert!",
-          "AdRefersh": "Anzeige erfolgreich aktualisiert.",
+          "adRefresh": "Anzeige erfolgreich aktualisiert.",
           "15seconds": "Warte 15 Sekunden, bevor du erneut aktualisierst.",
           "validUsername": "Bitte gib einen Benutzernamen ein. Der Benutzername darf nicht leer sein."
         }
