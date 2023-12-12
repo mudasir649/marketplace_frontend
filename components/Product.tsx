@@ -156,7 +156,7 @@ export default function Product({ product, url }: any) {
     try {
       const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/refreshAd/${product?._id}`);
       if(res.status === 200){
-        toast(t(`taost.AdRefresh`));
+        toast(t(`taost.adRefresh`));
         dispatch(refreshPage(refresh + 1));
       }
     } catch (error: any) {

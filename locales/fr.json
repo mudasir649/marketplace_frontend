@@ -789,7 +789,7 @@
         "err": "Une erreur s'est produite. S'il vous plaît, réessayez.",
         "passAndConfirm": "Le mot de passe et la confirmation du mot de passe ne sont pas les mêmes.",
         "link": "Lien copié !",
-        "AdRefersh": "Annonce rafraîchie avec succès.",
+        "adRefresh": "Annonce rafraîchie avec succès.",
         "15seconds": "Attendez 15 secondes avant de rafraîchir à nouveau.",
         "validUsername": "S'il vous plaît ! saisissez un nom d'utilisateur. Le nom d'utilisateur ne peut pas être vide."
       }

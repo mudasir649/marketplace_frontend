@@ -788,7 +788,7 @@
               "err": "Si è verificato un errore. Per favore, riprova.",
               "passAndConfirm": "La password e la conferma della password non sono uguali.",
               "link": "Link copiato!",
-              "AdRefersh": "Annuncio aggiornato con successo.",
+              "adRefresh": "Annuncio aggiornato con successo.",
               "15seconds": "Attendi 15 secondi prima di aggiornare di nuovo.",
               "validUsername": "Per favore! inserisci un nome utente. Il nome utente non può essere vuoto."
             }
