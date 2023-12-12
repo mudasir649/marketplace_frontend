@@ -6,8 +6,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-import { useTranslation } from 'react-i18next';
-
+import { useTranslation } from "react-i18next";
 
 export default function Favorite() {
   const [favAds, setFavAds] = useState<any>();
@@ -49,9 +48,21 @@ export default function Favorite() {
       ) : (
         <div className="container mx-auto mt-10">
           <div className="text-center text-3xl font-bold mb-10">
-            <h1>{t('random.myFavouriteListings')}</h1>
+            <h1>{t("random.myFavouriteListings")}</h1>
           </div>
-          <ProductList productList={favAds} />
+          {favAds.length <= 0 ? (
+            <div className="flex justify-center">
+              <Image
+                className="h-80 w-80"
+                src="/assets/no_record.png"
+                width={500}
+                height={500}
+                alt="no_record_picture"
+              />
+            </div>
+          ) : (
+            <ProductList productList={favAds} />
+          )}
         </div>
       )}
     </>

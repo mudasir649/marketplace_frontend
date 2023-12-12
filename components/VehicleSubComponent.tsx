@@ -199,7 +199,7 @@ export default function VehicleSubComponent({ type }: any) {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     if(images.length > 7){
-      toast("Sorry! you cannot upload more than 7 images.");
+      toast(t(`taost.imageUpload`));
       return
     }
     setLoading(true);
@@ -220,7 +220,7 @@ export default function VehicleSubComponent({ type }: any) {
         formData
       );
       if (newData.status == 201) {
-        toast("Add posted successfully.");
+        toast(t(`taost.addPost`));
         toast(newData?.data);
         setLoading(false);
         router.push("/my-ads");

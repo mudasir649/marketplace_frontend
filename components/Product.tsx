@@ -107,7 +107,7 @@ export default function Product({ product, url }: any) {
     let linkToCopy = `${process.env.NEXT_PUBLIC_LINK_URI}/product-details/${product?._id}`;
     try {
       navigator.clipboard.writeText(linkToCopy);
-      toast('Link Copied!');
+      toast(t(`taost.link`));
     } catch (err) {
       console.error('Failed to copy text: ', err);
     }
@@ -156,11 +156,11 @@ export default function Product({ product, url }: any) {
     try {
       const res = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/refreshAd/${product?._id}`);
       if(res.status === 200){
-        toast("Ad Refreshed successfully.");
+        toast(t(`taost.AdRefresh`));
         dispatch(refreshPage(refresh + 1));
       }
     } catch (error: any) {
-      toast("Wait for 15 seconds before refreshing again.");
+      toast(t(`taost.15seconds`));
     }
   }
 

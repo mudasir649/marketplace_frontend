@@ -33,6 +33,8 @@ export default function MyAds() {
     }, [userData, router, userInfo, refresh]);
 
 
+    console.log(userAds);
+    
 
     return (
         <>
@@ -50,7 +52,12 @@ export default function MyAds() {
                 <div className='text-center text-3xl font-bold mb-10'>
                     <h1>{t('random.myAdsListing')}</h1>
                 </div>
+                {userAds.length <= 0 ? 
+                <div className='flex justify-center'>
+                <Image className='h-80 w-80' src="/assets/no_record.png" width={500} height={500} alt='no_record_picture' />
+                </div> :  
                 <ProductList productList={userAds} />
+            }
             </div>
 }
         </>

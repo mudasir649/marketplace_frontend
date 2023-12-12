@@ -71,7 +71,7 @@ export default function MyProfile() {
           );
           // You can display each error message to the user
           errorMessages.forEach((errorMsg: string) => {
-            toast(`${errorMsg} is invalid. Please! enter valid value`, {
+            toast(`${errorMsg} ${t(`taost.validValue`)}`, {
               type: "error",
             });
           });
@@ -79,13 +79,13 @@ export default function MyProfile() {
           toast(`${error.response.data.message}`, { type: "error" });
         } else {
           // Handle other types of errors
-          toast("An error occurred. Please try again later.", {
+          toast(t(`taost.err`), {
             type: "error",
           });
         }
       }
     } else {
-      toast("Password and Confirm Password is not same.");
+      toast(t(`taost.passAndConfirm`));
     }
     setLoading(false);
   };
@@ -179,7 +179,7 @@ export default function MyProfile() {
                   className="bg-[#FF0000] hover:bg-red-800 w-32 h-10 text-white font-bold"
                   onClick={(e: any) => updateProfile(e)}
                 >
-                  Submit
+                  {t(`repairNow.submit`)}
                 </button>
               </div>
             )}
