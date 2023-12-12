@@ -1,7 +1,7 @@
 'use client';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import I18nProvider from '../components/i18Provider';
-import { Provider } from 'react-redux';
+import { Provider, useDispatch } from 'react-redux';
 import store from '@/store/store';
 import AppComponent from '../components/AppComponent';
 import { ToastContainer } from 'react-toastify';
@@ -11,11 +11,14 @@ import Banner from '../components/Banner';
 import Footer from '../components/Footer';
 import { usePathname } from 'next/navigation';
 import { routeName } from '@/utils/dataVariables';
+import axios from 'axios';
+import { setVehicleList } from '@/store/appSlice';
 
 
  function Home({ children }: any) {
   const pathname = usePathname();  
   const checkType = routeName.includes(pathname);
+  
 
   return (
     <Provider store={store}>

@@ -26,12 +26,13 @@ import { toast } from "react-toastify";
 import SellNow from "./SellNow";
 import DeleteAd from "./DeleteAd";
 import RepairNow from "./RepairNow";
-import { setReduxTitle, setRoomsData, setShowContact } from "@/store/appSlice";
+import { setReduxTitle, setRoomsData, setShowContact, setVehicleList } from "@/store/appSlice";
 import { off, onDisconnect, onValue, ref, update } from "firebase/database";
 import { db } from "@/utils/firebase-config";
 import useWindowDimensions from "@/utils/useWindowDimensions";
 import { routeName, typeMap } from "@/utils/dataVariables";
 import dynamic from "next/dynamic";
+import axios from "axios";
 
 function Header2() {
   const [logoutApiCall, { isLoading }] = useLogoutMutation();
@@ -55,7 +56,21 @@ function Header2() {
 
   useEffect(() => {
     dispatch(setReduxTitle(""))
-  }, [dispatch])
+  }, [dispatch]);
+
+  useEffect(() => {
+    const fetchCategory = async() => {
+      try {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/get-types-list`);
+      if(res.status === 200){
+        dispatch(setVehicleList(res?.data?.data));
+      }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchCategory();
+  }, [dispatch]);
 
   useEffect(() => {
     if (userInfo && userId) {

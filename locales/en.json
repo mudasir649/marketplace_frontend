@@ -66,16 +66,16 @@
       ],
       "category": {
         "Autos": "Autos",
-  "Bikes": "Bikes",
-  "Boats": "Boats",
-  "Busses": "Busses",
-  "Construction Machines": "Construction Machines",
-  "Drones": "Drones",
-  "Others": "Others",
-  "Parts": "Parts",
-  "Trailers": "Trailers",
-  "Trucks": "Trucks",
-  "Vans": "Vans"
+        "Bikes": "Bikes",
+        "Boats": "Boats",
+        "Busses": "Busses",
+        "Construction Machines": "Construction Machines",
+        "Drones": "Drones",
+        "Others": "Others",
+        "Parts": "Parts",
+        "Trailers": "Trailers",
+        "Trucks": "Trucks",
+        "Vans": "Vans"
       },
       "categoriesParts": [
         "Auto",
@@ -328,31 +328,29 @@
         "Working platform (scissor lift)": "Working platform (scissor lift)",
         "Working platform (self-propelled)": "Working platform (self-propelled)",
         "Working platform (special)": "Working platform (special)",
-    "Bodies / cranes": "Bodies / cranes",
-    "Jumbo": "Jumbo",
-    "Other special bodies": "Other special bodies",
-    "Road maintenance": "Road maintenance",
-    
-    "Tipper- lift-off": "Tipper- lift-off",
-    "Tipper- roll-off": "Tipper- roll-off",
-    "Truck + Trailer": "Truck + Trailer",
-    "Truck crane": "Truck crane",
-    "Wrecker": "Wrecker" ,
-    "Armored Truck": "Armored Truck",
-    "Double cabin": "Double cabin",
-    "Flatbed van": "Flatbed van",
-    "Mobile Shop/ Food Truck": "Mobile Shop/ Food Truck",
-    "Panel van": "Panel van",
-    "Pick-up": "Pick-up",
-    "Refrigerated truck": "Refrigerated truck",
-    "Station wagon/van": "Station wagon/van",
-    "Van - high roof": "Van - high roof",
-    "E-bikes": "E-bikes",
-    "E-scooters":"E-scooter",
-    "Bicycles":"Bicycles",
-    "Motorcycles":"Motorcycle"
+        "Bodies / cranes": "Bodies / cranes",
+        "Jumbo": "Jumbo",
+        "Other special bodies": "Other special bodies",
+        "Road maintenance": "Road maintenance",
+        "Tipper- lift-off": "Tipper- lift-off",
+        "Tipper- roll-off": "Tipper- roll-off",
+        "Truck + Trailer": "Truck + Trailer",
+        "Truck crane": "Truck crane",
+        "Wrecker": "Wrecker" ,
+        "Armored Truck": "Armored Truck",
+        "Double cabin": "Double cabin",
+        "Flatbed van": "Flatbed van",
+        "Mobile Shop/ Food Truck": "Mobile Shop/ Food Truck",
+        "Panel van": "Panel van",
+        "Pick-up": "Pick-up",
+        "Refrigerated truck": "Refrigerated truck",
+        "Station wagon/van": "Station wagon/van",
+        "Van - high roof": "Van - high roof",
+        "E-bikes": "E-bikes",
+        "E-scooters":"E-scooter",
+        "Bicycles":"Bicycles",
+        "Motorcycles":"Motorcycle"
       },
-
       "fuelType": {
         "Gasoline": "Gasoline",
         "Diesel": "Diesel",
@@ -366,7 +364,6 @@
         "Others": "Others",
         "Petrol": "Petrol"
       },
-
       "condition" : {
         "new": "New",
         "used": "Used",
@@ -375,9 +372,7 @@
         "Used": "Used",
         "Recondition": "Recondition"
       },
-
       "interiorColor": {
-        
         "Beige": "Beige",
         "Black": "Black",
         "Grey": "Grey",
@@ -455,7 +450,6 @@
           "Automatic": "Automatic",
           "Manual": "Manual",
           "Semi-automatic": "Semi-automatic",
-          
           "name1": "Automatic",
           "name2": "Manual",
           "name3": "Semi-automatic",

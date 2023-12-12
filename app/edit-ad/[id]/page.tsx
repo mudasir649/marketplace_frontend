@@ -378,6 +378,7 @@ function EditComponent() {
   
   let vehicleCategory = checkVehicleCategory.includes(productData?.category) ? productData?.subCategory : productData?.category;
   
+  
 
   useEffect(() => {
         const fetchBrand = async () => {
@@ -387,9 +388,9 @@ function EditComponent() {
         setBrands(res.data?.data);
       };
       if(vehicleCategory !== undefined) {
-        if(productData?.category !== "Parts" || productData?.category !== "Others") fetchBrand();
+        if(productSubCat !== ("Parts" || "Others")) fetchBrand();
       } 
-  }, [vehicleCategory, productData?.category])
+  }, [vehicleCategory, productSubCat])
   
 
   const handleInput = (e: any) => {
@@ -581,7 +582,7 @@ function EditComponent() {
           </div>
           <div className=" container mx-auto flex flex-col mb-7">
             <div className="flex flex-row space-x-2 mt-5">
-                <h1 className="text-lg font-semibold">{productData?.category}</h1>
+                <h1 className="text-lg font-semibold">{t(`category.${ productData?.category}`)}</h1>
             </div>
             <div className="mt-5 w-full mb-5">
               <h1 className="space-x-3 border-b-2 pb-3">
@@ -650,7 +651,7 @@ function EditComponent() {
                           name="price"
                           onClick={() => handlePrice("price")}
                         />{" "}
-                          Price
+                          {t("product.Price")}
                   </li>
                   <li>
                         <input
@@ -659,7 +660,7 @@ function EditComponent() {
                           name="price"
                           onChange={() => handlePrice("")}
                         />{" "}
-                          Disabled
+                          {t("product.disabled")}
                   </li>
                   </ul>
                 </div>
@@ -1047,7 +1048,7 @@ function EditComponent() {
                   <input
                     type="text"
                     className={style.inputStyle}
-                    placeholder={productData?.videoUrl}
+                    placeholder={t("autosComponent.videoURLPlaceholder")}
                     name="videoUrl"
                     value={data.videoUrl}
                     onChange={(e: any) => handleInput(e)}
@@ -1098,7 +1099,7 @@ function EditComponent() {
               <div className={style.divStyle}>
                 <h1 className={`${style.h1Style} invisible`}>Whatspp</h1>
                 <div className="flex flex-row w-full h-8 justify-between">
-                <h1 className="font-semibold mt-1">Show my phone number in ads</h1>
+                <h1 className="font-semibold mt-1">{t("postAd.showNumber")}</h1>
                 </div>
               </div>
               <div className={style.divStyle}>

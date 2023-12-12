@@ -76,7 +76,6 @@ interface IList {
   logo: any;
   name: string;
   name1: string;
-  quantity: number;
 }
 
 interface IFilterSearch {
@@ -214,68 +213,56 @@ export default function AdvanceSearch({
       logo: <DirectionsCar />,
       name: t("categories.0"),
       name1: "Autos",
-      quantity: 23,
     },
     {
       logo: <TwoWheeler />,
       name: t("categories.1"),
       name1: "Bikes",
-      quantity: 12,
     },
     {
       logo: <DirectionsBoat />,
       name: t("categories.2"),
       name1: "Boats",
-      quantity: 2,
     },
     {
       logo: <DirectionsBus />,
       name: t("categories.3"),
       name1: "Busses",
-      quantity: 0,
     },
     {
       logo: <PrecisionManufacturing />,
       name: t("categories.4"),
       name1: "Construction%20Machines",
-      quantity: 74,
     },
     {
       logo: <Flight />,
       name: t("categories.5"),
       name1: "Drones",
-      quantity: 32,
     },
     {
       logo: <RvHookup />,
       name: t("categories.8"),
       name1: "Trailers",
-      quantity: 90,
     },
     {
       logo: <FireTruck />,
       name: t("categories.9"),
       name1: "Trucks",
-      quantity: 11,
     },
     {
       logo: <AirportShuttle />,
       name: t("categories.10"),
       name1: "Vans",
-      quantity: 9,
     },
     {
       logo: <BuildCircle />,
       name: t("categories.7"),
       name1: "Parts",
-      quantity: 0,
     },
     {
       logo: <DataSaverOn />,
       name: t("categories.6"),
       name1: "Others",
-
-      quantity: 23,
     },
   ];
 
@@ -812,13 +799,13 @@ export default function AdvanceSearch({
               <div>
                 <select
                   className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
-                  name="km"
+                  name="bodyShape"
                   onChange={(e: any) => dispatch(setBodyShape(e.target.value))}
                 >
                   <option>{t("autosComponent.selectBodyShape")}</option>
                   {bodyShape1?.map((bd: any, i: number) => (
                     <option value={bd.name} key={i}>
-                      {bd.name}
+                      {t(`bodyShape.${bd.name}`)}
                     </option>
                   ))}
                 </select>
@@ -870,7 +857,7 @@ export default function AdvanceSearch({
                   </option>
                   {fuelTypes?.map((ft: any, i: number) => (
                     <option value={ft.value} key={i}>
-                      {ft.name}
+                      {t(`fuelType.${ft.name}`)}
                     </option>
                   ))}
                 </select>
@@ -895,7 +882,7 @@ export default function AdvanceSearch({
                   </option>
                   {gearBox1.map((gear: any, i: number) => (
                     <option value={gear?.value} key={i}>
-                      {gear?.name}
+                      {t(`gearBox.${gear.name}`)}
                     </option>
                   ))}
                 </select>
