@@ -78,12 +78,12 @@
     "noChatSelected": "Nessuna chat selezionata"
   },
   "sortByList": [
-    "Ultimi",
-    "Vecchio",
-    "A a Z (titolo)",
-    "Z a A (titolo)",
+    "Più recente",
+    "Più vecchio",
     "Prezzo (basso ad alto)",
-    "Prezzo (alto a basso)"
+    "Prezzo (alto a basso)",
+    "A a Z (titolo)",
+    "Z a A (titolo)"
   ],
   "selectVehicleCategory":"Selezionare....",
   "passwordSettings": [
@@ -790,7 +790,8 @@
               "link": "Link copiato!",
               "adRefresh": "Annuncio aggiornato con successo.",
               "15seconds": "Attendi 15 secondi prima di aggiornare di nuovo.",
-              "validUsername": "Per favore! inserisci un nome utente. Il nome utente non può essere vuoto."
+              "validUsername": "Per favore! inserisci un nome utente. Il nome utente non può essere vuoto.",
+              "checkBrand": "Per favore! seleziona una marca."
             }
           
           

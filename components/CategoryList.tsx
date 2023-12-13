@@ -8,11 +8,7 @@ export default function CategoryList({ setCategory, setExpand }: any) {
     const { t } = useTranslation(); // Initialize the translation hook
 
     const { vehicleList } = useSelector((state: any) => state.app);
-
-    console.log(vehicleList[1]?.subCategories[3]?.image);
     
-
-
     const subList = [
       {
         logo: <Image className="h-6 w-6" src={vehicleList[1]?.subCategories[3]?.image} alt="droneIcon" width={100} height={100} />,

@@ -155,6 +155,9 @@ export default function SpecialCatComponent({ type }: any) {
     if(images.length > 7){
       toast(t(`taost.imageUpload`));
       return
+    }else if(data.brand === (null || "")){
+      toast(t(`taost.selectBrand`));
+      return
     }
     setLoading(true);
     const formData = new FormData();

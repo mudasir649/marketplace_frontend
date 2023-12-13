@@ -403,10 +403,10 @@
 "sortByList": [
   "Neueste",
   "Älteste",
-  "A biz Z (Titel)",
-  "Z bis A (Titel)",
-  "Günstigste",
-  "Teuerste"
+  "Preis (niedrig bis hoch)",
+  "Preis (hoch bis niedrig)",
+  "A bis Z (Titel)",
+  "Z bis A (Titel)"
 ],
 "selectVehicleCategory": "Auswählen....",
 "passwordSettings": [
@@ -827,7 +827,8 @@
           "link": "Link kopiert!",
           "adRefresh": "Anzeige erfolgreich aktualisiert.",
           "15seconds": "Warte 15 Sekunden, bevor du erneut aktualisierst.",
-          "validUsername": "Bitte gib einen Benutzernamen ein. Der Benutzername darf nicht leer sein."
+          "validUsername": "Bitte gib einen Benutzernamen ein. Der Benutzername darf nicht leer sein.",
+          "checkBrand": "Bitte! Marke auswählen."
         }
       
 }

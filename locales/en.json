@@ -914,7 +914,8 @@
             "link": "Link Copied!",
             "adRefresh": "Ad Refreshed successfully.",
             "15seconds": "Wait for 15 seconds before refreshing again.",
-            "validUsername": "Please! enter user name. username cannot be empty."
+            "validUsername": "Please! enter user name. username cannot be empty.",
+            "checkBrand": "Please! select brand."
           }
         }
       
