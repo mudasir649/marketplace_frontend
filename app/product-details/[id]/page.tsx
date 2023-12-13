@@ -167,7 +167,7 @@ function ProductDetails() {
   
   
   function isNullOrNullOrEmpty(value: any) {
-    return value === null || value === undefined || value === "";
+    return value === null || value === undefined || value === "" || value === "undefined";
   }
 
   return (
@@ -311,7 +311,7 @@ function ProductDetails() {
                         <span className="font-bold">
                           {t("product.subCategory")}:{" "}
                         </span>{" "}
-                        {t(`subCategoryOptions.${product.subCategory}`)}
+                        {t(`subCategoryOptions.${product.subCategory}`)} fkfk
                       </h1>
                       ) : (
                         ""
