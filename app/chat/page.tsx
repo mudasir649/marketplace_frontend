@@ -112,10 +112,16 @@ function Chat() {
                 let OtherUserId = ids[0] === userId ? ids[1] : ids[0];
                 let productId = ids[2];
                 const userData = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/getUser/${OtherUserId}`);
-                const productData = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/getSpecific/${productId}`);                                
-                temporaryChatData[roomId] = {
-                    otherUser: userData.data,
-                    product: productData.data
+                try {
+                    const productData = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/getSpecific/${productId}`);                                
+                    if(productData){
+                        temporaryChatData[roomId] = {
+                            otherUser: userData.data,
+                            product: productData.data
+                        }
+                    }
+                } catch (error) {
+                    console.log(error);
                 }
             }
             setChatData(temporaryChatData);
@@ -201,7 +207,10 @@ function Chat() {
             );
 
             // Move the roomId to the top of the list
-            userRoomsList.unshift(roomIdToUpdate);
+            const unshift =  userRoomsList.unshift(roomIdToUpdate);
+
+            console.log("fmfmk" , unshift);
+            
 
             // Update the rooms list in Firebase
             await set(userRoomsRef, userRoomsList);
@@ -221,6 +230,9 @@ function Chat() {
                 timestamp: Date.now(), // Or Firebase's server timestamp, if you prefer
             });
             setMessage(""); // Clear the input field after sending
+            const otherUserId = selected.otherUser._id; // Assuming you have the otherUser's data in 'selected'
+            await updateRoomPositionForUser(userId, selected.roomId);
+            await updateRoomPositionForUser(otherUserId, selected.roomId);
         } else if (image.length >= 1) {
             const storage = getStorage();
             setImageLoading(true);
@@ -321,6 +333,7 @@ function Chat() {
     }
     
 
+    
 
     if (userInfo !== null) {
         return (
