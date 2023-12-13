@@ -167,13 +167,6 @@ export default function OthersComponent({ type }: any) {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    if(images.length > 7){
-      toast(t(`taost.imageUpload`));
-      return
-    }else if(data.brand === (null || "")){
-      toast(t(`taost.selectBrand`));
-      return
-    }
     setLoading(true);
     const formData = new FormData();
 
@@ -337,7 +330,6 @@ export default function OthersComponent({ type }: any) {
               <div className={style.divStyle}>
                 <h1 className={style.h1Style}>
                   {t("autosComponent.condition")}{" "}
-                  <span className="text-[#FF0000]">*</span>
                 </h1>
                 <div className="flex flex-col w-full">
                   <ul className="space-y-1">
@@ -378,7 +370,6 @@ export default function OthersComponent({ type }: any) {
                     name="description"
                     value={data.description}
                     onChange={(e: any) => handleInput(e)}
-                    required
                   />
                 </div>
               </div>
