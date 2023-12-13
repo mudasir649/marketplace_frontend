@@ -311,7 +311,7 @@ function ProductDetails() {
                         <span className="font-bold">
                           {t("product.subCategory")}:{" "}
                         </span>{" "}
-                        {t(`subCategoryOptions.${product.subCategory}`)} fkfk
+                        {t(`subCategoryOptions.${product.subCategory}`)}
                       </h1>
                       ) : (
                         ""
