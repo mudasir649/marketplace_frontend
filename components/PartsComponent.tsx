@@ -99,6 +99,7 @@ export default function PartsComponent({ type }: any) {
   const [priceListValue, setPriceListValue] = useState<string>("price");
   const [googleLocation, setGoogleLocation] = useState<any>(null);
   const [showLocation, setShowLocation] = useState<Boolean>(false);
+  const [imageRequired, setImageRequired] = useState<any>(true);
   let router = useRouter();
   const id = userData;
   const [whatsappChecked, setWhatsappChecked] = useState<boolean>(false);
@@ -151,10 +152,10 @@ export default function PartsComponent({ type }: any) {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-
   const handleImage = (e: any) => {
     const files = e.target.files;
     const newImages = Array.from(files);
+    setImageRequired(false);
     if(newImages.length > 7){
       toast(t(`taost.imageUpload`));
       return;
@@ -171,7 +172,11 @@ export default function PartsComponent({ type }: any) {
     const updatedImages = [...images];
     updatedImages.splice(index, 1);
     setImages(updatedImages);
+    if(updatedImages.length <=0 ){
+      setImageRequired(true);
+    }
   };
+
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -236,6 +241,14 @@ export default function PartsComponent({ type }: any) {
       router.push("/");
     }
   }, [router, userData]);
+
+  const checkImageRequire = () => {
+    if(imageRequired === true){
+      return true;
+    }else{
+      return false;
+    }
+  }
 
   return (
     <>
@@ -387,7 +400,7 @@ export default function PartsComponent({ type }: any) {
                   <input
                     type="file"
                     className={`${style.inputStyle} p-1`}
-                    required
+                    required={checkImageRequire()}
                     name="image"
                     id="fileInput"
                     accept="image/png, image/jpeg"

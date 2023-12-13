@@ -105,6 +105,7 @@ export default function BikeSubComponent({ type }: any) {
   const [whatsappChecked, setWhatsappChecked] = useState<boolean>(false);
   const [viberChecked, setViberChecked] = useState<boolean>(false);
   const [phoneChecked, setPhoneChecked] = useState<boolean>(false);
+  const [imageRequired, setImageRequired] = useState<any>(true);
   const [formData, setFormData] = useState<any>();  
   const [data, setData] = useState<IData>({
     category: "Bikes",
@@ -189,6 +190,7 @@ export default function BikeSubComponent({ type }: any) {
   const handleImage = (e: any) => {
     const files = e.target.files;
     const newImages = Array.from(files);
+    setImageRequired(false);
     if(newImages.length > 7){
       toast(t(`taost.imageUpload`));
       return;
@@ -204,7 +206,10 @@ export default function BikeSubComponent({ type }: any) {
     }
     const updatedImages = [...images];
     updatedImages.splice(index, 1);
-    setImages(updatedImages);
+    setImages(updatedImages);    
+    if(updatedImages.length <=0 ){
+      setImageRequired(true);
+    }
   };
 
   const handleSubmit = async (e: any) => {
@@ -293,6 +298,14 @@ export default function BikeSubComponent({ type }: any) {
       return;
     }
   };
+
+  const checkImageRequire = () => {
+    if(imageRequired === true){
+      return true;
+    }else{
+      return false;
+    }
+  }
   
 
   return (
@@ -605,7 +618,7 @@ export default function BikeSubComponent({ type }: any) {
                   <input
                     type="file"
                     className={`${style.inputStyle} p-1`}
-                    required
+                    required={checkImageRequire()}
                     name="image"
                     id="fileInput"
                     accept="image/png, image/jpeg"

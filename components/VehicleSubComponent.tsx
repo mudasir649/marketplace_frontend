@@ -75,6 +75,8 @@ export default function VehicleSubComponent({ type }: any) {
   const [images, setImages] = useState<any>([]);
   const [loading, setLoading] = useState<Boolean>(false);
   const [priceListValue, setPriceListValue] = useState<string>("price");
+  const [imageRequired, setImageRequired] = useState<any>(true);
+
   const [brands, setBrands] = useState<any>([]);
   const [subCategory, setSubCategory] = useState<any>([]);
   const [googleLocation, setGoogleLocation] = useState<any>(null);
@@ -183,6 +185,7 @@ export default function VehicleSubComponent({ type }: any) {
   const handleImage = (e: any) => {
     const files = e.target.files;
     const newImages = Array.from(files);
+    setImageRequired(false);
     if(newImages.length > 7){
       toast(t(`taost.imageUpload`));
       return;
@@ -199,7 +202,11 @@ export default function VehicleSubComponent({ type }: any) {
     const updatedImages = [...images];
     updatedImages.splice(index, 1);
     setImages(updatedImages);
+    if(updatedImages.length <=0 ){
+      setImageRequired(true);
+    }
   };
+
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -281,6 +288,14 @@ export default function VehicleSubComponent({ type }: any) {
       value: "disabled",
     },
   ];
+
+  const checkImageRequire = () => {
+    if(imageRequired === true){
+      return true;
+    }else{
+      return false;
+    }
+  }
 
 
   return (
@@ -607,7 +622,7 @@ export default function VehicleSubComponent({ type }: any) {
                   <input
                     type="file"
                     className={`${style.inputStyle} p-1`}
-                    required
+                    required={checkImageRequire()}
                     name="image"
                     id="fileInput"
                     accept="image/png, image/jpeg"

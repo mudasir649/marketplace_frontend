@@ -90,6 +90,7 @@ export default function AutosComponent() {
   const [googleLocation, setGoogleLocation] = useState<any>(null);
   const [showLocation, setShowLocation] = useState<Boolean>(false);
   const [formData, setFormData] = useState<any>();
+  const [imageRequired, setImageRequired] = useState<any>(true);
   let router = useRouter();
   const id = userData;
   const [data, setData] = useState<IData>({
@@ -161,6 +162,7 @@ export default function AutosComponent() {
   const handleImage = (e: any) => {
     const files = e.target.files;
     const newImages = Array.from(files);
+    setImageRequired(false);
     if(newImages.length > 7){
       toast(t(`taost.imageUpload`));
       return;
@@ -176,12 +178,19 @@ export default function AutosComponent() {
     }
     const updatedImages = [...images];
     updatedImages.splice(index, 1);
-    setImages(updatedImages);
-  };
+    setImages(updatedImages);    
+    if(updatedImages.length <=0 ){
+      setImageRequired(true);
+    }
+  };  
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    if(data.brand === (null || "")){
+    if(images.length > 7){
+      toast(t(`taost.imageUpload`));
+      return
+    }
+    else  if(data.brand === (null || "")){
       toast(t(`taost.checkBrand`));
       return
     }
@@ -272,6 +281,14 @@ export default function AutosComponent() {
     }
   };
   
+
+  const checkImageRequire = () => {
+    if(imageRequired === true){
+      return true;
+    }else{
+      return false;
+    }
+  }
 
   return (
     <>
@@ -603,7 +620,7 @@ export default function AutosComponent() {
                   <input
                     type="file"
                     className={`${style.inputStyle} p-1`}
-                    required
+                    required={checkImageRequire()}
                     name="image"
                     id="fileInput"
                     accept="image/png, image/jpeg"
