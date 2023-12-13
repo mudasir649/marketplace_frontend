@@ -111,8 +111,8 @@ function Chat() {
                 const ids = roomId.split('_');
                 let OtherUserId = ids[0] === userId ? ids[1] : ids[0];
                 let productId = ids[2];
-                const userData = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/getUser/${OtherUserId}`);
                 try {
+                    const userData = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/getUser/${OtherUserId}`);
                     const productData = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/getSpecific/${productId}`);                                
                     if(productData){
                         temporaryChatData[roomId] = {

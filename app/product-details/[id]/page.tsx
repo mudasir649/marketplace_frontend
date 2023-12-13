@@ -279,6 +279,7 @@ function ProductDetails() {
                       <Visibility className="text-gray-500" />{" "}
                       <span className={listStyle2}>{product?.views}</span>
                     </h1>
+                    {userId === product?.userId?._id ? "" :
                     <Favorite
                       className={`${
                         findProductId(product?._id)
@@ -287,6 +288,7 @@ function ProductDetails() {
                       } cursor-pointer`}
                       onClick={() => adFavorite(product?._id)}
                     />
+                  }
                     <h1>
                       <Share
                         className="text-gray-500 cursor-pointer"
@@ -400,16 +402,6 @@ function ProductDetails() {
                           {t("product.Gearbox")}:{" "}
                         </span>{" "}
                         {t(`gearBox.${product.gearBox}`)}
-                      </h1>
-                      ) : (
-                        ""
-                      )}
-                      {!isNullOrNullOrEmpty(product?.type) ? (
-                        <h1>
-                        <span className="font-bold">
-                          Type
-                        </span>{" "}
-                        {product.type}
                       </h1>
                       ) : (
                         ""

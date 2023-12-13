@@ -167,7 +167,7 @@ function EditComponent() {
     }
   }, [adId?.id, router]);
 
-  console.log(priceListValue);
+  console.log(productImages);
   
 
   useEffect(() => {
@@ -444,6 +444,11 @@ function EditComponent() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    console.log(data);
+    if(images <= 0 && productImages <= 0){
+      toast("Please! select image to update.");
+      return;
+    }
     setLoading(true);
     let newData;
     if(checkObjectEmpty(data) === false){
@@ -688,7 +693,6 @@ function EditComponent() {
               <div className={style.divStyle}>
                 <h1 className={style.h1Style}>
                   {t("autosComponent.condition")}{" "}
-                  <span className="text-[#FF0000]">*</span>
                 </h1>
                 <div className="flex flex-col w-full">
                   <ul className="space-y-1">

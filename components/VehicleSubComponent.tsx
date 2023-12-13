@@ -183,7 +183,12 @@ export default function VehicleSubComponent({ type }: any) {
   const handleImage = (e: any) => {
     const files = e.target.files;
     const newImages = Array.from(files);
-    setImages([...images, ...newImages]);
+    if(newImages.length > 7){
+      toast(t(`taost.imageUpload`));
+      return;
+    }else{
+      setImages([...images, ...newImages]);
+    }
   };
 
   const handleImageRemove = (index: any) => {
@@ -198,11 +203,8 @@ export default function VehicleSubComponent({ type }: any) {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    if(images.length > 7){
-      toast(t(`taost.imageUpload`));
-      return
-    }else if(data.brand === (null || "")){
-      toast(t(`taost.selectBrand`));
+    if(data.brand === (null || "")){
+      toast(t(`taost.checkBrand`));
       return
     }
     setLoading(true);
@@ -395,7 +397,6 @@ export default function VehicleSubComponent({ type }: any) {
               <div className={style.divStyle}>
                 <h1 className={style.h1Style}>
                   {t("autosComponent.condition")}{" "}
-                  <span className="text-[#FF0000]">*</span>
                 </h1>
                 <div className="flex flex-col w-full">
                   <ul className="space-y-1">
@@ -493,7 +494,6 @@ export default function VehicleSubComponent({ type }: any) {
                       name="year"
                       value={data.year}
                       onChange={(e: any) => handleInput(e)}
-                      required
                     />
                   </div>
                 </div>

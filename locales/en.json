@@ -904,19 +904,19 @@
               "Placeholder": "e.g. https://example.com"
             },
             "SubmitButton": "Submit"
-          },
-          "taost": {
-            "imageUpload": "Sorry! you cannot upload more than 7 images.",
-            "addPost": "Add posted successfully.",
-            "validValue": "is invalid. Please enter valid value.",
-            "err": "An error occured. Please! try again.",
-            "passAndConfirm": "Password and Confirm Password is not same.",
-            "link": "Link Copied!",
-            "adRefresh": "Ad Refreshed successfully.",
-            "15seconds": "Wait for 15 seconds before refreshing again.",
-            "validUsername": "Please! enter user name. username cannot be empty.",
-            "checkBrand": "Please! select brand."
           }
+        },
+        "taost": {
+          "imageUpload": "Sorry! you cannot upload more than 7 images.",
+          "addPost": "Add posted successfully.",
+          "validValue": "is invalid. Please enter valid value.",
+          "err": "An error occured. Please! try again.",
+          "passAndConfirm": "Password and Confirm Password is not same.",
+          "link": "Link Copied!",
+          "adRefresh": "Ad Refreshed successfully.",
+          "15seconds": "Wait for 15 seconds before refreshing again.",
+          "validUsername": "Please! enter user name. username cannot be empty.",
+          "checkBrand": "Please! select brand."
         }
       
       
