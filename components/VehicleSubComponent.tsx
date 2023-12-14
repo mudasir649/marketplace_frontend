@@ -68,7 +68,6 @@ export default function VehicleSubComponent({ type }: any) {
   const { userInfo } = useSelector((state: any) => state.auth);
   const userData =
     userInfo === null ? userInfo : userInfo?.data?.userDetails?._id;
-  const email = userInfo?.data?.userDetails?.email;
   const phone = userInfo?.data?.userDetails?.phoneNumber;
   const whatsapp = userInfo?.data?.userDetails?.whatsapp;
   const viber = userInfo?.data?.userDetails?.viber;
@@ -76,7 +75,6 @@ export default function VehicleSubComponent({ type }: any) {
   const [loading, setLoading] = useState<Boolean>(false);
   const [priceListValue, setPriceListValue] = useState<string>("price");
   const [imageRequired, setImageRequired] = useState<any>(true);
-
   const [brands, setBrands] = useState<any>([]);
   const [subCategory, setSubCategory] = useState<any>([]);
   const [googleLocation, setGoogleLocation] = useState<any>(null);
@@ -88,6 +86,7 @@ export default function VehicleSubComponent({ type }: any) {
   const [whatsappChecked, setWhatsappChecked] = useState<boolean>(false);
   const [viberChecked, setViberChecked] = useState<boolean>(false);
   const [phoneChecked, setPhoneChecked] = useState<boolean>(false);
+  const [disableBrand, setDisableBrand] = useState<Boolean>(false);
   
   const [data, setData] = useState<IData>({
     category:
@@ -165,10 +164,17 @@ export default function VehicleSubComponent({ type }: any) {
   }, [type, data.category]);
 
   const handleInput = (e: any) => {
-    setData({ ...data, [e.target.name]: e.target.value });
     if (e.target.name == "type") {
       fetchBrand();
+      setData({ ...data, type: e.target.value });
+    }else if(e.target.name == "Other brand"){
+      setDisableBrand(!disableBrand);
+      setData({ ...data, brand: e.target.value });
+    }else{
+      setData({ ...data, [e.target.name]: e.target.value });
     }
+
+
   };
 
   const fetchBrand = async () => {
@@ -291,6 +297,14 @@ export default function VehicleSubComponent({ type }: any) {
 
   const checkImageRequire = () => {
     if(imageRequired === true){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  const checkBrandDisable = () => {
+    if(disableBrand === true){
       return true;
     }else{
       return false;
@@ -463,30 +477,26 @@ export default function VehicleSubComponent({ type }: any) {
                     {t("autosComponent.brand")}{" "}
                     <span className="text-[#FF0000]">*</span>
                   </h1>
+                  <div className="w-full">
+                  {!disableBrand && 
                   <select
                     className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
                     name="brand"
                     onChange={(e) => handleInput(e)}
+                    disabled={checkBrandDisable()}
                   >
                     <option value="option1">
                       {" "}
                       {t("autosComponent.brand")}
                     </option>
-                    {/* {brands[0].make?.map((list: any, i: number) => (
-                                            <option className={`hover:bg-red-500 hover:text-white 
-                                        ml-1 mb-1 ${list.length - 1 == i ? '' : ' border-b-2'}`}
-                                                key={i}
-                                                onClick={() => handleBrand(list)}
-                                            >{list}</option>
-                                        ))} */}
                     {brands?.make?.map((list: any, i: any) => (
                       <option
                         className={`hover:bg-red-500 hover:text-white 
-                                            ml-1 mb-1 ${
-                                              list.length - 1 == i
-                                                ? ""
-                                                : " border-b-2"
-                                            }`}
+                                    ml-1 mb-1 ${
+                                      list.length - 1 == i
+                                        ? ""
+                                        : " border-b-2"
+                                    }`}
                         key={i}
                         onClick={() => handleBrand(list)}
                       >
@@ -494,6 +504,11 @@ export default function VehicleSubComponent({ type }: any) {
                       </option>
                     ))}
                   </select>
+                  }
+                  <div className="">
+                    <input type="checkbox" name="Other brand" value="Others" onClick={(e) => handleInput(e)} /> {t(`subCategoryOptions.Others`)}
+                  </div>
+                  </div>
                 </div>
               )}
               {data?.type && (
