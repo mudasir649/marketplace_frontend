@@ -145,8 +145,8 @@ function EditComponent() {
       data.price = res?.data?.data?.price;
       data.whatsapp = res?.data?.data?.whatsapp;
       data.viber = res?.data?.data?.viber;
+      data.condition = res.data?.data?.condition;
       setProductSubCat(res.data?.data?.category);
-      setEditCondition(res.data?.data?.condition);
       if (!isNullOrNullOrEmpty(res?.data?.data?.whatsapp)) {
         setWhatsappChecked(true);
       }
@@ -728,13 +728,12 @@ function EditComponent() {
               <div className={style.divStyle}>
                 <h1 className={style.h1Style}>
                   {t("autosComponent.condition")}{" "}
-                  <span className="text-[#FF0000]">*</span>
                 </h1>
                 <div className="flex flex-col w-full">
                   <ul className="space-y-1">
                     <li>
                       <input
-                        checked={editCondition === "new" ? true : false}
+                        checked={data?.condition === "new" ? true : false}
                         type="radio"
                         name="condition"
                         value="new"
@@ -744,7 +743,7 @@ function EditComponent() {
                     </li>
                     <li>
                       <input
-                        checked={editCondition === "used" ? true : false}
+                        checked={data?.condition === "used" ? true : false}
                         type="radio"
                         name="condition"
                         value="used"
@@ -754,7 +753,7 @@ function EditComponent() {
                     </li>
                     <li>
                       <input
-                        checked={editCondition === "recondition" ? true : false}
+                        checked={data?.condition === "recondition" ? true : false}
                         type="radio"
                         name="condition"
                         value="recondition"

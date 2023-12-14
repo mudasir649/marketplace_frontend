@@ -341,7 +341,7 @@ function ProductDetails() {
                         <span className="font-bold">
                           {t("product.Brand")}:{" "}
                         </span>{" "}
-                        {product?.brand}
+                        {product?.brand !== "Others" ? product?.brand : t(`subCategoryOptions.${product?.brand}`)}
                       </h1>
                       ) : (
                         ""
@@ -351,7 +351,7 @@ function ProductDetails() {
                         <span className="font-bold">
                           {t("product.Model")}:{" "}
                         </span>{" "}
-                        {product?.model}
+                        {product?.model !== "Others" ? product?.model : t(`subCategoryOptions.${product?.model}`)}
                       </h1>
                       ) : (
                         ""

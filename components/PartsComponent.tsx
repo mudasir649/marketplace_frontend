@@ -54,8 +54,6 @@ interface IData {
 }
 
 export default function PartsComponent({ type }: any) {
-  console.log(type);
-
   const { t } = useTranslation();
   const conditionList = [
     {
@@ -180,6 +178,10 @@ export default function PartsComponent({ type }: any) {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    if(images.length > 7){
+      toast(t(`taost.imageUpload`));
+      return
+    }
     setLoading(true);
     const formData = new FormData();
 

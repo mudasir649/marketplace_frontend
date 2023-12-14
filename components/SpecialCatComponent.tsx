@@ -169,9 +169,10 @@ export default function SpecialCatComponent({ type }: any) {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log(data);
-    return;
-    if(data.brand === (null || "")){
+    if(images.length > 7){
+      toast(t(`taost.imageUpload`));
+      return
+    }else if(data.brand === (null || "")){
       toast(t(`taost.checkBrand`));
       return
     }
@@ -454,7 +455,7 @@ export default function SpecialCatComponent({ type }: any) {
                     ))}
                   </select>
                   }
-                  <input type="checkbox" name="Other brand" value="Others" onClick={(e) => handleInput(e)} />
+                  <input type="checkbox" name="Other brand" value="Others" onClick={(e) => handleInput(e)} /> {t(`subCategoryOptions.Others`)}
                   </div>
                 </div>
               )}
@@ -473,7 +474,6 @@ export default function SpecialCatComponent({ type }: any) {
                       onChange={(e: any) => handleInput(e)}
                       required
                     />
-                    this is testing for others
                   </div>
                 </div>
               )}

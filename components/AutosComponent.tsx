@@ -204,15 +204,12 @@ export default function AutosComponent() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log(data);
-    return;
     if(images.length > 7){
       toast(t(`taost.imageUpload`));
-      return
-    }
-    else  if(data.brand === (null || "")){
+      return;
+    }else if(data.brand === (null || "")){
       toast(t(`taost.checkBrand`));
-      return
+      return;
     }
     setLoading(true);
     const formData = new FormData();

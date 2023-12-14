@@ -216,9 +216,12 @@ export default function VehicleSubComponent({ type }: any) {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    if(data.brand === (null || "")){
+    if(images.length > 7){
+      toast(t(`taost.imageUpload`));
+      return;
+    }else if(data.brand === (null || "")){
       toast(t(`taost.checkBrand`));
-      return
+      return;
     }
     setLoading(true);
     const formData = new FormData();
