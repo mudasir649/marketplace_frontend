@@ -8,8 +8,6 @@ import { useTranslation } from "react-i18next";
 import axios from "axios";
 import Select from "react-select";
 
-
-
 export default function PostAd() {
 
   const { t } = useTranslation();
