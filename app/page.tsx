@@ -15,13 +15,20 @@ function MainPage() {
 
   useEffect(() => {
     const fetchFeaturedData = async () => {
-      const res = await axios(
-        `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/fetchFeatured`
-      );
-      setFeaturedAds(res?.data?.data);
+      try {
+        const res = await axios(
+          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/fetchFeatured`
+        );
+        setFeaturedAds(res?.data?.data);
+      } catch (error) {
+        console.log(error);
+      }
     };
     fetchFeaturedData();
   }, []);
+
+  console.log(featuredAds);
+  
 
   return (
     <div className="">

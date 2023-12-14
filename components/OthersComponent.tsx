@@ -178,6 +178,10 @@ export default function OthersComponent({ type }: any) {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    if(images.length > 7){
+      toast(t(`taost.imageUpload`));
+      return
+    }
     setLoading(true);
     const formData = new FormData();
 
