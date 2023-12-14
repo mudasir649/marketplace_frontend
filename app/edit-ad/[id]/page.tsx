@@ -41,7 +41,7 @@ const style = {
 
 interface IData {
   category: any;
-  subCategory: any
+  subCategory: any;
   userId: any;
   title: any;
   price: any;
@@ -74,13 +74,11 @@ interface IData {
   images: any;
 }
 
-
 function isNullOrNullOrEmpty(value: any) {
   return value === null || value === undefined || value === "";
 }
 
 function EditComponent() {
-
   const { userInfo } = useSelector((state: any) => state.auth);
   const { t } = useTranslation(); // Initialize the translation hook
   const userData =
@@ -88,7 +86,6 @@ function EditComponent() {
   const id = userData;
   const [priceListValue, setPriceListValue] = useState<string>("price");
   const [editCondition, setEditCondition] = useState<string>("");
-
 
   const [data, setData] = useState<IData>({
     category: null || "",
@@ -122,13 +119,13 @@ function EditComponent() {
     km: null || "",
     latitude: null || "",
     longitude: null || "",
-    phone: false
+    phone: false,
   });
 
   const phone = userInfo?.data?.userDetails?.phoneNumber;
   const [productData, setProductData] = useState<any>();
-  const [productSubCat, setProductSubCat] = useState<string>("")
-  let [productImages, setProductImages] = useState<any>(); 
+  const [productSubCat, setProductSubCat] = useState<string>("");
+  let [productImages, setProductImages] = useState<any>();
   const [whatsappChecked, setWhatsappChecked] = useState<boolean>(false);
   const [viberChecked, setViberChecked] = useState<boolean>(false);
   const [phoneChecked, setPhoneChecked] = useState<boolean>(false);
@@ -137,43 +134,48 @@ function EditComponent() {
 
   const adId = useParams();
 
-  const fetchData = useCallback(async() => {
+  const fetchData = useCallback(async () => {
     try {
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/getSpecific/${adId?.id}`);
-        setProductData(res.data?.data);
-        setProductImages(res?.data.data?.images);
-        data.images = res.data?.data?.images;
-        data.price = res?.data?.data?.price;
-        data.whatsapp = res?.data?.data?.whatsapp;
-        data.viber = res?.data?.data?.viber;
-        setProductSubCat(res.data?.data?.category);
-        setEditCondition(res.data?.data?.condition);
-        if(!isNullOrNullOrEmpty(res?.data?.data?.whatsapp)) {setWhatsappChecked(true)};
-        if(!isNullOrNullOrEmpty(res.data?.data?.viber)) {setViberChecked(true)};
-        if(res?.data?.data?.phone === true) {
-          setPhoneChecked(true);
-          setData({...data, ['phone']: res?.data?.data?.phone })
-        } 
-        if(res.data?.data?.price === null) { 
-          setPriceListValue("");
-          setPriceDisabled(true); 
-        }else{
-          setPriceDisabled(false); 
-        }
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/getSpecific/${adId?.id}`
+      );
+      setProductData(res.data?.data);
+      setProductImages(res?.data.data?.images);
+      data.images = res.data?.data?.images;
+      data.price = res?.data?.data?.price;
+      data.whatsapp = res?.data?.data?.whatsapp;
+      data.viber = res?.data?.data?.viber;
+      setProductSubCat(res.data?.data?.category);
+      setEditCondition(res.data?.data?.condition);
+      if (!isNullOrNullOrEmpty(res?.data?.data?.whatsapp)) {
+        setWhatsappChecked(true);
+      }
+      if (!isNullOrNullOrEmpty(res.data?.data?.viber)) {
+        setViberChecked(true);
+      }
+      if (res?.data?.data?.phone === true) {
+        setPhoneChecked(true);
+        setData({ ...data, ["phone"]: res?.data?.data?.phone });
+      }
+      if (res.data?.data?.price === null) {
+        setPriceListValue("");
+        setPriceDisabled(true);
+      } else {
+        setPriceDisabled(false);
+      }
     } catch (error: any) {
-        if(error.response.status === 400){
-            router.push('/')
-        }
+      if (error.response.status === 400) {
+        router.push("/");
+      }
     }
   }, [adId?.id, router]);
 
   console.log(productImages);
-  
 
   useEffect(() => {
-    fetchData()
+    fetchData();
   }, [fetchData]);
-  
+
   const conditionList = [
     {
       id: 1,
@@ -198,17 +200,17 @@ function EditComponent() {
   const [brands, setBrands] = useState<any>([]);
   const [googleLocation, setGoogleLocation] = useState<any>(null);
   const [showLocation, setShowLocation] = useState<Boolean>(false);
+  const [disableBrand, setDisableBrand] = useState<Boolean>(false);
+  const [disableModel, setDisableModel] = useState<Boolean>(false);
   const [subCategory, setSubCategory] = useState<any>([]);
-  
 
   const productSubCategory = [
     "Construction Machines",
     "Busses",
     "Trailers",
     "Vans",
-    "Trucks"
-  ]
-
+    "Trucks",
+  ];
 
   const exteriorColor = [
     {
@@ -362,8 +364,8 @@ function EditComponent() {
     },
   ];
 
-  const categorySubList = productData?.category === "Bikes" ? subList : partsSubList;
-
+  const categorySubList =
+    productData?.category === "Bikes" ? subList : partsSubList;
 
   useEffect(() => {
     const fetchCategory = async () => {
@@ -372,31 +374,48 @@ function EditComponent() {
       );
       setSubCategory(res.data?.data);
     };
-    if(productData?.category === "Busses" || productData?.category === "Vans" || productData?.category === "Trailers" || productData?.category === "Trucks" || productData?.category === "Construction Machines")  fetchCategory();
+    if (
+      productData?.category === "Busses" ||
+      productData?.category === "Vans" ||
+      productData?.category === "Trailers" ||
+      productData?.category === "Trucks" ||
+      productData?.category === "Construction Machines"
+    )
+      fetchCategory();
   }, [productSubCat, productData?.category]);
-  
-  
-  let vehicleCategory = checkVehicleCategory.includes(productData?.category) ? productData?.subCategory : productData?.category;
-  
-  
+
+  let vehicleCategory = checkVehicleCategory.includes(productData?.category)
+    ? productData?.subCategory
+    : productData?.category;
 
   useEffect(() => {
-        const fetchBrand = async () => {
-        const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/${vehicleCategory}`
-        );
-        setBrands(res.data?.data);
-      };
-      if(vehicleCategory !== undefined) {
-        if(productSubCat !== ("Parts" || "Others")) fetchBrand();
-      } 
-  }, [vehicleCategory, productSubCat])
-  
+    const fetchBrand = async () => {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findVehicleMake/${vehicleCategory}`
+      );
+      setBrands(res.data?.data);
+    };
+    if (vehicleCategory !== undefined) {
+      if (productSubCat !== ("Parts" || "Others")) fetchBrand();
+    }
+  }, [vehicleCategory, productSubCat]);
 
   const handleInput = (e: any) => {
-    setData({ ...data, [e.target.name]: e.target.value });
-    if (e.target.name == "brand") fetchBrand(e.target.value);
-    if(e.target.name === "condition") setEditCondition(e.target.value);
+    if (e.target.name == "brand") {
+      setData({ ...data, brand: e.target.value });
+      fetchBrand(e.target.value);
+    } else if (e.target.name === "model") {
+      setData({ ...data, model: e.target.value });
+    } else if (e.target.name === "Other brand") {
+      setData({ ...data, brand: e.target.value });
+      setModels(null);
+      setDisableBrand(!disableBrand);
+    } else if (e.target.name === "Other model") {
+      setData({ ...data, model: e.target.value });
+      setDisableModel(!disableModel);
+    } else {
+      setData({ ...data, [e.target.name]: e.target.value });
+    }
   };
 
   const fetchBrand = async (model: any) => {
@@ -408,8 +427,7 @@ function EditComponent() {
     } catch (error) {
       console.log(error);
     }
-  };  
-
+  };
 
   const handleImage = (e: any) => {
     const files = e.target.files;
@@ -430,42 +448,44 @@ function EditComponent() {
   const removeImage = async (index: string) => {
     const newArr = productImages.filter((img: string) => img !== index);
     setProductImages(newArr);
-    setData({...data, ['images']: newArr});
-  }
+    setData({ ...data, ["images"]: newArr });
+  };
 
   const checkObjectEmpty = (obj: any) => {
-    for (const key in obj) {      
-      if (obj[key].trim() === ""){
+    for (const key in obj) {
+      if (obj[key].trim() === "") {
         return true;
       }
     }
     return false;
-  }
+  };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log(data);
-    if(images <= 0 && productImages <= 0){
+    if (images <= 0 && productImages <= 0) {
       toast("Please! select image to update.");
+    } else if (images.length + productImages.length > 7) {
+      toast(t(`taost.imageUpload`));
+      return;
     }
     setLoading(true);
     let newData;
-    if(checkObjectEmpty(data) === false){
+    if (checkObjectEmpty(data) === false) {
       return;
-    }else if(images.length !== 0){
+    } else if (images.length !== 0) {
       const formData = new FormData();
-    for (let i = 0; i < images.length; i++) {
-      formData.append("file", images[i]);
-    }
-    for (const key in data) {
-      if (data.hasOwnProperty(key)) {
-        formData.append(key, data[key as keyof IData]);
+      for (let i = 0; i < images.length; i++) {
+        formData.append("file", images[i]);
       }
+      for (const key in data) {
+        if (data.hasOwnProperty(key)) {
+          formData.append(key, data[key as keyof IData]);
+        }
+      }
+      newData = formData;
+    } else {
+      newData = data;
     }
-    newData = formData;
-  }else{
-    newData = data;
-  }
     try {
       const res = await axios.patch(
         `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/edit-ad/${adId?.id}`,
@@ -494,7 +514,6 @@ function EditComponent() {
     setLoading(false);
   };
 
-  
   const checkPlace = async (e: any) => {
     setShowLocation(true);
     const res = await axios.get(
@@ -531,22 +550,21 @@ function EditComponent() {
   const handleChange = (newChecked: boolean, type: any) => {
     if (type === "whatsapp") {
       setWhatsappChecked(newChecked);
-      if(newChecked === true) setData({...data, ["whatsapp"]: productData?.whatsapp});
-      else setData({...data, ["whatsapp"]: ""});
+      if (newChecked === true)
+        setData({ ...data, ["whatsapp"]: productData?.whatsapp });
+      else setData({ ...data, ["whatsapp"]: "" });
     } else if (type === "viber") {
       setViberChecked(newChecked);
-      if(newChecked === true) setData({...data, ["viber"]: productData?.viber});
-      else setData({...data, ["viber"]: ""});
-    }
-    else if (type === "phone") {
+      if (newChecked === true)
+        setData({ ...data, ["viber"]: productData?.viber });
+      else setData({ ...data, ["viber"]: "" });
+    } else if (type === "phone") {
       setPhoneChecked(newChecked);
-      setData({...data, ["phone"]: !phoneChecked})
-    } 
-    else {
+      setData({ ...data, ["phone"]: !phoneChecked });
+    } else {
       return;
     }
   };
-  
 
   const axelType = [
     {
@@ -565,11 +583,25 @@ function EditComponent() {
 
   const handlePrice = (value: string) => {
     setPriceListValue(value);
-    setPriceDisabled(!priceDisabled)
-    setData({...data, ['price']: ""});
-  }
-  
-  
+    setPriceDisabled(!priceDisabled);
+    setData({ ...data, ["price"]: "" });
+  };
+
+  const checkBrandDisable = () => {
+    if (disableBrand === true) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const checkModelDisable = () => {
+    if (disableModel === true) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   return (
     <>
@@ -586,7 +618,11 @@ function EditComponent() {
           </div>
           <div className=" container mx-auto flex flex-col mb-7">
             <div className="flex flex-row space-x-2 mt-5">
-                <h1 className="text-lg font-semibold">{productData?.category === undefined ? '' : t(`category.${ productData?.category}`)}</h1>
+              <h1 className="text-lg font-semibold">
+                {productData?.category === undefined
+                  ? ""
+                  : t(`category.${productData?.category}`)}
+              </h1>
             </div>
             <div className="mt-5 w-full mb-5">
               <h1 className="space-x-3 border-b-2 pb-3">
@@ -598,30 +634,30 @@ function EditComponent() {
             </div>
 
             <form onSubmit={(e: any) => handleSubmit(e)}>
-            {checkVehicleCategory.includes(productData?.category) &&
-            <div className={style.divStyle}>
-                <h1 className={style.h1Style}>
-                  {t("autosComponent.subCategory")}
-                  <span className="text-[#FF0000]">*</span>
-                </h1>
-                <div className="flex flex-col w-full -ml-5">
-                <select
-                    className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
-                    name="subCategory"
-                    onChange={(e: any) => handleInput(e)}
-                  >
-                    <option value="option1">
-                      {t(`allCategories.${productData?.subCategory}`)}
-                    </option>
-                    {categorySubList.map((list: any, i: number) => (
-                      <option value={list.name} key={i}>
-                        {t(`allCategories.${list.name}`)}
+              {checkVehicleCategory.includes(productData?.category) && (
+                <div className={style.divStyle}>
+                  <h1 className={style.h1Style}>
+                    {t("autosComponent.subCategory")}
+                    <span className="text-[#FF0000]">*</span>
+                  </h1>
+                  <div className="flex flex-col w-full -ml-5">
+                    <select
+                      className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+                      name="subCategory"
+                      onChange={(e: any) => handleInput(e)}
+                    >
+                      <option value="option1">
+                        {t(`allCategories.${productData?.subCategory}`)}
                       </option>
-                    ))}
-                  </select>
+                      {categorySubList.map((list: any, i: number) => (
+                        <option value={list.name} key={i}>
+                          {t(`allCategories.${list.name}`)}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
-            </div>
-}
+              )}
               <div className={style.divStyle}>
                 <h1 className={style.h1Style}>
                   {t("autosComponent.title")}{" "}
@@ -648,24 +684,24 @@ function EditComponent() {
                 </h1>
                 <div className="flex flex-col w-full">
                   <ul className="flex flex-row space-x-2">
-                  <li>
-                        <input
-                          checked={priceDisabled === false ? true : false}
-                          type="radio"
-                          name="price"
-                          onClick={() => handlePrice("price")}
-                        />{" "}
-                          {t("product.Price")}
-                  </li>
-                  <li>
-                        <input
-                          checked={priceDisabled === true ? true : false}
-                          type="radio"
-                          name="price"
-                          onChange={() => handlePrice("")}
-                        />{" "}
-                          {t("product.disabled")}
-                  </li>
+                    <li>
+                      <input
+                        checked={priceDisabled === false ? true : false}
+                        type="radio"
+                        name="price"
+                        onClick={() => handlePrice("price")}
+                      />{" "}
+                      {t("product.Price")}
+                    </li>
+                    <li>
+                      <input
+                        checked={priceDisabled === true ? true : false}
+                        type="radio"
+                        name="price"
+                        onChange={() => handlePrice("")}
+                      />{" "}
+                      {t("product.disabled")}
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -696,109 +732,149 @@ function EditComponent() {
                 </h1>
                 <div className="flex flex-col w-full">
                   <ul className="space-y-1">
-                  <li>
-                    <input
-                      checked={editCondition === "new" ? true : false}
-                      type="radio"
-                      name="condition"
-                      value="new"
-                      onChange={(e: any) => handleInput(e)}
-                    />{" "}
-                    {conditionList[0].name}
-                  </li>
-                  <li>
-                    <input
-                      checked={editCondition === "used" ? true : false}
-                      type="radio"
-                      name="condition"
-                      value="used"
-                      onChange={(e: any) => handleInput(e)}
-                    />{" "}
-                    {conditionList[1].name}
-                  </li>
-                  <li>
-                    <input
-                      checked={editCondition === "recondition" ? true : false}
-                      type="radio"
-                      name="condition"
-                      value="recondition"
-                      onChange={(e: any) => handleInput(e)}
-                    />{" "}
-                    {conditionList[2].name}
-                  </li>
+                    <li>
+                      <input
+                        checked={editCondition === "new" ? true : false}
+                        type="radio"
+                        name="condition"
+                        value="new"
+                        onChange={(e: any) => handleInput(e)}
+                      />{" "}
+                      {conditionList[0].name}
+                    </li>
+                    <li>
+                      <input
+                        checked={editCondition === "used" ? true : false}
+                        type="radio"
+                        name="condition"
+                        value="used"
+                        onChange={(e: any) => handleInput(e)}
+                      />{" "}
+                      {conditionList[1].name}
+                    </li>
+                    <li>
+                      <input
+                        checked={editCondition === "recondition" ? true : false}
+                        type="radio"
+                        name="condition"
+                        value="recondition"
+                        onChange={(e: any) => handleInput(e)}
+                      />{" "}
+                      {conditionList[2].name}
+                    </li>
                   </ul>
                 </div>
               </div>
-              {productSubCategory.includes(productSubCat) && 
-              <div className={style.divStyle}>
-              <h1 className={style.h1Style}>
-                {t("autosComponent.subCategory")}{" "}
-                <span className="text-[#FF0000]">*</span>
-              </h1>
-              <select
-                className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
-                name="type"
-                onChange={(e: any) => handleInput(e)}
-              >
-                <option value="option1">
-                  {t(`subCategoryOptions.${productData?.type}`)}
-                </option>
-                {subCategory?.map(
-                  (list: any, i: number) =>
-                    list?.category?.map((cat: any, j: number) => (
-                      <option
-                        className={`hover:bg-red-500 hover:text-white 
-                  ml-1 mb-1 ${list.length - 1 === j ? "" : " border-b-2"}`}
-                        key={j}
-                        value={cat}
-                      >
-                        {t(`subCategoryOptions.${cat}`)}
-                      </option>
-                    ))
-                )}
-              </select>
-            </div>
-              }
-              {productData?.category !== ("Parts" || "Others") && 
-              <div className={style.divStyle}>
-                <h1 className={style.h1Style}>
-                  {t("autosComponent.brand")}{" "}
-                  <span className="text-[#FF0000]">*</span>
-                </h1>
-                <div className="relative w-full">
+              {productSubCategory.includes(productSubCat) && (
+                <div className={style.divStyle}>
+                  <h1 className={style.h1Style}>
+                    {t("autosComponent.subCategory")}{" "}
+                    <span className="text-[#FF0000]">*</span>
+                  </h1>
                   <select
-                    className="custom-select w-full block appearance-none bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
-                    name="brand"
+                    className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+                    name="type"
                     onChange={(e: any) => handleInput(e)}
                   >
                     <option value="option1">
-                      {productData?.brand}
+                      {t(`subCategoryOptions.${productData?.type}`)}
                     </option>
-                    {brands?.make?.map((brand: any, i: number) => (
-                      <option value={brand} key={i} className="capitalize">
-                        {brand}
-                      </option>
-                    ))}
+                    {subCategory?.map(
+                      (list: any, i: number) =>
+                        list?.category?.map((cat: any, j: number) => (
+                          <option
+                            className={`hover:bg-red-500 hover:text-white 
+                  ml-1 mb-1 ${list.length - 1 === j ? "" : " border-b-2"}`}
+                            key={j}
+                            value={cat}
+                          >
+                            {t(`subCategoryOptions.${cat}`)}
+                          </option>
+                        ))
+                    )}
                   </select>
                 </div>
-              </div>
-                }
-              {data?.brand !== "" && productData?.category === "Autos" &&
-              <div className={style.divStyle}>
+              )}
+              {productData?.category !== ("Parts" || "Others") && (
+                <div className={style.divStyle}>
+                  <h1 className={style.h1Style}>
+                    {t("autosComponent.brand")}{" "}
+                    <span className="text-[#FF0000]">*</span>
+                  </h1>
+                  <div className="w-full">
+                    {!disableBrand && (
+                      <div className="relative w-full">
+                        <select
+                          className={`custom-select w-full block appearance-none bg-white border border-gray-300 focus:outline-none px-4 py-2 pr-8 leading-tight ${
+                            !disableBrand && "hover:border-red-600"
+                          }`}
+                          name="brand"
+                          onChange={(e: any) => handleInput(e)}
+                          disabled={checkBrandDisable()}
+                        >
+                          <option value="option1">{productData?.brand !== "Others" ? productData?.brand : t(`subCategoryOptions.${productData?.brand}`)}</option>
+                          {brands?.make?.map((brand: any, i: number) => (
+                            <option
+                              value={brand}
+                              key={i}
+                              className="capitalize"
+                            >
+                              {brand}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    )}
+                    <div className="mt-2">
+                      <input
+                        type="checkbox"
+                        name="Other brand"
+                        value="Other"
+                        onClick={(e) => handleInput(e)}
+                      />{" "}
+                      {t(`subCategoryOptions.Others`)}
+                    </div>
+                  </div>
+                </div>
+              )}
+              {data?.brand !== "" && !disableBrand && productData?.category === "Autos" && (
+                <div className={style.divStyle}>
                   <h1 className={style.h1Style}>{t("autosComponent.model")}</h1>
-                  <select
-                    className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
-                    name="model"
-                    onChange={(e: any) => handleInput(e)}
-                  >
-                    {models[0]?.model?.map((model: any, i: number) => (
-                      <option value={model} key={i}>
-                        {model}
+                  <div className="w-full">
+                    {!disableModel &&
+                    <select
+                      className={`block appearance-none w-full bg-white border border-gray-300 focus:outline-none px-4 py-2 pr-8 leading-tight ${
+                        !disableModel && "hover:border-red-600"
+                      }`}
+                      name="model"
+                      onChange={(e: any) => handleInput(e)}
+                      disabled={checkModelDisable()}
+                    >
+                      <option value="">
+                        {productData?.model !== "Others"
+                          ? productData?.model
+                          : t(`subCategoryOptions.${productData?.model}`)}
                       </option>
-                    ))}
-                  </select>
-              </div>
-              }
+                      {models !== null &&
+                        models[0]?.model?.map((model: any, i: number) => (
+                          <option value={model} key={i}>
+                            {model}
+                          </option>
+                        ))}
+                    </select>
+                    }
+                    <div className="mt-2">
+                      <input
+                        type="checkbox"
+                        name="Other model"
+                        value="Other"
+                        onClick={(e) => handleInput(e)}
+                      />{" "}
+                      {t(`subCategoryOptions.Others`)}
+                    </div>
+                  </div>
+                </div>
+              )}
               <div className={style.divStyle}>
                 <h1 className={style.h1Style}>{t("autosComponent.year")}</h1>
                 <div className="flex flex-col w-full">
@@ -822,9 +898,7 @@ function EditComponent() {
                     name="bodyShape"
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option>
-                      {productData?.bodyShape}
-                    </option>
+                    <option>{productData?.bodyShape}</option>
                     {bodyShape?.map((body: any, i: number) => (
                       <option value={body.value} key={i}>
                         {body.name}
@@ -843,9 +917,7 @@ function EditComponent() {
                     name="gearBox"
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option>
-                      {productData?.gearBox}
-                    </option>
+                    <option>{productData?.gearBox}</option>
                     {gearBox.map((gear: any, i: number) => (
                       <option value={gear?.value} key={i}>
                         {gear?.name}
@@ -864,9 +936,7 @@ function EditComponent() {
                     name="fuelType"
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option>
-                      {productData?.fuelType}
-                    </option>
+                    <option>{productData?.fuelType}</option>
                     {fuelType1.map((fuel: any, i: number) => (
                       <option value={fuel?.value} key={i}>
                         {fuel?.name}
@@ -885,9 +955,7 @@ function EditComponent() {
                     name="km"
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option>
-                      {productData?.km}
-                    </option>
+                    <option>{productData?.km}</option>
                     {kilometers.map((kms: any, i: number) => (
                       <option value={kms.name} key={i}>
                         {kms.name}
@@ -906,9 +974,7 @@ function EditComponent() {
                     name="exteriorColor"
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option>
-                      {productData?.exteriorColor}
-                    </option>
+                    <option>{productData?.exteriorColor}</option>
                     {exteriorColor.map((color: any, i: number) => (
                       <option value={color?.value} key={i}>
                         {color?.name}
@@ -927,9 +993,7 @@ function EditComponent() {
                     name="interiorColor"
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option>
-                      {productData?.interiorColor}
-                    </option>
+                    <option>{productData?.interiorColor}</option>
                     {interiorColor.map((color: any, i: number) => (
                       <option value={color?.value} key={i}>
                         {color?.name}
@@ -938,7 +1002,8 @@ function EditComponent() {
                   </select>
                 </div>
               )}
-              {productData?.axeltype && <div className={style.divStyle}>
+              {productData?.axeltype && (
+                <div className={style.divStyle}>
                   <h1 className={style.h1Style}>
                     {t("autosComponent.axleCount")}{" "}
                     <span className="text-[#FF0000]">*</span>
@@ -948,16 +1013,15 @@ function EditComponent() {
                     name="axeltype"
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option value="option1">
-                      {productData?.axeltype}
-                    </option>
+                    <option value="option1">{productData?.axeltype}</option>
                     {axelType?.map((axel: any, i: number) => (
                       <option value={axel.name} key={i}>
                         {axel.name}
                       </option>
                     ))}
                   </select>
-                </div>}
+                </div>
+              )}
               <div className={style.divStyle}>
                 <h1 className={style.h1Style}>
                   {t("autosComponent.description")}
@@ -981,7 +1045,8 @@ function EditComponent() {
                   </span>
                 </h1>
               </div>
-              {<div className="flex flex-row flex-wrap gap-4">
+              {
+                <div className="flex flex-row flex-wrap gap-4">
                   {productImages?.map((image: any, i: any) => (
                     <div key={i} className="flex-wrap w-auto">
                       <Cancel
@@ -1011,25 +1076,28 @@ function EditComponent() {
                     onChange={(e: any) => handleImage(e)}
                   />
                   {!images ? (
-                ""
-              ) : (
-                <div className="flex flex-row flex-wrap gap-4 mt-4">
-                  {images?.map((image: any, i: any) => (
-                    <div key={i} className="flex-wrap w-auto">
-                      <div className='flex flex-row-reverse'>
-                        <Cancel className='absolute text-[#FF0000]' onClick={() => handleImageRemove(i)} />
-                      </div>
-                      <NxtImage
-                        className="h-36 w-60"
-                        src={URL.createObjectURL(image)}
-                        alt={`Image ${i}`}
-                        width={100}
-                        height={100}
-                      />
+                    ""
+                  ) : (
+                    <div className="flex flex-row flex-wrap gap-4 mt-4">
+                      {images?.map((image: any, i: any) => (
+                        <div key={i} className="flex-wrap w-auto">
+                          <div className="flex flex-row-reverse">
+                            <Cancel
+                              className="absolute text-[#FF0000]"
+                              onClick={() => handleImageRemove(i)}
+                            />
+                          </div>
+                          <NxtImage
+                            className="h-36 w-60"
+                            src={URL.createObjectURL(image)}
+                            alt={`Image ${i}`}
+                            width={100}
+                            height={100}
+                          />
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
-              )}
+                  )}
 
                   <div className="bg-red-300 mt-4 p-2 border-none rounded-sm italic">
                     <ul className="italic text-sm space-y-2">
@@ -1105,13 +1173,15 @@ function EditComponent() {
               <div className={style.divStyle}>
                 <h1 className={`${style.h1Style} invisible`}>Whatspp</h1>
                 <div className="flex flex-row w-full h-8 justify-between">
-                <h1 className="font-semibold mt-1">{t("postAd.showNumber")}</h1>
+                  <h1 className="font-semibold mt-1">
+                    {t("postAd.showNumber")}
+                  </h1>
                 </div>
               </div>
               <div className={style.divStyle}>
                 <h1 className={`${style.h1Style} invisible`}>Whatspp</h1>
                 <div className="flex flex-row w-full h-8 space-x-5">
-                <Switch
+                  <Switch
                     onChange={() => handleChange(!whatsappChecked, "whatsapp")}
                     checked={whatsappChecked}
                     offColor="#888"
@@ -1119,7 +1189,7 @@ function EditComponent() {
                     height={20}
                     className="h-10"
                   />
-                <h1 className="-mt-1 font-bold text-lg">Whatsapp</h1>
+                  <h1 className="-mt-1 font-bold text-lg">Whatsapp</h1>
                 </div>
               </div>
               {whatsappChecked && (
@@ -1130,7 +1200,14 @@ function EditComponent() {
                     <h1 className={`${style.h1Style} invisible`}>whatsapp</h1>
                     <div className="h-auto flex w-full border-b-2 p-2">
                       <PhoneIphone className="text-gray-400" />
-                      <input type="text" className="w-full focus:outline-none" placeholder={productData?.whatsapp} name="whatsapp" value={data?.whatsapp} onChange={(e) => handleInput(e)} />
+                      <input
+                        type="text"
+                        className="w-full focus:outline-none"
+                        placeholder={productData?.whatsapp}
+                        name="whatsapp"
+                        value={data?.whatsapp}
+                        onChange={(e) => handleInput(e)}
+                      />
                       <BorderColor className="text-gray-400" />
                     </div>
                   </div>
@@ -1139,7 +1216,7 @@ function EditComponent() {
               <div className={style.divStyle}>
                 <h1 className={`${style.h1Style} invisible`}>Viber</h1>
                 <div className="flex flex-row w-full h-8 space-x-5">
-                <Switch
+                  <Switch
                     onChange={() => handleChange(!viberChecked, "viber")}
                     checked={viberChecked}
                     offColor="#888"
@@ -1147,7 +1224,7 @@ function EditComponent() {
                     height={20}
                     className="h-10"
                   />
-                <h1 className="-mt-1 font-bold text-lg">Viber</h1>
+                  <h1 className="-mt-1 font-bold text-lg">Viber</h1>
                 </div>
               </div>
               {viberChecked && (
@@ -1158,10 +1235,17 @@ function EditComponent() {
                     <h1 className={`${style.h1Style} invisible`}>viber</h1>
                     <div className="h-auto flex w-full border-b-2 p-2">
                       <PhoneIphone className="text-gray-400" />
-                      <input type="text" className="w-full focus:outline-none" placeholder={productData?.viber} name="viber" value={data?.viber} onChange={(e) => handleInput(e)} />
+                      <input
+                        type="text"
+                        className="w-full focus:outline-none"
+                        placeholder={productData?.viber}
+                        name="viber"
+                        value={data?.viber}
+                        onChange={(e) => handleInput(e)}
+                      />
                       <BorderColor className="text-gray-400" />
                     </div>
-              </div>
+                  </div>
                 </>
               )}
               <div className={style.divStyle}>
@@ -1178,16 +1262,17 @@ function EditComponent() {
                   <h1 className="-mt-1 font-bold text-lg">Phone</h1>
                 </div>
               </div>
-              {phoneChecked && 
-              <div
-              className={`${style.divStyle} transform ease-linear duration-500`}
-            >
-              <h1 className={`${style.h1Style} invisible`}>phone</h1>
-              <div className="h-auto flex w-full border-b-2 p-2">
-                <PhoneIphone className="text-gray-400" />
-                <h1 className="text-base text-gray-500">{phone}</h1>
-              </div>
-              </div>}
+              {phoneChecked && (
+                <div
+                  className={`${style.divStyle} transform ease-linear duration-500`}
+                >
+                  <h1 className={`${style.h1Style} invisible`}>phone</h1>
+                  <div className="h-auto flex w-full border-b-2 p-2">
+                    <PhoneIphone className="text-gray-400" />
+                    <h1 className="text-base text-gray-500">{phone}</h1>
+                  </div>
+                </div>
+              )}
               {/* <TextField className="w-full" id="standard-basic" label="Standard" variant="standard" />               */}
               <div className={style.divStyle}>
                 <h1 className={`${style.h1Style} invisible`}>ffj</h1>
@@ -1209,11 +1294,4 @@ function EditComponent() {
   );
 }
 
-
 export default dynamic(() => Promise.resolve(EditComponent), { ssr: false });
-
-
-
-
-
-

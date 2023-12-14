@@ -89,6 +89,8 @@ export default function AutosComponent() {
   const [brands, setBrands] = useState<any>([]);
   const [googleLocation, setGoogleLocation] = useState<any>(null);
   const [showLocation, setShowLocation] = useState<Boolean>(false);
+  const [disableBrand, setDisableBrand] = useState<Boolean>(false);
+  const [disableModel, setDisableModel] = useState<Boolean>(false);
   const [formData, setFormData] = useState<any>();
   const [imageRequired, setImageRequired] = useState<any>(true);
   let router = useRouter();
@@ -125,6 +127,8 @@ export default function AutosComponent() {
     }
   }, [router, userData]);
 
+
+
   useEffect(() => {
     const fetchBrand = async () => {
       const res = await axios.get(
@@ -144,19 +148,33 @@ export default function AutosComponent() {
   
 
   const handleInput = (e: any) => {
-    setData({ ...data, [e.target.name]: e.target.value });
-    if (e.target.name == "brand") fetchBrand(e.target.value);
+    if (e.target.name == "brand"){
+      setData({ ...data, brand: e.target.value });
+      fetchBrand(e.target.value);
+    }else if(e.target.name === "model"){
+      setData({ ...data, model: e.target.value });
+    }
+    else if(e.target.name === "Other brand"){
+      setData({ ...data, brand: e.target.value });
+      setModels(null)
+      setDisableBrand(!disableBrand);
+    }else if(e.target.name === 'Other model'){
+      setData({ ...data, model: e.target.value });
+      setDisableModel(!disableModel);
+    }else{
+      setData({ ...data, [e.target.name]: e.target.value });
+    }
   };
 
   const fetchBrand = async (model: any) => {
-    try {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findModels/Autos/${model}`
-      );
-      setModels(res.data?.data);
-    } catch (error) {
-      console.log(error);
-    }
+      try {
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_URI}/ad/findModels/Autos/${model}`
+        );
+        setModels(res.data?.data);
+      } catch (error) {
+        console.log(error);
+      }
   };
 
   const handleImage = (e: any) => {
@@ -186,6 +204,8 @@ export default function AutosComponent() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    console.log(data);
+    return;
     if(images.length > 7){
       toast(t(`taost.imageUpload`));
       return
@@ -289,6 +309,24 @@ export default function AutosComponent() {
       return false;
     }
   }
+
+  const checkBrandDisable = () => {
+    if(disableBrand === true){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  const checkModelDisable = () => {
+    if(disableModel === true){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+
 
   return (
     <>
@@ -415,12 +453,15 @@ export default function AutosComponent() {
                   {t("autosComponent.brand")}{" "}
                   <span className="text-[#FF0000]">*</span>
                 </h1>
+                <div className="w-full">
+                  {!disableBrand &&
                 <div className="relative w-full">
                   <select
-                    className="custom-select w-full block appearance-none bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+                    className={`custom-select w-full block appearance-none bg-white border border-gray-300 focus:outline-none px-4 py-2 pr-8 leading-tight ${!disableBrand && 'hover:border-red-600' }`}
                     name="brand"
                     onChange={(e: any) => handleInput(e)}
                     required
+                    disabled={checkBrandDisable()}
                   >
                     <option value="option1">
                       {t("autosComponent.selectBrand")}
@@ -436,25 +477,39 @@ export default function AutosComponent() {
                     ▼
                   </div>
                 </div>
+                }
+                <div className="mt-2">
+                  <input type="checkbox" name="Other brand" value="Others" onClick={(e) => handleInput(e)} /> {t(`subCategoryOptions.Others`)}
+                </div>
+                </div>
+
               </div>
-              {data?.brand && (
+              {data?.brand && !disableBrand && (
                 <div className={style.divStyle}>
                   <h1 className={style.h1Style}>{t("autosComponent.model")}</h1>
+                  <div className="w-full">
+                  {!disableModel &&
                   <select
-                    className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
+                    className={`block appearance-none w-full bg-white border border-gray-300 focus:outline-none px-4 py-2 pr-8 leading-tight ${!disableModel && 'hover:border-red-600'}`}
                     name="model"
                     onChange={(e: any) => handleInput(e)}
                     required
+                    disabled={checkModelDisable()}
                   >
                     <option value="option1">
                       {t("autosComponent.selectModel")}
                     </option>
-                    {models[0]?.model?.map((model: any, i: number) => (
+                    {models !== null && models[0]?.model?.map((model: any, i: number) => (
                       <option value={model} key={i}>
                         {model}
                       </option>
                     ))}
                   </select>
+                  }
+                  <div className="mt-2">
+                  <input type="checkbox" name="Other model" value="Others" onClick={(e) => handleInput(e)} /> {t(`subCategoryOptions.Others`)}
+                </div>
+                  </div>
                 </div>
               )}
               <div className={style.divStyle}>

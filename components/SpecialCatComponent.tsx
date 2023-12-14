@@ -79,8 +79,8 @@ export default function SpecialCatComponent({ type }: any) {
   const [whatsappChecked, setWhatsappChecked] = useState<boolean>(false);
   const [viberChecked, setViberChecked] = useState<boolean>(false);
   const [phoneChecked, setPhoneChecked] = useState<boolean>(false);
-  const [emailChecked, setEmailChecked] = useState<boolean>(false);
   const [imageRequired, setImageRequired] = useState<any>(true);
+  const [disableBrand, setDisableBrand] = useState<Boolean>(false);
   const [formData, setFormData] = useState<any>();
 
   const [data, setData] = useState<IData>({
@@ -132,7 +132,12 @@ export default function SpecialCatComponent({ type }: any) {
   }, [type]);
 
   const handleInput = (e: any) => {
-    setData({ ...data, [e.target.name]: e.target.value });
+    if(e.target.name === "Other brand"){
+      setDisableBrand(!disableBrand);
+      setData({ ...data, brand: e.target.value });
+    }else{
+      setData({ ...data, [e.target.name]: e.target.value });
+    }
   };
 
   const handleImage = (e: any) => {
@@ -164,6 +169,8 @@ export default function SpecialCatComponent({ type }: any) {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    console.log(data);
+    return;
     if(data.brand === (null || "")){
       toast(t(`taost.checkBrand`));
       return
@@ -283,6 +290,14 @@ export default function SpecialCatComponent({ type }: any) {
 
   const checkImageRequire = () => {
     if(imageRequired === true){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  const checkBrandDisable = () => {
+    if(disableBrand === true){
       return true;
     }else{
       return false;
@@ -422,6 +437,8 @@ export default function SpecialCatComponent({ type }: any) {
                     {t("autosComponent.brand")}{" "}
                     <span className="text-[#FF0000]">*</span>
                   </h1>
+                  <div className="w-full">
+                  {!disableBrand && 
                   <select
                     className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
                     name="brand"
@@ -436,6 +453,9 @@ export default function SpecialCatComponent({ type }: any) {
                       </option>
                     ))}
                   </select>
+                  }
+                  <input type="checkbox" name="Other brand" value="Others" onClick={(e) => handleInput(e)} />
+                  </div>
                 </div>
               )}
               {type == "Others" && (
@@ -453,6 +473,7 @@ export default function SpecialCatComponent({ type }: any) {
                       onChange={(e: any) => handleInput(e)}
                       required
                     />
+                    this is testing for others
                   </div>
                 </div>
               )}

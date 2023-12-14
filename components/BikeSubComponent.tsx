@@ -106,6 +106,8 @@ export default function BikeSubComponent({ type }: any) {
   const [viberChecked, setViberChecked] = useState<boolean>(false);
   const [phoneChecked, setPhoneChecked] = useState<boolean>(false);
   const [imageRequired, setImageRequired] = useState<any>(true);
+  const [disableBrand, setDisableBrand] = useState<Boolean>(false);
+  const [disableModel, setDisableModel] = useState<Boolean>(false);
   const [formData, setFormData] = useState<any>();  
   const [data, setData] = useState<IData>({
     category: "Bikes",
@@ -168,9 +170,21 @@ export default function BikeSubComponent({ type }: any) {
   }, [type]);
 
   const handleInput = (e: any) => {
-    setData({ ...data, [e.target.name]: e.target.value });
-    if (e.target.name == "brand") {
+    if (e.target.name == "brand"){
+      setData({ ...data, brand: e.target.value });
       fetchBrand(e.target.value);
+    }else if(e.target.name === "model"){
+      setData({ ...data, model: e.target.value });
+    }
+    else if(e.target.name === "Other brand"){
+      setData({ ...data, brand: e.target.value });
+      setModels(null)
+      setDisableBrand(!disableBrand);
+    }else if(e.target.name === 'Other model'){
+      setData({ ...data, model: e.target.value });
+      setDisableModel(!disableModel);
+    }else{
+      setData({ ...data, [e.target.name]: e.target.value });
     }
   };
 
@@ -214,6 +228,9 @@ export default function BikeSubComponent({ type }: any) {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    console.log(data);
+    return;
+    
     if(data.brand === (null || "")){
       toast(t(`taost.checkBrand`));
       return
@@ -301,6 +318,22 @@ export default function BikeSubComponent({ type }: any) {
 
   const checkImageRequire = () => {
     if(imageRequired === true){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  const checkBrandDisable = () => {
+    if(disableBrand === true){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  const checkModelDisable = () => {
+    if(disableModel === true){
       return true;
     }else{
       return false;
@@ -442,11 +475,15 @@ export default function BikeSubComponent({ type }: any) {
                   {t("autosComponent.brand")}{" "}
                   <span className="text-[#FF0000]">*</span>
                 </h1>
+                <div className="w-full">
+                {!disableBrand && 
+                <>
                 {type == "Motorcycle" ? (
                   <select
                     className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
                     name="brand"
                     onChange={(e: any) => handleInput(e)}
+                    disabled={checkBrandDisable()}
                   >
                     <option value="option1">
                       {t("autosComponent.selectBrand")}
@@ -457,7 +494,7 @@ export default function BikeSubComponent({ type }: any) {
                       </option>
                     ))}
                   </select>
-                ) : (
+                ) :  (
                   <select
                     className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
                     name="brand"
@@ -473,6 +510,12 @@ export default function BikeSubComponent({ type }: any) {
                     ))}
                   </select>
                 )}
+                </>
+              }
+                <div className="mt-2">
+                  <input type="checkbox" name="Other brand" value="Others" onClick={(e) => handleInput(e)} /> {t(`subCategoryOptions.Others`)}
+                </div>
+                </div>
               </div>
               <div className={style.divStyle}>
                 <h1 className={style.h1Style}>{t("autosComponent.year")}</h1>
@@ -486,12 +529,14 @@ export default function BikeSubComponent({ type }: any) {
                   />
                 </div>
               </div>
-              {data?.brand && type == "Motorcycles" && (
+              {!disableBrand &&
                 <div className={style.divStyle}>
                   <h1 className={style.h1Style}>
                     {t("autosComponent.model")}{" "}
                     <span className="text-[#FF0000]">*</span>
                   </h1>
+                  <div className="w-full">
+              {data?.brand && !disableModel && type == "Motorcycles" && (
                   <select
                     className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
                     name="model"
@@ -500,14 +545,23 @@ export default function BikeSubComponent({ type }: any) {
                     <option value="option1">
                       {t("autosComponent.selectBrand")}
                     </option>
-                    {models[0]?.model?.map((model: any, i: number) => (
+                    {models !== null && models[0]?.model?.map((model: any, i: number) => (
                       <option value={model} key={i}>
                         {model}
                       </option>
                     ))}
                   </select>
+                  )}
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="Other model"
+                      value="Others"
+                      onClick={(e) => handleInput(e)} /> {t(`subCategoryOptions.Others`)}
+                  </div>
+                  </div>
                 </div>
-              )}
+                }
               {data?.brand && type == "Motorcycles" && (
                 <div className={style.divStyle}>
                   <h1 className={style.h1Style}>
