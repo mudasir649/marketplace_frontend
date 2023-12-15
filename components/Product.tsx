@@ -319,7 +319,7 @@ export default function Product({ product, url }: any) {
         <div className="mx-5 mb-12">
           <div className="text-gray-600 w-full h-10 border-t-2 pt-2 space-x-1">
             <div className="flex">
-             <LocationOn
+            <LocationOn
                   className="text-gray-400"
                   style={{ fontSize: "18px" }}
                 />
