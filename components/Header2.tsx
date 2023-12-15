@@ -234,7 +234,10 @@ function Header2() {
                   <Link href="/my-profile">
                     <button
                       className="flex flex-row space-x-2 p-3 border border-gray-300 rounded-lg hover:bg-[#FF0000] hover:border-[#FF0000] hover:text-white"
-                      onClick={() => setNavbar(false)}
+                      onClick={() => {
+                        setNavbar(false);
+                        dispatch(setReduxTitle(""))
+                      }}
                     >
                       <section className="">
                         <Person />
@@ -308,7 +311,10 @@ function Header2() {
             <li>
               <Cancel
                 className="hover:text-[#FF0000] cursor-pointer"
-                onClick={() => setNavbar(false)}
+                onClick={() => {
+                  setNavbar(false)
+                  dispatch(setReduxTitle(""))
+                }}
               />
             </li>
           </ul>
@@ -328,7 +334,10 @@ function Header2() {
                 width={150}
                 height={150}
                 className={`w-auto h-14 cursor-pointer mt-1`}
-                onClick={() => router.push("/")}
+                onClick={() => { 
+                router.push("/")
+                dispatch(setReduxTitle(""))
+                }}
               />
             </Link>
           </div>

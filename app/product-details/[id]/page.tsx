@@ -8,8 +8,6 @@ import {
   Category,
   Favorite,
   InsertLink,
-  KeyboardArrowLeft,
-  KeyboardArrowRight,
   Language,
   Mail,
   Phone,
@@ -44,15 +42,6 @@ function ProductDetails() {
 
   const { userInfo } = useSelector((state: any) => state.auth);
   const userId = userInfo?.data?.userDetails?._id;
-  const [currentSlide, setCurrentSlide] = useState<number>(0);
-  const nextSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide + 1) % product?.images.length);
-  };
-  const prevSlide = () => {
-    setCurrentSlide((prevSlide) =>
-      prevSlide === 0 ? product?.images.length - 1 : prevSlide - 1
-    );
-  };
 
   const { refresh } = useSelector((state: any) => state.app);
   const router = useRouter();
@@ -175,14 +164,10 @@ function ProductDetails() {
   const redirectLogin: any = () => {
     router.push("/login");
   };
-
+  
+  
   function isNullOrNullOrEmpty(value: any) {
-    return (
-      value === null ||
-      value === undefined ||
-      value === "" ||
-      value === "undefined"
-    );
+    return value === null || value === undefined || value === "" || value === "undefined" || "null";
   }
 
   return (
@@ -215,54 +200,30 @@ function ProductDetails() {
               <div
                 className={`lg:w-auto min-h-[800px] mb-5 border rounded-lg bg-white p-5`}
               >
-                <div className="h-full w-full relative overflow-hidden group">
-                  <div
-                    className=""
-                    style={{
-                      transform: `translateX(-${
-                        currentSlide * (100 / product?.images.length)
-                      }%)`,
-                      transition: "transform 0.5s ease-in-out",
-                      display: "flex",
-                      width: `${product?.images.length * 100}%`,
-                    }}
-                  >
-                    {product?.images.map((img: string, i: number) => (
-                      <Image
-                        className="h-52 md:h-96 lg:h-[350px] mb-10 w-"
-                        key={i}
+                <div
+                  style={{ width: "100%", maxWidth: "800px", margin: "0 auto" }}
+                >
+                  <Carousel>
+                    {product?.images.map((img: any, i: number) => (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
                         src={img}
+                        alt={`image${i}`}
+                        key={i}
                         style={{
-                          flex: `0 0 ${100 / product?.images.length}%`,
+                          width: "100%",
+                          height: "auto",
+                          maxWidth: "800px",
+                          maxHeight: "400px",
                           objectFit: "contain",
+                          display: "block", // Ensures the image is centered within its container
+                          margin: "0 auto", // Horizontally centers the image
                         }}
-                        width={500}
-                        height={500}
-                        alt={`${i}`}
                       />
                     ))}
-                  </div>
-                  {product?.images?.length > 1 && (
-                    <div className="slide-buttons -mt-40 md:-mt-36 lg:-mt-52">
-                      <button
-                        className="prev-button hidden group-hover:block"
-                        onClick={prevSlide}
-                        >
-                        <KeyboardArrowLeft
-                          style={{ background: "transparent" }}
-                        />
-                      </button>
-                      <button
-                        className="next-button hidden group-hover:block"
-                        onClick={nextSlide}
-                      >
-                        <KeyboardArrowRight
-                          style={{ background: "transparent" }}
-                        />
-                      </button>
-                    </div>
-                  )}
+                  </Carousel>
                 </div>
+
                 {product?.price * 1 === 0 ? (
                   <div className="">
                     <h1 className="text-sm md:text-3xl font-bold">
@@ -318,18 +279,16 @@ function ProductDetails() {
                       <Visibility className="text-gray-500" />{" "}
                       <span className={listStyle2}>{product?.views}</span>
                     </h1>
-                    {userId === product?.userId?._id ? (
-                      ""
-                    ) : (
-                      <Favorite
-                        className={`${
-                          findProductId(product?._id)
-                            ? "text-[#FF0000]"
-                            : "text-gray-300"
-                        } cursor-pointer`}
-                        onClick={() => adFavorite(product?._id)}
-                      />
-                    )}
+                    {userId === product?.userId?._id ? "" :
+                    <Favorite
+                      className={`${
+                        findProductId(product?._id)
+                          ? "text-[#FF0000]"
+                          : "text-gray-300"
+                      } cursor-pointer`}
+                      onClick={() => adFavorite(product?._id)}
+                    />
+                  }
                     <h1>
                       <Share
                         className="text-gray-500 cursor-pointer"
@@ -349,105 +308,101 @@ function ProductDetails() {
                     <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-5 gap-5">
                       {!isNullOrNullOrEmpty(product?.subCategory) ? (
                         <h1>
-                          <span className="font-bold">
-                            {t("product.subCategory")}:{" "}
-                          </span>{" "}
-                          {t(`subCategoryOptions.${product.subCategory}`)}
-                        </h1>
+                        <span className="font-bold">
+                          {t("product.subCategory")}:{" "}
+                        </span>{" "}
+                        {t(`subCategoryOptions.${product.subCategory}`)}
+                      </h1>
                       ) : (
                         ""
                       )}
                       {!isNullOrNullOrEmpty(product?.type) ? (
                         <h1>
-                          <span className="font-bold">
-                            {t("autosComponent.vehicleType")}:{" "}
-                          </span>{" "}
-                          {t(`subCategoryOptions.${product?.type}`)}
-                        </h1>
+                        <span className="font-bold">
+                          {t("autosComponent.vehicleType")}:{" "}
+                        </span>{" "}
+                        {t(`subCategoryOptions.${product?.type}`)}
+                      </h1>
                       ) : (
                         ""
                       )}
                       {!isNullOrNullOrEmpty(product?.condition) ? (
                         <h1>
-                          <span className="font-bold">
-                            {t("product.Condition")}:{" "}
-                          </span>
-                          {t(`condition.${product.condition}`)}{" "}
-                        </h1>
+                        <span className="font-bold">
+                          {t("product.Condition")}:{" "}
+                        </span>
+                        {t(`condition.${product.condition}`)}{" "}
+                      </h1>
                       ) : (
                         ""
                       )}
                       {!isNullOrNullOrEmpty(product?.brand) ? (
                         <h1>
-                          <span className="font-bold">
-                            {t("product.Brand")}:{" "}
-                          </span>{" "}
-                          {product?.brand !== "Others"
-                            ? product?.brand
-                            : t(`subCategoryOptions.${product?.brand}`)}
-                        </h1>
+                        <span className="font-bold">
+                          {t("product.Brand")}:{" "}
+                        </span>{" "}
+                        {product?.brand !== "Others" ? product?.brand : t(`subCategoryOptions.${product?.brand}`)}
+                      </h1>
                       ) : (
                         ""
                       )}
                       {!isNullOrNullOrEmpty(product?.model) ? (
                         <h1>
-                          <span className="font-bold">
-                            {t("product.Model")}:{" "}
-                          </span>{" "}
-                          {product?.model !== "Others"
-                            ? product?.model
-                            : t(`subCategoryOptions.${product?.model}`)}
-                        </h1>
+                        <span className="font-bold">
+                          {t("product.Model")}:{" "}
+                        </span>{" "}
+                        {product?.model !== "Others" ? product?.model : t(`subCategoryOptions.${product?.model}`)}
+                      </h1>
                       ) : (
                         ""
                       )}
                       {!isNullOrNullOrEmpty(product?.year) ? (
                         <h1>
-                          <span className="font-bold">
-                            {t("product.Year")}:{" "}
-                          </span>{" "}
-                          {product?.year}
-                        </h1>
+                        <span className="font-bold">
+                          {t("product.Year")}:{" "}
+                        </span>{" "}
+                        {product?.year}
+                      </h1>
                       ) : (
                         ""
                       )}
                       {!isNullOrNullOrEmpty(product?.bodyShape) ? (
                         <h1>
-                          <span className="font-bold">
-                            {t("product.BodyShape")}:{" "}
-                          </span>{" "}
-                          {t(`bodyShape.${product.bodyShape}`)}
-                        </h1>
+                        <span className="font-bold">
+                          {t("product.BodyShape")}:{" "}
+                        </span>{" "}
+                        {t(`bodyShape.${product.bodyShape}`)}
+                      </h1>
                       ) : (
                         ""
                       )}
                       {!isNullOrNullOrEmpty(product?.fuelType) ? (
                         <h1>
-                          <span className="font-bold">
-                            {t("product.FuelType")}:{" "}
-                          </span>{" "}
-                          {t(`fuelType.${product.fuelType}`)}
-                        </h1>
+                        <span className="font-bold">
+                          {t("product.FuelType")}:{" "}
+                        </span>{" "}
+                        {t(`fuelType.${product.fuelType}`)}
+                      </h1>
                       ) : (
                         ""
                       )}
                       {!isNullOrNullOrEmpty(product?.km) ? (
                         <h1 className="line-clamp-1">
-                          <span className="font-bold">
-                            {t("product.Kilometers")}:{" "}
-                          </span>{" "}
-                          {product?.km}
-                        </h1>
+                        <span className="font-bold">
+                          {t("product.Kilometers")}:{" "}
+                        </span>{" "}
+                        {product?.km}
+                      </h1>
                       ) : (
                         ""
                       )}
                       {!isNullOrNullOrEmpty(product?.gearBox) ? (
                         <h1>
-                          <span className="font-bold">
-                            {t("product.Gearbox")}:{" "}
-                          </span>{" "}
-                          {t(`gearBox.${product.gearBox}`)}
-                        </h1>
+                        <span className="font-bold">
+                          {t("product.Gearbox")}:{" "}
+                        </span>{" "}
+                        {t(`gearBox.${product.gearBox}`)}
+                      </h1>
                       ) : (
                         ""
                       )}
@@ -461,31 +416,31 @@ function ProductDetails() {
                       )}
                       {!isNullOrNullOrEmpty(product?.engineCapacity) ? (
                         <h1>
-                          <span className="font-bold">
-                            {t("product.EngineCapacity")}:{" "}
-                          </span>{" "}
-                          {product?.engineCapacity}
-                        </h1>
+                        <span className="font-bold">
+                          {t("product.EngineCapacity")}:{" "}
+                        </span>{" "}
+                        {product?.engineCapacity}
+                      </h1>
                       ) : (
                         ""
                       )}
                       {!isNullOrNullOrEmpty(product?.interiorColor) ? (
                         <h1>
-                          <span className="font-bold">
-                            {t("product.InteriorColor")}:{" "}
-                          </span>
-                          {t(`interiorColor.${product.interiorColor}`)}
-                        </h1>
+                        <span className="font-bold">
+                          {t("product.InteriorColor")}:{" "}
+                        </span>
+                        {t(`interiorColor.${product.interiorColor}`)}
+                      </h1>
                       ) : (
                         ""
                       )}
                       {!isNullOrNullOrEmpty(product?.exteriorColor) ? (
                         <h1>
-                          <span className="font-bold">
-                            {t("product.ExteriorColor")}:{" "}
-                          </span>{" "}
-                          {t(`interiorColor.${product.exteriorColor}`)}
-                        </h1>
+                        <span className="font-bold">
+                          {t("product.ExteriorColor")}:{" "}
+                        </span>{" "}
+                        {t(`interiorColor.${product.exteriorColor}`)}
+                      </h1>
                       ) : (
                         ""
                       )}
@@ -545,7 +500,7 @@ function ProductDetails() {
                           product?.userId?.lastName}{" "}
                       </h1>
                       <h1 className="text-sm">
-                        {t(`memberSince`)}{" "}
+                        {t(`memberSince`) } {" "}
                         {new Date(product?.createdAt).toLocaleString("en-us", {
                           month: "short",
                           year: "numeric",
@@ -579,13 +534,7 @@ function ProductDetails() {
                                 </div>
                               )}
                               {product?.viber && (
-                                <div
-                                  className={`bg-gray-100 flex p-2 ${
-                                    !product?.whatsapp
-                                      ? "rounded-tr-md rounded-tl-md"
-                                      : ""
-                                  }`}
-                                >
+                                <div className={`bg-gray-100 flex p-2 ${!product?.whatsapp ? 'rounded-tr-md rounded-tl-md' : ''}`}>
                                   <PhoneInTalk className="text-white border bg-purple-500 border-purple-500 rounded-lg mr-3" />{" "}
                                   <div className="flex justify-center w-full">
                                     <h1 className="flex text-base font-bold">

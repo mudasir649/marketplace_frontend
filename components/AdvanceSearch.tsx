@@ -613,6 +613,14 @@ export default function AdvanceSearch({
     }
   }
 
+  console.log(brandInclude.includes(category));
+  
+
+  console.log(type1);
+  console.log(category);
+  
+  
+
   
 
   return (
@@ -752,7 +760,7 @@ export default function AdvanceSearch({
               </select>
             </>
           )}
-          {brandInclude.includes(type1) && (
+          {brandInclude.includes(category) && (
             <>
               <div className="border-b flex flex-row justify-between p-2 mb-4">
                 <h1 className="text-lg font-bold">
@@ -780,7 +788,7 @@ export default function AdvanceSearch({
               </div>
             </>
           )}
-          {(type1 === "Motorcycles" || type1 === "Autos") && !disableBrand &&
+          {(type1 === ("Motorcycles" || "Autos")) && !disableBrand &&
             brand &&
             models &&
             models[0]?.model && (
@@ -831,7 +839,7 @@ export default function AdvanceSearch({
               </div>
             </>
           )}
-          {IncludeKm.includes(type1) && (
+          {IncludeKm.includes(category) && (
             <>
               <div className="border-b flex flex-row justify-between p-2 mb-4">
                 <h1 className="text-lg font-bold">
@@ -883,7 +891,7 @@ export default function AdvanceSearch({
               </div>
             </>
           )}
-          {type1 === "Autos" && (
+          {category === "Autos" && (
             <>
               <div className="border-b flex flex-row justify-between p-2 mb-4">
                 <h1 className="text-lg font-bold">

@@ -331,14 +331,6 @@ export default function BikeSubComponent({ type }: any) {
       return false;
     }
   }
-
-  const checkModelDisable = () => {
-    if(disableModel === true){
-      return true;
-    }else{
-      return false;
-    }
-  }
   
 
   return (
@@ -485,7 +477,7 @@ export default function BikeSubComponent({ type }: any) {
                     onChange={(e: any) => handleInput(e)}
                     disabled={checkBrandDisable()}
                   >
-                    <option value="option1">
+                    <option value="">
                       {t("autosComponent.selectBrand")}
                     </option>
                     {brands?.make?.map((brand: any, i: number) => (
@@ -498,9 +490,10 @@ export default function BikeSubComponent({ type }: any) {
                   <select
                     className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
                     name="brand"
+                    required
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option value="option1">
+                    <option value="">
                       {t("autosComponent.selectBrand")}
                     </option>
                     {brands.make?.map((list: any, i: number) => (
@@ -542,7 +535,7 @@ export default function BikeSubComponent({ type }: any) {
                     name="model"
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option value="option1">
+                    <option value="">
                       {t("autosComponent.selectBrand")}
                     </option>
                     {models !== null && models[0]?.model?.map((model: any, i: number) => (
@@ -593,7 +586,7 @@ export default function BikeSubComponent({ type }: any) {
                     name="fuelType"
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option value="option1">
+                    <option value="">
                       {t("autosComponent.selectFuelType")}
                     </option>
                     {formData?.BikeFuelType?.map((fuel: any, i: number) => (
@@ -634,7 +627,7 @@ export default function BikeSubComponent({ type }: any) {
                     name="exteriorColor"
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option value="option1">{t("autosComponent.selectColor")}</option>
+                    <option value="">{t("autosComponent.selectColor")}</option>
                     {formData?.bikeColor?.map((color: any, i: number) => (
                       <option value={color.value} key={i}>
                         {t(`interiorColor.${color?.name}`)}
