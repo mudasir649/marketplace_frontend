@@ -75,7 +75,8 @@
     ],
     "chat": {
       "inbox": "Bandeja de entrada",
-      "noChatSelected": "Ningún chat seleccionado"
+      "noChatSelected": "Ningún chat seleccionado",
+      "viewAd": "Ver anuncio"
     },
     "sortByList": [
       "Más reciente",

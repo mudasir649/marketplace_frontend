@@ -1278,7 +1278,7 @@ function EditComponent() {
                 {!loading ? (
                   <div className="flex flex-col w-full">
                     <button className="bg-[#FF0000] hover:bg-red-800 w-32 h-10 text-white font-bold">
-                      {t("autosComponent.submit")}
+                      {t("myProfile.labels.submit")}
                     </button>
                   </div>
                 ) : (
