@@ -182,12 +182,14 @@ export default function Product({ product, url }: any) {
             >
               {product?.images.map((image: string, index: number) => (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img
+                <Image
                   key={index}
                   className="h-40 object-contain image-transition"
                   src={image}
                   alt="Product Image"
                   style={{ flex: `0 0 ${100 / product?.images.length}%` }}
+                  width={1000}
+                  height={1000}
                 />
               ))}
             </div>

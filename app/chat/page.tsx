@@ -430,7 +430,7 @@ function Chat() {
                                                                     <div className='flex flex-row justify-between'>
                                                                         <h1 className='text-[#FF0000] text-sm font-semibold'>CHF {addInvertedComma(selected?.product?.data.price * 1)}</h1>
                                                                         <button className='text-white bg-[#FF0000] border-none rounded-md w-32 p-2 mt-2'
-                                                                            onClick={() => router.push(`/product-details/${selected?.product?._id}`)}>View Ad</button>
+                                                                            onClick={() => router.push(`/product-details/${selected?.product?._id}`)}>{t('chat.viewAd')}</button>
                                                                     </div>
                                                                 </div></>
                                                         )}
@@ -573,7 +573,7 @@ function Chat() {
                                                                         <div className='flex flex-row justify-between'>
                                                                             <h1 className='text-[#FF0000] text-sm font-semibold'>CHF {addInvertedComma(selected?.product?.data.price * 1)}</h1>
                                                                             <button className='text-white bg-[#FF0000] border-none rounded-md w-32 p-2 mt-2'
-                                                                                onClick={() => router.push(`/product-details/${selected?.product?.data._id}`)}>View Ad</button>
+                                                                                onClick={() => router.push(`/product-details/${selected?.product?.data._id}`)}>{t('chat.viewAd')}</button>
                                                                         </div>
                                                                     </div></>
                                                             )}
