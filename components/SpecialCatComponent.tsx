@@ -443,9 +443,10 @@ export default function SpecialCatComponent({ type }: any) {
                   <select
                     className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
                     name="brand"
+                    required
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option value="option1">
+                    <option value="">
                       {t("autosComponent.selectBrand")}
                     </option>
                     {brands.make?.map((brand: any, i: number) => (

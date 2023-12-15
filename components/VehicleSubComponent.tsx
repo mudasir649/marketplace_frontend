@@ -456,7 +456,7 @@ export default function VehicleSubComponent({ type }: any) {
                   name="type"
                   onChange={(e: any) => handleInput(e)}
                 >
-                  <option value="option1">
+                  <option value="">
                     {t("autosComponent.selectVehicleType")}
                   </option>
                   {subCategory?.map(
@@ -485,10 +485,11 @@ export default function VehicleSubComponent({ type }: any) {
                   <select
                     className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
                     name="brand"
+                    required
                     onChange={(e) => handleInput(e)}
                     disabled={checkBrandDisable()}
                   >
-                    <option value="option1">
+                    <option value="">
                       {" "}
                       {t("autosComponent.brand")}
                     </option>
@@ -542,7 +543,7 @@ export default function VehicleSubComponent({ type }: any) {
                     name="fuelType"
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option value="option1">
+                    <option value="">
                       {t("autosComponent.selectFuelType")}
                     </option>
                     {formData?.fuelType?.map((fuel: any, i: number) => (
@@ -551,24 +552,6 @@ export default function VehicleSubComponent({ type }: any) {
                       </option>
                     ))}
                   </select>
-                </div>
-              )}
-              {type == "Construction Machine" && data?.type && (
-                <div className={style.divStyle}>
-                  <h1 className={style.h1Style}>
-                    {t("autosComponent.model")}{" "}
-                    <span className="text-[#FF0000]">*</span>
-                  </h1>
-                  <div className="flex flex-col w-full">
-                    <input
-                      type="text"
-                      className={style.inputStyle}
-                      name="model"
-                      value={data.model}
-                      onChange={(e: any) => handleInput(e)}
-                      required
-                    />
-                  </div>
                 </div>
               )}
               {data?.type && (
@@ -601,7 +584,7 @@ export default function VehicleSubComponent({ type }: any) {
                     name="axeltype"
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option value="option1">
+                    <option value="">
                       {t("autosComponent.selectAxleCount")}
                     </option>
                     {formData?.axelType?.map((axel: any, i: number) => (

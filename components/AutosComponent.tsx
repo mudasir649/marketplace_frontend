@@ -460,7 +460,7 @@ export default function AutosComponent() {
                     required
                     disabled={checkBrandDisable()}
                   >
-                    <option value="option1">
+                    <option value="">
                       {t("autosComponent.selectBrand")}
                     </option>
                     {brands?.make?.map((brand: any, i: number) => (
@@ -490,10 +490,9 @@ export default function AutosComponent() {
                     className={`block appearance-none w-full bg-white border border-gray-300 focus:outline-none px-4 py-2 pr-8 leading-tight ${!disableModel && 'hover:border-red-600'}`}
                     name="model"
                     onChange={(e: any) => handleInput(e)}
-                    required
                     disabled={checkModelDisable()}
                   >
-                    <option value="option1">
+                    <option value="">
                       {t("autosComponent.selectModel")}
                     </option>
                     {models !== null && models[0]?.model?.map((model: any, i: number) => (
@@ -531,7 +530,7 @@ export default function AutosComponent() {
                     name="bodyShape"
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option value="option1">
+                    <option value="">
                       {t("autosComponent.selectBodyShape")}
                     </option>
                     {formData?.AutosBodyShape?.map((body: any, i: number) => (
@@ -552,7 +551,7 @@ export default function AutosComponent() {
                     name="gearBox"
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option value="option1">
+                    <option value="">
                       {t("autosComponent.selectGearBox")}
                     </option>
                     {formData?.gearBox.map((gear: any, i: number) => (
@@ -573,7 +572,7 @@ export default function AutosComponent() {
                     name="fuelType"
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option value="option1">
+                    <option value="">
                       {t("autosComponent.selectFuelType")}
                     </option>
                     {formData?.fuelType.map((fuel: any, i: number) => (
@@ -613,7 +612,7 @@ export default function AutosComponent() {
                     name="exteriorColor"
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option value="option1">
+                    <option value="">
                       {t("autosComponent.selectExteriorColor")}
                     </option>
                     {formData?.exteriorColor.map((color: any, i: number) => (
@@ -634,7 +633,7 @@ export default function AutosComponent() {
                     name="interiorColor"
                     onChange={(e: any) => handleInput(e)}
                   >
-                    <option value="option1">
+                    <option value="">
                       {t("autosComponent.selectInteriorColor")}
                     </option>
                     {formData?.interiorColor.map((color: any, i: number) => (
