@@ -114,6 +114,8 @@ export default function AdvanceSearch({
   );
   const [loading, setLoading] = useState<Boolean>(false);
   const [sortByLoading, setSortByLoading] = useState<Boolean>(false);
+  const [disableBrand, setDisableBrand] = useState<Boolean>(false);
+  const [disableModel, setDisableModel] = useState<Boolean>(false);
   const [fieldsData, setFieldsData] = useState<any>();
   const pathname = usePathname();
   const dispatch = useDispatch();
@@ -591,7 +593,26 @@ export default function AdvanceSearch({
     }
   };
 
-  console.log(subCategory);
+  const checkBrandDisable = () => {
+    if(!disableBrand){
+      dispatch(setBrand("Others"));
+      setDisableBrand(true);
+    }else{
+      dispatch(setBrand(""));
+      setDisableBrand(false);
+    }
+  }
+
+  const checkModelDisable = () => {
+    if(!disableModel){
+      dispatch(setModel("Others"));
+      setDisableModel(true);
+    }else{
+      dispatch(setModel(""));
+      setDisableModel(false);
+    }
+  }
+
   
 
   return (
@@ -739,6 +760,7 @@ export default function AdvanceSearch({
                 </h1>
               </div>
               <div>
+                {!disableBrand && 
                 <select
                   className="block mb-4 appearance-none w-full bg-white border rounded-sm border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
                   name="brand"
@@ -753,10 +775,12 @@ export default function AdvanceSearch({
                     </option>
                   ))}
                 </select>
+                }
+                <input type="checkbox" onClick={checkBrandDisable} /> {t(`subCategoryOptions.Others`)}
               </div>
             </>
           )}
-          {(type1 === "Motorcycles" || type1 === "Autos") &&
+          {(type1 === "Motorcycles" || type1 === "Autos") && !disableBrand &&
             brand &&
             models &&
             models[0]?.model && (
@@ -766,6 +790,7 @@ export default function AdvanceSearch({
                     {t("autosComponent.model")}
                   </h1>
                 </div>
+                {!disableModel && 
                 <select
                   className="block appearance-none w-full bg-white border border-gray-300 hover:border-red-600 focus:outline-none px-4 py-2 pr-8 leading-tight"
                   name="model"
@@ -778,6 +803,8 @@ export default function AdvanceSearch({
                     </option>
                   ))}
                 </select>
+                }
+                <input type="checkbox" onClick={checkModelDisable} className="mt-5" /> {t(`subCategoryOptions.Others`)}
               </>
             )}
 
@@ -980,7 +1007,7 @@ export default function AdvanceSearch({
                 >
                   <div className="mb-2 md:mb-0">
                     <h1 className="text-xl font-bold">
-                      {productsCount} {t("categorySelection.results")}
+                      {productsCount > 1 ? productsCount + "  " + t("categorySelection.results") : productsCount + " Result" }
                     </h1>
                   </div>
                   {!category ? (

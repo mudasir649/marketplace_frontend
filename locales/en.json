@@ -104,10 +104,10 @@
         "Confirm Password"
       ],
       "selectVehicleCategory": "Select....",
-      "chat": 
-      {
+      "chat":{
         "inbox": "Inbox",
-        "noChatSelected": "No Chat Selected"
+        "noChatSelected": "No Chat Selected",
+        "viewAd": "View Ad"
       },
       "allCategories":{
         "Autos": "Autos",
@@ -480,7 +480,7 @@
           "listDown": "List Down Component",
           "chat": "Chat",
           "adminPanelSettings": "Admin Panel Settings",
-          "postYourAd": "Sell",
+          "postYourAd": "Post Ad",
           "hello": "Hello",
           "myProfile": "My Profile",
           "myAds": "My Ads",
@@ -777,7 +777,7 @@
           "firstName": "First Name",
           "lastName": "Last Name",
           "phone": "Phone",
-          "submit": "Submit"
+          "submit": "Save"
         },
         "buttons": {
           "uploadPicture": "Upload Picture"

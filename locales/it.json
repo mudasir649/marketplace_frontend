@@ -75,7 +75,8 @@
   ],
   "chat": {
     "inbox": "Posta in arrivo",
-    "noChatSelected": "Nessuna chat selezionata"
+    "noChatSelected": "Nessuna chat selezionata",
+    "viewAd": "Vedi annuncio"
   },
   "sortByList": [
     "Più recente",
