@@ -1,4 +1,4 @@
-.image-gallery {
+/* .image-gallery {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -13,11 +13,43 @@
       height: 500px !important;
       display: block !important;
       transition: transform 0.3s ease-in-out !important;
-      flex-shrink: 0 !important; /* Prevents the image from shrinking */
+      flex-shrink: 0 !important; 
       flex-grow: 0 !important;
       background-color: #eeeeee !important;
   }
-}
+} */
+
+
 .transition-transform {
   transition-property: transform;
 }
+
+.slide-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: transform 0.3s ease;
+  position: absolute;
+  left: 0;
+  right: 0; /* This ensures the buttons are positioned at the left and right edges */
+}
+
+
+.prev-button,
+.next-button {
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease; /* Apply the same transition to the buttons */
+  color: #E5241F;
+  background-color: darkgray;
+}
+
+.prev-button:hover,
+.next-button:hover {
+  transform: scale(1.1); /* Add a slight scale effect on hover for smoothness */
+}
+
+.image-slider-container {
+  display: flex;
+}
+
